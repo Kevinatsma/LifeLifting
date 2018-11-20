@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/LifeLifting",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
