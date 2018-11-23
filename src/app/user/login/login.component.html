@@ -1,0 +1,43 @@
+<div class="main-wrapper">
+  <section class="login-container">
+    <img class="logo" src="./../../../../assets/img/logo-extended.svg" title="Logo" alt="Logo">
+    <h2>Welcome back</h2>
+    <p class="intro-text">Login to your account to access your personal plans and goals.</p>
+
+
+    <form [formGroup]="signInForm" (ngSubmit)="signIn()" class="auth-form">
+      <mat-form-field [formGroup]="signInForm" appearance="standard">
+        <input type="text" matInput placeholder="Enter you email" formControlName="email" 
+               [class.active]="!email.valid && email.touched" autocomplete="off" required
+        >
+        <mat-error class="input-error" *ngIf="!email.dirty">This is <strong>required</strong></mat-error>
+        <mat-error class="input-error" *ngIf="!email.valid && email.dirty">That's <strong>not</strong> a valid e-mail address!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field [formGroup]="signInForm" appearance="standard">
+        <input class="form-input" type="password" matInput placeholder="Enter you password" [type]="hide ? 'password' : 'text'" 
+        formControlName="password" [class.active]="!password.valid && password.touched"  autocomplete="new-password" [class.active]="password.valid" required
+        >
+        <!-- <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off'}}</mat-icon> -->
+        <mat-hint class="forgot-password" align="end">
+          <a class="small-text" routerLink="/reset-password">Forgot password?</a>
+        </mat-hint>
+        <mat-error class="input-error" *ngIf="!password.dirty">This is <strong>required</strong></mat-error>
+        <mat-error class="input-error" *ngIf="!password.errors.minLength && password.dirty">Not enough characters, try harder!</mat-error>
+      </mat-form-field>
+
+      <div class="btn-area">
+        <button class="btn-primary" type="submit">Login</button>
+        <br>
+        <button type="button" class="text-link">Sign up for an account</button>
+        <!-- <p>Or login with a Social Account</p>
+        <button class="btn-secondary" (click)="googleLogin()">Connect with Google</button> -->
+      </div>
+
+    </form>
+
+  </section>
+  <section class="photo-container">
+    
+  </section>
+</div>

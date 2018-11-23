@@ -1,0 +1,104 @@
+@import '_master';
+
+.main-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    
+    section.login-container{
+        @extend %flex-column-center;
+        height: 100vh;
+        width: 35%;
+        background: $light-grey;
+        text-align: center;
+        box-shadow: $sidebar-shadow;
+    
+        .logo {
+            width: 40%;
+            height: auto;
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        p.intro-text {
+            margin: 0 auto;
+            width: 60%;
+            color: $text-black;
+            text-align: center;
+        }
+
+        form.auth-form {
+            @extend %flex-column-center;
+            width: 65%;
+            margin: 0 auto;
+
+            mat-form-field {
+                width: 100%;
+
+                &:nth-child(2) {
+                    margin-top: -25px!important;
+                }
+
+                .mat-form-field-infix {
+                    padding-top: 0!important;
+                }
+            }
+
+            .btn-area {
+                margin-top: 40px;
+                button {
+                    &.text-link {
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+    
+    }
+
+    section.photo-container {
+        width: 65%;
+        height: 100vh;
+        background-image: url("./../../../assets/img/bgs/home-bg.jpg");
+        // background-image: url("./../../../assets/img/bgs/home-bg-2.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .main-wrapper {
+        flex-flow: column wrap;
+        height: 100vh;
+
+        section.photo-container {
+            display: none;
+        }
+        section.login-container {
+            width: 100%;
+            height: 100vh;
+            padding: 0;
+
+            .logo {
+                width: 50%;
+                margin-bottom: 35px;
+            }
+
+            h2 {
+                font-size: 22px;
+                margin-bottom: 5px;
+                font-weight: $regular;
+            }
+
+            p.intro-text {
+                width: 80%;
+            }
+        }
+
+        form {
+            margin-top: 35px;
+        }
+    }
+}

@@ -13,10 +13,10 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
+// App Modules
+import { UserModule } from './user/user.module';
+
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,9 +25,13 @@ import { environment } from '../environments/environment';
     AngularFireAuthModule,
     AngularFireStorageModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    UserModule
+  ],
+  declarations: [
+    AppComponent
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

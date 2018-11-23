@@ -1,19 +1,360 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '_master';
 
 html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $light-grey;
 }
 
-.main-wrapper {
-    width: 100%;
-    height: 100vh;
-    padding: 0;
+
+//////////////////
+//////////////////
+// Buttons
+
+button {
+    @extend %input-reset;
+
+    &:hover, &:focus, &:active {
+        cursor: pointer;
+    }
+}
+
+// Menu Buttons
+
+
+// Main CTA's
+
+.btn-primary {
+    @include round-btn;
+    color: $primary-color;
+    border: 2px solid $primary-color;
+    background-color: transparent;
+    
+
+    &:hover, &:focus, &:active {
+        background-color: $primary-color;
+        color: $light-grey;
+        box-shadow: 0 0 0 rgba(255, 255, 255, 1);
+        // animation: pulse-blue 2s infinite;  
+    }
+}
+
+//////////////////
+//////////////////
+// Headers & Text
+
+h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url("assets/img/bgs/home-bg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    padding: 0;
+    letter-spacing: 1.2px;
+    font-family: $title-font;
+}
+
+h1 {
+    letter-spacing: 2px;
+    font-size: 30px;
+    font-weight: $bold;
+    color: $title-black;
+
+    &.section-title {
+        text-align: center;
+        width: 100%;
+        padding-bottom: 20px;
+        margin: 0 auto 15px auto;        
+    }
+
+    &.border-bottom {
+        // Bottom Border
+        &::after {
+            content: "";
+            background: $border-color;
+            top: 20px;
+            left: 45%;
+            display: flex;
+            height: 2px;
+            position: relative;
+            width: 10%;
+        }
+    }
+}
+
+h2 {
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    font-size: 24px;
+    font-weight: $semi-bold;
+    color: $title-black;
+
+    &.card-title {
+        margin-bottom: 30px;
+    }
+
+    &.border-bottom {
+        // Bottom Border
+        &::after {
+            content: "";
+            background: $border-color;
+            top: 15px;
+            left: 20%;
+            display: flex;
+            height: 2px;
+            position: relative;
+            width: 60%;
+        }
+    }
+}
+
+h3 {
+    color: $title-black;
+    font-size: 22px;
+    font-weight: $bold;
+    margin-left: 1em;
+}
+
+h4 {
+    color: $title-black;
+    font-size: 20px;
+    font-weight: $semi-bold;
+    font-family: $main-font;
+}
+
+h5 {
+    color: $text-black;
+    font-size: 18px;
+    font-weight: $semi-bold;
+    font-family: $main-font;
+
+    &.border-bottom {
+        // Bottom Border
+        &::after {
+            content: "";
+            background: $grey;
+            top: 15px;
+            left: 0;
+            display: flex;
+            height: 2px;
+            position: relative;
+            width: 30%;
+        }
+    }
+}
+
+h6 {
+    font-family: $main-font;
+    font-size: 16px;
+    font-weight: $regular;
+    color: $grey;
+    letter-spacing: 2px;
+
+    &.subtitle {
+        margin: 0 5px 0 3px;
+    }
+}
+
+p {
+    font-family: $main-font;
+    letter-spacing: 1px;
+    line-height: 1.6;
+
+    &.section-text {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 16px;
+        color: $text-black;
+        font-weight: $regular;
+    }
+
+    &.card-text {
+        margin: 0 auto;
+        font-size: 14px;
+        color: $text-black;
+        font-weight: $regular;
+    }
+}
+
+//////////////////
+//////////////////
+// Links
+
+a {
+    text-decoration: none;
+
+    &:hover, &:focus, &:active {
+        cursor: pointer;
+    }
+
+    &.menu-link {
+        position: relative;
+    
+        &:hover, &:focus, &:active, &:visited {
+            color: $primary-color;
+            transition: all 0.3s ease-in;
+    
+            &::after {
+                pointer-events: none;
+                width: 70%;
+                border-bottom: 1.8px solid $primary-color;
+            }
+        }
+    
+        &::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+            top: 4px;
+            left: 0;
+            right: 0;
+            width: 0px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-bottom: 1.8px solid transparent;
+            transition: all 0.2s ease-in-out;
+        }
+
+        &.active {
+           &::after {
+            pointer-events: none;
+            border-bottom: 1.8px solid $primary-color!important;
+           }
+        }
+    }
+
+    &.inverted {
+        &::after {
+            pointer-events: none;
+            opacity: 0.8;
+            border-bottom: 1.8px solid $middle-grey!important;
+        }
+    }
+}
+
+.text-link {
+    color: $primary-color;
+    font-family: $main-font;
+    font-weight: $regular;
+    font-size: 16px;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 5px;
+
+    &:hover, &:focus {
+        color: $primary-color;
+        transition: all 0.4s ease-in-out;
+
+        &::after {
+            width: 100%;
+            opacity: 0.8;
+            border-bottom: 1.2px solid $primary-color;
+            right: 0;
+            pointer-events: none;
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        display: flex;
+        height: 4px;
+        bottom: 0;
+        width: 0;
+        border-bottom: 1.2px solid transparent;
+        transition: all 0.4s ease-in-out;
+        pointer-events: none;
+    }
+}
+
+//////////////////
+//////////////////
+// Lists
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+        margin: 0;
+        padding: 5px 0;
+        list-style: none;
+        font-family: $main-font;
+        font-weight: $regular;
+        font-size: 16px;
+        color: $black;
+        letter-spacing: 1px;
+
+        a {
+            text-decoration: none;
+            
+        }
+    }
+}
+
+
+.main-wrapper {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+// Mat Cards
+
+mat-card {
+    &.dark-card {
+        background: $black!important;
+        box-shadow: $card-shadow;
+        border-radius: 5px;
+        padding: 20px 1.5em;
+    }
+}
+
+//////////////////
+//////////////////
+// Forms
+
+form {
+    mat-form-field {
+        input, ::placeholder {
+            font-family: $main-font;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        input {
+            font-weight: $bold;
+            color: $grey!important;
+            padding: 10px 0.2em!important;
+            caret-color: $primary-color!important;
+            border-bottom: 1.5px solid $middle-grey!important;
+
+            &.active {
+                transition: all 400ms ease-in; 
+                border-bottom: 1.5px solid lighten($brand-danger, 10%)!important;
+            }
+        }
+
+        ::placeholder {
+            font-weight: $regular;
+            color: $text-black;
+        }
+    }
+
+    .mat-form-field-underline {
+        display: none!important;
+    }
+    mat-hint {
+        a {
+            font-family: $main-font;
+            font-size: 14px;
+            font-weight: $regular;
+            color: $text-black;
+        }
+    }
+
+    mat-error {
+        color: $brand-danger!important;
+    }
+
 }

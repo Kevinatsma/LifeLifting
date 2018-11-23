@@ -9,7 +9,7 @@ import { AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firesto
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss', './../auth.style.scss']
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;

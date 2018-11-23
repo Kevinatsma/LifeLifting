@@ -5,13 +5,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { AuthService } from '../auth.service';
+import { AuthService } from './../../core/auth/auth.service';
 import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss', './../auth.style.scss']
+  styleUrls: ['./login.component.scss']
 })
 
 export class LoginComponent implements OnInit {
@@ -30,8 +30,7 @@ export class LoginComponent implements OnInit {
         '',
         [
           Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-          Validators.minLength(6),
-          Validators.maxLength(25)
+          Validators.minLength(6)
         ]
       ]
     });

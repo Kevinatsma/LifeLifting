@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 
 // Components
-import { LoginComponent } from './core/auth/login/login.component';
+import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './core/auth/signup/signup.component';
 
 // Guards
@@ -23,7 +23,7 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
-    canActivate: [AdminGuard],
+    // canActivate: [AdminGuard],
     data: { state: 'signup' }
   },
 ];
