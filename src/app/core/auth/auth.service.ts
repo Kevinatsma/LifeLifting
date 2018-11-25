@@ -71,6 +71,11 @@ export class AuthService {
     return userRef.set(data, { merge: true });
   }
 
+  updateUser(data, user) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    return userRef.update(data);
+  }
+
   get authenticated(): boolean {
     return this.authState !== null;
   }

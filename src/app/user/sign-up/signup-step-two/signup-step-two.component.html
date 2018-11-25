@@ -1,3 +1,31 @@
-<p>
-  signup-step-two works!
-</p>
+<ng-container *ngIf="(auth.user | async) || {} as user">
+    <section class="step-wrapper">
+      <h5>Pick a plan and get a free assesment</h5>
+      <h1>Step 2: Choose a plan</h1>
+  
+      <section class="package-container">
+        <mat-card>
+          <h2>Package 1</h2>
+          <p>bla bla</p>
+        </mat-card>
+        <mat-card>
+          <h2>Package 2</h2>
+          <p>bla bla</p>
+        </mat-card>
+      </section>
+      
+  
+      <div class="btn-area">
+        <button class="btn-icon-left" routerLink="../step-one">
+          <i class="fas fa-chevron-left small"></i>
+          <span>Previous step</span>
+        </button>
+        <button class="btn-icon-right" type="submit" [disabled]="!basicUserDataForm.valid">
+          <span>Choose this plan</span>
+          <i class="fas fa-chevron-right small"></i>
+        </button>
+      </div>
+  
+    </section>
+  </ng-container>
+  

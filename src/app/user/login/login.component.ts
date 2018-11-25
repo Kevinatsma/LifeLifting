@@ -22,8 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public auth: AuthService,
-    private router: Router,
-    public location: Location
+    private router: Router
   ) {
     this.signInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -60,14 +59,18 @@ export class LoginComponent implements OnInit {
   }
 
   googleLogin() {
-    this.auth.googleLogin();
+    this.auth.googleLogin()
+    .then(() => {
+      if (!this.auth.authState.basicData) {
+        this.router.navigate(['/signup/step-one']);
+        console.log('You don\'t have all necessary data yet..');
+      } else {
+        this.router.navigate(['/dashboard']);
+      }
+    });
   }
 
   facebookLogin() {
     alert('I need the FB token first...');
-  }
-
-  goBack() {
-    this.location.back();
   }
 }

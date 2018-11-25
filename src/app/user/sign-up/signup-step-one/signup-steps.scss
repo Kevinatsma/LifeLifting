@@ -1,4 +1,5 @@
 @import '_master';
+@import '_animations';
 
 .step-wrapper {
     @extend %flex-column-center;
@@ -8,4 +9,55 @@
     overflow-y: scroll;
     padding: 0;
     margin: 0;
+
+    form {
+        position: relative;
+        // max-height: 20px;
+        animation: increase-height 1s;
+        overflow: hidden;
+    }
+
+    form {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 80%;
+        margin: 3em auto;
+
+        .mat-form-field {
+            width: 40%;
+            margin: 10px 5%;
+            input, select, textarea {
+                padding-top: 0.5em!important;
+            }
+        }
+    }
+
+    .package-container {
+        width: 90%;
+        margin: 40px auto;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+
+        mat-card {
+            &:first-child {
+                margin-right: 4em;
+            }
+        }
+    }
+
+    .btn-area {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .step-wrapper {
+        padding: 3em 1em;
+    }
 }

@@ -6,8 +6,8 @@ export interface Roles {
 
  export interface BasicData {
     age?: number;
-    sex?: string;
-    countryOfResidence?: string;
+    gender?: string;
+    country?: string;
     phoneNumber?: number;
     mainGoal?: string;
     heardFromUs?: string;

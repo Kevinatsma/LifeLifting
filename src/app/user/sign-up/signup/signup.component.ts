@@ -19,14 +19,13 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private auth: AuthService,
+    public auth: AuthService,
     private afs: AngularFirestore,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.signUpForm = this.fb.group({
-      displayName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: [
         '',
@@ -39,10 +38,6 @@ export class SignupComponent implements OnInit {
     });
 
     this.user = this.auth.user;
-
-    // this.userDoc = this.afs.doc<User>(`users/${this.auth.currentUserId}`);
-    // this.user =  this.userDoc.valueChanges();
-    // console.log(`${this.user}`);
   }
 
   // Getters
@@ -64,7 +59,15 @@ export class SignupComponent implements OnInit {
   }
 
   googleLogin() {
-    this.auth.googleLogin();
+    this.auth.googleLogin()
+    .then(() => {
+      if (this.auth.user) {
+        this.router.navigate(['signup/step-one']);
+        console.log('You don\'t have all necessary data yet..');
+      } else {
+        this.router.navigate(['/dashboard']);
+      }
+    });
   }
 
   facebookLogin() {

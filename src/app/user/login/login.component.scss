@@ -29,6 +29,7 @@ div.column {
     overflow-y: scroll;
     // flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
     box-sizing: border-box;
+    box-shadow: $sidebar-shadow;
 }
 
 section.login-container{
@@ -38,8 +39,6 @@ section.login-container{
     padding: 0.5em  0;
     background: $light-grey;
     text-align: center;
-    box-shadow: $sidebar-shadow;
-    
 
     .logo {
         width: 45%;
@@ -87,7 +86,7 @@ section.login-container{
 
             &.btn-icon-left {
                 width: 100%;
-                margin: 10px auto;
+                margin: 30px auto;
                 padding: 0!important;
             }
         }

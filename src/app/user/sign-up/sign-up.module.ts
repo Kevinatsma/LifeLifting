@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 import { LoginComponent } from '../login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FirstStepSuccessComponent } from './first-step-success/first-step-success.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -40,7 +41,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes),
     CoreModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   exports: [
     LoginComponent,
