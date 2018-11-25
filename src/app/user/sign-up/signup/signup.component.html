@@ -1,0 +1,63 @@
+<div class="main-wrapper">
+  <ng-container *ngIf="(auth.user | async) || {} as user">
+  <div class="column" *ngIf="!user.uid">
+    <section class="login-container">
+        <img class="logo" src="./../../../../assets/img/logo-extended.svg" title="Logo" alt="Logo">
+        <h2>Hey There!</h2>
+        <p class="intro-text">Create an account to see your schedules and goals, we are not afraid of mirrors!</p>
+    
+    
+        <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class="auth-form">
+          <mat-form-field [formGroup]="signUpForm" appearance="standard">
+            <input type="text" matInput placeholder="What's your email?" formControlName="email" 
+                    [class.active]="!email.valid && email.touched" autocomplete="off" required
+            >
+            <mat-error class="input-error" *ngIf="!email.dirty">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!email.valid && email.dirty">That's <strong>not</strong> a valid e-mail address!</mat-error>
+          </mat-form-field>
+    
+          <mat-form-field appearance="standard">
+            <input class="form-input" type="password" matInput placeholder="Choose a password.." [type]="hide ? 'password' : 'text'" 
+            formControlName="password" [class.active]="!password.valid && password.touched" 
+            autocomplete="new-password" required
+            >
+            <mat-error class="input-error" *ngIf="!password.dirty">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="password.errors?.minlength"><strong>Not enough</strong> characters, try harder!</mat-error>
+            <mat-error class="input-error" *ngIf="password.errors?.maxlength">Too <strong>much</strong> characters, slow down there.</mat-error>
+            <mat-error class="input-error" *ngIf="password.errors?.pattern">Password contains <strong>a special character</strong>, or lacks a <strong>number/letter</strong>.</mat-error>
+          </mat-form-field>
+    
+          <div class="btn-area">
+            <button class="btn-primary" type="submit">Create account</button>
+            <br>
+            <button type="link" class="text-link" routerLink="../login">I already have an account</button>
+    
+            <p class="light-text">- or -</p>
+    
+            <button type="button" class="btn-icon-left" (click)="googleLogin()">
+              <i class="fab fa-google"></i>
+              Login with Google
+            </button>
+            <button type="button" class="btn-icon-left" (click)="facebookLogin()">
+              <i class="fab fa-facebook-f"></i>
+              Login with Facebook
+            </button>
+          </div>
+    
+        </form>
+    </section>
+  </div>
+  </ng-container>
+  <ng-container *ngIf="auth.user | async as user">
+    <app-first-step-success *ngIf="user.uid"></app-first-step-success>
+  </ng-container>
+
+  <ng-container *ngIf="(auth.user | async) || {} as user">
+    <section class="photo-container" *ngIf="!user.uid">
+      
+    </section>
+    <router-outlet *ngIf="user.uid && !user.basicData"></router-outlet>
+    
+  </ng-container>
+  
+</div>

@@ -1,0 +1,12 @@
+@import '_master';
+
+:host ::ng-deep router-outlet + * {
+    width: 65%;
+    height: 100%;
+    overflow: scroll;
+    background: $middle-grey;
+}
+
+section.login-container {
+    height: auto!important;
+}

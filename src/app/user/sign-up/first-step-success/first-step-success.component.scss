@@ -1,0 +1,18 @@
+@import '_master';
+
+div.success-wrapper {
+    width: 100%!important;
+    height: 100vh;
+    overflow: hidden;
+
+    .login-container {
+        @extend %flex-column-center;
+        padding: 0;
+        align-items: center!important;
+
+        img.logo {
+            width: 60%;
+            margin-top: 0;
+        }
+    }
+}

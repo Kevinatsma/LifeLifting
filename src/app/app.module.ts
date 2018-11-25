@@ -15,18 +15,20 @@ import { environment } from '../environments/environment';
 
 // App Modules
 import { UserModule } from './user/user.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     AngularFireStorageModule,
     CoreModule,
     SharedModule,
-    UserModule
+    UserModule,
+    DashboardModule
   ],
   declarations: [
     AppComponent

@@ -1,31 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
-
-// Components
 import { LoginComponent } from './user/login/login.component';
-import { SignupComponent } from './core/auth/signup/signup.component';
-
-// Guards
-import { AdminGuard } from './core/auth/guards/admin.guard';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    data: { state: 'login' }
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
-    // canActivate: [AdminGuard],
-    data: { state: 'signup' }
-  },
+  }
 ];
 
 @NgModule({
@@ -34,7 +17,7 @@ const routes: Routes = [
       // scrollPositionRestoration: 'top',
       scrollPositionRestoration: 'enabled',
       anchorScrolling: 'enabled',
-      scrollOffset: [0, 85] // x + y
+      scrollOffset: [0, 0] // x + y
     }),
     CoreModule
   ],

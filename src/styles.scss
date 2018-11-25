@@ -42,6 +42,77 @@ button {
     }
 }
 
+.btn-secondary-outline {
+    @include round-btn;
+    color: $secondary-color;
+    border: 2px solid $secondary-color;
+    background-color: transparent;
+    
+
+    &:hover, &:focus, &:active {
+        background-color: $secondary-color;
+        color: $light-grey;
+        box-shadow: 0 0 0 rgba(255, 255, 255, 1);
+        // animation: pulse-blue 2s infinite;  
+    }
+}
+
+.btn-accent-outline {
+    @include round-btn;
+    color: $brand-accent;
+    border: 2px solid $brand-accent;
+    background-color: transparent;
+    
+
+    &:hover, &:focus, &:active {
+        background-color: $brand-accent;
+        color: $light-grey;
+        box-shadow: 0 0 0 rgba(255, 255, 255, 1);
+        // animation: pulse-blue 2s infinite;  
+    }
+}
+
+.btn-icon-left {
+    @include round-btn;
+    color: $grey;
+    background: #fff;
+    box-shadow: $card-shadow;
+    padding: 5px 2em;
+    font-weight: $semi-bold;
+
+    svg {
+        color: $secondary-color;
+        margin-right: 20px;
+    }
+    
+
+    &:hover, &:focus, &:active {
+        background-color: $secondary-color;
+        color: #fff;
+        box-shadow: 0 0 0 rgba(255, 255, 255, 1);
+        // animation: pulse-blue 2s infinite;  
+
+        svg {
+            transition: all 300ms ease-in-out;
+            color: #fff;
+        }
+    }
+}
+
+.btn-disabled {
+    @include round-btn;
+    color: $grey;
+    border: 2px solid $middle-grey;
+    background-color: $middle-grey;
+    
+
+    &:hover, &:focus, &:active {
+        box-shadow: 0 0 0 rgba(255, 255, 255, 1);
+        cursor: inherit!important;
+        // animation: pulse-blue 2s infinite;  
+    }
+}
+
 //////////////////
 //////////////////
 // Headers & Text
@@ -355,6 +426,8 @@ form {
 
     mat-error {
         color: $brand-danger!important;
+        margin-bottom: 5px;
+        font-size: 12px;
     }
 
 }

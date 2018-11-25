@@ -1,3 +1,6 @@
-<p>
-  signup-step-one works!
-</p>
+<ng-container *ngIf="(auth.user | async) || {} as user">
+  <section class="step-wrapper">
+    <h5>Welcome, {{user.displayName || user.email}}</h5>
+    <h1>Step 1, Basic personal data</h1>
+  </section>
+</ng-container>

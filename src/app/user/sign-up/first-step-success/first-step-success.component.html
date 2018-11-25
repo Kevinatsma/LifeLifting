@@ -1,0 +1,13 @@
+<div class="success-wrapper" *ngIf="(auth.user | async ) || {} as user">
+  <section class="login-container">
+    <img class="logo" src="./../../../../assets/img/logo-extended.svg" title="Logo" alt="Logo">
+    <h2>Account created!</h2>
+    <p class="intro-text">Thanks, {{user.email}}</p>
+    <p class="intro-text">Please complete the following steps to use the LifeLifting Mirror.</p>
+    <div class="btn-area">
+      <button class="btn-disabled" [disabled]="!user.basicDetails" (click)="dashboardLink()">Go to Mirror</button>
+      <br>
+      <button type="link" class="text-link" routerLink="../login">Go back</button>
+    </div>
+  </section>
+</div>

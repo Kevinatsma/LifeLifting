@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './../../core/auth/auth.service';
 import { Location } from '@angular/common';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-login',
@@ -46,21 +47,25 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-
     return this.auth
       .emailSignIn(this.email.value, this.password.value)
-      .then(user => {
-        if (this.signInForm.valid) {
-          this.router.navigate(['/dashboard']);
+      .then(() => {
+        if (!this.auth.authState.basicData) {
+          this.router.navigate(['/signup/step-one']);
+          console.log('You don\'t have all necessary data yet..');
         } else {
-          alert('You don\'t have an account!');
+          this.router.navigate(['/dashboard']);
         }
       });
   }
 
-  // googleLogin() {
-  //   this.auth.googleLogin();
-  // }
+  googleLogin() {
+    this.auth.googleLogin();
+  }
+
+  facebookLogin() {
+    alert('I need the FB token first...');
+  }
 
   goBack() {
     this.location.back();

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as firebase from 'firebase/app';
@@ -20,10 +20,10 @@ export class AuthService {
 
   constructor( private afs: AngularFirestore,
                private afAuth: AngularFireAuth,
-               private router: Router) {
+               private router: Router,
+               private ngZone: NgZone) {
 
     // Get Auth data, then get Firestore User Document || null
-
     this.user = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -49,7 +49,7 @@ export class AuthService {
         this.updateUserData(credential.user);
       })
       .then(() => {
-        this.router.navigate(['/dashboard']);
+        this.ngZone.run(() => this.router.navigate(['/dashboard']));
       })
       .catch(error => console.log(error.message));
   }
@@ -61,7 +61,6 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      phoneNumber: null,
       photoURL: user.photoURL,
       roles: {
         subscriber: true,
@@ -84,9 +83,12 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(() => console.log('You have successfully signed in'))
       .then(() => {
-        this.router.navigate(['/dashboard']);
+        return this.user;
       })
-      .catch(error => console.log(error.message));
+      .catch(error => {
+        alert('Login details were not correct');
+        console.log(error.message);
+      });
   }
 
   emailSignUp(email: string, password: string) {
@@ -99,6 +101,7 @@ export class AuthService {
         this.afAuth.auth.currentUser.sendEmailVerification()
           .then(() => console.log('We sent you an email verification'))
           .catch(error => console.log(error.message));
+          return user;
       });
   }
 
