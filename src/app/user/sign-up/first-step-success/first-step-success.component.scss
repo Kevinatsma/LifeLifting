@@ -9,6 +9,17 @@ div.success-wrapper {
         @extend %flex-column-center;
         padding: 0;
         align-items: center!important;
+        position: relative;
+
+        .close-section {
+            position: absolute;
+            top: 0;
+            right: 0px;
+
+            svg {
+                color: $grey;
+            }
+        }
 
         img.logo {
             width: 60%;

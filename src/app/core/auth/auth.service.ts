@@ -49,7 +49,12 @@ export class AuthService {
         this.updateUserData(credential.user);
       })
       .then(() => {
-        this.ngZone.run(() => this.router.navigate(['/dashboard']));
+        if (!this.authState.basicData) {
+          this.ngZone.run(() => this.router.navigate(['/signup/step-one']));
+          console.log('You don\'t have all the necessary data');
+        } else {
+          this.ngZone.run(() => this.router.navigate(['/dashboard']));
+        }
       })
       .catch(error => console.log(error.message));
   }

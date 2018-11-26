@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
@@ -7,13 +7,14 @@ import { AuthService } from 'src/app/core/auth/auth.service';
   styleUrls: ['./first-step-success.component.scss', './../../login/login.component.scss']
 })
 export class FirstStepSuccessComponent implements OnInit {
+  @Output() close = new EventEmitter();
 
   constructor( public auth: AuthService) { }
 
   ngOnInit() {
   }
 
-  dashboardLink() {
-    alert('Fill out all the steps first!');
+  closeSection() {
+    this.close.emit(null);
   }
 }

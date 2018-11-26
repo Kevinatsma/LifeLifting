@@ -59,15 +59,7 @@ export class LoginComponent implements OnInit {
   }
 
   googleLogin() {
-    this.auth.googleLogin()
-    .then(() => {
-      if (!this.auth.authState.basicData) {
-        this.router.navigate(['/signup/step-one']);
-        console.log('You don\'t have all necessary data yet..');
-      } else {
-        this.router.navigate(['/dashboard']);
-      }
-    });
+    this.auth.googleLogin();
   }
 
   facebookLogin() {

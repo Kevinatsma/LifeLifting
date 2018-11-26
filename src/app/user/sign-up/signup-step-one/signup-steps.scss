@@ -43,8 +43,18 @@
         align-items: center;
 
         mat-card {
+            @extend %flex-column-center;
+            width: 40%;
+            padding: 5em 3em;
+            
             &:first-child {
-                margin-right: 4em;
+                margin-right: 3em;
+            }
+
+            &:hover, &:focus {
+                cursor: pointer;
+                transition: transform 300ms ease-in-out;
+                transform: scale(1.1);
             }
         }
     }

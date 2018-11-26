@@ -6,7 +6,7 @@ import { SignupStepOneComponent } from './signup-step-one/signup-step-one.compon
 import { SignupStepTwoComponent } from './signup-step-two/signup-step-two.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthService } from 'src/app/core/auth/auth.service';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from './../login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FirstStepSuccessComponent } from './first-step-success/first-step-success.component';
 import { ReactiveFormsModule } from '@angular/forms';

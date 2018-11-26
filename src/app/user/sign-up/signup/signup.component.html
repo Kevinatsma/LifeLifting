@@ -49,7 +49,12 @@
   </div>
   </ng-container>
   <ng-container *ngIf="auth.user | async as user">
-    <app-first-step-success *ngIf="user.uid"></app-first-step-success>
+    <app-first-step-success *ngIf="user.uid && succesVisible" (close)="succesVisible = false"></app-first-step-success>
+    <div class="show-section" *ngIf="!succesVisible && user.uid" (click)="openSuccess()">
+      <button class="open-side-component">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
   </ng-container>
 
   <ng-container *ngIf="(auth.user | async) || {} as user">

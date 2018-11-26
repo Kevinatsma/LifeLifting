@@ -59,7 +59,7 @@ section.login-container{
 
     form.auth-form {
         @extend %flex-column-center;
-        width: 65%;
+        width: 75%;
         margin: 0 auto;
 
         mat-form-field {
@@ -85,7 +85,7 @@ section.login-container{
             }
 
             &.btn-icon-left {
-                width: 100%;
+                width: 90%;
                 margin: 30px auto;
                 padding: 0!important;
             }

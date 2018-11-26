@@ -6,3 +6,9 @@
     overflow: scroll;
     background: $middle-grey;
 }
+
+@media only screen and (max-width: 768px) {
+    app-first-step-success {
+        display: none;
+    }
+}
