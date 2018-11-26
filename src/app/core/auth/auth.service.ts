@@ -6,7 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, first } from 'rxjs/operators';
 
 import { User, Roles } from './../../user/user.model';
 
@@ -50,12 +50,7 @@ export class AuthService {
         this.updateUserData(credential.user);
       })
       .then(() => {
-        if (!this.authState.basicData) {
-          this.ngZone.run(() => this.router.navigate(['/signup/step-one']));
-          console.log('You don\'t have all the necessary data');
-        } else {
-          this.ngZone.run(() => this.router.navigate(['/dashboard']));
-        }
+        this.router.navigate(['dashboard']);
       })
       .catch(error => console.log(error.message));
   }
@@ -107,7 +102,7 @@ export class AuthService {
         return this.user;
       })
       .then(() => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['dashboard']);
       })
       .catch(error => {
         alert(error.message);

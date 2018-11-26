@@ -46,11 +46,21 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-    return this.auth.emailSignIn(this.email.value, this.password.value);
+    return this.auth.emailSignIn(this.email.value, this.password.value)
+    .then(() => {
+      if (this.auth.authenticated) {
+        this.router.navigate(['/dashboard']);
+      }
+    });
   }
 
   googleLogin() {
-    this.auth.googleLogin();
+    this.auth.googleLogin()
+    .then(() => {
+      if (this.auth.authenticated) {
+        this.router.navigate(['/dashboard']);
+      }
+    });
   }
 
   facebookLogin() {

@@ -14,6 +14,11 @@ import { SignupStepThreeComponent } from './signup-step-three/signup-step-three.
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
     path: 'login',
     component: LoginComponent,
     data: { state: 'login' }

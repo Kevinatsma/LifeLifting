@@ -20,6 +20,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class DashboardModule { }

@@ -67,7 +67,7 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['signup/step-one']);
         console.log('You don\'t have all necessary data yet..');
       } else {
-        this.router.navigate(['/dashboard']);
+        alert('Woops, you\'re not logged in. Try again!');
       }
     });
   }
