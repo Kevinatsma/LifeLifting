@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-signup-step-one',
@@ -30,28 +30,39 @@ export class SignupStepOneComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public auth: AuthService,
-    public router: Router
+    public router: Router,
+    private route: ActivatedRoute
   ) {
 
   }
 
   ngOnInit() {
     this.basicUserDataForm = this.fb.group({
-      displayName: new FormControl('', [Validators.required]),
-      age: new FormControl('', [Validators.required]),
-      gender: new FormControl('', [Validators.required]),
-      country: new FormControl('', [Validators.required]),
-      phoneNumber: new FormControl('', [Validators.required]),
-      mainGoal: new FormControl('', [Validators.required]),
-      heardFromUs: new FormControl('', [Validators.required]),
+      displayName: ['', [Validators.required]],
+      age: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
+      mainGoal: ['', [Validators.required]],
+      heardFromUs: ['', [Validators.required]]
     });
   }
 
-  updateUser() {
-    // const data = this.basicUserDataForm.value;
-    // this.auth.updateUser(data, user);
-    // console.log(this.basicUserDataForm.value);
-    this.router.navigate(['step-two']);
+  updateUser(user) {
+    const data = {
+      displayName: this.basicUserDataForm.get('displayName').value,
+      basicData: {
+        age: this.basicUserDataForm.get('age').value,
+        gender: this.selectedGender,
+        country: this.basicUserDataForm.get('country').value,
+        phoneNumber: this.basicUserDataForm.get('phoneNumber').value,
+        heardFromUs: this.selectedMedium,
+        mainGoal: this.basicUserDataForm.get('mainGoal').value
+      }
+    };
+    console.log(data);
+    this.auth.setUserData(data, user);
+    this.router.navigate(['../step-two'], { relativeTo: this.route });
   }
 
 }

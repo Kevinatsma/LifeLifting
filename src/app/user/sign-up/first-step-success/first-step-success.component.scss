@@ -14,7 +14,7 @@ div.success-wrapper {
         .close-section {
             position: absolute;
             top: 0;
-            right: 0px;
+            right: 5px;
 
             svg {
                 color: $grey;
@@ -24,6 +24,28 @@ div.success-wrapper {
         img.logo {
             width: 60%;
             margin-top: 0;
+        }
+
+        ul.checklist {
+            margin: 20px auto;
+            width: 80%;
+
+            li {
+                color: $grey;
+
+                &.activated {
+                    color: $secondary-color;
+                }
+                
+                svg {
+                    color: $secondary-color;
+                    margin-right: 15px;
+                }
+            }
+        }
+
+        p.intro-text {
+            width: 80%;
         }
     }
 }

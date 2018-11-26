@@ -61,7 +61,7 @@
     <section class="photo-container" *ngIf="!user.uid">
       
     </section>
-    <router-outlet *ngIf="user.uid && !user.basicData"></router-outlet>
+    <router-outlet *ngIf="user.uid"></router-outlet>
     
   </ng-container>
   

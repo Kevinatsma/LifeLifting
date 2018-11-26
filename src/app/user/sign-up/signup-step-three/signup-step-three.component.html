@@ -7,17 +7,15 @@
         <i class="fas fa-calendar-alt"></i>
         <h5 class="placeholder">Here comes the calendar</h5>
       </div>
-      
   
       <div class="btn-area">
           <button class="btn-icon-left" routerLink="../step-two">
             <i class="fas fa-chevron-left small"></i>
             <span>Previous step</span>
           </button>
-          <button class="btn-icon-right" routerLink="../step-three" [disabled]="!user.basicData" [class.disabled]="!user.basicData">
+          <button class="btn-icon-right" routerLink="../../dashboard" [disabled]="!user.packageChoice || !user.basicData" [class.disabled]="!user.packageChoice || !user.basicData">
             <span>Submit</span>
-            <i class="fas fa-times small" *ngIf="!user.basicData"></i>
-            <i class="fas fa-check small" *ngIf="user.basicData"></i>
+            <i class="fas fa-check small" *ngIf="user.packageChoice && user.basicData"></i>
           </button>
         </div>
   

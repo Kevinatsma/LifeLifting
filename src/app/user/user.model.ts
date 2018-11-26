@@ -20,4 +20,5 @@ export class User {
     photoURL?: string;
     roles?: Roles;
     basicData?: BasicData;
+    packageChoice?: string;
 }

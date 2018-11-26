@@ -10,14 +10,14 @@
     padding: 0;
     margin: 0;
 
-    form {
+    form .animated-container {
         position: relative;
         // max-height: 20px;
         animation: increase-height 1s;
         overflow: hidden;
     }
 
-    form {
+    form .animated-container {
         display: flex;
         flex-flow: row wrap;
         align-items: flex-start;
@@ -28,7 +28,7 @@
         .mat-form-field {
             width: 40%;
             margin: 10px 5%;
-            input, select, textarea {
+            input, mat-select, textarea {
                 padding-top: 0.5em!important;
             }
         }
@@ -66,6 +66,18 @@
         
         .btn-icon-left {
             margin-right: 4em;
+        }
+    }
+
+    .step-done {
+        @extend %flex-column-center;
+        text-align: center;
+        width: 80%;
+        height: auto;
+        margin: 0 auto;
+
+        .btn-area {
+            margin-top: 20px;
         }
     }
 }

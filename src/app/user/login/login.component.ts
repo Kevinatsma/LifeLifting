@@ -46,16 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-    return this.auth
-      .emailSignIn(this.email.value, this.password.value)
-      .then(() => {
-        if (!this.auth.authState.basicData) {
-          this.router.navigate(['/signup/step-one']);
-          console.log('You don\'t have all necessary data yet..');
-        } else {
-          this.router.navigate(['/dashboard']);
-        }
-      });
+    return this.auth.emailSignIn(this.email.value, this.password.value);
   }
 
   googleLogin() {

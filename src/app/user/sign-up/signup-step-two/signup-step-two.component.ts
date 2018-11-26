@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-signup-step-two',
@@ -9,46 +10,33 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 })
 export class SignupStepTwoComponent implements OnInit {
 
-  basicUserDataForm: FormGroup;
-
   // Gender options
-  genders = [
-    {value: 'female', viewValue: 'Female'},
-    {value: 'male', viewValue: 'Male'},
-    {value: 'other', viewValue: 'Other'}
-  ]; selectedGender: string;
+  packages = [
+    {value: 'package1', viewValue: 'Package 1'},
+    {value: 'package2', viewValue: 'Package 2'},
+  ]; chosenPackage: string;
 
-  // Heard from us through ... Options
-  mediums = [
-    {value: 'instagram', viewValue: 'Instagram'},
-    {value: 'facebook', viewValue: 'Facebook'},
-    {value: 'friends', viewValue: 'Friends told me'},
-    {value: 'google', viewValue: 'I found you in Google'}
-  ]; selectedMedium: string;
 
   constructor(
     public fb: FormBuilder,
-    public auth: AuthService
+    public auth: AuthService,
+    public router: Router,
+    private route: ActivatedRoute
   ) {
 
   }
 
   ngOnInit() {
-    this.basicUserDataForm = this.fb.group({
-      displayName: new FormControl('', [Validators.required]),
-      age: new FormControl('', [Validators.required]),
-      gender: new FormControl('', [Validators.required]),
-      country: new FormControl('', [Validators.required]),
-      phoneNumber: new FormControl('', [Validators.required]),
-      mainGoal: new FormControl('', [Validators.required]),
-      heardFromUs: new FormControl('', [Validators.required]),
-    });
   }
 
   updateUser(user) {
-    const data = this.basicUserDataForm.value;
-    this.auth.updateUser(data, user);
-    console.log(this.basicUserDataForm.value);
+    const data = {
+      packageChoice: this.chosenPackage
+    };
+    this.auth.setUserData(data, user)
+    .then(() => {
+      this.router.navigate(['../step-three'], { relativeTo: this.route });
+    });
   }
 
 }

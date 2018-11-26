@@ -433,16 +433,22 @@ mat-card {
 // Forms
 
 form {
-    mat-form-field {
-        input, ::placeholder {
+    .mat-form-field {
+        mat-label {
+            font-family: $main-font;
+            font-size: 18px;
+            font-weight: $semi-bold;
+            letter-spacing: 1px;
+        }
+        input, textarea, mat-select, ::placeholder {
             font-family: $main-font;
             font-size: 16px;
             letter-spacing: 1px;
         }
 
-        input {
-            font-weight: $bold;
-            color: $grey!important;
+        input, textarea, mat-select {
+            font-weight: $bold!important;
+            color: $black!important;
             padding: 10px 0.2em!important;
             caret-color: $primary-color!important;
             border-bottom: 1.5px solid $middle-grey!important;
@@ -457,6 +463,8 @@ form {
             font-weight: $regular;
             color: $text-black;
         }
+
+        
     }
 
     .mat-form-field-underline {

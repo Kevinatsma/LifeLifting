@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 import { LoginComponent } from './../login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FirstStepSuccessComponent } from './first-step-success/first-step-success.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupStepThreeComponent } from './signup-step-three/signup-step-three.component';
 
 const routes: Routes = [
@@ -45,6 +45,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     CoreModule,
     SharedModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   exports: [

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CoreModule } from './../core/core.module';
 import { SharedModule } from '../shared/shared.module';
 import { AuthService } from '../core/auth/auth.service';
+import { UserService } from './user.service';
 import { RouterModule } from '@angular/router';
 import { SignUpModule } from './sign-up/sign-up.module';
 
@@ -26,7 +27,8 @@ import { UserListItemComponent } from './user-list-item/user-list-item.component
     UserListItemComponent
   ],
   providers: [
-    AuthService
+    AuthService,
+    UserService
   ]
 })
 export class UserModule { }

@@ -16,6 +16,7 @@ import { User, Roles } from './../../user/user.model';
 export class AuthService {
 
   user: Observable<User>;
+  userData: User;
   authState: any = null;
 
   constructor( private afs: AngularFirestore,
@@ -77,8 +78,18 @@ export class AuthService {
   }
 
   updateUser(data, user) {
+    console.log(user);
+    console.log(data);
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     return userRef.update(data);
+  }
+
+  setUserData(data, user) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    return userRef.set(data, {merge: true})
+    .then(() => {
+      console.log('data updated');
+    });
   }
 
   get authenticated(): boolean {
@@ -95,8 +106,11 @@ export class AuthService {
       .then(() => {
         return this.user;
       })
+      .then(() => {
+        this.router.navigate(['/dashboard']);
+      })
       .catch(error => {
-        alert('Login details were not correct');
+        alert(error.message);
         console.log(error.message);
       });
   }
