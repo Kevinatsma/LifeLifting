@@ -10,6 +10,7 @@ import { LoginComponent } from './../login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FirstStepSuccessComponent } from './first-step-success/first-step-success.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SignupStepThreeComponent } from './signup-step-three/signup-step-three.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
       // {path: '', redirectTo: 'signup', pathMatch: 'full'},
       {path: 'step-one', component: SignupStepOneComponent},
       {path: 'step-two', component: SignupStepTwoComponent},
+      {path: 'step-three', component: SignupStepThreeComponent},
     ]
   }
 ];
@@ -35,7 +37,8 @@ const routes: Routes = [
     SignupComponent,
     SignupStepOneComponent,
     SignupStepTwoComponent,
-    FirstStepSuccessComponent
+    FirstStepSuccessComponent,
+    SignupStepThreeComponent
 ],
   imports: [
     CommonModule,

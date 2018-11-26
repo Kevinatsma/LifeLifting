@@ -1,0 +1,29 @@
+@import '_master';
+
+.placeholder-wrapper {
+    margin: 3em auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+
+    svg {
+        font-size: 36px;
+        color: $grey;
+        margin-bottom: 15px;
+    }
+}
+
+.btn-area {
+    .disabled {
+        background: $light-grey!important;
+        svg {
+            color: $grey;
+        }
+        &:hover {
+            background: $light-grey;
+            color: $grey;
+            cursor: initial;
+        }
+    }
+}

@@ -76,13 +76,6 @@ export class SignupComponent implements OnInit {
     alert('We need the token first..');
   }
 
-  redirectUser() {
-    if (!this.auth.authState.basicData) {
-      this.router.navigate(['signup/step-one']);
-      console.log('You have been redirected, because you\'re already logged in');
-    }
-  }
-
   openSuccess() {
     this.succesVisible = true;
   }

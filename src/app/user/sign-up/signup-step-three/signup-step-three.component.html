@@ -1,0 +1,26 @@
+<ng-container *ngIf="(auth.user | async) || {} as user">
+    <section class="step-wrapper">
+      <h5>Choose a date {{user.displayName || user.email}}</h5>
+      <h1>Step 3: Plan your first appointment</h1>
+      
+      <div class="placeholder-wrapper">
+        <i class="fas fa-calendar-alt"></i>
+        <h5 class="placeholder">Here comes the calendar</h5>
+      </div>
+      
+  
+      <div class="btn-area">
+          <button class="btn-icon-left" routerLink="../step-two">
+            <i class="fas fa-chevron-left small"></i>
+            <span>Previous step</span>
+          </button>
+          <button class="btn-icon-right" routerLink="../step-three" [disabled]="!user.basicData" [class.disabled]="!user.basicData">
+            <span>Submit</span>
+            <i class="fas fa-times small" *ngIf="!user.basicData"></i>
+            <i class="fas fa-check small" *ngIf="user.basicData"></i>
+          </button>
+        </div>
+  
+    </section>
+  </ng-container>
+  
