@@ -13,27 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupStepThreeComponent } from './signup-step-three/signup-step-three.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    data: { state: 'login' }
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
-    data: { state: 'signup' },
-    children: [
-      // {path: '', redirectTo: 'signup', pathMatch: 'full'},
-      {path: 'step-one', component: SignupStepOneComponent},
-      {path: 'step-two', component: SignupStepTwoComponent},
-      {path: 'step-three', component: SignupStepThreeComponent},
-    ]
-  }
+
 ];
 
 @NgModule({

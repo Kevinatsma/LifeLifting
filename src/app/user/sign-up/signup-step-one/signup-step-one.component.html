@@ -77,7 +77,7 @@
       </div>
     </form>
 
-    <div class="step-done" *ngIf="!user.basicData === null">
+    <div class="step-done" *ngIf="user.basicData">
       <p class="intro-text">Psst, you already filled out the basic data. If you made a mistake, don't worry. You can edit your whole profile after signing up. Click the button to go to the next step!</p>
       <div class="btn-area">
           <button class="btn-icon-right" routerLink="../step-two">

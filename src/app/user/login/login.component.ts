@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 
 // import { MaterialModule } from './../../../shared/material.module';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public auth: AuthService,
-    private router: Router
+    private router: Router,
+    public ngZone: NgZone
   ) {
     this.signInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
     return this.auth.emailSignIn(this.email.value, this.password.value)
     .then(() => {
       if (this.auth.authenticated) {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['dashboard']);
       }
     });
   }
@@ -57,9 +58,7 @@ export class LoginComponent implements OnInit {
   googleLogin() {
     this.auth.googleLogin()
     .then(() => {
-      if (this.auth.authenticated) {
-        this.router.navigate(['/dashboard']);
-      }
+      this.ngZone.run(() => this.router.navigate(['dashboard']));
     });
   }
 
