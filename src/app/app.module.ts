@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 // App Modules
 import { UserModule } from './user/user.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { PackagesModule } from './packages/packages.module';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
     CoreModule,
     SharedModule,
     UserModule,
-    DashboardModule
+    DashboardModule,
+    PackagesModule
   ],
   declarations: [
     AppComponent

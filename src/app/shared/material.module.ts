@@ -30,6 +30,7 @@ import { MatChipsModule } from '@angular/material/chips';
 // Popups & Modals
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -51,7 +52,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatToolbarModule,
     MatMenuModule,
     MatProgressBarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSnackBarModule
   ],
   exports: [
     MatCardModule,
@@ -72,7 +74,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatToolbarModule,
     MatMenuModule,
     MatProgressBarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }

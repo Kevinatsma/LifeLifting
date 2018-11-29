@@ -55,7 +55,6 @@ export class UserService {
   }
 
   updateUser(id, data) {
-    // Get the Course Document
     this.userDoc = this.afs.doc<User>(`users/${id}`);
     this.userDoc.update(data);
  }

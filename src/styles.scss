@@ -130,8 +130,10 @@ button {
     
 
     &:hover, &:focus, &:active {
-        box-shadow: 0 0 0 rgba(255, 255, 255, 1);
+        // box-shadow: 0 0 0 rgba(255, 255, 255, 1)!important;
         cursor: inherit!important;
+        background: $middle-grey!important;
+        color: $grey;
         // animation: pulse-blue 2s infinite;  
     }
 }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PackageService } from 'src/app/packages/package.service';
+import { Observable } from 'rxjs';
+import { Package } from 'src/app/packages/package.model';
 
 @Component({
   selector: 'app-signup-step-two',
@@ -11,22 +14,22 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SignupStepTwoComponent implements OnInit {
 
   // Gender options
-  packages = [
-    {value: 'package1', viewValue: 'Package 1'},
-    {value: 'package2', viewValue: 'Package 2'},
-  ]; chosenPackage: string;
+  packages: Observable<Package[]>;
+  chosenPackage: string;
 
 
   constructor(
     public fb: FormBuilder,
     public auth: AuthService,
     public router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private packageService: PackageService
   ) {
 
   }
 
   ngOnInit() {
+    this.packageService.getPackages();
   }
 
   updateUser(user) {

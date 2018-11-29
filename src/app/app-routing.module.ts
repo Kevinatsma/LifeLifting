@@ -8,6 +8,7 @@ import { SignupStepThreeComponent } from './user/sign-up/signup-step-three/signu
 import { SignupStepTwoComponent } from './user/sign-up/signup-step-two/signup-step-two.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { AuthGuard } from './core/auth/guards/auth.guard';
+import { PackagesComponent } from './packages/packages/packages.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'packages',
+    component: PackagesComponent,
+    // canActivate: [AuthGuard]
   }
 ];
 
