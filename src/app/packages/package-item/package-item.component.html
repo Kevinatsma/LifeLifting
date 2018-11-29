@@ -1,3 +1,25 @@
-<p>
-  package-item works!
-</p>
+<ng-container class="info-wrapper" *ngIf="package">
+  <h2>{{package.packageTitle}}</h2>
+  <div class="quick-facts">
+    <p class="quick-fact">
+      ${{package.packagePrice}} USD
+    </p>
+    <div class="circle-divider"></div>
+    <p class="quick-fact">
+      {{package.packageDuration}} 
+      <span *ngIf="package.packageDuration === 1">week</span>
+      <span *ngIf="package.packageDuration !== 1">weeks</span>
+    </p>
+  </div>
+  <p class="card-text">
+    {{package.packageDescription}}
+  </p>
+  <div class="list-container">
+    <ul>
+      <li *ngFor="let benefit of package.packageBenefits">
+        <i class="fas fa-check"></i>
+        {{benefit.benefitValue}}
+      </li>
+    </ul>
+  </div>
+</ng-container>

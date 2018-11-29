@@ -19,7 +19,7 @@ export class PackageService {
                public snackBar: MatSnackBar
              ) {
     this.packageCol = this.afs.collection<Package>(`packages`);
-    this.getPackages();
+    this.packages = this.getPackages();
   }
 
   getPackageData(id) {
@@ -29,8 +29,7 @@ export class PackageService {
   }
 
   getPackages() {
-    this.packages = this.packageCol.snapshotChanges().pipe(
-      map(actions => {
+    this.packages = this.packageCol.snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Package;
         const id = a.payload.doc.id;

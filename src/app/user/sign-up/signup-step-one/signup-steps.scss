@@ -1,5 +1,6 @@
 @import '_master';
 @import '_animations';
+@import '_forms';
 
 .step-wrapper {
     @extend %flex-column-center;
@@ -9,6 +10,7 @@
     overflow-y: scroll;
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 
     form .animated-container {
         position: relative;
@@ -35,38 +37,8 @@
     }
 
     .package-container {
-        width: 90%;
-        margin: 40px auto;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: center;
-
-        mat-card {
-            @extend %flex-column-center;
-            width: 40%;
-            padding: 5em 3em;
-            
-            &:first-child {
-                margin-right: 3em;
-            }
-
-            &:hover, &:focus {
-                cursor: pointer;
-                transition: transform 300ms ease-in-out;
-                transform: scale(1.1);
-            }
-        }
-    }
-
-    .btn-area {
         width: 100%;
-        display: flex;
-        justify-content: center;
-        
-        .btn-icon-left {
-            margin-right: 4em;
-        }
+        margin: 40px 0;
     }
 
     .step-done {
@@ -85,5 +57,10 @@
 @media only screen and (max-width: 768px) {
     .step-wrapper {
         padding: 3em 1em;
+        height: 100vh;
+
+        h1 {
+            text-align: center;
+        }
     }
 }

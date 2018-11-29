@@ -10,8 +10,6 @@ import { Router } from '@angular/router';
 })
 export class SignupStepThreeComponent implements OnInit {
 
-  basicUserDataForm: FormGroup;
-
   constructor(
     public fb: FormBuilder,
     public auth: AuthService,

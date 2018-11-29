@@ -27,7 +27,8 @@ import { PackagesComponent } from './packages/packages.component';
     PackageItemComponent,
     AddPackageComponent,
     PackageListComponent,
-    EditPackageComponent
+    EditPackageComponent,
+    PackagesComponent
   ],
   providers: [
     PackageService

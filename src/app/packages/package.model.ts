@@ -3,4 +3,5 @@ export class Package {
     packageTitle: string;
     packageDescription: string;
     packagePrice: number;
+    packageDuration: number;
 }

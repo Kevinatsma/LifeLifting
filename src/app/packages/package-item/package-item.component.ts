@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Package } from '../package.model';
 
 @Component({
   selector: 'app-package-item',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./package-item.component.scss']
 })
 export class PackageItemComponent implements OnInit {
+  @Input() package: Package;
 
   constructor() { }
 

@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PackageService } from 'src/app/packages/package.service';
 import { Observable } from 'rxjs';
 import { Package } from 'src/app/packages/package.model';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-signup-step-two',
@@ -13,14 +14,16 @@ import { Package } from 'src/app/packages/package.model';
 })
 export class SignupStepTwoComponent implements OnInit {
 
-  // Gender options
+  // Package import and choice
   packages: Observable<Package[]>;
+  packageCol: AngularFirestoreCollection;
   chosenPackage: string;
 
 
   constructor(
     public fb: FormBuilder,
     public auth: AuthService,
+    private afs: AngularFirestore,
     public router: Router,
     private route: ActivatedRoute,
     private packageService: PackageService
@@ -29,7 +32,9 @@ export class SignupStepTwoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.packageService.getPackages();
+    this.packages = this.packageService.getPackages();
+    console.log(this.packages);
+    this.chosenPackage = null;
   }
 
   updateUser(user) {

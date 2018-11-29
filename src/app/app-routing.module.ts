@@ -9,6 +9,7 @@ import { SignupStepTwoComponent } from './user/sign-up/signup-step-two/signup-st
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { AuthGuard } from './core/auth/guards/auth.guard';
 import { PackagesComponent } from './packages/packages/packages.component';
+import { SignupStepFourComponent } from './user/sign-up/signup-step-four/signup-step-four.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
       {path: 'step-one', component: SignupStepOneComponent},
       {path: 'step-two', component: SignupStepTwoComponent},
       {path: 'step-three', component: SignupStepThreeComponent},
+      {path: 'step-four', component: SignupStepFourComponent},
     ]
   },
   {
