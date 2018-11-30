@@ -4,12 +4,9 @@
       <h1>Step 2: Choose a plan</h1>
   
       <section class="package-container" *ngIf="!user.packageChoice">
-        <mat-radio-group class="example-radio-group" [(ngModel)]="chosenPackage">
-          <mat-radio-button class="example-radio-button" *ngFor="let package of packages" [value]="package.value">
-            <mat-card>
-              <h2>{{package.viewValue}}</h2>
-              <p>bla bla</p>
-            </mat-card>
+        <mat-radio-group class="package-slider" [(ngModel)]="chosenPackage">
+          <mat-radio-button class="package-item" *ngFor="let package of packages | async" [value]="package.packageID" labelPostition="before">
+            <app-package-item [package]="package"></app-package-item>
           </mat-radio-button>
         </mat-radio-group>
       </section>
@@ -19,14 +16,14 @@
           <i class="fas fa-chevron-left small"></i>
           <span>Previous step</span>
         </button>
-        <button class="btn-icon-right" (click)="updateUser(user)">
+        <button class="btn-icon-right" (click)="updateUser(user)" [class.btn-disabled]="chosenPackage === null" [disabled]="chosenPackage === null">
           <span>Next step</span>
           <i class="fas fa-chevron-right small"></i>
         </button>
       </div>
 
       <div class="step-done" *ngIf="user.packageChoice">
-        <p class="intro-text">Psst, you already chose <strong>{{user.packageChoice}}</strong>. You can change your package choice later after signing up. Click the button to go to the next step!</p>
+        <p class="intro-text">Psst, you already chose <strong>plan {{user.packageChoice}}</strong>. You can change your package choice later after signing up. Click the button to go to the next step!</p>
         <div class="btn-area">
           <button class="btn-icon-right" routerLink="../step-three">
             <span>Continue process</span>

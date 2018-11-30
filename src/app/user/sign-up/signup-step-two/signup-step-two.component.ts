@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PackageService } from 'src/app/packages/package.service';
+import { Observable } from 'rxjs';
+import { Package } from 'src/app/packages/package.model';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-signup-step-two',
@@ -10,23 +14,27 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SignupStepTwoComponent implements OnInit {
 
-  // Gender options
-  packages = [
-    {value: 'package1', viewValue: 'Package 1'},
-    {value: 'package2', viewValue: 'Package 2'},
-  ]; chosenPackage: string;
+  // Package import and choice
+  packages: Observable<Package[]>;
+  packageCol: AngularFirestoreCollection;
+  chosenPackage: string;
 
 
   constructor(
     public fb: FormBuilder,
     public auth: AuthService,
+    private afs: AngularFirestore,
     public router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private packageService: PackageService
   ) {
 
   }
 
   ngOnInit() {
+    this.packages = this.packageService.getPackages();
+    console.log(this.packages);
+    this.chosenPackage = null;
   }
 
   updateUser(user) {

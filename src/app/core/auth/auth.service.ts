@@ -84,6 +84,10 @@ export class AuthService {
     return userRef.set(data, {merge: true})
     .then(() => {
       console.log('data updated');
+    })
+    .catch(error => {
+      console.error(error.message);
+      alert(error.message);
     });
   }
 

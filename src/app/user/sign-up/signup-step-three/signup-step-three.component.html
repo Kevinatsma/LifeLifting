@@ -9,15 +9,16 @@
       </div>
   
       <div class="btn-area">
-          <button class="btn-icon-left" routerLink="../step-two">
-            <i class="fas fa-chevron-left small"></i>
-            <span>Previous step</span>
-          </button>
-          <button class="btn-icon-right" routerLink="../../dashboard" [disabled]="!user.packageChoice || !user.basicData" [class.disabled]="!user.packageChoice || !user.basicData">
-            <span>Submit</span>
-            <i class="fas fa-check small" *ngIf="user.packageChoice && user.basicData"></i>
-          </button>
-        </div>
+        <button class="btn-icon-left" routerLink="../step-two">
+          <i class="fas fa-chevron-left small"></i>
+          <span>Previous step</span>
+        </button>
+        <button class="btn-icon-right" [disabled]="!user.packageChoice || !user.basicData" 
+        [class.disabled]="!user.packageChoice || !user.basicData" routerLink="../step-four">
+          <span>Last step</span>
+          <i class="fas fa-chevron-right small"></i>
+        </button>
+      </div>
   
     </section>
   </ng-container>
