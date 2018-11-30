@@ -57,7 +57,17 @@
 @media only screen and (max-width: 768px) {
     .step-wrapper {
         padding: 3em 1em;
-        height: 100vh;
+        height: auto;
+
+        .mat-form-field {
+            width: 100%!important;
+            border-bottom: 2px solid darken($middle-grey, 5%);
+            height: 70px;
+
+            &.textarea-field {
+                height: auto;
+            }
+        }
 
         h1 {
             text-align: center;
