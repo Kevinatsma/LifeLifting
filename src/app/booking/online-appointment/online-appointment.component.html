@@ -1,0 +1,78 @@
+<form [formGroup]="onlineAppointmentForm" (ngSubmit)="addAppointment()" class="auth-form" *ngIf="!user.appointment">
+  <div class="animated-container">
+    <!-- Call method -->
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>I prefer to call with</mat-label>
+      <mat-select matInput placeholder="Skype, Whatsapp, etc." [(value)]="selectedCallMethod" formControlName="callMethod" autocomplete="off" required>
+        <mat-option *ngFor="let method of callMethods" [value]="method.value">{{method.viewValue}}</mat-option>
+      </mat-select>
+      <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+    </mat-form-field>
+
+    <!-- Phone Number -->
+    <ng-container *ngIf="selectedCallMethod as method">
+      <mat-form-field appearance="standard" floatLabel="always" *ngIf="selectedCallMethod === 'phonecall'" formGroupName="phoneNumber">
+        <mat-label class="big-label">Your Phone number</mat-label>
+        <div class="multiple-input">
+          <mat-form-field  appearance="standard" floatLabel="always">
+            <mat-label>Area code</mat-label>
+            <input type="text" matInput placeholder="+51" [value]="'+51'" formControlName="phoneAreaCode" autocomplete="off" required>
+            <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+          <mat-form-field  appearance="standard" floatLabel="always">
+            <mat-label>Number</mat-label>
+            <input type="number" matInput placeholder="123456789" formControlName="phoneRest" autocomplete="off" required>
+            <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+        </div>
+      </mat-form-field>
+
+    <!-- Phone Number -->
+      <mat-form-field appearance="standard" floatLabel="always" *ngIf="selectedCallMethod === 'whatsapp'" formGroupName="whatsappNumber">
+        <mat-label class="big-label">Your Phone number</mat-label>
+        <div class="multiple-input">
+          <mat-form-field  appearance="standard" floatLabel="always">
+            <mat-label>Area code</mat-label>
+            <input type="text" matInput placeholder="+51" formControlName="wappAreaCode" autocomplete="off" required>
+            <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+          <mat-form-field  appearance="standard" floatLabel="always">
+            <mat-label>Number</mat-label>
+            <input type="number" matInput placeholder="123456789" formControlName="wappRest" autocomplete="off" required>
+            <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+        </div>
+      </mat-form-field>
+      
+
+      <mat-form-field  appearance="standard" floatLabel="always" *ngIf="selectedCallMethod === 'skype'">
+        <mat-label>Fill out your Skype Username</mat-label>
+        <input type="text" matInput placeholder="Skype username" formControlName="skypeName" autocomplete="off" required>
+        <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+      </mat-form-field>
+
+
+    <!-- Calendar Plugin -->
+    <div class="placeholder-wrapper">
+      <i class="fas fa-calendar-alt"></i>
+      <h5 class="placeholder">Here comes the calendar</h5>
+      <!-- <app-booking-calendar></app-booking-calendar> -->
+    </div>
+    </ng-container>
+
+    <div class="btn-area">
+      <button type="button" class="btn-icon-left" routerLink="../step-two">
+        <i class="fas fa-chevron-left small"></i>
+        <span>Previous step</span>
+      </button>
+      <button class="btn-icon-right" type="submit" [class.btn-disabled]="!onlineAppointmentForm.valid">
+        <span>Last step</span>
+        <i class="fas fa-chevron-right small"></i>
+      </button>
+    </div>
+  </div>
+</form>
+
+
+
+

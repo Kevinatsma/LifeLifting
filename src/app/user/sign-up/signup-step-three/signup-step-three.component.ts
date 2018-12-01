@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./../signup-step-one/signup-steps.scss', './signup-step-three.component.scss']
 })
 export class SignupStepThreeComponent implements OnInit {
+  choiceMade = false;
+  onlineAppointment = false;
+  faceToFaceAppointment = false;
 
   constructor(
     public fb: FormBuilder,
@@ -19,6 +22,18 @@ export class SignupStepThreeComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onlineAppointmentOption() {
+    this.onlineAppointment = true;
+    this.choiceMade = true;
+    this.faceToFaceAppointment = false;
+  }
+
+  faceToFaceAppointmentOption() {
+    this.faceToFaceAppointment = true;
+    this.choiceMade = true;
+    this.onlineAppointment = false;
   }
 
 }

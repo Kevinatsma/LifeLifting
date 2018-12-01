@@ -1,16 +1,33 @@
 @import '_master';
 
-.placeholder-wrapper {
+.choice-wrapper {
+    @extend %flex-row-center;
+    width: 90%;
     margin: 3em auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column wrap;
 
-    svg {
-        font-size: 36px;
-        color: $grey;
-        margin-bottom: 15px;
+    .choice-icon-btn {
+        @extend %flex-column-center;
+        width: 200px;
+        height: 200px;
+        background: #fff;
+        box-shadow: $card-shadow;
+
+        &:first-child {
+            margin-right: 4em;
+        }
+
+        svg {
+            font-size: 48px;
+        }
+
+        h4 {
+            margin-top: 20px;
+        }
+
+        &:hover, &:focus, &:active {
+            transition: transform 300ms ease-in-out;
+            transform: scale(1.05);
+        }
     }
 }
 
@@ -25,5 +42,17 @@
             color: $grey;
             cursor: initial;
         }
+    }
+}
+
+app-online-appointment, app-face-to-face-appointment {
+    width: 60%;
+    margin: 2em auto;
+}
+
+@media only screen and (max-width: 768px) {
+    app-online-appointment, app-face-to-face-appointment {
+        width: 80%;
+        margin: 2em auto;
     }
 }

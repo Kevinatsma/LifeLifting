@@ -29,3 +29,13 @@
     margin: 0 2em;
     padding: 0!important;
 }
+
+::ng-deep .big-label {
+    font-size: 22px;
+    font-family:  $main-font;
+    font-weight: $semi-bold;
+
+    .mat-placeholder-required {
+        display: none!important;
+    }
+}

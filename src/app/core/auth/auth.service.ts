@@ -67,7 +67,8 @@ export class AuthService {
         subscriber: true,
         editor: false,
         admin: false
-      }
+      },
+      signupCompleted: false
     };
     return userRef.set(data, { merge: true });
   }

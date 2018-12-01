@@ -2,23 +2,35 @@
     <section class="step-wrapper">
       <h5>Choose a date {{user.displayName || user.email}}</h5>
       <h1>Step 3: Plan your first appointment</h1>
-      
-      <div class="placeholder-wrapper">
-        <i class="fas fa-calendar-alt"></i>
-        <h5 class="placeholder">Here comes the calendar</h5>
-      </div>
-  
-      <div class="btn-area">
-        <button class="btn-icon-left" routerLink="../step-two">
-          <i class="fas fa-chevron-left small"></i>
-          <span>Previous step</span>
+
+      <div class="choice-wrapper" *ngIf="!choiceMade && !user.appointment">
+        <button type="link" class="choice-icon-btn" (click)="onlineAppointmentOption()">
+          <i class="fas fa-globe-americas"></i>
+          <h4>Online appointment</h4>
         </button>
-        <button class="btn-icon-right" [disabled]="!user.packageChoice || !user.basicData" 
-        [class.disabled]="!user.packageChoice || !user.basicData" routerLink="../step-four">
-          <span>Last step</span>
-          <i class="fas fa-chevron-right small"></i>
+        <button type="link" class="choice-icon-btn" (click)="faceToFaceAppointmentOption()">
+          <i class="fas fa-coffee"></i>
+          <h4>Face 2 Face appointment</h4>
         </button>
       </div>
+
+      <div class="step-done" *ngIf="user.appointment">
+        <p class="intro-text">You already planned an appointment. Go to the next step by clicking the button below. If you want to change your appointment, you can. Chat with your nutritionist in the dashboard.</p>
+        <div class="btn-area">
+          <button class="btn-icon-right" routerLink="../step-four">
+            <span>Continue process</span>
+            <i class="fas fa-chevron-right small"></i>
+          </button>
+        </div>
+      </div>
+
+      <ng-container *ngIf="onlineAppointment">
+        <app-online-appointment [user]="user"></app-online-appointment>
+      </ng-container>
+
+      <ng-container *ngIf="faceToFaceAppointment">
+        <app-face-to-face-appointment></app-face-to-face-appointment>
+      </ng-container>
   
     </section>
   </ng-container>

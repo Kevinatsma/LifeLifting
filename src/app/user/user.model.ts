@@ -22,4 +22,6 @@ export class User {
     basicData?: BasicData;
     packageChoice?: string;
     nutritionist?: string;
+    appointment?: string;
+    signupCompleted: boolean;
 }

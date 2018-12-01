@@ -54,10 +54,25 @@
     }
 }
 
+.placeholder-wrapper {
+    margin: 3em auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+
+    svg {
+        font-size: 36px;
+        color: $grey;
+        margin-bottom: 15px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .step-wrapper {
         padding: 3em 1em;
-        height: auto;
+        height: 100vh;
+        overflow-y: scroll;
 
         .mat-form-field {
             width: 100%!important;

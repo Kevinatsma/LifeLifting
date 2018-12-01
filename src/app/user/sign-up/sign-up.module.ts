@@ -13,6 +13,7 @@ import { FirstStepSuccessComponent } from './first-step-success/first-step-succe
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupStepThreeComponent } from './signup-step-three/signup-step-three.component';
 import { SignupStepFourComponent } from './signup-step-four/signup-step-four.component';
+import { BookingModule } from 'src/app/booking/booking.module';
 
 
 const routes: Routes = [
@@ -36,7 +37,8 @@ const routes: Routes = [
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    PackagesModule
+    PackagesModule,
+    BookingModule
   ],
   exports: [
     LoginComponent,
