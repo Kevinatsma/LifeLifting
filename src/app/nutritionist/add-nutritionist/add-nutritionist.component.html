@@ -1,0 +1,108 @@
+<form [formGroup]="addNutritionistForm" (ngSubmit)="sendNutritionistData()">
+  <section class="form-container">
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>First name</mat-label>
+      <input type="text" matInput formControlName="firstName" placeholder="Give the nutritionist a name" autofocus="off" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Last name</mat-label>
+      <input type="text" matInput formControlName="lastName" placeholder="The last name" autofocus="off" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>The Short Description</mat-label>
+      <textarea type="text" matInput formControlName="description" placeholder="Write a short but attractive description" 
+      matTextareaAutosize autofocus="off" autocomplete="off">
+      </textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Email Address</mat-label>
+      <input type="text" matInput formControlName="email" placeholder="What's his/her e-mail?" autofocus="off" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Phone Number</mat-label>
+      <input type="number" matInput formControlName="phoneNumber" placeholder="What's his/her phone number?" autofocus="off" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>The position in LifeLifting</mat-label>
+      <input type="text" matInput formControlName="position" placeholder="What's his/her position?" autofocus="off" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Time zone</mat-label>
+      <input type="text" matInput formControlName="timeZone" placeholder="In which Time zone is he/she?" autofocus="off" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>City</mat-label>
+      <input type="text" matInput formControlName="city" placeholder="Which city does he/she live?" autofocus="off" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Country</mat-label>
+      <input type="text" matInput formControlName="country" placeholder="In which country is that?" autofocus="off" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Years of experience</mat-label>
+      <input type="number" matInput formControlName="yearsOfExperience" placeholder="Amount in nr." autofocus="off" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Total amount of patients</mat-label>
+      <input type="number" matInput formControlName="patientsTotal" placeholder="How many patients?" autofocus="off" autocomplete="off">
+    </mat-form-field>
+
+    <!-- Add Nutritionist Language -->
+    <h4>Languages</h4>
+    <div class="add-benefit-container" formArrayName="languages">
+      <section class="dynamic-form-field-container" *ngFor="let language of languageForms.controls; let i=index" [formGroupName]="i">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <input type="text" matInput placeholder="Language {{i+1}}?" formControlName="languageValue" autocomplete="off" required>
+            <mat-error class="input-error" *ngIf="!languageValue.valid && addNutritionistForm.touched">This is <strong>required</strong></mat-error> 
+          </mat-form-field>
+          <button mat-icon-button type="button" class="delete-btn" (click)="deleteLanguage(i)">
+            <i class="fa fa-trash"></i>
+          </button>
+      </section>
+    </div>
+
+    <button type="button" class="text-link add-benefit-field" (click)="addLanguage()">
+      <i class="fa fa-plus"></i>
+      Add another language
+    </button>
+
+    <!-- Add Nutritionist Reviews -->
+    <h4>Reviews</h4>
+    <div class="add-benefit-container" formArrayName="reviews">
+      <section class="dynamic-form-field-container"  *ngFor="let review of reviewForms.controls; let i=index" [formGroupName]="i">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>The review text</mat-label>
+            <input type="text" matInput placeholder="Nutritionist Review {{i+1}}?" formControlName="reviewText" autocomplete="off" required>
+            <mat-error class="input-error" *ngIf="!reviewText.valid && addNutritionistForm.touched">This is <strong>required</strong></mat-error> 
+          </mat-form-field>
+          <button mat-icon-button type="button" class="delete-btn" (click)="deleteReview(i)">
+            <i class="fa fa-trash"></i>
+          </button>
+      </section>
+    </div>
+
+    <button type="button" class="text-link add-benefit-field" (click)="addReview()">
+      <i class="fa fa-plus"></i>
+      Add another review
+    </button>
+
+  </section>
+
+  <div class="btn-area">
+    <button class="btn-icon-right" type="submit" [disabled]="!addNutritionistForm.valid" [class.disabled]="!addNutritionistForm.valid">
+      <span>Add Nutritionist</span>
+      <i class="fas fa-check small" *ngIf="addNutritionistForm.valid"></i>
+    </button>
+  </div>
+</form>
