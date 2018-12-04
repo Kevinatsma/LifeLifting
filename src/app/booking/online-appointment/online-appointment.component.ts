@@ -24,7 +24,7 @@ export class OnlineAppointmentComponent implements OnInit {
   ]; selectedCallMethod: string;
 
   // FormControl
-  phoneAreaCode = new FormControl('+51', Validators.required);
+  phoneAreaCode = new FormControl('+51', [Validators.required, Validators.maxLength(3)]);
   phoneRest = new FormControl('', [Validators.required, Validators.minLength(8)]);
   wappAreaCode = new FormControl('', Validators.required);
   wappRest = new FormControl('', [Validators.required, Validators.minLength(8)]);
