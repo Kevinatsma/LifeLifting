@@ -17,10 +17,10 @@ export class SubscriberGuard implements CanActivate {
 
     return this.auth.user.pipe(
       take(1),
-      map(user => user && user.roles.subscriber ? true : false),
+      map(user => user && user.roles.member ? true : false),
       tap(isSubscriber => {
         if (!isSubscriber) {
-          console.error('Access denied - Subscribers only');
+          console.error('Access denied - Members only');
         }
       })
     );

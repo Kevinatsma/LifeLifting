@@ -50,6 +50,8 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['signup/step-two']);
     } else if (!this.user.appointment) {
       this.router.navigate(['signup/step-three']);
+    } else if (!this.user.signupCompleted) {
+      return null;
     }
   }
 }

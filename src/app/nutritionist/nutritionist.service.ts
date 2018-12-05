@@ -4,6 +4,8 @@ import { AngularFirestoreDocument, AngularFirestoreCollection, AngularFirestore 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { User } from './../user/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,8 @@ export class NutritionistService {
   nutritionist: Observable<Nutritionist>;
 
   constructor( private afs: AngularFirestore,
-               public snackBar: MatSnackBar
+               public snackBar: MatSnackBar,
+               private afAuth: AngularFireAuth
              ) {
     this.nutritionistCol = this.afs.collection<Nutritionist>(`nutritionists`);
     this.nutritionists = this.getnutritionists();
@@ -37,6 +40,39 @@ export class NutritionistService {
       });
     }));
     return this.nutritionists;
+  }
+
+  emailSignUp(email: string, password: string, formData: any) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    .then((credential) => {
+      this.updateUserData(credential.user, formData);
+    })
+    .then(() => console.log('Congratulations. The specialists account has been created!'))
+    .then(() => {
+      this.afAuth.auth.currentUser.sendEmailVerification()
+        .then(() => console.log('We sent him/her an email verification'))
+        .catch(error => console.log(error.message));
+    });
+  }
+
+  private updateUserData(user, formData) {
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    const data: User = {
+      uid: user.uid,
+      email: formData.email,
+      displayName: formData.firstName + ' ' + formData.lastName,
+      photoURL: user.photoURL,
+      roles: {
+        member: true,
+        specialist: true,
+        admin: false
+      },
+      signupCompleted: false,
+      packageChoice: 'noPackage',
+      appointment: 'noAppointment',
+    };
+    return userRef.set(data, { merge: true });
   }
 
   addNutritionist(data) {

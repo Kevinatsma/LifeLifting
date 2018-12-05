@@ -64,8 +64,8 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       roles: {
-        subscriber: true,
-        editor: false,
+        member: true,
+        specialist: false,
         admin: false
       },
       signupCompleted: false

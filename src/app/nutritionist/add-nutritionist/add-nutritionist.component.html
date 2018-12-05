@@ -1,6 +1,30 @@
-<form [formGroup]="addNutritionistForm" (ngSubmit)="sendNutritionistData()">
+<form [formGroup]="signUpForm">
   <section class="form-container">
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>The Email will be used as Username</mat-label>
+      <input type="text" matInput placeholder="What's your email?" formControlName="email" 
+              [class.active]="!email.valid && email.touched" autocomplete="off" required
+      >
+      <mat-error class="input-error" *ngIf="!email.dirty">This is <strong>required</strong></mat-error>
+      <mat-error class="input-error" *ngIf="!email.valid && email.dirty">That's <strong>not</strong> a valid e-mail address!</mat-error>
+    </mat-form-field>
 
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Pick a Password </mat-label>
+      <input class="form-input" type="password" matInput placeholder="Setting it for your specialist is safer" [type]="hide ? 'password' : 'text'" 
+      formControlName="password" [class.active]="!password.valid && password.touched" 
+      autocomplete="new-password" required
+      >
+      <mat-error class="input-error" *ngIf="!password.dirty">This is <strong>required</strong></mat-error>
+      <mat-error class="input-error" *ngIf="password.errors?.minlength"><strong>Not enough</strong> characters, try harder!</mat-error>
+      <mat-error class="input-error" *ngIf="password.errors?.maxlength">Too <strong>much</strong> characters, slow down there.</mat-error>
+      <mat-error class="input-error" *ngIf="password.errors?.pattern">Password contains <strong>a special character</strong>, or lacks a <strong>number/letter</strong>.</mat-error>
+    </mat-form-field>
+  </section>
+</form>
+
+<form [formGroup]="addNutritionistForm" (ngSubmit)="specialistSignUp()">
+  <section class="form-container">
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>First name</mat-label>
       <input type="text" matInput formControlName="firstName" placeholder="Give the nutritionist a name" autofocus="off" autocomplete="off">
@@ -16,11 +40,6 @@
       <textarea type="text" matInput formControlName="description" placeholder="Write a short but attractive description" 
       matTextareaAutosize autofocus="off" autocomplete="off">
       </textarea>
-    </mat-form-field>
-
-    <mat-form-field appearance="standard" floatLabel="always">
-      <mat-label>Email Address</mat-label>
-      <input type="text" matInput formControlName="email" placeholder="What's his/her e-mail?" autofocus="off" autocomplete="off">
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
@@ -50,7 +69,7 @@
 
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>Years of experience</mat-label>
-      <input type="number" matInput formControlName="yearsOfExperience" placeholder="Amount in nr." autofocus="off" autocomplete="off">
+      <input type="number" matInput formControlName="yearsOfExperience" placeholder="Amount in nr." autofocus="off" maxlength="2" autocomplete="off">
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
@@ -63,8 +82,14 @@
     <div class="add-benefit-container" formArrayName="languages">
       <section class="dynamic-form-field-container" *ngFor="let language of languageForms.controls; let i=index" [formGroupName]="i">
           <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Which language</mat-label>
             <input type="text" matInput placeholder="Language {{i+1}}?" formControlName="languageValue" autocomplete="off" required>
             <mat-error class="input-error" *ngIf="!languageValue.valid && addNutritionistForm.touched">This is <strong>required</strong></mat-error> 
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>What level?</mat-label>
+            <input type="text" matInput placeholder="Profficiency" formControlName="languageLevel" autocomplete="off" required>
+            <mat-error class="input-error" *ngIf="!languageLevel.valid && addNutritionistForm.touched">This is <strong>required</strong></mat-error> 
           </mat-form-field>
           <button mat-icon-button type="button" class="delete-btn" (click)="deleteLanguage(i)">
             <i class="fa fa-trash"></i>
@@ -86,6 +111,11 @@
             <input type="text" matInput placeholder="Nutritionist Review {{i+1}}?" formControlName="reviewText" autocomplete="off" required>
             <mat-error class="input-error" *ngIf="!reviewText.valid && addNutritionistForm.touched">This is <strong>required</strong></mat-error> 
           </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>The review writer</mat-label>
+            <input type="text" matInput placeholder="Who wrote Review {{i+1}}?" formControlName="reviewerName" autocomplete="off" required>
+            <mat-error class="input-error" *ngIf="!reviewerName.valid && addNutritionistForm.touched">This is <strong>required</strong></mat-error> 
+          </mat-form-field>
           <button mat-icon-button type="button" class="delete-btn" (click)="deleteReview(i)">
             <i class="fa fa-trash"></i>
           </button>
@@ -100,9 +130,9 @@
   </section>
 
   <div class="btn-area">
-    <button class="btn-icon-right" type="submit" [disabled]="!addNutritionistForm.valid" [class.disabled]="!addNutritionistForm.valid">
+    <button class="btn-icon-right" type="submit" [disabled]="!addNutritionistForm.valid" [class.btn-disabled]="!addNutritionistForm.valid">
       <span>Add Nutritionist</span>
-      <i class="fas fa-check small" *ngIf="addNutritionistForm.valid"></i>
+      <i class="fas fa-check small" *ngIf="addNutritionistForm.valid && signUpForm.valid"></i>
     </button>
   </div>
 </form>

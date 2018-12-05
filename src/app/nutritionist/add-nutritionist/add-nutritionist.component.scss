@@ -13,9 +13,13 @@ section.form-container {
         width: 80%;
     }
 
+    h4 {
+        margin-top: 2em;
+    }
+
     .add-benefit-container {
         @extend %flex-column-center;
-        margin: 2em auto;
+        margin: 1em auto;
         padding: 0;
         width: 100%;
         height: auto;
@@ -34,4 +38,8 @@ section.form-container {
             }
         }
     }
+}
+
+.btn-disabled {
+    background-color: $middle-grey;
 }
