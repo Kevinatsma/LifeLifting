@@ -10,7 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { AuthGuard } from './core/auth/guards/auth.guard';
 import { PackagesComponent } from './packages/packages/packages.component';
 import { SignupStepFourComponent } from './user/sign-up/signup-step-four/signup-step-four.component';
-import { NutritionistsComponent } from './nutritionist/nutritionists/nutritionists.component';
+import { SpecialistsComponent } from './specialists/specialists/specialists.component';
 
 const routes: Routes = [
   {
@@ -46,8 +46,8 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
-    path: 'nutritionists',
-    component: NutritionistsComponent,
+    path: 'specialists',
+    component: SpecialistsComponent,
     // canActivate: [AuthGuard]
   }
 ];

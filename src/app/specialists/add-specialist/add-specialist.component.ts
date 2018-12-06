@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { NutritionistService } from '../nutritionist.service';
+import { SpecialistService } from '../specialist.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-nutritionist',
-  templateUrl: './add-nutritionist.component.html',
-  styleUrls: ['./add-nutritionist.component.scss']
+  selector: 'app-add-specialist',
+  templateUrl: './add-specialist.component.html',
+  styleUrls: ['./add-specialist.component.scss']
 })
-export class AddNutritionistComponent implements OnInit {
+export class AddSpecialistComponent implements OnInit {
   signUpForm: FormGroup;
-  addNutritionistForm: FormGroup;
+  addSpecialistForm: FormGroup;
   hide = true;
 
   languages: FormArray;
@@ -21,7 +21,7 @@ export class AddNutritionistComponent implements OnInit {
   reviewerName = new FormControl('', [Validators.required]);
   reviewText = new FormControl('', [Validators.required]);
 
-  constructor( private nutritionistService: NutritionistService,
+  constructor( private specialistService: SpecialistService,
                private fb: FormBuilder,
                private auth: AuthService,
                public router: Router) { }
@@ -39,7 +39,7 @@ export class AddNutritionistComponent implements OnInit {
       ]
     });
 
-    this.addNutritionistForm = this.fb.group({
+    this.addSpecialistForm = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       description: ['', [Validators.required]],
@@ -64,11 +64,11 @@ export class AddNutritionistComponent implements OnInit {
   }
 
   get languageForms() {
-    return this.addNutritionistForm.get('languages') as FormArray;
+    return this.addSpecialistForm.get('languages') as FormArray;
   }
 
   get reviewForms() {
-    return this.addNutritionistForm.get('reviews') as FormArray;
+    return this.addSpecialistForm.get('reviews') as FormArray;
   }
 
     // Create a new Package benefit Mat Card
@@ -80,12 +80,12 @@ export class AddNutritionistComponent implements OnInit {
     }
 
     addLanguage(): void {
-      this.languages = this.addNutritionistForm.get('languages') as FormArray;
+      this.languages = this.addSpecialistForm.get('languages') as FormArray;
       this.languages.push(this.createLanguage());
     }
 
     deleteLanguage(i) {
-      (this.addNutritionistForm.get('languages') as FormArray).removeAt(i);
+      (this.addSpecialistForm.get('languages') as FormArray).removeAt(i);
     }
 
     // Create a new Package benefit Mat Card
@@ -97,42 +97,42 @@ export class AddNutritionistComponent implements OnInit {
     }
 
     addReview(): void {
-      this.reviews = this.addNutritionistForm.get('reviews') as FormArray;
+      this.reviews = this.addSpecialistForm.get('reviews') as FormArray;
       this.reviews.push(this.createReview());
     }
 
     deleteReview(i) {
-      (this.addNutritionistForm.get('reviews') as FormArray).removeAt(i);
+      (this.addSpecialistForm.get('reviews') as FormArray).removeAt(i);
     }
 
     specialistSignUp() {
       const email = this.email.value;
       const password = this.password.value;
       const data = {
-        firstName: this.addNutritionistForm.get('firstName').value,
-        lastName: this.addNutritionistForm.get('lastName').value,
+        firstName: this.addSpecialistForm.get('firstName').value,
+        lastName: this.addSpecialistForm.get('lastName').value,
         email: this.email.value,
-        description: this.addNutritionistForm.get('description').value,
-        phoneNumber: this.addNutritionistForm.get('phoneNumber').value,
-        position: this.addNutritionistForm.get('position').value,
-        timeZone: this.addNutritionistForm.get('timeZone').value,
-        yearsOfExperience: this.addNutritionistForm.get('yearsOfExperience').value,
-        patientsTotal: this.addNutritionistForm.get('patientsTotal').value,
-        city: this.addNutritionistForm.get('city').value,
-        country: this.addNutritionistForm.get('country').value,
+        description: this.addSpecialistForm.get('description').value,
+        phoneNumber: this.addSpecialistForm.get('phoneNumber').value,
+        position: this.addSpecialistForm.get('position').value,
+        timeZone: this.addSpecialistForm.get('timeZone').value,
+        yearsOfExperience: this.addSpecialistForm.get('yearsOfExperience').value,
+        patientsTotal: this.addSpecialistForm.get('patientsTotal').value,
+        city: this.addSpecialistForm.get('city').value,
+        country: this.addSpecialistForm.get('country').value,
         languages: this.languageForms.value,
         reviews: this.reviewForms.value,
       };
 
       // Add user in FireAuth
-      return this.nutritionistService.emailSignUp(email, password, data)
+      return this.specialistService.emailSignUp(email, password, data)
       .then(() => {
         // Reset form
         this.signUpForm.reset();
-        this.addNutritionistForm.reset();
+        this.addSpecialistForm.reset();
       })
       .then(() => {
-        this.nutritionistService.addNutritionist(data);
+        this.specialistService.addSpecialist(data);
       });
     }
 

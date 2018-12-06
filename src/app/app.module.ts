@@ -18,7 +18,7 @@ import { UserModule } from './user/user.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PackagesModule } from './packages/packages.module';
 import { BookingModule } from './booking/booking.module';
-import { NutritionistModule } from './nutritionist/nutritionist.module';
+import { SpecialistModule } from './specialists/specialist.module';
 
 @NgModule({
   imports: [
@@ -34,7 +34,7 @@ import { NutritionistModule } from './nutritionist/nutritionist.module';
     DashboardModule,
     PackagesModule,
     BookingModule,
-    NutritionistModule
+    SpecialistModule
   ],
   declarations: [
     AppComponent

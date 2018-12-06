@@ -1,5 +1,5 @@
-export class Nutritionist {
-    nutritionistID: string;
+export class Specialist {
+    specialistID: string;
     firstName: string;
     lastName: string;
     photoURL?: string;

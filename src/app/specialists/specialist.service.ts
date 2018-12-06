@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Nutritionist } from './nutritionist.model';
+import { Specialist } from './specialist.model';
 import { AngularFirestoreDocument, AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -10,36 +10,36 @@ import { User } from './../user/user.model';
 @Injectable({
   providedIn: 'root'
 })
-export class NutritionistService {
+export class SpecialistService {
 
-  nutritionistCol: AngularFirestoreCollection<Nutritionist>;
-  nutritionists: Observable<Nutritionist[]>;
-  nutritionistDoc: AngularFirestoreDocument<Nutritionist>;
-  nutritionist: Observable<Nutritionist>;
+  specialistCol: AngularFirestoreCollection<Specialist>;
+  specialists: Observable<Specialist[]>;
+  specialistDoc: AngularFirestoreDocument<Specialist>;
+  specialist: Observable<Specialist>;
 
   constructor( private afs: AngularFirestore,
                public snackBar: MatSnackBar,
                private afAuth: AngularFireAuth
              ) {
-    this.nutritionistCol = this.afs.collection<Nutritionist>(`nutritionists`);
-    this.nutritionists = this.getnutritionists();
+    this.specialistCol = this.afs.collection<Specialist>(`specialists`);
+    this.specialists = this.getSpecialists();
   }
 
-  getNutritionistData(id) {
-    this.nutritionistDoc = this.afs.doc<Nutritionist>(`nutritionists/${id}`);
-    this.nutritionist = this.nutritionistDoc.valueChanges();
-    return this.nutritionist;
+  getSpecialistData(id) {
+    this.specialistDoc = this.afs.doc<Specialist>(`specialists/${id}`);
+    this.specialist = this.specialistDoc.valueChanges();
+    return this.specialist;
   }
 
-  getnutritionists() {
-    this.nutritionists = this.nutritionistCol.snapshotChanges().pipe(map(actions => {
+  getSpecialists() {
+    this.specialists = this.specialistCol.snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
-        const data = a.payload.doc.data() as Nutritionist;
+        const data = a.payload.doc.data() as Specialist;
         const id = a.payload.doc.id;
         return { id, ...data };
       });
     }));
-    return this.nutritionists;
+    return this.specialists;
   }
 
   emailSignUp(email: string, password: string, formData: any) {
@@ -69,17 +69,17 @@ export class NutritionistService {
         admin: false
       },
       signupCompleted: false,
-      packageChoice: 'noPackage',
-      appointment: 'noAppointment',
+      packageChoice: 'NaN',
+      appointment: 'NaN',
     };
     return userRef.set(data, { merge: true });
   }
 
-  addNutritionist(data) {
-    this.afs.collection<Nutritionist>(`nutritionists`).add(data)
+  addSpecialist(data) {
+    this.afs.collection<Specialist>(`specialists`).add(data)
     .then(() => {
       // Show Snackbar
-      const message = 'The Nutritionist was added succesfully';
+      const message = 'The Specialist was added succesfully';
       const action = 'Close';
 
       this.snackBar.open(message, action, {
@@ -93,13 +93,13 @@ export class NutritionistService {
     });
   }
 
-  updateNutritionist(id, data) {
-    this.nutritionistDoc = this.afs.doc<Nutritionist>(`nutritionists/${id}`);
-    this.nutritionistDoc.update(data);
+  updateSpecialist(id, data) {
+    this.specialistDoc = this.afs.doc<Specialist>(`specialists/${id}`);
+    this.specialistDoc.update(data);
   }
 
-  deleteNutritionist(id) {
-    this.nutritionistDoc = this.afs.doc<Nutritionist>(`nutritionists/${id}`);
-    this.nutritionistDoc.delete();
+  deleteSpecialist(id) {
+    this.specialistDoc = this.afs.doc<Specialist>(`specialists/${id}`);
+    this.specialistDoc.delete();
   }
 }
