@@ -1,3 +1,43 @@
-<p>
-  specialist-item works!
-</p>
+<ng-container *ngIf="specialist">
+  <section class="specialist-header">
+    <!-- <div class="profile-picture" [style.background]="'url('specialist.profilePicture')'">
+
+    </div> -->
+    <div class="quick-info">
+      <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
+      <h5>{{specialist.position}}</h5>
+      <p>Speciality: {{specialist.speciality}}</p>
+      
+      <h5>About {{specialist.firstName}}</h5>
+      <p>{{specialist.description}}</p>
+    </div>
+  </section>
+
+  <section class="middle">
+    <div class="left">
+      <p>Experience: {{specialist.yearsOfExperience}} years</p>
+      <p>Timezone: {{specialist.timeZone}}</p>
+      <p>Amount of patients: {{specialist.patientsTotal}}</p>
+    </div>
+    <div class="right">
+      <div class="languages">
+        <h5>Languages</h5>
+        <ul *ngFor="let language of specialist.languages">
+          <li>{{language.languageValue}}</li>
+          <li>Level: {{language.languageLevel}}</li>
+        </ul>
+      </div>
+
+
+    </div>
+  </section>
+
+  <section class="reviews">
+    <mat-card *ngFor="let review of specialist.reviews">
+      <p>{{review.reviewText}}</p>
+      <p><strong>{{review.reviewerName}}</strong></p>
+    </mat-card>
+  </section>
+
+</ng-container>
+  

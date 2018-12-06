@@ -53,6 +53,11 @@
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>His/her speciality</mat-label>
+      <input type="text" matInput formControlName="speciality" placeholder="Where is he or she best at?" autofocus="off" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>Time zone</mat-label>
       <input type="text" matInput formControlName="timeZone" placeholder="In which Time zone is he/she?" autofocus="off" autocomplete="off">
     </mat-form-field>
@@ -108,7 +113,9 @@
       <section class="dynamic-form-field-container"  *ngFor="let review of reviewForms.controls; let i=index" [formGroupName]="i">
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>The review text</mat-label>
-            <input type="text" matInput placeholder="Specialist Review {{i+1}}?" formControlName="reviewText" autocomplete="off" required>
+            <textarea type="text" matInput formControlName="reviewText" placeholder="Specialist Review {{i+1}}" 
+                      matTextareaAutosize autofocus="off" autocomplete="off" required>
+            </textarea>
             <mat-error class="input-error" *ngIf="!reviewText.valid && addSpecialistForm.touched">This is <strong>required</strong></mat-error> 
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
