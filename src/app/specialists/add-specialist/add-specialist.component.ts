@@ -3,17 +3,32 @@ import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@ang
 import { SpecialistService } from '../specialist.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { DataService } from 'src/app/shared/data/data.service';
+import { Timezone } from 'src/app/shared/data/models/timezone.model';
 
 @Component({
   selector: 'app-add-specialist',
   templateUrl: './add-specialist.component.html',
   styleUrls: ['./add-specialist.component.scss']
 })
+
 export class AddSpecialistComponent implements OnInit {
   signUpForm: FormGroup;
   addSpecialistForm: FormGroup;
   hide = true;
 
+  sID = new FormControl(
+    '',
+    [
+      Validators.required,
+      Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+      Validators.minLength(8),
+    ]
+  );
+
+  timezones: Observable<Timezone[]>;
   languages: FormArray;
   languageValue = new FormControl('', [Validators.required]);
   languageLevel = new FormControl('', [Validators.required]);
@@ -23,10 +38,13 @@ export class AddSpecialistComponent implements OnInit {
 
   constructor( private specialistService: SpecialistService,
                private fb: FormBuilder,
+               private dataService: DataService,
                private auth: AuthService,
                public router: Router) { }
 
   ngOnInit() {
+    this.timezones = this.dataService.getTimezones();
+
     this.signUpForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -40,11 +58,13 @@ export class AddSpecialistComponent implements OnInit {
     });
 
     this.addSpecialistForm = this.fb.group({
+      'sID': this.sID,
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       description: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required]],
       position: ['', [Validators.required]],
+      speciality: ['', [Validators.required]],
       timeZone: ['', [Validators.required]],
       yearsOfExperience: ['', [Validators.required]],
       patientsTotal: ['', [Validators.required]],
@@ -109,6 +129,7 @@ export class AddSpecialistComponent implements OnInit {
       const email = this.email.value;
       const password = this.password.value;
       const data = {
+        sID: this.addSpecialistForm.get('sID').value,
         firstName: this.addSpecialistForm.get('firstName').value,
         lastName: this.addSpecialistForm.get('lastName').value,
         email: this.email.value,

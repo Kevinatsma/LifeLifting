@@ -6,6 +6,7 @@ import { AddSpecialistComponent } from './add-specialist/add-specialist.componen
 import { SpecialistService } from './specialist.service';
 import { SpecialistsComponent } from './specialists/specialists.component';
 import { SpecialistItemComponent } from './specialist-item/specialist-item.component';
+import { DataService } from '../shared/data/data.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SpecialistItemComponent } from './specialist-item/specialist-item.compo
     SpecialistsComponent
   ],
   providers: [
-    SpecialistService
+    SpecialistService,
+    DataService
   ]
 })
 export class SpecialistModule { }

@@ -26,13 +26,24 @@
 <form [formGroup]="addSpecialistForm" (ngSubmit)="specialistSignUp()">
   <section class="form-container">
     <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Specialist ID</mat-label>
+      <input type="text" matInput formControlName="sID" placeholder="Serves as a quick lookup helper" autocomplete="new-password">
+      <mat-hint>Must contain 8 characters, letters and numbers</mat-hint>
+      <mat-error class="input-error" *ngIf="sID.errors?.valid">This is <strong>required</strong></mat-error>
+      <mat-error class="input-error" *ngIf="sID.errors?.minlength">This is <strong>too short</strong></mat-error>
+      <mat-error class="input-error" *ngIf="sID.errors?.pattern">Must contain <strong>letters</strong> and <strong>numbers</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>First name</mat-label>
       <input type="text" matInput formControlName="firstName" placeholder="Give the specialist a name" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].firstName.valid">This is <strong>too required</strong></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>Last name</mat-label>
-      <input type="text" matInput formControlName="lastName" placeholder="The last name" autofocus="off" autocomplete="off">
+      <input type="text" matInput formControlName="lastName" placeholder="The last name" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].lastName.valid">This is <strong>required</strong></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
@@ -57,10 +68,14 @@
       <input type="text" matInput formControlName="speciality" placeholder="Where is he or she best at?" autofocus="off" autocomplete="off">
     </mat-form-field>
 
-    <mat-form-field appearance="standard" floatLabel="always">
-      <mat-label>Time zone</mat-label>
-      <input type="text" matInput formControlName="timeZone" placeholder="In which Time zone is he/she?" autofocus="off" autocomplete="off">
-    </mat-form-field>
+    <mat-form-field appearance="standard" floatLabel="always" *ngIf="timezones | async">
+        <mat-label>Pick a Timezone</mat-label>
+        <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimeZone" formControlName="timeZone" autocomplete="off" required>
+          <mat-option>GMT -5: Lima, Peru</mat-option>
+          <mat-option>GMT 0: Greenwich, England</mat-option>
+        </mat-select>
+        <!-- <mat-error class="input-error" *ngIf="!gender.valid && basicUserDataForm.touched">This is <strong>required</strong></mat-error> -->
+      </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>City</mat-label>
@@ -83,8 +98,11 @@
     </mat-form-field>
 
     <!-- Add Specialist Language -->
-    <h4>Languages</h4>
-    <div class="add-benefit-container" formArrayName="languages">
+    <h3>Languages</h3>
+    <p class="intro-text">Add languages to the nutritionist so we can hook them up with the right clients. This way we will also be able 
+      to know if we have to fix on other markets.
+    </p>
+    <div class="add-form-field-container" formArrayName="languages">
       <section class="dynamic-form-field-container" *ngFor="let language of languageForms.controls; let i=index" [formGroupName]="i">
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>Which language</mat-label>
@@ -102,14 +120,15 @@
       </section>
     </div>
 
-    <button type="button" class="text-link add-benefit-field" (click)="addLanguage()">
+    <button type="button" class="text-link add-form-field" (click)="addLanguage()">
       <i class="fa fa-plus"></i>
       Add another language
     </button>
 
     <!-- Add Specialist Reviews -->
-    <h4>Reviews</h4>
-    <div class="add-benefit-container" formArrayName="reviews">
+    <h3>Reviews</h3>
+    <p class="intro-text">Add reviews so potential clients can see he/she is fit for the job.</p>
+    <div class="add-form-field-container" formArrayName="reviews">
       <section class="dynamic-form-field-container"  *ngFor="let review of reviewForms.controls; let i=index" [formGroupName]="i">
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>The review text</mat-label>
@@ -129,7 +148,7 @@
       </section>
     </div>
 
-    <button type="button" class="text-link add-benefit-field" (click)="addReview()">
+    <button type="button" class="text-link add-form-field" (click)="addReview()">
       <i class="fa fa-plus"></i>
       Add another review
     </button>

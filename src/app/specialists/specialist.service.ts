@@ -60,6 +60,7 @@ export class SpecialistService {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const data: User = {
       uid: user.uid,
+      sID: formData.specialistID,
       email: formData.email,
       displayName: formData.firstName + ' ' + formData.lastName,
       photoURL: user.photoURL,

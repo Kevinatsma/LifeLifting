@@ -295,6 +295,12 @@ p {
         color: $text-black;
         font-weight: $regular;
     }
+
+    &.light-text {
+        font-size: 14px;
+        color: $grey;
+        font-weight: semi-bold;
+    }
 }
 
 //////////////////

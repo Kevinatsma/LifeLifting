@@ -7,37 +7,62 @@ section.form-container {
     flex-flow: column wrap;
     justify-content: flex-start;
     align-items: center;
-    margin: 2em auto;
+    margin: 0 auto;
 
     mat-form-field {
-        width: 80%;
+        width: 100%;
+        margin: 1em auto;
     }
 
-    h4 {
+    h3 {
         margin-top: 2em;
     }
 
-    .add-benefit-container {
+    p.intro-text {
+        width: 90%;
+        margin-top: 1em;
+        text-align: center
+    }
+
+    .add-form-field-container {
         @extend %flex-column-center;
-        margin: 1em auto;
-        padding: 0;
         width: 100%;
-        height: auto;
+        margin: 1em auto;
 
         .dynamic-form-field-container {
-            @extend %flex-row-center;
-            width: 100%;
-            margin: 0 auto;
+            @extend %flex-column-center;
+            height: auto;
+            margin: 0 auto 1em;
+            position: relative;
+            padding: 3em;
+            width: 80%;
+            background: #fff;
+            box-shadow: $card-shadow;
 
             mat-form-field {
-                width: 75%;
+                width: 100%;
             }
 
             button {
+                position: absolute;
                 width: 5%;
+                right: 2em;
+                top: 2em;
             }
         }
+
+
     }
+
+    button.add-form-field {
+        margin: 1.5em auto 1em!important;
+        font-size: 18px;
+        font-weight: $semi-bold;
+        svg {
+            margin-right: 1em;
+        }
+    }
+
 }
 
 .btn-disabled {

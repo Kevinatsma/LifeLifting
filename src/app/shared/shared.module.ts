@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material.module';
+import { DataModule } from './data/data.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    DataModule
   ],
   exports: [
-    MaterialModule
+    MaterialModule,
+    DataModule
   ],
   declarations: [
 

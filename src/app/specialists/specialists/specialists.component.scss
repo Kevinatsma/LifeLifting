@@ -1,0 +1,17 @@
+@import '_master';
+
+.wrapper {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2em 0;
+
+    header {
+        width: 100%;
+        margin: 2em auto;
+    }
+
+    h2 {
+        color: $secondary-color;
+    }
+
+}
