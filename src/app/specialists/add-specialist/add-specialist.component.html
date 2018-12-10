@@ -68,11 +68,10 @@
       <input type="text" matInput formControlName="speciality" placeholder="Where is he or she best at?" autofocus="off" autocomplete="off">
     </mat-form-field>
 
-    <mat-form-field appearance="standard" floatLabel="always" *ngIf="timezones | async">
+    <mat-form-field appearance="standard" floatLabel="always">
         <mat-label>Pick a Timezone</mat-label>
         <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimeZone" formControlName="timeZone" autocomplete="off" required>
-          <mat-option>GMT -5: Lima, Peru</mat-option>
-          <mat-option>GMT 0: Greenwich, England</mat-option>
+          <mat-option *ngFor="let timezone of timezones | async"> {{timezone.city}}, {{timezone.country}} / {{timezone.gmtValue}}</mat-option>
         </mat-select>
         <!-- <mat-error class="input-error" *ngIf="!gender.valid && basicUserDataForm.touched">This is <strong>required</strong></mat-error> -->
       </mat-form-field>

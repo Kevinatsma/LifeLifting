@@ -29,6 +29,7 @@ export class AddSpecialistComponent implements OnInit {
   );
 
   timezones: Observable<Timezone[]>;
+  selectedTimezone: string;
   languages: FormArray;
   languageValue = new FormControl('', [Validators.required]);
   languageLevel = new FormControl('', [Validators.required]);

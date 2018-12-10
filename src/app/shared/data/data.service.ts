@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { Timezone } from './models/timezone.model';
 import { MatSnackBar } from '@angular/material';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,14 @@ export class DataService {
   }
 
   public getTimezones() {
-    this.timezonesCol = this.afs.collection('assets/timezones/GMT');
-    this.timezones = this.timezonesCol.valueChanges();
-    console.log(this.timezones);
+    this.timezonesCol = this.afs.collection(`assets/timezones/GMT`, ref => ref.orderBy('city', 'asc'));
+    this.timezones = this.timezonesCol.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Timezone;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    }));
     return this.timezones;
   }
 
