@@ -27,7 +27,7 @@ export class AddSpecialistComponent implements OnInit {
       Validators.minLength(8),
     ]
   );
-
+  downloadURL: string | null;
   timezones: Observable<Timezone[]>;
   selectedTimezone: string;
   languages: FormArray;
@@ -36,6 +36,10 @@ export class AddSpecialistComponent implements OnInit {
   reviews: FormArray;
   reviewerName = new FormControl('', [Validators.required]);
   reviewText = new FormControl('', [Validators.required]);
+
+  receiveDownloadURL($event) {
+    this.downloadURL = $event;
+  }
 
   constructor( private specialistService: SpecialistService,
                private fb: FormBuilder,
@@ -133,6 +137,7 @@ export class AddSpecialistComponent implements OnInit {
         sID: this.addSpecialistForm.get('sID').value,
         firstName: this.addSpecialistForm.get('firstName').value,
         lastName: this.addSpecialistForm.get('lastName').value,
+        photoURL: this.downloadURL,
         email: this.email.value,
         description: this.addSpecialistForm.get('description').value,
         phoneNumber: this.addSpecialistForm.get('phoneNumber').value,

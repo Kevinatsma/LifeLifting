@@ -1,34 +1,35 @@
 <ng-container *ngIf="specialist">
   <section class="specialist-header">
-    <!-- <div class="profile-picture" [style.background]="'url('specialist.profilePicture')'">
+    <div class="profile-picture">
 
-    </div> -->
+    </div>
     <div class="quick-info">
       <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
       <h5>{{specialist.position}}</h5>
       <p>Speciality: {{specialist.speciality}}</p>
-      
-      <h5>About {{specialist.firstName}}</h5>
-      <p>{{specialist.description}}</p>
     </div>
+
+
+  </section>
+
+  <section class="about">  
+    <h5>About {{specialist.firstName}}</h5>
+    <p>{{specialist.description}}</p>
   </section>
 
   <section class="middle">
-    <div class="left">
+    <div class="practical-info">
+      <h5>Practical Info</h5>
       <p>Experience: {{specialist.yearsOfExperience}} years</p>
       <p>Timezone: {{specialist.timeZone}}</p>
       <p>Amount of patients: {{specialist.patientsTotal}}</p>
     </div>
-    <div class="right">
-      <div class="languages">
-        <h5>Languages</h5>
-        <ul *ngFor="let language of specialist.languages">
-          <li>{{language.languageValue}}</li>
-          <li>Level: {{language.languageLevel}}</li>
-        </ul>
-      </div>
-
-
+    <div class="languages">
+      <h5>Languages</h5>
+      <ul *ngFor="let language of specialist.languages">
+        <li>{{language.languageValue}}</li>
+        <li>Level: {{language.languageLevel}}</li>
+      </ul>
     </div>
   </section>
 

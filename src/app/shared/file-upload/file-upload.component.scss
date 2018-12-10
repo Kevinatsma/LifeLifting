@@ -1,0 +1,122 @@
+@import '_master';
+@import '_forms';
+
+.dropzone {
+    @extend %flex-column-center;
+    font-size: $semi-bold;
+    height: 100%;
+    border: 2px dashed $secondary-color;
+    border-radius: 0px;
+    box-shadow: none;
+    background: transparent;
+    margin: 0px 0px 20px 0;
+    color: $secondary-color;
+
+    h3.photo-header {
+        margin-left: 0;
+    }
+
+    h5 {
+        margin: 0.5em auto 1.5em;
+    }
+
+    &.hovering {
+        border: 2px solid $secondary-color;
+        background: $secondary-color;
+        color: $light-grey;
+    }
+
+    .file-label {
+        font-size: 18px;
+        font-family: $main-font;
+        font-weight: $semi-bold;
+        color: $secondary-color;
+        cursor: pointer;
+
+        input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
+    }
+
+    .file-icon {
+        margin-right: 0.5em;
+    }
+
+    .percentage-wrapper {
+        width: 100%;
+        height: 20px;
+        background: $grey;
+        margin-top: 20px;
+        border-radius: 15px;
+    }
+
+    ::ng-deep .mat-progress-bar-fill::after {
+        background-color: $primary-color;
+        animation: load 5s linear 5s;
+        animation-fill-mode: forwards;
+    }
+    
+    ::ng-deep .mat-progress-bar-buffer {
+        background: $grey;
+    }
+    
+    ::ng-deep .mat-progress-bar {
+        border-radius: 15px;
+        height: 20px;
+        box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+        animation: load 5s linear 5s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes load {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+    }
+
+    button.btn-secondary {
+        margin: 25px auto 25px auto;
+    }
+
+}
+
+div.profile-pic {
+    padding: 0;
+    background: #fff;
+    box-shadow: $card-shadow;
+    margin: 0;
+    width: 30%;
+    height: auto;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+
+    .preview {
+        margin: 0;
+        padding: 0;
+        background-size: cover!important;
+        background-repeat: no-repeat !important;
+        background-position: center!important;
+        height: 300px;
+        width: 100%;
+    }
+
+    .confirmation {
+        display: flex;
+        flex-flow: column wrap;
+        width: 80%;
+        margin: 2em auto;
+
+        .file {
+            box-sizing: border-box;
+        }
+    }
+
+}
