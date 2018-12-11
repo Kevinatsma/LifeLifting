@@ -42,3 +42,26 @@ section.middle {
         width: 50%;
     }
 }
+
+section.reviews {
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    height: auto;
+    padding: 2em 0;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    mat-card.review-container {
+        flex: 0 0 auto;
+        height: 500px;
+        width: 400px;
+        margin: 2em;
+        box-sizing: border-box;
+
+        p {
+            white-space: normal;
+            width: 100%;
+        }
+    }
+}

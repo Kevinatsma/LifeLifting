@@ -34,7 +34,7 @@
   </section>
 
   <section class="reviews">
-    <mat-card *ngFor="let review of specialist.reviews">
+    <mat-card class="review-container" *ngFor="let review of specialist.reviews">
       <p>{{review.reviewText}}</p>
       <p><strong>{{review.reviewerName}}</strong></p>
     </mat-card>
