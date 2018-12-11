@@ -34,10 +34,14 @@ section.form-container {
         text-align: center
     }
 
+    p.card-text {
+        width: 98%;
+    }
+
     .image-uploader {
         width: 100%;
         height: 100%;
-        margin: 2em 0;
+        margin: 2em 0 1em;
     }
 
     .add-form-field-container {
@@ -81,6 +85,10 @@ section.form-container {
         }
     }
 
+}
+
+.btn-area {
+    margin-top: 2em;
 }
 
 .btn-disabled {

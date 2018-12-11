@@ -1,6 +1,10 @@
 <form [formGroup]="signUpForm">
   <section class="form-container">
     <h5>Account Settings</h5>
+    <p class="card-text">
+      These are the account details of the specialist. Write them down so you can send them to 'em!
+    </p>
+
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>The Email will be used as Username</mat-label>
       <input type="text" matInput placeholder="What's your email?" formControlName="email" 
@@ -26,11 +30,20 @@
 
 <form [formGroup]="addSpecialistForm" (ngSubmit)="specialistSignUp()">
   <section class="form-container">
+
+    <h5>Profile Image</h5>
+    <p class="card-text">
+      Please choose a clear picture that represents the present appearance of this person.
+    </p>
     <div class="image-uploader">
-        <app-file-upload (imageEvent)="receiveDownloadURL($event)"></app-file-upload>
+      <app-file-upload (imageEvent)="receiveDownloadURL($event)"></app-file-upload>
     </div>
 
-    <h5>Extra Data</h5>
+    <h5>Other Important Info</h5>
+    <p class="card-text">
+      Basic data that we need from the specialist. Some of this data will be displayed at step 4 of the signup process.
+      This can be important in the decision making process of the future client.
+    </p>
 
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>Specialist ID</mat-label>
@@ -44,7 +57,7 @@
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>First name</mat-label>
       <input type="text" matInput formControlName="firstName" placeholder="Give the specialist a name" autofocus="none">
-      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].firstName.valid">This is <strong>too required</strong></mat-error>
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].firstName.valid">This is <strong>required</strong></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
@@ -78,7 +91,7 @@
     <mat-form-field appearance="standard" floatLabel="always">
         <mat-label>Pick a Timezone</mat-label>
         <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimezone" formControlName="timeZone" autocomplete="off" required>
-          <mat-option *ngFor="let timezone of timezones | async"> {{timezone.city}}, {{timezone.country}} / {{timezone.gmtValue}}</mat-option>
+          <mat-option *ngFor="let timezone of timezones | async" [value]="timezone.gmtValue"> {{timezone.city}}, {{timezone.country}} / {{timezone.gmtValue}}</mat-option>
         </mat-select>
         <!-- <mat-error class="input-error" *ngIf="!gender.valid && basicUserDataForm.touched">This is <strong>required</strong></mat-error> -->
       </mat-form-field>
@@ -105,7 +118,7 @@
 
     <!-- Add Specialist Language -->
     <h3>Languages</h3>
-    <p class="intro-text">Add languages to the nutritionist so we can hook them up with the right clients. This way we will also be able 
+    <p class="intro-text">Add languages to the specialist so we can hook them up with the right clients. This way we will also be able 
       to know if we have to fix on other markets.
     </p>
     <div class="add-form-field-container" formArrayName="languages">
@@ -133,7 +146,7 @@
 
     <!-- Add Specialist Reviews -->
     <h3>Reviews</h3>
-    <p class="intro-text">Add reviews so potential clients can see he/she is fit for the job.</p>
+    <p class="intro-text">Add reviews so potential clients can see if he or she is fit for the job.</p>
     <div class="add-form-field-container" formArrayName="reviews">
       <section class="dynamic-form-field-container"  *ngFor="let review of reviewForms.controls; let i=index" [formGroupName]="i">
           <mat-form-field appearance="standard" floatLabel="always">

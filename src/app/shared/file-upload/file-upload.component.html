@@ -48,7 +48,7 @@
 
 </mat-card>
 
-<div class="dropzone profile-pic" *ngIf="downloadURL">
+<div class="profile-pic" *ngIf="downloadURL">
   <section class="preview" *ngIf="imageURL" [style.background]="'url(' + imageURL + ')'">
 
   </section>
@@ -57,16 +57,19 @@
   </p>
   <section class="confirmation">
     <h2>Is this okay?</h2>
+    <p class="card-text">
+      If this is a good representation, perfect! If not, please upload another one.
+    </p>
     <div class="file">
       <label class="file-label">
         <input type="file" (change)="startUpload($event.target.files)">
   
-        <span class="file-cta">
-          <span class="file-icon">
-            <i class="fas fa-upload"></i>
-          </span>
+        <span class="bottom-btn">
           <span class="file-label text-link" *ngIf="downloadURL">
-            choose another one
+            Change Photo
+          </span>
+          <span class="file-icon">
+            <i class="fas fa-exchange-alt"></i>
           </span>
         </span>
       </label>
