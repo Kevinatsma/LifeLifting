@@ -30,7 +30,6 @@
 
 <form [formGroup]="addSpecialistForm" (ngSubmit)="specialistSignUp()">
   <section class="form-container">
-
     <h5>Profile Image</h5>
     <p class="card-text">
       Please choose a clear picture that represents the present appearance of this person.
@@ -71,21 +70,25 @@
       <textarea type="text" matInput formControlName="description" placeholder="Write a short but attractive description" 
       matTextareaAutosize autofocus="off" autocomplete="off">
       </textarea>
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].description.valid">This is <strong>required</strong></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>Phone Number</mat-label>
       <input type="number" matInput formControlName="phoneNumber" placeholder="What's his/her phone number?" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].phoneNumber.valid">This is <strong>required</strong></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>The position in LifeLifting</mat-label>
       <input type="text" matInput formControlName="position" placeholder="What's his/her position?" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].position.valid">This is <strong>required</strong></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>His/her speciality</mat-label>
       <input type="text" matInput formControlName="speciality" placeholder="Where is he or she best at?" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].speciality.valid">This is <strong>required</strong></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
@@ -93,27 +96,31 @@
         <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimezone" formControlName="timeZone" autocomplete="off" required>
           <mat-option *ngFor="let timezone of timezones | async" [value]="timezone.gmtValue"> {{timezone.city}}, {{timezone.country}} / {{timezone.gmtValue}}</mat-option>
         </mat-select>
-        <!-- <mat-error class="input-error" *ngIf="!gender.valid && basicUserDataForm.touched">This is <strong>required</strong></mat-error> -->
+        <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].timeZone.valid">This is <strong>required</strong></mat-error>
       </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>City</mat-label>
       <input type="text" matInput formControlName="city" placeholder="Which city does he/she live?" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].city.valid">This is <strong>required</strong></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>Country</mat-label>
       <input type="text" matInput formControlName="country" placeholder="In which country is that?" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].country.valid">This is <strong>required</strong></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>Years of experience</mat-label>
       <input type="number" matInput formControlName="yearsOfExperience" placeholder="Amount in nr." autofocus="off" maxlength="2" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].yearsOfExperience.valid">This is <strong>required</strong></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>Total amount of patients</mat-label>
       <input type="number" matInput formControlName="patientsTotal" placeholder="How many patients?" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].patientsTotal.valid">This is <strong>required</strong></mat-error>
     </mat-form-field>
 
     <!-- Add Specialist Language -->

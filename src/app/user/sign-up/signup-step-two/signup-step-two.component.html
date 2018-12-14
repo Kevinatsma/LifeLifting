@@ -8,6 +8,9 @@
           <mat-radio-button class="package-item" *ngFor="let package of packages | async" [value]="package.packageID" labelPostition="before">
             <app-package-item [package]="package"></app-package-item>
           </mat-radio-button>
+          <div class="right-scroll-margin">
+            <p class="hide">HI</p>
+          </div>
         </mat-radio-group>
       </section>
 

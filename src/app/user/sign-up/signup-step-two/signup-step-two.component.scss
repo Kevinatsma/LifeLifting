@@ -5,12 +5,25 @@
         height: 100%;
         width: 100%;
         display: flex;
-        flex-flow: row nowrap;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 1em 0 1em;
+
+        .right-scroll-margin {
+            width: 50px;
+            height: 550px;
+            box-sizing: border-box;
+            background: transparent;
+            .hide {
+                visibility: hidden;
+            }
+        }
     }
 }
 
 ::ng-deep mat-radio-button, .package-item {
-    min-width: 40%;
+    flex: 0 0 auto;
+    width: 40%;
     height: 550px;
     margin: 0 2em;
     background: #fff;

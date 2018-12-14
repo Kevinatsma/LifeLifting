@@ -62,7 +62,7 @@ export class FileUploadComponent implements OnInit {
   startUpload(event: FileList) {
     const file = event.item(0);
     const id = file.name;
-    const filePath = `/courses/${id}`;
+    const filePath = `/specialists/${id}`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 
