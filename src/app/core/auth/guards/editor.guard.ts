@@ -17,10 +17,10 @@ export class EditorGuard implements CanActivate {
 
     return this.auth.user.pipe(
       take(1),
-      map(user => user && user.roles.editor ? true : false),
+      map(user => user && user.roles.specialist ? true : false),
       tap(isEditor => {
         if (!isEditor) {
-          console.error('Access denied - Editors only');
+          console.error('Access denied - Specialists only');
         }
       })
     );

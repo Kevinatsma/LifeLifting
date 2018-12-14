@@ -3,7 +3,7 @@
       <!-- Call method -->
       <mat-form-field appearance="standard" floatLabel="always">
         <mat-label>I prefer to call with</mat-label>
-        <mat-select matInput placeholder="Skype, Whatsapp, etc." [(value)]="selectedCallMethod" formControlName="callMethod" autocomplete="off" required>
+        <mat-select matInput placeholder="Skype, Whatsapp, etc." [(value)]="selectedCallMethod" (selectionChange)="pickForm(selectedCallMethod)" formControlName="callMethod" autocomplete="off" required>
           <mat-option *ngFor="let method of callMethods" [value]="method.value">{{method.viewValue}}</mat-option>
         </mat-select>
         <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
@@ -53,6 +53,7 @@
       </button>
       <button class="btn-icon-right" type="submit" 
       [class.btn-disabled]="!onlineAppointmentForm.valid"
+      [disabled]="!onlineAppointmentForm.valid"
       >
         <span>Last step</span>
         <i class="fas fa-chevron-right small"></i>

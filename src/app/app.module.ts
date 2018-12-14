@@ -18,6 +18,7 @@ import { UserModule } from './user/user.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PackagesModule } from './packages/packages.module';
 import { BookingModule } from './booking/booking.module';
+import { SpecialistModule } from './specialists/specialist.module';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { BookingModule } from './booking/booking.module';
     UserModule,
     DashboardModule,
     PackagesModule,
-    BookingModule
+    BookingModule,
+    SpecialistModule
   ],
   declarations: [
     AppComponent

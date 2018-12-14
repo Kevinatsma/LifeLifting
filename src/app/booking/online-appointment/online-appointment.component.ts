@@ -56,6 +56,16 @@ export class OnlineAppointmentComponent implements OnInit {
     });
   }
 
+  pickForm(selectedCallMethod: string) {
+    if (selectedCallMethod === 'skype') {
+      this.onlineAppointmentForm['controls'].skypeName.reset();
+    } else if (selectedCallMethod === 'whatsapp') {
+        this.onlineAppointmentForm['controls'].whatsappNumber.reset();
+    } else if (selectedCallMethod === 'phonecall') {
+        this.onlineAppointmentForm['controls'].phoneNumber.reset();
+    }
+  }
+
   addAppointment() {
     const user =  this.user;
     const whatsappNumber = this.onlineAppointmentForm['controls'].whatsappNumber.get('wappAreaCode').value +

@@ -1,17 +1,19 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
   <section class="step-wrapper">
     <h5>Pick wisely, {{user.displayName || user.email}}</h5>
-    <h1>Step 4: Choose a Nutritionist</h1>
+    <h1>Step 4: Choose a Specialist</h1>
+
+    <app-specialist-item *ngFor="let specialist of specialists | async" [specialist]="specialist"></app-specialist-item>
 
     <div class="btn-area">
       <button class="btn-icon-left" routerLink="../step-three">
         <i class="fas fa-chevron-left small"></i>
         <span>Previous step</span>
       </button>
-      <button class="btn-icon-right" routerLink="../../dashboard" [disabled]="!user.packageChoice || !user.basicData || !user.nutritionist" 
-      [class.btn-disabled]="!user.packageChoice || !user.basicData || !user.nutritionist">
+      <button class="btn-icon-right" routerLink="../../dashboard" [disabled]="!user.packageChoice || !user.basicData || !user.specialist" 
+      [class.btn-disabled]="!user.packageChoice || !user.basicData || !user.specialist">
         <span>Submit</span>
-        <i class="fas fa-check small" *ngIf="user.packageChoice && user.basicData && user.nutritionist"></i>
+        <i class="fas fa-check small" *ngIf="user.packageChoice && user.basicData && user.specialist"></i>
       </button>
     </div>
 

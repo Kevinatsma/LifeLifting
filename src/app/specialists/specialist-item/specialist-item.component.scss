@@ -1,0 +1,67 @@
+@import '_master';
+
+section.specialist-header {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    background: $light-grey;
+    box-shadow: $card-shadow;
+
+    div.profile-picture {
+        width: 50%;
+        height: 200px;
+    }
+
+    div.quick-info {
+        width: 50%;
+        padding: 1em 2em;
+    }
+}
+
+section.about {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 2em 0;
+    padding: 1.5em 2em;
+    border-left: 2px solid $primary-color;
+    background: $middle-grey;
+}
+
+section.middle {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+
+    div.practical-info {
+        width: 50%;
+    }
+
+    div.languages {
+        width: 50%;
+    }
+}
+
+section.reviews {
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    height: auto;
+    padding: 2em 0;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    mat-card.review-container {
+        flex: 0 0 auto;
+        height: 500px;
+        width: 400px;
+        margin: 2em;
+        box-sizing: border-box;
+
+        p {
+            white-space: normal;
+            width: 100%;
+        }
+    }
+}

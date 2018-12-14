@@ -1,0 +1,14 @@
+@import '_master';
+
+section.step-wrapper {
+    justify-content: flex-start;
+    padding: 2em 0 100px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+app-specialist-item {
+    width: 80%;
+    height: auto;
+    margin: 2em auto;
+}
