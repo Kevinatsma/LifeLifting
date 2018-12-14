@@ -46,11 +46,11 @@
 
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>Specialist ID</mat-label>
-      <input type="text" matInput formControlName="sID" placeholder="Serves as a quick lookup helper" autocomplete="new-password">
-      <mat-hint>Must contain 8 characters, letters and numbers</mat-hint>
-      <mat-error class="input-error" *ngIf="sID.errors?.valid">This is <strong>required</strong></mat-error>
-      <mat-error class="input-error" *ngIf="sID.errors?.minlength">This is <strong>too short</strong></mat-error>
-      <mat-error class="input-error" *ngIf="sID.errors?.pattern">Must contain <strong>letters</strong> and <strong>numbers</strong></mat-error>
+      <input type="text" matInput formControlName="specialistID" placeholder="Serves as a quick lookup helper" autocomplete="new-password">
+      <mat-hint *ngIf="!addSpecialistForm['controls'].specialistID.dirty">Must contain 8 characters, letters and numbers</mat-hint>
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].specialistID.valid">This is <strong>required</strong></mat-error>
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].specialistID.minlength">This is <strong>too short</strong></mat-error>
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].specialistID.pattern">Must contain <strong>letters</strong> and <strong>numbers</strong></mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="standard" floatLabel="always">
@@ -182,9 +182,13 @@
   </section>
 
   <div class="btn-area">
-    <button class="btn-icon-right" type="submit" [disabled]="!addSpecialistForm.valid" [class.btn-disabled]="!addSpecialistForm.valid">
+    <button class="btn-icon-right" type="submit" [disabled]="!addSpecialistForm.valid && !signUpForm.valid && !downloadURL"
+            [class.btn-disabled]="!addSpecialistForm.valid && !signUpForm.valid && !downloadURL"
+    >
       <span>Add Specialist</span>
-      <i class="fas fa-check small" *ngIf="addSpecialistForm.valid && signUpForm.valid"></i>
+      <span [hidden]="!addSpecialistForm.valid && !signUpForm.valid && !downloadURL">
+        <i class="fas fa-check small"></i>
+      </span>
     </button>
   </div>
 </form>

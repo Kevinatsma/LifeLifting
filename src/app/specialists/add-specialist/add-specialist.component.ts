@@ -19,14 +19,6 @@ export class AddSpecialistComponent implements OnInit {
   addSpecialistForm: FormGroup;
   hide = true;
 
-  sID = new FormControl(
-    '',
-    [
-      Validators.required,
-      Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-      Validators.minLength(8),
-    ]
-  );
   downloadURL: string | null;
   timezones: Observable<Timezone[]>;
   selectedTimezone: string;
@@ -38,7 +30,7 @@ export class AddSpecialistComponent implements OnInit {
   reviewText = new FormControl('', [Validators.required]);
 
   receiveDownloadURL($event) {
-    this.downloadURL = $event;
+    return this.downloadURL = $event;
   }
 
   constructor( private specialistService: SpecialistService,
@@ -63,7 +55,13 @@ export class AddSpecialistComponent implements OnInit {
     });
 
     this.addSpecialistForm = this.fb.group({
-      'sID': this.sID,
+      specialistID: ['',
+        [
+          Validators.required,
+          Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+          Validators.minLength(8),
+        ]
+      ],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       description: ['', [Validators.required]],
@@ -134,11 +132,11 @@ export class AddSpecialistComponent implements OnInit {
       const email = this.email.value;
       const password = this.password.value;
       const data = {
-        sID: this.addSpecialistForm.get('sID').value,
+        specialistID: this.addSpecialistForm.get('specialistID').value,
         firstName: this.addSpecialistForm.get('firstName').value,
         lastName: this.addSpecialistForm.get('lastName').value,
         photoURL: this.downloadURL,
-        email: this.email.value,
+        email: email,
         description: this.addSpecialistForm.get('description').value,
         phoneNumber: this.addSpecialistForm.get('phoneNumber').value,
         position: this.addSpecialistForm.get('position').value,
