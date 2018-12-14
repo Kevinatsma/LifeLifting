@@ -63,6 +63,14 @@ export class LoginComponent implements OnInit {
   }
 
   facebookLogin() {
-    alert('I need the FB token first...');
+    this.auth.facebookLogin()
+    .then(() => {
+      if (this.auth.user) {
+        this.router.navigate(['signup/step-one']);
+        console.log('You don\'t have all necessary data yet..');
+      } else {
+        alert('Woops, you\'re not logged in. Try again!');
+      }
+    });
   }
 }

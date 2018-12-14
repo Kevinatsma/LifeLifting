@@ -73,7 +73,15 @@ export class SignupComponent implements OnInit {
   }
 
   facebookLogin() {
-    alert('We need the token first..');
+    this.auth.facebookLogin()
+    .then(() => {
+      if (this.auth.user) {
+        this.router.navigate(['signup/step-one']);
+        console.log('You don\'t have all necessary data yet..');
+      } else {
+        alert('Woops, you\'re not logged in. Try again!');
+      }
+    });
   }
 
   openSuccess() {
