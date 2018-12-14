@@ -5,7 +5,7 @@
   
       <section class="package-container" *ngIf="!user.packageChoice">
         <mat-radio-group class="package-slider" [(ngModel)]="chosenPackage">
-          <mat-radio-button class="package-item" *ngFor="let package of packages | async" [value]="package.packageID" labelPostition="before">
+          <mat-radio-button class="package-item" *ngFor="let package of packages | async" [value]="package.packageID" autofocus="off" labelPostition="before">
             <app-package-item [package]="package"></app-package-item>
           </mat-radio-button>
           <div class="right-scroll-margin">
@@ -28,7 +28,7 @@
       <div class="step-done" *ngIf="user.packageChoice">
         <p class="intro-text">Psst, you already chose <strong>plan {{user.packageChoice}}</strong>. You can change your package choice later after signing up. Click the button to go to the next step!</p>
         <div class="btn-area">
-          <button class="btn-icon-right" routerLink="../step-three">
+          <button class="btn-icon-right" routerLink="../step-three" [disabled]="!user.packageChoice" [class.btn-disabled]="!user.packageChoice">
             <span>Continue process</span>
             <i class="fas fa-chevron-right small"></i>
           </button>

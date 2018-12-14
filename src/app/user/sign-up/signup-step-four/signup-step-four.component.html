@@ -1,19 +1,38 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
+  <section class="slider-nav-container">
+      <button mat-icon-button class="prev-btn control-btn" (click)="prevSpecialist()" [disabled]="!backButton">
+        <i class="fas fa-chevron-left" *ngIf="backButton"></i>
+      </button>
+      <button mat-icon-button class="next-btn control-btn" (click)="nextSpecialist()">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+  </section>
   <section class="step-wrapper">
     <h5>Pick wisely, {{user.displayName || user.email}}</h5>
     <h1>Step 4: Choose a Specialist</h1>
 
-    <app-specialist-item *ngFor="let specialist of specialists | async" [specialist]="specialist"></app-specialist-item>
+    <section class="package-container specialist-container" *ngIf="!user.signUpCompleted">
+      <mat-radio-group class="package-slider" [(ngModel)]="chosenSpecialist">
+          <mat-radio-button id="specialist{{i+1}}" class="package-item specialist-item"
+          *ngFor="let specialist of specialists | async; let i=index" 
+          [value]="specialist.specialistID" labelPostition="before"
+          autofocus="none">
+            <!-- <app-specialist-item [specialist]="specialist"></app-specialist-item> -->
+          </mat-radio-button>
+        <div class="right-scroll-margin">
+          <p class="hide">HI</p>
+        </div>
+      </mat-radio-group>
+    </section>
 
-    <div class="btn-area">
+    <div class="btn-area" *ngIf="!user.signUpCompleted">
       <button class="btn-icon-left" routerLink="../step-three">
         <i class="fas fa-chevron-left small"></i>
         <span>Previous step</span>
       </button>
-      <button class="btn-icon-right" routerLink="../../dashboard" [disabled]="!user.packageChoice || !user.basicData || !user.specialist" 
-      [class.btn-disabled]="!user.packageChoice || !user.basicData || !user.specialist">
-        <span>Submit</span>
-        <i class="fas fa-check small" *ngIf="user.packageChoice && user.basicData && user.specialist"></i>
+      <button class="btn-icon-right" (click)="updateUser(user)" [class.btn-disabled]="chosenSpecialist === null" [disabled]="chosenSpeciaist === null">
+        <span>Next step</span>
+        <i class="fas fa-chevron-right small"></i>
       </button>
     </div>
 
