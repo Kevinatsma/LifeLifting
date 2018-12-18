@@ -41,8 +41,6 @@ export class DashboardComponent implements OnInit {
     this.auth.signOut();
   }
 
-
-
   redirect() {
     if (!this.user.basicData) {
       this.router.navigate(['signup/step-one']);
@@ -50,6 +48,8 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['signup/step-two']);
     } else if (!this.user.appointment) {
       this.router.navigate(['signup/step-three']);
+    } else if (!this.user.specialist) {
+      this.router.navigate(['signup/step-four']);
     } else if (!this.user.signupCompleted) {
       return null;
     }

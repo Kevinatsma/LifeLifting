@@ -32,11 +32,12 @@ export class SignupStepFourComponent implements OnInit {
 
   updateUser(user) {
     const data = {
-      packageChoice: this.chosenSpecialist
+      specialist: this.chosenSpecialist,
+      signupCompleted: true
     };
     this.auth.setUserData(data, user)
     .then(() => {
-      this.router.navigate(['../step-three'], { relativeTo: this.route });
+      this.router.navigate(['dashboard']);
     });
   }
 

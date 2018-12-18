@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { Specialist } from '../specialist.model';
 import { Observable } from 'rxjs';
 
@@ -9,12 +9,38 @@ import { Observable } from 'rxjs';
 })
 export class SpecialistItemComponent implements OnInit {
   @Input() specialist: Specialist;
+  aboutExtended = false;
+  reviewsVisible = false;
+
 
   // specialist = Observable<Specialist>;
 
-  constructor() { }
+  constructor( private cdr: ChangeDetectorRef) {
+    this.aboutExtended = false;
+  }
 
   ngOnInit() {
+  }
+
+  aboutExtendedOpen() {
+    this.aboutExtended = true;
+    this.cdr.detectChanges();
+  }
+
+  aboutExtendedClose() {
+    this.aboutExtended = false;
+    this.cdr.detectChanges();
+  }
+
+  // Like this to avoid State Changed Error
+  openReviews() {
+    this.reviewsVisible = true;
+    this.cdr.detectChanges();
+  }
+
+  closeReviews() {
+    this.reviewsVisible = false;
+    this.cdr.detectChanges();
   }
 
 }

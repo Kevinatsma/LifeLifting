@@ -1,6 +1,6 @@
 <ng-container *ngIf="specialist">
   <section class="specialist-header">
-    <div class="profile-picture">
+    <div class="profile-picture" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
 
     </div>
     <div class="quick-info">
@@ -8,36 +8,55 @@
       <h5>{{specialist.position}}</h5>
       <p>Speciality: {{specialist.speciality}}</p>
     </div>
-
-
   </section>
 
   <section class="about">  
     <h5>About {{specialist.firstName}}</h5>
-    <p>{{specialist.description}}</p>
+    <p [class.read-more]="aboutExtended">{{specialist.description}}</p>
+    <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
+      <i class="fas fa-plus"></i>
+      Read More
+    </button>
+    <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
+      <i class="fas fa-minus"></i>
+      Read More
+    </button>
   </section>
 
   <section class="middle">
     <div class="practical-info">
-      <h5>Practical Info</h5>
+      <h5 class="purple">Practical Info</h5>
       <p>Experience: {{specialist.yearsOfExperience}} years</p>
       <p>Timezone: {{specialist.timeZone}}</p>
       <p>Amount of patients: {{specialist.patientsTotal}}</p>
     </div>
     <div class="languages">
-      <h5>Languages</h5>
-      <ul *ngFor="let language of specialist.languages">
-        <li>{{language.languageValue}}</li>
-        <li>Level: {{language.languageLevel}}</li>
+      <h5 class="purple">Languages</h5>
+      <ul>
+        <li *ngFor="let language of specialist.languages">{{language.languageValue}} - {{language.languageLevel}}</li>
       </ul>
     </div>
   </section>
 
-  <section class="reviews">
-    <mat-card class="review-container" *ngFor="let review of specialist.reviews">
-      <p>{{review.reviewText}}</p>
-      <p><strong>{{review.reviewerName}}</strong></p>
-    </mat-card>
+  <section class="reviews-opened">
+    <h5 class="purple">Reviews</h5>
+    <div class="review-container" *ngIf="reviewsVisible">
+      <mat-card class="review-item" *ngFor="let review of specialist.reviews">
+        <p>{{review.reviewText}}</p>
+        <p><strong>- {{review.reviewerName}}</strong></p>
+      </mat-card>
+    </div>
+  </section>
+
+  <section class="btn-area">
+    <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
+      Show reviews
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <button class="text-link" *ngIf="reviewsVisible" (click)="closeReviews()">
+      Hide reviews
+      <i class="fas fa-chevron-up"></i>
+    </button>
   </section>
 
 </ng-container>

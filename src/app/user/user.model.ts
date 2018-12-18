@@ -22,7 +22,7 @@ export class User {
     roles?: Roles;
     basicData?: BasicData;
     packageChoice?: string;
-    nutritionist?: string;
+    specialist?: string;
     appointment?: string;
     signupCompleted: boolean;
 }

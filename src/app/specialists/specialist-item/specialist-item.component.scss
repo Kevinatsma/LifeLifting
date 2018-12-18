@@ -1,5 +1,16 @@
 @import '_master';
 
+// General
+p {
+    white-space: normal;
+}
+
+h5 {
+    &.purple {
+        color: $secondary-color;
+    }
+}
+
 section.specialist-header {
     display: flex;
     justify-content: space-between;
@@ -11,11 +22,19 @@ section.specialist-header {
     div.profile-picture {
         width: 50%;
         height: 200px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     div.quick-info {
         width: 50%;
         padding: 1em 2em;
+        margin-top: 1em;
+
+        p {
+            margin-top: 0.5em;
+        }
     }
 }
 
@@ -26,6 +45,17 @@ section.about {
     padding: 1.5em 2em;
     border-left: 2px solid $primary-color;
     background: $middle-grey;
+
+    p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 80px;
+
+        &.read-more {
+            overflow: visible;
+            height: auto;
+        }
+    }
 }
 
 section.middle {
@@ -33,6 +63,10 @@ section.middle {
     justify-content: space-between;
     flex-flow: row nowrap;
     align-items: flex-start;
+
+    >div {
+        padding-left: 2em;
+    }
 
     div.practical-info {
         width: 50%;
@@ -43,8 +77,7 @@ section.middle {
     }
 }
 
-section.reviews {
-    -webkit-overflow-scrolling: touch;
+div.review-container {
     width: 100%;
     height: auto;
     padding: 2em 0;
@@ -52,16 +85,31 @@ section.reviews {
     flex-wrap: nowrap;
     overflow-x: auto;
 
-    mat-card.review-container {
+    mat-card.review-item {
         flex: 0 0 auto;
-        height: 500px;
+        height: 100%;
         width: 400px;
-        margin: 2em;
+        margin: 0.5em 2em;
+        padding: 1.5em 1em;
         box-sizing: border-box;
+
+        &:first-child {
+            margin-left: 5px;
+        }
 
         p {
             white-space: normal;
             width: 100%;
         }
+    }
+}
+
+section.btn-area {
+    button.text-link {
+        margin: 1em 0;
+        svg {
+            font-size: 12px;
+            margin-left: 5px;
+        }     
     }
 }
