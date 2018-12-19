@@ -46,11 +46,11 @@ export class OnlineAppointmentComponent implements OnInit {
       'contactInfo': [''],
       phoneNumber: this.fb.group({
         'phoneAreaCode': [{value: '+51', disabled: true}],
-        'phoneRest': [''],
+        'phoneRest': [''] || null,
       }),
       whatsappNumber: this.fb.group({
-        'wappAreaCode': [''],
-        'wappRest': [''],
+        'wappAreaCode': [''] || null,
+        'wappRest': [''] || null,
       }),
       'skypeName': ['']
     });

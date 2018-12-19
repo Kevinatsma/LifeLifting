@@ -11,7 +11,7 @@
     <h5>Pick wisely, {{user.displayName || user.email}}</h5>
     <h1>Step 4: Choose a Specialist</h1>
 
-    <section class="package-container specialist-container" *ngIf="!user.signUpCompleted">
+    <section class="package-container specialist-container" *ngIf="!user.signupCompleted">
       <mat-radio-group class="package-slider" [(ngModel)]="chosenSpecialist">
           <mat-radio-button id="specialist{{i+1}}" class="package-item specialist-item"
           *ngFor="let specialist of specialists | async; let i=index" 
