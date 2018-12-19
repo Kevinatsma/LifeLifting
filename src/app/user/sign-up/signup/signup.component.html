@@ -49,7 +49,7 @@
     </section>
   </div>
   <ng-container *ngIf="user">
-    <div class="show-section" *ngIf="!succesVisible" (click)="openSuccess()">
+    <div class="show-section" *ngIf="!succesVisible && user.uid" (click)="openSuccess()">
       <button class="open-side-component">
         <i class="fas fa-chevron-right"></i>
       </button>
