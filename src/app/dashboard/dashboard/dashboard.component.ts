@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
           }
         })
         .then(() => {
-          this.redirect();
+            this.redirect();
         })
         .catch(function(error) {
             console.log('Error getting document:', error);

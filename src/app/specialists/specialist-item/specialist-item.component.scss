@@ -56,6 +56,16 @@ section.about {
             height: auto;
         }
     }
+
+    .text-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+            margin: 0 10px 0 0;
+            font-size: 12px;
+        }
+    }
 }
 
 section.middle {
@@ -77,10 +87,15 @@ section.middle {
     }
 }
 
+section.reviews-opened {
+    padding-left: 2em;
+}
+
 div.review-container {
     width: 100%;
     height: auto;
     padding: 2em 0;
+    margin-left: -2em;
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -105,6 +120,8 @@ div.review-container {
 }
 
 section.btn-area {
+    padding-left: 1.5em;
+
     button.text-link {
         margin: 1em 0;
         svg {

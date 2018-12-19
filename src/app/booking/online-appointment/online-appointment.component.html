@@ -14,7 +14,7 @@
         <mat-form-field appearance="standard" floatLabel="always" *ngIf="selectedCallMethod === 'phonecall'" formGroupName="phoneNumber">
           <mat-label>Your Phone number</mat-label>
           <div class="multiple-input">
-            <input type="string" matInput placeholder="+51" [value]="'+51'" autocomplete="off" formControlName="phoneAreaCode" required>
+            <input type="text" matInput placeholder="+51" [value]="'+51'" autocomplete="off" formControlName="phoneAreaCode" required>
             <input type="number" matInput placeholder="1234567890" autocomplete="off" formControlName="phoneRest" required>
             <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
           </div>
