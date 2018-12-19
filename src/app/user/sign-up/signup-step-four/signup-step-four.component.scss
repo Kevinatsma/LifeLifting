@@ -1,0 +1,56 @@
+@import '_master';
+
+section.step-wrapper {
+    justify-content: flex-start;
+    padding: 2em 0 100px;
+    height: auto;
+    box-sizing: border-box;
+
+    &.success {
+        height: 100vh;
+        justify-content: center;
+    }
+}
+
+section.slider-nav-container {
+    position: absolute;
+    top: 45%;
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .control-btn {
+        position: relative;
+        height: 2em;
+        width: 2em;
+        font-size: 38px;
+
+        svg {
+            margin: 0 0 2px 3px;
+        }
+    }
+}
+
+app-specialist-item {
+    width: 80%;
+    height: auto;
+    margin: 2em auto;
+}
+
+.specialist-container {
+    overflow-y: hidden!important;
+    height: auto;
+
+    .package-slider {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .specialist-item {
+        width: 70%;
+        margin: 0 2.5em 0 2.5em;
+        height: 100%;
+    }
+}

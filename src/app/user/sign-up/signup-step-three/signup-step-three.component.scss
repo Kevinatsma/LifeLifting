@@ -1,0 +1,58 @@
+@import '_master';
+
+.choice-wrapper {
+    @extend %flex-row-center;
+    width: 90%;
+    margin: 3em auto;
+
+    .choice-icon-btn {
+        @extend %flex-column-center;
+        width: 200px;
+        height: 200px;
+        background: #fff;
+        box-shadow: $card-shadow;
+
+        &:first-child {
+            margin-right: 4em;
+        }
+
+        svg {
+            font-size: 48px;
+        }
+
+        h4 {
+            margin-top: 20px;
+        }
+
+        &:hover, &:focus, &:active {
+            transition: transform 300ms ease-in-out;
+            transform: scale(1.05);
+        }
+    }
+}
+
+.btn-area {
+    .disabled {
+        background: $light-grey!important;
+        svg {
+            color: $grey;
+        }
+        &:hover {
+            background: $light-grey;
+            color: $grey;
+            cursor: initial;
+        }
+    }
+}
+
+app-online-appointment, app-face-to-face-appointment {
+    width: 60%;
+    margin: 2em auto;
+}
+
+@media only screen and (max-width: 768px) {
+    app-online-appointment, app-face-to-face-appointment {
+        width: 80%;
+        margin: 2em auto;
+    }
+}

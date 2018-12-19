@@ -1,0 +1,11 @@
+<!-- <ng-container *ngIf="user.signupCompleted">
+
+</ng-container> -->
+<button class="btn-primary" (click)="signOut()">
+  Sign Out
+</button>
+
+<ng-container *ngIf="user">
+{{user.displayName}}, {{user.email}}
+</ng-container>
+

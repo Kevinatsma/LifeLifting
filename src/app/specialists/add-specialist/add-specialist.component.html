@@ -1,0 +1,194 @@
+<form [formGroup]="signUpForm">
+  <section class="form-container">
+    <h5>Account Settings</h5>
+    <p class="card-text">
+      These are the account details of the specialist. Write them down so you can send them to 'em!
+    </p>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>The Email will be used as Username</mat-label>
+      <input type="text" matInput placeholder="What's your email?" formControlName="email" 
+              [class.active]="!email.valid && email.touched" autofocus autocomplete="off" required
+      >
+      <mat-error class="input-error" *ngIf="!email.dirty">This is <strong>required</strong></mat-error>
+      <mat-error class="input-error" *ngIf="!email.valid && email.dirty">That's <strong>not</strong> a valid e-mail address!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Pick a Password </mat-label>
+      <input class="form-input" type="password" matInput placeholder="Setting it for your specialist is safer" [type]="hide ? 'password' : 'text'" 
+      formControlName="password" [class.active]="!password.valid && password.touched" 
+      autocomplete="new-password" required
+      >
+      <mat-error class="input-error" *ngIf="!password.dirty">This is <strong>required</strong></mat-error>
+      <mat-error class="input-error" *ngIf="password.errors?.minlength"><strong>Not enough</strong> characters, try harder!</mat-error>
+      <mat-error class="input-error" *ngIf="password.errors?.maxlength">Too <strong>much</strong> characters, slow down there.</mat-error>
+      <mat-error class="input-error" *ngIf="password.errors?.pattern">Password contains <strong>a special character</strong>, or lacks a <strong>number/letter</strong>.</mat-error>
+    </mat-form-field>
+  </section>
+</form>
+
+<form [formGroup]="addSpecialistForm" (ngSubmit)="specialistSignUp()">
+  <section class="form-container">
+    <h5>Profile Image</h5>
+    <p class="card-text">
+      Please choose a clear picture that represents the present appearance of this person.
+    </p>
+    <div class="image-uploader">
+      <app-file-upload (imageEvent)="receiveDownloadURL($event)"></app-file-upload>
+    </div>
+
+    <h5>Other Important Info</h5>
+    <p class="card-text">
+      Basic data that we need from the specialist. Some of this data will be displayed at step 4 of the signup process.
+      This can be important in the decision making process of the future client.
+    </p>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Specialist ID</mat-label>
+      <input type="text" matInput formControlName="specialistID" placeholder="Serves as a quick lookup helper" autocomplete="new-password">
+      <mat-hint *ngIf="!addSpecialistForm['controls'].specialistID.dirty">Must contain 8 characters, letters and numbers</mat-hint>
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].specialistID.valid">This is <strong>required</strong></mat-error>
+      <!-- <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].specialistID.minlength">This is <strong>too short</strong></mat-error> -->
+      <!-- <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].specialistID.pattern">Must contain <strong>letters</strong> and <strong>numbers</strong></mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>First name</mat-label>
+      <input type="text" matInput formControlName="firstName" placeholder="Give the specialist a name" autofocus="none">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].firstName.valid">This is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Last name</mat-label>
+      <input type="text" matInput formControlName="lastName" placeholder="The last name" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].lastName.valid">This is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>The Short Description</mat-label>
+      <textarea type="text" matInput formControlName="description" placeholder="Write a short but attractive description" 
+      matTextareaAutosize autofocus="off" autocomplete="off">
+      </textarea>
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].description.valid">This is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Phone Number</mat-label>
+      <input type="number" matInput formControlName="phoneNumber" placeholder="What's his/her phone number?" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].phoneNumber.valid">This is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>The position in LifeLifting</mat-label>
+      <input type="text" matInput formControlName="position" placeholder="What's his/her position?" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].position.valid">This is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>His/her speciality</mat-label>
+      <input type="text" matInput formControlName="speciality" placeholder="Where is he or she best at?" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].speciality.valid">This is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Pick a Timezone</mat-label>
+        <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimezone" formControlName="timeZone" autocomplete="off" required>
+          <mat-option *ngFor="let timezone of timezones | async" [value]="timezone.gmtValue"> {{timezone.city}}, {{timezone.country}} / {{timezone.gmtValue}}</mat-option>
+        </mat-select>
+        <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].timeZone.valid">This is <strong>required</strong></mat-error>
+      </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>City</mat-label>
+      <input type="text" matInput formControlName="city" placeholder="Which city does he/she live?" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].city.valid">This is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Country</mat-label>
+      <input type="text" matInput formControlName="country" placeholder="In which country is that?" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].country.valid">This is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Years of experience</mat-label>
+      <input type="number" matInput formControlName="yearsOfExperience" placeholder="Amount in nr." autofocus="off" maxlength="2" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].yearsOfExperience.valid">This is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Total amount of patients</mat-label>
+      <input type="number" matInput formControlName="patientsTotal" placeholder="How many patients?" autofocus="off" autocomplete="off">
+      <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].patientsTotal.valid">This is <strong>required</strong></mat-error>
+    </mat-form-field>
+
+    <!-- Add Specialist Language -->
+    <h3>Languages</h3>
+    <p class="intro-text">Add languages to the specialist so we can hook them up with the right clients. This way we will also be able 
+      to know if we have to fix on other markets.
+    </p>
+    <div class="add-form-field-container" formArrayName="languages">
+      <section class="dynamic-form-field-container" *ngFor="let language of languageForms.controls; let i=index" [formGroupName]="i">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Which language</mat-label>
+            <input type="text" matInput placeholder="Language {{i+1}}?" formControlName="languageValue" autocomplete="off" required>
+            <mat-error class="input-error" *ngIf="!languageValue.valid && addSpecialistForm.touched">This is <strong>required</strong></mat-error> 
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>What level?</mat-label>
+            <input type="text" matInput placeholder="Profficiency" formControlName="languageLevel" autocomplete="off" required>
+            <mat-error class="input-error" *ngIf="!languageLevel.valid && addSpecialistForm.touched">This is <strong>required</strong></mat-error> 
+          </mat-form-field>
+          <button mat-icon-button type="button" class="delete-btn" (click)="deleteLanguage(i)">
+            <i class="fa fa-trash"></i>
+          </button>
+      </section>
+    </div>
+
+    <button type="button" class="text-link add-form-field" (click)="addLanguage()">
+      <i class="fa fa-plus"></i>
+      Add another language
+    </button>
+
+    <!-- Add Specialist Reviews -->
+    <h3>Reviews</h3>
+    <p class="intro-text">Add reviews so potential clients can see if he or she is fit for the job.</p>
+    <div class="add-form-field-container" formArrayName="reviews">
+      <section class="dynamic-form-field-container"  *ngFor="let review of reviewForms.controls; let i=index" [formGroupName]="i">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>The review text</mat-label>
+            <textarea type="text" matInput formControlName="reviewText" placeholder="Specialist Review {{i+1}}" 
+                      matTextareaAutosize autofocus="off" autocomplete="off" required>
+            </textarea>
+            <mat-error class="input-error" *ngIf="!reviewText.valid && addSpecialistForm.touched">This is <strong>required</strong></mat-error> 
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>The review writer</mat-label>
+            <input type="text" matInput placeholder="Who wrote Review {{i+1}}?" formControlName="reviewerName" autocomplete="off" required>
+            <mat-error class="input-error" *ngIf="!reviewerName.valid && addSpecialistForm.touched">This is <strong>required</strong></mat-error> 
+          </mat-form-field>
+          <button mat-icon-button type="button" class="delete-btn" (click)="deleteReview(i)">
+            <i class="fa fa-trash"></i>
+          </button>
+      </section>
+    </div>
+
+    <button type="button" class="text-link add-form-field" (click)="addReview()">
+      <i class="fa fa-plus"></i>
+      Add another review
+    </button>
+
+  </section>
+
+  <div class="btn-area">
+    <button class="btn-icon-right" type="submit" [disabled]="!addSpecialistForm.valid && !signUpForm.valid && !downloadURL"
+            [class.btn-disabled]="!addSpecialistForm.valid && !signUpForm.valid && !downloadURL"
+    >
+      <span>Add Specialist</span>
+      <span [hidden]="!addSpecialistForm.valid && !signUpForm.valid && !downloadURL">
+        <i class="fas fa-check small"></i>
+      </span>
+    </button>
+  </div>
+</form>

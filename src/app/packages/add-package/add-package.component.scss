@@ -1,0 +1,37 @@
+@import '_master';
+@import '_forms';
+
+section.form-container {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 2em auto;
+
+    mat-form-field {
+        width: 80%;
+    }
+
+    .add-benefit-container {
+        @extend %flex-column-center;
+        margin: 2em auto;
+        padding: 0;
+        width: 100%;
+        height: auto;
+
+        .dynamic-form-field-container {
+            @extend %flex-row-center;
+            width: 100%;
+            margin: 0 auto;
+
+            mat-form-field {
+                width: 75%;
+            }
+
+            button {
+                width: 5%;
+            }
+        }
+    }
+}

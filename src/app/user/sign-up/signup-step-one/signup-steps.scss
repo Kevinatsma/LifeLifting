@@ -1,0 +1,91 @@
+@import '_master';
+@import '_animations';
+@import '_forms';
+
+.step-wrapper {
+    @extend %flex-column-center;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    form .animated-container {
+        position: relative;
+        // max-height: 20px;
+        animation: increase-height 1s;
+        overflow: hidden;
+    }
+
+    form .animated-container {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 80%;
+        margin: 3em auto;
+
+        .mat-form-field {
+            width: 40%;
+            margin: 10px 5%;
+            input, mat-select, textarea {
+                padding-top: 0.5em!important;
+            }
+        }
+    }
+
+    .package-container {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .step-done {
+        @extend %flex-column-center;
+        text-align: center;
+        width: 80%;
+        height: auto;
+        margin: 0 auto;
+
+        .btn-area {
+            margin-top: 20px;
+        }
+    }
+}
+
+.placeholder-wrapper {
+    margin: 3em auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+
+    svg {
+        font-size: 36px;
+        color: $grey;
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .step-wrapper {
+        padding: 3em 1em;
+        height: 100vh;
+        overflow-y: scroll;
+
+        .mat-form-field {
+            width: 100%!important;
+            border-bottom: 2px solid darken($middle-grey, 5%);
+            height: 70px;
+
+            &.textarea-field {
+                height: auto;
+            }
+        }
+
+        h1 {
+            text-align: center;
+        }
+    }
+}

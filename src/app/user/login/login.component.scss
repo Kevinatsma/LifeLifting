@@ -1,0 +1,146 @@
+@import '_master';
+
+.main-wrapper {
+    height: 100%;   
+    overflow: hidden;  /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
+    margin: 0px;  /*removes default style*/
+    display: flex;  /*enables flex content for its children*/
+    box-sizing: border-box;
+
+    section {
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+
+    section.photo-container {
+        position: relative;
+        width: 65%;
+        height: 100vh;
+        background-image: url("./../../../assets/img/bgs/home-bg.jpg");
+        // background-image: url("./../../../assets/img/bgs/home-bg-2.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+div.column {
+    width: 35%;
+    height: 100%;
+    overflow-y: scroll;
+    // flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
+    box-sizing: border-box;
+    box-shadow: $sidebar-shadow;
+}
+
+section.login-container{
+    align-items: center;
+    height: 100%;
+    width: auto;
+    padding: 0.5em  0;
+    background: $light-grey;
+    text-align: center;
+
+    .logo {
+        width: 45%;
+        height: auto;
+        margin: 30px 0 40px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    p.intro-text {
+        margin: 0 auto;
+        width: 60%;
+        color: $text-black;
+        text-align: center;
+    }
+
+    form.auth-form {
+        @extend %flex-column-center;
+        width: 75%;
+        margin: 0 auto;
+
+        mat-form-field {
+            width: 100%;
+
+            &:nth-child(2) {
+                margin-top: -25px!important;
+            }
+
+            .mat-form-field-infix {
+                padding-top: 0!important;
+            }
+        }
+    }
+
+    .btn-area {
+        margin: 40px auto 0;
+        width: 100%;
+
+        button {
+            &.text-link {
+                margin-top: 20px;
+            }
+
+            &.btn-icon-left {
+                width: 90%;
+                margin: 30px auto;
+                padding: 0!important;
+            }
+        }
+
+        p.light-text {
+            color: $grey;
+            font-size: 14px;
+        }
+
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    .main-wrapper {
+        flex-flow: column wrap;
+        justify-content: flex-start;
+        overflow: visible!important;
+        height: auto!important;
+
+        section.photo-container {
+            display: none;
+        }
+        div.column {
+            height: 100%;
+            width: 100%;
+
+            section.login-container {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+                background: transparent;
+                box-shadow: none!important;
+                padding: 1em 0 2em;
+
+                .logo {
+                    width: 50%;
+                    margin-bottom: 35px;
+                }
+
+                h2 {
+                    font-size: 22px;
+                    margin-bottom: 5px;
+                    font-weight: $regular;
+                }
+
+                p.intro-text {
+                    width: 80%;
+                }
+            }
+        }
+
+        form {
+            margin-top: 35px;
+        }
+    }
+}

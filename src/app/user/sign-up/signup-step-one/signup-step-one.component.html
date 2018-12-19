@@ -1,3 +1,93 @@
-<p>
-  signup-step-one works!
-</p>
+<ng-container *ngIf="(auth.user | async) || {} as user">
+  <section class="step-wrapper">
+    <h5>Welcome, {{user.displayName || user.email}}</h5>
+    <h1>Step 1: Basic personal data</h1>
+
+    <form [formGroup]="basicUserDataForm" (ngSubmit)="updateUser(user)" class="auth-form" *ngIf="!user.basicData">
+      <div class="animated-container">
+        <!-- Name -->
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Your name?</mat-label>
+          <input type="text" matInput placeholder="My name is: {{user.displayName}}" formControlName="displayName" 
+            autocomplete="off" required
+          >
+          <!-- <mat-error class="input-error" *ngIf="!displayName.dirty">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+
+        <!-- Age -->
+        <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Your Age</mat-label>
+          <input type="number" matInput placeholder="I am .. years old" formControlName="age" 
+            autocomplete="off" min="18" max="90" required
+          >
+          <!-- <mat-error class="input-error" *ngIf="!age.dirty">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+
+        <!-- Gender -->
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Your Gender</mat-label>
+          <mat-select matInput placeholder="Female, male, other" [(value)]="selectedGender" formControlName="gender" autocomplete="off" required>
+            <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!gender.valid && basicUserDataForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+
+        <!-- Country of Residence -->
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Your Country?</mat-label>
+          <input type="text" matInput placeholder="I live in" formControlName="country" 
+            autocomplete="off" required
+          >
+          <!-- <mat-error class="input-error" *ngIf="!displayName.dirty">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+
+        <!-- Phone Number -->
+        <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Your Phone number</mat-label>
+          <input type="number" matInput placeholder="+57 318 3020 82" formControlName="phoneNumber" 
+            autocomplete="off" required
+          >
+          <!-- <mat-error class="input-error" *ngIf="!age.dirty">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+
+        <!-- How did you hear from us -->
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>How did you hear from us?</mat-label>
+          <mat-select matInput placeholder="Social Media, friends, etc." [(value)]="selectedMedium" formControlName="heardFromUs" autocomplete="off" required>
+            <mat-option *ngFor="let medium of mediums" [value]="medium.value">{{medium.viewValue}}</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!gender.valid && basicUserDataForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+
+        <!-- Main Goal -->
+        <mat-form-field class="textarea-field" appearance="standard" floatLabel="always">
+          <mat-label>What's your main goal?</mat-label>
+          <textarea matInput placeholder="I want to ..." formControlName="mainGoal" autocomplete="off" matTextareaAutosize 
+          required></textarea>
+          <!-- <mat-error class="input-error" *ngIf="!mainGoal.minlength && mainGoal.touched">A minimal of <strong>20 characters</strong> is required</mat-error> -->
+        </mat-form-field>
+
+      </div>
+
+      <div class="btn-area">
+        <button class="btn-icon-right" type="submit">
+          <span>To the next step</span>
+          <i class="fas fa-chevron-right small"></i>
+        </button>
+      </div>
+    </form>
+
+    <div class="step-done" *ngIf="user.basicData">
+      <p class="intro-text">Psst, you already filled out the basic data. If you made a mistake, don't worry. You can edit your whole profile after signing up. Click the button to go to the next step!</p>
+      <div class="btn-area">
+          <button class="btn-icon-right" routerLink="../step-two">
+            <span>Continue process</span>
+            <i class="fas fa-chevron-right small"></i>
+          </button>
+        </div>
+    </div>
+
+    
+
+  </section>
+</ng-container>

@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 
 // import { MaterialModule } from './../../../shared/material.module';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { AuthService } from '../auth.service';
+import { AuthService } from './../../core/auth/auth.service';
 import { Location } from '@angular/common';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss', './../auth.style.scss']
+  styleUrls: ['./login.component.scss']
 })
 
 export class LoginComponent implements OnInit {
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
     public fb: FormBuilder,
     public auth: AuthService,
     private router: Router,
-    public location: Location
+    public ngZone: NgZone
   ) {
     this.signInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -30,8 +31,7 @@ export class LoginComponent implements OnInit {
         '',
         [
           Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-          Validators.minLength(6),
-          Validators.maxLength(25)
+          Validators.minLength(6)
         ]
       ]
     });
@@ -47,23 +47,30 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-
-    return this.auth
-      .emailSignIn(this.email.value, this.password.value)
-      .then(user => {
-        if (this.signInForm.valid) {
-          this.router.navigate(['/dashboard']);
-        } else {
-          alert('You don\'t have an account!');
-        }
-      });
+    return this.auth.emailSignIn(this.email.value, this.password.value)
+    .then(() => {
+      if (this.auth.authenticated) {
+        this.router.navigate(['dashboard']);
+      }
+    });
   }
 
-  // googleLogin() {
-  //   this.auth.googleLogin();
-  // }
+  googleLogin() {
+    this.auth.googleLogin()
+    .then(() => {
+      this.ngZone.run(() => this.router.navigate(['dashboard']));
+    });
+  }
 
-  goBack() {
-    this.location.back();
+  facebookLogin() {
+    this.auth.facebookLogin()
+    .then(() => {
+      if (this.auth.user) {
+        this.router.navigate(['signup/step-one']);
+        console.log('You don\'t have all necessary data yet..');
+      } else {
+        alert('Woops, you\'re not logged in. Try again!');
+      }
+    });
   }
 }

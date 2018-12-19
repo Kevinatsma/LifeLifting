@@ -1,0 +1,79 @@
+<mat-card class="dropzone upload-image-card form-card" 
+  appDropZone
+  (hovered)="toggleHover($event)"
+  (dropped)="startUpload($event)"
+  [class.hovering]="isHovering"
+  *ngIf="!downloadURL"
+>
+  <i class="far fa-image"></i>
+  <h3 class="photo-header"> Specialist Selfie </h3>
+  <h5> Drag and drop an image </h5>
+
+  <div class="file">
+    <label class="file-label">
+      <input type="file" (change)="startUpload($event.target.files)">
+
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <span class="file-label text-link" *ngIf="!downloadURL">
+          or choose one...
+        </span>
+        <span class="file-label text-link" *ngIf="downloadURL">
+          choose another
+        </span>
+      </span>
+    </label>
+  </div>
+
+  <ng-container *ngIf="percentage | async as pct">
+    <div class="percentage-wrapper" *ngIf="pct !== 100">
+      <mat-progress-bar [value]="pct" max="100" mode="determinate"></mat-progress-bar>
+    </div>
+  </ng-container>
+  <!-- <button type="button" *ngIf="downloadURL" class="btn-secondary" autofocus (click)="sendDownloadURL()">How does it look?</button> -->
+
+  <!-- <div *ngIf="(snapshot | async) as snap">
+    {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}
+    <div *ngIf="downloadURL | async as url">
+      <h3> Result </h3>
+      <img [src]="url">
+      <a [href]="url">Download me</a>
+    </div>
+  </div> -->
+
+  <!-- <button (click)="task.pause()" [disabled]="!isActive(snap)">Pause</button>
+  <button (click)="task.cancel()" [disabled]="!isActive(snap)">Cancel</button> -->
+  <!-- <button (click)="task.resume()" [disabled]="!(snap.state === 'paused')">Resume</button> -->
+
+</mat-card>
+
+<div class="profile-pic" *ngIf="downloadURL">
+  <section class="preview" *ngIf="imageURL" [style.background]="'url(' + imageURL + ')'">
+
+  </section>
+  <p class="card-text" *ngIf="!imageURL">
+    Woops.. We couldn't load your image. Please upload another one.
+  </p>
+  <section class="confirmation">
+    <h2>Is this okay?</h2>
+    <p class="card-text">
+      If this is a good representation, perfect! If not, please upload another one.
+    </p>
+    <div class="file">
+      <label class="file-label">
+        <input type="file" (change)="startUpload($event.target.files)">
+  
+        <span class="bottom-btn">
+          <span class="file-label text-link" *ngIf="downloadURL">
+            Change Photo
+          </span>
+          <span class="file-icon">
+            <i class="fas fa-exchange-alt"></i>
+          </span>
+        </span>
+      </label>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,132 @@
+@import '_master';
+
+// General
+p {
+    white-space: normal;
+}
+
+h5 {
+    &.purple {
+        color: $secondary-color;
+    }
+}
+
+section.specialist-header {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    background: $light-grey;
+    box-shadow: $card-shadow;
+
+    div.profile-picture {
+        width: 50%;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    div.quick-info {
+        width: 50%;
+        padding: 1em 2em;
+        margin-top: 1em;
+
+        p {
+            margin-top: 0.5em;
+        }
+    }
+}
+
+section.about {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 2em 0;
+    padding: 1.5em 2em;
+    border-left: 2px solid $primary-color;
+    background: $middle-grey;
+
+    p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 80px;
+
+        &.read-more {
+            overflow: visible;
+            height: auto;
+        }
+    }
+
+    .text-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+            margin: 0 10px 0 0;
+            font-size: 12px;
+        }
+    }
+}
+
+section.middle {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+
+    >div {
+        padding-left: 2em;
+    }
+
+    div.practical-info {
+        width: 50%;
+    }
+
+    div.languages {
+        width: 50%;
+    }
+}
+
+section.reviews-opened {
+    padding-left: 2em;
+}
+
+div.review-container {
+    width: 100%;
+    height: auto;
+    padding: 2em 0;
+    margin-left: -2em;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    mat-card.review-item {
+        flex: 0 0 auto;
+        height: 100%;
+        width: 400px;
+        margin: 0.5em 2em;
+        padding: 1.5em 1em;
+        box-sizing: border-box;
+
+        &:first-child {
+            margin-left: 5px;
+        }
+
+        p {
+            white-space: normal;
+            width: 100%;
+        }
+    }
+}
+
+section.btn-area {
+    padding-left: 1.5em;
+
+    button.text-link {
+        margin: 1em 0;
+        svg {
+            font-size: 12px;
+            margin-left: 5px;
+        }     
+    }
+}

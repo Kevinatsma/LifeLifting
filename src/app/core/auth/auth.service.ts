@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as firebase from 'firebase/app';
@@ -6,7 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, first } from 'rxjs/operators';
 
 import { User, Roles } from './../../user/user.model';
 
@@ -16,14 +16,15 @@ import { User, Roles } from './../../user/user.model';
 export class AuthService {
 
   user: Observable<User>;
+  userData: User;
   authState: any = null;
 
   constructor( private afs: AngularFirestore,
                private afAuth: AngularFireAuth,
-               private router: Router) {
+               private router: Router,
+               private ngZone: NgZone) {
 
     // Get Auth data, then get Firestore User Document || null
-
     this.user = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -43,13 +44,18 @@ export class AuthService {
     return this.oAuthLogin(provider);
   }
 
+  facebookLogin() {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    return this.oAuthLogin(provider);
+  }
+
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
         this.updateUserData(credential.user);
       })
       .then(() => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['dashboard']);
       })
       .catch(error => console.log(error.message));
   }
@@ -61,15 +67,34 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      phoneNumber: null,
       photoURL: user.photoURL,
       roles: {
-        subscriber: true,
-        editor: false,
+        member: true,
+        specialist: false,
         admin: false
-      }
+      },
+      signupCompleted: false
     };
     return userRef.set(data, { merge: true });
+  }
+
+  updateUser(data, user) {
+    console.log(user);
+    console.log(data);
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    return userRef.update(data);
+  }
+
+  setUserData(data, user) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    return userRef.set(data, {merge: true})
+    .then(() => {
+      console.log('data updated');
+    })
+    .catch(error => {
+      console.error(error.message);
+      alert(error.message);
+    });
   }
 
   get authenticated(): boolean {
@@ -84,9 +109,15 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(() => console.log('You have successfully signed in'))
       .then(() => {
-        this.router.navigate(['/dashboard']);
+        return this.user;
       })
-      .catch(error => console.log(error.message));
+      .then(() => {
+        this.router.navigate(['dashboard']);
+      })
+      .catch(error => {
+        alert(error.message);
+        console.log(error.message);
+      });
   }
 
   emailSignUp(email: string, password: string) {
@@ -99,6 +130,7 @@ export class AuthService {
         this.afAuth.auth.currentUser.sendEmailVerification()
           .then(() => console.log('We sent you an email verification'))
           .catch(error => console.log(error.message));
+          return user;
       });
   }
 

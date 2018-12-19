@@ -1,0 +1,41 @@
+@import '_master';
+
+ .btn-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+    .btn-icon-left {
+        margin-right: 4em;
+    }
+}
+
+.btn-disabled {
+    background: $light-grey;
+    border: 2px solid $light-grey;
+
+    svg {
+        color: $grey;
+    }
+
+    &:hover, &:focus {
+        svg {
+            color: $grey;
+        }
+    }
+}
+
+.button-card {
+    margin: 0 2em;
+    padding: 0!important;
+}
+
+::ng-deep .big-label {
+    font-size: 22px;
+    font-family:  $main-font;
+    font-weight: $semi-bold;
+
+    .mat-placeholder-required {
+        display: none!important;
+    }
+}
