@@ -5,6 +5,11 @@ section.step-wrapper {
     padding: 2em 0 100px;
     height: auto;
     box-sizing: border-box;
+
+    &.success {
+        height: 100vh;
+        justify-content: center;
+    }
 }
 
 section.slider-nav-container {
