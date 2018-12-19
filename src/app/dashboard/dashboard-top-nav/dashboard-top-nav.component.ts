@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from 'src/app/user/user.model';
 
 @Component({
   selector: 'app-dashboard-top-nav',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-top-nav.component.scss']
 })
 export class DashboardTopNavComponent implements OnInit {
+  @Input() user: User;
 
   constructor() { }
 

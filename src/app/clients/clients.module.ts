@@ -4,9 +4,15 @@ import { ClientsComponent } from './clients/clients.component';
 import { ClientListComponent } from './client-list/client-list.component';
 
 @NgModule({
-  declarations: [ClientsComponent, ClientListComponent],
+  declarations: [
+    ClientsComponent,
+    ClientListComponent
+  ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    ClientsComponent
   ]
 })
-export class ClientModule { }
+export class ClientsModule { }

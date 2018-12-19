@@ -10,14 +10,16 @@ import { SpecialistsComponent } from '../specialists/specialists/specialists.com
 import { SpecialistModule } from '../specialists/specialist.module';
 import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
 import { UsersComponent } from '../user/users/users.component';
+import { ClientsModule } from '../clients/clients.module';
 import { ClientsComponent } from '../clients/clients/clients.component';
 import { FinancesComponent } from '../finances/finances/finances.component';
+import { FinancesModule } from '../finances/finances.module';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       // {path: '', redirectTo: 'signup', pathMatch: 'full'},
       {path: 'home', component: DashboardHomeComponent},
@@ -32,13 +34,16 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     DashboardComponent,
+    DashboardHomeComponent,
     DashboardMenuComponent,
-    DashboardTopNavComponent,
+    DashboardTopNavComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
-    SpecialistModule
+    SpecialistModule,
+    ClientsModule,
+    FinancesModule
   ],
   exports: [
     RouterModule

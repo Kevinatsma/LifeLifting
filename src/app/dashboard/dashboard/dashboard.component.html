@@ -1,11 +1,8 @@
-<!-- <ng-container *ngIf="user.signupCompleted">
-
-</ng-container> -->
-<button class="btn-primary" (click)="signOut()">
-  Sign Out
-</button>
-
 <ng-container *ngIf="user">
-{{user.displayName}}, {{user.email}}
+  <app-dashboard-top-nav [user]="user"></app-dashboard-top-nav>
+
+  <app-dashboard-menu></app-dashboard-menu>
+  <router-outlet></router-outlet>
+
 </ng-container>
 
