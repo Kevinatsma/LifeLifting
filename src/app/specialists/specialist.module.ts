@@ -7,12 +7,14 @@ import { SpecialistService } from './specialist.service';
 import { SpecialistsComponent } from './specialists/specialists.component';
 import { SpecialistItemComponent } from './specialist-item/specialist-item.component';
 import { DataService } from '../shared/data/data.service';
+import { SpecialistListComponent } from './specialist-list/specialist-list.component';
 
 @NgModule({
   declarations: [
     AddSpecialistComponent,
     SpecialistItemComponent,
-    SpecialistsComponent
+    SpecialistsComponent,
+    SpecialistListComponent
   ],
   imports: [
     CommonModule,

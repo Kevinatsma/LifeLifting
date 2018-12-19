@@ -4,18 +4,41 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/auth/guards/auth.guard';
+import { DashboardMenuComponent } from './dashboard-menu/dashboard-menu.component';
+import { DashboardTopNavComponent } from './dashboard-top-nav/dashboard-top-nav.component';
+import { SpecialistsComponent } from '../specialists/specialists/specialists.component';
+import { SpecialistModule } from '../specialists/specialist.module';
+import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
+import { UsersComponent } from '../user/users/users.component';
+import { ClientsComponent } from '../clients/clients/clients.component';
+import { FinancesComponent } from '../finances/finances/finances.component';
 
 const routes: Routes = [
-
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    children: [
+      // {path: '', redirectTo: 'signup', pathMatch: 'full'},
+      {path: 'home', component: DashboardHomeComponent},
+      {path: 'users', component: UsersComponent},
+      {path: 'specialists', component: SpecialistsComponent},
+      {path: 'clients', component: ClientsComponent},
+      {path: 'finance', component: FinancesComponent},
+    ]
+  },
 ];
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    DashboardMenuComponent,
+    DashboardTopNavComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
+    SpecialistModule
   ],
   exports: [
     RouterModule

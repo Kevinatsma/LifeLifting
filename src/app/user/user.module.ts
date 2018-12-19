@@ -10,6 +10,7 @@ import { SignUpModule } from './sign-up/sign-up.module';
 // Components
 import { UserListComponent } from './user-list/user-list.component';
 import { UserListItemComponent } from './user-list-item/user-list-item.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { UserListItemComponent } from './user-list-item/user-list-item.component
   ],
   declarations: [
     UserListComponent,
-    UserListItemComponent
+    UserListItemComponent,
+    UsersComponent
   ],
   providers: [
     AuthService,
