@@ -1,0 +1,28 @@
+@import '_master';
+
+.nav-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    max-height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+
+    section.logo-wrapper {
+        width: 20vw;
+        background: red;
+        height: 50px;
+    }
+
+    section.middle {
+        width: 50vw;
+        height: 50px;
+        background: $primary-color;
+    }
+    
+    section.user-menu {
+        width: 30vw;
+        height: 50px;
+        background: $secondary-color;
+    }
+}

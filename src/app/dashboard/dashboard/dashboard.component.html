@@ -1,8 +1,11 @@
-<ng-container *ngIf="user">
-  <app-dashboard-top-nav [user]="user"></app-dashboard-top-nav>
-
+<main class="dashboard-wrapper">
   <app-dashboard-menu></app-dashboard-menu>
-  <router-outlet></router-outlet>
+  
+  <section class="content">
+    <app-dashboard-top-nav [user]="user"></app-dashboard-top-nav>
+  
+    <router-outlet></router-outlet>
+  </section>
 
-</ng-container>
+</main>
 
