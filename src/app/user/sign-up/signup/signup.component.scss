@@ -8,6 +8,10 @@
     position: relative;
 }
 
+div.show-section {
+    z-index: 500;
+}
+
 @media only screen and (max-width: 768px) {
     app-first-step-success {
         display: none;
