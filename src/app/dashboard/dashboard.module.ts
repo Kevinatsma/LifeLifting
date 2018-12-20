@@ -15,6 +15,8 @@ import { ClientsComponent } from '../clients/clients/clients.component';
 import { FinancesComponent } from '../finances/finances/finances.component';
 import { FinancesModule } from '../finances/finances.module';
 import { PackagesComponent } from '../packages/packages/packages.component';
+import { AdminMenuComponent } from './dashboard-menu/admin-menu/admin-menu.component';
+import { SpecialistMenuComponent } from './dashboard-menu/specialist-menu/specialist-menu.component';
 
 const routes: Routes = [
   {
@@ -38,7 +40,9 @@ const routes: Routes = [
     DashboardComponent,
     DashboardHomeComponent,
     DashboardMenuComponent,
-    DashboardTopNavComponent
+    DashboardTopNavComponent,
+    AdminMenuComponent,
+    SpecialistMenuComponent
   ],
   imports: [
     CommonModule,

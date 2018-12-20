@@ -2,7 +2,7 @@
 
 div.dashboard-menu-wrapper {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-flow: column wrap;
     border-right: 1px solid darken($light-grey, 2%);
@@ -24,6 +24,91 @@ div.dashboard-menu-wrapper {
         h2 {
             width: 70%;
             margin: 0 0 0 10%;
+        }
+    }
+
+    ::ng-deep .title-container {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        h5.sidebar-title {
+            margin: 1em;
+            position: relative;
+            width: 70%;
+
+            &::after {
+                content: '';
+                height: 1.5px;
+                width: 50%;
+                position: absolute;
+                bottom: -15px;
+                left: -1em;
+                background: darken($light-grey, 5%);
+            }
+            &.active {
+                &::after {
+                    height: 2.5px;
+                }
+            }
+        }
+
+        section.btn-area {
+            width: 40%;
+            button {
+                font-size: 14px;
+                font-weight: $regular;
+                color: $secondary-color;
+
+                svg {
+                    margin-right: 1em;
+                    font-size: 10px;
+                    color: $secondary-color;
+                }
+            }
+        }
+    }
+
+    ::ng-deep ul.link-container {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: auto;
+
+        li {
+            display: flex;
+            height: 60px;
+            width: 100%;
+
+            a {
+                display: flex;
+                align-items: center;
+                flex-flow: row nowrap;
+                justify-content: flex-start;
+                width: 100%;
+                height: 100%;
+                font-weight: $semi-bold;
+                color: $text-black;
+                border-left: 3px solid transparent;
+
+                &:hover, &:focus, &.active {
+                    background: lighten($primary-color, 32%); 
+                    border-left: 3px solid $primary-color;
+                    color: $primary-color;
+                    svg {
+                        color: $primary-color;
+                    }
+                }
+
+                svg {
+                    font-size: 16px;
+                    width: 20px;
+                    color: darken($middle-grey, 10%);
+                    margin: 0 2em;
+                }
+            }
         }
     }
 }

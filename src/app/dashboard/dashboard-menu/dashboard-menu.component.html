@@ -3,45 +3,16 @@
     <img src="../../../assets/img/logo-icon.svg">
     <h2>LifeLifting</h2>
   </section>
-  <a class="menu-link" routerLink="../" routerLinkActive="active">
-    <i class="fas fa-dashboard"></i>
-    Overview
-  </a>
-  <section class="admin-menu">
-    <h5 class="sidebar-title">
-      Admin
-    </h5>
-    <ul class="link-container">
-      <li>
-        <a class="menu-link" routerLink="users" routerLinkActive="active">
-          <i class="fas fa-users"></i>
-          Users
-        </a>
-      </li>
-      <li>
-        <a class="menu-link" routerLink="specialists" routerLinkActive="active">
-          <i class="fas fa-user-ninja"></i>
-          Specialists
-        </a>
-      </li>
-      <li>
-        <a class="menu-link" routerLink="clients" routerLinkActive="active">
-          <i class="fas fa-user-tie"></i>
-          Clients
-        </a>
-      </li>
-      <li>
-        <a class="menu-link" routerLink="finances" routerLinkActive="active">
-          <i class="far fa-chart-bar"></i>
-          Finances
-        </a>
-      </li>
-      <li>
-        <a class="menu-link" routerLink="packages" routerLinkActive="active">
-          <i class="fas fa-box"></i>
-          Packages
-        </a>
-      </li>
-    </ul>
-  </section>
+
+  <ul class="link-container">
+    <li>
+      <a class="menu-link" routerLink="home" routerLinkActive="active">
+        <i class="fas fa-th-large"></i>
+        Overview
+      </a>
+    </li>
+  </ul>
+
+  <app-admin-menu></app-admin-menu>
+  <app-specialist-menu></app-specialist-menu>
 </div>
