@@ -14,6 +14,7 @@ import { ClientsModule } from '../clients/clients.module';
 import { ClientsComponent } from '../clients/clients/clients.component';
 import { FinancesComponent } from '../finances/finances/finances.component';
 import { FinancesModule } from '../finances/finances.module';
+import { PackagesComponent } from '../packages/packages/packages.component';
 
 const routes: Routes = [
   {
@@ -21,12 +22,13 @@ const routes: Routes = [
     component: DashboardComponent,
     // canActivate: [AuthGuard],
     children: [
-      // {path: '', redirectTo: 'signup', pathMatch: 'full'},
+      {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: DashboardHomeComponent},
       {path: 'users', component: UsersComponent},
       {path: 'specialists', component: SpecialistsComponent},
       {path: 'clients', component: ClientsComponent},
-      {path: 'finance', component: FinancesComponent},
+      {path: 'finances', component: FinancesComponent},
+      {path: 'packages', component: PackagesComponent},
     ]
   },
 ];

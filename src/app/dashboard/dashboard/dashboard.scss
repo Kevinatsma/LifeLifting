@@ -19,7 +19,7 @@ main.dashboard-wrapper {
         height: 100vh;
         width: calc(100vw - 20vw);
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: column;
 
         app-dashboard-top-nav {
             width: 100%;
