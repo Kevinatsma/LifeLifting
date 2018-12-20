@@ -29,7 +29,7 @@ main.dashboard-wrapper {
 
         router-outlet ~ * {
             width: 100%;
-            max-width: 70vw;
+            max-width: 80vw;
             height: 100%;
         }
     }

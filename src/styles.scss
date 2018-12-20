@@ -16,7 +16,7 @@ html, body {
 
 button {
     @extend %input-reset;
-
+    font-family: $main-font;
     &:hover, &:focus, &:active {
         cursor: pointer;
     }

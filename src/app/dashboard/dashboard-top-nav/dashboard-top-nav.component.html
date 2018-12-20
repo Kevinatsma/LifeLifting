@@ -2,9 +2,24 @@
   <section class="middle">
 
   </section>
-  <section class="user-menu">
-    <button mat-icon-button>
-      <i class="fas fa-bell"></i>
-    </button>
+  <section class="right">
+    <div class="chat-container">
+      <button class="chat">
+        <div class="notification-circle">
+        </div>
+        <img src="./../../../assets/img/icons/chat.svg">
+      </button>
+
+    </div>
+    <div class="user-menu" *ngIf="user">
+      <div class="user-photo" [style.backgroundImage]="'url('+ user.photoURL +')'">
+
+      </div>
+      <button class="open-dropdown-menu">
+          {{user.displayName}}
+          <i class="fas fa-sort-down"></i>
+      </button>
+      
+    </div>
   </section>
 </div>
