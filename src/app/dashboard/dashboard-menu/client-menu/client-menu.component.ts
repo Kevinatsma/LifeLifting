@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-admin-menu',
-  templateUrl: './admin-menu.component.html',
+  selector: 'app-client-menu',
+  templateUrl: './client-menu.component.html',
   styleUrls: ['./../dashboard-menu.component.scss']
 })
-export class AdminMenuComponent implements OnInit {
+export class ClientMenuComponent implements OnInit {
   linksCollapsed = false;
   constructor() { }
 

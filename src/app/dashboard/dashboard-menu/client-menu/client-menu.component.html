@@ -1,0 +1,48 @@
+<section class="admin-menu">
+    <div class="title-container">
+      <h5 class="sidebar-title" [class.active]="!linksCollapsed">
+        Clients
+      </h5>
+      <section class="btn-area">
+        <button type="button" (click)="linksCollapsed = true" *ngIf="!linksCollapsed">
+          <i class="fas fa-minus"></i>Hide
+        </button>
+        <button type="button" (click)="linksCollapsed = false" *ngIf="linksCollapsed">
+          <i class="fas fa-plus"></i>Show
+        </button>
+      </section>
+
+    </div>
+    <ul class="link-container" *ngIf="!linksCollapsed">
+      <li>
+        <a class="menu-link" routerLink="home" routerLinkActive="active">
+          <i class="far fa-file-alt"></i>
+          Guidelines
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" routerLink="home" routerLinkActive="active">
+          <i class="fas fa-weight"></i>
+          Meal Plan
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" routerLink="home" routerLinkActive="active">
+          <i class="fas fa-prescription-bottle"></i>
+          Supplements
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" routerLink="home" routerLinkActive="active">
+          <i class="fas fa-angle-double-up"></i>
+          Workflow
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" routerLink="home" routerLinkActive="active">
+          <i class="far fa-calendar-alt"></i>
+          Visits
+        </a>
+      </li>
+    </ul>
+  </section>

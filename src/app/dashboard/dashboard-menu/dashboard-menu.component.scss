@@ -6,6 +6,7 @@ div.dashboard-menu-wrapper {
     display: flex;
     flex-flow: column wrap;
     border-right: 1px solid darken($light-grey, 2%);
+    overflow-x: hidden;
 
     section.logo-wrapper {
         display: flex;
@@ -56,7 +57,10 @@ div.dashboard-menu-wrapper {
         }
 
         section.btn-area {
+            @extend %flex-center;
             width: 40%;
+            justify-content: flex-end;
+
             button {
                 font-size: 14px;
                 font-weight: $regular;
