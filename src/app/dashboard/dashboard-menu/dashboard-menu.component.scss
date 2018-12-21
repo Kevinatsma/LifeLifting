@@ -5,7 +5,7 @@ div.dashboard-menu-wrapper {
     height: auto;
     display: flex;
     flex-flow: column wrap;
-    border-right: 1px solid darken($light-grey, 2%);
+    border-right: $light-border;
     overflow-x: hidden;
 
     section.logo-wrapper {
@@ -15,7 +15,7 @@ div.dashboard-menu-wrapper {
         width: calc(100% - 2em);
         height: 65px;
         padding: 0 1.5em;
-        border-bottom: 1px solid darken($light-grey, 2%);
+        border-bottom: $light-border;
 
         img {
             width: 20%;
@@ -60,6 +60,7 @@ div.dashboard-menu-wrapper {
             @extend %flex-center;
             width: 40%;
             justify-content: flex-end;
+            padding-right: 1em;
 
             button {
                 font-size: 14px;

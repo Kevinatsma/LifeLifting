@@ -18,8 +18,8 @@
         width: 70%;
         height: 65px;
         background: #fff;
-        border-left: 1px solid darken($light-grey, 2%);
-        border-bottom: 1px solid darken($light-grey, 2%);
+        border-left: $light-border;
+        border-bottom: $light-border;
     }
     
     section.right {
@@ -28,14 +28,14 @@
         width: 30%;
         height: 65px;
         background: #fff;
-        border-bottom: 1px solid darken($light-grey, 2%);
+        border-bottom: $light-border;
 
         div.chat-container {
             @extend %flex-center;
             width: 25%;
             height: 65px;
-            border-left: 1px solid darken($light-grey, 2%);
-            border-right: 1px solid darken($light-grey, 2%);
+            border-left: $light-border;
+            border-right: $light-border;
 
             button {
                 width: 100%;

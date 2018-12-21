@@ -1,3 +1,8 @@
-<p>
-  specialist-list works!
-</p>
+<main class="specialist-list-wrapper">
+  <section class="specialist-filters">
+
+  </section>
+  <section class="specialist-list" *ngIf="specialists">
+    <app-specialist-list-item *ngFor="let specialist of specialists | async" [specialist]="specialist"></app-specialist-list-item>
+  </section>
+</main>
