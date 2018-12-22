@@ -2,15 +2,21 @@
   <section class="profile-photo" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
   </section>
   <section class="middle">
-    <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
+    <div class="title">
+        <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
+        <div class="dividing-circle"></div>
+        <p class="location">{{specialist.city}}, {{specialist.country}}</p>
+    </div>
+
     <div class="quick-info">
-      <p class="location">{{specialist.city}}, {{specialist.country}}</p>
-      <p class="">{{specialist.position}} - {{specialist.speciality}}</p>
+      <p class="speciality-title">{{specialist.position}} - {{specialist.speciality}}</p>
       <p class="description">{{specialist.description}}</p>
-      <button class="text-link">
-        <i class="fas fa-plus"></i>
-        More info
-      </button>
+      <div class="btn-container">
+        <button class="btn-icon-right__animated" routerLink="{{specialist.firstName}}">
+          More info
+        </button>
+        <i class="fas fa-long-arrow-alt-right"></i>
+      </div>
       <ul class="contact-menu">
         <li>
           <i class="far fa-envelope"></i>

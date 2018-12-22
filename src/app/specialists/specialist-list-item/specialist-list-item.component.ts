@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Specialist } from '../specialist.model';
 
 @Component({
@@ -8,7 +9,7 @@ import { Specialist } from '../specialist.model';
 })
 export class SpecialistListItemComponent implements OnInit {
   @Input() specialist: Specialist;
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
   }

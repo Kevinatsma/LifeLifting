@@ -18,6 +18,7 @@ import { PackagesComponent } from '../packages/packages/packages.component';
 import { AdminMenuComponent } from './dashboard-menu/admin-menu/admin-menu.component';
 import { SpecialistMenuComponent } from './dashboard-menu/specialist-menu/specialist-menu.component';
 import { ClientMenuComponent } from './dashboard-menu/client-menu/client-menu.component';
+import { SpecialistItemComponent } from '../specialists/specialist-item/specialist-item.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
       {path: 'home', component: DashboardHomeComponent},
       {path: 'users', component: UsersComponent},
       {path: 'specialists', component: SpecialistsComponent},
+      {path: 'specialists/:id', component: SpecialistItemComponent},
       {path: 'clients', component: ClientsComponent},
       {path: 'finances', component: FinancesComponent},
       {path: 'packages', component: PackagesComponent},

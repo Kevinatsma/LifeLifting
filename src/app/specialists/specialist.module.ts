@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddSpecialistComponent } from './add-specialist/add-specialist.component';
@@ -9,6 +10,7 @@ import { SpecialistItemComponent } from './specialist-item/specialist-item.compo
 import { DataService } from '../shared/data/data.service';
 import { SpecialistListComponent } from './specialist-list/specialist-list.component';
 import { SpecialistListItemComponent } from './specialist-list-item/specialist-list-item.component';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { SpecialistListItemComponent } from './specialist-list-item/specialist-l
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     SharedModule
   ],
