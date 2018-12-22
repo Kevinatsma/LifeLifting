@@ -1,0 +1,43 @@
+@import '_master';
+
+
+::ng-deep .mat-step-header-ripple .mat-ripple {
+    background: transparent!important;
+    border: $light-border!important;
+}
+
+::ng-deep .mat-dialog-container {
+    padding: 0!important;
+
+    .mat-horizontal-content-container {
+        padding: 0;
+    }
+}
+
+main.dialog-wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    mat-horizontal-stepper {
+        width: 100%;
+        height: 100%;
+        section.btn-area {
+            display: flex;
+            flex-flow: row nowrap;
+            width: 100%;
+            height: 70px;
+
+            button {
+                background: transparent;
+                border: $light-border;
+                width: 50%;
+
+                &:hover, &:focus {
+                    background: darken($light-grey, 5%);
+                }
+            }
+        }
+    }
+}

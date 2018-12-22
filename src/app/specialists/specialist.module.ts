@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from './../shared/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddSpecialistComponent } from './add-specialist/add-specialist.component';
 import { SpecialistService } from './specialist.service';
@@ -24,11 +25,13 @@ import { SpecialistListItemComponent } from './specialist-list-item/specialist-l
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ],
   exports: [
     AddSpecialistComponent,
     SpecialistItemComponent,
+    SpecialistListItemComponent,
     SpecialistsComponent
   ],
   providers: [

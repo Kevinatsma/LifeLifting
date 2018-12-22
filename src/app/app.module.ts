@@ -20,6 +20,10 @@ import { PackagesModule } from './packages/packages.module';
 import { BookingModule } from './booking/booking.module';
 import { SpecialistModule } from './specialists/specialist.module';
 
+// Core Components
+
+import { FileUploadComponent } from './shared/file-upload/file-upload.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ import { SpecialistModule } from './specialists/specialist.module';
     SpecialistModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    FileUploadComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

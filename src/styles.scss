@@ -17,6 +17,10 @@ html, body {
 button {
     @extend %input-reset;
     font-family: $main-font;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    font-weight: $semi-bold;
+
     &:hover, &:focus, &:active {
         cursor: pointer;
     }
