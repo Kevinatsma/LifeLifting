@@ -77,7 +77,7 @@ export class SpecialistService {
   }
 
   addSpecialist(data) {
-    this.afs.collection<Specialist>(`specialists`).add(data)
+    this.afs.collection<Specialist>(`specialists/${data.specialistID}`).add(data)
     .then(() => {
       // Show Snackbar
       const message = 'The Specialist was added succesfully';
