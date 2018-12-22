@@ -5,7 +5,7 @@
     <div class="title">
         <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
         <div class="dividing-circle"></div>
-        <p class="location">{{specialist.city}}, {{specialist.country}}</p>
+        <p class="location">{{specialist.city}}, {{specialist.country}} // {{specialist.timeZone}}</p>
     </div>
 
     <div class="quick-info">
@@ -28,6 +28,12 @@
           <i class="fas fa-mobile-alt"></i>
           <a class="text-link" href="tel:{{specialist.phoneNumber}}">
             Call
+          </a>
+        </li>
+        <li>
+          <i class="far fa-comment-alt"></i>
+          <a class="text-link" href="tel:{{specialist.phoneNumber}}">
+            Chat
           </a>
         </li>
       </ul>
