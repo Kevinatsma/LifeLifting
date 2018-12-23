@@ -1,5 +1,10 @@
 @import '_master';
 
+::ng-deep main.confirm-dialog-container {
+    width: 35vw;
+    height: auto;
+    padding: 2em 2em;
+}
 p.card-text {
     margin: 5px 0 20px 0;
     padding: 0;

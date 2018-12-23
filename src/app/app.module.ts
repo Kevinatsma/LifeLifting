@@ -22,8 +22,6 @@ import { SpecialistModule } from './specialists/specialist.module';
 
 // Core Components
 
-import { FileUploadComponent } from './shared/file-upload/file-upload.component';
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -41,8 +39,7 @@ import { FileUploadComponent } from './shared/file-upload/file-upload.component'
     SpecialistModule
   ],
   declarations: [
-    AppComponent,
-    FileUploadComponent
+    AppComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

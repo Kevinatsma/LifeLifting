@@ -69,14 +69,17 @@
           </section>
         </mat-step>
 
-        <mat-step>
+        <mat-step class="image-uploader-container">
           <ng-template matStepLabel>Picture</ng-template>
-          <h3>Profile Image</h3>
-          <p class="card-text">
-            Please choose a clear picture that represents the present appearance of this person.
-          </p>
+          <section class="photo-title">
+              <h3>Profile Image</h3>
+              <p class="card-text image-subtitle">
+                Please choose a clear picture that represents the present appearance of this person.
+              </p>
+          </section>
+
           <div class="image-uploader">
-            <!-- <app-file-upload (imageEvent)="receiveDownloadURL($event)"></app-file-upload> -->
+            <app-file-upload (imageEvent)="receiveDownloadURL($event)"></app-file-upload>
           </div>
           <section class="btn-area">
             <button class="dialog-button" matStepperPrevious>Back</button>
@@ -256,7 +259,7 @@
 
           <section class="btn-area">
             <button class="dialog-button" matStepperPrevious>Back</button>
-            <button class="dialog-button" matStepperNext
+            <button class="dialog-button" (click)="specialistSignUp()"
              [disabled]="!personalForm.valid || !aboutForm || !locationForm || !experienceForm || !extrasForm"
              [class.disabled]="!personalForm.valid || !aboutForm || !locationForm || !experienceForm || !extrasForm"
             >

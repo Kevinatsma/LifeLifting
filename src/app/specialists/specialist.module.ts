@@ -4,18 +4,18 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from './../shared/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddSpecialistComponent } from './add-specialist/add-specialist.component';
 import { SpecialistService } from './specialist.service';
 import { SpecialistsComponent } from './specialists/specialists.component';
 import { SpecialistItemComponent } from './specialist-item/specialist-item.component';
 import { DataService } from '../shared/data/data.service';
 import { SpecialistListComponent } from './specialist-list/specialist-list.component';
 import { SpecialistListItemComponent } from './specialist-list-item/specialist-list-item.component';
+import { AddSpecialistDialogComponent } from '../shared/dialogs/add-specialist-dialog/add-specialist-dialog.component';
 
 
 @NgModule({
   declarations: [
-    AddSpecialistComponent,
+    AddSpecialistDialogComponent,
     SpecialistItemComponent,
     SpecialistsComponent,
     SpecialistListComponent,
@@ -29,7 +29,7 @@ import { SpecialistListItemComponent } from './specialist-list-item/specialist-l
     MaterialModule
   ],
   exports: [
-    AddSpecialistComponent,
+    AddSpecialistDialogComponent,
     SpecialistItemComponent,
     SpecialistListItemComponent,
     SpecialistsComponent
@@ -37,6 +37,9 @@ import { SpecialistListItemComponent } from './specialist-list-item/specialist-l
   providers: [
     SpecialistService,
     DataService
+  ],
+  entryComponents: [
+    AddSpecialistDialogComponent
   ]
 })
 export class SpecialistModule { }

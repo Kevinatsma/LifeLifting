@@ -77,7 +77,7 @@ export class SpecialistService {
   }
 
   addSpecialist(data) {
-    this.afs.collection<Specialist>(`specialists/${data.specialistID}`).add(data)
+    this.afs.doc<Specialist>(`specialists/${data.specialistID}`).set(data,  {merge: true})
     .then(() => {
       // Show Snackbar
       const message = 'The Specialist was added succesfully';

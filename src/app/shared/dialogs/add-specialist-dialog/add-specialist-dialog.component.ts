@@ -54,9 +54,9 @@ export class AddSpecialistDialogComponent implements OnInit {
     },
   ]; selectedLevel: string;
 
-  // receiveDownloadURL($event) {
-  //   return this.downloadURL = $event;
-  // }
+  receiveDownloadURL($event) {
+    return this.downloadURL = $event;
+  }
 
   constructor( private fb: FormBuilder,
                private dataService: DataService,

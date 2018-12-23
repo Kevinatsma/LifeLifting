@@ -1,5 +1,6 @@
-
+<main class="confirm-dialog-container">
 <ng-container *ngIf="data.uid">
+
   <h1>Delete User?</h1>
   <p class="card-text">
     Are you sure that you want to delete {{data.name}}?
@@ -23,3 +24,4 @@
   <button class="text-link" mat-dialog-close>No</button>
   <button class="text-link" [mat-dialog-close]="true">Yes, delete</button>
 </mat-dialog-actions>
+</main>

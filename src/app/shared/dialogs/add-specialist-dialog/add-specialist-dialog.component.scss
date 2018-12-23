@@ -10,9 +10,24 @@
         textarea {
             min-height: 230px;
             height: auto;
+            line-height: 1.4;
         }    
     }
 }
+
+    .image-uploader{
+        width: 80%;
+        margin: 4em auto;
+    }
+
+
+    .image-subtitle {
+        margin: 0.5em 1.6em;
+    }
+
+        section.photo-title {
+            margin: 2em 3em;
+        }
 
 // Component Css
 
@@ -82,11 +97,13 @@ form {
             width: 10%;
             border: $light-border;
             background: darken($light-grey, 5%);
+
             h1 {
                 margin: 0;
                 padding: 0;
-                font-size: 18px;
+                font-size: 22px;
                 font-weight: $bold;
+                color: $primary-color;
             }
         }
 
@@ -129,6 +146,8 @@ form {
         }
 
     }
+
+    
     button.add-form-field {
         display: flex;
         justify-content: flex-start;
