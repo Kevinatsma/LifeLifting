@@ -35,6 +35,25 @@ export class AddSpecialistDialogComponent implements OnInit {
   reviewerName = new FormControl('', [Validators.required]);
   reviewText = new FormControl('', [Validators.required]);
 
+  languageLevels = [
+    {
+      value: 'proficient',
+      viewValue: 'Fluent - pretty much mother tongue'
+    },
+    {
+      value: 'advanced',
+      viewValue: 'Advanced - comfortable in most situations'
+    },
+    {
+      value: 'intermediate',
+      viewValue: 'Intermediate - able to have a conversation'
+    },
+    {
+      value: 'beginner',
+      viewValue: 'Beginner - a few words and sentences'
+    },
+  ]; selectedLevel: string;
+
   // receiveDownloadURL($event) {
   //   return this.downloadURL = $event;
   // }
