@@ -195,15 +195,22 @@
           <p class="intro-text">Add languages to the specialist so we can hook them up with the right clients. This way we will also be able 
             to know in which markets we are active.
           </p>
-          <div class="add-form-field-container" formArrayName="languages">
+          <div class="add-form-field-container" formArrayName="languageArr">
             <section class="dynamic-form-field-container" *ngFor="let language of languageForms.controls; let i=index" [formGroupName]="i">
                 <div class="number-id">
                   <h1>{{i+1}}</h1>
                 </div>
-                <mat-form-field class="language-name" appearance="standard" floatLabel="always">
+                <!-- <mat-form-field class="language-name" appearance="standard" floatLabel="always">
                   <mat-label>Which language</mat-label>
                   <input type="text" matInput placeholder="Language name" formControlName="languageValue" autocomplete="off" required>
                   <mat-error class="input-error" *ngIf="!languageValue.valid && extrasForm.touched">This is <strong>required</strong></mat-error> 
+                </mat-form-field> -->
+                <mat-form-field appearance="standard" floatLabel="always">
+                  <mat-label>Which Language?</mat-label>
+                  <mat-select matInput placeholder="Pick a language" formControlName="languageValue" autocomplete="off" required>
+                    <mat-option *ngFor="let language of languages" [value]="language.name"> {{language.name}}</mat-option>
+                  </mat-select>
+                  <mat-error class="input-error" *ngIf="!languageValue.valid && extrasForm.touched">This is <strong>required</strong></mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="standard" floatLabel="always">
                   <mat-label>What level?</mat-label>

@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { DataService } from 'src/app/shared/data/data.service';
 import { Timezone } from 'src/app/shared/data/models/timezone.model';
+import { Country } from '../../data/models/country.model';
+import languages from './../../data/JSON/languages.json';
+import { Language } from '../../data/models/language.model';
 
 @Component({
   selector: 'app-add-specialist-dialog',
@@ -26,9 +29,10 @@ export class AddSpecialistDialogComponent implements OnInit {
   hide = true;
 
   downloadURL: string | null;
+  languages: Language[] = languages.languages;
   timezones: Observable<Timezone[]>;
   selectedTimezone: string;
-  languages: FormArray;
+  languageArr: FormArray;
   languageValue = new FormControl('', [Validators.required]);
   languageLevel = new FormControl('', [Validators.required]);
   reviews: FormArray;
@@ -64,7 +68,6 @@ export class AddSpecialistDialogComponent implements OnInit {
 
   ngOnInit() {
     this.timezones = this.dataService.getTimezones();
-
     this.signUpForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -108,7 +111,7 @@ export class AddSpecialistDialogComponent implements OnInit {
     });
 
     this.extrasForm = this.fb.group({
-      languages: this.fb.array([ this.createLanguage() ]),
+      languageArr: this.fb.array([ this.createLanguage() ]),
       reviews: this.fb.array([ this.createReview() ]),
     });
   }
@@ -123,7 +126,7 @@ export class AddSpecialistDialogComponent implements OnInit {
   }
 
   get languageForms() {
-    return this.extrasForm.get('languages') as FormArray;
+    return this.extrasForm.get('languageArr') as FormArray;
   }
 
   get reviewForms() {
@@ -139,12 +142,12 @@ export class AddSpecialistDialogComponent implements OnInit {
     }
 
     addLanguage(): void {
-      this.languages = this.extrasForm.get('languages') as FormArray;
-      this.languages.push(this.createLanguage());
+      this.languageArr = this.extrasForm.get('languageArr') as FormArray;
+      this.languageArr.push(this.createLanguage());
     }
 
     deleteLanguage(i) {
-      (this.extrasForm.get('languages') as FormArray).removeAt(i);
+      (this.extrasForm.get('languageArr') as FormArray).removeAt(i);
     }
 
     // Create a new Package benefit Mat Card

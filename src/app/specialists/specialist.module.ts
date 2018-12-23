@@ -10,12 +10,14 @@ import { SpecialistItemComponent } from './specialist-item/specialist-item.compo
 import { DataService } from '../shared/data/data.service';
 import { SpecialistListComponent } from './specialist-list/specialist-list.component';
 import { SpecialistListItemComponent } from './specialist-list-item/specialist-list-item.component';
+import { AddSpecialistComponent } from './/add-specialist/add-specialist.component';
 import { AddSpecialistDialogComponent } from '../shared/dialogs/add-specialist-dialog/add-specialist-dialog.component';
 
 
 @NgModule({
   declarations: [
     AddSpecialistDialogComponent,
+    AddSpecialistComponent,
     SpecialistItemComponent,
     SpecialistsComponent,
     SpecialistListComponent,

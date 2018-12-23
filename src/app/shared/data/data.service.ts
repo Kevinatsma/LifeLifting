@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Timezone } from './models/timezone.model';
 import { MatSnackBar } from '@angular/material';
 import { map } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Country } from './models/country.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,10 @@ export class DataService {
   timezones: Observable<Timezone[]>;
 
   constructor( private afs: AngularFirestore,
-               public snackBar: MatSnackBar
+               public snackBar: MatSnackBar,
+               public http: HttpClient
              ) {
+
   }
 
   public getTimezones() {

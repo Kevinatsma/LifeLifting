@@ -5,6 +5,7 @@ import { MaterialModule } from './../material.module';
 import { MatDialogModule } from '@angular/material';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
+import { DataService } from './../data/data.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,9 @@ import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.compon
   entryComponents: [
     ConfirmDialogComponent,
     AddUserDialogComponent
+  ],
+  providers: [
+    DataService
   ]
 })
 export class DialogsModule { }
