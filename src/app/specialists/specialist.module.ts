@@ -12,6 +12,7 @@ import { SpecialistListComponent } from './specialist-list/specialist-list.compo
 import { SpecialistListItemComponent } from './specialist-list-item/specialist-list-item.component';
 import { AddSpecialistComponent } from './/add-specialist/add-specialist.component';
 import { AddSpecialistDialogComponent } from '../shared/dialogs/add-specialist-dialog/add-specialist-dialog.component';
+import { SpecialistDetailComponent } from './specialist-detail/specialist-detail.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AddSpecialistDialogComponent } from '../shared/dialogs/add-specialist-d
     SpecialistItemComponent,
     SpecialistsComponent,
     SpecialistListComponent,
-    SpecialistListItemComponent
+    SpecialistListItemComponent,
+    SpecialistDetailComponent
   ],
   imports: [
     CommonModule,
