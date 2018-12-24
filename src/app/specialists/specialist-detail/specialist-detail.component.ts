@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
+import { Specialist } from '../specialist.model';
+import { ActivatedRoute } from '@angular/router';
+import { SpecialistService } from '../specialist.service';
 
 @Component({
   selector: 'app-specialist-detail',
@@ -6,10 +10,46 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./specialist-detail.component.scss']
 })
 export class SpecialistDetailComponent implements OnInit {
+  specialist: Specialist;
+  aboutExtended = false;
+  reviewsVisible = false;
 
-  constructor() { }
 
-  ngOnInit() {
+  // specialist = Observable<Specialist>;
+
+  constructor( private cdr: ChangeDetectorRef,
+               public route: ActivatedRoute,
+               public specialistService: SpecialistService) {
+    this.aboutExtended = false;
   }
 
+  ngOnInit() {
+    this.getSpecialist();
+  }
+
+  getSpecialist() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.specialistService.getSpecialistData(id).subscribe(specialist => (this.specialist = specialist));
+  }
+
+  aboutExtendedOpen() {
+    this.aboutExtended = true;
+    this.cdr.detectChanges();
+  }
+
+  aboutExtendedClose() {
+    this.aboutExtended = false;
+    this.cdr.detectChanges();
+  }
+
+  // Like this to avoid State Changed Error
+  openReviews() {
+    this.reviewsVisible = true;
+    this.cdr.detectChanges();
+  }
+
+  closeReviews() {
+    this.reviewsVisible = false;
+    this.cdr.detectChanges();
+  }
 }

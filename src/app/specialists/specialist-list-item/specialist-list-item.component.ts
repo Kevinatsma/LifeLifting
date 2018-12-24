@@ -12,6 +12,8 @@ import { SpecialistService } from '../specialist.service';
 })
 export class SpecialistListItemComponent implements OnInit {
   @Input() specialist: Specialist;
+  detailOpen = false;
+
   constructor( public router: Router,
                public dialog: MatDialog,
                private specialistService: SpecialistService) { }
@@ -44,7 +46,7 @@ export class SpecialistListItemComponent implements OnInit {
 
 
   linkToChild(specialist) {
-    const id = specialist.firstName.toLowerCase();
+    const id = specialist.specialistID.toLowerCase();
     const url = `dashboard/specialists/${id}`;
     this.router.navigate([url]);
   }
