@@ -3,11 +3,13 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/user/user.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
+import { fadeAnimation } from 'src/app/core/animations/fade.animation';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.scss']
+  styleUrls: ['./dashboard.scss'],
+  animations: [fadeAnimation]
 })
 export class DashboardComponent implements OnInit {
   user: User;
@@ -17,6 +19,7 @@ export class DashboardComponent implements OnInit {
                public router: Router) { }
 
   ngOnInit() {
+
     this.afs.collection(`users`).doc(`${this.auth.authState.uid}`).ref.get()
         .then((doc) => {
           if (doc.exists) {
@@ -53,5 +56,9 @@ export class DashboardComponent implements OnInit {
     } else if (!this.user.signupCompleted) {
       return null;
     }
+  }
+
+  getState(outlet) {
+    return outlet.activatedRouteData.state;
   }
 }

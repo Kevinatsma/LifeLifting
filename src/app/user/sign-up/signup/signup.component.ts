@@ -6,11 +6,13 @@ import { Observable } from 'rxjs';
 import { AuthService } from './../../../core/auth/auth.service';
 import { AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firestore';
 import { User } from '../../user.model';
+import { fadeAnimation } from 'src/app/core/animations/fade.animation';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss', './../../login/login.component.scss']
+  styleUrls: ['./signup.component.scss', './../../login/login.component.scss'],
+  animations: [ fadeAnimation ]
 })
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
@@ -86,5 +88,9 @@ export class SignupComponent implements OnInit {
 
   openSuccess() {
     this.succesVisible = true;
+  }
+
+  getState(o) {
+    return o.activatedRouteData.state;
   }
 }

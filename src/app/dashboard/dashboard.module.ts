@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/auth/guards/auth.guard';
@@ -20,6 +19,7 @@ import { SpecialistMenuComponent } from './dashboard-menu/specialist-menu/specia
 import { ClientMenuComponent } from './dashboard-menu/client-menu/client-menu.component';
 import { SpecialistDetailComponent } from '../specialists/specialist-detail/specialist-detail.component';
 import { MaterialModule } from '../shared/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
@@ -28,13 +28,13 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
     children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
-      {path: 'home', component: DashboardHomeComponent},
-      {path: 'users', component: UsersComponent},
-      {path: 'specialists', component: SpecialistsComponent},
+      {path: 'home', component: DashboardHomeComponent, data: {state: 'home'}},
+      {path: 'users', component: UsersComponent, data: {state: 'users'}},
+      {path: 'specialists', component: SpecialistsComponent, data: {state: 'specialist'}},
       {path: 'specialists/:id', component: SpecialistDetailComponent},
-      {path: 'clients', component: ClientsComponent},
-      {path: 'finances', component: FinancesComponent},
-      {path: 'packages', component: PackagesComponent},
+      {path: 'clients', component: ClientsComponent, data: {state: 'clients'}},
+      {path: 'finances', component: FinancesComponent, data: {state: 'finances'}},
+      {path: 'packages', component: PackagesComponent, data: {state: 'packages'}},
     ]
   },
 ];
@@ -50,6 +50,7 @@ const routes: Routes = [
     ClientMenuComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     CommonModule,
     RouterModule.forRoot(routes),
     SpecialistModule,

@@ -25,7 +25,23 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 
 
 const routes: Routes = [
-
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { state: 'login' }
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    data: { state: 'signup' },
+    children: [
+      {path: '', redirectTo: 'signup', pathMatch: 'full'},
+      {path: 'step-one', component: SignupStepOneComponent, data: {state:  'step-one'}},
+      {path: 'step-two', component: SignupStepTwoComponent, data: {state:  'step-two'}},
+      {path: 'step-three', component: SignupStepThreeComponent, data: {state:  'step-three'}},
+      {path: 'step-four', component: SignupStepFourComponent, data: {state:  'step-four'}},
+    ]
+  },
 ];
 
 @NgModule({

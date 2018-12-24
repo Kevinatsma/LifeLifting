@@ -29,17 +29,20 @@ main.dashboard-wrapper {
             background: #fff;
         }
 
-        router-outlet ~ * {
-            width: 100%;
-            max-width: 80vw;
-            overflow-y: auto;
-            height: auto;
+        div.router-wrapper {
+            flex: 1;
+            position: relative;
+
+            ::ng-deep router-outlet + * {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                overflow-y: scroll;
+            }
+
         }
 
-        ::ng-deep app-specialists {
-            overflow-y: auto;
-            height: auto;
-        }
+
     }
 
 }
