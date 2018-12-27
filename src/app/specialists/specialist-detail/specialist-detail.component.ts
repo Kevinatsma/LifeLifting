@@ -15,7 +15,7 @@ export class SpecialistDetailComponent implements OnInit {
   specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
-  editShow = false;
+  editShow: boolean;
 
 
   // specialist = Observable<Specialist>;
@@ -29,6 +29,7 @@ export class SpecialistDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getSpecialist();
+    this.editShow = this.specialistService.editShow;
   }
 
   getSpecialist() {

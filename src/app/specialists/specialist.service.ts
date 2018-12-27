@@ -16,6 +16,7 @@ export class SpecialistService {
   specialists: Observable<Specialist[]>;
   specialistDoc: AngularFirestoreDocument<Specialist>;
   specialist: Observable<Specialist>;
+  editShow = false;
 
   constructor( private afs: AngularFirestore,
                public snackBar: MatSnackBar,

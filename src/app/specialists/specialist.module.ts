@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from './../shared/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpecialistService } from './specialist.service';
 import { SpecialistsComponent } from './specialists/specialists.component';
 import { SpecialistItemComponent } from './specialist-item/specialist-item.component';
@@ -30,6 +30,7 @@ import { EditSpecialistComponent } from './edit-specialist/edit-specialist.compo
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     ReactiveFormsModule,
     SharedModule,
     MaterialModule

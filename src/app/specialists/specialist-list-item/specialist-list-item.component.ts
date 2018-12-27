@@ -42,8 +42,11 @@ export class SpecialistListItemComponent implements OnInit {
     });
   }
 
-  editSpecialist() {
-    alert('TODO');
+  editSpecialist(specialist) {
+    const id = specialist.specialistID.toLowerCase();
+    const url = `dashboard/specialists/${id}`;
+    this.router.navigate([url]);
+    return this.specialistService.editShow = true;
   }
 
 
