@@ -26,6 +26,30 @@ button {
     }
 }
 
+button.icon-button {
+    @extend %flex-center;
+    width: 45px;
+    height: 45px;
+    box-shadow: $card-shadow;
+    background: $icon-black;
+    border-radius: 50%;
+    transition: all 200ms ease-in-out;
+    position: relative;
+    right: -2em;
+    top: 0;
+    
+    svg {
+        color: #fff;
+        font-size: 14px;
+        transition: all 100ms ease-in-out;
+    }
+
+    &:hover, &:focus {
+        transition: transform 200ms ease-in-out;
+        transform: scale(1.1);
+    }
+}
+
 // Menu Buttons
 
 a.menu-link, button.menu-link {
@@ -453,6 +477,46 @@ mat-card {
         box-shadow: $card-shadow;
         border-radius: 5px;
         padding: 20px 1.5em;
+    }
+}
+
+//////////////////
+//////////////////
+// Toolbars
+
+.action-toolbar-top {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    padding: 0 1em 1em;
+    border-bottom: 2px solid $middle-grey;
+    margin-bottom: 2em;
+
+
+    .left, .right {
+        @extend %flex-center;
+        flex-flow: row nowrap;
+        height: 100%;
+        width: auto;
+    }
+
+    .right {
+        button {
+            margin-left: 2em;
+            svg {
+                font-size: 16px;
+            }
+
+            &.edit-button {
+
+                svg {
+                    margin: -2px -2px 0 0;
+                }
+            }
+        }
     }
 }
 

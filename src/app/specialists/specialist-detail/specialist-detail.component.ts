@@ -1,8 +1,10 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { Specialist } from '../specialist.model';
 import { ActivatedRoute } from '@angular/router';
 import { SpecialistService } from '../specialist.service';
+
 
 @Component({
   selector: 'app-specialist-detail',
@@ -12,14 +14,16 @@ import { SpecialistService } from '../specialist.service';
 export class SpecialistDetailComponent implements OnInit {
   specialist: Specialist;
   aboutExtended = false;
-  reviewsVisible = false;
+  reviewsVisible = true;
+  editShow = false;
 
 
   // specialist = Observable<Specialist>;
 
   constructor( private cdr: ChangeDetectorRef,
                public route: ActivatedRoute,
-               public specialistService: SpecialistService) {
+               public specialistService: SpecialistService,
+               public location: Location) {
     this.aboutExtended = false;
   }
 
@@ -43,6 +47,16 @@ export class SpecialistDetailComponent implements OnInit {
   }
 
   // Like this to avoid State Changed Error
+  // Open/closers
+
+  showEdit() {
+    return this.editShow = true;
+  }
+
+  hideEdit() {
+    return this.editShow = false;
+  }
+
   openReviews() {
     this.reviewsVisible = true;
     this.cdr.detectChanges();
@@ -51,5 +65,11 @@ export class SpecialistDetailComponent implements OnInit {
   closeReviews() {
     this.reviewsVisible = false;
     this.cdr.detectChanges();
+  }
+
+  // Back Button
+
+  goBack() {
+    return this.location.back();
   }
 }

@@ -1,9 +1,17 @@
 @import '_master';
+@import '_dialogs';
+
+::ng-deep .mat-dialog-container {
+    overflow-y: auto;
+    padding: 1em;
+    margin: 1em;
+}
 
 ::ng-deep main.confirm-dialog-container {
-    width: 35vw;
+    min-width: 35vw;
     height: auto;
-    padding: 2em 2em;
+    padding: 1em;
+    box-sizing: border-box;
 }
 p.card-text {
     margin: 5px 0 20px 0;

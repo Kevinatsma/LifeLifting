@@ -4,6 +4,18 @@
 
 // Ng Deeps
 
+::ng-deep .mat-dialog-container {
+    overflow-y: auto;
+    padding: 0;
+
+    .dialog-wrapper {
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin: 0;
+    }
+}
+
 ::ng-deep mat-form-field {
     &.text-field {
 
@@ -50,7 +62,7 @@ form {
         flex-flow: row nowrap;
         justify-content: flex-start;
         width: 100%;
-        overflow-x: auto;
+        overflow-x: scroll;
         padding: 1em 2em;
 
         p.hide {

@@ -10,6 +10,7 @@ import { Timezone } from 'src/app/shared/data/models/timezone.model';
 import { Country } from '../../data/models/country.model';
 import languages from './../../data/JSON/languages.json';
 import { Language } from '../../data/models/language.model';
+import { unescapeIdentifier } from '@angular/compiler';
 
 @Component({
   selector: 'app-add-specialist-dialog',
@@ -182,6 +183,7 @@ export class AddSpecialistDialogComponent implements OnInit {
         timeZone: this.locationForm.get('timeZone').value,
         yearsOfExperience: this.experienceForm.get('yearsOfExperience').value,
         patientsTotal: this.experienceForm.get('patientsTotal').value,
+        speciality: this.experienceForm.get('speciality').value,
         city: this.locationForm.get('city').value,
         country: this.locationForm.get('country').value,
         languages: this.languageForms.value,
@@ -193,6 +195,10 @@ export class AddSpecialistDialogComponent implements OnInit {
       .then(() => {
         // Reset form
         this.signUpForm.reset();
+        this.personalForm.reset();
+        this.aboutForm.reset();
+        this.experienceForm.reset();
+        this.locationForm.reset();
         // this.addSpecialistForm.reset();
       })
       .then(() => {

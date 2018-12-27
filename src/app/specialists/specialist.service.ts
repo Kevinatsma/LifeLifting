@@ -52,6 +52,9 @@ export class SpecialistService {
       this.afAuth.auth.currentUser.sendEmailVerification()
         .then(() => console.log('We sent him/her an email verification'))
         .catch(error => console.log(error.message));
+    })
+    .then((credential) => {
+      return credential;
     });
   }
 

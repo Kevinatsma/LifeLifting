@@ -269,6 +269,7 @@
             <button class="dialog-button" (click)="specialistSignUp()"
              [disabled]="!personalForm.valid || !aboutForm || !locationForm || !experienceForm || !extrasForm"
              [class.disabled]="!personalForm.valid || !aboutForm || !locationForm || !experienceForm || !extrasForm"
+             mat-dialog-close
             >
               Done
             </button>

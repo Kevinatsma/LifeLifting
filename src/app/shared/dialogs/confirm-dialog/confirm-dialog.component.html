@@ -21,7 +21,7 @@
 
 
 <mat-dialog-actions align="end">
-  <button class="text-link" mat-dialog-close>No</button>
+  <button type="button" class="text-link" [mat-dialog-close]="false">No</button>
   <button class="text-link" [mat-dialog-close]="true">Yes, delete</button>
 </mat-dialog-actions>
 </main>

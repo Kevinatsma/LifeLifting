@@ -8,7 +8,7 @@ div.router-wrapper {
         position: absolute;
         height: 100%;
         width: 100%;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
 }
@@ -16,7 +16,7 @@ div.router-wrapper {
 :host ::ng-deep router-outlet + * {
     width: 100%;
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
     background: $middle-grey;
     position: absolute;
 }

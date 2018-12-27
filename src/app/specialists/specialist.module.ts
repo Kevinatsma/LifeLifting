@@ -13,6 +13,7 @@ import { SpecialistListItemComponent } from './specialist-list-item/specialist-l
 import { AddSpecialistComponent } from './/add-specialist/add-specialist.component';
 import { AddSpecialistDialogComponent } from '../shared/dialogs/add-specialist-dialog/add-specialist-dialog.component';
 import { SpecialistDetailComponent } from './specialist-detail/specialist-detail.component';
+import { EditSpecialistComponent } from './edit-specialist/edit-specialist.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SpecialistDetailComponent } from './specialist-detail/specialist-detail
     SpecialistsComponent,
     SpecialistListComponent,
     SpecialistListItemComponent,
-    SpecialistDetailComponent
+    SpecialistDetailComponent,
+    EditSpecialistComponent
   ],
   imports: [
     CommonModule,
