@@ -525,13 +525,14 @@ mat-card {
 // Forms
 
 form {
+    mat-label {
+        font-family: $main-font;
+        font-size: 18px;
+        font-weight: $semi-bold;
+        letter-spacing: 1px;
+    }
+    
     .mat-form-field {
-        mat-label {
-            font-family: $main-font;
-            font-size: 18px;
-            font-weight: $semi-bold;
-            letter-spacing: 1px;
-        }
         input, textarea, mat-select, ::placeholder {
             font-family: $main-font;
             font-size: 16px;

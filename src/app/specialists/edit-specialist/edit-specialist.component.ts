@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Specialist } from '../specialist.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SpecialistService } from '../specialist.service';
@@ -8,7 +8,7 @@ import { SpecialistService } from '../specialist.service';
   templateUrl: './edit-specialist.component.html',
   styleUrls: ['./edit-specialist.component.scss']
 })
-export class EditSpecialistComponent implements OnInit {
+export class EditSpecialistComponent implements OnInit, OnDestroy {
   @Input() specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
@@ -34,6 +34,10 @@ export class EditSpecialistComponent implements OnInit {
       email:  '' || this.specialist.email,
       phoneNumber:  '' || this.specialist.phoneNumber,
     });
+  }
+
+  ngOnDestroy() {
+    this.specialistService.editShow = false;
   }
 
 }
