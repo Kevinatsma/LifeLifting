@@ -4,6 +4,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { Specialist } from '../specialist.model';
 import { ActivatedRoute } from '@angular/router';
 import { SpecialistService } from '../specialist.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,7 +16,6 @@ export class SpecialistDetailComponent implements OnInit {
   specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
-  editShow: boolean;
 
 
   // specialist = Observable<Specialist>;
@@ -29,7 +29,6 @@ export class SpecialistDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getSpecialist();
-    this.editShow = this.specialistService.editShow;
   }
 
   getSpecialist() {
@@ -50,12 +49,12 @@ export class SpecialistDetailComponent implements OnInit {
   // Like this to avoid State Changed Error
   // Open/closers
 
-  showEdit() {
-    return this.editShow = true;
+  get editShow(): boolean {
+    return this.specialistService.editShow;
   }
 
-  hideEdit() {
-    return this.editShow = false;
+  toggleEdit() {
+      this.specialistService.toggleEdit();
   }
 
   openReviews() {

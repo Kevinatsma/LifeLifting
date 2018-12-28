@@ -310,11 +310,12 @@ h4 {
     font-family: $main-font;
 }
 
-h5 {
+h5, .h5 {
     color: $text-black;
     font-size: 18px;
     font-weight: $semi-bold;
     font-family: $main-font;
+    letter-spacing: 1.2px;
 
     &.border-bottom {
         // Bottom Border

@@ -1,5 +1,5 @@
 <ng-container *ngIf="specialist">
-  <main class="specialist-wrapper">
+  <main class="specialist-wrapper" *ngIf="!editShow">
 
     <section class="action-toolbar-top">
       <div class="left">
@@ -8,15 +8,12 @@
         </button>
       </div>
       <div class="right">
-        <button class="icon-button" href="#">
+        <button class="icon-button" href="#" *ngIf="!editShow">
           <i class="fas fa-comment-alt"></i>
         </button>
 
-        <button class="icon-button edit-button" (click)="showEdit()" *ngIf="!editShow">
+        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
           <i class="fas fa-edit"></i>
-        </button>
-        <button class="icon-button" (click)="hideEdit()" *ngIf="editShow">
-          <i class="fas fa-check"></i>
         </button>
 
       </div>
@@ -28,9 +25,7 @@
 
         </div>
         <div class="quick-info">
-          <p class="timezone">
-            Timezone: {{specialist.timeZone}}
-          </p>
+          <p class="timezone">Timezone: {{specialist.timeZone}}</p>
           <div class="top">
           <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
           <h5>{{specialist.position}}</h5>
@@ -38,12 +33,10 @@
           </div>
           <div class="bottom">
             <p class="tab">
-                <span>{{specialist.patientsTotal}}</span>
-                Clients or Patients
+              <span>{{specialist.patientsTotal}}</span>Clients or Patients
             </p>
             <p class="tab">
-                <span>{{specialist.yearsOfExperience}} </span>
-                Years of experience
+              <span>{{specialist.yearsOfExperience}}</span>Years of experience
             </p>
           </div>
         </div>
@@ -94,7 +87,8 @@
         </div>
       </section>
     </ng-container>
-    </main>
+
+  </main>
 
 
   <ng-container *ngIf="!editShow">
@@ -127,8 +121,6 @@
   <ng-container *ngIf="editShow">
     <app-edit-specialist [specialist]="specialist"></app-edit-specialist>
   </ng-container>
-
-
 
 </ng-container>
   

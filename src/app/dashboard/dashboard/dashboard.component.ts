@@ -3,13 +3,13 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/user/user.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
-import { fadeAnimation } from 'src/app/core/animations/fade.animation';
+import { slideTransition } from 'src/app/core/animations/slide.animation';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.scss'],
-  animations: [fadeAnimation]
+  animations: [slideTransition]
 })
 export class DashboardComponent implements OnInit {
   user: User;

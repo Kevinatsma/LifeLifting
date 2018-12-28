@@ -2,30 +2,38 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Specialist } from '../specialist.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SpecialistService } from '../specialist.service';
+import { Observable } from 'rxjs';
+import { Timezone } from 'src/app/shared/data/models/timezone.model';
+import { DataService } from 'src/app/shared/data/data.service';
 
 @Component({
   selector: 'app-edit-specialist',
   templateUrl: './edit-specialist.component.html',
-  styleUrls: ['./edit-specialist.component.scss']
+  styleUrls: ['./edit-specialist.component.scss', './../specialist-detail/specialist-detail.component.scss']
 })
 export class EditSpecialistComponent implements OnInit, OnDestroy {
   @Input() specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
   editSpecialistForm: FormGroup;
-  selectedTimeZone = '';
+  timezones: Observable<Timezone[]>;
+  selectedTimeZone = 'Hello there';
 
   // Form
 
   constructor( private fb: FormBuilder,
-               private specialistService: SpecialistService) {
-
+               private specialistService: SpecialistService,
+               public dataService: DataService) {
+                this.selectedTimeZone = 'Hello there';
                }
 
   ngOnInit() {
+    this.timezones = this.dataService.getTimezones();
+    this.selectedTimeZone = this.specialist.timeZone;
     this.editSpecialistForm = this.fb.group({
       firstName: '' || this.specialist.firstName,
       lastName: '' || this.specialist.lastName,
+      position: '' || this.specialist.position,
       speciality: '' || this.specialist.speciality,
       timeZone: '' || this.specialist.timeZone,
       patientsTotal: '' || this.specialist.patientsTotal,
@@ -36,8 +44,35 @@ export class EditSpecialistComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Get Edit State
+
+  get editShow(): boolean {
+    return this.specialistService.editShow;
+  }
+
+  toggleEdit() {
+      this.specialistService.toggleEdit();
+  }
+
   ngOnDestroy() {
     this.specialistService.editShow = false;
+  }
+
+  editSpecialist() {
+    const data = {
+      firstName: this.editSpecialistForm.get('firstName').value || this.specialist.firstName,
+      lastName: this.editSpecialistForm.get('lastName').value || this.specialist.lastName,
+      position: this.editSpecialistForm.get('position').value || this.specialist.position,
+      speciality: this.editSpecialistForm.get('speciality').value || this.specialist.speciality,
+      timeZone: this.editSpecialistForm.get('timeZone').value || this.specialist.timeZone,
+      patientsTotal: this.editSpecialistForm.get('patientsTotal').value || this.specialist.patientsTotal,
+      yearsOfExperience: this.editSpecialistForm.get('yearsOfExperience').value || this.specialist.yearsOfExperience,
+      description:  this.editSpecialistForm.get('description').value || this.specialist.description,
+      email:  this.editSpecialistForm.get('email').value || this.specialist.email,
+      phoneNumber:  this.editSpecialistForm.get('phoneNumber').value || this.specialist.phoneNumber,
+    };
+    this.specialistService.updateSpecialist(this.specialist.specialistID, data);
+    this.toggleEdit();
   }
 
 }

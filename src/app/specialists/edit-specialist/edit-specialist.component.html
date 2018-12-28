@@ -1,36 +1,62 @@
 <ng-container *ngIf="specialist">
-    <main class="specialist-wrapper">
+  <main class="specialist-wrapper">
+      
+    <section class="action-toolbar-top" *ngIf="editShow">
+        <div class="left">
+          <button class="icon-button" (click)="goBack()">
+              <i class="fas fa-arrow-left"></i>
+          </button>
+        </div>
+        <div class="right">
+          <button class="icon-button" href="#">
+            <i class="fas fa-comment-alt"></i>
+          </button>
+  
+          <button class="icon-button" (click)="editSpecialist()">
+            <i class="fas fa-check"></i>
+          </button>
+  
+        </div>
+      </section>
 
-      <form [formGroup]="editSpecialistForm" *ngIf="!editShow">
+      <form [formGroup]="editSpecialistForm" *ngIf="editShow">
         <section class="specialist-header">
           <div class="profile-picture" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
   
           </div>
           <div class="quick-info">
-            <mat-select  formControlName="timeZone" name="timeZone" [(value)]="selectedTimeZone">
-              <mat-option [value]="GMT-5">Lima, Peru // GMT-5</mat-option>
-              <mat-option [value]="GMT-5">Medellin, Colombia // GMT-5</mat-option>
-            </mat-select>
+            
             <p class="timezone">
-              Timezone: {{specialist.timeZone}}
+                <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimezone" 
+                formControlName="timeZone" autocomplete="off" required name="timeZone"
+                >
+                  <mat-option *ngFor="let timezone of timezones | async" [value]="timezone.gmtValue"> {{timezone.city}}, {{timezone.country}} / {{timezone.gmtValue}}</mat-option>
+                </mat-select>
             </p>
             <div class="top">
-                <input name="firstName" formControlName="firstName">
-                <input name="lastName" formControlName="lastName">
+              <div class="display-name">
+                <input class="h2" name="firstName" formControlName="firstName">
+                <input class="h2" name="lastName" formControlName="lastName">
+              </div>
 <!-- 
             <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
             <h5>{{specialist.position}}</h5> -->
-            <input name="speciality" formControlName="speciality">
+            <input class="h5" name="position" formControlName="position">
+
+            <p class="speciality">
+              Speciality:
+              <input class="text-field" name="speciality" formControlName="speciality">
+            </p>
             <!-- <p>Speciality: {{specialist.speciality}}</p> -->
             </div>
             <div class="bottom">
               <p class="tab">
-                <input type="number" name="patientsTotal" formControlName="patientsTotal">  
+                <input class="stat" type="number" name="patientsTotal" maxlength="5" formControlName="patientsTotal">  
                 <!-- <span>{{specialist.patientsTotal}}</span> -->
                   Clients or Patients
               </p>
               <p class="tab">
-                  <input type="number" name="yearsOfExperience" formControlName="yearsOfExperience">
+                  <input class="stat" type="number" name="yearsOfExperience" maxlength="2" formControlName="yearsOfExperience">
                   <!-- <span>{{specialist.yearsOfExperience}} </span> -->
                   Years of experience
               </p>
@@ -40,16 +66,7 @@
   
         <section class="about">  
           <h5>About {{specialist.firstName}}</h5>
-          <textarea matInput matAutoResize formControlName="description"></textarea>
-          <!-- <p [class.read-more]="aboutExtended">{{specialist.description}}</p> -->
-          <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
-            <i class="fas fa-plus"></i>
-            Read More
-          </button>
-          <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
-            <i class="fas fa-minus"></i>
-            Read Less
-          </button>
+          <textarea matInput matTextareaAutosize formControlName="description"></textarea>
         </section>
   
         <section class="middle">
@@ -119,6 +136,6 @@
   </ng-container>
     
   <ng-container *ngIf="!specialist">
-    Hello  I exist
+    Hello I exist
   </ng-container>
   
