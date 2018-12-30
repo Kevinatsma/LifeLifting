@@ -1,5 +1,23 @@
 @import '_master';
 
+// Mat items
+
+::ng-deep  div.mat-menu-panel {
+    margin: 1em 0 0 -0.5em;
+    border-radius: 2px;
+    box-shadow: $card-shadow;
+    button.menu-link {
+        svg {
+            margin-right: 1em;
+        }
+    }
+    button.dummy-link {
+        height: 0;
+        width: 0;
+        position: absolute;
+    }
+}
+
 .nav-wrapper {
     width: 100%;
     margin: 0;
@@ -89,7 +107,7 @@
                 background-position: center;
             }
 
-            button.open-dropdown-menu {
+            ::ng-deep .mat-button, button.open-dropdown-menu {
                 width: calc(100% - 45px);
                 font-size: 16px;
                 font-weight: $semi-bold;
@@ -98,6 +116,10 @@
                 color: $grey;
                 align-items: center;
                 justify-content: space-between;
+
+                &:hover, &:focus, &:active {
+                    background: $middle-grey!important;
+                }
             }
 
             svg {

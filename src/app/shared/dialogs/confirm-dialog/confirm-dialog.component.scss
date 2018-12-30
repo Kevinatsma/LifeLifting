@@ -1,0 +1,40 @@
+@import '_master';
+@import '_dialogs';
+
+::ng-deep .mat-dialog-container {
+    overflow-y: auto;
+    padding: 1em;
+    margin: 1em;
+}
+
+::ng-deep main.confirm-dialog-container {
+    min-width: 35vw;
+    height: auto;
+    padding: 1em;
+    box-sizing: border-box;
+}
+p.card-text {
+    margin: 5px 0 20px 0;
+    padding: 0;
+}
+
+mat-dialog-actions {
+    button {
+        width: 50px;
+        transition: all 300ms ease-in-out;
+
+        &:nth-child(2) {
+            width: 100px;
+            margin-left: 2.5em;
+
+            &:hover, &:focus {
+                width: 100px;
+            }
+        }
+
+        &:hover, &:focus {
+            width: 50px;
+            font-weight: $semi-bold;
+        }
+    }
+}

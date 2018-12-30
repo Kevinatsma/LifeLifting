@@ -15,10 +15,23 @@
       <div class="user-photo" [style.backgroundImage]="'url('+ user.photoURL +')'">
 
       </div>
-      <button class="open-dropdown-menu">
+      <button class="open-dropdown-menu" [matMenuTriggerFor]="menu">
           {{user.displayName}}
           <i class="fas fa-sort-down"></i>
       </button>
+
+      <mat-menu #menu="matMenu" class="popup-menu">
+        <button mat-menu-item class="dummy-link">
+        </button>
+        <button mat-menu-item disabled class="menu-link">
+          <i class="fas fa-user-edit"></i>
+          Edit profile
+        </button>
+        <button mat-menu-item class="menu-link" (click)="signOut()">
+          <i class="fas fa-sign-out-alt"></i>
+          Sign out
+        </button>
+      </mat-menu>
       
     </div>
   </section>

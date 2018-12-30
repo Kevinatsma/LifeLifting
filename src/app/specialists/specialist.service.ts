@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Specialist } from './specialist.model';
 import { AngularFirestoreDocument, AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -16,6 +16,8 @@ export class SpecialistService {
   specialists: Observable<Specialist[]>;
   specialistDoc: AngularFirestoreDocument<Specialist>;
   specialist: Observable<Specialist>;
+  editShow: boolean;
+  editStateChange: Subject<boolean> = new Subject<boolean>();
 
   constructor( private afs: AngularFirestore,
                public snackBar: MatSnackBar,
@@ -23,6 +25,13 @@ export class SpecialistService {
              ) {
     this.specialistCol = this.afs.collection<Specialist>(`specialists`);
     this.specialists = this.getSpecialists();
+    this.editStateChange.subscribe((value) => {
+      this.editShow = value;
+    });
+  }
+
+  toggleEdit() {
+    this.editStateChange.next(!this.editShow);
   }
 
   getSpecialistData(id) {
@@ -52,6 +61,9 @@ export class SpecialistService {
       this.afAuth.auth.currentUser.sendEmailVerification()
         .then(() => console.log('We sent him/her an email verification'))
         .catch(error => console.log(error.message));
+    })
+    .then((credential) => {
+      return credential;
     });
   }
 
@@ -77,7 +89,7 @@ export class SpecialistService {
   }
 
   addSpecialist(data) {
-    this.afs.collection<Specialist>(`specialists`).add(data)
+    this.afs.doc<Specialist>(`specialists/${data.specialistID}`).set(data,  {merge: true})
     .then(() => {
       // Show Snackbar
       const message = 'The Specialist was added succesfully';

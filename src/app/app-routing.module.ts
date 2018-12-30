@@ -24,23 +24,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    component: LoginComponent,
-    data: { state: 'login' }
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
-    data: { state: 'signup' },
-    children: [
-      // {path: '', redirectTo: 'signup', pathMatch: 'full'},
-      {path: 'step-one', component: SignupStepOneComponent},
-      {path: 'step-two', component: SignupStepTwoComponent},
-      {path: 'step-three', component: SignupStepThreeComponent},
-      {path: 'step-four', component: SignupStepFourComponent},
-    ]
-  },
-  {
     path: 'packages',
     component: PackagesComponent,
     // canActivate: [AuthGuard]

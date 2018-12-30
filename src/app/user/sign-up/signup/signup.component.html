@@ -61,7 +61,9 @@
     <section class="photo-container" *ngIf="!user.uid">
       
     </section>
-    <router-outlet *ngIf="user.uid"></router-outlet>
+    <div class="router-wrapper" [@fadeAnimation]="getState(o)">
+      <router-outlet #o="outlet"></router-outlet>
+    </div>
     
   </ng-container>
   

@@ -1,4 +1,4 @@
-<mat-card class="list-item-card" *ngIf="specialist">
+<mat-card class="list-item-card" *ngIf="!detailOpen && specialist">
   <section class="profile-photo" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
   </section>
   <section class="middle">
@@ -12,7 +12,7 @@
       <p class="speciality-title">{{specialist.position}} - {{specialist.speciality}}</p>
       <p class="description">{{specialist.description}}</p>
       <div class="btn-container">
-        <button class="btn-icon-right__animated" routerLink="{{specialist.firstName}}">
+        <button class="btn-icon-right__animated" (click)="linkToChild(specialist)">
           More info
         </button>
         <i class="fas fa-long-arrow-alt-right"></i>
@@ -40,10 +40,10 @@
     </div>
   </section>
   <section class="actions">
-    <button>
+    <button type="button" (click)="deleteSpecialistDialog(specialist)">
       <i class="fas fa-trash"></i>
     </button>
-    <button>
+    <button (click)="editSpecialist(specialist)">
       <i class="fas fa-edit"></i>
     </button>
   </section>

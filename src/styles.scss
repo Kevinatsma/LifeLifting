@@ -6,7 +6,7 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: $light-grey;
+    background-color: $middle-grey;
 }
 
 
@@ -17,13 +17,80 @@ html, body {
 button {
     @extend %input-reset;
     font-family: $main-font;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    font-weight: $semi-bold;
+
     &:hover, &:focus, &:active {
         cursor: pointer;
     }
 }
 
+button.icon-button {
+    @extend %flex-center;
+    width: 45px;
+    height: 45px;
+    box-shadow: $card-shadow;
+    background: $icon-black;
+    border-radius: 50%;
+    transition: all 200ms ease-in-out;
+    position: relative;
+    right: -2em;
+    top: 0;
+    
+    svg {
+        color: #fff;
+        font-size: 14px;
+        transition: all 100ms ease-in-out;
+    }
+
+    &:hover, &:focus {
+        transition: transform 200ms ease-in-out;
+        transform: scale(1.1);
+    }
+}
+
 // Menu Buttons
 
+a.menu-link, button.menu-link {
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    font-weight: $semi-bold;
+    color: $text-black;
+    border-left: 3px solid transparent;
+
+    &:hover, &:focus, &.active {
+        background: lighten($primary-color, 32%); 
+        border-left: 3px solid $primary-color;
+        color: $primary-color;
+        svg {
+            color: $primary-color;
+        }
+    }
+
+    svg {
+        font-size: 16px;
+        width: 20px;
+        color: darken($middle-grey, 10%);
+        margin: 0 2em;
+    }
+}
+
+.popup-menu {
+    a.menu-link, button.menu-link {
+        svg {
+            margin-left: 0;
+        }
+
+        &:hover, &:focus {
+            background: transparent;
+        }
+    }
+}
 
 // Main CTA's
 
@@ -243,11 +310,12 @@ h4 {
     font-family: $main-font;
 }
 
-h5 {
+h5, .h5 {
     color: $text-black;
     font-size: 18px;
     font-weight: $semi-bold;
     font-family: $main-font;
+    letter-spacing: 1.2px;
 
     &.border-bottom {
         // Bottom Border
@@ -415,16 +483,57 @@ mat-card {
 
 //////////////////
 //////////////////
+// Toolbars
+
+.action-toolbar-top {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    padding: 0 1em 1em;
+    border-bottom: 2px solid $middle-grey;
+    margin-bottom: 2em;
+
+
+    .left, .right {
+        @extend %flex-center;
+        flex-flow: row nowrap;
+        height: 100%;
+        width: auto;
+    }
+
+    .right {
+        button {
+            margin-left: 2em;
+            svg {
+                font-size: 16px;
+            }
+
+            &.edit-button {
+
+                svg {
+                    margin: -2px -2px 0 0;
+                }
+            }
+        }
+    }
+}
+
+//////////////////
+//////////////////
 // Forms
 
 form {
+    mat-label {
+        font-family: $main-font;
+        font-size: 18px;
+        font-weight: $semi-bold;
+        letter-spacing: 1px;
+    }
+    
     .mat-form-field {
-        mat-label {
-            font-family: $main-font;
-            font-size: 18px;
-            font-weight: $semi-bold;
-            letter-spacing: 1px;
-        }
         input, textarea, mat-select, ::placeholder {
             font-family: $main-font;
             font-size: 16px;
@@ -470,4 +579,25 @@ form {
         font-size: 12px;
     }
 
+}
+
+
+// Misc
+
+.no-photo {
+    @extend %flex-center;
+    background: darken($light-grey, 5%);
+    font-size: 18px;
+    font-family: $main-font;
+    text-align: center;
+    font-weight: $semi-bold;
+
+    p {
+        color: $primary-color;
+    }
+
+    svg {
+        font-size: 42px;
+        margin-bottom: 1vh;
+    }
 }

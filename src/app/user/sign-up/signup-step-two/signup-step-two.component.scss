@@ -1,5 +1,24 @@
 @import '_master';
 
+section.step-wrapper {
+    justify-content: flex-start;
+    padding: 2em 0 100px;
+    height: auto;
+    box-sizing: border-box;
+
+    &.success {
+        height: 100vh;
+        justify-content: center;
+        align-items: center; 
+
+        p.intro-text {
+            width: 80%;
+            margin: 1em auto 2em;
+            text-align: center;
+        }
+    }
+}
+
 .package-container {
     mat-radio-group.package-slider {
         height: 100%;
