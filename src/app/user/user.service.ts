@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from './user.model';
@@ -11,14 +11,21 @@ import { AuthService } from '../core/auth/auth.service';
 })
 export class UserService {
   userCol: AngularFirestoreCollection<User>;
-  user: User;
   users: Observable<User[]>;
   userDoc: AngularFirestoreDocument<User>;
+  user: Observable<User>;
+  editShow: boolean;
+  editStateChange: Subject<boolean> = new Subject<boolean>();
 
   constructor( private afs: AngularFirestore,
                private auth: AuthService) {
     this.userCol = this.afs.collection(`users`);
     this.users = this.getUsers();
+  }
+
+
+  toggleEdit() {
+    this.editStateChange.next(!this.editShow);
   }
 
   getUsers() {
@@ -37,30 +44,19 @@ export class UserService {
   //   return this.userDoc.valueChanges();
   // }
 
-  getUserData() {
-    this.afs.collection(`users`).doc(`${this.auth.currentUserId}`).ref.get()
-      .then((doc) => {
-        if (doc.exists) {
-            // Write doc data to user variable
-            const user = doc.data() as User;
-            return this.user = user;
-        } else {
-            console.log('No such document!');
-        }
-      })
-      .catch(function(error) {
-          console.log('Error getting document:', error);
-      });
+  getUserDataByID(uid) {
+    this.userDoc = this.afs.doc<User>(`users/${uid}`);
+    this.user = this.userDoc.valueChanges();
     return this.user;
   }
 
-  updateUser(id, data) {
-    this.userDoc = this.afs.doc<User>(`users/${id}`);
+  updateUser(uid, data) {
+    this.userDoc = this.afs.doc<User>(`users/${uid}`);
     this.userDoc.update(data);
- }
+  }
 
-  deleteUser(user: User) {
-    this.userDoc = this.afs.doc('users/' + user.uid);
+  deleteUser(id) {
+    this.userDoc = this.afs.doc<User>(`users/${id}`);
     this.userDoc.delete();
   }
 }

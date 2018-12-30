@@ -1,0 +1,21 @@
+@import '_master';
+
+main.specialist-list-wrapper {
+    margin: 0;
+    padding: 0;
+
+    // section.specialist-filters {
+
+    // }
+
+    section.specialist-list {
+        display: flex;
+        flex-flow: column nowrap;
+
+        app-specialist-list-item {
+            margin: 2em 0;
+        }
+
+    }
+
+}

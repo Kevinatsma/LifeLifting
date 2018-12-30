@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/auth/guards/auth.guard';
@@ -18,6 +17,10 @@ import { PackagesComponent } from '../packages/packages/packages.component';
 import { AdminMenuComponent } from './dashboard-menu/admin-menu/admin-menu.component';
 import { SpecialistMenuComponent } from './dashboard-menu/specialist-menu/specialist-menu.component';
 import { ClientMenuComponent } from './dashboard-menu/client-menu/client-menu.component';
+import { SpecialistDetailComponent } from '../specialists/specialist-detail/specialist-detail.component';
+import { MaterialModule } from '../shared/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserDetailComponent } from '../user/users/user-detail/user-detail.component';
 
 const routes: Routes = [
   {
@@ -26,12 +29,14 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
     children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
-      {path: 'home', component: DashboardHomeComponent},
-      {path: 'users', component: UsersComponent},
-      {path: 'specialists', component: SpecialistsComponent},
-      {path: 'clients', component: ClientsComponent},
-      {path: 'finances', component: FinancesComponent},
-      {path: 'packages', component: PackagesComponent},
+      {path: 'home', component: DashboardHomeComponent, data: {state: 'home'}},
+      {path: 'users', component: UsersComponent, data: {state: 'users'}},
+      {path: 'users/:id', component: UserDetailComponent, data: {state: 'users'}},
+      {path: 'specialists', component: SpecialistsComponent, data: {state: 'specialist'}},
+      {path: 'specialists/:id', component: SpecialistDetailComponent},
+      {path: 'clients', component: ClientsComponent, data: {state: 'clients'}},
+      {path: 'finances', component: FinancesComponent, data: {state: 'finances'}},
+      {path: 'packages', component: PackagesComponent, data: {state: 'packages'}},
     ]
   },
 ];
@@ -47,11 +52,13 @@ const routes: Routes = [
     ClientMenuComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     CommonModule,
     RouterModule.forRoot(routes),
     SpecialistModule,
     ClientsModule,
-    FinancesModule
+    FinancesModule,
+    MaterialModule
   ],
   exports: [
     RouterModule

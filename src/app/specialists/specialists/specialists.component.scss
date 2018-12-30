@@ -1,7 +1,7 @@
 @import '_master';
 
 .wrapper {
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
     padding: 2em 0;
 
@@ -10,9 +10,15 @@
         margin: 2em auto;
     }
 
-    h2 {
-        color: $secondary-color;
+    .title {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        h2 {
+            color: $secondary-color;
+        }
     }
-
-
 }

@@ -3,8 +3,9 @@
   
   <section class="content">
     <app-dashboard-top-nav [user]="user"></app-dashboard-top-nav>
-  
-    <router-outlet></router-outlet>
+    <div class="router-wrapper" [@slideTransition]="getState(o)">
+      <router-outlet #o="outlet"></router-outlet>
+    </div>
   </section>
 
 </main>

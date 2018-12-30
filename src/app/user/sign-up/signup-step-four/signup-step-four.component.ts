@@ -37,6 +37,14 @@ export class SignupStepFourComponent implements OnInit {
     };
     this.auth.setUserData(data, user)
     .then(() => {
+      const clientID = {
+        clients: [
+          user.uid
+        ]
+      };
+      this.specialistService.updateSpecialist(this.chosenSpecialist, clientID);
+    })
+    .then(() => {
       this.router.navigate(['dashboard']);
     });
   }

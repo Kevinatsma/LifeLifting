@@ -113,15 +113,17 @@
 }
 
 div.profile-pic {
-    padding: 0;
+    padding: 2em;
     background: #fff;
     margin: 0;
-    width: 30%;
+    width: 100%;
     height: auto;
     // border: 2px solid $primary-color;
     box-sizing: border-box;
-    box-shadow: $card-shadow;
     border-radius: 5px;
+    display: flex;
+    flex-flow: row nowrap;
+
 
     @keyframes scale-up-center {
         0% {
@@ -134,13 +136,14 @@ div.profile-pic {
 
     .preview {
         animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
-        background-size: cover!important;
+        background-size: 100%!important;
         background-repeat: no-repeat !important;
         background-position: center!important;
         height: 250px;
-        width: 100%;
+        width: 60%;
+        border-radius: 10px;
     }
 
     .confirmation {
@@ -148,7 +151,7 @@ div.profile-pic {
         justify-content: flex-start;
         width: 100%;
         height: 195px;
-        margin: 1em auto 0;
+        margin: 3em auto 0;
         text-align: center;
         position: relative;
 
@@ -189,7 +192,7 @@ div.profile-pic {
                 }
             }
             .bottom-btn {
-                background: $primary-color;
+                background: transparent;
                 width: 100%;
                 height: 50px;
                 display: flex;
@@ -198,7 +201,7 @@ div.profile-pic {
                 align-items: center;
                 left: 0;
                 right: 0;
-                bottom: 0;
+                bottom: 25px;
                 border-radius: 0 0 5px 5px;
 
                 @keyframes background-wave {
@@ -215,17 +218,18 @@ div.profile-pic {
 
                 &:hover, &:focus {
                     cursor: pointer;
-                    animation: background-wave 4s infinite;
+                    // animation: background-wave 4s infinite;
                 }
 
                 svg, span {
-                    color: #fff;
+                    color: $icon-black;
                 }
 
                 span {
                     font-weight: $bold;
                     font-size: 16px;
                     margin-top: 1px;
+                    color: $text-black;
                 }
 
                 svg {

@@ -1,0 +1,51 @@
+<mat-card class="list-item-card" *ngIf="!detailOpen && specialist">
+  <section class="profile-photo" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
+  </section>
+  <section class="middle">
+    <div class="title">
+        <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
+        <div class="dividing-circle"></div>
+        <p class="location">{{specialist.city}}, {{specialist.country}} // {{specialist.timeZone}}</p>
+    </div>
+
+    <div class="quick-info">
+      <p class="speciality-title">{{specialist.position}} - {{specialist.speciality}}</p>
+      <p class="description">{{specialist.description}}</p>
+      <div class="btn-container">
+        <button class="btn-icon-right__animated" (click)="linkToChild(specialist)">
+          More info
+        </button>
+        <i class="fas fa-long-arrow-alt-right"></i>
+      </div>
+      <ul class="contact-menu">
+        <li>
+          <i class="far fa-envelope"></i>
+          <a class="text-link" href="mailto:{{specialist.email}}">
+            Email
+          </a>
+        </li>
+        <li>
+          <i class="fas fa-mobile-alt"></i>
+          <a class="text-link" href="tel:{{specialist.phoneNumber}}">
+            Call
+          </a>
+        </li>
+        <li>
+          <i class="far fa-comment-alt"></i>
+          <a class="text-link" href="tel:{{specialist.phoneNumber}}">
+            Chat
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="actions">
+    <button type="button" (click)="deleteSpecialistDialog(specialist)">
+      <i class="fas fa-trash"></i>
+    </button>
+    <button (click)="editSpecialist(specialist)">
+      <i class="fas fa-edit"></i>
+    </button>
+  </section>
+
+</mat-card>

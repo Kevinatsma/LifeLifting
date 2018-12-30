@@ -11,3 +11,16 @@
         max-height: 500px;
     }
 }
+
+
+@keyframes right-left-right {
+    0% {
+        margin-left: 0;
+    }
+    50% {
+        margin-left: 10px;
+    }
+    100% {
+        margin-left: 0;
+    }
+}

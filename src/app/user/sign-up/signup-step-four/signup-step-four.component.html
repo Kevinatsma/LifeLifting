@@ -30,7 +30,7 @@
         <i class="fas fa-chevron-left small"></i>
         <span>Previous step</span>
       </button>
-      <button class="btn-icon-right" (click)="updateUser(user)" [class.btn-disabled]="chosenSpecialist === null" [disabled]="chosenSpeciaist === null">
+      <button class="btn-icon-right" (click)="updateUser(user)" [class.btn-disabled]="chosenSpecialist === null" [disabled]="chosenSpecialist === null">
         <span>Next step</span>
         <i class="fas fa-chevron-right small"></i>
       </button>
@@ -46,7 +46,10 @@
         specialist later. That's allowed after one week of trial.
       </p>
       <div class="btn-area">
-        <button class="btn-icon-right" routerLink="../../dashboard">
+        <button class="btn-icon-right"
+         [class.btn-disabled]="!chosenSpecialist"
+         [disabled]="!chosenSpecialist"
+         routerLink="../../dashboard">
           <span>Continue process</span>
           <i class="fas fa-chevron-right small"></i>
         </button>

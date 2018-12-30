@@ -26,7 +26,7 @@
 div.column {
     width: 35%;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
     // flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
     box-sizing: border-box;
     box-shadow: $sidebar-shadow;
@@ -34,7 +34,8 @@ div.column {
 
 section.login-container{
     align-items: center;
-    height: 100%;
+    height: auto;
+    min-height: 100vh;
     width: auto;
     padding: 0.5em  0;
     background: $light-grey;
