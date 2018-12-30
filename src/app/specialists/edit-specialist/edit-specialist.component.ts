@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Specialist } from '../specialist.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { SpecialistService } from '../specialist.service';
 import { Observable } from 'rxjs';
 import { Timezone } from 'src/app/shared/data/models/timezone.model';
 import { DataService } from 'src/app/shared/data/data.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-specialist',
@@ -18,12 +19,14 @@ export class EditSpecialistComponent implements OnInit, OnDestroy {
   editSpecialistForm: FormGroup;
   timezones: Observable<Timezone[]>;
   selectedTimeZone = 'Hello there';
+  languages: FormArray;
 
   // Form
 
   constructor( private fb: FormBuilder,
                private specialistService: SpecialistService,
-               public dataService: DataService) {
+               public dataService: DataService,
+               public location: Location) {
                 this.selectedTimeZone = 'Hello there';
                }
 
@@ -41,13 +44,35 @@ export class EditSpecialistComponent implements OnInit, OnDestroy {
       description:  '' || this.specialist.description,
       email:  '' || this.specialist.email,
       phoneNumber:  '' || this.specialist.phoneNumber,
+      languages: this.fb.array([ this.createLanguage() ]) || this.specialist.languages,
     });
   }
 
-  // Get Edit State
+  // Getters
 
   get editShow(): boolean {
     return this.specialistService.editShow;
+  }
+
+  get languageForms() {
+    return this.editSpecialistForm.get('languages') as FormArray;
+  }
+
+  // Create a new Language
+  createLanguage(): FormGroup {
+    return this.fb.group({
+      languageValue: '',
+      languageLevel:  ''
+    });
+  }
+
+  addLanguage(): void {
+    this.languages = this.editSpecialistForm.get('languages') as FormArray;
+    this.languages.push(this.createLanguage());
+  }
+
+  deleteLanguage(i) {
+    (this.editSpecialistForm.get('languages') as FormArray).removeAt(i);
   }
 
   toggleEdit() {
@@ -74,5 +99,11 @@ export class EditSpecialistComponent implements OnInit, OnDestroy {
     this.specialistService.updateSpecialist(this.specialist.specialistID, data);
     this.toggleEdit();
   }
+
+    // Back Button
+
+    goBack() {
+      return this.location.back();
+    }
 
 }

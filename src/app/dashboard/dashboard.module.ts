@@ -20,6 +20,7 @@ import { ClientMenuComponent } from './dashboard-menu/client-menu/client-menu.co
 import { SpecialistDetailComponent } from '../specialists/specialist-detail/specialist-detail.component';
 import { MaterialModule } from '../shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserDetailComponent } from '../user/users/user-detail/user-detail.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: DashboardHomeComponent, data: {state: 'home'}},
       {path: 'users', component: UsersComponent, data: {state: 'users'}},
+      {path: 'users/:id', component: UserDetailComponent, data: {state: 'users'}},
       {path: 'specialists', component: SpecialistsComponent, data: {state: 'specialist'}},
       {path: 'specialists/:id', component: SpecialistDetailComponent},
       {path: 'clients', component: ClientsComponent, data: {state: 'clients'}},

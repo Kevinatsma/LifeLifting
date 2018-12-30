@@ -1,9 +1,8 @@
 <main class="confirm-dialog-container">
 <ng-container *ngIf="data.uid">
-
   <h1>Delete User?</h1>
   <p class="card-text">
-    Are you sure that you want to delete {{data.name}}?
+    Are you sure that you want to delete {{data.displayName}}?
   </p>
 </ng-container>
 <ng-container *ngIf="data.specialistID">

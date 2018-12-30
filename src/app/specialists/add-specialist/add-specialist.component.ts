@@ -94,7 +94,7 @@ export class AddSpecialistComponent implements OnInit {
     return this.addSpecialistForm.get('reviews') as FormArray;
   }
 
-    // Create a new Package benefit Mat Card
+    // Create a new Language
     createLanguage(): FormGroup {
       return this.fb.group({
         languageValue: '',
@@ -111,7 +111,7 @@ export class AddSpecialistComponent implements OnInit {
       (this.addSpecialistForm.get('languages') as FormArray).removeAt(i);
     }
 
-    // Create a new Package benefit Mat Card
+    // Create a new review
     createReview(): FormGroup {
       return this.fb.group({
         reviewerName: '',

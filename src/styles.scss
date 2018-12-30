@@ -580,3 +580,24 @@ form {
     }
 
 }
+
+
+// Misc
+
+.no-photo {
+    @extend %flex-center;
+    background: darken($light-grey, 5%);
+    font-size: 18px;
+    font-family: $main-font;
+    text-align: center;
+    font-weight: $semi-bold;
+
+    p {
+        color: $primary-color;
+    }
+
+    svg {
+        font-size: 42px;
+        margin-bottom: 1vh;
+    }
+}

@@ -8,9 +8,12 @@ import { RouterModule } from '@angular/router';
 import { SignUpModule } from './sign-up/sign-up.module';
 
 // Components
-import { UserListComponent } from './user-list/user-list.component';
-import { UserListItemComponent } from './user-list-item/user-list-item.component';
+
 import { UsersComponent } from './users/users.component';
+import { UserListComponent } from './users/user-list/user-list.component';
+import { UserListItemComponent } from './users/user-list-item/user-list-item.component';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
 
 @NgModule({
   imports: [
@@ -21,12 +24,19 @@ import { UsersComponent } from './users/users.component';
     SignUpModule
   ],
   exports: [
-    SignUpModule
+    SignUpModule,
+    UserListComponent,
+    UserListItemComponent,
+    UsersComponent,
+    UserDetailComponent,
+    EditUserComponent
   ],
   declarations: [
     UserListComponent,
     UserListItemComponent,
-    UsersComponent
+    UsersComponent,
+    UserDetailComponent,
+    EditUserComponent
   ],
   providers: [
     AuthService,
