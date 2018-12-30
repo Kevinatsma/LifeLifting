@@ -6,7 +6,6 @@ import { FileUploadService } from './file-upload/file-upload.service';
 import { FileSizePipe } from './pipes/file-size.pipe';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { DialogsModule } from './dialogs/dialogs.module';
-import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   imports: [
@@ -18,13 +17,11 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
   declarations: [
     FileSizePipe,
     DropZoneDirective,
-    FileUploadComponent
   ],
   exports: [
     MaterialModule,
     DataModule,
-    DialogsModule,
-    FileUploadComponent
+    DialogsModule
   ],
   providers: [
     FileUploadService

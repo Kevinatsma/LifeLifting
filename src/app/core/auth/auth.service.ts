@@ -105,6 +105,31 @@ export class AuthService {
     return this.authenticated ? this.authState.uid : null;
   }
 
+  addUser(email: string, password: string, formData: any) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    .then((credential) => {
+      const data = {
+        uid: credential.user.uid,
+        displayName: formData.displayName,
+        photoURL: formData.photoURL,
+        roles: {
+          member: true,
+          specialist: false,
+          admin: false
+        },
+        signupCompleted: false
+      };
+      this.setUserData(data, credential.user);
+    })
+    .then(() => console.log('Welcome, your account has been created!'))
+    .then(user => {
+      this.afAuth.auth.currentUser.sendEmailVerification()
+        .then(() => console.log('We sent you an email verification'))
+        .catch(error => console.log(error.message));
+        return user;
+    });
+  }
+
   emailSignIn(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(() => console.log('You have successfully signed in'))

@@ -10,7 +10,6 @@ import { Timezone } from 'src/app/shared/data/models/timezone.model';
 import { Country } from '../../data/models/country.model';
 import languages from './../../data/JSON/languages.json';
 import { Language } from '../../data/models/language.model';
-import { unescapeIdentifier } from '@angular/compiler';
 
 @Component({
   selector: 'app-add-specialist-dialog',
