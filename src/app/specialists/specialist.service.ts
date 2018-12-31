@@ -34,9 +34,10 @@ export class SpecialistService {
     this.editStateChange.next(!this.editShow);
   }
 
-  getSpecialistData(id) {
-    this.specialistDoc = this.afs.doc<Specialist>(`specialists/${id}`);
+  getSpecialistData(sID) {
+    this.specialistDoc = this.afs.doc<Specialist>(`specialists/${sID}`);
     this.specialist = this.specialistDoc.valueChanges();
+    console.log(this.specialist);
     return this.specialist;
   }
 

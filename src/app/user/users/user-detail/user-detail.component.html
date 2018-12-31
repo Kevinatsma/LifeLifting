@@ -12,7 +12,7 @@
           <i class="fas fa-comment-alt"></i>
         </button>
 
-        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && !user.signUpCompleted">
           <i class="fas fa-edit"></i>
         </button>
 
@@ -29,14 +29,19 @@
         </div>
         <div class="quick-info">
           <p class="timezone">
-            <ng-container *ngIf="user.roles.admin">Admin, </ng-container>
-            <ng-container *ngIf="user.roles.specialist">Specialist, </ng-container>
-            <ng-container *ngIf="user.roles.member">Client</ng-container>
+              <ng-container *ngIf="user.roles.admin">
+                Admin<ng-container *ngIf="user.roles.specialist || user.roles.member">, </ng-container>
+              </ng-container>
+              <ng-container *ngIf="user.roles.specialist">Specialist<ng-container *ngIf="user.roles.member">, </ng-container>
+              </ng-container>
+              <ng-container *ngIf="user.roles.member">Client</ng-container>
           </p>
           <div class="top">
           <h2>{{user.displayName}}</h2>
           <h5 *ngIf="user.basicData">{{user.basicData.country}}</h5>
           <p>User ID: {{user.uid}}</p>
+          <p *ngIf="user.basicData">Gender: {{user.basicData.gender}}</p>
+          <p *ngIf="specialist">Specialist: {{specialist.firstName}} {{specialist.lastName}}</p>
           </div>
           <div class="bottom">
             <p class="tab">
@@ -93,7 +98,7 @@
           </ul>
         </div>
         <div class="languages">
-          <h5 class="purple">Languages</h5>
+          <h5 class="purple">Practical info</h5>
           <ul>
             <li>Heard from us via: <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong></li>
             <li>Sign Up Completed?

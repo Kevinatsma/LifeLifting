@@ -16,6 +16,13 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 
 @NgModule({
+  declarations: [
+    UserListComponent,
+    UserListItemComponent,
+    UsersComponent,
+    UserDetailComponent,
+    EditUserComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -25,13 +32,6 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
   ],
   exports: [
     SignUpModule,
-    UserListComponent,
-    UserListItemComponent,
-    UsersComponent,
-    UserDetailComponent,
-    EditUserComponent
-  ],
-  declarations: [
     UserListComponent,
     UserListItemComponent,
     UsersComponent,

@@ -44,6 +44,7 @@ export class UserListItemComponent implements OnInit {
   editUser(user) {
     const url = `dashboard/users/${user.uid}`;
     this.router.navigate([url]);
+    return this.userService.editShow = true;
   }
 
 

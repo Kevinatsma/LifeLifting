@@ -5,6 +5,8 @@ import { User } from './../../user.model';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from './../../user.service';
 import { Observable } from 'rxjs';
+import { Specialist } from 'src/app/specialists/specialist.model';
+import { SpecialistService } from 'src/app/specialists/specialist.service';
 
 
 @Component({
@@ -14,6 +16,7 @@ import { Observable } from 'rxjs';
 })
 export class UserDetailComponent implements OnInit {
   user: User;
+  specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
 
@@ -23,6 +26,7 @@ export class UserDetailComponent implements OnInit {
   constructor( private cdr: ChangeDetectorRef,
                public route: ActivatedRoute,
                public userService: UserService,
+               public specialistService: SpecialistService,
                public location: Location) {
     this.aboutExtended = false;
   }
@@ -33,7 +37,16 @@ export class UserDetailComponent implements OnInit {
 
   getUser() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.userService.getUserDataByID(id).subscribe(user => (this.user = user));
+    this.userService.getUserDataByID(id).subscribe(user => {
+      this.user = user;
+      const sID  = this.user.specialist;
+      console.log(sID);
+      this.getSpecialist(sID);
+    });
+  }
+
+  getSpecialist(sID: string) {
+    this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
   }
 
   aboutExtendedOpen() {
