@@ -23,6 +23,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   editUserForm: FormGroup;
   specialists: Observable<Specialist[]>;
   selectedSpecialist = '';
+  downloadURL: string | null;
 
   // Gender options
   genders = [
@@ -72,6 +73,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       packageChoice: this.editUserForm.get('packageChoice').value || this.user.packageChoice,
       email:  this.editUserForm.get('email').value || this.user.email,
       specialist: this.selectedSpecialist || this.user.specialist,
+      photoURL: this.downloadURL,
       basicData: {
         gender: this.selectedGender || this.user.basicData.gender,
         country: this.editUserForm.get('country').value || this.user.basicData.country,
@@ -82,6 +84,10 @@ export class EditUserComponent implements OnInit, OnDestroy {
     };
     this.userService.updateUser(this.user.uid, data);
     this.toggleEdit();
+  }
+
+  receiveDownloadURL($event) {
+    return this.downloadURL = $event;
   }
 
     // Back Button

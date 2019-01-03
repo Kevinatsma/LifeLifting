@@ -24,11 +24,10 @@
 
         </div>
         <section class="specialist-header">
-            <div class="profile-picture" *ngIf="user.photoURL" [style.backgroundImage]="'url('+ user.photoURL +')'">
-
-            </div>
-            <div class="profile-picture no-photo" *ngIf="!user.photoURL">
-              No Photo Yet
+            <div class="profile-picture no-photo-chip" [style.backgroundImage]="'url('+ user.photoURL +')'">
+              <div class="image-uploader">
+                <app-file-upload (imageEvent)="receiveDownloadURL($event)"></app-file-upload>
+              </div>
             </div>
           <div class="quick-info">
             
