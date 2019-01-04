@@ -21,8 +21,14 @@
 
     <ng-container *ngIf="!editShow">
       <section class="specialist-header">
-        <div class="profile-picture" *ngIf="user.photoURL" [style.backgroundImage]="'url('+ user.photoURL +')'">
-
+        <div class="profile-picture">
+          <div class="image-uploader" *ngIf="!downloadURL" [style.backgroundImage]="'url('+ user.photoURL +')'">
+            <span *ngIf="!user.photoURL">No Photo Yet</span>
+            <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
+          </div>
+          <div class="image-uploader" *ngIf="downloadURL" [style.backgroundImage]="'url('+ downloadURL +')'">
+            <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
+          </div>
         </div>
         <div class="profile-picture no-photo" *ngIf="!user.photoURL">
           No Photo Yet

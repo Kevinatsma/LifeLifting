@@ -24,15 +24,15 @@
 
         </div>
         <section class="specialist-header">
-            <div class="profile-picture">
-              <div class="image-uploader" *ngIf="!downloadURL" [style.backgroundImage]="'url('+ user.photoURL +')'">
-                <span *ngIf="!user.photoURL">No Photo Yet</span>
-                <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
-              </div>
-              <div class="image-uploader" *ngIf="downloadURL" [style.backgroundImage]="'url('+ downloadURL +')'">
-                <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
-              </div>
+          <div class="profile-picture">
+            <div class="image-uploader" *ngIf="!downloadURL" [style.backgroundImage]="'url('+ user.photoURL +')'">
+              <span *ngIf="!user.photoURL">No Photo Yet</span>
+              <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
             </div>
+            <div class="image-uploader" *ngIf="downloadURL" [style.backgroundImage]="'url('+ downloadURL +')'">
+              <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
+            </div>
+          </div>
           <div class="quick-info">
             
             <!-- <p class="timezone">
