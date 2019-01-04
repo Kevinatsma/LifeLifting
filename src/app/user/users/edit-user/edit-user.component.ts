@@ -12,7 +12,7 @@ import { Specialist } from 'src/app/specialists/specialist.model';
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.scss', './../user-detail/user-detail.component.scss']
+  styleUrls: ['./../user-detail/user-detail.component.scss', './edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit, OnDestroy {
   @Input() user: User;
@@ -44,8 +44,8 @@ export class EditUserComponent implements OnInit, OnDestroy {
       displayName: '' || this.user.displayName,
       country: '' || this.user.basicData.country,
       packageChoice: '' || this.user.packageChoice,
-      specialist: this.selectedSpecialist || this.user.specialist,
-      gender: this.selectedGender || this.user.basicData.gender,
+      specialist: this.selectedSpecialist,
+      gender: this.selectedGender,
       age: '' || this.user.basicData.age,
       mainGoal: '' || this.user.basicData.mainGoal,
       phoneNumber: '' || this.user.basicData.phoneNumber,
@@ -73,7 +73,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       packageChoice: this.editUserForm.get('packageChoice').value || this.user.packageChoice,
       email:  this.editUserForm.get('email').value || this.user.email,
       specialist: this.selectedSpecialist || this.user.specialist,
-      photoURL: this.downloadURL,
+      photoURL: this.downloadURL || this.user.photoURL,
       basicData: {
         gender: this.selectedGender || this.user.basicData.gender,
         country: this.editUserForm.get('country').value || this.user.basicData.country,

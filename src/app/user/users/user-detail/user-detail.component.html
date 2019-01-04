@@ -40,8 +40,18 @@
           <h2>{{user.displayName}}</h2>
           <h5 *ngIf="user.basicData">{{user.basicData.country}}</h5>
           <p>User ID: {{user.uid}}</p>
-          <p *ngIf="user.basicData">Gender: {{user.basicData.gender}}</p>
-          <p *ngIf="specialist">Specialist: {{specialist.firstName}} {{specialist.lastName}}</p>
+          <div class="icon-fact-container">
+            <div class="fact" *ngIf="user.basicData">
+              <i class="fas fa-transgender"></i>
+              <span>{{user.basicData.gender}}</span>
+            </div>
+            <div class="fact" *ngIf="specialist">
+              <i class="fas fa-user-ninja"></i>
+              <span>{{specialist.firstName}} {{specialist.lastName}}</span>
+            </div>
+          </div>
+          
+
           </div>
           <div class="bottom">
             <p class="tab">

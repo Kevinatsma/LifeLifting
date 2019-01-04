@@ -24,9 +24,13 @@
 
         </div>
         <section class="specialist-header">
-            <div class="profile-picture no-photo-chip" [style.backgroundImage]="'url('+ user.photoURL +')'">
-              <div class="image-uploader">
-                <app-file-upload (imageEvent)="receiveDownloadURL($event)"></app-file-upload>
+            <div class="profile-picture">
+              <div class="image-uploader" *ngIf="!downloadURL" [style.backgroundImage]="'url('+ user.photoURL +')'">
+                <span *ngIf="!user.photoURL">No Photo Yet</span>
+                <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
+              </div>
+              <div class="image-uploader" *ngIf="downloadURL" [style.backgroundImage]="'url('+ downloadURL +')'">
+                <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
               </div>
             </div>
           <div class="quick-info">
@@ -45,23 +49,26 @@
             <p class="speciality">
               User ID: {{user.uid}}
             </p>
-            <p *ngIf="user.basicData">
-              Gender:
-              <mat-select matInput placeholder="Female, male, other" [(value)]="selectedGender" formControlName="gender" autocomplete="off" required>
-                <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
-              </mat-select>
-            </p>
-            <p *ngIf="specialists">
-              Specialist:
-              <mat-select matInput placeholder="Which specialist?" [(value)]="selectedSpecialist" 
-              formControlName="specialist" autocomplete="off" required name="specialist"
-              >
-                <mat-option *ngFor="let specialist of specialists | async" 
-                [value]="specialist.specialistID"
-                > {{specialist.firstName}} {{specialist.lastName}}</mat-option>
-              </mat-select>
-            </p>
+            <div class="icon-fact-container">
+              <div class="fact" *ngIf="user.basicData">
+                <i class="fas fa-transgender"></i>
+                <mat-select matInput placeholder="Gender" [(value)]="selectedGender" formControlName="gender" autocomplete="off" required>
+                  <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
+                </mat-select>
+              </div>
+              <div class="fact" *ngIf="specialists">
+                <i class="fas fa-user-ninja"></i>
+                <mat-select matInput placeholder="Specialist" [(value)]="selectedSpecialist" 
+                formControlName="specialist" autocomplete="off" required name="specialist"
+                >
+                  <mat-option *ngFor="let specialist of specialists | async" 
+                  [value]="specialist.specialistID"
+                  > {{specialist.firstName}} {{specialist.lastName}}</mat-option>
+                </mat-select>
+              </div>
             </div>
+          </div>
+
             <div class="bottom">
               <p class="tab">
                 <input class="stat" type="number" name="packageChoice" maxlength="2" formControlName="packageChoice"

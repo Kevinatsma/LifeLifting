@@ -1,0 +1,24 @@
+<mat-card class="dropzone upload-image-card form-card" 
+  appDropZone
+  (hovered)="toggleHover($event)"
+  (dropped)="startUpload($event)"
+  [class.hovering]="isHovering"
+>
+  <div class="file">
+    <label class="file-label">
+      <input type="file" (change)="startUpload($event.target.files)">
+
+      <div class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-edit"></i>
+        </span>
+        <span class="file-label text-link" *ngIf="!downloadURL">
+          Edit photo
+        </span>
+        <span class="file-label text-link" *ngIf="downloadURL">
+          choose another
+        </span>
+      </div>
+    </label>
+  </div>
+</mat-card>
