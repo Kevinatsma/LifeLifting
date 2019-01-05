@@ -74,8 +74,8 @@
           <section class="btn-area">
             <button class="dialog-button" matStepperPrevious>Back</button>
             <button class="dialog-button" (click)="userSignup()"
-            [disabled]="!personalForm.valid"
-            [class.disabled]="!personalForm.valid"
+            [disabled]="!personalForm.valid || !downloadURL"
+            [class.disabled]="!personalForm.valid || !downloadURL"
             mat-dialog-close
            >
              Done

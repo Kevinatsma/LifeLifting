@@ -15,6 +15,23 @@ mat-card.list-item-card {
         transform: scale(1.02);
     }
 
+    .type-chip {
+        @extend %flex-center;
+        position: absolute;
+        left: -2em;
+        top: -2em;
+        width: 4em;
+        height: 4em;
+        box-shadow: $card-shadow;
+        background: $icon-black;
+        border-radius: 50%;
+
+        svg {
+            font-size: 22px;
+            color: $light-grey;
+        }
+    }
+
     section {
         &.profile-photo {
             width: 25%;
@@ -54,6 +71,7 @@ mat-card.list-item-card {
                     font-size: 13px;
                     font-weight: $semi-bold;
                     margin: 5px 0 0 0;
+                    text-transform: capitalize;
                 }
 
             }
@@ -73,8 +91,10 @@ mat-card.list-item-card {
                     &.description {
                         height: 80px;
                         overflow: hidden;
-                        // white-space: normal;
-                        // text-overflow: ellipsis;
+                        
+                        span {
+                            font-weight: $bold;
+                        }
                     }
                 }
 

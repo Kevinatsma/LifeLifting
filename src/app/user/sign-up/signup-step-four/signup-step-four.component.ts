@@ -33,7 +33,9 @@ export class SignupStepFourComponent implements OnInit {
   updateUser(user) {
     const data = {
       specialist: this.chosenSpecialist,
-      signupCompleted: true
+      signupCompleted: true,
+      isClient: true,
+      isSpecialist: false
     };
     this.auth.setUserData(data, user)
     .then(() => {

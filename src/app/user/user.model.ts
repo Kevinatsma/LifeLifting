@@ -19,6 +19,8 @@ export class User {
     cID?: string;
     displayName: string;
     email: string;
+    isClient: boolean;
+    isSpecialist: boolean;
     photoURL?: string;
     roles?: Roles;
     basicData?: BasicData;

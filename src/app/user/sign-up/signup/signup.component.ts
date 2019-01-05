@@ -63,7 +63,7 @@ export class SignupComponent implements OnInit {
   }
 
   googleLogin() {
-    this.auth.googleLogin()
+    this.auth.googleSignUp()
     .then(() => {
       if (this.auth.user) {
         this.router.navigate(['signup/step-one']);

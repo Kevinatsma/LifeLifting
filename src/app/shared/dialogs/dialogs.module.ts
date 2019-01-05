@@ -31,6 +31,7 @@ import { AddClientDialogComponent } from './add-client-dialog/add-client-dialog.
   ],
   entryComponents: [
     ConfirmDialogComponent,
+    AddUserDialogComponent,
     AddClientDialogComponent
   ],
   providers: [
