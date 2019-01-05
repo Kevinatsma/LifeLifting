@@ -82,6 +82,8 @@ export class SpecialistService {
         specialist: true,
         admin: false
       },
+      isSpecialist: true,
+      isClient: false,
       signupCompleted: false,
       packageChoice: 'NaN',
       appointment: 'NaN',

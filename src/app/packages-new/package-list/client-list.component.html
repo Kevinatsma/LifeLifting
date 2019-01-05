@@ -1,8 +1,0 @@
-<main class="specialist-list-wrapper">
-  <section class="specialist-filters">
-
-  </section>
-  <section class="client-list" *ngIf="clients">
-    <app-client-list-item *ngFor="let client of clients | async" [client]="client"></app-client-list-item>
-  </section>
-</main>
