@@ -6,14 +6,14 @@
   *ngIf="!downloadURL"
 >
   <i class="far fa-image"></i>
-  <h3 class="photo-header"> Specialist Selfie </h3>
-  <h5> Drag and drop an image </h5>
+  <h3 class="photo-header"> Take a selfie! </h3>
+  <h5> Or drag and drop an image </h5>
 
   <div class="file">
     <label class="file-label">
       <input type="file" (change)="startUpload($event.target.files)">
 
-      <span class="file-cta">
+      <div class="file-cta">
         <span class="file-icon">
           <i class="fas fa-upload"></i>
         </span>
@@ -23,7 +23,7 @@
         <span class="file-label text-link" *ngIf="downloadURL">
           choose another
         </span>
-      </span>
+      </div>
     </label>
   </div>
 

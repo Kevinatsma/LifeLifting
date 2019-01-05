@@ -81,6 +81,39 @@ section.specialist-header {
 
         .top {
             flex-flow: column wrap;
+
+            div.icon-fact-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                margin: 1rem 0 1.5rem;
+
+                .fact {
+                    width: 40%;
+                    padding-bottom: 1vh;
+
+                    svg {
+                        width: 10%;
+                        font-size: 20px;
+                        padding-right: 8%;
+                        margin-right: 8%;
+                        color: $grey;
+                        border-right: 1px solid $border-color;
+                    }
+
+                    span {
+                        margin: 0;
+                        padding: 0;
+                        font-family: $main-font;
+                        font-size: 18px;
+                        letter-spacing: 1px;
+                        font-weight: $semi-bold;
+                        text-transform: capitalize;
+                        color: $grey;
+                    }
+                }
+            }
         }
 
         .bottom {

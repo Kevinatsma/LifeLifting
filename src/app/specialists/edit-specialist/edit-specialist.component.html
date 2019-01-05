@@ -21,8 +21,14 @@
 
       <form [formGroup]="editSpecialistForm" *ngIf="editShow">
         <section class="specialist-header">
-          <div class="profile-picture" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
-  
+          <div class="profile-picture">
+            <div class="image-uploader" *ngIf="!downloadURL" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
+              <span *ngIf="!specialist.photoURL">No Photo Yet</span>
+              <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
+            </div>
+            <div class="image-uploader" *ngIf="downloadURL" [style.backgroundImage]="'url('+ downloadURL +')'">
+              <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
+            </div>
           </div>
           <div class="quick-info">
             
@@ -47,6 +53,18 @@
               Speciality:
               <input class="text-field" name="speciality" formControlName="speciality">
             </p>
+            <div class="icon-fact-container">
+              <div class="fact">
+                <i class="fas fa-globe-americas"></i> 
+                <!-- <span>{{specialist.country}}</span> -->
+                <input class="text-field" name="country" formControlName="country">
+              </div>
+              <div class="fact">
+                <i class="fas fa-city"></i>
+                <!-- <span>{{specialist.city}} </span> -->
+                <input class="text-field" name="city" formControlName="city">
+              </div>
+            </div>
             <!-- <p>Speciality: {{specialist.speciality}}</p> -->
             </div>
             <div class="bottom">

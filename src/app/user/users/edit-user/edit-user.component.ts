@@ -6,34 +6,50 @@ import { Observable } from 'rxjs';
 import { Timezone } from 'src/app/shared/data/models/timezone.model';
 import { DataService } from 'src/app/shared/data/data.service';
 import { Location } from '@angular/common';
+import { SpecialistService } from 'src/app/specialists/specialist.service';
+import { Specialist } from 'src/app/specialists/specialist.model';
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.scss', './../user-detail/user-detail.component.scss']
+  styleUrls: ['./../user-detail/user-detail.component.scss', './edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit, OnDestroy {
   @Input() user: User;
   aboutExtended = false;
   reviewsVisible = true;
-  editUserForm: FormGroup;
-  timezones: Observable<Timezone[]>;
-  selectedTimeZone = 'Hello there';
-  languages: FormArray;
 
   // Form
+  editUserForm: FormGroup;
+  specialists: Observable<Specialist[]>;
+  selectedSpecialist = '';
+  downloadURL: string | null;
+
+  // Gender options
+  genders = [
+    {value: 'female', viewValue: 'Female'},
+    {value: 'male', viewValue: 'Male'},
+    {value: 'other', viewValue: 'Other'}
+  ]; selectedGender = '';
 
   constructor( private fb: FormBuilder,
                private userService: UserService,
-               public dataService: DataService,
+               public specialistService: SpecialistService,
                public location: Location) {
-                this.selectedTimeZone = 'Hello there';
                }
 
   ngOnInit() {
-    this.timezones = this.dataService.getTimezones();
+    this.specialists = this.specialistService.getSpecialists();
     this.editUserForm = this.fb.group({
       displayName: '' || this.user.displayName,
+      country: '' || this.user.basicData.country,
+      packageChoice: '' || this.user.packageChoice,
+      specialist: this.selectedSpecialist,
+      gender: this.selectedGender,
+      age: '' || this.user.basicData.age,
+      mainGoal: '' || this.user.basicData.mainGoal,
+      phoneNumber: '' || this.user.basicData.phoneNumber,
+      email: '' || this.user.email,
     });
   }
 
@@ -43,51 +59,35 @@ export class EditUserComponent implements OnInit, OnDestroy {
     return this.userService.editShow;
   }
 
-  get languageForms() {
-    return this.editUserForm.get('languages') as FormArray;
-  }
-
-  // Create a new Language
-  createLanguage(): FormGroup {
-    return this.fb.group({
-      languageValue: '',
-      languageLevel:  ''
-    });
-  }
-
-  addLanguage(): void {
-    this.languages = this.editUserForm.get('languages') as FormArray;
-    this.languages.push(this.createLanguage());
-  }
-
-  deleteLanguage(i) {
-    (this.editUserForm.get('languages') as FormArray).removeAt(i);
-  }
-
   toggleEdit() {
-      alert('TODO');
-      // this.userService.toggleEdit();
+      this.userService.toggleEdit();
   }
 
   ngOnDestroy() {
     this.userService.editShow = false;
   }
 
-  editSpecialist() {
+  editUser() {
     const data = {
-      // firstName: this.editUserForm.get('firstName').value || this.user.firstName,
-      // lastName: this.editUserForm.get('lastName').value || this.specialist.lastName,
-      // position: this.editUserForm.get('position').value || this.specialist.position,
-      // speciality: this.editUserForm.get('speciality').value || this.specialist.speciality,
-      // timeZone: this.editUserForm.get('timeZone').value || this.specialist.timeZone,
-      // patientsTotal: this.editUserForm.get('patientsTotal').value || this.specialist.patientsTotal,
-      // yearsOfExperience: this.editUserForm.get('yearsOfExperience').value || this.specialist.yearsOfExperience,
-      // description:  this.editUserForm.get('description').value || this.specialist.description,
-      // email:  this.editUserForm.get('email').value || this.specialist.email,
-      // phoneNumber:  this.editUserForm.get('phoneNumber').value || this.specialist.phoneNumber,
+      displayName: this.editUserForm.get('displayName').value || this.user.displayName,
+      packageChoice: this.editUserForm.get('packageChoice').value || this.user.packageChoice,
+      email:  this.editUserForm.get('email').value || this.user.email,
+      specialist: this.selectedSpecialist || this.user.specialist,
+      photoURL: this.downloadURL || this.user.photoURL,
+      basicData: {
+        gender: this.selectedGender || this.user.basicData.gender,
+        country: this.editUserForm.get('country').value || this.user.basicData.country,
+        age: this.editUserForm.get('age').value || this.user.basicData.age,
+        mainGoal: this.editUserForm.get('mainGoal').value || this.user.basicData.mainGoal,
+        phoneNumber:  this.editUserForm.get('phoneNumber').value || this.user.basicData.phoneNumber,
+      }
     };
     this.userService.updateUser(this.user.uid, data);
     this.toggleEdit();
+  }
+
+  receiveDownloadURL($event) {
+    return this.downloadURL = $event;
   }
 
     // Back Button

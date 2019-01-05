@@ -21,6 +21,9 @@ export class UserService {
                private auth: AuthService) {
     this.userCol = this.afs.collection(`users`);
     this.users = this.getUsers();
+    this.editStateChange.subscribe((value) => {
+      this.editShow = value;
+    });
   }
 
 

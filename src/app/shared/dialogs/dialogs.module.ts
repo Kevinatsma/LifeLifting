@@ -6,11 +6,13 @@ import { MatDialogModule } from '@angular/material';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
 import { DataService } from './../data/data.service';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
     ConfirmDialogComponent,
     AddUserDialogComponent,
+    FileUploadComponent
   ],
   imports: [
     FormsModule,
@@ -21,7 +23,8 @@ import { DataService } from './../data/data.service';
   ],
   exports: [
     ConfirmDialogComponent,
-    AddUserDialogComponent
+    AddUserDialogComponent,
+    FileUploadComponent
   ],
   entryComponents: [
     ConfirmDialogComponent,

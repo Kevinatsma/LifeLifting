@@ -369,6 +369,10 @@ p {
         color: $grey;
         font-weight: semi-bold;
     }
+
+    &.half-width {
+        width: 49%;
+    }
 }
 
 //////////////////
@@ -591,7 +595,6 @@ form {
     font-family: $main-font;
     text-align: center;
     font-weight: $semi-bold;
-
     p {
         color: $primary-color;
     }
