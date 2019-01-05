@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { SpecialistService } from './../../../specialists/specialist.service';
+import { SpecialistService } from '../../../specialists/specialist.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -8,17 +8,17 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { DataService } from 'src/app/shared/data/data.service';
 import { Timezone } from 'src/app/shared/data/models/timezone.model';
 import { Country } from '../../data/models/country.model';
-import languages from './../../data/JSON/languages.json';
+import languages from '../../data/JSON/languages.json';
 import { Language } from '../../data/models/language.model';
 import { unescapeIdentifier } from '@angular/compiler';
 import { UserService } from 'src/app/user/user.service';
 
 @Component({
-  selector: 'app-add-user-dialog',
-  templateUrl: './add-user-dialog.component.html',
-  styleUrls: ['./add-user-dialog.component.scss']
+  selector: 'app-add-client-dialog',
+  templateUrl: './add-client-dialog.component.html',
+  styleUrls: ['./add-client-dialog.component.scss']
 })
-export class AddUserDialogComponent implements OnInit {
+export class AddClientDialogComponent implements OnInit {
   // FormGroups
   signUpForm: FormGroup;
   personalForm: FormGroup;

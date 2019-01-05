@@ -5,6 +5,12 @@
     Are you sure that you want to delete {{data.displayName}}?
   </p>
 </ng-container>
+<ng-container *ngIf="data.clientID">
+  <h1>Delete Client?</h1>
+  <p class="card-text">
+    Are you sure that you want to delete {{data.clientName}}?
+  </p>
+</ng-container>
 <ng-container *ngIf="data.specialistID">
   <h1>Delete Specialist?</h1>
   <p class="card-text">

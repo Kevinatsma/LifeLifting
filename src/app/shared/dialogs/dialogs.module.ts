@@ -7,11 +7,13 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
 import { DataService } from './../data/data.service';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
+import { AddClientDialogComponent } from './add-client-dialog/add-client-dialog.component';
 
 @NgModule({
   declarations: [
     ConfirmDialogComponent,
     AddUserDialogComponent,
+    AddClientDialogComponent,
     FileUploadComponent
   ],
   imports: [
@@ -24,11 +26,13 @@ import { FileUploadComponent } from '../file-upload/file-upload.component';
   exports: [
     ConfirmDialogComponent,
     AddUserDialogComponent,
+    AddClientDialogComponent,
     FileUploadComponent
   ],
   entryComponents: [
     ConfirmDialogComponent,
-    AddUserDialogComponent
+    AddUserDialogComponent,
+    AddClientDialogComponent
   ],
   providers: [
     DataService

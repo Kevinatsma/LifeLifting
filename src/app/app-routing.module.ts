@@ -14,7 +14,7 @@ import { SignupStepFourComponent } from './user/sign-up/signup-step-four/signup-
 import { SpecialistsComponent } from './specialists/specialists/specialists.component';
 import { DashboardHomeComponent } from './dashboard/dashboard-home/dashboard-home.component';
 import { UsersComponent } from './user/users/users.component';
-import { ClientsComponent } from './clients/clients/clients.component';
+import { ClientsComponent } from './clients/clients.component';
 import { FinancesComponent } from './finances/finances/finances.component';
 
 const routes: Routes = [

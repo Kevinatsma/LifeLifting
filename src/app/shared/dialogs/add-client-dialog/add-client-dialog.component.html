@@ -9,7 +9,7 @@
           </p>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>The Email will be used as Username</mat-label>
-            <input type="text" matInput placeholder="What's your email?" formControlName="email" 
+            <input type="text" matInput placeholder="What's the client's email?" formControlName="email" 
                     [class.active]="!email.valid && email.touched" autofocus autocomplete="off" required
             >
             <mat-error class="input-error" *ngIf="!email.dirty">This is <strong>required</strong></mat-error>
@@ -17,7 +17,7 @@
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>Pick a Password </mat-label>
-            <input class="form-input" type="password" matInput placeholder="Setting it for your specialist is safer" [type]="hide ? 'password' : 'text'" 
+            <input class="form-input" type="password" matInput placeholder="Setting it for your client is safer" [type]="hide ? 'password' : 'text'" 
             formControlName="password" [class.active]="!password.valid && password.touched" 
             autocomplete="new-password" required
             >
@@ -42,7 +42,7 @@
       
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>First name</mat-label>
-            <input type="text" matInput formControlName="firstName" placeholder="Give the user a name" autofocus="none">
+            <input type="text" matInput formControlName="firstName" placeholder="Give the client a name" autofocus="none">
             <mat-error class="input-error" *ngIf="!personalForm['controls'].firstName.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
       

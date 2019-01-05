@@ -3,7 +3,7 @@
         <mat-step [stepControl]="signUpForm">
           <form [formGroup]="signUpForm">
           <ng-template matStepLabel>General Info</ng-template>
-          <h3>Account Settings</h3>
+          <h3>👩‍🦰 Account Settings</h3>
           <p class="card-text">
             These are the account details of the specialist. Write them down so you can send them to 'em!
           </p>
@@ -35,7 +35,7 @@
         <mat-step [stepControl]="personalForm">
           <form [formGroup]="personalForm">
           <ng-template matStepLabel>Personal</ng-template>
-          <h3>Important Info</h3>
+          <h3>📖 Important Info</h3>
           <p class="card-text">
             Basic data that we need from the specialist. Some of this data will be displayed at step 4 of the signup process.
             This can be important in the decision making process of the future client.
@@ -72,7 +72,7 @@
         <mat-step class="image-uploader-container">
           <ng-template matStepLabel>Picture</ng-template>
           <section class="photo-title">
-              <h3>Profile Image</h3>
+              <h3>📷  Profile Image</h3>
               <p class="card-text image-subtitle">
                 Please choose a clear picture that represents the present appearance of this person.
               </p>
@@ -90,7 +90,7 @@
         <mat-step [stepControl]="aboutForm">
           <form [formGroup]="aboutForm">
           <ng-template matStepLabel>About</ng-template>
-          <h3>About the specialist</h3>
+          <h3>👨🏻‍⚕️ About the specialist</h3>
           <p class="card-text">
             Please enter the most recent - working - phone number. Also, please write a small description that users can read :).
           </p>
@@ -118,7 +118,7 @@
         <mat-step [stepControl]="experienceForm">
           <form [formGroup]="experienceForm">
           <ng-template matStepLabel>Experience</ng-template>
-          <h3>Experience</h3>
+          <h3>🏆 Experience</h3>
           <p class="card-text">
             How experienced is this speciaist? Clients will obviously care about this, so decide this with the specialist himself.
           </p>
@@ -156,7 +156,7 @@
         <mat-step [stepControl]="locationForm">
             <form [formGroup]="locationForm">
           <ng-template matStepLabel>Location</ng-template>
-          <h3>Location</h3>
+          <h3>🗺️ Location</h3>
           <p class="card-text">
             Where is this specialist situated? Pick a GMT to know at what times to call or not to call.
           </p>
@@ -191,7 +191,7 @@
             <form [formGroup]="extrasForm">
           <!-- Add Specialist Language -->
           <ng-template matStepLabel>Extras</ng-template>
-          <h3>Languages & Reviews</h3>
+          <h3>🈳 Languages</h3>
           <p class="intro-text">Add languages to the specialist so we can hook them up with the right clients. This way we will also be able 
             to know in which markets we are active.
           </p>
@@ -233,7 +233,7 @@
           </button>
 
           <!-- Add Specialist Reviews -->
-          <h3>Reviews</h3>
+          <h3>⭐ Reviews</h3>
           <p class="intro-text">Add reviews so potential clients can see if he or she is fit for the job.</p>
           <div class="add-form-field-container review-container" formArrayName="reviews">
             <mat-card class="review-item"  *ngFor="let review of reviewForms.controls; let i=index" [formGroupName]="i">

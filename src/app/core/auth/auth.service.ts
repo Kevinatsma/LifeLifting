@@ -39,6 +39,11 @@ export class AuthService {
 
   // Auth Process
 
+  googleSignUp() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return this.oAuthSignUp(provider);
+  }
+
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     return this.oAuthLogin(provider);
@@ -49,10 +54,20 @@ export class AuthService {
     return this.oAuthLogin(provider);
   }
 
-  private oAuthLogin(provider) {
+  private oAuthSignUp(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
         this.updateUserData(credential.user);
+      })
+      .then(() => {
+        this.router.navigate(['dashboard']);
+      })
+      .catch(error => console.log(error.message));
+  }
+
+  private oAuthLogin(provider) {
+    return this.afAuth.auth.signInWithPopup(provider)
+      .then((credential) => {
       })
       .then(() => {
         this.router.navigate(['dashboard']);
@@ -73,6 +88,8 @@ export class AuthService {
         specialist: false,
         admin: false
       },
+      isClient: true,
+      isSpecialist: false,
       signupCompleted: false
     };
     return userRef.set(data, { merge: true });
@@ -117,7 +134,9 @@ export class AuthService {
           specialist: false,
           admin: false
         },
-        signupCompleted: false
+        isClient: formData.isClient,
+        isSpecialist: formData.isSpecialist,
+        signupCompleted: formData.isClient
       };
       this.setUserData(data, credential.user);
     })

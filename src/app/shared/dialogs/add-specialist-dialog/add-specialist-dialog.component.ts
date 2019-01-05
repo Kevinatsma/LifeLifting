@@ -177,6 +177,8 @@ export class AddSpecialistDialogComponent implements OnInit {
         photoURL: this.downloadURL,
         email: email,
         description: this.aboutForm.get('description').value,
+        isClient: false,
+        isSpecialist: true,
         phoneNumber: this.aboutForm.get('phoneNumber').value,
         position: this.experienceForm.get('position').value,
         timeZone: this.locationForm.get('timeZone').value,

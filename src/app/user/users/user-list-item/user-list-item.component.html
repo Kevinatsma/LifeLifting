@@ -1,4 +1,8 @@
 <mat-card class="list-item-card" *ngIf="!detailOpen && user">
+  <div class="type-chip">
+    <i class="fas fa-user-ninja" *ngIf="user.isSpecialist"></i>
+    <i class="fas fa-user-tie" *ngIf="user.isClient"></i>
+  </div>
   <section class="profile-photo" *ngIf="user.photoURL" [style.backgroundImage]="'url('+ user.photoURL +')'">
   </section>
   <section class="profile-photo no-photo" *ngIf="!user.photoURL">
@@ -24,6 +28,7 @@
     <div class="quick-info">
       <p class="speciality-title">User ID: {{user.uid}}</p>
       <p class="description" *ngIf="user.basicData">
+        <span>Goal</span><br>
         <ng-container *ngIf="user.basicData.mainGoal">{{user.basicData.mainGoal}}</ng-container>
         <ng-container *ngIf="!user.basicData.mainGoal">No goal yet...</ng-container>
       </p>
