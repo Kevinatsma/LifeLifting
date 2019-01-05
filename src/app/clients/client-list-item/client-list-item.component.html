@@ -24,6 +24,7 @@
     <div class="quick-info">
       <p class="speciality-title">client ID: {{client.uid}}</p>
       <p class="description" *ngIf="client.basicData">
+        <span>Goal</span><br>
         <ng-container *ngIf="client.basicData.mainGoal">{{client.basicData.mainGoal}}</ng-container>
         <ng-container *ngIf="!client.basicData.mainGoal">No goal yet...</ng-container>
       </p>

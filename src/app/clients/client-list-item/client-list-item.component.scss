@@ -74,8 +74,10 @@ mat-card.list-item-card {
                     &.description {
                         height: 80px;
                         overflow: hidden;
-                        // white-space: normal;
-                        // text-overflow: ellipsis;
+
+                        span {
+                            font-weight: $bold;
+                        }
                     }
                 }
 
