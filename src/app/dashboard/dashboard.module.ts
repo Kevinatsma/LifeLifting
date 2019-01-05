@@ -21,6 +21,7 @@ import { SpecialistDetailComponent } from '../specialists/specialist-detail/spec
 import { MaterialModule } from '../shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserDetailComponent } from '../user/users/user-detail/user-detail.component';
+import { MiscMenuComponent } from './dashboard-menu/misc-menu/misc-menu.component';
 
 const routes: Routes = [
   {
@@ -49,7 +50,8 @@ const routes: Routes = [
     DashboardTopNavComponent,
     AdminMenuComponent,
     SpecialistMenuComponent,
-    ClientMenuComponent
+    ClientMenuComponent,
+    MiscMenuComponent
   ],
   imports: [
     BrowserAnimationsModule,

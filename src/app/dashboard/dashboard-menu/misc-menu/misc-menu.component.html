@@ -1,7 +1,7 @@
 <section class="admin-menu">
     <div class="title-container">
       <h5 class="sidebar-title" [class.active]="!linksCollapsed">
-        Specialist
+        Misc
       </h5>
       <section class="btn-area">
         <button type="button" (click)="linksCollapsed = true" *ngIf="!linksCollapsed">
@@ -16,26 +16,14 @@
     <ul class="link-container" *ngIf="!linksCollapsed">
       <li>
         <a class="menu-link" routerLink="home" routerLinkActive="active">
-          <i class="fas fa-user-tie"></i>
-          Your Clients
+          <i class="fas fa-lemon"></i>
+          Food
         </a>
       </li>
       <li>
         <a class="menu-link" routerLink="home" routerLinkActive="active">
-          <i class="fas fa-weight"></i>
-          Your Mealplans
-        </a>
-      </li>
-      <li>
-        <a class="menu-link" routerLink="home" routerLinkActive="active">
-          <i class="far fa-star"></i>
-          Your Reviews
-        </a>
-      </li>
-      <li>
-        <a class="menu-link" routerLink="home" routerLinkActive="active">
-          <i class="fas fa-calendar-alt"></i>
-          Your Appointments
+          <i class="fas fa-dumbbell"></i>
+          Excercises
         </a>
       </li>
     </ul>
