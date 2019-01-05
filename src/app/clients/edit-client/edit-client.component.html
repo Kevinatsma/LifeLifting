@@ -1,0 +1,127 @@
+<ng-container *ngIf="user">
+  <main class="specialist-wrapper">
+      
+    <section class="action-toolbar-top" *ngIf="editShow">
+        <div class="left">
+          <button class="icon-button" (click)="goBack()">
+              <i class="fas fa-arrow-left"></i>
+          </button>
+        </div>
+        <div class="right">
+          <!-- <button class="icon-button" href="#">
+            <i class="fas fa-comment-alt"></i>
+          </button> -->
+  
+          <button class="icon-button" (click)="editUser()">
+            <i class="fas fa-check"></i>
+          </button>
+  
+        </div>
+      </section>
+
+      <form [formGroup]="editUserForm" *ngIf="editShow">
+        <div class="warning">
+
+        </div>
+        <section class="specialist-header">
+          <div class="profile-picture">
+            <div class="image-uploader" *ngIf="!downloadURL" [style.backgroundImage]="'url('+ user.photoURL +')'">
+              <span *ngIf="!user.photoURL">No Photo Yet</span>
+              <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
+            </div>
+            <div class="image-uploader" *ngIf="downloadURL" [style.backgroundImage]="'url('+ downloadURL +')'">
+              <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
+            </div>
+          </div>
+          <div class="quick-info">
+            
+            <!-- <p class="timezone">
+                  <ng-container *ngIf="user.roles.admin">Admin, </ng-container>
+                  <ng-container *ngIf="user.roles.specialist">Specialist, </ng-container>
+                  <ng-container *ngIf="user.roles.member">Client</ng-container>
+            </p> -->
+            <div class="top">
+              <div class="display-name">
+                <input class="h2" name="displayName" formControlName="displayName">
+              </div>
+            <input class="h5" placeholder="Which country?" name="country" formControlName="country">
+
+            <p class="speciality">
+              User ID: {{user.uid}}
+            </p>
+            <div class="icon-fact-container">
+              <div class="fact" *ngIf="user.basicData">
+                <i class="fas fa-transgender"></i>
+                <mat-select matInput placeholder="Gender" [(value)]="selectedGender" formControlName="gender" autocomplete="off" required>
+                  <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
+                </mat-select>
+              </div>
+              <div class="fact" *ngIf="specialists">
+                <i class="fas fa-user-ninja"></i>
+                <mat-select matInput placeholder="Specialist" [(value)]="selectedSpecialist" 
+                formControlName="specialist" autocomplete="off" required name="specialist"
+                >
+                  <mat-option *ngFor="let specialist of specialists | async" 
+                  [value]="specialist.specialistID"
+                  > {{specialist.firstName}} {{specialist.lastName}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+          </div>
+
+            <div class="bottom">
+              <p class="tab">
+                <input class="stat" type="number" name="packageChoice" maxlength="2" formControlName="packageChoice"
+                placeholder="#"
+                >
+                Package Choice
+              </p>
+              <p class="tab">
+                <input class="stat" type="number" name="age" maxlength="2" formControlName="age"
+                placeholder="#"
+                >
+                Age
+              </p>
+            </div>
+          </div>
+        </section>
+  
+        <section class="about">  
+          <h5>{{user.displayName}}'s main goal</h5>
+          <textarea matInput matTextareaAutosize formControlName="mainGoal"></textarea>
+        </section>
+  
+        <section class="contact-language">
+          <div class="contact-info">
+            <h5 class="purple">Contact Info</h5>
+            <ul class="contact-menu">
+              <li>
+                <i class="far fa-envelope"></i>
+                <input type="contact-item" name="email" formControlName="email">
+              </li>
+              <li>
+                <i class="fas fa-mobile-alt"></i>
+                <input type="contact-item" name="phoneNumber" formControlName="phoneNumber">
+              </li>
+            </ul>
+          </div>
+          <div class="languages">
+            <h5 class="purple">Practical info</h5>
+            <ul>
+              <li>Heard from us via: <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong></li>
+              <li>Sign Up Completed?
+                <ng-container *ngIf="user.signUpCompleted"><strong>Yes</strong></ng-container>
+                <ng-container *ngIf="!user.signUpCompleted"><strong>No</strong></ng-container>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </form>
+      </main>
+  
+  </ng-container>
+    
+  <ng-container *ngIf="!user">
+    Hello I exist
+  </ng-container>
+  

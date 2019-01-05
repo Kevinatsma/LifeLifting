@@ -1,0 +1,86 @@
+<main class="dialog-wrapper">
+    <mat-horizontal-stepper #stepper>
+        <mat-step [stepControl]="signUpForm">
+          <form [formGroup]="signUpForm">
+          <ng-template matStepLabel>General Info</ng-template>
+          <h3>Account Settings</h3>
+          <p class="card-text">
+            These are the account details of the specialist. Write them down so you can send them to 'em!
+          </p>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>The Email will be used as Username</mat-label>
+            <input type="text" matInput placeholder="What's your email?" formControlName="email" 
+                    [class.active]="!email.valid && email.touched" autofocus autocomplete="off" required
+            >
+            <mat-error class="input-error" *ngIf="!email.dirty">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!email.valid && email.dirty">That's <strong>not</strong> a valid e-mail address!</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Pick a Password </mat-label>
+            <input class="form-input" type="password" matInput placeholder="Setting it for your specialist is safer" [type]="hide ? 'password' : 'text'" 
+            formControlName="password" [class.active]="!password.valid && password.touched" 
+            autocomplete="new-password" required
+            >
+            <mat-error class="input-error" *ngIf="!password.dirty">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="password.errors?.minlength"><strong>Not enough</strong> characters, try harder!</mat-error>
+            <mat-error class="input-error" *ngIf="password.errors?.maxlength">Too <strong>much</strong> characters, slow down there.</mat-error>
+            <mat-error class="input-error" *ngIf="password.errors?.pattern">Password contains <strong>a special character</strong>, or lacks a <strong>number/letter</strong>.</mat-error>
+          </mat-form-field>
+
+          </form>
+          <section class="btn-area-one">
+            <button class="dialog-button" matStepperNext>Next</button>
+          </section>
+        </mat-step>
+        <mat-step [stepControl]="personalForm">
+          <form [formGroup]="personalForm">
+          <ng-template matStepLabel>Personal</ng-template>
+          <h3>Important Info</h3>
+          <p class="card-text">
+            Tell us the first and last name so we can display it in his/her dashboard and greet the user in a more personal way.
+          </p>
+      
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>First name</mat-label>
+            <input type="text" matInput formControlName="firstName" placeholder="Give the user a name" autofocus="none">
+            <mat-error class="input-error" *ngIf="!personalForm['controls'].firstName.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Last name</mat-label>
+            <input type="text" matInput formControlName="lastName" placeholder="The last name" autocomplete="off">
+            <mat-error class="input-error" *ngIf="!personalForm['controls'].lastName.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          </form>
+          <section class="btn-area">
+            <button class="dialog-button" matStepperPrevious>Back</button>
+            <button class="dialog-button" matStepperNext>Next</button>
+          </section>
+        </mat-step>
+
+        <mat-step class="image-uploader-container">
+          <ng-template matStepLabel>Picture</ng-template>
+          <section class="photo-title">
+              <h3>Profile Image</h3>
+              <p class="card-text image-subtitle">
+                Please choose a clear picture that represents the present appearance of this person.
+              </p>
+          </section>
+
+          <div class="image-uploader">
+            <app-file-upload (imageEvent)="receiveDownloadURL($event)"></app-file-upload>
+          </div>
+          <section class="btn-area">
+            <button class="dialog-button" matStepperPrevious>Back</button>
+            <button class="dialog-button" (click)="userSignup()"
+            [disabled]="!personalForm.valid"
+            [class.disabled]="!personalForm.valid"
+            mat-dialog-close
+           >
+             Done
+           </button>
+          </section>
+        </mat-step>
+    </mat-horizontal-stepper>
+</main>

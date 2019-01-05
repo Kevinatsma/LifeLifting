@@ -1,0 +1,274 @@
+@import '_master';
+
+// General
+p {
+    white-space: normal;
+}
+
+h5 {
+    &.purple {
+        color: $secondary-color;
+    }
+}
+
+
+
+main.specialist-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1.5em 2em;
+
+    .action-toolbar-top {
+
+        button.icon-button {
+            position: inherit;
+        }
+    
+    }
+}
+
+section.specialist-header {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+
+    div.profile-picture {
+        width: 40%;
+        height: 350px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 5px;
+    }
+
+    div.quick-info {
+        @extend %flex-center;
+        flex-flow: column wrap;
+        width: 50%;
+        padding: 1em 2em;
+        margin-top: 1em;
+        position: relative;
+
+        p {
+            margin-top: 0.5em;
+        }
+
+        .timezone {
+            @extend %flex-center;
+            position: absolute;
+            right: 2em;
+            top: 0.5em;
+            border: 3px solid $middle-grey;
+            border-radius: 50px;
+            width: auto;
+            height: 15px;
+            padding:  1em 2em;
+            font-size: 15px;
+            font-weight: $bold;
+            color: $text-black;
+            box-sizing: border-box;
+        }
+
+        .top, .bottom {
+            display: flex;
+            height: 50%;
+            width: 100%;
+        }
+
+        .top {
+            flex-flow: column wrap;
+
+            h5, h2 {
+                text-transform: capitalize;
+            }
+
+            div.icon-fact-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                margin: 1rem 0 1.5rem;
+
+                .fact {
+                    width: 40%;
+                    padding-bottom: 1vh;
+
+                    svg {
+                        width: 10%;
+                        font-size: 24px;
+                        margin-right: 15%;
+                        color: $grey;
+                    }
+
+                    span {
+                        margin: 0;
+                        padding: 0;
+                        font-family: $main-font;
+                        font-size: 18px;
+                        letter-spacing: 1px;
+                        font-weight: $semi-bold;
+                        text-transform: capitalize;
+                        color: $grey;
+                    }
+                }
+            }
+        }
+
+        .bottom {
+            flex-flow: row nowrap;
+            border-top: 1px solid $border-color;
+            padding-top: 1em;
+
+            p.tab {
+                @extend %flex-center;
+                flex-flow: column wrap;
+                text-align: center;
+                width: 50%;
+
+                span {
+                    color: $primary-color;
+                    font-size: 48px;
+                    font-weight: $bold;
+                    text-align: center;
+                    margin: 0 0 -4px -7px;
+                    letter-spacing: 1px;
+                }
+            }
+        }
+    }
+}
+
+section.about {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 2em 0;
+    padding: 1.5em 2em;
+    border-left: 2px solid $primary-color;
+    background: $middle-grey;
+
+    p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: auto;
+
+        &.read-more {
+            overflow: visible;
+            height: auto;
+        }
+    }
+
+    .text-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+            margin: 0 10px 0 0;
+            font-size: 12px;
+        }
+    }
+}
+
+section.middle {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+
+    >div {
+        padding-left: 2em;
+
+        h5 {
+            margin-bottom: 2vh;
+        }
+    }
+
+    div.contact-info {
+        width: 50%;
+
+        ul.contact-menu {
+            li {
+                display: flex;
+                flex-flow: row nowrap;
+                margin-bottom: 10px;
+
+                svg {
+                    @extend %flex-center;
+                    width: 20px;
+                    height: 20px;
+                    color: $grey;
+                    margin-right: 1em;
+                    margin-top: 3px;
+                }
+                a {
+                    font-size: 18px;
+                    font-weight: $regular;
+                }
+            }
+        }
+    }
+
+    div.languages {
+        width: 50%;
+    }
+
+
+}
+
+section.reviews-opened {
+    padding-left: 2em;
+
+    h5 {
+        padding-left: 2em;
+    }
+}
+
+div.review-container {
+    width: auto;
+    height: auto;
+    padding: 1em 0;
+    margin-left: -2em;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    mat-card.review-item {
+        flex: 0 0 auto;
+        height: 100%;
+        width: 400px;
+        margin: 0.5em 2em;
+        padding: 1.5em 1em;
+        box-sizing: border-box;
+        box-shadow: $card-shadow;
+
+        &:first-child {
+            margin-left: 2em;
+        }
+
+        p {
+            white-space: normal;
+            width: 100%;
+        }
+    }
+
+    div.placeholder {
+        width: 15px;
+        height: 30px;
+        visibility: hidden;
+    }
+}
+
+section.btn-area {
+    padding-left: 3em;
+
+    button.text-link {
+        margin: 1em 0;
+        svg {
+            font-size: 12px;
+            margin-left: 5px;
+        }     
+    }
+}
