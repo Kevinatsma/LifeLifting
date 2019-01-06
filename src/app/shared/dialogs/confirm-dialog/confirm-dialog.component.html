@@ -2,13 +2,13 @@
 <ng-container *ngIf="data.uid">
   <h1>Delete User?</h1>
   <p class="card-text">
-    Are you sure that you want to delete {{data.displayName}}?
+    Are you sure that you want to delete <strong>{{data.displayName}}</strong>?
   </p>
 </ng-container>
 <ng-container *ngIf="data.clientID">
   <h1>Delete Client?</h1>
   <p class="card-text">
-    Are you sure that you want to delete {{data.clientName}}?
+    Are you sure that you want to delete <strong>{{data.clientName}}</strong>?
   </p>
 </ng-container>
 <ng-container *ngIf="data.specialistID">
@@ -20,7 +20,7 @@
 <ng-container *ngIf="data.packageID">
   <h1>Delete Package?</h1>
   <p class="card-text">
-    Are you sure that you want to delete {{data.package}}?
+    Are you sure that you want to delete <strong>{{data.packageTitle}}</strong>?
   </p>
 </ng-container>
 

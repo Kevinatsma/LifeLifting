@@ -1,0 +1,47 @@
+<mat-card class="list-item-card" *ngIf="package">
+  <section class="profile-photo">
+    {{i + 1}}
+  </section>
+  <section class="middle">
+    <div class="title">
+        <h2>{{package.packageTitle}}</h2>
+        <!-- <div class="dividing-circle"></div>
+        <p class="location">
+          {{package.packagePrice}}
+        </p> -->
+    </div>
+
+    <div class="quick-info">
+      <p class="speciality-title">Package ID: {{package.packageID}}</p>
+      <p class="description">
+        <ng-container *ngIf="package.packageDescription">{{package.packageDescription}}</ng-container>
+        <ng-container *ngIf="!package.packageDescription">No goal yet...</ng-container>
+      </p>
+      <div class="btn-container">
+        <button class="btn-icon-right__animated" (click)="linkToChild(package)">
+          More info
+        </button>
+        <i class="fas fa-long-arrow-alt-right"></i>
+      </div>
+      <ul class="contact-menu">
+        <li>
+          <i class="far fa-clock"></i>
+          {{package.packageDuration}} month(s)
+        </li>
+        <li>
+          <i class="far fa-money-bill-alt"></i>
+          {{package.packagePrice}} dollar
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="actions">
+    <button type="button" (click)="deletePackageDialog(package)">
+      <i class="fas fa-trash"></i>
+    </button>
+    <button (click)="editPackage(package)">
+      <i class="fas fa-edit"></i>
+    </button>
+  </section>
+
+</mat-card>

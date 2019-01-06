@@ -1,20 +1,6 @@
 @import '_master';
-@import '_forms';
-
-// Form Style Reset
-
-input, mat-select, textarea {
-    background: transparent;
-    border: 0px;
-    outline: 0;
-    width: 100%;
-    font-family: $main-font;
-    margin: 0;
-    padding: 0;
-}
 
 // General
-
 p {
     white-space: normal;
 }
@@ -25,14 +11,15 @@ h5 {
     }
 }
 
-main.specialist-edit-wrapper {
+
+
+main.specialist-wrapper {
     box-sizing: border-box;
     width: 100%;
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 0!important;
-    margin-top: 0;
+    padding: 1.5em 2em;
 
     .action-toolbar-top {
 
@@ -48,25 +35,6 @@ section.specialist-header {
     justify-content: space-between;
     flex-flow: row nowrap;
     align-items: flex-start;
-    margin-bottom: 3vh;
-
-    .image-uploader {
-        @extend %flex-center;
-        box-sizing: border-box;
-        width: 100%;
-        height: 100%;
-        position: relative;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-
-        span  {
-            font-size: 18px;
-            font-weight: $semi-bold;
-            font-family: $main-font;
-            text-align: center;
-        }
-    }
 
     div.profile-picture {
         width: 40%;
@@ -75,8 +43,7 @@ section.specialist-header {
         background-position: center;
         background-repeat: no-repeat;
         border-radius: 5px;
-        position: relative;
-        background: darken($light-grey, 5%);
+        background-color: darken($light-grey, 10%);
     }
 
     div.quick-info {
@@ -105,10 +72,6 @@ section.specialist-header {
             font-weight: $bold;
             color: $text-black;
             box-sizing: border-box;
-
-            mat-select {
-                width: 200px;
-            }
         }
 
         .top, .bottom {
@@ -120,75 +83,37 @@ section.specialist-header {
         .top {
             flex-flow: column wrap;
 
-            div.display-name {
-                display: flex;
-                flex-flow: row nowrap;
-                width: 70%;
-                margin: 0;
+            h5, h2 {
+                text-transform: capitalize;
             }
-
-            input {
-                width: 100%;
-                &.h2 {
-                    letter-spacing: 2px;
-                    margin-bottom: 5px;
-                    font-size: 24px;
-                    font-weight: 600;
-                    color: #312E2C;
-                    text-transform: capitalize;
-                }
-
-                &.h5 {
-                    width: 80%;
-                    text-transform: capitalize;
-                }
-            }
-
-            p.speciality {
-                input {
-                    letter-spacing: 1px;
-                    line-height: 1.6;
-                    font-size: 16px;
-                }
-            }
-
 
             div.icon-fact-container {
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
+                justify-content: flex-start;
                 align-items: center;
-                margin: 1rem 0 0;
+                margin: 1rem 0 1.5rem;
 
-                div.fact {
+                .fact {
                     width: 40%;
-                    border-bottom: 1px solid $border-color;
                     padding-bottom: 1vh;
 
                     svg {
                         width: 10%;
                         font-size: 24px;
                         margin-right: 15%;
+                        color: $grey;
                     }
 
-                    ::ng-deep mat-select {
-                        width: 75%;
-
-                        .mat-select-placeholder {
-                            font-size: 18px;
-                            font-weight: $semi-bold;
-                        }
-
-                        .mat-select-value-text {
-                            font-size: 18px;
-                            font-weight: $semi-bold;
-                        }
-                    }
-
-                    &:nth-child(2) {
-                        svg {
-                            font-size: 20px;
-                        }
+                    span {
+                        margin: 0;
+                        padding: 0;
+                        font-family: $main-font;
+                        font-size: 18px;
+                        letter-spacing: 1px;
+                        font-weight: $semi-bold;
+                        text-transform: capitalize;
+                        color: $grey;
                     }
                 }
             }
@@ -196,8 +121,8 @@ section.specialist-header {
 
         .bottom {
             flex-flow: row nowrap;
-            padding-top: 2.5em;
-            border-top: none!important;
+            border-top: 1px solid $border-color;
+            padding-top: 1em;
 
             p.tab {
                 @extend %flex-center;
@@ -205,20 +130,12 @@ section.specialist-header {
                 text-align: center;
                 width: 50%;
 
-                span, input {
-                    font-family: $main-font;
+                span {
                     color: $primary-color;
                     font-size: 48px;
                     font-weight: $bold;
-                    text-align:center;
-                }
-
-                input {
-                    @extend %flex-center;
-                    flex-flow: row nowrap;
-                    width: 60%;
-                    margin: 6px auto 3px;
-                    padding: 0 0 0 12px;
+                    text-align: center;
+                    margin: 0 0 -4px -7px;
                     letter-spacing: 1px;
                 }
             }
@@ -234,19 +151,29 @@ section.about {
     border-left: 2px solid $primary-color;
     background: $middle-grey;
 
-    textarea {
-        font-size: 16px;
-        letter-spacing: 1px;
-        line-height: 1.6;
-        color: $text-black;
-        margin: 1em auto;
+    p {
+        overflow: hidden;
+        text-overflow: ellipsis;
         height: auto;
-        min-width: 100%;
-        max-width: 100%;
+
+        &.read-more {
+            overflow: visible;
+            height: auto;
+        }
+    }
+
+    .text-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+            margin: 0 10px 0 0;
+            font-size: 12px;
+        }
     }
 }
 
-section.contact-language {
+section.middle {
     display: flex;
     justify-content: space-between;
     flex-flow: row nowrap;
@@ -277,11 +204,9 @@ section.contact-language {
                     margin-right: 1em;
                     margin-top: 3px;
                 }
-                input {
+                a {
                     font-size: 18px;
                     font-weight: $regular;
-                    color: $text-black;
-                    letter-spacing: 1px;
                 }
             }
         }
@@ -299,6 +224,41 @@ section.reviews-opened {
 
     h5 {
         padding-left: 2em;
+    }
+}
+
+div.review-container {
+    width: auto;
+    height: auto;
+    padding: 1em 0;
+    margin-left: -2em;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    mat-card.review-item {
+        flex: 0 0 auto;
+        height: 100%;
+        width: 400px;
+        margin: 0.5em 2em;
+        padding: 1.5em 1em;
+        box-sizing: border-box;
+        box-shadow: $card-shadow;
+
+        &:first-child {
+            margin-left: 2em;
+        }
+
+        p {
+            white-space: normal;
+            width: 100%;
+        }
+    }
+
+    div.placeholder {
+        width: 15px;
+        height: 30px;
+        visibility: hidden;
     }
 }
 

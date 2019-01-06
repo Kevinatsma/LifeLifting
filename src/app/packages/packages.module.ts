@@ -1,22 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PackageItemComponent } from './package-item/package-item.component';
-import { AddPackageComponent } from './add-package/add-package.component';
-import { PackageListComponent } from './package-list/package-list.component';
-import { EditPackageComponent } from './edit-package/edit-package.component';
+import { PackageItemComponent } from '../packages/package-item/package-item.component';
+import { PackageListItemComponent } from './package-list-item/package-list-item.component';
+import { PackageListComponent } from '../packages/package-list/package-list.component';
+import { EditPackageComponent } from '../packages/edit-package/edit-package.component';
 
 import { SharedModule } from '../shared/shared.module';
 import { PackageService } from './package.service';
-import { PackagesComponent } from './packages/packages.component';
+import { PackagesComponent } from './packages.component';
+import { PackageDetailComponent } from './package-detail/package-detail.component';
+import { AddPackageDialogComponent } from '../shared/dialogs/add-package-dialog/add-package-dialog.component';
 
 @NgModule({
   declarations: [
     PackageItemComponent,
-    AddPackageComponent,
+    PackageListItemComponent,
+    AddPackageDialogComponent,
     PackageListComponent,
     EditPackageComponent,
-    PackagesComponent
+    PackagesComponent,
+    PackageDetailComponent
   ],
   imports: [
     CommonModule,
@@ -25,10 +29,12 @@ import { PackagesComponent } from './packages/packages.component';
   ],
   exports: [
     PackageItemComponent,
-    AddPackageComponent,
+    PackageListItemComponent,
+    AddPackageDialogComponent,
     PackageListComponent,
     EditPackageComponent,
-    PackagesComponent
+    PackagesComponent,
+    PackageDetailComponent
   ],
   providers: [
     PackageService
