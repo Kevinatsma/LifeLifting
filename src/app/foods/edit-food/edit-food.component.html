@@ -1,4 +1,4 @@
-    <main class="specialist-wrapper" *ngIf="editShow && package">
+    <main class="specialist-wrapper" *ngIf="editShow && food">
   
       <section class="action-toolbar-top">
         <div class="left">
@@ -7,7 +7,7 @@
           </button>
         </div>
         <div class="middle">
-          <h1>Package: {{package.packageID}}</h1>
+          <h1>Package: {{food.packageID}}</h1>
         </div>
         <div class="right">
           <button class="icon-button" (click)="editPackage()">
@@ -32,8 +32,8 @@
             <div class="circle-divider"></div>
             <p class="quick-fact">
               <input type="number" class="text-field" name="packageDuration" formControlName="packageDuration">
-              <span *ngIf="package.packageDuration === 1">week</span>
-              <span *ngIf="package.packageDuration !== 1">weeks</span>
+              <span *ngIf="food.packageDuration === 1">week</span>
+              <span *ngIf="food.packageDuration !== 1">weeks</span>
             </p>
           </div>
           <p class="card-text">
@@ -41,7 +41,7 @@
           </p>
           <div class="list-container">
             <ul>
-              <li *ngFor="let benefit of package.packageBenefits">
+              <li *ngFor="let benefit of food.packageBenefits">
                 <i class="fas fa-check"></i>
                 {{benefit.benefitValue}}
               </li>

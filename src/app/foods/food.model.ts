@@ -1,7 +1,10 @@
 export class Food {
-    packageID: string;
-    packageTitle: string;
-    packageDescription: string;
-    packagePrice: number;
-    packageDuration: number;
+    productID: string;
+    productName: string;
+    productCategory: string;
+    preparations: [];
+    portion: {
+        amount: number,
+        unit: string
+    };
 }

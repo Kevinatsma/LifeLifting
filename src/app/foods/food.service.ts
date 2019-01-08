@@ -9,8 +9,8 @@ import { MatSnackBar } from '@angular/material';
   providedIn: 'root'
 })
 export class FoodService {
-  packageCol: AngularFirestoreCollection<Food>;
-  packages: Observable<Food[]>;
+  foodCol: AngularFirestoreCollection<Food>;
+  foods: Observable<Food[]>;
   packageDoc: AngularFirestoreDocument<Food>;
   food: Observable<Food>;
 
@@ -20,8 +20,8 @@ export class FoodService {
   constructor( private afs: AngularFirestore,
                public snackBar: MatSnackBar
              ) {
-    this.packageCol = this.afs.collection<Food>(`packages`);
-    this.packages = this.getPackages();
+    this.foodCol = this.afs.collection<Food>(`foods`);
+    this.foods = this.getFoods();
     this.editStateChange.subscribe((value) => {
       this.editShow = value;
     });
@@ -38,22 +38,22 @@ export class FoodService {
     return this.food;
   }
 
-  getPackages() {
-    this.packages = this.packageCol.snapshotChanges().pipe(map(actions => {
+  getFoods() {
+    this.foods = this.foodCol.snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Food;
         const id = a.payload.doc.id;
         return { id, ...data };
       });
     }));
-    return this.packages;
+    return this.foods;
   }
 
-  addPackage(data) {
-    this.afs.collection<Food>(`packages`).doc(`${data.packageID}`).set(data, {merge: true})
+  addFood(data) {
+    this.afs.collection<Food>(`foods`).doc(`${data.productID}`).set(data, {merge: true})
     .then(() => {
       // Show Snackbar
-      const message = 'The Package was added succesfully';
+      const message = `The ${data.productName} was added succesfully`;
       const action = 'Close';
 
       this.snackBar.open(message, action, {

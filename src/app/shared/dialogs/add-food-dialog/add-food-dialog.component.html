@@ -1,0 +1,126 @@
+<main class="dialog-wrapper">
+  <mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="infoForm">
+      <form [formGroup]="infoForm">
+        <ng-template matStepLabel>Info</ng-template>
+        <h3>🥐 Food Info</h3>
+        <p class="card-text">
+          Basic data that we need from the package. This data will be displayed at step 2 of the signup process.
+          This can be important in the decision making process of the future client.
+        </p>
+    
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Product ID</mat-label>
+          <input type="number" matInput name="title" formControlName="productID" placeholder="Always a number" autocomplete="new-password">
+          <mat-hint *ngIf="!infoForm['controls'].productID.dirty">Check the food list for the numbers already taken.</mat-hint>
+          <mat-error class="input-error" *ngIf="!infoForm['controls'].productID.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Product name</mat-label>
+          <input type="text" matInput name="title" formControlName="productName" placeholder="Give the product a name" autofocus="none">
+          <mat-error class="input-error" *ngIf="!infoForm['controls'].productName.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+      </form>
+
+      <section class="btn-area-one">
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="categoryForm">
+      <form [formGroup]="categoryForm">
+        <ng-template matStepLabel>Category</ng-template>
+        <h3>🛒 Food Category</h3>
+        <p class="card-text">
+          Put the product in a food category for filtering and organizing purposes. 
+        </p>
+
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>The Categories</mat-label>
+          <textarea type="text" matInput formControlName="productCategory" placeholder="Choose one or more categories" 
+          matTextareaAutosize autofocus="off" autocomplete="off">
+          </textarea>
+          <mat-error class="input-error" *ngIf="!categoryForm['controls'].productCategory.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+      </form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="portionForm">
+      <form [formGroup]="portionForm">
+        <ng-template matStepLabel>Portion</ng-template>
+        <h3>⚖️ Portion</h3>
+        <p class="card-text">
+          Indicate the portion here. < text needed! >
+        </p>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>The Amount</mat-label>
+          <input type="number" matInput formControlName="amount" placeholder="Amount in nr." autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!portionForm['controls'].amount.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>The Unit</mat-label>
+          <!-- <mat-select>
+            <mat-option *ngFor="let unit of units" [value]="unit.value">{{unit.viewValue}}</mat-option>
+          </mat-select> -->
+          <input type="text" matInput formControlName="unit" placeholder="Pick a unit" autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!portionForm['controls'].unit.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+      </form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="prepForm">
+      <form [formGroup]="prepForm">
+        <ng-template matStepLabel>Preperation</ng-template>
+        <h3>🍳 Preperations</h3>
+        <p class="intro-text">Describe and add a few preperation methods for the product.  
+        </p>
+        <div class="add-form-field-container" formArrayName="prepArr">
+          <section class="dynamic-form-field-container" *ngFor="let prep of prepForms.controls; let i=index" [formGroupName]="i">
+            <div class="number-id">
+              <h1>{{i+1}}</h1>
+            </div>
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Preperation method</mat-label>
+              <input matInput placeholder="Pick a preperation method" formControlName="prepValue" autocomplete="off" required>
+              <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">This is <strong>required</strong></mat-error>
+            </mat-form-field>
+            <div class="btn-area">
+              <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deletePrep(i)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </section>
+        </div>
+
+        <button type="button" class="add-form-field" (click)="addPrep()">
+          <i class="fa fa-plus"></i>
+          Add a Preperation method
+        </button>
+      </form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="submit" class="dialog-button" (click)="addFood()"
+          [disabled]="!infoForm.valid || !categoryForm.valid || !prepForm.valid || !portionForm.valid"
+          [class.disabled]="!infoForm.valid || !categoryForm.valid  || !prepForm.valid || !portionForm.valid"
+          mat-dialog-close
+        >
+          Done
+        </button>
+      </section>
+
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</main>

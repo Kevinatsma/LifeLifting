@@ -9,12 +9,12 @@ import { Food } from '../food.model';
   styleUrls: ['./food-list.component.scss']
 })
 export class FoodListComponent implements OnInit {
-  packages: Observable<Food[]>;
+  foods: Observable<Food[]>;
 
   constructor( private foodService: FoodService) { }
 
   ngOnInit() {
-    this.packages = this.foodService.getPackages();
+    this.foods = this.foodService.getFoods();
   }
 
 }

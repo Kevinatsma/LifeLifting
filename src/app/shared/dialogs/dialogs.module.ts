@@ -9,6 +9,7 @@ import { DataService } from './../data/data.service';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { AddClientDialogComponent } from './add-client-dialog/add-client-dialog.component';
 import { AddPackageDialogComponent } from './add-package-dialog/add-package-dialog.component';
+import { AddFoodDialogComponent } from './add-food-dialog/add-food-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AddPackageDialogComponent } from './add-package-dialog/add-package-dial
     ConfirmDialogComponent,
     AddUserDialogComponent,
     AddClientDialogComponent,
-    AddPackageDialogComponent
+    AddPackageDialogComponent,
+    AddFoodDialogComponent
   ],
   providers: [
     DataService

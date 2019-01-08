@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
-import { AddPackageDialogComponent } from 'src/app/shared/dialogs/add-package-dialog/add-package-dialog.component';
+import { AddFoodDialogComponent } from '../shared/dialogs/add-food-dialog/add-food-dialog.component';
 
 @Component({
   selector: 'app-foods',
@@ -18,7 +18,7 @@ export class FoodsComponent implements OnInit {
 
   openDialog() {
     // Set data for Dialog
-    this.dialog.open(AddPackageDialogComponent, {
+    this.dialog.open(AddFoodDialogComponent, {
 
     });
   }

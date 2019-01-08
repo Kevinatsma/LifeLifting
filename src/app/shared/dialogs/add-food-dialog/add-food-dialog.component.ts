@@ -13,82 +13,77 @@ import { Language } from '../../data/models/language.model';
 import { FoodService } from 'src/app/foods/food.service';
 
 @Component({
-  selector: 'app-add-package-dialog',
-  templateUrl: './add-package-dialog.component.html',
-  styleUrls: ['./add-package-dialog.component.scss']
+  selector: 'app-add-food-dialog',
+  templateUrl: './add-food-dialog.component.html',
+  styleUrls: ['./add-food-dialog.component.scss']
 })
 export class AddFoodDialogComponent implements OnInit {
 
   hide = true;
   // FormGroups
-  addPackageForm: FormGroup;
-  personalForm: FormGroup;
-  aboutForm: FormGroup;
-  timeForm: FormGroup;
-  priceForm: FormGroup;
-  extrasForm: FormGroup;
+  addFoodForm: FormGroup;
+  infoForm: FormGroup;
+  categoryForm: FormGroup;
+  prepForm: FormGroup;
+  portionForm: FormGroup;
 
-  benefitArr: FormArray;
-  benefitValue = new FormControl('', [Validators.required]);
+  prepArr: FormArray;
+  prepValue = new FormControl('', [Validators.required]);
 
 
   constructor( private fb: FormBuilder,
                private foodService: FoodService) {}
 
   ngOnInit() {
-    this.personalForm = this.fb.group({
-      packageID: ['', [Validators.required]],
-      packageTitle: ['', [Validators.required]],
+    this.infoForm = this.fb.group({
+      productID: ['', [Validators.required]],
+      productName: ['', [Validators.required]],
     });
 
-    this.aboutForm = this.fb.group({
-      packageDescription: ['', [Validators.required]],
+    this.categoryForm = this.fb.group({
+      productCategory: ['', [Validators.required]],
     });
 
-    this.timeForm = this.fb.group({
-      packageDuration: ['', [Validators.required]],
+    this.prepForm = this.fb.group({
+      prepArr: this.fb.array([ this.createPrep() ]),
     });
 
-    this.priceForm = this.fb.group({
-      packagePrice: ['', [Validators.required]],
-    });
-
-    this.extrasForm = this.fb.group({
-      benefitArr: this.fb.array([ this.createBenefit() ]),
+    this.portionForm = this.fb.group({
+      amount: ['', [Validators.required]],
+      unit: ['', [Validators.required]],
     });
   }
 
 
   // Getters
-  get benefitForms() {
-    return this.extrasForm.get('benefitArr') as FormArray;
+  get prepForms() {
+    return this.prepForm.get('prepArr') as FormArray;
   }
 
-    // Create a new Package benefit Mat Card
-    createBenefit(): FormGroup {
+    // Create a new Package prep Mat Card
+    createPrep(): FormGroup {
       return this.fb.group({
-        benefitValue: ''
+        prepValue: ''
       });
     }
 
-    addBenefit(): void {
-      this.benefitArr = this.extrasForm.get('benefitArr') as FormArray;
-      this.benefitArr.push(this.createBenefit());
+    addPrep(): void {
+      this.prepArr = this.prepForm.get('prepArr') as FormArray;
+      this.prepArr.push(this.createPrep());
     }
 
-    deleteBenefit(i) {
-      (this.extrasForm.get('benefitArr') as FormArray).removeAt(i);
+    deletePrep(i) {
+      (this.prepForm.get('prepArr') as FormArray).removeAt(i);
     }
 
-    addPackage() {
+    addFood() {
       const data = {
-        packageID: this.personalForm.get('packageID').value,
-        packageTitle: this.personalForm.get('packageTitle').value,
-        packageDescription: this.aboutForm.get('packageDescription').value,
-        packageDuration: this.timeForm.get('packageDuration').value,
-        packagePrice: this.priceForm.get('packagePrice').value,
-        packageBenefits: this.benefitForms.value,
+        productID: this.infoForm.get('productID').value,
+        productName: this.infoForm.get('productName').value,
+        productCategory: this.categoryForm.get('productCategory').value,
+        portion: this.portionForm.value,
+        preperations: this.prepForms.value,
       };
-      this.foodService.addPackage(data);
+      this.foodService.addFood(data);
     }
 }
