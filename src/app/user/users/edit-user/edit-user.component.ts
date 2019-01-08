@@ -48,6 +48,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       gender: this.selectedGender,
       age: '' || this.user.basicData.age,
       mainGoal: '' || this.user.basicData.mainGoal,
+      heardFromUs: '' || this.user.basicData.heardFromUs,
       phoneNumber: '' || this.user.basicData.phoneNumber,
       email: '' || this.user.email,
     });
@@ -79,6 +80,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
         country: this.editUserForm.get('country').value || this.user.basicData.country,
         age: this.editUserForm.get('age').value || this.user.basicData.age,
         mainGoal: this.editUserForm.get('mainGoal').value || this.user.basicData.mainGoal,
+        heardFromUs:  this.editUserForm.get('heardFromUs').value || this.user.basicData.heardFromUs,
         phoneNumber:  this.editUserForm.get('phoneNumber').value || this.user.basicData.phoneNumber,
       }
     };

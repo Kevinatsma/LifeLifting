@@ -24,6 +24,9 @@ import { MaterialModule } from '../shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserDetailComponent } from '../user/users/user-detail/user-detail.component';
 import { ClientDetailComponent } from '../clients/client-detail/client-detail.component';
+import { FoodsModule } from 'src/app/foods/foods.module';
+import { FoodsComponent } from 'src/app/foods/foods.component';
+import { FoodDetailComponent } from 'src/app/foods/food-detail/food-detail.component';
 
 const routes: Routes = [
   {
@@ -42,6 +45,8 @@ const routes: Routes = [
       {path: 'finances', component: FinancesComponent, data: {state: 'finances'}},
       {path: 'packages', component: PackagesComponent, data: {state: 'packages'}},
       {path: 'packages/:id', component: PackageDetailComponent},
+      {path: 'foods', component: FoodsComponent, data: {state: 'foods'}},
+      {path: 'foods/:id', component: FoodDetailComponent},
     ]
   },
 ];
@@ -63,6 +68,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     SpecialistModule,
     ClientsModule,
+    FoodsModule,
     FinancesModule,
     MaterialModule
   ],

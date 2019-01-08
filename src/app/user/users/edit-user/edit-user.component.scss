@@ -260,7 +260,7 @@ section.contact-language {
         }
     }
 
-    div.contact-info {
+    div.contact-info, div.languages {
         width: 50%;
 
         ul.contact-menu {
@@ -284,11 +284,19 @@ section.contact-language {
                     letter-spacing: 1px;
                 }
             }
+
+            input {
+                width: 50%;
+            }
         }
     }
 
     div.languages {
         width: 50%;
+
+        input {
+            margin: -1px 0 0 0.5em;
+        }
     }
 
 
