@@ -23,9 +23,8 @@
         </mat-form-field>
       </form>
 
-      <section class="btn-area">
-        <button class="dialog-button" matStepperPrevious>Back</button>
-        <button class="dialog-button" matStepperNext>Next</button>
+      <section class="btn-area-one">
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
       </section>
     </mat-step>
 
@@ -47,8 +46,8 @@
       </form>
 
       <section class="btn-area">
-        <button class="dialog-button" matStepperPrevious>Back</button>
-        <button class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
       </section>
     </mat-step>
 
@@ -68,8 +67,8 @@
       </form>
 
       <section class="btn-area">
-        <button class="dialog-button" matStepperPrevious>Back</button>
-        <button class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
       </section>
     </mat-step>
 
@@ -82,14 +81,14 @@
         </p>
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>The $$$$$</mat-label>
-          <input type="text" matInput formControlName="packagePrice" placeholder="Price in USD" autofocus="off" autocomplete="off">
+          <input type="number" matInput formControlName="packagePrice" placeholder="Price in USD" autofocus="off" autocomplete="off">
           <mat-error class="input-error" *ngIf="!priceForm['controls'].packagePrice.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
       </form>
 
       <section class="btn-area">
-        <button class="dialog-button" matStepperPrevious>Back</button>
-        <button class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
       </section>
     </mat-step>
 
@@ -111,7 +110,7 @@
               <mat-error class="input-error" *ngIf="!benefitValue.valid && extrasForm.touched">This is <strong>required</strong></mat-error>
             </mat-form-field>
             <div class="btn-area">
-              <button mat-icon-button type="button" class="delete-btn" (click)="deleteBenefit(i)">
+              <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteBenefit(i)">
                 <i class="fa fa-trash"></i>
               </button>
             </div>
@@ -125,8 +124,8 @@
       </form>
 
       <section class="btn-area">
-        <button class="dialog-button" matStepperPrevious>Back</button>
-        <button class="dialog-button" (click)="addPackage()"
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="submit" class="dialog-button" (click)="addPackage()"
           [disabled]="!personalForm.valid || !aboutForm.valid || !timeForm.valid || !priceForm.valid || !extrasForm.valid"
           [class.disabled]="!personalForm.valid || !aboutForm.valid || !timeForm.valid || !priceForm.valid || !extrasForm.valid"
           mat-dialog-close

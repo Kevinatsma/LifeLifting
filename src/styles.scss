@@ -554,7 +554,7 @@ mat-card {
 // Forms
 
 form {
-    mat-label {
+    mat-label, .mat-step-label {
         font-family: $main-font;
         font-size: 18px;
         font-weight: $semi-bold;
@@ -563,9 +563,10 @@ form {
     
     .mat-form-field {
         input, textarea, mat-select, ::placeholder {
-            font-family: $main-font;
-            font-size: 16px;
-            letter-spacing: 1px;
+            font-family: $main-font!important;
+            font-size: 16px!important;
+            letter-spacing: 1.5px!important;
+            font-weight: $regular!important;
         }
 
         input, textarea, mat-select {
@@ -577,7 +578,7 @@ form {
 
             &.active {
                 transition: all 400ms ease-in; 
-                border-bottom: 1.5px solid lighten($brand-danger, 10%)!important;
+                border-bottom: 2px solid $grey!important;
             }
         }
 
@@ -592,6 +593,15 @@ form {
     .mat-form-field-underline {
         display: none!important;
     }
+
+    .mat-form-field-label, .mat-form-field-invalid .mat-form-field-label {
+        font-family: $main-font!important;
+        font-weight: $regular!important;
+        font-size: 16px!important;
+        letter-spacing: 1px!important;
+        color: $primary-color!important;
+    }
+
     mat-hint {
         a {
             font-family: $main-font;
@@ -609,6 +619,32 @@ form {
 
 }
 
+// .mat-step-header .mat-step-icon-selected {
+    
+// }
+
+.mat-step-icon {
+    border-radius: 5%!important;
+
+    &-selected {
+        background: $icon-black!important;
+    }
+    &-state-edit {
+        background: $primary-color!important;
+    }
+}
+
+.mat-step-label {
+    font-family: $main-font!important;
+    font-size: 16px!important;
+    font-weight: $regular!important;
+}
+
+.mat-step-label-active {
+    font-family: $main-font!important;
+    font-size: 16px!important;
+    font-weight: $semi-bold!important;
+}
 
 // Misc
 

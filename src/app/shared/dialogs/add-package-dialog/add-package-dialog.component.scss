@@ -70,33 +70,6 @@ form {
         }
     }
 
-    mat-card.review-item {
-        flex: 0 0 auto;
-        display: flex;
-        flex-flow: column wrap;
-        background: #fff;
-        box-shadow: $card-shadow;
-        margin: 1em 2em;
-        width: 30%;
-        height: auto;
-        position: relative;
-
-        button.delete-btn {
-            position: absolute;
-            right: 1em;
-            top: 1em;
-
-            svg {
-                color:  $secondary-color;
-            }
-        }
-
-        mat-form-field.mat-form-field {
-            width: 100%;
-            margin: 0 0 1em;
-        }
-    }
-
     .dynamic-form-field-container {
         display: flex;
         flex-flow: row nowrap;
@@ -120,7 +93,7 @@ form {
         }
 
         mat-form-field.mat-form-field {
-            width: 38%;
+            width: 80%;
             border-top: $light-border;
             border-bottom: $light-border;
             padding: 5px 30px 5px 20px;

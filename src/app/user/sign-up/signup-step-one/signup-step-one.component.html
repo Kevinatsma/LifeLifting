@@ -54,7 +54,7 @@
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>How did you hear from us?</mat-label>
           <mat-select matInput placeholder="Social Media, friends, etc." [(value)]="selectedMedium" formControlName="heardFromUs" autocomplete="off" required>
-            <mat-option *ngFor="let medium of mediums" [value]="medium.value">{{medium.viewValue}}</mat-option>
+            <mat-option *ngFor="let medium of mediums" [(value)]="medium.value">{{medium.viewValue}}</mat-option>
           </mat-select>
           <!-- <mat-error class="input-error" *ngIf="!gender.valid && basicUserDataForm.touched">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
