@@ -109,7 +109,7 @@
             <h5 class="purple">Practical info</h5>
             <ul class="contact-menu">
               <li>Heard from us via:
-                <input type="contact-item" name="heardFromUs" formControlName="heardFromUs">
+                <input *ngIf="user.basicData.heardFromUs" type="contact-item" name="heardFromUs" formControlName="heardFromUs">
               </li>
               <li>Sign Up Completed?
                 <ng-container *ngIf="user.signUpCompleted"><strong>Yes</strong></ng-container>

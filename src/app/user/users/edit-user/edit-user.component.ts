@@ -80,7 +80,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
         country: this.editUserForm.get('country').value || this.user.basicData.country,
         age: this.editUserForm.get('age').value || this.user.basicData.age,
         mainGoal: this.editUserForm.get('mainGoal').value || this.user.basicData.mainGoal,
-        heardFromUs:  this.editUserForm.get('heardFromUs').value || this.user.basicData.heardFromUs,
+        heardFromUs:  this.editUserForm.get('heardFromUs').value || this.user.basicData.heardFromUs || null,
         phoneNumber:  this.editUserForm.get('phoneNumber').value || this.user.basicData.phoneNumber,
       }
     };
