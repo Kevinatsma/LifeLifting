@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Package } from './package.model';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
@@ -9,17 +9,27 @@ import { MatSnackBar } from '@angular/material';
   providedIn: 'root'
 })
 export class PackageService {
-
   packageCol: AngularFirestoreCollection<Package>;
   packages: Observable<Package[]>;
   packageDoc: AngularFirestoreDocument<Package>;
   package: Observable<Package>;
+
+  editShow: boolean;
+  editStateChange: Subject<boolean> = new Subject<boolean>();
 
   constructor( private afs: AngularFirestore,
                public snackBar: MatSnackBar
              ) {
     this.packageCol = this.afs.collection<Package>(`packages`);
     this.packages = this.getPackages();
+    this.editStateChange.subscribe((value) => {
+      this.editShow = value;
+    });
+  }
+
+
+  toggleEdit() {
+    this.editStateChange.next(!this.editShow);
   }
 
   getPackageData(id) {
@@ -63,7 +73,7 @@ export class PackageService {
   }
 
   deletePackage(id) {
-    this.packageDoc = this.afs.doc(`users/${id}`);
+    this.packageDoc = this.afs.doc(`packages/${id}`);
     this.packageDoc.delete();
   }
 }

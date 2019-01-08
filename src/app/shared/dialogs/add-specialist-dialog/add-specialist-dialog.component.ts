@@ -133,7 +133,7 @@ export class AddSpecialistDialogComponent implements OnInit {
     return this.extrasForm.get('reviews') as FormArray;
   }
 
-    // Create a new Package benefit Mat Card
+    // Create a new Language Mat Card
     createLanguage(): FormGroup {
       return this.fb.group({
         languageValue: '',

@@ -50,6 +50,30 @@ button.icon-button {
     }
 }
 
+button.slide-control-btn {
+    transition: all 300ms ease-in-out;
+
+    svg {
+        font-size: 28px;
+        color: $grey;
+    }
+
+    &:hover {
+        transition: all 300ms ease-in-out;
+        svg {
+            font-size: 32px;
+            color: $icon-black;
+        }
+    }
+
+    &.disabled {
+        cursor: not-allowed;
+        svg {
+            color: $middle-grey;
+        }
+    }
+}
+
 // Menu Buttons
 
 a.menu-link, button.menu-link {

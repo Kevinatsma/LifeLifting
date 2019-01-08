@@ -13,7 +13,8 @@ import { ClientsModule } from './../clients/clients.module';
 import { ClientsComponent } from '../clients/clients.component';
 import { FinancesComponent } from '../finances/finances/finances.component';
 import { FinancesModule } from '../finances/finances.module';
-import { PackagesComponent } from '../packages/packages/packages.component';
+import { PackagesComponent } from '../packages/packages.component';
+import { PackageDetailComponent } from '../packages/package-detail/package-detail.component';
 import { AdminMenuComponent } from './dashboard-menu/admin-menu/admin-menu.component';
 import { SpecialistMenuComponent } from './dashboard-menu/specialist-menu/specialist-menu.component';
 import { ClientMenuComponent } from './dashboard-menu/client-menu/client-menu.component';
@@ -40,6 +41,7 @@ const routes: Routes = [
       {path: 'clients/:id', component: ClientDetailComponent},
       {path: 'finances', component: FinancesComponent, data: {state: 'finances'}},
       {path: 'packages', component: PackagesComponent, data: {state: 'packages'}},
+      {path: 'packages/:id', component: PackageDetailComponent},
     ]
   },
 ];

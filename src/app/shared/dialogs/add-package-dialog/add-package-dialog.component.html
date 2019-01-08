@@ -1,0 +1,141 @@
+<main class="dialog-wrapper">
+  <mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="personalForm">
+      <form [formGroup]="personalForm">
+        <ng-template matStepLabel>Info</ng-template>
+        <h3>🗂️ Package Info</h3>
+        <p class="card-text">
+          Basic data that we need from the package. This data will be displayed at step 2 of the signup process.
+          This can be important in the decision making process of the future client.
+        </p>
+    
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Package ID</mat-label>
+          <input type="number" matInput name="title" formControlName="packageID" placeholder="Always a number" autocomplete="new-password">
+          <mat-hint *ngIf="!personalForm['controls'].packageID.dirty">Check the package list for the numbers already taken.</mat-hint>
+          <mat-error class="input-error" *ngIf="!personalForm['controls'].packageID.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Package title</mat-label>
+          <input type="text" matInput name="title" formControlName="packageTitle" placeholder="Give the package a title" autofocus="none">
+          <mat-error class="input-error" *ngIf="!personalForm['controls'].packageTitle.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+      </form>
+
+      <section class="btn-area">
+        <button class="dialog-button" matStepperPrevious>Back</button>
+        <button class="dialog-button" matStepperNext>Next</button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="aboutForm">
+      <form [formGroup]="aboutForm">
+        <ng-template matStepLabel>About</ng-template>
+        <h3>🤷 About the package</h3>
+        <p class="card-text">
+          Please write a small description that users can read. This will be vital to the decision making of the future client.   
+        </p>
+
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>The Short Description</mat-label>
+          <textarea type="text" matInput formControlName="packageDescription" placeholder="Write a short but attractive description" 
+          matTextareaAutosize autofocus="off" autocomplete="off">
+          </textarea>
+          <mat-error class="input-error" *ngIf="!aboutForm['controls'].packageDescription.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+      </form>
+
+      <section class="btn-area">
+        <button class="dialog-button" matStepperPrevious>Back</button>
+        <button class="dialog-button" matStepperNext>Next</button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="timeForm">
+      <form [formGroup]="timeForm">
+        <ng-template matStepLabel>Duration</ng-template>
+        <h3>🕰️ Amount of Time</h3>
+        <p class="card-text">
+          How long does the package go for? This is important for an eventually future implementation of an automatic renew subscription notification.
+        </p>
+
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>How long is this valid?</mat-label>
+          <input type="number" matInput formControlName="packageDuration" placeholder="Amount in weeks" autofocus="off" maxlength="3" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!timeForm['controls'].packageDuration.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+      </form>
+
+      <section class="btn-area">
+        <button class="dialog-button" matStepperPrevious>Back</button>
+        <button class="dialog-button" matStepperNext>Next</button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="priceForm">
+      <form [formGroup]="priceForm">
+        <ng-template matStepLabel>Price</ng-template>
+        <h3>🔖 Price</h3>
+        <p class="card-text">
+          How much will it cost? We will calculate your profit under the hood if you'd like!
+        </p>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>The $$$$$</mat-label>
+          <input type="text" matInput formControlName="packagePrice" placeholder="Price in USD" autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!priceForm['controls'].packagePrice.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+      </form>
+
+      <section class="btn-area">
+        <button class="dialog-button" matStepperPrevious>Back</button>
+        <button class="dialog-button" matStepperNext>Next</button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="extrasForm">
+      <form [formGroup]="extrasForm">
+        <ng-template matStepLabel>Extras</ng-template>
+        <h3>🥂 Benefits</h3>
+        <p class="intro-text">Add languages to the specialist so we can hook them up with the right clients. This way we will also be able 
+          to know in which markets we are active.
+        </p>
+        <div class="add-form-field-container" formArrayName="benefitArr">
+          <section class="dynamic-form-field-container" *ngFor="let benefit of benefitForms.controls; let i=index" [formGroupName]="i">
+            <div class="number-id">
+              <h1>{{i+1}}</h1>
+            </div>
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Add benefits</mat-label>
+              <input matInput placeholder="What's the plus of this package?" formControlName="benefitValue" autocomplete="off" required>
+              <mat-error class="input-error" *ngIf="!benefitValue.valid && extrasForm.touched">This is <strong>required</strong></mat-error>
+            </mat-form-field>
+            <div class="btn-area">
+              <button mat-icon-button type="button" class="delete-btn" (click)="deleteBenefit(i)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </section>
+        </div>
+
+        <button type="button" class="add-form-field" (click)="addBenefit()">
+          <i class="fa fa-plus"></i>
+          Add a Benefit
+        </button>
+      </form>
+
+      <section class="btn-area">
+        <button class="dialog-button" matStepperPrevious>Back</button>
+        <button class="dialog-button" (click)="addPackage()"
+          [disabled]="!personalForm.valid || !aboutForm.valid || !timeForm.valid || !priceForm.valid || !extrasForm.valid"
+          [class.disabled]="!personalForm.valid || !aboutForm.valid || !timeForm.valid || !priceForm.valid || !extrasForm.valid"
+          mat-dialog-close
+        >
+          Done
+        </button>
+      </section>
+
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</main>
