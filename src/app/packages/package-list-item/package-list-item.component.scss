@@ -16,11 +16,23 @@ mat-card.list-item-card {
     }
 
     section {
-        &.profile-photo {
+        &.number-id {
+            @extend %flex-center;
+            flex-flow: column wrap;
             width: 25%;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background: $middle-grey;
+            svg {
+                font-size: 70px;
+                color: #e69660;
+                margin-bottom: 15px;
+            }
+            
+            h1 {
+                color: $primary-color;
+            }
         }
 
         &.middle {

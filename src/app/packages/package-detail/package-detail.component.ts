@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { User } from '../../user/user.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PackageService } from '../package.service';
 import { Observable } from 'rxjs';
 import { Specialist } from 'src/app/specialists/specialist.model';
@@ -25,6 +25,7 @@ export class PackageDetailComponent implements OnInit {
   // specialist = Observable<Specialist>;
 
   constructor( private cdr: ChangeDetectorRef,
+               public router: Router,
                public route: ActivatedRoute,
                public packageService: PackageService,
                public specialistService: SpecialistService,
@@ -72,9 +73,23 @@ export class PackageDetailComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  // Back Button
+  // Control buttons
 
   goBack() {
     return this.location.back();
+  }
+
+  linkToPrevious(llPackage) {
+    const packageID = llPackage.packageID - 1;
+    const url = `dashboard/packages/${packageID}`;
+    this.router.navigate([url]);
+    this.packageService.getPackageData(packageID).subscribe(a => (this.package = a));
+  }
+
+  linkToNext(llPackage) {
+    const packageID = llPackage.packageID + 1;
+    const url = `dashboard/packages/${packageID}`;
+    this.router.navigate([url]);
+    this.packageService.getPackageData(packageID).subscribe(a => (this.package = a));
   }
 }

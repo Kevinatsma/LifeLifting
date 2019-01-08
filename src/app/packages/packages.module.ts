@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PackageItemComponent } from '../packages/package-item/package-item.component';
 import { PackageListItemComponent } from './package-list-item/package-list-item.component';
@@ -24,6 +25,7 @@ import { AddPackageDialogComponent } from '../shared/dialogs/add-package-dialog/
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     SharedModule
   ],

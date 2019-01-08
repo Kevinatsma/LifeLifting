@@ -22,6 +22,9 @@ export class PackageService {
              ) {
     this.packageCol = this.afs.collection<Package>(`packages`);
     this.packages = this.getPackages();
+    this.editStateChange.subscribe((value) => {
+      this.editShow = value;
+    });
   }
 
 
