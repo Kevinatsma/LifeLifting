@@ -73,7 +73,7 @@ export class PackageService {
   }
 
   deletePackage(id) {
-    this.packageDoc = this.afs.doc(`users/${id}`);
+    this.packageDoc = this.afs.doc(`packages/${id}`);
     this.packageDoc.delete();
   }
 }

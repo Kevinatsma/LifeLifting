@@ -16,7 +16,7 @@
       <p class="speciality-title">Package ID: {{package.packageID}}</p>
       <p class="description">
         <ng-container *ngIf="package.packageDescription">{{package.packageDescription}}</ng-container>
-        <ng-container *ngIf="!package.packageDescription">No goal yet...</ng-container>
+        <ng-container *ngIf="!package.packageDescription">No description yet...</ng-container>
       </p>
       <div class="btn-container">
         <button class="btn-icon-right__animated" (click)="linkToChild(package)">
