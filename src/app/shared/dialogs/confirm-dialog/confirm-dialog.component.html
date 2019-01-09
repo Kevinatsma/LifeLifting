@@ -1,32 +1,40 @@
-<main class="confirm-dialog-container">
-<ng-container *ngIf="data.uid">
-  <h1>Delete User?</h1>
-  <p class="card-text">
-    Are you sure that you want to delete <strong>{{data.displayName}}</strong>?
-  </p>
-</ng-container>
-<ng-container *ngIf="data.clientID">
-  <h1>Delete Client?</h1>
-  <p class="card-text">
-    Are you sure that you want to delete <strong>{{data.clientName}}</strong>?
-  </p>
-</ng-container>
-<ng-container *ngIf="data.specialistID">
-  <h1>Delete Specialist?</h1>
-  <p class="card-text">
-    Are you sure that you want to delete <strong>{{data.firstName}} {{data.lastName}}</strong>?
-  </p>
-</ng-container>
-<ng-container *ngIf="data.packageID">
-  <h1>Delete Package?</h1>
-  <p class="card-text">
-    Are you sure that you want to delete <strong>{{data.packageTitle}}</strong>?
-  </p>
-</ng-container>
+<div class="padding-layer">
+  <main class="confirm-dialog-container">
+    <ng-container *ngIf="data.uid">
+      <h1>Delete User?</h1>
+      <p class="card-text">
+        Are you sure that you want to delete <strong>{{data.displayName}}</strong>?
+      </p>
+    </ng-container>
+    <ng-container *ngIf="data.clientID">
+      <h1>Delete Client?</h1>
+      <p class="card-text">
+        Are you sure that you want to delete <strong>{{data.clientName}}</strong>?
+      </p>
+    </ng-container>
+    <ng-container *ngIf="data.specialistID">
+      <h1>Delete Specialist?</h1>
+      <p class="card-text">
+        Are you sure that you want to delete <strong>{{data.firstName}} {{data.lastName}}</strong>?
+      </p>
+    </ng-container>
+    <ng-container *ngIf="data.packageID">
+      <h1>Delete Package?</h1>
+      <p class="card-text">
+        Are you sure that you want to delete <strong>{{data.packageTitle}}</strong>?
+      </p>
+    </ng-container>
+    <ng-container *ngIf="data.productID">
+      <h1>Delete Food Item?</h1>
+      <p class="card-text">
+        Are you sure that you want to delete <strong>{{data.productName}}</strong>?
+      </p>
+    </ng-container>
 
 
-<mat-dialog-actions align="end">
-  <button type="button" class="text-link" [mat-dialog-close]="false">No</button>
-  <button class="text-link" [mat-dialog-close]="true">Yes, delete</button>
-</mat-dialog-actions>
-</main>
+    <section class="dialog-actions">
+      <button type="button" class="text-link" [mat-dialog-close]="false">No</button>
+      <button class="text-link" [mat-dialog-close]="true">Yes, delete</button>
+    </section>
+  </main>
+</div>

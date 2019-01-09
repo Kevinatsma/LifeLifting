@@ -8,12 +8,14 @@ main.specialist-list-wrapper {
 
     // }
 
-    section.package-list {
+    section.card-list {
         display: flex;
-        flex-flow: column nowrap;
+        flex-flow: row wrap;
+        justify-content: space-between;
 
-        app-package-list-item {
-            margin: 2em 0;
+        app-food-list-item {
+            margin: 1em;
+            width: 28%;
         }
 
     }

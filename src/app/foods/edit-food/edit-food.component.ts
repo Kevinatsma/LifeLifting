@@ -21,7 +21,7 @@ export class EditFoodComponent implements OnInit, OnDestroy {
   reviewsVisible = true;
 
   // Form
-  editPackageForm: FormGroup;
+  editProductForm: FormGroup;
 
 
   constructor( private fb: FormBuilder,
@@ -31,11 +31,12 @@ export class EditFoodComponent implements OnInit, OnDestroy {
                }
 
   ngOnInit() {
-    this.editPackageForm = this.fb.group({
-      packageTitle: '' || this.food.packageTitle,
-      packageDescription: '' || this.food.packageDescription,
-      packageDuration: '' || this.food.packageDuration,
-      packagePrice: '' || this.food.packagePrice,
+    this.editProductForm = this.fb.group({
+      productName: '' || this.food.productName,
+      productCategory: '' || this.food.productCategory,
+      amount: '' || this.food.portion.amount,
+      unit: '' || this.food.portion.unit,
+      preperations: '' || this.food.preparations,
     });
   }
 
@@ -53,14 +54,17 @@ export class EditFoodComponent implements OnInit, OnDestroy {
     this.foodService.editShow = false;
   }
 
-  editPackage() {
+  editProduct() {
     const data = {
-      packageTitle: this.editPackageForm.get('packageTitle').value || this.food.packageTitle,
-      packageDescription: this.editPackageForm.get('packageDescription').value || this.food.packageDescription,
-      packageDuration:  this.editPackageForm.get('packageDuration').value || this.food.packageDuration,
-      packagePrice: this.editPackageForm.get('packagePrice').value || this.food.packagePrice,
+      productName: this.editProductForm.get('productName').value || this.food.productName,
+      productCategory: this.editProductForm.get('productCategory').value || this.food.productCategory,
+      portion: {
+        amount: this.editProductForm.get('amount').value || this.food.portion.amount,
+        unit: this.editProductForm.get('unit').value || this.food.portion.unit,
+      }
+      // preparations: this.editProductForm.get('preparations').value || this.food.preparations,
     };
-    this.foodService.updatePackage(this.food.packageID, data);
+    this.foodService.updateFood(this.food.productID, data);
     this.toggleEdit();
   }
 

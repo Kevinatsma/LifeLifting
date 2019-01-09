@@ -34,12 +34,12 @@ export class FoodDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getPackage();
+    this.getFood();
   }
 
-  getPackage() {
+  getFood() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.foodService.getPackageData(id).subscribe(llPackage => (this.food = llPackage));
+    this.foodService.getFoodData(id).subscribe(food => (this.food = food));
   }
 
   aboutExtendedOpen() {
@@ -63,33 +63,23 @@ export class FoodDetailComponent implements OnInit {
     this.foodService.toggleEdit();
   }
 
-  openReviews() {
-    this.reviewsVisible = true;
-    this.cdr.detectChanges();
-  }
-
-  closeReviews() {
-    this.reviewsVisible = false;
-    this.cdr.detectChanges();
-  }
-
   // Control buttons
 
   goBack() {
     return this.location.back();
   }
 
-  linkToPrevious(llPackage) {
-    const packageID = llPackage.packageID - 1;
-    const url = `dashboard/packages/${packageID}`;
+  linkToPrevious(food) {
+    const productID = food.productID - 1;
+    const url = `dashboard/foods/${productID}`;
     this.router.navigate([url]);
-    this.foodService.getPackageData(packageID).subscribe(a => (this.food = a));
+    this.foodService.getFoodData(productID).subscribe(a => (this.food = a));
   }
 
-  linkToNext(llPackage) {
-    const packageID = llPackage.packageID + 1;
-    const url = `dashboard/packages/${packageID}`;
+  linkToNext(food) {
+    const productID = food.productID + 1;
+    const url = `dashboard/foods/${productID}`;
     this.router.navigate([url]);
-    this.foodService.getPackageData(packageID).subscribe(a => (this.food = a));
+    this.foodService.getFoodData(productID).subscribe(a => (this.food = a));
   }
 }

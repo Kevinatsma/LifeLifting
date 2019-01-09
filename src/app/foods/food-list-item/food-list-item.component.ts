@@ -22,11 +22,11 @@ export class FoodListItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  deletePackageDialog(llPackage) {
+  deleteFoodDialog(food) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        packageID: llPackage.packageID,
-        packageTitle: llPackage.packageTitle,
+        productID: food.productID,
+        productName: food.productName,
       },
     });
 
@@ -34,23 +34,23 @@ export class FoodListItemComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
       if (result === true) {
         console.log('i"m being called');
-        const id = llPackage.packageID;
-        this.foodService.deletePackage(id);
+        const id = food.productID;
+        this.foodService.deleteFood(id);
       } else if (result === false) {
         return null;
       }
     });
   }
 
-  editPackage(llPackage) {
-    const url = `dashboard/packages/${llPackage.packageID}`;
+  editFood(food) {
+    const url = `dashboard/foods/${food.productID}`;
     this.router.navigate([url]);
     return this.foodService.editShow = true;
   }
 
 
-  linkToChild(llPackage) {
-    const url = `dashboard/packages/${llPackage.packageID}`;
+  linkToChild(food) {
+    const url = `dashboard/foods/${food.productID}`;
     this.router.navigate([url]);
   }
 

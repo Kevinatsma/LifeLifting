@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material';
 export class FoodService {
   foodCol: AngularFirestoreCollection<Food>;
   foods: Observable<Food[]>;
-  packageDoc: AngularFirestoreDocument<Food>;
+  foodDoc: AngularFirestoreDocument<Food>;
   food: Observable<Food>;
 
   editShow: boolean;
@@ -32,9 +32,9 @@ export class FoodService {
     this.editStateChange.next(!this.editShow);
   }
 
-  getPackageData(id) {
-    this.packageDoc = this.afs.doc<Food>(`packages/${id}`);
-    this.food = this.packageDoc.valueChanges();
+  getFoodData(id) {
+    this.foodDoc = this.afs.doc<Food>(`foods/${id}`);
+    this.food = this.foodDoc.valueChanges();
     return this.food;
   }
 
@@ -67,13 +67,13 @@ export class FoodService {
     });
   }
 
-  updatePackage(id, data) {
-    this.packageDoc = this.afs.doc<Food>(`packages/${id}`);
-    this.packageDoc.update(data);
+  updateFood(id, data) {
+    this.foodDoc = this.afs.doc<Food>(`foods/${id}`);
+    this.foodDoc.update(data);
   }
 
-  deletePackage(id) {
-    this.packageDoc = this.afs.doc(`packages/${id}`);
-    this.packageDoc.delete();
+  deleteFood(id) {
+    this.foodDoc = this.afs.doc(`foods/${id}`);
+    this.foodDoc.delete();
   }
 }

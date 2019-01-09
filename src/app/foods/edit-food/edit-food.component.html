@@ -1,54 +1,45 @@
-    <main class="specialist-wrapper" *ngIf="editShow && food">
-  
-      <section class="action-toolbar-top">
-        <div class="left">
-          <button class="icon-button" [routerLink]="['../']">
-              <i class="fas fa-arrow-left"></i>
-          </button>
-        </div>
-        <div class="middle">
-          <h1>Package: {{food.packageID}}</h1>
-        </div>
-        <div class="right">
-          <button class="icon-button" (click)="editPackage()">
-            <i class="fas fa-check"></i>
-          </button>
+  <main class="specialist-wrapper" *ngIf="editShow && food">
+
+    <section class="action-toolbar-top">
+      <div class="left">
+        <button class="icon-button" [routerLink]="['../']">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
+      <div class="middle">
+        <h1>Product ID: {{food.productID}}</h1>
+      </div>
+      <div class="right">
+        <button class="icon-button" (click)="editProduct()">
+          <i class="fas fa-check"></i>
+        </button>
+      </div>
+    </section>
+
+    
+    <div class="package-container">
+      <form [formGroup]="editProductForm" *ngIf="editShow">
+      <section class="package-item">
+        <h2>
+          <input type="text" class="text-field" name="productName" formControlName="productName">
+          <!-- {{package.packageTitle}} -->
+        </h2>
+        <p class="card-text">
+          <input type="text" class="text-field" name="productCategory" formControlName="productCategory">
+        </p>
+        <p class="card-text half">
+          <input type="number" class="text-field" name="amount" formControlName="amount">
+          <input type="text" class="text-field" name="unit" formControlName="unit">
+        </p>
+        <div class="list-container">
+          <ul>
+            <li *ngFor="let prep of food.preperations">
+              <i class="fas fa-check"></i>
+              {{prep.prepValue}}
+            </li>
+          </ul>
         </div>
       </section>
-
-      
-      <div class="package-container">
-        <form [formGroup]="editPackageForm" *ngIf="editShow">
-        <section class="package-item">
-          <h2>
-            <input type="text" class="text-field" name="packageTitle" formControlName="packageTitle">
-            <!-- {{package.packageTitle}} -->
-          </h2>
-          <div class="quick-facts">
-            <p class="quick-fact">
-              $<input type="number" class="text-field" name="packagePrice" formControlName="packagePrice"> USD
-              <!-- ${{package.packagePrice}} USD -->
-            </p>
-            <div class="circle-divider"></div>
-            <p class="quick-fact">
-              <input type="number" class="text-field" name="packageDuration" formControlName="packageDuration">
-              <span *ngIf="food.packageDuration === 1">week</span>
-              <span *ngIf="food.packageDuration !== 1">weeks</span>
-            </p>
-          </div>
-          <p class="card-text">
-            <textarea matInput matTextareaAutosize name="packageDescription" formControlName="packageDescription"></textarea>
-          </p>
-          <div class="list-container">
-            <ul>
-              <li *ngFor="let benefit of food.packageBenefits">
-                <i class="fas fa-check"></i>
-                {{benefit.benefitValue}}
-              </li>
-            </ul>
-          </div>
-        </section>
-        </form>
-      </div>
-    </main>
-  
+    </form>
+  </div>
+</main>

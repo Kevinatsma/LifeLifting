@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="middle">
-        <h1>Package: {{food.packageID}}</h1>
+        <h1>Product ID: {{food.productID}}</h1>
       </div>
       <div class="right">
         <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
@@ -20,40 +20,32 @@
     <div class="package-container">
 
       <section class="package-controls last-package">
-          <button class="slide-control-btn" (click)="linkToPrevious(package)" 
-          [class.disabled]="food.packageID === 1"
-          [disabled]="food.packageID === 1"
+          <button class="slide-control-btn" (click)="linkToPrevious(food)" 
+          [class.disabled]="food.productID === 1"
+          [disabled]="food.productID === 1"
           >
               <i class="fas fa-chevron-left"></i>
           </button>
       </section>
       <section class="package-item" *ngIf="!editShow">
-        <h2>{{food.packageTitle}}</h2>
-        <div class="quick-facts">
-          <p class="quick-fact">
-            ${{food.packagePrice}} USD
-          </p>
-          <div class="circle-divider"></div>
-          <p class="quick-fact">
-            {{food.packageDuration}} 
-            <span *ngIf="food.packageDuration === 1">week</span>
-            <span *ngIf="food.packageDuration !== 1">weeks</span>
-          </p>
-        </div>
+        <h2>{{food.productName}}</h2>
         <p class="card-text">
-          {{food.packageDescription}}
+          {{food.productCategory}}
+        </p>
+        <p class="card-text">
+          {{food.portion.amount}} {{food.portion.unit}}
         </p>
         <div class="list-container">
           <ul>
-            <li *ngFor="let benefit of food.packageBenefits">
+            <li *ngFor="let prep of food.preperations">
               <i class="fas fa-check"></i>
-              {{benefit.benefitValue}}
+              {{prep.prepValue}}
             </li>
           </ul>
         </div>
       </section>
       <section class="package-controls next-package">
-        <button class="slide-control-btn" (click)="linkToNext(package)"
+        <button class="slide-control-btn" (click)="linkToNext(food)"
           [class.disabled]="food.packageID === 3"
           [disabled]="food.packageID === 3"
           >

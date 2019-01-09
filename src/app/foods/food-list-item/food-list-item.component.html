@@ -1,10 +1,14 @@
 
 <mat-card class="list-item-card" *ngIf="food">
-  <section class="number-id">
+  <section class="number-id" (click)="linkToChild(food)">
       <i class="fas fa-carrot"></i>
     <h1>{{i+1}}</h1>
   </section>
-  <section class="middle">
+  <p class="subtitle">
+    <!-- <i class="fas fa-clipboard-list"></i> -->
+    {{food.productCategory}}
+  </p>
+  <section class="middle" (click)="linkToChild(food)">
     <div class="title">
         <h2>{{food.productName}}</h2>
         <!-- <div class="dividing-circle"></div>
@@ -15,17 +19,13 @@
 
     <div class="quick-info">
       <p class="speciality-title">Product ID: {{food.productID}}</p>
-      <div class="btn-container">
-        <button class="btn-icon-right__animated" (click)="linkToChild(package)">
+      <!-- <div class="btn-container">
+        <button class="btn-icon-right__animated" >
           More info
         </button>
         <i class="fas fa-long-arrow-alt-right"></i>
-      </div>
+      </div> -->
       <ul class="contact-menu">
-        <li>
-          <i class="fas fa-clipboard-list"></i>
-          {{food.productCategory}}
-        </li>
         <li>
           <i class="fas fa-balance-scale"></i>
           {{food.portion.amount}} {{food.portion.unit}}
@@ -34,10 +34,10 @@
     </div>
   </section>
   <section class="actions">
-    <button type="button" (click)="deletePackageDialog(package)">
+    <button type="button" (click)="deleteFoodDialog(food)">
       <i class="fas fa-trash"></i>
     </button>
-    <button (click)="editPackage(package)">
+    <button (click)="editFood(food)">
       <i class="fas fa-edit"></i>
     </button>
   </section>

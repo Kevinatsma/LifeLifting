@@ -3,23 +3,34 @@
 
 mat-card.list-item-card {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column wrap;
     box-shadow: $card-shadow;
     width: 100%;
     margin: 0;
     padding: 0;
     transition: all 300ms ease-in-out;
+    cursor: pointer;
 
     &:hover, &:focus {
         transition: transform 300ms ease-in-out;
         transform: scale(1.02);
     }
 
+    p.subtitle {
+        text-transform: uppercase;
+        color: $secondary-color;
+        font-size: 13px;
+        font-weight: $bold;
+        width: 80%;
+        margin: 1rem auto 0;
+    }
+
     section {
         &.number-id {
             @extend %flex-center;
             flex-flow: column wrap;
-            width: 25%;
+            width: 100%;
+            height: 150px;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -36,9 +47,10 @@ mat-card.list-item-card {
         }
 
         &.middle {
-            width: 65%;
+            box-sizing: border-box;
+            width: 100%;
             border-right: $light-border;
-            padding: 1em 2em;
+            padding: 0 2em 1em;
 
             .title {
                 display: flex;
@@ -50,6 +62,7 @@ mat-card.list-item-card {
                 h2 {
                     margin: 0;
                     width: auto;
+                    font-weight: $bold;
                 }
 
                 .dividing-circle {
@@ -149,14 +162,15 @@ mat-card.list-item-card {
         }
 
         &.actions {
-            width: 10%;
+            width: 100%;
             display: flex;
-            flex-flow: column wrap;
+            flex-flow: row nowrap;
 
             button {
                 @extend %flex-center;
-                width: 100%;
-                height: 50%;
+                width: 50%;
+                height: 50px;
+                border-top: $light-border;
 
                 svg {
                     margin-top: -3px;
@@ -166,7 +180,7 @@ mat-card.list-item-card {
                 }
 
                 &:first-child {
-                    border-bottom: $light-border;
+                    border-right: $light-border;
                 }
 
                 &:hover, &:focus {

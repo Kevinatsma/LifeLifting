@@ -646,6 +646,10 @@ form {
     font-weight: $semi-bold!important;
 }
 
+.mat-select-panel {
+    min-width: 100%;
+}
+
 // Misc
 
 .no-photo {
@@ -666,6 +670,6 @@ form {
 }
 
 .emoji {
-    font-size: 18px;
+    font-size: 22px;
     vertical-align: middle
 }
