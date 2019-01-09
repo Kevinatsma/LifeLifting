@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { SpecialistService } from '../specialist.service';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AuthService } from './../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
-import { DataService } from 'src/app/shared/data/data.service';
-import { Timezone } from 'src/app/shared/data/models/timezone.model';
+import { DataService } from './../../shared/data/data.service';
+import { Timezone } from './../../shared/data/models/timezone.model';
 
 @Component({
   selector: 'app-add-specialist',

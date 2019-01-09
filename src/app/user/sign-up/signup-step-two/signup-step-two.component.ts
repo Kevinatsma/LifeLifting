@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AuthService } from './../../../core/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PackageService } from 'src/app/packages/package.service';
+import { PackageService } from './../../../packages/package.service';
 import { Observable } from 'rxjs';
-import { Package } from 'src/app/packages/package.model';
+import { Package } from './../../../packages/package.model';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 @Component({

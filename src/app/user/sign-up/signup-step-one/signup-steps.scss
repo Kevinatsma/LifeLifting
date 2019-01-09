@@ -1,6 +1,6 @@
-@import '_master';
-@import '_animations';
-@import '_forms';
+@import './../../../../assets/scss/_master.scss';
+@import './../../../../assets/scss/_dialogs.scss';
+@import './../../../../assets/scss/_forms.scss';
 
 .step-wrapper {
     @extend %flex-column-center;

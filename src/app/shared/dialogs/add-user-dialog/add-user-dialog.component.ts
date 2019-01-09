@@ -1,17 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { SpecialistService } from './../../../specialists/specialist.service';
-import { AuthService } from 'src/app/core/auth/auth.service';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
-import { DataService } from 'src/app/shared/data/data.service';
-import { Timezone } from 'src/app/shared/data/models/timezone.model';
-import { Country } from '../../data/models/country.model';
-import languages from './../../data/JSON/languages.json';
-import { Language } from '../../data/models/language.model';
-import { unescapeIdentifier } from '@angular/compiler';
-import { UserService } from 'src/app/user/user.service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { AuthService } from './../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-add-user-dialog',

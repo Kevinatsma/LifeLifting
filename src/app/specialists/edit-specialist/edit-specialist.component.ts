@@ -3,8 +3,8 @@ import { Specialist } from '../specialist.model';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { SpecialistService } from '../specialist.service';
 import { Observable } from 'rxjs';
-import { Timezone } from 'src/app/shared/data/models/timezone.model';
-import { DataService } from 'src/app/shared/data/data.service';
+import { Timezone } from './../../shared/data/models/timezone.model';
+import { DataService } from './../../shared/data/data.service';
 import { Location } from '@angular/common';
 
 @Component({

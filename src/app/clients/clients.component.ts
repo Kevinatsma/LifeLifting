@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
-import { AddClientDialogComponent } from 'src/app/shared/dialogs/add-client-dialog/add-client-dialog.component';
+import { AddClientDialogComponent } from './../shared/dialogs/add-client-dialog/add-client-dialog.component';
 
 @Component({
   selector: 'app-clients',

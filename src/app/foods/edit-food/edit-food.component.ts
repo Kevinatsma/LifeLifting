@@ -1,13 +1,8 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { User } from '../../user/user.model';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { FoodService } from './../food.service';
-import { Observable } from 'rxjs';
-import { Timezone } from 'src/app/shared/data/models/timezone.model';
-import { DataService } from 'src/app/shared/data/data.service';
 import { Location } from '@angular/common';
-import { SpecialistService } from 'src/app/specialists/specialist.service';
-import { Specialist } from 'src/app/specialists/specialist.model';
+import { SpecialistService } from './../../specialists/specialist.service';
 import { Food } from '../food.model';
 
 @Component({

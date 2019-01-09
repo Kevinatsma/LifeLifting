@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from 'src/app/user/user.model';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { User } from './../../user/user.model';
+import { AuthService } from './../../core/auth/auth.service';
 import { Router } from '@angular/router';
-import { ClientService } from 'src/app/clients/client.service';
+import { ClientService } from './../../clients/client.service';
 
 @Component({
   selector: 'app-dashboard-top-nav',

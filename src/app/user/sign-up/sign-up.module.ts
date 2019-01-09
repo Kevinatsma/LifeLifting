@@ -7,8 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './../../core/core.module';
 import { SharedModule } from './../../shared/shared.module';
 import { PackagesModule } from './../../packages/packages.module';
-import { BookingModule } from 'src/app/booking/booking.module';
-import { SpecialistModule } from 'src/app/specialists/specialist.module';
+import { BookingModule } from './../../booking/booking.module';
+import { SpecialistModule } from './../../specialists/specialist.module';
 
 // Components
 import { SignupComponent } from './signup/signup.component';
@@ -20,7 +20,7 @@ import { SignupStepThreeComponent } from './signup-step-three/signup-step-three.
 import { SignupStepFourComponent } from './signup-step-four/signup-step-four.component';
 
 // Services
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AuthService } from './../../core/auth/auth.service';
 
 
 
