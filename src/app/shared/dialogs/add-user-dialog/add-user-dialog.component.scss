@@ -1,7 +1,6 @@
-@import '_master';
-@import '_dialogs';
-@import  '_forms';
-
+@import './../../../../assets/scss/_master.scss';
+@import './../../../../assets/scss/_dialogs.scss';
+@import './../../../../assets/scss/_forms.scss';
 // Ng Deeps
 
 ::ng-deep .mat-dialog-container {

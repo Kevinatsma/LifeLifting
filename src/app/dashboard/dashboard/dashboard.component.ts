@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/core/auth/auth.service';
-import { User } from 'src/app/user/user.model';
+import { AuthService } from './../../core/auth/auth.service';
+import { User } from './../../user/user.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
-import { slideTransition } from 'src/app/core/animations/slide.animation';
+import { slideTransition } from './../../core/animations/slide.animation';
 
 @Component({
   selector: 'app-dashboard',

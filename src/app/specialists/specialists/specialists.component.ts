@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { AddSpecialistDialogComponent } from 'src/app/shared/dialogs/add-specialist-dialog/add-specialist-dialog.component';
+import { AddSpecialistDialogComponent } from './../../shared/dialogs/add-specialist-dialog/add-specialist-dialog.component';
 import { MatDialog } from '@angular/material';
 
 @Component({

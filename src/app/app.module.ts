@@ -21,12 +21,13 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { PackagesModule } from './packages/packages.module';
 import { BookingModule } from './booking/booking.module';
 import { SpecialistModule } from './specialists/specialist.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 // Core Components
 
 @NgModule({
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -40,7 +41,8 @@ import { SpecialistModule } from './specialists/specialist.module';
     DashboardModule,
     PackagesModule,
     BookingModule,
-    SpecialistModule
+    SpecialistModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [
     AppComponent

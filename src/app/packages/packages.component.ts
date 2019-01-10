@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
-import { AddPackageDialogComponent } from 'src/app/shared/dialogs/add-package-dialog/add-package-dialog.component';
+import { AddPackageDialogComponent } from './../shared/dialogs/add-package-dialog/add-package-dialog.component';
 
 @Component({
   selector: 'app-packages',

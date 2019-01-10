@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../core/auth/guards/auth.guard';
 import { DashboardMenuComponent } from './dashboard-menu/dashboard-menu.component';
 import { DashboardTopNavComponent } from './dashboard-top-nav/dashboard-top-nav.component';
 import { SpecialistsComponent } from '../specialists/specialists/specialists.component';
@@ -24,9 +23,9 @@ import { MaterialModule } from '../shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserDetailComponent } from '../user/users/user-detail/user-detail.component';
 import { ClientDetailComponent } from '../clients/client-detail/client-detail.component';
-import { FoodsModule } from 'src/app/foods/foods.module';
-import { FoodsComponent } from 'src/app/foods/foods.component';
-import { FoodDetailComponent } from 'src/app/foods/food-detail/food-detail.component';
+import { FoodsModule } from './../foods/foods.module';
+import { FoodsComponent } from './../foods/foods.component';
+import { FoodDetailComponent } from './../foods/food-detail/food-detail.component';
 
 const routes: Routes = [
   {
