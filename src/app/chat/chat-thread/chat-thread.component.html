@@ -1,0 +1,19 @@
+<div class="thread-container">
+  <div>
+      <section class="photo-container">
+        <div class="photo" [style.backgroundImage]="'url('+ thread.avatar +')'"></div>
+        <!-- <img *ngIf="!currentUser" matListAvatar [src]="thread.avatar || '//:0'">
+        <img *ngIf="currentUser" matListAvatar [src]="thread.targetAvatar || '//:0'"> -->
+      </section>
+      <section class="thread-info">
+        <h5>{{thread.creator}}</h5>
+        <p class="card-text">{{thread.lastMessage}}</p>
+      </section>
+      
+      <!-- <p mat-line>{{thread.lastMessage}}</p> -->
+      <!-- <button mat-icon-button (click)="delete(thread.id)">
+        <mat-icon>delete</mat-icon>
+      </button> -->
+    
+  </div>
+</div>

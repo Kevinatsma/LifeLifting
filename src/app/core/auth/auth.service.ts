@@ -122,6 +122,10 @@ export class AuthService {
     return this.authenticated ? this.authState.uid : null;
   }
 
+  getUser() {
+    return this.user.pipe(first()).toPromise();
+  }
+
   addUser(email: string, password: string, formData: any) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
     .then((credential) => {
@@ -178,8 +182,8 @@ export class AuthService {
       });
   }
 
-  signOut() {
-    this.afAuth.auth.signOut()
+  async signOut() {
+    await this.afAuth.auth.signOut()
       .then(() => {
         this.router.navigate(['/']);
       }

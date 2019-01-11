@@ -1,0 +1,45 @@
+@import './../../../assets/scss/_master.scss';
+
+main.detail-wrapper {
+    padding: 0;
+    width: 100%;
+    height: calc(100vh - 50px);
+    overflow-y: hidden;
+    position: relative;
+
+    section {
+        box-sizing: border-box;
+        &.chat-feed {
+            height: calc(100vh - 130px);
+            overflow-y: scroll;
+            overflow: auto;
+            background: $light-grey;
+        }
+
+        &.chat-input {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: auto;
+            max-height: 125px;
+            background: #fff;
+            border-top: 1px solid $light-grey;
+            padding: 5px 10px;
+        }
+    }
+}
+
+mat-toolbar {
+    background: $primary-color;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+
+    button:nth-child(2) {
+        margin-left: auto;
+    }
+    mat-icon {
+        color: #fff;
+    }
+}

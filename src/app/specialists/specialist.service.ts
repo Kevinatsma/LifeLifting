@@ -37,7 +37,6 @@ export class SpecialistService {
   getSpecialistData(sID) {
     this.specialistDoc = this.afs.doc<Specialist>(`specialists/${sID}`);
     this.specialist = this.specialistDoc.valueChanges();
-    console.log(this.specialist);
     return this.specialist;
   }
 

@@ -1,0 +1,26 @@
+<mat-toolbar>
+  <button mat-icon-button routerLink="../" class="back-btn">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="delete()">
+        <mat-icon>delete</mat-icon>
+        <span>Delete this chat</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+<main class="thread-container">
+  <section class="chat-sidebar">
+    <app-chat-thread *ngFor="let thread of threads | async" [thread]="thread" (click)="linkToChild(thread)" routerLinkActive="active"></app-chat-thread>
+  </section>
+  <section class="router-wrapper">
+    <router-outlet #o="outlet"></router-outlet>
+    <div *ngIf="!outlet" class="no-chat-container">
+      <h1>Welcome to Chat!</h1>
+      <p class="subtitle">Select a thread to start chatting. 💬</p>
+    </div>
+  </section>
+</main>

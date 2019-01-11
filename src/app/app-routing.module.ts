@@ -2,13 +2,31 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ChatThreadsComponent } from './chat/chat-threads/chat-threads.component';
+import { ChatDetailComponent } from './chat/chat-detail/chat-detail.component';
+import { AuthGuard } from './core/auth/guards/auth.guard';
+// import { ChatListComponent } from './core/chat/chat-list/chat-list.component';
+// import { ChatDetailComponent } from './core/chat/chat-detail/chat-detail.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
   },
+    {
+    path: 'chat',
+    component: ChatThreadsComponent,
+    canActivate: [AuthGuard],
+    data: {state: 'chat'},
+    children: [
+      {path: '', redirectTo: 'chat', pathMatch: 'full'},
+      {path: 'chat-detail', redirectTo: 'chat-detail/:id', pathMatch: 'full'},
+      {path: 'chat-detail/:id', component: ChatDetailComponent}
+    ]
+  }
+  // {path: 'chat', component: ChatThreadsComponent, data: {state: 'chat'}},
+  // {path: 'chat/:id', component: ChatDetailComponent},
 ];
 
 @NgModule({
