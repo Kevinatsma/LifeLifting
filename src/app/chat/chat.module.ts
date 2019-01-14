@@ -15,22 +15,17 @@ import { ChatThreadService } from './chat-thread.service';
 import { AuthGuard } from '../core/auth/guards/auth.guard';
 
 const routes: Routes = [
-  // {
-  //   path: 'chat',
-  //   component: ChatThreadsComponent,
-  //   canActivate: [AuthGuard],
-  //   data: {state: 'chat'},
-  //   children: [
-  //     {path: '', redirectTo: 'chat', pathMatch: 'full'},
-  //     {path: 'chat-detail', redirectTo: 'chat-detail/:id', pathMatch: 'full'},
-  //     {path: 'chat-detail/:id', component: ChatDetailComponent}
-  //   ]
-  // }
-  // {
-  //   path: 'chat/:id',
-  //   component: ChatDetailComponent,
-  //   canActivate: [AuthGuard]
-  // }
+  {
+    path: 'chat',
+    component: ChatThreadsComponent,
+    canActivate: [AuthGuard],
+    data: {state: 'chat'},
+    children: [
+      {path: '', redirectTo: 'chat', pathMatch: 'full'},
+      {path: 'chat-detail', redirectTo: 'chat-detail/:id', pathMatch: 'full'},
+      {path: 'chat-detail/:id', component: ChatDetailComponent}
+    ]
+  }
 ];
 
 @NgModule({
@@ -39,7 +34,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-    RouterModule.forChild(routes),
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}),
   ],
   exports: [
     ChatInputComponent,

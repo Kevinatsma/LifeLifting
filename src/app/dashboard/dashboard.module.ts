@@ -26,12 +26,13 @@ import { ClientDetailComponent } from '../clients/client-detail/client-detail.co
 import { FoodsModule } from './../foods/foods.module';
 import { FoodsComponent } from './../foods/foods.component';
 import { FoodDetailComponent } from './../foods/food-detail/food-detail.component';
+import { AuthGuard } from '../core/auth/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: DashboardHomeComponent, data: {state: 'home'}},

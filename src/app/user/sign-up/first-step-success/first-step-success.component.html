@@ -29,7 +29,10 @@
       </li>
     </ul>
     <div class="btn-area">
-      <button type="link" class="btn-primary" [class.btn-disabled]="!user.signupCompleted" [disabled]="!user.signupCompleted" routerLink="../dashboard">Go to Mirror</button>
+      <button type="link" class="btn-primary" 
+      [class.btn-disabled]="!user.basicData || !user.appointment || !user.specialist || !user.packageChoice" 
+      [disabled]="!user.basicData || !user.appointment || !user.specialist || !user.packageChoice" 
+      routerLink="../dashboard">Go to Mirror</button>
       <br>
       <button type="link" class="text-link" routerLink="../login">Go back</button>
     </div>

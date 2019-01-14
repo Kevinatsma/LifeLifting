@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Thread } from './../thread.model';
 import { ChatThreadService } from './../chat-thread.service';
-import { User } from 'src/app/user/user.model';
-import { AuthService } from 'src/app/core/auth/auth.service';
-import { UserService } from 'src/app/user/user.service';
+import { User } from './../../user/user.model';
+import { AuthService } from './../../core/auth/auth.service';
+import { UserService } from './../../user/user.service';
 
 @Component({
   selector: 'app-chat-thread',
@@ -30,15 +30,23 @@ export class ChatThreadComponent implements OnInit {
     });
   }
 
+  // checkUser() {
+  //   this.getUser();
+  //   if (this.thread.creator) {
+  //     console.log('true');
+  //     return this.currentUser = true;
+  //   } else {
+  //     console.log('false');
+  //     return this.currentUser = false;
+  //   }
+  // }
+
   checkUser() {
-    this.getUser();
-    if (this.thread.creator) {
-      console.log('true');
-      return this.currentUser = true;
-    } else {
-      console.log('false');
-      return this.currentUser = false;
+    const uid = this.auth.currentUserId;
+    if (this.thread.creatorID && uid) {
+      this.currentUser = this.thread.creatorID !== uid;
     }
+    console.log(this.currentUser);
   }
 
   delete(threadId) {

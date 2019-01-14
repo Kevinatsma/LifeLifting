@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Message } from './../message.model';
@@ -12,35 +12,39 @@ import { Thread } from '../thread.model';
   templateUrl: './chat-messages.component.html',
   styleUrls: ['./chat-messages.component.scss']
 })
-export class ChatMessagesComponent implements OnInit {
-  messages: Observable<Message[]>;
+export class ChatMessagesComponent implements OnInit, OnDestroy {
+  navigationSubscription;
+  messages$: Observable<Message[]>;
   channelId: Observable<string>;
   thread: Thread;
 
   constructor( private messageService: ChatMessageService,
                public threadService: ChatThreadService,
-               private route: ActivatedRoute ) { }
+               private route: ActivatedRoute,
+               public router: Router) { }
 
   ngOnInit() {
-    this.getThread();
-    // this.messages.subscribe();
-    // this.channelId = this.route.snapshot.paramMap.get('id').subscribe();
-  }
-
-  getThread() {
-    const channelId = this.route.snapshot.paramMap.get('id');
-    console.log(channelId);
-    this.threadService.getThread(channelId);
-    this.threadService.thread.pipe().subscribe(thread => {
-      console.log(thread);
-      this.thread = thread;
-      return this.getMessages(thread);
+    // subscribe to the router events. Store the subscription so we can
+   // unsubscribe later.
+   this.getMessages();
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        this.getMessages();
+      }
     });
   }
 
-  async getMessages(thread) {
-    // const messagesId = this.threadService.thread.id;
-    this.messages = await this.messageService.getMessages(thread.id);
+  getMessages() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.messages$ = this.messageService.messages;
+    console.log(this.messages$);
+  }
+
+  ngOnDestroy() {
+    // if (this.navigationSubscription) {
+    //   this.navigationSubscription.unsubscribe();
+    // }
   }
 
 

@@ -4,7 +4,7 @@ import { User } from './../../user.model';
 import { ConfirmDialogComponent } from './../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { UserService } from './../../user.service';
-import { ChatThreadService } from 'src/app/chat/chat-thread.service';
+import { ChatThreadService } from './../../../chat/chat-thread.service';
 
 @Component({
   selector: 'app-user-list-item',

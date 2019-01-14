@@ -70,7 +70,10 @@
       </div>
 
       <div class="btn-area">
-        <button class="btn-icon-right" type="submit">
+        <button class="btn-icon-right" 
+        [class.btn-disabled]="!basicUserDataForm.valid" 
+        [disabled]="!basicUserDataForm.valid"
+        type="submit">
           <span>To the next step</span>
           <i class="fas fa-chevron-right small"></i>
         </button>

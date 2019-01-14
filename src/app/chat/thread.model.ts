@@ -3,6 +3,7 @@ export class Thread {
     avatar: string;
     targetAvatar: string;
     creator: string;
+    creatorID: string;
     lastMessage: string;
     members: Object;
 }

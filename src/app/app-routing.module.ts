@@ -14,17 +14,6 @@ const routes: Routes = [
     redirectTo: 'dashboard',
     pathMatch: 'full'
   },
-    {
-    path: 'chat',
-    component: ChatThreadsComponent,
-    canActivate: [AuthGuard],
-    data: {state: 'chat'},
-    children: [
-      {path: '', redirectTo: 'chat', pathMatch: 'full'},
-      {path: 'chat-detail', redirectTo: 'chat-detail/:id', pathMatch: 'full'},
-      {path: 'chat-detail/:id', component: ChatDetailComponent}
-    ]
-  }
   // {path: 'chat', component: ChatThreadsComponent, data: {state: 'chat'}},
   // {path: 'chat/:id', component: ChatDetailComponent},
 ];

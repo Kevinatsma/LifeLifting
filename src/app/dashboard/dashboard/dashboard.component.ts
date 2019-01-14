@@ -21,23 +21,21 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
     this.afs.collection(`users`).doc(`${this.auth.authState.uid}`).ref.get()
-        .then((doc) => {
-          if (doc.exists) {
-              // Write doc data to user variable
-              const user = doc.data() as User;
-              return this.user = user;
-          } else {
-              console.log('No such document!');
-          }
-        })
-        .then(() => {
-            this.redirect();
-        })
-        .catch(function(error) {
-            console.log('Error getting document:', error);
-        });
-
-        console.log(this.user);
+      .then((doc) => {
+        if (doc.exists) {
+            // Write doc data to user variable
+            const user = doc.data() as User;
+            return this.user = user;
+        } else {
+            console.log('No such document!');
+        }
+      })
+      .then(() => {
+          this.redirect();
+      })
+      .catch(function(error) {
+          console.log('Error getting document:', error);
+      });
   }
 
   signOut() {

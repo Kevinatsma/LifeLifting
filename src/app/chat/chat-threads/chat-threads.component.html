@@ -6,7 +6,7 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="delete()">
+    <button mat-menu-item >
         <mat-icon>delete</mat-icon>
         <span>Delete this chat</span>
     </button>
@@ -18,7 +18,7 @@
   </section>
   <section class="router-wrapper">
     <router-outlet #o="outlet"></router-outlet>
-    <div *ngIf="!outlet" class="no-chat-container">
+    <div class="no-chat-container">
       <h1>Welcome to Chat!</h1>
       <p class="subtitle">Select a thread to start chatting. 💬</p>
     </div>

@@ -6,8 +6,8 @@ import { ChatMessageService } from './../chat-message.service';
 
 import { Message } from './../message.model';
 import { ChatThreadService } from '../chat-thread.service';
-import { UserService } from 'src/app/user/user.service';
-import { User } from 'src/app/user/user.model';
+import { UserService } from './../../user/user.service';
+import { User } from './../../user/user.model';
 import { Observable } from 'rxjs';
 
 @Component({

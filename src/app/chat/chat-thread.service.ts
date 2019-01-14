@@ -49,17 +49,17 @@ export class ChatThreadService {
 
   async createThread(profileId) {
     const targetUser = this.getTargetUser(profileId);
-    const currentUserId = this.auth.currentUserId;
-    const id = `${currentUserId}_${profileId}`;
+    const creatorID = this.user.uid;
+    const id = `${creatorID}_${profileId}`;
     const avatar = this.user.photoURL;
     const targetAvatar = '';
     const creator = this.user.displayName || this.user.email;
     const lastMessage = null;
     // const creator = this.auth.authState.displayName || this.auth.authState.email;
     // const lastMessage = null;
-    const members = { [profileId]: true, [currentUserId]: true };
+    const members = { [profileId]: true, [creatorID]: true };
 
-    const thread: Thread = { id, avatar, targetAvatar, creator, lastMessage, members };
+    const thread: Thread = { id, avatar, targetAvatar, creator, creatorID, lastMessage, members };
     const threadPath = `chats/${id}`;
 
     await this.afs.doc(threadPath).set(thread, { merge: true })

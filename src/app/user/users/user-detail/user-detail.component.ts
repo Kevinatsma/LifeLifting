@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from './../../user.service';
 import { Specialist } from './../../../specialists/specialist.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
-import { ChatThreadService } from 'src/app/chat/chat-thread.service';
+import { ChatThreadService } from './../../../chat/chat-thread.service';
 
 
 @Component({
@@ -81,13 +81,13 @@ export class UserDetailComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  chat() {
-    const profileId = this.route.snapshot.paramMap.get('id');
-    console.log('hello');
-    return this.threadService.createThread(profileId)
-      .then(() => console.log('Thread Created!'))
-      .catch(error => console.log(error.message));
-  }
+  // chat() {
+  //   const profileId = this.route.snapshot.paramMap.get('id');
+  //   console.log('hello');
+  //   return this.threadService.createThread(profileId)
+  //     .then(() => console.log('Thread Created!'))
+  //     .catch(error => console.log(error.message));
+  // }
 
   test() {
     console.log('test');

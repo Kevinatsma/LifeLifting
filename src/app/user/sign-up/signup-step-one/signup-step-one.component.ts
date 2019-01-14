@@ -25,7 +25,7 @@ export class SignupStepOneComponent implements OnInit {
     {value: 'facebook', viewValue: 'Facebook'},
     {value: 'friends', viewValue: 'Friends told me'},
     {value: 'google', viewValue: 'I found you in Google'}
-  ]; selectedMedium = '';
+  ]; selectedMedium: string;
 
   constructor(
     public fb: FormBuilder,

@@ -4,6 +4,8 @@ import { AuthService } from './../core/auth/auth.service';
 import { Message } from './message.model';
 import { Observable } from 'rxjs';
 import { Thread } from './thread.model';
+import { Route, Router, ActivatedRoute } from '@angular/router';
+import { NullAstVisitor } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +15,20 @@ import { Thread } from './thread.model';
 export class ChatMessageService {
   messagesCollection: AngularFirestoreCollection<Message>;
   messageDoc: AngularFirestoreDocument<Message>;
-  thread: Observable<Thread>;
+  currentThread: Observable<Thread>;
+  messages: Observable<Message[]>;
 
   constructor( private auth: AuthService,
-               private afs: AngularFirestore) { }
+               private afs: AngularFirestore,
+               public route: ActivatedRoute) { }
 
-  getMessages(channelId) {
+  getMessages(channelID) {
+    console.log('im called!');
     this.messagesCollection = this.afs.collection(
-      `chats/${channelId}/messages`,
+      `chats/${channelID}/messages`,
       ref => ref.orderBy('timestamp', 'asc')
     );
-    return this.messagesCollection.valueChanges();
+    return this.messages = this.messagesCollection.valueChanges();
   }
 
   sendMessage(
