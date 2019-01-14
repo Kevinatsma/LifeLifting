@@ -35,6 +35,10 @@ main.thread-container {
             background: #fff;
             box-shadow: $sidebar-shadow;
             z-index: 125;
+            height: 100%;
+            overflow-y: auto;
+            display: flex;
+            flex-flow: column nowrap;
 
             app-chat-thread {
                 &.active {

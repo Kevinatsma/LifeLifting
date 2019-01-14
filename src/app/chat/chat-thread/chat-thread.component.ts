@@ -13,7 +13,7 @@ import { UserService } from './../../user/user.service';
 export class ChatThreadComponent implements OnInit {
   @Input() thread: Thread;
   user: User;
-  currentUser: boolean;
+  isCreator: boolean;
 
   constructor( private threadService: ChatThreadService,
                private auth: AuthService,
@@ -43,10 +43,9 @@ export class ChatThreadComponent implements OnInit {
 
   checkUser() {
     const uid = this.auth.currentUserId;
-    if (this.thread.creatorID && uid) {
-      this.currentUser = this.thread.creatorID !== uid;
+    if (this.thread.creator.creatorID && uid) {
+      this.isCreator = this.thread.creator.creatorID === uid;
     }
-    console.log(this.currentUser);
   }
 
   delete(threadId) {

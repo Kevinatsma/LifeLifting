@@ -1,12 +1,13 @@
 <div class="thread-container">
   <div>
       <section class="photo-container">
-        <div class="photo" [style.backgroundImage]="'url('+ thread.avatar +')'"></div>
-        <!-- <img *ngIf="!currentUser" matListAvatar [src]="thread.avatar || '//:0'">
-        <img *ngIf="currentUser" matListAvatar [src]="thread.targetAvatar || '//:0'"> -->
+        <!-- <div class="photo" [style.backgroundImage]="'url('+ thread.avatar +')'"></div> -->
+        <img class="photo" *ngIf="isCreator" matListAvatar [src]="thread.creator.creatorPhoto || '//:0'">
+        <img class="photo" *ngIf="!isCreator" matListAvatar [src]="thread.target.targetPhoto || '//:0'">
       </section>
       <section class="thread-info">
-        <h5>{{thread.creator}}</h5>
+        <h5 *ngIf="isCreator">{{thread.creator.creatorName}}</h5>
+        <h5 *ngIf="!isCreator">{{thread.target.targetName}}</h5>
         <p class="card-text">{{thread.lastMessage}}</p>
       </section>
       

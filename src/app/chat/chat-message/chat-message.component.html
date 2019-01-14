@@ -1,9 +1,9 @@
-<mat-list>
-  <mat-list-item [class.inbound]="incoming" [class.outbound]="!incoming">
+<div class="message-container">
+  <div id="message" [class.inbound]="incoming" [class.outbound]="!incoming">
     <img matListAvatar [src]="message.photoURL || '//:0'" alt="{{message.sender}}">
     <mat-card>
         <p>{{ message.content }}</p>
-        <p><small>{{ message.timestamp.toDate() | date:long }}</small></p>
+        <p><small>{{ message.timestamp.toDate() | date }}</small></p>
     </mat-card>
-  </mat-list-item>
-</mat-list>
+  </div>
+</div>

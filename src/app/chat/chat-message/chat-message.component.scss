@@ -1,8 +1,8 @@
 @import './../../../assets/scss/_master.scss';
 
-mat-list {
+div.message-container {
     width: 100%;
-    height: 80px;
+    height: auto;
     display: flex;
 
 
@@ -14,51 +14,58 @@ mat-list {
         width: 50px;
         height: 50px;
         margin-right: 15px;
+        border-radius: 50%;
     }
 
-    mat-list-item {
+    div#message {
         display: flex;
-
+        justify-content: flex-start;
         &:last-child {
-            margin-bottom: 50px;
+            margin-bottom: 1em;
+        }
+
+        p {
+            word-wrap: break-word;
+        }
+
+        mat-card {
+            box-shadow: $card-shadow;
         }
     }
 
     .inbound {
-        justify-content: flex-start;
-
-        ::ng-deep .mat-list-item-content {
-            flex-direction: row;
-            mat-card {            
-                background: lighten($primary-color, 5%);
-                p {
-                    color: #fff;
-                }
+        flex-direction: row;
+        width: 100%;
+        mat-card {   
+            max-width: 80%;
+            height: auto;          
+            background: lighten($primary-color, 5%);
+            p {
+                color: #fff;
             }
+        }
 
-            img {
-                margin-right: 15px;
-                margin-left: 0;
-            }
+        img {
+            margin-right: 15px;
+            margin-left: 0;
         }
     }
     
     .outbound {
-        justify-content: flex-end;
-
-        ::ng-deep .mat-list-item-content {
-            flex-direction: row-reverse;
-            mat-card {            
-                background: $light-grey;
-                p {
-                    color: $text-black;
-                }
+        flex-direction: row-reverse;
+        width: 100%;
+        mat-card {        
+            max-width: 80%;
+            height: auto;  
+            background: #fff;
+            p {
+                color: $text-black;
             }
+        }
 
-            img {
-                margin-right: 0;
-                margin-left: 15px;
-            }
+        img {
+            margin-right: 0;
+            margin-left: 15px;
         }
     }
 }

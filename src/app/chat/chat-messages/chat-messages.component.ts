@@ -42,9 +42,9 @@ export class ChatMessagesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // if (this.navigationSubscription) {
-    //   this.navigationSubscription.unsubscribe();
-    // }
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
   }
 
 

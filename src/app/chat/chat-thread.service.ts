@@ -6,7 +6,6 @@ import {
   AngularFirestoreDocument
 } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-
 import { Thread } from './thread.model';
 import { Message } from './message.model';
 
@@ -22,6 +21,7 @@ export class ChatThreadService {
   user: User;
   targetUser: User;
   thread: Observable<Thread>;
+  threads: Observable<Thread[]>;
 
   constructor(
     private router: Router,
@@ -47,28 +47,41 @@ export class ChatThreadService {
     return this.targetUser;
   }
 
-  async createThread(profileId) {
-    const targetUser = this.getTargetUser(profileId);
+  createThread(profileID) {
+    this.userService.getUserDataByID(profileID).subscribe(user => {
+      this.targetUser = user;
+      this.startThread(profileID);
+    });
+  }
+
+  startThread(profileID) {
     const creatorID = this.user.uid;
-    const id = `${creatorID}_${profileId}`;
-    const avatar = this.user.photoURL;
-    const targetAvatar = '';
-    const creator = this.user.displayName || this.user.email;
-    const lastMessage = null;
-    // const creator = this.auth.authState.displayName || this.auth.authState.email;
-    // const lastMessage = null;
-    const members = { [profileId]: true, [creatorID]: true };
+    const id = `${creatorID}_${profileID}`;
+    const targetUser = this.targetUser;
 
-    const thread: Thread = { id, avatar, targetAvatar, creator, creatorID, lastMessage, members };
+    const data = {
+      id: id,
+      lastMessage: null,
+      creator: {
+        creatorName: this.user.displayName || this.user.email,
+        creatorPhoto: this.user.photoURL
+      },
+      target: {
+        targetPhoto: targetUser.photoURL,
+        targetName: targetUser.displayName
+      },
+      members: { [profileID]: true, [creatorID]: true },
+    };
+
     const threadPath = `chats/${id}`;
-
-    await this.afs.doc(threadPath).set(thread, { merge: true })
+    this.afs.doc(threadPath).set(data, { merge: true })
     .then(() => this.router.navigate([`chat/chat-detail/${id}`]));
   }
 
   getThreads() {
     this.threadsCollection = this.afs.collection('chats', ref => ref.where(`members.${this.auth.currentUserId}`, '==', true));
-    return this.threadsCollection.valueChanges();
+    this.threads = this.threadsCollection.valueChanges();
+    return this.threads;
   }
 
   getThread(profileId) {
