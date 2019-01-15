@@ -43,6 +43,7 @@ export class ChatInputComponent implements OnInit {
     const senderId = this.auth.currentUserId;
     const message = this.message;
     this.messageService.sendMessage(channelId, photoURL, sender, senderId, message);
+    this.messageService.getMessages(channelId);
     this.saveLast(channelId, message);
     return this.message = '';
   }

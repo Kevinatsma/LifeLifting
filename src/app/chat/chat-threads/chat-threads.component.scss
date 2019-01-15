@@ -16,6 +16,8 @@ mat-toolbar {
     }
 }
 
+
+
 main.thread-container {
     width: 100vw;
     height: calc(100vh - 50px);
@@ -40,9 +42,10 @@ main.thread-container {
             display: flex;
             flex-flow: column nowrap;
 
-            app-chat-thread {
+            ::ng-deep app-chat-thread {
                 &.active {
                     background: $light-grey;
+                    border: 2px solid red;
                 }
             }
         }

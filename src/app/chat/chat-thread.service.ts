@@ -20,6 +20,9 @@ export class ChatThreadService {
   threadDoc: AngularFirestoreDocument<Thread>;
   user: User;
   targetUser: User;
+  threadExists: boolean;
+  requestedThread: string;
+  reverseRequestedThread: string;
   thread: Observable<Thread>;
   threads: Observable<Thread[]>;
 
@@ -48,10 +51,33 @@ export class ChatThreadService {
   }
 
   createThread(profileID) {
-    this.userService.getUserDataByID(profileID).subscribe(user => {
-      this.targetUser = user;
-      this.startThread(profileID);
-    });
+    this.checkExistence(profileID);
+    if (this.threadExists = true) {
+      return this.threadExists = true;
+    } else {
+      this.userService.getUserDataByID(profileID).subscribe(user => {
+        this.targetUser = user;
+        this.startThread(profileID);
+      });
+    }
+
+  }
+
+  checkExistence(profileID) {
+    this.requestedThread = this.auth.currentUserId + '_' + profileID;
+    this.reverseRequestedThread = profileID + '_' + this.auth.currentUserId;
+    this.afs.collection(`chats`).doc(`${this.requestedThread || this.reverseRequestedThread}`).ref.get()
+      .then((doc) => {
+        if (doc.exists) {
+          this.messageService.getMessages(`${this.requestedThread || this.reverseRequestedThread}`);
+          this.router.navigate([`chat/chat-detail/${this.requestedThread || this.reverseRequestedThread}`]);
+        } else {
+          return this.threadExists = false;
+        }
+      })
+      .catch(function(error) {
+          console.log('Error getting document:', error);
+      });
   }
 
   startThread(profileID) {

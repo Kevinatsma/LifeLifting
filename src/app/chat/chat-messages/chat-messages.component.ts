@@ -26,7 +26,7 @@ export class ChatMessagesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // subscribe to the router events. Store the subscription so we can
    // unsubscribe later.
-   this.getMessages();
+    this.getMessages();
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
@@ -38,13 +38,14 @@ export class ChatMessagesComponent implements OnInit, OnDestroy {
   getMessages() {
     const id = this.route.snapshot.paramMap.get('id');
     this.messages$ = this.messageService.messages;
-    console.log(this.messages$);
   }
 
   ngOnDestroy() {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
+    this.messages$ = null;
+    // if (this.navigationSubscription) {
+
+    //   this.navigationSubscription.unsubscribe();
+    // }
   }
 
 

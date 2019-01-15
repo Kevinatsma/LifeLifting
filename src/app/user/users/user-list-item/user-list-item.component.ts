@@ -57,7 +57,6 @@ export class UserListItemComponent implements OnInit {
 
   chat() {
     const profileId = this.user.uid;
-    console.log('hello');
     return this.threadService.createThread(profileId);
   }
 }

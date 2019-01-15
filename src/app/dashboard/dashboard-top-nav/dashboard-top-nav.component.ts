@@ -27,7 +27,6 @@ export class DashboardTopNavComponent implements OnInit {
   }
 
   signOut() {
-    console.log('am i called');
     this.auth.signOut();
   }
 
