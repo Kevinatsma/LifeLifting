@@ -23,7 +23,6 @@ export class ChatMessageService {
                public route: ActivatedRoute) { }
 
   getMessages(channelID) {
-    console.log('im called!');
     this.messagesCollection = this.afs.collection(
       `chats/${channelID}/messages`,
       ref => ref.orderBy('timestamp', 'asc')

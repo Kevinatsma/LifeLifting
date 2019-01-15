@@ -51,28 +51,20 @@ export class ChatThreadService {
   }
 
   createThread(profileID) {
-    this.checkExistence(profileID);
-    if (this.threadExists = true) {
-      return this.threadExists = true;
-    } else {
-      this.userService.getUserDataByID(profileID).subscribe(user => {
-        this.targetUser = user;
-        this.startThread(profileID);
-      });
-    }
-
-  }
-
-  checkExistence(profileID) {
     this.requestedThread = this.auth.currentUserId + '_' + profileID;
     this.reverseRequestedThread = profileID + '_' + this.auth.currentUserId;
     this.afs.collection(`chats`).doc(`${this.requestedThread || this.reverseRequestedThread}`).ref.get()
       .then((doc) => {
         if (doc.exists) {
+          this.threadExists = true;
           this.messageService.getMessages(`${this.requestedThread || this.reverseRequestedThread}`);
           this.router.navigate([`chat/chat-detail/${this.requestedThread || this.reverseRequestedThread}`]);
         } else {
-          return this.threadExists = false;
+          this.threadExists = false;
+          return this.userService.getUserDataByID(profileID).subscribe(user => {
+            this.targetUser = user;
+            this.startThread(profileID);
+          });
         }
       })
       .catch(function(error) {
