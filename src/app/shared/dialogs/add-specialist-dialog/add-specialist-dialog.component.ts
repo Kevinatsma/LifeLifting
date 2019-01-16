@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { SpecialistService } from './../../../specialists/specialist.service';
-import { AuthService } from 'src/app/core/auth/auth.service';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
-import { DataService } from 'src/app/shared/data/data.service';
-import { Timezone } from 'src/app/shared/data/models/timezone.model';
-import { Country } from '../../data/models/country.model';
+import { DataService } from './../../../shared/data/data.service';
+import { Timezone } from './../../../shared/data/models/timezone.model';
 import languages from './../../data/JSON/languages.json';
 import { Language } from '../../data/models/language.model';
 
@@ -201,9 +197,6 @@ export class AddSpecialistDialogComponent implements OnInit {
         this.experienceForm.reset();
         this.locationForm.reset();
         // this.addSpecialistForm.reset();
-      })
-      .then(() => {
-        this.specialistService.addSpecialist(data);
       });
     }
 }

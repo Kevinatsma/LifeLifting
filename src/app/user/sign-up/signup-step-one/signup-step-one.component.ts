@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AuthService } from './../../../core/auth/auth.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -25,7 +25,7 @@ export class SignupStepOneComponent implements OnInit {
     {value: 'facebook', viewValue: 'Facebook'},
     {value: 'friends', viewValue: 'Friends told me'},
     {value: 'google', viewValue: 'I found you in Google'}
-  ]; selectedMedium = '';
+  ]; selectedMedium: string;
 
   constructor(
     public fb: FormBuilder,

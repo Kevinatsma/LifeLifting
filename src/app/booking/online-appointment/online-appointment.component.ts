@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/user/user.model';
+import { User } from './../../user/user.model';
 import { BookingService } from '../booking.service';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AuthService } from './../../core/auth/auth.service';
 
 @Component({
   selector: 'app-online-appointment',

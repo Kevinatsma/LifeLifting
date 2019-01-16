@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/core/auth/auth.service';
-import { SpecialistService } from 'src/app/specialists/specialist.service';
+import { AuthService } from './../../../core/auth/auth.service';
+import { SpecialistService } from './../../../specialists/specialist.service';
 import { Observable } from 'rxjs';
-import { Specialist } from 'src/app/specialists/specialist.model';
+import { Specialist } from './../../../specialists/specialist.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

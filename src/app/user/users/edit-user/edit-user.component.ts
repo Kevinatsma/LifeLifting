@@ -1,13 +1,11 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { User } from '../../user.model';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../user.service';
 import { Observable } from 'rxjs';
-import { Timezone } from 'src/app/shared/data/models/timezone.model';
-import { DataService } from 'src/app/shared/data/data.service';
 import { Location } from '@angular/common';
-import { SpecialistService } from 'src/app/specialists/specialist.service';
-import { Specialist } from 'src/app/specialists/specialist.model';
+import { SpecialistService } from './../../../specialists/specialist.service';
+import { Specialist } from './../../../specialists/specialist.model';
 
 @Component({
   selector: 'app-edit-user',
@@ -48,6 +46,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       gender: this.selectedGender,
       age: '' || this.user.basicData.age,
       mainGoal: '' || this.user.basicData.mainGoal,
+      heardFromUs: '' || this.user.basicData.heardFromUs,
       phoneNumber: '' || this.user.basicData.phoneNumber,
       email: '' || this.user.email,
     });
@@ -79,6 +78,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
         country: this.editUserForm.get('country').value || this.user.basicData.country,
         age: this.editUserForm.get('age').value || this.user.basicData.age,
         mainGoal: this.editUserForm.get('mainGoal').value || this.user.basicData.mainGoal,
+        heardFromUs:  this.editUserForm.get('heardFromUs').value || this.user.basicData.heardFromUs || null,
         phoneNumber:  this.editUserForm.get('phoneNumber').value || this.user.basicData.phoneNumber,
       }
     };

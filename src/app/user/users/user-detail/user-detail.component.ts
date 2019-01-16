@@ -1,12 +1,12 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { User } from './../../user.model';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from './../../user.service';
-import { Observable } from 'rxjs';
-import { Specialist } from 'src/app/specialists/specialist.model';
-import { SpecialistService } from 'src/app/specialists/specialist.service';
+import { Specialist } from './../../../specialists/specialist.model';
+import { SpecialistService } from './../../../specialists/specialist.service';
+import { ChatThreadService } from './../../../chat/chat-thread.service';
 
 
 @Component({
@@ -27,6 +27,7 @@ export class UserDetailComponent implements OnInit {
                public route: ActivatedRoute,
                public userService: UserService,
                public specialistService: SpecialistService,
+               public threadService: ChatThreadService,
                public location: Location) {
     this.aboutExtended = false;
   }
@@ -78,6 +79,19 @@ export class UserDetailComponent implements OnInit {
   closeReviews() {
     this.reviewsVisible = false;
     this.cdr.detectChanges();
+  }
+
+  // chat() {
+  //   const profileId = this.route.snapshot.paramMap.get('id');
+  //   console.log('hello');
+  //   return this.threadService.createThread(profileId)
+  //     .then(() => console.log('Thread Created!'))
+  //     .catch(error => console.log(error.message));
+  // }
+
+  chat() {
+    const profileId = this.user.uid;
+    return this.threadService.createThread(profileId);
   }
 
   // Back Button

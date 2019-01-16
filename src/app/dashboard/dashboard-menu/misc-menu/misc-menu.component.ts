@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./../dashboard-menu.component.scss']
 })
 export class MiscMenuComponent implements OnInit {
-  linksCollapsed = false;
+  linksCollapsed = true;
   constructor() { }
 
   ngOnInit() {

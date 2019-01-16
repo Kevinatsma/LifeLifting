@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './../../../core/auth/auth.service';
 import { AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firestore';
 import { User } from '../../user.model';
-import { fadeAnimation } from 'src/app/core/animations/fade.animation';
+import { fadeAnimation } from './../../../core/animations/fade.animation';
 
 @Component({
   selector: 'app-signup',

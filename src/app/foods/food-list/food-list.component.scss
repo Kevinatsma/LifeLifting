@@ -1,0 +1,23 @@
+@import './../../../assets/scss/_master.scss';
+
+main.specialist-list-wrapper {
+    margin: 0;
+    padding: 0;
+
+    // section.specialist-filters {
+
+    // }
+
+    section.card-list {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+
+        app-food-list-item {
+            margin: 1em;
+            width: 28%;
+        }
+
+    }
+
+}

@@ -1,5 +1,5 @@
-@import '_master';
-@import '_forms';
+@import './../../../assets/scss/_master.scss';
+@import './../../../assets/scss/_forms.scss';
 
 .dropzone {
     @extend %flex-column-center;

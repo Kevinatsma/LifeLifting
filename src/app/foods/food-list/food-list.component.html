@@ -1,0 +1,7 @@
+<main class="specialist-list-wrapper">
+  <section class="specialist-filters">
+  </section>
+  <section class="card-list" *ngIf="foods">
+    <app-food-list-item *ngFor="let food of foods | async; let i=index" [i]="i" [food]="food"></app-food-list-item>
+  </section>
+</main>

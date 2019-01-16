@@ -1,5 +1,5 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import '_master';
+@import './assets/scss/_master.scss';
 
 html, body {
     margin: 0;
@@ -208,8 +208,12 @@ a.menu-link, button.menu-link {
     }
 }
 .btn-icon-right {
-    svg {
+    svg, span.emoji {
         margin: 0 0px 0 20px;
+    }
+
+    span.emoji {
+        font-size: 18px;
     }
 }
 
@@ -646,6 +650,10 @@ form {
     font-weight: $semi-bold!important;
 }
 
+.mat-select-panel {
+    min-width: 100%;
+}
+
 // Misc
 
 .no-photo {
@@ -666,6 +674,6 @@ form {
 }
 
 .emoji {
-    font-size: 18px;
+    font-size: 22px;
     vertical-align: middle
 }

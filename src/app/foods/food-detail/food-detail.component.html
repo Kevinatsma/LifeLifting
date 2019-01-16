@@ -1,0 +1,73 @@
+<ng-container *ngIf="food">
+  <main class="specialist-wrapper" *ngIf="!editShow">
+
+    <section class="action-toolbar-top">
+      <div class="left">
+        <button class="icon-button" [routerLink]="['../']">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
+      <div class="middle">
+        <h1>Product ID: {{food.productID}}</h1>
+      </div>
+      <div class="right">
+        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+          <i class="fas fa-edit"></i>
+        </button>
+      </div>
+    </section>
+
+    <div class="package-container">
+
+      <section class="package-controls last-package">
+          <button class="slide-control-btn" (click)="linkToPrevious(food)" 
+          [class.disabled]="food.productID === 1"
+          [disabled]="food.productID === 1"
+          >
+              <i class="fas fa-chevron-left"></i>
+          </button>
+      </section>
+      <section class="package-item" *ngIf="!editShow">
+        <h2>{{food.productName}}</h2>
+        <p class="card-text">
+          {{food.productCategory}}
+        </p>
+        <p class="card-text">
+          {{food.portion.amount}} {{food.portion.unit}}
+        </p>
+        <div class="list-container">
+          <ul>
+            <li *ngFor="let prep of food.preperations">
+              <i class="fas fa-check"></i>
+              {{prep.prepValue}}
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="package-controls next-package">
+        <button class="slide-control-btn" (click)="linkToNext(food)"
+          [class.disabled]="food.packageID === 3"
+          [disabled]="food.packageID === 3"
+          >
+            <i class="fas fa-chevron-right"></i>
+        </button>
+      </section>
+
+    </div>
+  </main>
+
+  <ng-container *ngIf="editShow">
+    <app-edit-food [food]="food"></app-edit-food>
+  </ng-container>
+
+</ng-container>
+  
+<ng-container *ngIf="!food">
+  <div class="not-available">
+    <h3>😔 Woops! This food is not (yet) avaliable.</h3>
+    <p>Please go back to the available foods on the foods tab.</p>
+    <button class="btn-primary" [routerLink]="['../']">
+      Go back
+    </button>
+  </div>
+</ng-container>

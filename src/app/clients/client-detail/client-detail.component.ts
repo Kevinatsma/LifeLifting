@@ -1,12 +1,12 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { User } from '../../user/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { ClientService } from '../client.service';
-import { Observable } from 'rxjs';
-import { Specialist } from 'src/app/specialists/specialist.model';
-import { SpecialistService } from 'src/app/specialists/specialist.service';
+import { Specialist } from './../../specialists/specialist.model';
+import { SpecialistService } from './../../specialists/specialist.service';
+import { ChatThreadService } from './../../chat/chat-thread.service';
 
 
 @Component({
@@ -27,6 +27,7 @@ export class ClientDetailComponent implements OnInit {
                public route: ActivatedRoute,
                public clientService: ClientService,
                public specialistService: SpecialistService,
+               public threadService: ChatThreadService,
                public location: Location) {
     this.aboutExtended = false;
   }
@@ -78,6 +79,12 @@ export class ClientDetailComponent implements OnInit {
   closeReviews() {
     this.reviewsVisible = false;
     this.cdr.detectChanges();
+  }
+
+
+  chat() {
+    const profileId = this.user.uid;
+    return this.threadService.createThread(profileId);
   }
 
   // Back Button

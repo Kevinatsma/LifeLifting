@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/core/auth/auth.service';
-import { User } from 'src/app/user/user.model';
+import { AuthService } from './../../core/auth/auth.service';
+import { User } from './../../user/user.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
-import { slideTransition } from 'src/app/core/animations/slide.animation';
+import { slideTransition } from './../../core/animations/slide.animation';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,23 +21,21 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
     this.afs.collection(`users`).doc(`${this.auth.authState.uid}`).ref.get()
-        .then((doc) => {
-          if (doc.exists) {
-              // Write doc data to user variable
-              const user = doc.data() as User;
-              return this.user = user;
-          } else {
-              console.log('No such document!');
-          }
-        })
-        .then(() => {
-            this.redirect();
-        })
-        .catch(function(error) {
-            console.log('Error getting document:', error);
-        });
-
-        console.log(this.user);
+      .then((doc) => {
+        if (doc.exists) {
+            // Write doc data to user variable
+            const user = doc.data() as User;
+            return this.user = user;
+        } else {
+            console.log('No such document!');
+        }
+      })
+      .then(() => {
+          this.redirect();
+      })
+      .catch(function(error) {
+          console.log('Error getting document:', error);
+      });
   }
 
   signOut() {

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddSpecialistComponent } from './add-specialist.component';
+import { ChatThreadsComponent } from './chat-threads.component';
 
-describe('AddNutritionistComponent', () => {
-  let component: AddSpecialistComponent;
-  let fixture: ComponentFixture<AddSpecialistComponent>;
+describe('ChatThreadsComponent', () => {
+  let component: ChatThreadsComponent;
+  let fixture: ComponentFixture<ChatThreadsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddSpecialistComponent ]
+      declarations: [ ChatThreadsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddSpecialistComponent);
+    fixture = TestBed.createComponent(ChatThreadsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import { fadeAnimation } from './core/animations/fade.animation';
-// import { fadeAnimation } from './core/animations/fadeAnimation';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',

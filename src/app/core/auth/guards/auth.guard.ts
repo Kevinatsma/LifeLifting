@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/user/user.model';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { UserService } from 'src/app/user/user.service';
+import { User } from './../../../user/user.model';
+import { AngularFirestoreDocument } from 'angularfire2/firestore';
+import { UserService } from './../../../user/user.service';
 // import { MatSnackBar } from '@angular/material';
 
 @Injectable({
