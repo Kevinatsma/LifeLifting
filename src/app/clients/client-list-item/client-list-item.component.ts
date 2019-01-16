@@ -4,7 +4,7 @@ import { User } from './../../user/user.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { ClientService } from './../client.service';
-import { ChatThreadService } from 'src/app/chat/chat-thread.service';
+import { ChatThreadService } from './../../chat/chat-thread.service';
 
 @Component({
   selector: 'app-client-list-item',
@@ -55,9 +55,9 @@ export class ClientListItemComponent implements OnInit {
     this.router.navigate([url]);
   }
 
-  chat() {
-    const profileId = this.client.uid;
-    return this.threadService.createThread(profileId);
-  }
+  // chat() {
+  //   const profileId = this.client.uid;
+  //   return this.threadService.createThread(profileId);
+  // }
 
 }

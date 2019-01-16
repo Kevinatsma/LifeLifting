@@ -4,7 +4,7 @@ import { Specialist } from '../specialist.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { SpecialistService } from '../specialist.service';
-import { ChatThreadService } from 'src/app/chat/chat-thread.service';
+import { ChatThreadService } from './../../chat/chat-thread.service';
 
 @Component({
   selector: 'app-specialist-list-item',

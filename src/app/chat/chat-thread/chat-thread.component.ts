@@ -19,7 +19,7 @@ export class ChatThreadComponent implements OnInit {
   id: any;
 
   constructor( private threadService: ChatThreadService,
-               private auth: AuthService,
+               public auth: AuthService,
                private userService: UserService,
                private route: ActivatedRoute) {
                 // this.checkCreator();

@@ -5,6 +5,7 @@ import { Specialist } from '../specialist.model';
 import { ActivatedRoute } from '@angular/router';
 import { SpecialistService } from '../specialist.service';
 import { Observable } from 'rxjs';
+import { ChatThreadService } from './../../chat/chat-thread.service';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class SpecialistDetailComponent implements OnInit {
   constructor( private cdr: ChangeDetectorRef,
                public route: ActivatedRoute,
                public specialistService: SpecialistService,
+               private threadService: ChatThreadService,
                public location: Location) {
     this.aboutExtended = false;
   }
@@ -65,6 +67,12 @@ export class SpecialistDetailComponent implements OnInit {
   closeReviews() {
     this.reviewsVisible = false;
     this.cdr.detectChanges();
+  }
+
+
+  chat() {
+    const profileId = this.specialist.uid;
+    return this.threadService.createThread(profileId);
   }
 
   // Back Button

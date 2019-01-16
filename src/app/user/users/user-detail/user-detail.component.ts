@@ -89,8 +89,9 @@ export class UserDetailComponent implements OnInit {
   //     .catch(error => console.log(error.message));
   // }
 
-  test() {
-    console.log('test');
+  chat() {
+    const profileId = this.user.uid;
+    return this.threadService.createThread(profileId);
   }
 
   // Back Button
