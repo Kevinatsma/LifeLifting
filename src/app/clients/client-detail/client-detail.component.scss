@@ -51,7 +51,6 @@ section.specialist-header {
         flex-flow: column wrap;
         width: 50%;
         padding: 1em 2em;
-        margin-top: 1em;
         position: relative;
 
         p {
@@ -148,8 +147,8 @@ section.about {
     box-sizing: border-box;
     margin: 2em 0;
     padding: 1.5em 2em;
-    border-left: 2px solid $primary-color;
-    background: $middle-grey;
+    background: #fff;
+    box-shadow: $card-shadow;
 
     p {
         overflow: hidden;

@@ -208,8 +208,12 @@ a.menu-link, button.menu-link {
     }
 }
 .btn-icon-right {
-    svg {
+    svg, span.emoji {
         margin: 0 0px 0 20px;
+    }
+
+    span.emoji {
+        font-size: 18px;
     }
 }
 

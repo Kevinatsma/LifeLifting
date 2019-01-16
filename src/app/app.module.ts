@@ -22,6 +22,7 @@ import { PackagesModule } from './packages/packages.module';
 import { BookingModule } from './booking/booking.module';
 import { SpecialistModule } from './specialists/specialist.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ChatModule } from './chat/chat.module';
 
 // Core Components
 
@@ -42,6 +43,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     PackagesModule,
     BookingModule,
     SpecialistModule,
+    ChatModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [

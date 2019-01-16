@@ -1,4 +1,5 @@
 export class Specialist {
+    uid: string;
     specialistID: string;
     firstName: string;
     lastName: string;

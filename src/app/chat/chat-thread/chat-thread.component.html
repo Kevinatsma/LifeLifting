@@ -1,0 +1,20 @@
+<div id="{{thread.id}}" class="thread-item" *ngIf="auth.user | async as user">
+  <div>
+      <section class="photo-container">
+        <!-- <div class="photo" [style.backgroundImage]="'url('+ thread.avatar +')'"></div> -->
+        <img class="photo" *ngIf="thread.creator.creatorPhoto === user.photoURL" matListAvatar [src]="thread.target.targetPhoto || '//:0'">
+        <img class="photo" *ngIf="thread.creator.creatorPhoto !== user.photoURL" matListAvatar [src]="thread.creator.creatorPhoto || '//:0'">
+      </section>
+      <section class="thread-info">
+        <h5 *ngIf="thread.creator.creatorPhoto !== user.photoURL">{{thread.creator.creatorName}}</h5>
+        <h5 *ngIf="thread.creator.creatorPhoto === user.photoURL">{{thread.target.targetName}}</h5>
+        <p class="card-text">{{thread.lastMessage}}</p>
+      </section>
+      
+      <!-- <p mat-line>{{thread.lastMessage}}</p> -->
+      <!-- <button mat-icon-button (click)="delete(thread.id)">
+        <mat-icon>delete</mat-icon>
+      </button> -->
+    
+  </div>
+</div>

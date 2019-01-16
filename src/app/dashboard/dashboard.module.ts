@@ -26,26 +26,27 @@ import { ClientDetailComponent } from '../clients/client-detail/client-detail.co
 import { FoodsModule } from './../foods/foods.module';
 import { FoodsComponent } from './../foods/foods.component';
 import { FoodDetailComponent } from './../foods/food-detail/food-detail.component';
+import { AuthGuard } from '../core/auth/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', component: DashboardHomeComponent, data: {state: 'home'}},
-      {path: 'users', component: UsersComponent, data: {state: 'users'}},
-      {path: 'users/:id', component: UserDetailComponent},
-      {path: 'specialists', component: SpecialistsComponent, data: {state: 'specialist'}},
-      {path: 'specialists/:id', component: SpecialistDetailComponent},
-      {path: 'clients', component: ClientsComponent, data: {state: 'clients'}},
-      {path: 'clients/:id', component: ClientDetailComponent},
-      {path: 'finances', component: FinancesComponent, data: {state: 'finances'}},
-      {path: 'packages', component: PackagesComponent, data: {state: 'packages'}},
-      {path: 'packages/:id', component: PackageDetailComponent},
-      {path: 'foods', component: FoodsComponent, data: {state: 'foods'}},
-      {path: 'foods/:id', component: FoodDetailComponent},
+      {path: 'users', component: UsersComponent, data: {state: 'users'}, canActivate: [AuthGuard]},
+      {path: 'users/:id', component: UserDetailComponent, canActivate: [AuthGuard]},
+      {path: 'specialists', component: SpecialistsComponent, data: {state: 'specialist'}, canActivate: [AuthGuard]},
+      {path: 'specialists/:id', component: SpecialistDetailComponent, canActivate: [AuthGuard]},
+      {path: 'clients', component: ClientsComponent, data: {state: 'clients'}, canActivate: [AuthGuard]},
+      {path: 'clients/:id', component: ClientDetailComponent, canActivate: [AuthGuard]},
+      {path: 'finances', component: FinancesComponent, data: {state: 'finances'}, canActivate: [AuthGuard]},
+      {path: 'packages', component: PackagesComponent, data: {state: 'packages'}, canActivate: [AuthGuard]},
+      {path: 'packages/:id', component: PackageDetailComponent, canActivate: [AuthGuard]},
+      {path: 'foods', component: FoodsComponent, data: {state: 'foods'}, canActivate: [AuthGuard]},
+      {path: 'foods/:id', component: FoodDetailComponent, canActivate: [AuthGuard]},
     ]
   },
 ];

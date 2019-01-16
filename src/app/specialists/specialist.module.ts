@@ -10,7 +10,6 @@ import { SpecialistItemComponent } from './specialist-item/specialist-item.compo
 import { DataService } from '../shared/data/data.service';
 import { SpecialistListComponent } from './specialist-list/specialist-list.component';
 import { SpecialistListItemComponent } from './specialist-list-item/specialist-list-item.component';
-import { AddSpecialistComponent } from './/add-specialist/add-specialist.component';
 import { AddSpecialistDialogComponent } from '../shared/dialogs/add-specialist-dialog/add-specialist-dialog.component';
 import { SpecialistDetailComponent } from './specialist-detail/specialist-detail.component';
 import { EditSpecialistComponent } from './edit-specialist/edit-specialist.component';
@@ -19,7 +18,6 @@ import { EditSpecialistComponent } from './edit-specialist/edit-specialist.compo
 @NgModule({
   declarations: [
     AddSpecialistDialogComponent,
-    AddSpecialistComponent,
     SpecialistItemComponent,
     SpecialistsComponent,
     SpecialistListComponent,

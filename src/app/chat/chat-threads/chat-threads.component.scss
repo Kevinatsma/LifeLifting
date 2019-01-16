@@ -1,0 +1,55 @@
+@import './../../../assets/scss/_master.scss';
+
+main.thread-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: row nowrap;
+    box-sizing: border-box;
+
+    section {
+        display: flex;
+        flex-flow: column wrap;
+        height: 100%;
+        overflow-y: auto;
+        box-sizing: border-box;
+
+        &.chat-sidebar {
+            width: 25vw;
+            background: #fff;
+            box-shadow: $sidebar-shadow;
+            z-index: 125;
+            height: 100%;
+            overflow-y: auto;
+            display: flex;
+            flex-flow: column nowrap;
+
+            ::ng-deep app-chat-thread {
+                &.active {
+                    background: $light-grey;
+                    border: 2px solid red;
+                }
+            }
+        }
+        &.router-wrapper {
+            width: 75vw;
+            position: relative;
+
+            ::ng-deep app-chat-detail {
+                width: 100%;
+                background: $light-grey;
+                position: relative;
+                z-index: 123;
+            }
+
+            .no-chat-container {
+                @extend %flex-center;
+                flex-flow: column wrap;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                z-index: 3;
+            }
+        }
+    }
+}

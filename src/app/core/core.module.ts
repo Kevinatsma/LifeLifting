@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth/auth.service';
+// import { ChatModule } from './chat/chat.module';
 
 
 @NgModule({
@@ -10,11 +11,13 @@ import { AuthService } from './auth/auth.service';
     BrowserAnimationsModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // ChatModule
   ],
   exports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // ChatModule
   ],
   declarations: [
   ],

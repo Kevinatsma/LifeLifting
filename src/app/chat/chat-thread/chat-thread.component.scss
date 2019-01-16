@@ -1,0 +1,69 @@
+@import './../../../assets/scss/_master.scss';
+
+div.thread-item {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    padding: 1em 0;
+    border-top: 1px solid $light-grey;
+
+    &:hover {
+        background: $light-grey;
+        cursor: pointer;
+    }
+
+    &.active {
+        background: $middle-grey;
+    }
+
+    &.first-child {
+        border-top: none;
+    }
+
+    div {
+        height: 100px;
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+
+        section {
+            &.photo-container {
+                @extend %flex-center;
+                width: 40%;
+                height: 100px;
+
+
+                img.photo {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 10px;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+            }
+            &.thread-info {
+                display: flex;
+                flex-flow: column wrap;
+                justify-content: center;
+                box-sizing: border-box;
+                height: 100px;
+                width: 60%;
+                padding: 0 1.5em 0 0; 
+
+                p, h5 {
+                    text-align: left;
+                    width: 100%;
+                }
+
+                p {
+                    height: 25px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    box-sizing: border-box;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}
