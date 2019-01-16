@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { ChatThreadService } from './../chat-thread.service';
 import { Observable } from 'rxjs';
 import { Thread } from './../thread.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-detail',
@@ -21,7 +21,8 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
   constructor( public el: ElementRef,
                private location: Location,
                private threadService: ChatThreadService,
-               private route: ActivatedRoute) {}
+               private route: ActivatedRoute,
+               private router: Router) {}
 
   ngAfterViewChecked() {
     this.scrollToBottom();
@@ -43,9 +44,16 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
     });
   }
 
-  delete() {
-    this.threadService.deleteThread(this.threadId);
+
+  deleteChat() {
+    const threadID = this.route.snapshot.paramMap.get('id');
+    this.threadService.deleteThread(threadID);
+    return this.router.navigate(['chat']);
   }
+
+  // delete() {
+  //   this.threadService.deleteThread(this.threadId);
+  // }
 
   goBack() {
     this.location.back();

@@ -3,14 +3,32 @@
 main.detail-wrapper {
     padding: 0;
     width: 100%;
-    height: calc(100vh - 50px);
+    height: 100vh;
     overflow-y: hidden;
     position: relative;
+    display: flex;
+    flex-flow: column wrap;
+
+    
+    mat-toolbar {
+        background: $black;
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        box-shadow: $toolbar-shadow;
+
+        button:nth-child(2) {
+            margin-left: auto;
+        }
+        mat-icon {
+            color: #fff;
+        }
+    }
 
     section {
         box-sizing: border-box;
         &.chat-feed {
-            height: calc(100vh - 130px);
+            height: calc(100vh - 100px);
             overflow-y: scroll;
             overflow: auto;
             background: $light-grey;

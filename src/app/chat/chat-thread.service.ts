@@ -53,23 +53,39 @@ export class ChatThreadService {
   createThread(profileID) {
     this.requestedThread = this.auth.currentUserId + '_' + profileID;
     this.reverseRequestedThread = profileID + '_' + this.auth.currentUserId;
-    this.afs.collection(`chats`).doc(`${this.requestedThread || this.reverseRequestedThread}`).ref.get()
+    this.afs.collection(`chats`).doc(`${this.requestedThread}`).ref.get()
       .then((doc) => {
         if (doc.exists) {
-          this.threadExists = true;
-          this.messageService.getMessages(`${this.requestedThread || this.reverseRequestedThread}`);
-          this.router.navigate([`chat/chat-detail/${this.requestedThread || this.reverseRequestedThread}`]);
+          this.getExistingThread();
         } else {
-          this.threadExists = false;
-          return this.userService.getUserDataByID(profileID).subscribe(user => {
-            this.targetUser = user;
-            this.startThread(profileID);
-          });
+          console.log('no such doc...');
+          this.afs.collection(`chats`).doc(`${this.reverseRequestedThread}`).ref.get()
+            .then((reverseThread) => {
+              if (reverseThread.exists) {
+                this.getExistingThread();
+              } else {
+                this.threadExists = false;
+                return this.userService.getUserDataByID(profileID).subscribe(user => {
+                  this.targetUser = user;
+                  this.startThread(profileID);
+                });
+              }
+            })
+            .catch(function(error) {
+              console.log('Error', error);
+            });
         }
       })
       .catch(function(error) {
           console.log('Error getting document:', error);
       });
+  }
+
+  getExistingThread() {
+    console.log('doc exists!');
+    this.threadExists = true;
+    this.messageService.getMessages(`${this.requestedThread}`);
+    this.router.navigate([`chat/chat-detail/${this.requestedThread}`]);
   }
 
   startThread(profileID) {
@@ -80,6 +96,7 @@ export class ChatThreadService {
     const data = {
       id: id,
       lastMessage: null,
+      lastUpdated: new Date(),
       creator: {
         creatorName: this.user.displayName || this.user.email,
         creatorPhoto: this.user.photoURL

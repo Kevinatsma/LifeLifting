@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Thread } from './thread.model';
 import { Route, Router, ActivatedRoute } from '@angular/router';
 import { NullAstVisitor } from '@angular/compiler';
+import { ChatThreadService } from './chat-thread.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ import { NullAstVisitor } from '@angular/compiler';
 export class ChatMessageService {
   messagesCollection: AngularFirestoreCollection<Message>;
   messageDoc: AngularFirestoreDocument<Message>;
+  threadDoc: AngularFirestoreDocument<Thread>;
   currentThread: Observable<Thread>;
   messages: Observable<Message[]>;
 
@@ -31,7 +33,7 @@ export class ChatMessageService {
   }
 
   sendMessage(
-    channelId: string,
+    channelID: string,
     photoURL: string,
     sender: string,
     senderId: string,
@@ -44,8 +46,19 @@ export class ChatMessageService {
       content,
       timestamp: new Date()
     };
-    return this.afs.collection(`chats/${channelId}/messages`).add(data)
-    .then(() => console.log('Message Sent'))
+    return this.afs.collection(`chats/${channelID}/messages`).add(data)
+    .then(() => {
+      console.log('Message sent!');
+      this.updateThread(channelID);
+    })
     .catch(error => console.log(error.message));
+  }
+
+  updateThread(channelID) {
+    const data = {
+      lastUpdated: new Date().toDateString()
+    };
+    this.threadDoc = this.afs.doc<Thread>(`chats/${channelID}`);
+    this.threadDoc.update(data);
   }
 }

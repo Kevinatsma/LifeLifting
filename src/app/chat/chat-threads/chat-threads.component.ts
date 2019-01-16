@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { Thread } from './../thread.model';
 import { ChatThreadService } from './../chat-thread.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ChatMessageService } from '../chat-message.service';
 
 @Component({
@@ -15,9 +15,11 @@ export class ChatThreadsComponent implements OnInit {
   threads: Observable<Thread[]>;
   thread: Observable<Thread>;
 
-  constructor( private threadService: ChatThreadService,
+  constructor( private route: ActivatedRoute,
+               private threadService: ChatThreadService,
                public messageService: ChatMessageService,
-               public router: Router) {}
+               public router: Router
+               ) {}
 
   ngOnInit() {
     this.threads = this.threadService.getThreads();

@@ -1,26 +1,8 @@
 @import './../../../assets/scss/_master.scss';
 
-
-mat-toolbar {
-    background: $black;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    box-shadow: $toolbar-shadow;
-
-    button:nth-child(2) {
-        margin-left: auto;
-    }
-    mat-icon {
-        color: #fff;
-    }
-}
-
-
-
 main.thread-container {
     width: 100vw;
-    height: calc(100vh - 50px);
+    height: 100vh;
     display: flex;
     flex-flow: row nowrap;
     box-sizing: border-box;

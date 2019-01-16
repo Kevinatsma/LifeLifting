@@ -10,5 +10,6 @@ export class Thread {
         targetPhoto: string
     };
     lastMessage: string;
+    lastUpdated: string;
     members: Object;
 }
