@@ -4,6 +4,7 @@ import { ChatThreadService } from './../chat-thread.service';
 import { User } from './../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { UserService } from './../../user/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chat-thread',
@@ -14,12 +15,15 @@ export class ChatThreadComponent implements OnInit {
   @Input() thread: Thread;
   user: User;
   isCreator: boolean;
+  param: string;
+  id: any;
 
   constructor( private threadService: ChatThreadService,
                private auth: AuthService,
-               private userService: UserService) {
+               private userService: UserService,
+               private route: ActivatedRoute) {
+                // this.checkCreator();
                 console.log(this.thread);
-                this.checkCreator();
                }
 
   ngOnInit() {

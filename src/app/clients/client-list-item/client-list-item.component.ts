@@ -4,6 +4,7 @@ import { User } from './../../user/user.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { ClientService } from './../client.service';
+import { ChatThreadService } from 'src/app/chat/chat-thread.service';
 
 @Component({
   selector: 'app-client-list-item',
@@ -16,7 +17,8 @@ export class ClientListItemComponent implements OnInit {
 
   constructor( public router: Router,
                public dialog: MatDialog,
-               private clientService: ClientService) { }
+               private clientService: ClientService,
+               private threadService: ChatThreadService) { }
 
   ngOnInit() {
   }
@@ -51,6 +53,11 @@ export class ClientListItemComponent implements OnInit {
   linkToChild(client) {
     const url = `dashboard/clients/${client.uid}`;
     this.router.navigate([url]);
+  }
+
+  chat() {
+    const profileId = this.client.uid;
+    return this.threadService.createThread(profileId);
   }
 
 }

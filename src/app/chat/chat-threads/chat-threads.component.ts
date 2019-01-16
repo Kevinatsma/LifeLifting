@@ -15,14 +15,15 @@ export class ChatThreadsComponent implements OnInit {
   threads: Observable<Thread[]>;
   thread: Observable<Thread>;
 
-  constructor( private route: ActivatedRoute,
+  constructor( public route: ActivatedRoute,
                private threadService: ChatThreadService,
                public messageService: ChatMessageService,
                public router: Router
                ) {}
 
   ngOnInit() {
-    this.threads = this.threadService.getThreads();
+    this.threadService.getThreads();
+    this.threads = this.threadService.threads;
   }
 
   linkToChild(thread) {
@@ -30,7 +31,17 @@ export class ChatThreadsComponent implements OnInit {
     const url = `chat/chat-detail/${channelID}`;
     this.messageService.getMessages(channelID);
     this.router.navigate([url]);
+    this.setActiveThread(channelID);
     return this.threadService.getThread(channelID);
+  }
+
+  setActiveThread(channelID) {
+    const threadDiv = document.querySelectorAll('.thread-item');
+    const threadDivActive = document.getElementById(`${channelID}`);
+    threadDiv.forEach(function(el) {
+      el.classList.remove('active');
+    });
+    threadDivActive.classList.add('active');
   }
 
 

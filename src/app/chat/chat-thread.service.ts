@@ -109,6 +109,7 @@ export class ChatThreadService {
     };
 
     const threadPath = `chats/${id}`;
+    this.messageService.getMessages(`${id}`);
     this.afs.doc(threadPath).set(data, { merge: true })
     .then(() => this.router.navigate([`chat/chat-detail/${id}`]));
   }

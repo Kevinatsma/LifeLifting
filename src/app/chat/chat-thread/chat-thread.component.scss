@@ -1,6 +1,6 @@
 @import './../../../assets/scss/_master.scss';
 
-div.thread-container {
+div.thread-item {
     display: flex;
     flex-flow: column wrap;
     width: 100%;
@@ -10,6 +10,10 @@ div.thread-container {
     &:hover {
         background: $light-grey;
         cursor: pointer;
+    }
+
+    &.active {
+        background: $middle-grey;
     }
 
     &.first-child {

@@ -197,9 +197,6 @@ export class AddSpecialistDialogComponent implements OnInit {
         this.experienceForm.reset();
         this.locationForm.reset();
         // this.addSpecialistForm.reset();
-      })
-      .then(() => {
-        this.specialistService.addSpecialist(data);
       });
     }
 }

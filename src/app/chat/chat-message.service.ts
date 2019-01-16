@@ -17,7 +17,6 @@ export class ChatMessageService {
   messagesCollection: AngularFirestoreCollection<Message>;
   messageDoc: AngularFirestoreDocument<Message>;
   threadDoc: AngularFirestoreDocument<Thread>;
-  currentThread: Observable<Thread>;
   messages: Observable<Message[]>;
 
   constructor( private auth: AuthService,

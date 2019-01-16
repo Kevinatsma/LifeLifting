@@ -87,11 +87,33 @@ export class SpecialistService {
       packageChoice: 'NaN',
       appointment: 'NaN',
     };
+    this.addSpecialist(formData, user);
     return userRef.set(data, { merge: true });
   }
 
-  addSpecialist(data) {
-    this.afs.doc<Specialist>(`specialists/${data.specialistID}`).set(data,  {merge: true})
+  addSpecialist(formData, user) {
+    const data = {
+      uid: user.uid,
+      specialistID: formData.specialistID,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      photoURL: formData.photoURL,
+      email: formData.email,
+      description: formData.description,
+      isClient: false,
+      isSpecialist: true,
+      phoneNumber: formData.phoneNumber,
+      position: formData.position,
+      timeZone: formData.timeZone,
+      yearsOfExperience: formData.yearsOfExperience,
+      patientsTotal: formData.patientsTotal,
+      speciality: formData.speciality,
+      city: formData.city,
+      country: formData.country,
+      languages: formData.languages,
+      reviews: formData.reviews,
+    };
+    this.afs.doc<Specialist>(`specialists/${formData.specialistID}`).set(data,  {merge: true})
     .then(() => {
       // Show Snackbar
       const message = 'The Specialist was added succesfully';
