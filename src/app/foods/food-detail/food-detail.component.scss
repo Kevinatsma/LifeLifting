@@ -39,6 +39,30 @@ main.specialist-wrapper {
             @extend %flex-center;
             width: 15%;
         }
+
+        mat-card.list-item-card {
+            width: 60%;
+            margin: 1.5em;
+            cursor: auto;
+
+            .subtitle {
+                width: 90%;
+            }
+
+            .product-photo {
+                height: 250px;
+            }
+
+
+            .preperation-container {
+                ul {
+                    li {
+                        display: block;
+                        margin: 1em 0;
+                    }
+                }
+            }
+        }
     }
 
     section.package-item {

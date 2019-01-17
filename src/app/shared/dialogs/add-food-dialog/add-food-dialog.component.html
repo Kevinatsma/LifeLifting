@@ -28,6 +28,24 @@
       </section>
     </mat-step>
 
+    <mat-step class="image-uploader-container">
+      <ng-template matStepLabel>Picture</ng-template>
+      <section class="photo-title">
+          <h3>📷  Food Image</h3>
+          <p class="card-text image-subtitle">
+            Please choose a clear picture that represents the appearance of this food product item.
+          </p>
+      </section>
+
+      <div class="image-uploader">
+        <app-file-upload-product (imageEvent)="receiveDownloadURL($event)"></app-file-upload-product>
+      </div>
+      <section class="btn-area">
+        <button class="dialog-button" matStepperPrevious>Back</button>
+        <button class="dialog-button" matStepperNext>Next</button>
+      </section>
+    </mat-step>
+
     <mat-step [stepControl]="categoryForm">
       <form [formGroup]="categoryForm">
         <ng-template matStepLabel>Category</ng-template>
@@ -92,7 +110,9 @@
             </div>
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Preperation method</mat-label>
-              <input matInput placeholder="Pick a preperation method" formControlName="prepValue" autocomplete="off" required>
+              <mat-select matInput placeholder="Way of Preparing" formControlName="prepValue" autocomplete="off" required>
+                <mat-option *ngFor="let preperation of preperations" [value]="preperation.prepValue"> {{preperation.prepValue}}</mat-option>
+              </mat-select>
               <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">This is <strong>required</strong></mat-error>
             </mat-form-field>
             <div class="btn-area">

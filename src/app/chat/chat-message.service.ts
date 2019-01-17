@@ -4,9 +4,7 @@ import { AuthService } from './../core/auth/auth.service';
 import { Message } from './message.model';
 import { Observable } from 'rxjs';
 import { Thread } from './thread.model';
-import { Route, Router, ActivatedRoute } from '@angular/router';
-import { NullAstVisitor } from '@angular/compiler';
-import { ChatThreadService } from './chat-thread.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

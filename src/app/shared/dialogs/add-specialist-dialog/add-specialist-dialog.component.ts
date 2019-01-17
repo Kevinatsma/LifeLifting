@@ -54,10 +54,6 @@ export class AddSpecialistDialogComponent implements OnInit {
     },
   ]; selectedLevel: string;
 
-  receiveDownloadURL($event) {
-    return this.downloadURL = $event;
-  }
-
   constructor( private fb: FormBuilder,
                private dataService: DataService,
                private specialistService: SpecialistService) {}
@@ -110,6 +106,10 @@ export class AddSpecialistDialogComponent implements OnInit {
       languageArr: this.fb.array([ this.createLanguage() ]),
       reviews: this.fb.array([ this.createReview() ]),
     });
+  }
+
+  receiveDownloadURL($event) {
+    return this.downloadURL = $event;
   }
 
 

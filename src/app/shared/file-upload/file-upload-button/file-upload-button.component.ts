@@ -38,7 +38,7 @@ export class FileUploadButtonComponent implements OnInit {
   startUpload(event: FileList) {
     const file = event.item(0);
     const id = file.name;
-    const filePath = `/specialists/${id}`;
+    const filePath = `/users/${id}`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 

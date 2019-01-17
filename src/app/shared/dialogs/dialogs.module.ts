@@ -10,13 +10,15 @@ import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { AddClientDialogComponent } from './add-client-dialog/add-client-dialog.component';
 import { AddPackageDialogComponent } from './add-package-dialog/add-package-dialog.component';
 import { AddFoodDialogComponent } from './add-food-dialog/add-food-dialog.component';
+import { FileUploadProductComponent } from './../file-upload/file-upload-product/file-upload-product.component';
 
 @NgModule({
   declarations: [
     ConfirmDialogComponent,
     AddUserDialogComponent,
     AddClientDialogComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    FileUploadProductComponent
   ],
   imports: [
     FormsModule,
@@ -29,7 +31,8 @@ import { AddFoodDialogComponent } from './add-food-dialog/add-food-dialog.compon
     ConfirmDialogComponent,
     AddUserDialogComponent,
     AddClientDialogComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    FileUploadProductComponent
   ],
   entryComponents: [
     ConfirmDialogComponent,

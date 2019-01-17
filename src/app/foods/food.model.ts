@@ -1,6 +1,7 @@
 export class Food {
     productID: string;
     productName: string;
+    productPhoto: string;
     productCategory: string;
     preparations: [];
     portion: {

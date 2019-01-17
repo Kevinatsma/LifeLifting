@@ -2,14 +2,14 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { FileSizePipe } from './../pipes/file-size.pipe';
+import { FileSizePipe } from '../../pipes/file-size.pipe';
 
 @Component({
-  selector: 'app-file-upload',
-  templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.scss'],
+  selector: 'app-file-upload-product',
+  templateUrl: './file-upload-product.component.html',
+  styleUrls: ['./file-upload-product.component.scss'],
 })
-export class FileUploadComponent implements OnInit {
+export class FileUploadProductComponent implements OnInit {
 
   @Output() imageEvent = new EventEmitter<string>();
 
@@ -39,7 +39,7 @@ export class FileUploadComponent implements OnInit {
   startUpload(event: FileList) {
     const file = event.item(0);
     const id = file.name;
-    const filePath = `/users/${id}`;
+    const filePath = `/foods/${id}`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 

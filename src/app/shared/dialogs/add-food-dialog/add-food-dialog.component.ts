@@ -17,9 +17,52 @@ export class AddFoodDialogComponent implements OnInit {
   prepForm: FormGroup;
   portionForm: FormGroup;
 
+  downloadURL: string | null;
   prepArr: FormArray;
   prepValue = new FormControl('', [Validators.required]);
 
+
+  preperations = [
+    {
+      prepValue: 'Cooked',
+    },
+    {
+      prepValue: 'Cooked w/Spinach',
+    },
+    {
+      prepValue: 'Sauteed w/Veggies',
+    },
+    {
+      prepValue: 'Chopped',
+    },
+    {
+      prepValue: 'Sliced',
+    },
+    {
+      prepValue: 'Diced',
+    },
+    {
+      prepValue: 'Raw',
+    },
+    {
+      prepValue: 'Snacked',
+    },
+    {
+      prepValue: 'Hard Boiled',
+    },
+    {
+      prepValue: 'Omelette',
+    },
+    {
+      prepValue: 'Scrambled',
+    },
+    {
+      prepValue: 'Grated',
+    },
+    {
+      prepValue: 'Whole',
+    },
+  ];
 
   constructor( private fb: FormBuilder,
                private foodService: FoodService) {}
@@ -44,6 +87,9 @@ export class AddFoodDialogComponent implements OnInit {
     });
   }
 
+  receiveDownloadURL($event) {
+    return this.downloadURL = $event;
+  }
 
   // Getters
   get prepForms() {
@@ -70,6 +116,7 @@ export class AddFoodDialogComponent implements OnInit {
       const data = {
         productID: this.infoForm.get('productID').value,
         productName: this.infoForm.get('productName').value,
+        productPhoto: this.downloadURL,
         productCategory: this.categoryForm.get('productCategory').value,
         portion: this.portionForm.value,
         preperations: this.prepForms.value,

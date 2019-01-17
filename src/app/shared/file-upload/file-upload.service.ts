@@ -16,9 +16,8 @@ export class FileUploadService {
 
   constructor( private storage: AngularFireStorage) { }
 
-  startUpload(event: FileList) {
+  startUpload(event: FileList, filePath) {
     const file = event.item(0);
-    const filePath = `courses`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 
