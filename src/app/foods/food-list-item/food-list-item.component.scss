@@ -16,13 +16,15 @@ mat-card.list-item-card {
         transform: scale(1.02);
     }
 
-    p.subtitle {
+    p.subtitle,  p.subtitle input {
         text-transform: uppercase;
         color: $secondary-color;
         font-size: 13px;
         font-weight: $bold;
         width: 80%;
         margin: 1rem auto 0;
+        letter-spacing: 1px;
+        line-height: 1.6;
     }
 
     section {
@@ -59,7 +61,7 @@ mat-card.list-item-card {
                 align-items: center;
                 margin-top: 0.5em;
 
-                h2 {
+                h2, h2 input {
                     margin: 0;
                     width: auto;
                     font-weight: $bold;
@@ -73,7 +75,7 @@ mat-card.list-item-card {
                     margin: 5px 15px 0 13px;
                 }
 
-                p.location {
+                p.location, p.location input {
                     width: auto;
                     color: $grey;
                     font-size: 13px;
@@ -85,7 +87,7 @@ mat-card.list-item-card {
             }
 
             .quick-info {
-                p {
+                p, p input{
                     font-size: 16px;
                     color: $text-black;
                     margin-bottom: 0;
@@ -117,12 +119,6 @@ mat-card.list-item-card {
                         svg {
                             font-size: 18px;
                             margin-right: 0.5em;
-                            color: $secondary-color;
-                        }
-
-                        a {
-                            font-size: 18px;
-                            font-weight: $semi-bold;
                             color: $secondary-color;
                         }
                     }

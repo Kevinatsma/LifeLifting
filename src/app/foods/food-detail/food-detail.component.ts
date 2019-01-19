@@ -63,10 +63,6 @@ export class FoodDetailComponent implements OnInit {
 
   // Control buttons
 
-  goBack() {
-    return this.location.back();
-  }
-
   linkToPrevious(food) {
     const productID = food.productID - 1;
     const url = `dashboard/foods/${productID}`;
