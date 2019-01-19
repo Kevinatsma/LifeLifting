@@ -27,6 +27,9 @@ import { FoodsModule } from './../foods/foods.module';
 import { FoodsComponent } from './../foods/foods.component';
 import { FoodDetailComponent } from './../foods/food-detail/food-detail.component';
 import { AuthGuard } from '../core/auth/guards/auth.guard';
+import { ExercisesComponent } from '../exercises/exercises.component';
+import { ExerciseDetailComponent } from '../exercises/exercise-detail/exercise-detail.component';
+import { ExercisesModule } from '../exercises/exercises.module';
 
 const routes: Routes = [
   {
@@ -47,6 +50,8 @@ const routes: Routes = [
       {path: 'packages/:id', component: PackageDetailComponent, canActivate: [AuthGuard]},
       {path: 'foods', component: FoodsComponent, data: {state: 'foods'}, canActivate: [AuthGuard]},
       {path: 'foods/:id', component: FoodDetailComponent, canActivate: [AuthGuard]},
+      {path: 'exercises', component: ExercisesComponent, data: {state: 'exercises'}, canActivate: [AuthGuard]},
+      {path: 'exercises/:id', component: ExerciseDetailComponent, canActivate: [AuthGuard]},
     ]
   },
 ];
@@ -69,6 +74,7 @@ const routes: Routes = [
     SpecialistModule,
     ClientsModule,
     FoodsModule,
+    ExercisesModule,
     FinancesModule,
     MaterialModule
   ],

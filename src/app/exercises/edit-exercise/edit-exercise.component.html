@@ -1,0 +1,92 @@
+<ng-container *ngIf="exercise">
+  <main class="specialist-wrapper">
+
+    <section class="action-toolbar-top">
+      <div class="left">
+        <button class="icon-button" [routerLink]="['../']">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
+      <div class="middle">
+        <h1>Product ID: {{exercise.exerciseID}}</h1>
+      </div>
+      <div class="right">
+        <button class="icon-button edit-button" (click)="editProduct()">
+          <i class="fas fa-check"></i>
+        </button>
+      </div>
+    </section>
+
+      <form class="package-container" [formGroup]="editProductForm" *ngIf="editShow">
+
+        <mat-card class="list-item-card" *ngIf="exercise">
+            <section class="exercise-photo" [style.background]="'url('+ exercise.exercisePhoto +')'">
+                <!-- <i class="fas fa-carrot"></i>
+              <h1>{{i+1}}</h1> -->
+            </section>
+            <p class="subtitle">
+              <input type="text" class="text-field" name="exerciseCategory" formControlName="exerciseCategory">
+            </p>
+            <section class="middle">
+              <div class="title">
+                  <h2><input type="text" class="text-field" name="exerciseName" formControlName="exerciseName"></h2>
+              </div>
+          
+              <div class="quick-info">
+                <p class="speciality-title">Product ID: {{exercise.exerciseID}}</p>
+                <ul class="contact-menu">
+                  <li>
+                    <i class="fas fa-balance-scale"></i>
+                    <input type="number" class="text-field half" name="amount" formControlName="amount">
+                    <input type="text" class="text-field half" name="unit" formControlName="unit">
+                  </li>
+                </ul>
+              </div>
+              <div class="preperations-container">
+                <h4>Ways of Preperation</h4>
+                <ul class="contact-menu">
+                  <li *ngFor="let preperation of exercise.preperations">
+                    <span *ngIf="preperation.prepValue === 'Cooked'" class="emoji">
+                      🥘
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Cooked w/Spinach'" class="emoji">
+                      🥬
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Sauteed w/Veggies'" class="emoji">
+                      🍆
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Grated'" class="emoji">
+                      🧀
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Steamed'" class="emoji">
+                      ♨️
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Raw'" class="emoji">
+                      🍣
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Whole'" class="emoji">
+                      🍎
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Snacked'" class="emoji">
+                      🍿
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Scrambled' || 
+                                  preperation.prepValue === 'Omelette' || 
+                                  preperation.prepVAlue === 'Hard Boiled'" class="emoji">
+                      🍳
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Diced' || 
+                                  preperation.prepValue === 'Chopped' || 
+                                  preperation.prepValue === 'Sliced'" class="emoji">
+                      🔪
+                    </span>
+                    {{preperation.prepValue}}
+                  </li>
+                </ul> 
+              </div>
+            </section>        
+          </mat-card>
+    </form>
+
+  </main> 
+</ng-container>
