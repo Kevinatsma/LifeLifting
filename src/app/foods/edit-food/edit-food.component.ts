@@ -8,7 +8,11 @@ import { Food } from '../food.model';
 @Component({
   selector: 'app-edit-food',
   templateUrl: './edit-food.component.html',
-  styleUrls: ['./../food-detail/food-detail.component.scss', './edit-food.component.scss']
+  styleUrls: [
+    './../food-detail/food-detail.component.scss',
+    './../food-list-item/food-list-item.component.scss',
+    './edit-food.component.scss'
+  ]
 })
 export class EditFoodComponent implements OnInit, OnDestroy {
   @Input() food: Food;

@@ -11,7 +11,7 @@ import { Food } from '../food.model';
 @Component({
   selector: 'app-food-detail',
   templateUrl: './food-detail.component.html',
-  styleUrls: ['./food-detail.component.scss']
+  styleUrls: ['./food-detail.component.scss', './../food-list-item/food-list-item.component.scss']
 })
 export class FoodDetailComponent implements OnInit {
   food: Food;
@@ -62,10 +62,6 @@ export class FoodDetailComponent implements OnInit {
   }
 
   // Control buttons
-
-  goBack() {
-    return this.location.back();
-  }
 
   linkToPrevious(food) {
     const productID = food.productID - 1;

@@ -1,30 +1,19 @@
 
 <mat-card class="list-item-card" *ngIf="food">
-  <section class="number-id" (click)="linkToChild(food)">
-      <i class="fas fa-carrot"></i>
-    <h1>{{i+1}}</h1>
+  <section class="product-photo" (click)="linkToChild(food)" [style.background]="'url('+ food.productPhoto +')'">
+      <!-- <i class="fas fa-carrot"></i>
+    <h1>{{i+1}}</h1> -->
   </section>
   <p class="subtitle">
-    <!-- <i class="fas fa-clipboard-list"></i> -->
     {{food.productCategory}}
   </p>
   <section class="middle" (click)="linkToChild(food)">
     <div class="title">
         <h2>{{food.productName}}</h2>
-        <!-- <div class="dividing-circle"></div>
-        <p class="location">
-          {{package.packagePrice}}
-        </p> -->
     </div>
 
     <div class="quick-info">
       <p class="speciality-title">Product ID: {{food.productID}}</p>
-      <!-- <div class="btn-container">
-        <button class="btn-icon-right__animated" >
-          More info
-        </button>
-        <i class="fas fa-long-arrow-alt-right"></i>
-      </div> -->
       <ul class="contact-menu">
         <li>
           <i class="fas fa-balance-scale"></i>

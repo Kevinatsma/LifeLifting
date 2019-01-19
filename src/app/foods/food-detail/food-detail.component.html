@@ -27,23 +27,73 @@
               <i class="fas fa-chevron-left"></i>
           </button>
       </section>
-      <section class="package-item" *ngIf="!editShow">
-        <h2>{{food.productName}}</h2>
-        <p class="card-text">
-          {{food.productCategory}}
-        </p>
-        <p class="card-text">
-          {{food.portion.amount}} {{food.portion.unit}}
-        </p>
-        <div class="list-container">
-          <ul>
-            <li *ngFor="let prep of food.preperations">
-              <i class="fas fa-check"></i>
-              {{prep.prepValue}}
-            </li>
-          </ul>
-        </div>
-      </section>
+
+      <mat-card class="list-item-card" *ngIf="food">
+          <section class="product-photo" [style.background]="'url('+ food.productPhoto +')'">
+              <!-- <i class="fas fa-carrot"></i>
+            <h1>{{i+1}}</h1> -->
+          </section>
+          <p class="subtitle">
+            {{food.productCategory}}
+          </p>
+          <section class="middle">
+            <div class="title">
+                <h2>{{food.productName}}</h2>
+            </div>
+        
+            <div class="quick-info">
+              <p class="speciality-title">Product ID: {{food.productID}}</p>
+              <ul class="contact-menu">
+                <li>
+                  <i class="fas fa-balance-scale"></i>
+                  {{food.portion.amount}} {{food.portion.unit}}
+                </li>
+              </ul>
+            </div>
+            <div class="preperations-container">
+              <h4>Ways of Preperation</h4>
+              <ul class="contact-menu">
+                <li *ngFor="let preperation of food.preperations">
+                  <span *ngIf="preperation.prepValue === 'Cooked'" class="emoji">
+                    🥘
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Cooked w/Spinach'" class="emoji">
+                    🥬
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Sauteed w/Veggies'" class="emoji">
+                    🍆
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Grated'" class="emoji">
+                    🧀
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Steamed'" class="emoji">
+                    ♨️
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Raw'" class="emoji">
+                    🍣
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Whole'" class="emoji">
+                    🍎
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Snacked'" class="emoji">
+                    🍿
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Scrambled' || 
+                               preperation.prepValue === 'Omelette' || 
+                               preperation.prepVAlue === 'Hard Boiled'" class="emoji">
+                    🍳
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Diced' || 
+                               preperation.prepValue === 'Chopped' || 
+                               preperation.prepValue === 'Sliced'" class="emoji">
+                    🔪
+                  </span>
+                  {{preperation.prepValue}}
+                </li>
+              </ul>
+            </div>
+          </section>        
+        </mat-card>
       <section class="package-controls next-package">
         <button class="slide-control-btn" (click)="linkToNext(food)"
           [class.disabled]="food.packageID === 3"

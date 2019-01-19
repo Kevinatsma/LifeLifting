@@ -39,54 +39,26 @@ main.specialist-wrapper {
             @extend %flex-center;
             width: 15%;
         }
-    }
 
-    section.package-item {
-        @extend %flex-center;
-        flex-flow: column wrap;
-        width: 50%;
-        height: 550px;
-        margin: 0 2em;
-        padding: 0 2em;
-        background: #fff;
-        box-shadow: $card-shadow;
-        border: 10px solid $middle-grey;
-        outline: 5px solid $primary-color;
+        mat-card.list-item-card {
+            width: 60%;
+            margin: 1.5em;
+            cursor: auto;
 
-        h2, input{
-            color: $primary-color;
-            margin: 0;
-        }
-
-        .quick-facts {
-            @extend %flex-row-center;
-            margin: 0.5em 0 0.75em;
-            p, input{
-                color: $secondary-color;
-                margin: 0;
-                font-size: 18px;
+            .subtitle {
+                width: 90%;
             }
-        }
 
-        p.card-text {
-            color: $text-black;
-            white-space: normal;
-            text-align: center;
-            font-size: 18px;
-        }
+            .product-photo {
+                height: 250px;
+            }
 
 
-        .list-container {
-            margin: 2em auto;
-            ul {
-                li {
-                    font-family: $main-font;
-                    font-size: 18px;
-                    color: $secondary-color;
-
-                    svg {
-                        margin-right: 1em;
-                        color: $secondary-color
+            .preperation-container {
+                ul {
+                    li {
+                        display: block;
+                        margin: 1em 0;
                     }
                 }
             }

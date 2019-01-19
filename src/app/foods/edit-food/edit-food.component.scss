@@ -2,11 +2,11 @@
 
 // Reset inputs
 input, textarea {
-    border: none;
+    border: none!important;
     background: transparent;
     width: 100%;
     font-family: $main-font;
-    text-align: center;
+    text-align: left;
     margin: 0!important;
     padding: 0!important;
     box-sizing: border-box;
@@ -20,45 +20,16 @@ form {
     height: 100%;
 }
 
-.package-item {
-    h2 {
-        margin-left: 2px;
-        input {
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-            font-size: 24px;
-            font-weight: $semi-bold;
-        }
-    }
-
-    .quick-facts {
-        margin-bottom: 0.5em!important;
-    }
-
-    p.quick-fact {
-        input {
-            width: 3.5em;
-        }
-
-        &:last-child {
-            input {
-                width: 1.5em;
+.contact-menu {
+    li {
+        input.half {
+            &:nth-child(2) {
+                margin-left: 5px!important;
+                width: 45px;
             }
-        }
-    }
-
-    p.card-text {
-        width: 100%;
-        margin: 6px 0 0 6px!important;
-        textarea {
-            color: $text-black;
-            white-space: normal;
-            text-align: center;
-            font-size: 18px;
-            font-weight: $regular;
-            letter-spacing: 1px;
-            line-height: 1.6;
-            overflow-x: hidden;
+            &:last-child{
+                width: 60px;
+            }
         }
     }
 }
