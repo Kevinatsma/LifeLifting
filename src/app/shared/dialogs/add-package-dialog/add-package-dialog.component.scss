@@ -131,20 +131,4 @@ form {
         }
 
     }
-
-    
-    button.add-form-field {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-flow: row nowrap;
-        color: $grey;
-        margin: 1em 0 3em 1em;
-
-        svg {
-            margin-right: 1em;
-            font-size: 14px;
-            color: $grey;
-        }
-    }
 }

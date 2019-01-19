@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../core/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard-menu',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardMenuComponent implements OnInit {
   adminLinksCollapsed = false;
 
-  constructor() { }
+  constructor(public auth: AuthService) { }
 
   ngOnInit() {
   }

@@ -162,7 +162,8 @@
           </p>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>Pick a Timezone</mat-label>
-            <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimezone" formControlName="timeZone" autocomplete="off" required>
+            <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimezone" 
+            panelClass="dropdown-regular" formControlName="timeZone" autocomplete="off" required>
               <mat-option *ngFor="let timezone of timezones | async" [value]="timezone.gmtValue"> {{timezone.city}}, {{timezone.country}} / {{timezone.gmtValue}}</mat-option>
             </mat-select>
             <mat-error class="input-error" *ngIf="!locationForm['controls'].timeZone.valid">This is <strong>required</strong></mat-error>
@@ -207,14 +208,16 @@
                 </mat-form-field> -->
                 <mat-form-field appearance="standard" floatLabel="always">
                   <mat-label>Which Language?</mat-label>
-                  <mat-select matInput placeholder="Pick a language" formControlName="languageValue" autocomplete="off" required>
+                  <mat-select matInput placeholder="Pick a language" formControlName="languageValue" autocomplete="off" 
+                  panelClass="dropdown-regular" required>
                     <mat-option *ngFor="let language of languages" [value]="language.name"> {{language.name}}</mat-option>
                   </mat-select>
                   <mat-error class="input-error" *ngIf="!languageValue.valid && extrasForm.touched">This is <strong>required</strong></mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="standard" floatLabel="always">
                   <mat-label>What level?</mat-label>
-                  <mat-select matInput placeholder="Profficiency" formControlName="languageLevel" autocomplete="off" required>
+                  <mat-select matInput placeholder="Profficiency" formControlName="languageLevel" autocomplete="off" 
+                  panelClass="dropdown-regular" required>
                     <mat-option *ngFor="let level of languageLevels" [value]="level.value"> {{level.viewValue}}</mat-option>
                   </mat-select>
                   <mat-error class="input-error" *ngIf="!languageLevel.valid && extrasForm.touched">This is <strong>required</strong></mat-error>

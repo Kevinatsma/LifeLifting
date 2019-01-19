@@ -67,7 +67,8 @@
             </div>
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Category description</mat-label>
-              <mat-select matInput placeholder="What describes the category the best?" formControlName="categoryValue" autocomplete="off" required>
+              <mat-select matInput placeholder="What describes the category the best?" formControlName="categoryValue" 
+              autocomplete="off" required panelClass="dropdown-regular">
                 <mat-option *ngFor="let category of categories" [value]="category.categoryValue"> {{category.categoryValue}}</mat-option>
               </mat-select>
               <mat-error class="input-error" *ngIf="!categoryValue.valid && categoryForm.touched">This is <strong>required</strong></mat-error>
@@ -108,7 +109,8 @@
             </div>
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Type of place</mat-label>
-              <mat-select matInput placeholder="What describes the place the best?" formControlName="locationValue" autocomplete="off" required>
+              <mat-select matInput placeholder="What describes the place the best?" formControlName="locationValue" 
+              panelClass="dropdown-regular" autocomplete="off" required>
                 <mat-option *ngFor="let location of locations" [value]="location.locationValue"> {{location.locationValue}}</mat-option>
               </mat-select>
               <mat-error class="input-error" *ngIf="!locationValue.valid && locationForm.touched">This is <strong>required</strong></mat-error>

@@ -30,7 +30,7 @@
             
             <p class="timezone">
                 <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimezone" 
-                formControlName="timeZone" autocomplete="off" required name="timeZone"
+                panelClass="dropdown-regular" formControlName="timeZone" autocomplete="off" required name="timeZone"
                 >
                   <mat-option *ngFor="let timezone of timezones | async" [value]="timezone.gmtValue"> {{timezone.city}}, {{timezone.country}} / {{timezone.gmtValue}}</mat-option>
                 </mat-select>

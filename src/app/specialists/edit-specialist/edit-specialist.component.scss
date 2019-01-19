@@ -3,7 +3,7 @@
 
 // Form Style Reset
 
-input, mat-select, textarea {
+input, textarea {
     background: transparent;
     border: 0px;
     outline: 0;
@@ -101,14 +101,6 @@ section.specialist-header {
             font-weight: $bold;
             color: $text-black;
             box-sizing: border-box;
-
-            mat-select {
-                width: 170px;
-            }
-
-            ::ng-deep .mat-select-value {
-                width: 90%;
-            }
         }
 
         .top, .bottom {

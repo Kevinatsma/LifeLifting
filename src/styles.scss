@@ -209,7 +209,7 @@ a.menu-link, button.menu-link {
 }
 .btn-icon-right {
     svg, span.emoji {
-        margin: 0 0px 0 20px;
+        margin: 1px 0 0 20px;
     }
 
     span.emoji {
@@ -256,6 +256,22 @@ a.menu-link, button.menu-link {
 .close-btn {
     svg {
         font-size: 16px;
+    }
+}
+
+    
+button.add-form-field {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: row nowrap;
+    color: $secondary-color;
+    margin: 1em 0 3em 1em;
+
+    svg {
+        margin-right: 1em;
+        font-size: 14px;
+        color: $secondary-color;
     }
 }
 
@@ -587,11 +603,8 @@ form {
         }
 
         ::placeholder {
-            font-weight: $regular;
             color: $text-black;
         }
-
-        
     }
 
     .mat-form-field-underline {
@@ -623,9 +636,7 @@ form {
 
 }
 
-// .mat-step-header .mat-step-icon-selected {
-    
-// }
+// Mat Stepper
 
 .mat-step-icon {
     border-radius: 5%!important;
@@ -650,12 +661,22 @@ form {
     font-weight: $semi-bold!important;
 }
 
-// mat-select mat-option{
-//     font-family: $main-font!important;
-//     letter-spacing: 1px!important;
-//     font-size: 16px!important;
-//     font-weight: $regular!important;
-// }
+// Mat select
+
+.dropdown-regular  {
+    min-width: 100%!important;
+    box-shadow: $card-shadow;
+    mat-option{
+        font-family: $main-font;
+        letter-spacing: 1px;
+        font-size: 16px;
+        font-weight: $semi-bold;
+        color: $text-black;
+    }
+    .mat-option.mat-selected:not(.mat-option-disabled){
+        color: $secondary-color;
+    }
+}
 
 // Misc
 
