@@ -50,10 +50,10 @@ export class ExerciseService {
   }
 
   addExercise(data) {
-    this.afs.collection<Exercise>(`exercises`).doc(`${data.productID}`).set(data, {merge: true})
+    this.afs.collection<Exercise>(`exercises`).doc(`${data.exerciseID}`).set(data, {merge: true})
     .then(() => {
       // Show Snackbar
-      const message = `The ${data.productName} was added succesfully`;
+      const message = `The ${data.exerciseName} was added succesfully`;
       const action = 'Close';
 
       this.snackBar.open(message, action, {

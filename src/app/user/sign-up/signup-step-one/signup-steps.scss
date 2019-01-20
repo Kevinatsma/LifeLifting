@@ -30,7 +30,7 @@
         .mat-form-field {
             width: 40%;
             margin: 10px 5%;
-            input, textarea {
+            input, mat-select, textarea {
                 padding-top: 0.5em!important;
             }
         }

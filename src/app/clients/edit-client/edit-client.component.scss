@@ -112,6 +112,26 @@ section.specialist-header {
             width: 100%;
         }
 
+        ::ng-deep mat-select {
+            width: 75%;
+
+            .mat-select-placeholder {
+                font-family: $main-font;
+                font-size: 18px;
+                letter-spacing: 1px;
+                font-weight: $semi-bold;
+                text-transform: capitalize;
+            }
+
+            .mat-select-value-text {
+                font-family: $main-font;
+                font-size: 18px;
+                letter-spacing: 1px;
+                font-weight: $semi-bold;
+                text-transform: capitalize;
+            }
+        }
+
         .top {
             flex-flow: column wrap;
 

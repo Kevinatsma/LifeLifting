@@ -5,7 +5,9 @@
     <h1>{{i+1}}</h1> -->
   </section>
   <p class="subtitle">
-    {{exercise.exerciseCategory}}
+    <span *ngFor="let category of exercise.categories">
+      {{category.categoryValue}}
+    </span>
   </p>
   <section class="middle" (click)="linkToChild(exercise)">
     <div class="title">
@@ -17,16 +19,16 @@
       <ul class="contact-menu">
         <li>
           <i class="fas fa-balance-scale"></i>
-          {{exercise.portion.amount}} {{exercise.portion.unit}}
+          {{exercise.metsValue}}
         </li>
       </ul>
     </div>
   </section>
   <section class="actions">
-    <button type="button" (click)="deleteFoodDialog(exercise)">
+    <button type="button" (click)="deleteExerciseDialog(exercise)">
       <i class="fas fa-trash"></i>
     </button>
-    <button (click)="editFood(exercise)">
+    <button (click)="editExercise(exercise)">
       <i class="fas fa-edit"></i>
     </button>
   </section>

@@ -76,6 +76,22 @@ section.specialist-header {
         }
     }
 
+    ::ng-deep mat-select {
+        width: 75%;
+
+        .mat-select-placeholder {
+            font-size: 15px;
+            font-weight: $bold;
+            color: $text-black;
+        }
+
+        .mat-select-value-text {
+            font-size: 15px;
+            font-weight: $bold;
+            color: $text-black;
+        }
+    }
+
     div.quick-info {
         @extend %flex-center;
         flex-flow: column wrap;
@@ -97,9 +113,6 @@ section.specialist-header {
             width: auto;
             height: 15px;
             padding:  1em 2em;
-            font-size: 15px;
-            font-weight: $bold;
-            color: $text-black;
             box-sizing: border-box;
         }
 
@@ -107,6 +120,10 @@ section.specialist-header {
             display: flex;
             height: 50%;
             width: 100%;
+        }
+
+        mat-select {
+            width: 200px;
         }
 
         .top {

@@ -28,7 +28,7 @@ mat-card.list-item-card {
     }
 
     section {
-        &.product-photo {
+        &.exercise-photo {
             @extend %flex-center;
             flex-flow: column wrap;
             width: 100%;

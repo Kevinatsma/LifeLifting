@@ -49,6 +49,9 @@ export class AddExerciseDialogComponent implements OnInit {
   ];
   locations = [
     {
+      locationValue: 'Outside (everywhere)',
+    },
+    {
       locationValue: 'Outside (forest/park)',
     },
     {
@@ -71,6 +74,9 @@ export class AddExerciseDialogComponent implements OnInit {
     },
     {
       locationValue: 'Olympic Swimming pool',
+    },
+    {
+      locationValue: 'Basically everywhere',
     }
   ];
 
@@ -149,7 +155,7 @@ export class AddExerciseDialogComponent implements OnInit {
       exerciseName: this.infoForm.get('exerciseName').value,
       metsValue: this.infoForm.get('metsValue').value,
       exercisePhoto: this.downloadURL,
-      exerciseCategory: this.categoryForm.get('exerciseCategory').value,
+      categories: this.categoryForms.value,
       // portion: this.portionForm.value,
       locations: this.locationForms.value,
     };
