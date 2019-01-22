@@ -22,6 +22,7 @@ export class EditClientComponent implements OnInit, OnDestroy {
   specialists: Observable<Specialist[]>;
   selectedSpecialist = '';
   downloadURL: string | null;
+  url: any;
 
   // Gender options
   genders = [
@@ -49,6 +50,7 @@ export class EditClientComponent implements OnInit, OnDestroy {
       phoneNumber: '' || this.user.basicData.phoneNumber,
       email: '' || this.user.email,
     });
+    this.url = `users`;
   }
 
   // Getters
@@ -58,7 +60,7 @@ export class EditClientComponent implements OnInit, OnDestroy {
   }
 
   toggleEdit() {
-      this.clientService.toggleEdit();
+    this.clientService.toggleEdit();
   }
 
   ngOnDestroy() {

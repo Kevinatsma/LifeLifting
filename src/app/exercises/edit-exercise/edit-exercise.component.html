@@ -8,24 +8,25 @@
         </button>
       </div>
       <div class="middle">
-        <h1>Product ID: {{exercise.exerciseID}}</h1>
+        <h1>Exercise ID: {{exercise.exerciseID}}</h1>
       </div>
       <div class="right">
-        <button class="icon-button edit-button" (click)="editProduct()">
+        <button class="icon-button edit-button" (click)="editExercise()">
           <i class="fas fa-check"></i>
         </button>
       </div>
     </section>
 
-      <form class="package-container" [formGroup]="editProductForm" *ngIf="editShow">
+      <form class="package-container" [formGroup]="editExerciseForm" *ngIf="editShow">
 
         <mat-card class="list-item-card" *ngIf="exercise">
             <section class="exercise-photo" [style.background]="'url('+ exercise.exercisePhoto +')'">
                 <!-- <i class="fas fa-carrot"></i>
               <h1>{{i+1}}</h1> -->
+              <app-file-upload-button [url]="url" (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
             </section>
             <p class="subtitle">
-              <input type="text" class="text-field" name="exerciseCategory" formControlName="exerciseCategory">
+              <input type="text" class="text-field" name="categories" formControlName="categories">
             </p>
             <section class="middle">
               <div class="title">
@@ -33,12 +34,11 @@
               </div>
           
               <div class="quick-info">
-                <p class="speciality-title">Product ID: {{exercise.exerciseID}}</p>
+                <p class="speciality-title">Exercise ID: {{exercise.exerciseID}}</p>
                 <ul class="contact-menu">
                   <li>
                     <i class="fas fa-balance-scale"></i>
-                    <input type="number" class="text-field half" name="amount" formControlName="amount">
-                    <input type="text" class="text-field half" name="unit" formControlName="unit">
+                    <input type="number" class="text-field half" name="metsValue" formControlName="metsValue">
                   </li>
                 </ul>
               </div>

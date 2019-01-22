@@ -20,7 +20,9 @@ export class EditExerciseComponent implements OnInit, OnDestroy {
   reviewsVisible = true;
 
   // Form
-  editProductForm: FormGroup;
+  editExerciseForm: FormGroup;
+  downloadURL: string | null;
+  url: any;
 
 
   constructor( private fb: FormBuilder,
@@ -30,13 +32,12 @@ export class EditExerciseComponent implements OnInit, OnDestroy {
                }
 
   ngOnInit() {
-    this.editProductForm = this.fb.group({
+    this.editExerciseForm = this.fb.group({
       exerciseName: '' || this.exercise.exerciseName,
       categories: '' || this.exercise.categories,
-      amount: '' || this.exercise.portion.amount,
-      unit: '' || this.exercise.portion.unit,
-      preperations: '' || this.exercise.locations,
+      metsValue: '' || this.exercise.metsValue,
     });
+    this.url = `exercises`;
   }
 
   // Getters
@@ -53,18 +54,18 @@ export class EditExerciseComponent implements OnInit, OnDestroy {
     this.exerciseService.editShow = false;
   }
 
-  editProduct() {
+  editExercise() {
     const data = {
-      exerciseName: this.editProductForm.get('exerciseName').value || this.exercise.exerciseName,
-      exerciseCategory: this.editProductForm.get('exerciseCategory').value || this.exercise.categories,
-      portion: {
-        amount: this.editProductForm.get('amount').value || this.exercise.portion.amount,
-        unit: this.editProductForm.get('unit').value || this.exercise.portion.unit,
-      }
-      // preparations: this.editProductForm.get('preparations').value || this.exercise.preparations,
+      exerciseName: this.editExerciseForm.get('exerciseName').value || this.exercise.exerciseName,
+      metsValue: this.editExerciseForm.get('metsValue').value || this.exercise.metsValue,
+      exercisePhoto: this.downloadURL || this.exercise.exercisePhoto
     };
     this.exerciseService.updateExercise(this.exercise.exerciseID, data);
     this.toggleEdit();
+  }
+
+  receiveDownloadURL($event) {
+    return this.downloadURL = $event;
   }
 
     // Back Button

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./file-upload-button.component.scss']
 })
 export class FileUploadButtonComponent implements OnInit {
-
+  @Input() url: any;
   @Output() imageEvent = new EventEmitter<string>();
 
   // Main Task
@@ -38,7 +38,7 @@ export class FileUploadButtonComponent implements OnInit {
   startUpload(event: FileList) {
     const file = event.item(0);
     const id = file.name;
-    const filePath = `/users/${id}`;
+    const filePath = `${this.url}/${id}`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 

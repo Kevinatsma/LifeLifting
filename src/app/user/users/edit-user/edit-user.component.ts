@@ -22,6 +22,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   specialists: Observable<Specialist[]>;
   selectedSpecialist = '';
   downloadURL: string | null;
+  url: any;
 
   // Gender options
   genders = [
@@ -50,6 +51,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       phoneNumber: '' || this.user.basicData.phoneNumber,
       email: '' || this.user.email,
     });
+    this.url = `users`;
   }
 
   // Getters

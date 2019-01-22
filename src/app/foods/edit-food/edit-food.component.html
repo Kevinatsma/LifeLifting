@@ -23,6 +23,7 @@
             <section class="product-photo" [style.background]="'url('+ food.productPhoto +')'">
                 <!-- <i class="fas fa-carrot"></i>
               <h1>{{i+1}}</h1> -->
+              <app-file-upload-button [url]="url" (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
             </section>
             <p class="subtitle">
               <input type="text" class="text-field" name="productCategory" formControlName="productCategory">
