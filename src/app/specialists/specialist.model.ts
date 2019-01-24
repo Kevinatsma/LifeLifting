@@ -3,7 +3,7 @@ export class Specialist {
     specialistID: string;
     firstName: string;
     lastName: string;
-    profilePicture?: string;
+    photoURL: string;
     description: string;
     email: string;
     phoneNumber: string;

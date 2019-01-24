@@ -1,0 +1,36 @@
+
+<mat-card class="list-item-card" *ngIf="exercise">
+  <section class="exercise-photo" (click)="linkToChild(exercise)" [style.background]="'url('+ exercise.exercisePhoto +')'">
+      <!-- <i class="fas fa-carrot"></i>
+    <h1>{{i+1}}</h1> -->
+  </section>
+  <p class="subtitle">
+    <span *ngFor="let category of exercise.categories">
+      {{category.categoryValue}}
+    </span>
+  </p>
+  <section class="middle" (click)="linkToChild(exercise)">
+    <div class="title">
+        <h2>{{exercise.exerciseName}}</h2>
+    </div>
+
+    <div class="quick-info">
+      <p class="speciality-title">Product ID: {{exercise.exerciseID}}</p>
+      <ul class="contact-menu">
+        <li>
+          <i class="fas fa-balance-scale"></i>
+          {{exercise.metsValue}}
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="actions">
+    <button type="button" (click)="deleteExerciseDialog(exercise)">
+      <i class="fas fa-trash"></i>
+    </button>
+    <button (click)="editExercise(exercise)">
+      <i class="fas fa-edit"></i>
+    </button>
+  </section>
+
+</mat-card>

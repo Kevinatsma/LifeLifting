@@ -16,18 +16,19 @@ export class EditSpecialistComponent implements OnInit, OnDestroy {
   @Input() specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
+
+  // Form
   editSpecialistForm: FormGroup;
   timezones: Observable<Timezone[]>;
   selectedTimeZone = 'Hello there';
   languages: FormArray;
-
-  // Form
+  downloadURL: string | null;
+  url: any;
 
   constructor( private fb: FormBuilder,
                private specialistService: SpecialistService,
                public dataService: DataService,
                public location: Location) {
-                this.selectedTimeZone = 'Hello there';
                }
 
   ngOnInit() {
@@ -48,6 +49,7 @@ export class EditSpecialistComponent implements OnInit, OnDestroy {
       phoneNumber:  '' || this.specialist.phoneNumber,
       languages: this.fb.array([ this.createLanguage() ]) || this.specialist.languages,
     });
+    this.url = `specialists`;
   }
 
   // Getters
@@ -89,6 +91,7 @@ export class EditSpecialistComponent implements OnInit, OnDestroy {
     const data = {
       firstName: this.editSpecialistForm.get('firstName').value || this.specialist.firstName,
       lastName: this.editSpecialistForm.get('lastName').value || this.specialist.lastName,
+      photoURL: this.downloadURL || this.specialist.photoURL,
       position: this.editSpecialistForm.get('position').value || this.specialist.position,
       speciality: this.editSpecialistForm.get('speciality').value || this.specialist.speciality,
       country: this.editSpecialistForm.get('country').value || this.specialist.country,
@@ -102,6 +105,10 @@ export class EditSpecialistComponent implements OnInit, OnDestroy {
     };
     this.specialistService.updateSpecialist(this.specialist.specialistID, data);
     this.toggleEdit();
+  }
+
+  receiveDownloadURL($event) {
+    return this.downloadURL = $event;
   }
 
     // Back Button

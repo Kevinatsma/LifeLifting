@@ -192,13 +192,13 @@ export class AuthService {
 
   ///// Role-based Authorization //////
 
-  subscriberRoles(user: User): boolean {
-    const allowed = ['admin', 'editor', 'subscriber'];
+  clientRoles(user: User): boolean {
+    const allowed = ['admin', 'specialist', 'member'];
     return this.checkAuthorization(user, allowed);
   }
 
-  editorRoles(user: User): boolean {
-    const allowed = ['admin', 'editor'];
+  specialistRoles(user: User): boolean {
+    const allowed = ['admin', 'specialist'];
     return this.checkAuthorization(user, allowed);
   }
 

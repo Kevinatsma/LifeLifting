@@ -23,14 +23,14 @@
               <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
             </div>
             <div class="image-uploader" *ngIf="downloadURL" [style.backgroundImage]="'url('+ downloadURL +')'">
-              <app-file-upload-button (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
+              <app-file-upload-button [url]="url" (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
             </div>
           </div>
           <div class="quick-info">
             
             <p class="timezone">
                 <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimezone" 
-                formControlName="timeZone" autocomplete="off" required name="timeZone"
+                panelClass="dropdown-regular" formControlName="timeZone" autocomplete="off" required name="timeZone"
                 >
                   <mat-option *ngFor="let timezone of timezones | async" [value]="timezone.gmtValue"> {{timezone.city}}, {{timezone.country}} / {{timezone.gmtValue}}</mat-option>
                 </mat-select>

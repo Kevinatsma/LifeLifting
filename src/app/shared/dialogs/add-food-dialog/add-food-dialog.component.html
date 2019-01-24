@@ -110,7 +110,8 @@
             </div>
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Preperation method</mat-label>
-              <mat-select matInput placeholder="Way of Preparing" formControlName="prepValue" autocomplete="off" required>
+              <mat-select matInput placeholder="Way of Preparing" formControlName="prepValue" 
+              panelClass="dropdown-regular" autocomplete="off" required>
                 <mat-option *ngFor="let preperation of preperations" [value]="preperation.prepValue"> {{preperation.prepValue}}</mat-option>
               </mat-select>
               <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">This is <strong>required</strong></mat-error>

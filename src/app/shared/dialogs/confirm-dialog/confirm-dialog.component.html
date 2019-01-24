@@ -25,9 +25,15 @@
       </p>
     </ng-container>
     <ng-container *ngIf="data.productID">
-      <h1>Delete Food Item?</h1>
+      <h1>Delete this Product?</h1>
       <p class="card-text">
         Are you sure that you want to delete <strong>{{data.productName}}</strong>?
+      </p>
+    </ng-container>
+    <ng-container *ngIf="data.exerciseID">
+      <h1>Delete this Exercise?</h1>
+      <p class="card-text">
+        Are you sure that you want to delete <strong>{{data.exerciseName}}</strong>?
       </p>
     </ng-container>
 

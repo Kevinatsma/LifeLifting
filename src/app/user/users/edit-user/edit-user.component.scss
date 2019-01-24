@@ -3,7 +3,7 @@
 
 // Form Style Reset
 
-input, mat-select, textarea {
+input, textarea {
     background: transparent;
     border: 0px;
     outline: 0;
@@ -79,6 +79,26 @@ section.specialist-header {
         background: darken($light-grey, 5%);
     }
 
+    ::ng-deep mat-select {
+        width: 75%;
+
+        .mat-select-placeholder {
+            font-family: $main-font;
+            font-size: 18px;
+            letter-spacing: 1px;
+            font-weight: $semi-bold;
+            text-transform: capitalize;
+        }
+
+        .mat-select-value-text {
+            font-family: $main-font;
+            font-size: 18px;
+            letter-spacing: 1px;
+            font-weight: $semi-bold;
+            text-transform: capitalize;
+        }
+    }
+
     div.quick-info {
         @extend %flex-center;
         flex-flow: column wrap;
@@ -104,10 +124,6 @@ section.specialist-header {
             font-weight: $bold;
             color: $text-black;
             box-sizing: border-box;
-
-            mat-select {
-                width: 200px;
-            }
         }
 
         .top, .bottom {
@@ -168,20 +184,6 @@ section.specialist-header {
                         width: 10%;
                         font-size: 24px;
                         margin-right: 15%;
-                    }
-
-                    ::ng-deep mat-select {
-                        width: 75%;
-
-                        .mat-select-placeholder {
-                            font-size: 18px;
-                            font-weight: $semi-bold;
-                        }
-
-                        .mat-select-value-text {
-                            font-size: 18px;
-                            font-weight: $semi-bold;
-                        }
                     }
 
                     &:nth-child(2) {

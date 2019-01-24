@@ -1,4 +1,4 @@
-<div class="dashboard-menu-wrapper">
+<div class="dashboard-menu-wrapper" *ngIf="auth.user | async as user">
   <section class="logo-wrapper" routerLink="../login">
     <img src="../../../assets/img/logo-icon.svg">
     <h2>LifeLifting</h2>
@@ -13,8 +13,8 @@
     </li>
   </ul>
 
-  <app-admin-menu></app-admin-menu>
-  <app-specialist-menu></app-specialist-menu>
-  <app-client-menu></app-client-menu>
-  <app-misc-menu></app-misc-menu>
+  <app-admin-menu *ngIf="auth.adminRoles(user)"></app-admin-menu>
+  <app-specialist-menu *ngIf="auth.specialistRoles(user)"></app-specialist-menu>
+  <app-client-menu *ngIf="auth.clientRoles(user)"></app-client-menu>
+  <app-misc-menu *ngIf="auth.adminRoles(user)"></app-misc-menu>
 </div>

@@ -11,6 +11,8 @@ import { AddClientDialogComponent } from './add-client-dialog/add-client-dialog.
 import { AddPackageDialogComponent } from './add-package-dialog/add-package-dialog.component';
 import { AddFoodDialogComponent } from './add-food-dialog/add-food-dialog.component';
 import { FileUploadProductComponent } from './../file-upload/file-upload-product/file-upload-product.component';
+import { FileUploadExerciseComponent } from './../file-upload/file-upload-exercise/file-upload-exercise.component';
+import { AddExerciseDialogComponent } from './add-exercise-dialog/add-exercise-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { FileUploadProductComponent } from './../file-upload/file-upload-product
     AddUserDialogComponent,
     AddClientDialogComponent,
     FileUploadComponent,
-    FileUploadProductComponent
+    FileUploadProductComponent,
+    FileUploadExerciseComponent
   ],
   imports: [
     FormsModule,
@@ -32,14 +35,16 @@ import { FileUploadProductComponent } from './../file-upload/file-upload-product
     AddUserDialogComponent,
     AddClientDialogComponent,
     FileUploadComponent,
-    FileUploadProductComponent
+    FileUploadProductComponent,
+    FileUploadExerciseComponent
   ],
   entryComponents: [
     ConfirmDialogComponent,
     AddUserDialogComponent,
     AddClientDialogComponent,
     AddPackageDialogComponent,
-    AddFoodDialogComponent
+    AddFoodDialogComponent,
+    AddExerciseDialogComponent
   ],
   providers: [
     DataService

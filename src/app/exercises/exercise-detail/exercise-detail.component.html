@@ -1,0 +1,91 @@
+<ng-container *ngIf="exercise">
+  <main class="specialist-wrapper" *ngIf="!editShow">
+
+    <section class="action-toolbar-top">
+      <div class="left">
+        <button class="icon-button" [routerLink]="['../']">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
+      <div class="middle">
+        <h1>Exercise ID: {{exercise.exerciseID}}</h1>
+      </div>
+      <div class="right">
+        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+          <i class="fas fa-edit"></i>
+        </button>
+      </div>
+    </section>
+
+    <div class="package-container">
+
+      <section class="package-controls last-package">
+          <button class="slide-control-btn" (click)="linkToPrevious(exercise)" 
+          [class.disabled]="exercise.exerciseID === 1"
+          [disabled]="exercise.exerciseID === 1"
+          >
+              <i class="fas fa-chevron-left"></i>
+          </button>
+      </section>
+
+      <mat-card class="list-item-card" *ngIf="exercise">
+          <section class="exercise-photo" [style.background]="'url('+ exercise.exercisePhoto +')'">
+              <!-- <i class="fas fa-carrot"></i>
+            <h1>{{i+1}}</h1> -->
+          </section>
+          <p class="subtitle">
+            <span *ngFor="let category of exercise.categories">
+              {{category.categoryValue}}
+            </span>
+          </p>
+          <section class="middle">
+            <div class="title">
+                <h2>{{exercise.exerciseName}}</h2>
+            </div>
+        
+            <div class="quick-info">
+              <p class="speciality-title">Exercise ID: {{exercise.exerciseID}}</p>
+              <ul class="contact-menu">
+                <li>
+                  <i class="fas fa-balance-scale"></i>
+                  {{exercise.metsValue}}
+                </li>
+              </ul>
+            </div>
+            <div class="preperations-container">
+              <h4>Possible Locations</h4>
+              <ul class="contact-menu">
+                <li *ngFor="let location of exercise.locations">
+                  {{location.locationValue}}
+                </li>
+              </ul>
+            </div>
+          </section>        
+        </mat-card>
+      <section class="package-controls next-package">
+        <button class="slide-control-btn" (click)="linkToNext(exercise)"
+          [class.disabled]="exercise.packageID === 3"
+          [disabled]="exercise.packageID === 3"
+          >
+            <i class="fas fa-chevron-right"></i>
+        </button>
+      </section>
+
+    </div>
+  </main>
+
+  <ng-container *ngIf="editShow">
+    <app-edit-exercise [exercise]="exercise"></app-edit-exercise>
+  </ng-container>
+
+</ng-container>
+  
+<ng-container *ngIf="!exercise">
+  <div class="not-available">
+    <h3>😔 Woops! This exercise is not (yet) avaliable.</h3>
+    <p>Please go back to the available exercises on the exercises tab.</p>
+    <button class="btn-primary" [routerLink]="['../']">
+      Go back
+    </button>
+  </div>
+</ng-container>

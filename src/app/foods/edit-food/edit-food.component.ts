@@ -21,7 +21,8 @@ export class EditFoodComponent implements OnInit, OnDestroy {
 
   // Form
   editProductForm: FormGroup;
-
+  downloadURL: string | any;
+  url: any;
 
   constructor( private fb: FormBuilder,
                private foodService: FoodService,
@@ -37,6 +38,7 @@ export class EditFoodComponent implements OnInit, OnDestroy {
       unit: '' || this.food.portion.unit,
       preperations: '' || this.food.preparations,
     });
+    this.url = `foods`;
   }
 
   // Getters
@@ -57,14 +59,14 @@ export class EditFoodComponent implements OnInit, OnDestroy {
     const data = {
       productName: this.editProductForm.get('productName').value || this.food.productName,
       productCategory: this.editProductForm.get('productCategory').value || this.food.productCategory,
-      portion: {
-        amount: this.editProductForm.get('amount').value || this.food.portion.amount,
-        unit: this.editProductForm.get('unit').value || this.food.portion.unit,
-      }
-      // preparations: this.editProductForm.get('preparations').value || this.food.preparations,
+      productPhoto: this.downloadURL || this.food.productPhoto
     };
     this.foodService.updateFood(this.food.productID, data);
     this.toggleEdit();
+  }
+
+  receiveDownloadURL($event) {
+    return this.downloadURL = $event;
   }
 
     // Back Button
