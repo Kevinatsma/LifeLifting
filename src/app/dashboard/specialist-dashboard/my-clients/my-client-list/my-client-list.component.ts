@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { UserService } from '../../../../user/user.service';
 import { User } from '../../../../user/user.model';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Specialist } from 'src/app/specialists/specialist.model';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { Specialist } from './../../../../specialists/specialist.model';
+import { AuthService } from './../../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-my-client-list',
