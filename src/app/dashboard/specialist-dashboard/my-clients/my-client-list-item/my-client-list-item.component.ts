@@ -23,7 +23,7 @@ export class MyClientListItemComponent implements OnInit {
   }
 
   linkToChild(user) {
-    const url = `dashboard/users/${user.uid}`;
+    const url = `dashboard/my-clients/${user.uid}`;
     this.router.navigate([url]);
   }
 

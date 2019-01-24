@@ -28,10 +28,10 @@ button {
 
 button.icon-button {
     @extend %flex-center;
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     box-shadow: $card-shadow;
-    background: $icon-black;
+    background: #fff;
     border-radius: 50%;
     transition: all 200ms ease-in-out;
     position: relative;
@@ -39,7 +39,7 @@ button.icon-button {
     top: 0;
     
     svg {
-        color: #fff;
+        color: $icon-black;
         font-size: 14px;
         transition: all 100ms ease-in-out;
     }
@@ -701,4 +701,40 @@ form {
 .emoji {
     font-size: 22px;
     vertical-align: middle
+}
+
+// Detail view
+
+.action-toolbar-top {
+    box-sizing: border-box;
+}
+
+.specialist-wrapper {
+    .specialist-header {
+        background: #fff;
+        box-shadow: $card-shadow;
+        border-radius: 4px;
+        height: 350px; 
+        .profile-picture {
+            border-radius:  4px 0 0 4px!important;
+        }
+        div.quick-info {
+            flex-flow: column wrap!important;
+            width: 60%!important;
+            padding: 1.5em 3.5em 1em!important;
+            position: relative!important;
+            box-sizing: border-box;
+
+            .timezone {
+                top: 1em!important;
+            }
+        }
+    }
+    section {
+        &.middle {
+            background: #fff;
+            box-shadow: $card-shadow;
+            padding: 2em;
+        }
+    }
 }

@@ -1,0 +1,282 @@
+<main class="dialog-wrapper">
+    <mat-horizontal-stepper #stepper>
+        <mat-step [stepControl]="signUpForm">
+          <form [formGroup]="signUpForm">
+          <ng-template matStepLabel>General Info</ng-template>
+          <h3>👩‍🦰 Guideline Settings</h3>
+          <p class="card-text">
+            These are the account details of the specialist. Write them down so you can send them to 'em!
+          </p>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>The Email will be used as Username</mat-label>
+            <input type="text" matInput placeholder="What's your email?" formControlName="email" 
+                    [class.active]="!email.valid && email.touched" autofocus autocomplete="off" required
+            >
+            <mat-error class="input-error" *ngIf="!email.dirty">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!email.valid && email.dirty">That's <strong>not</strong> a valid e-mail address!</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Pick a Password </mat-label>
+            <input class="form-input" type="password" matInput placeholder="Setting it for your specialist is safer" [type]="hide ? 'password' : 'text'" 
+            formControlName="password" [class.active]="!password.valid && password.touched" 
+            autocomplete="new-password" required
+            >
+            <mat-error class="input-error" *ngIf="!password.dirty">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="password.errors?.minlength"><strong>Not enough</strong> characters, try harder!</mat-error>
+            <mat-error class="input-error" *ngIf="password.errors?.maxlength">Too <strong>much</strong> characters, slow down there.</mat-error>
+            <mat-error class="input-error" *ngIf="password.errors?.pattern">Password contains <strong>a special character</strong>, or lacks a <strong>number/letter</strong>.</mat-error>
+          </mat-form-field>
+
+          </form>
+          <section class="btn-area-one">
+            <button class="dialog-button" matStepperNext>Next</button>
+          </section>
+        </mat-step>
+        <mat-step [stepControl]="personalForm">
+          <form [formGroup]="personalForm">
+          <ng-template matStepLabel>Personal</ng-template>
+          <h3>📖 Important Info</h3>
+          <p class="card-text">
+            Basic data that we need from the specialist. Some of this data will be displayed at step 4 of the signup process.
+            This can be important in the decision making process of the future client.
+          </p>
+      
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Specialist ID</mat-label>
+            <input type="text" matInput formControlName="specialistID" placeholder="Serves as a quick lookup helper" autocomplete="new-password">
+            <mat-hint *ngIf="!personalForm['controls'].specialistID.dirty">Must contain 8 characters, letters and numbers</mat-hint>
+            <mat-error class="input-error" *ngIf="!personalForm['controls'].specialistID.valid">This is <strong>required</strong></mat-error>
+            <!-- <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].specialistID.minlength">This is <strong>too short</strong></mat-error> -->
+            <!-- <mat-error class="input-error" *ngIf="!addSpecialistForm['controls'].specialistID.pattern">Must contain <strong>letters</strong> and <strong>numbers</strong></mat-error> -->
+          </mat-form-field>
+      
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>First name</mat-label>
+            <input type="text" matInput formControlName="firstName" placeholder="Give the specialist a name" autofocus="none">
+            <mat-error class="input-error" *ngIf="!personalForm['controls'].firstName.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Last name</mat-label>
+            <input type="text" matInput formControlName="lastName" placeholder="The last name" autocomplete="off">
+            <mat-error class="input-error" *ngIf="!personalForm['controls'].lastName.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          </form>
+          <section class="btn-area">
+            <button class="dialog-button" matStepperPrevious>Back</button>
+            <button class="dialog-button" matStepperNext>Next</button>
+          </section>
+        </mat-step>
+
+        <mat-step class="image-uploader-container">
+          <ng-template matStepLabel>Picture</ng-template>
+          <section class="photo-title">
+              <h3>📷  Profile Image</h3>
+              <p class="card-text image-subtitle">
+                Please choose a clear picture that represents the present appearance of this person.
+              </p>
+          </section>
+
+          <div class="image-uploader">
+            <app-file-upload (imageEvent)="receiveDownloadURL($event)"></app-file-upload>
+          </div>
+          <section class="btn-area">
+            <button class="dialog-button" matStepperPrevious>Back</button>
+            <button class="dialog-button" matStepperNext>Next</button>
+          </section>
+        </mat-step>
+
+        <mat-step [stepControl]="aboutForm">
+          <form [formGroup]="aboutForm">
+          <ng-template matStepLabel>About</ng-template>
+          <h3>👨🏻‍⚕️ About the specialist</h3>
+          <p class="card-text">
+            Please enter the most recent - working - phone number. Also, please write a small description that users can read :).
+          </p>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>The Short Description</mat-label>
+            <textarea type="text" matInput formControlName="description" placeholder="Write a short but attractive description" 
+            matTextareaAutosize autofocus="off" autocomplete="off">
+            </textarea>
+            <mat-error class="input-error" *ngIf="!aboutForm['controls'].description.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Phone Number</mat-label>
+            <input type="number" matInput formControlName="phoneNumber" placeholder="What's his/her phone number?" autofocus="off" autocomplete="off">
+            <mat-error class="input-error" *ngIf="!aboutForm['controls'].phoneNumber.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          </form>
+          <section class="btn-area">
+            <button class="dialog-button" matStepperPrevious>Back</button>
+            <button class="dialog-button" matStepperNext>Next</button>
+          </section>
+        </mat-step>
+
+        <mat-step [stepControl]="experienceForm">
+          <form [formGroup]="experienceForm">
+          <ng-template matStepLabel>Experience</ng-template>
+          <h3>🏆 Experience</h3>
+          <p class="card-text">
+            How experienced is this speciaist? Clients will obviously care about this, so decide this with the specialist himself.
+          </p>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>The position in LifeLifting</mat-label>
+            <input type="text" matInput formControlName="position" placeholder="What's his/her position?" autofocus="off" autocomplete="off">
+            <mat-error class="input-error" *ngIf="!experienceForm['controls'].position.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>His/her speciality</mat-label>
+            <input type="text" matInput formControlName="speciality" placeholder="Where is he or she best at?" autofocus="off" autocomplete="off">
+            <mat-error class="input-error" *ngIf="!experienceForm['controls'].speciality.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Years of experience</mat-label>
+            <input type="number" matInput formControlName="yearsOfExperience" placeholder="Amount in nr." autofocus="off" maxlength="2" autocomplete="off">
+            <mat-error class="input-error" *ngIf="!experienceForm['controls'].yearsOfExperience.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Total amount of patients</mat-label>
+            <input type="number" matInput formControlName="patientsTotal" placeholder="How many patients?" autofocus="off" autocomplete="off">
+            <mat-error class="input-error" *ngIf="!experienceForm['controls'].patientsTotal.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          </form>
+          <section class="btn-area">
+            <button class="dialog-button" matStepperPrevious>Back</button>
+            <button class="dialog-button" matStepperNext>Next</button>
+          </section>
+        </mat-step>
+
+        <mat-step [stepControl]="locationForm">
+            <form [formGroup]="locationForm">
+          <ng-template matStepLabel>Location</ng-template>
+          <h3>🗺️ Location</h3>
+          <p class="card-text">
+            Where is this specialist situated? Pick a GMT to know at what times to call or not to call.
+          </p>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Pick a Timezone</mat-label>
+            <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimezone" 
+            panelClass="dropdown-regular" formControlName="timeZone" autocomplete="off" required>
+              <mat-option *ngFor="let timezone of timezones | async" [value]="timezone.gmtValue"> {{timezone.city}}, {{timezone.country}} / {{timezone.gmtValue}}</mat-option>
+            </mat-select>
+            <mat-error class="input-error" *ngIf="!locationForm['controls'].timeZone.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>City</mat-label>
+            <input type="text" matInput formControlName="city" placeholder="Which city does he/she live?" autofocus="off" autocomplete="off">
+            <mat-error class="input-error" *ngIf="!locationForm['controls'].city.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Country</mat-label>
+            <input type="text" matInput formControlName="country" placeholder="In which country is that?" autofocus="off" autocomplete="off">
+            <mat-error class="input-error" *ngIf="!locationForm['controls'].country.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          </form>
+          <section class="btn-area">
+            <button class="dialog-button" matStepperPrevious>Back</button>
+            <button class="dialog-button" matStepperNext>Next</button>
+          </section>
+        </mat-step>
+
+        <mat-step [stepControl]="extrasForm">
+            <form [formGroup]="extrasForm">
+          <!-- Add Specialist Language -->
+          <ng-template matStepLabel>Extras</ng-template>
+          <h3>🈳 Languages</h3>
+          <p class="intro-text">Add languages to the specialist so we can hook them up with the right clients. This way we will also be able 
+            to know in which markets we are active.
+          </p>
+          <div class="add-form-field-container" formArrayName="languageArr">
+            <section class="dynamic-form-field-container" *ngFor="let language of languageForms.controls; let i=index" [formGroupName]="i">
+                <div class="number-id">
+                  <h1>{{i+1}}</h1>
+                </div>
+                <!-- <mat-form-field class="language-name" appearance="standard" floatLabel="always">
+                  <mat-label>Which language</mat-label>
+                  <input type="text" matInput placeholder="Language name" formControlName="languageValue" autocomplete="off" required>
+                  <mat-error class="input-error" *ngIf="!languageValue.valid && extrasForm.touched">This is <strong>required</strong></mat-error> 
+                </mat-form-field> -->
+                <mat-form-field appearance="standard" floatLabel="always">
+                  <mat-label>Which Language?</mat-label>
+                  <mat-select matInput placeholder="Pick a language" formControlName="languageValue" autocomplete="off" 
+                  panelClass="dropdown-regular" required>
+                    <mat-option *ngFor="let language of languages" [value]="language.name"> {{language.name}}</mat-option>
+                  </mat-select>
+                  <mat-error class="input-error" *ngIf="!languageValue.valid && extrasForm.touched">This is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="standard" floatLabel="always">
+                  <mat-label>What level?</mat-label>
+                  <mat-select matInput placeholder="Profficiency" formControlName="languageLevel" autocomplete="off" 
+                  panelClass="dropdown-regular" required>
+                    <mat-option *ngFor="let level of languageLevels" [value]="level.value"> {{level.viewValue}}</mat-option>
+                  </mat-select>
+                  <mat-error class="input-error" *ngIf="!languageLevel.valid && extrasForm.touched">This is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <div class="btn-area">
+                  <button mat-icon-button type="button" class="delete-btn" (click)="deleteLanguage(i)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+            </section>
+          </div>
+
+          <button type="button" class="add-form-field" (click)="addLanguage()">
+            <i class="fa fa-plus"></i>
+            Add Language
+          </button>
+
+          <!-- Add Specialist Reviews -->
+          <h3>⭐ Reviews</h3>
+          <p class="intro-text">Add reviews so potential clients can see if he or she is fit for the job.</p>
+          <div class="add-form-field-container review-container" formArrayName="reviews">
+            <mat-card class="review-item"  *ngFor="let review of reviewForms.controls; let i=index" [formGroupName]="i">
+              <mat-form-field class="text-field" appearance="standard" floatLabel="always">
+                <mat-label>The review text</mat-label>
+                <textarea type="text" matInput formControlName="reviewText" placeholder="Specialist Review {{i+1}}" 
+                          matTextareaAutosize autofocus="off" autocomplete="off" required>
+                </textarea>
+                <mat-error class="input-error" *ngIf="!reviewText.valid && extrasForm.touched">This is <strong>required</strong></mat-error> 
+              </mat-form-field>
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>The review writer</mat-label>
+                <input type="text" matInput placeholder="Who wrote Review {{i+1}}?" formControlName="reviewerName" autocomplete="off" required>
+                <mat-error class="input-error" *ngIf="!reviewerName.valid && extrasForm.touched">This is <strong>required</strong></mat-error> 
+              </mat-form-field>
+              <button mat-icon-button type="button" class="delete-btn" (click)="deleteReview(i)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </mat-card>
+            <div class="right-scroll-margin">
+              <p class="hide">Oh, hello there</p>
+            </div>
+          </div>
+
+          <button type="button" class="add-form-field" (click)="addReview()">
+            <i class="fa fa-plus"></i>
+            Add review
+          </button>
+          </form>
+
+          <section class="btn-area">
+            <button class="dialog-button" matStepperPrevious>Back</button>
+            <button class="dialog-button" (click)="specialistSignUp()"
+             [disabled]="!personalForm.valid || !aboutForm || !locationForm || !experienceForm || !extrasForm"
+             [class.disabled]="!personalForm.valid || !aboutForm || !locationForm || !experienceForm || !extrasForm"
+             mat-dialog-close
+            >
+              Done
+            </button>
+          </section>
+      </mat-step>
+    </mat-horizontal-stepper>
+</main>

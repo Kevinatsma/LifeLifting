@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./../dashboard-menu.component.scss']
 })
 export class SpecialistMenuComponent implements OnInit {
-  linksCollapsed = true;
+  linksCollapsed = false;
   constructor() { }
 
   ngOnInit() {

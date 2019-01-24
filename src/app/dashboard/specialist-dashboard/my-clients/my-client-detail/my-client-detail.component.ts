@@ -7,6 +7,10 @@ import { UserService } from '../../../../user/user.service';
 import { Specialist } from '../../../../specialists/specialist.model';
 import { SpecialistService } from '../../../../specialists/specialist.service';
 import { ChatThreadService } from '../../../../chat/chat-thread.service';
+import { Subject } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { AddMealDialogComponent } from './../../../../shared/dialogs/add-meal-dialog/add-meal-dialog.component';
+import { AddGuideDialogComponent } from './../../../../shared/dialogs/add-guide-dialog/add-guide-dialog.component';
 
 
 @Component({
@@ -17,8 +21,9 @@ import { ChatThreadService } from '../../../../chat/chat-thread.service';
 export class MyClientDetailComponent implements OnInit {
   user: User;
   specialist: Specialist;
-  aboutExtended = false;
   reviewsVisible = true;
+  actionMenuOpen: boolean;
+  editStateChange: Subject<boolean> = new Subject<boolean>();
 
 
   // specialist = Observable<Specialist>;
@@ -28,8 +33,11 @@ export class MyClientDetailComponent implements OnInit {
                public userService: UserService,
                public specialistService: SpecialistService,
                public threadService: ChatThreadService,
-               public location: Location) {
-    this.aboutExtended = false;
+               public location: Location,
+               public dialog: MatDialog) {
+    this.editStateChange.subscribe((value) => {
+      this.actionMenuOpen = value;
+    });
   }
 
   ngOnInit() {
@@ -50,25 +58,16 @@ export class MyClientDetailComponent implements OnInit {
     this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
   }
 
-  aboutExtendedOpen() {
-    this.aboutExtended = true;
-    this.cdr.detectChanges();
-  }
-
-  aboutExtendedClose() {
-    this.aboutExtended = false;
-    this.cdr.detectChanges();
-  }
-
   // Like this to avoid State Changed Error
   // Open/closers
 
-  get editShow(): boolean {
-    return this.userService.editShow;
-  }
-
-  toggleEdit() {
-    this.userService.toggleEdit();
+  toggleButtonMenu() {
+    const buttons = document.querySelectorAll('.action-btn');
+    buttons.forEach(button => {
+      button.classList.toggle('visible');
+    });
+    this.editStateChange.next(!this.actionMenuOpen);
+    console.log(this.actionMenuOpen);
   }
 
   openReviews() {
@@ -79,6 +78,20 @@ export class MyClientDetailComponent implements OnInit {
   closeReviews() {
     this.reviewsVisible = false;
     this.cdr.detectChanges();
+  }
+
+  openMealDialog() {
+    // Set data for Dialog
+    this.dialog.open(AddMealDialogComponent, {
+
+    });
+  }
+
+  openGuideDialog() {
+    // Set data for Dialog
+    this.dialog.open(AddGuideDialogComponent, {
+
+    });
   }
 
   // chat() {

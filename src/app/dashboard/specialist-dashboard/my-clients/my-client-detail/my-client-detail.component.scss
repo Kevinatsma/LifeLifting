@@ -22,9 +22,63 @@ main.specialist-wrapper {
     padding: 1.5em 2em;
 
     .action-toolbar-top {
-
+        position: relative;
         button.icon-button {
             position: inherit;
+        }
+
+        .specialist-actions {
+            height: auto;
+            width: 55px;
+            position: absolute;
+            right: calc(1em + 5px);
+            top: 5em;
+            display: flex;
+            flex-direction: column;
+            z-index: 1234;
+
+            button.icon-button {
+                position: relative;
+                min-height: 55px;
+                margin: 0.65em 0;
+                right: 0;
+                opacity: 0;
+                transform: scale(0);
+                transition: opacity 0.3ms ease-in-out, transform 0.3s cubic-bezier(.17,.67,.79,1.46);
+
+                &.visible {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+
+                &:first-child {
+                    transition-delay: 0.2s;
+                    &.visible {
+                        transition-delay: 0s;
+                    }
+                }
+
+                &:last-child {
+                    transition-delay: 0s;
+                    &.visible {
+                        transition-delay: 0.2s;
+                    }
+                }
+
+                &.action-btn {
+                    background: $primary-color;
+                    width: 65px;
+                    height: 65px;
+                    svg {
+                        color:  #fff;
+                        font-size: 28px;
+                    }
+                    &:hover, &:focus {
+                        transition: all 300ms ease-in-out;
+                        transform: scale(1.1);
+                    }
+                }
+            }
         }
     
     }
@@ -42,7 +96,6 @@ section.specialist-header {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        border-radius: 5px;
         background-color: darken($light-grey, 10%);
     }
 
@@ -121,7 +174,7 @@ section.specialist-header {
         .bottom {
             flex-flow: row nowrap;
             border-top: 1px solid $border-color;
-            padding-top: 1em;
+            padding-top: 0.5em;
 
             p.tab {
                 @extend %flex-center;
@@ -144,30 +197,54 @@ section.specialist-header {
 
 section.about {
     width: 100%;
+    height: 150px;
     box-sizing: border-box;
     margin: 2em 0;
-    padding: 1.5em 2em;
+    padding: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
     background: #fff;
     box-shadow: $card-shadow;
 
-    p {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        height: auto;
+    .icon {
+        @extend %flex-center;
+        width: 20%; 
+        height: 100%;
+        position: relative;
 
-        &.read-more {
-            overflow: visible;
-            height: auto;
+        &::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 25px;
+            bottom: 25px;
+            background: $middle-grey;
+            width: 2px;
+        }
+
+        svg {
+            font-size: 60px;
+            color: $primary-color;
         }
     }
-
-    .text-link {
+    .goal-container {
         display: flex;
-        align-items: center;
+        flex-flow: column wrap;
         justify-content: center;
-        svg {
-            margin: 0 10px 0 0;
-            font-size: 12px;
+        align-items: flex-start;
+        padding: 0 2em;
+        width: 80%;
+        height: 100%;
+
+        h3, p {
+            margin: 0;
+        }
+
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: auto;
         }
     }
 }

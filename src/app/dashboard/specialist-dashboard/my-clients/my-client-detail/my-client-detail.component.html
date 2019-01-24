@@ -1,5 +1,5 @@
 <ng-container *ngIf="user">
-  <main class="specialist-wrapper" *ngIf="!editShow">
+  <main class="specialist-wrapper">
 
     <section class="action-toolbar-top">
       <div class="left">
@@ -8,18 +8,32 @@
         </button>
       </div>
       <div class="right">
-        <button class="icon-button" *ngIf="!editShow" (click)="chat()">
+        <button class="icon-button" (click)="chat()">
           <i class="fas fa-comment-alt"></i>
         </button>
 
-        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && !user.signUpCompleted">
-          <i class="fas fa-edit"></i>
+        <button class="icon-button edit-button" *ngIf="actionMenuOpen; else plus" (click)="toggleButtonMenu()">
+          <i class="fas fa-minus"></i>
         </button>
+        <ng-template #plus>
+          <button class="icon-button edit-button" (click)="toggleButtonMenu()">
+            <i class="fas fa-plus"></i>
+          </button>
+        </ng-template>
+
+        <div class="specialist-actions">
+          <button class="icon-button action-btn" (click)="openMealDialog()">
+            <i class="fas fa-weight"></i>
+          </button>
+          <button class="icon-button action-btn" (click)="openGuideDialog()">
+            <i class="far fa-file-alt"></i>
+          </button>
+        </div>
 
       </div>
     </section>
 
-    <ng-container *ngIf="!editShow">
+    <ng-container>
       <section class="specialist-header">
         <div class="profile-picture" [style.backgroundImage]="'url('+ user.photoURL +')'">
 
@@ -65,19 +79,16 @@
       </section>
 
       <section class="about">  
-        <h5>{{user.displayName}}'s main goal</h5>
-        <p [class.read-more]="aboutExtended" *ngIf="user.basicData">
-          <ng-container *ngIf="user.basicData.mainGoal">{{user.basicData.mainGoal}}</ng-container>
-          <ng-container *ngIf="!user.basicData.mainGoal">No goal yet...</ng-container>
-        </p>
-        <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
-          <i class="fas fa-plus"></i>
-          Read More
-        </button>
-        <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
-          <i class="fas fa-minus"></i>
-          Read Less
-        </button>
+        <div class="icon">
+          <i class="fab fa-algolia"></i>
+        </div>
+        <div class="goal-container">
+          <h3>{{user.displayName}}'s main goal</h3>
+          <p *ngIf="user.basicData">
+            <ng-container *ngIf="user.basicData.mainGoal">{{user.basicData.mainGoal}}</ng-container>
+            <ng-container *ngIf="!user.basicData.mainGoal">No goal yet...</ng-container>
+          </p>
+        </div>
       </section>
 
       <section class="middle">
@@ -118,11 +129,6 @@
     </ng-container>
 
   </main>
-
-  <ng-container *ngIf="editShow">
-    <app-edit-user [user]="user"></app-edit-user>
-  </ng-container>
-
 </ng-container>
   
 <ng-container *ngIf="!user">

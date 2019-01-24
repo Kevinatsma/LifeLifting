@@ -13,12 +13,16 @@ import { AddFoodDialogComponent } from './add-food-dialog/add-food-dialog.compon
 import { FileUploadProductComponent } from './../file-upload/file-upload-product/file-upload-product.component';
 import { FileUploadExerciseComponent } from './../file-upload/file-upload-exercise/file-upload-exercise.component';
 import { AddExerciseDialogComponent } from './add-exercise-dialog/add-exercise-dialog.component';
+import { AddMealDialogComponent } from './add-meal-dialog/add-meal-dialog.component';
+import { AddGuideDialogComponent } from './add-guide-dialog/add-guide-dialog.component';
 
 @NgModule({
   declarations: [
     ConfirmDialogComponent,
     AddUserDialogComponent,
     AddClientDialogComponent,
+    AddMealDialogComponent,
+    AddGuideDialogComponent,
     FileUploadComponent,
     FileUploadProductComponent,
     FileUploadExerciseComponent
@@ -44,7 +48,9 @@ import { AddExerciseDialogComponent } from './add-exercise-dialog/add-exercise-d
     AddClientDialogComponent,
     AddPackageDialogComponent,
     AddFoodDialogComponent,
-    AddExerciseDialogComponent
+    AddExerciseDialogComponent,
+    AddMealDialogComponent,
+    AddGuideDialogComponent
   ],
   providers: [
     DataService
