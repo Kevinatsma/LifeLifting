@@ -1,0 +1,130 @@
+<ng-container *ngIf="user">
+  <main class="specialist-wrapper" *ngIf="!editShow">
+
+    <section class="action-toolbar-top">
+      <div class="left">
+        <button class="icon-button" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
+      <div class="right">
+        <button class="icon-button" *ngIf="!editShow" (click)="chat()">
+          <i class="fas fa-comment-alt"></i>
+        </button>
+
+        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && !user.signUpCompleted">
+          <i class="fas fa-edit"></i>
+        </button>
+
+      </div>
+    </section>
+
+    <ng-container *ngIf="!editShow">
+      <section class="specialist-header">
+        <div class="profile-picture" [style.backgroundImage]="'url('+ user.photoURL +')'">
+
+        </div>
+        <div class="quick-info">
+          <p class="timezone">
+              <ng-container *ngIf="user.roles.admin">
+                Admin<ng-container *ngIf="user.roles.specialist || user.roles.member">, </ng-container>
+              </ng-container>
+              <ng-container *ngIf="user.roles.specialist">Specialist<ng-container *ngIf="user.roles.member">, </ng-container>
+              </ng-container>
+              <ng-container *ngIf="user.roles.member">Client</ng-container>
+          </p>
+          <div class="top">
+          <h2>{{user.displayName}}</h2>
+          <h5 *ngIf="user.basicData">{{user.basicData.country}}</h5>
+          <p>User ID: {{user.uid}}</p>
+          <div class="icon-fact-container">
+            <div class="fact" *ngIf="user.basicData">
+              <i class="fas fa-transgender"></i>
+              <span>{{user.basicData.gender}}</span>
+            </div>
+            <div class="fact" *ngIf="specialist">
+              <i class="fas fa-user-ninja"></i>
+              <span>{{specialist.firstName}} {{specialist.lastName}}</span>
+            </div>
+          </div>
+          
+
+          </div>
+          <div class="bottom">
+            <p class="tab">
+              <span>{{user.packageChoice}}</span>Package Choice
+            </p>
+            <p class="tab">
+              <span *ngIf="user.basicData">
+                <ng-container *ngIf="user.basicData.age">{{user.basicData.age}}</ng-container>
+                <ng-container *ngIf="!user.basicData.age">!</ng-container>
+              </span>Age
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="about">  
+        <h5>{{user.displayName}}'s main goal</h5>
+        <p [class.read-more]="aboutExtended" *ngIf="user.basicData">
+          <ng-container *ngIf="user.basicData.mainGoal">{{user.basicData.mainGoal}}</ng-container>
+          <ng-container *ngIf="!user.basicData.mainGoal">No goal yet...</ng-container>
+        </p>
+        <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
+          <i class="fas fa-plus"></i>
+          Read More
+        </button>
+        <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
+          <i class="fas fa-minus"></i>
+          Read Less
+        </button>
+      </section>
+
+      <section class="middle">
+        <div class="contact-info">
+          <h5 class="purple">Contact Info</h5>
+          <ul class="contact-menu">
+            <li>
+                <i class="far fa-envelope"></i>
+              <a class="text-link" href="mailto:{{user.email}}">
+                {{user.email}}
+              </a>
+            </li>
+            <li>
+              <i class="fas fa-mobile-alt"></i>
+              <a class="text-link"  *ngIf="user.basicData" href="tel:{{user.basicData.phoneNumber}}">
+                {{user.basicData.phoneNumber}}
+              </a>
+            </li>
+            <li>
+              <i class="far fa-comment-alt"></i>
+              <button class="text-link" *ngIf="user.basicData" (click)="chat()">
+                Chat
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="languages">
+          <h5 class="purple">Practical info</h5>
+          <ul>
+            <li>Heard from us via: <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong></li>
+            <li>Sign Up Completed?
+              <ng-container *ngIf="user.signUpCompleted"><strong>Yes</strong></ng-container>
+              <ng-container *ngIf="!user.signUpCompleted"><strong>No</strong></ng-container>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </ng-container>
+
+  </main>
+
+  <ng-container *ngIf="editShow">
+    <app-edit-user [user]="user"></app-edit-user>
+  </ng-container>
+
+</ng-container>
+  
+<ng-container *ngIf="!user">
+  Hello I exist
+</ng-container>

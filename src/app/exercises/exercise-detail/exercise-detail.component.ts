@@ -62,7 +62,6 @@ export class ExerciseDetailComponent implements OnInit {
   }
 
   // Control buttons
-
   linkToPrevious(exercise) {
     const exerciseID = exercise.exerciseID - 1;
     const url = `dashboard/exercises/${exerciseID}`;

@@ -7,6 +7,7 @@ import { DashboardTopNavComponent } from './dashboard-top-nav/dashboard-top-nav.
 import { SpecialistsComponent } from '../specialists/specialists/specialists.component';
 import { SpecialistModule } from '../specialists/specialist.module';
 import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
+import { UserModule } from '../user/user.module';
 import { UsersComponent } from '../user/users/users.component';
 import { ClientsModule } from './../clients/clients.module';
 import { ClientsComponent } from '../clients/clients.component';
@@ -30,6 +31,10 @@ import { AuthGuard } from '../core/auth/guards/auth.guard';
 import { ExercisesComponent } from '../exercises/exercises.component';
 import { ExerciseDetailComponent } from '../exercises/exercise-detail/exercise-detail.component';
 import { ExercisesModule } from '../exercises/exercises.module';
+import { MyClientsComponent } from './specialist-dashboard/my-clients/my-clients.component';
+import { MyClientDetailComponent } from './specialist-dashboard/my-clients/my-client-detail/my-client-detail.component';
+import { MyClientListComponent } from './specialist-dashboard/my-clients/my-client-list/my-client-list.component';
+import { MyClientListItemComponent } from './specialist-dashboard/my-clients/my-client-list-item/my-client-list-item.component';
 
 const routes: Routes = [
   {
@@ -45,6 +50,8 @@ const routes: Routes = [
       {path: 'specialists/:id', component: SpecialistDetailComponent, canActivate: [AuthGuard]},
       {path: 'clients', component: ClientsComponent, data: {state: 'clients'}, canActivate: [AuthGuard]},
       {path: 'clients/:id', component: ClientDetailComponent, canActivate: [AuthGuard]},
+      {path: 'my-clients', component: MyClientsComponent, data: {state: 'clients'}, canActivate: [AuthGuard]},
+      {path: 'my-clients/:id', component: MyClientDetailComponent, canActivate: [AuthGuard]},
       {path: 'finances', component: FinancesComponent, data: {state: 'finances'}, canActivate: [AuthGuard]},
       {path: 'packages', component: PackagesComponent, data: {state: 'packages'}, canActivate: [AuthGuard]},
       {path: 'packages/:id', component: PackageDetailComponent, canActivate: [AuthGuard]},
@@ -64,13 +71,18 @@ const routes: Routes = [
     DashboardTopNavComponent,
     AdminMenuComponent,
     SpecialistMenuComponent,
+    MyClientsComponent,
+    MyClientListComponent,
+    MyClientListItemComponent,
+    MyClientDetailComponent,
     ClientMenuComponent,
-    MiscMenuComponent
+    MiscMenuComponent,
   ],
   imports: [
     BrowserAnimationsModule,
     CommonModule,
     RouterModule.forRoot(routes),
+    UserModule,
     SpecialistModule,
     ClientsModule,
     FoodsModule,

@@ -12,8 +12,12 @@ import { AuthService } from '../core/auth/auth.service';
 export class UserService {
   userCol: AngularFirestoreCollection<User>;
   users: Observable<User[]>;
+  myClientsCol: AngularFirestoreCollection<User>;
+  myClients: Observable<User[]>;
   userDoc: AngularFirestoreDocument<User>;
   user: Observable<User>;
+  specialist: User;
+  specialistID: string;
   editShow: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
 
@@ -42,12 +46,26 @@ export class UserService {
     return this.users;
   }
 
+  getMyClients() {
+    this.getUserDataByID(this.auth.currentUserId).subscribe(user => {
+      this.specialist = user;
+      this.specialistID = this.specialist.sID;
+      const specialistQuery = `specialist${this.specialistID}`;
+      this.myClientsCol = this.afs.collection('users', ref => ref.where('specialist', '==', `${specialistQuery}`));
+      console.log(this.myClientsCol);
+      this.myClients = this.myClientsCol.valueChanges();
+    });
+    return this.myClients;
+
+  }
+
   // getUserData(id) {
   //   this.userDoc = this.afs.doc(`users/${id}`);
   //   return this.userDoc.valueChanges();
   // }
 
   getUserDataByID(uid) {
+    console.log(uid);
     this.userDoc = this.afs.doc<User>(`users/${uid}`);
     this.user = this.userDoc.valueChanges();
     return this.user;

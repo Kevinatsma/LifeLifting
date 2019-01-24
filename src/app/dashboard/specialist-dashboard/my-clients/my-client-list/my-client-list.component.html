@@ -1,0 +1,9 @@
+<main class="specialist-list-wrapper">
+  <section class="specialist-filters">
+
+  </section>
+  <section class="user-list" *ngIf="myClients">
+    hey
+    <app-my-client-list-item *ngFor="let user of myClients | async" [user]="user"></app-my-client-list-item>
+  </section>
+</main>
