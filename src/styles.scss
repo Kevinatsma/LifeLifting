@@ -560,9 +560,8 @@ mat-card {
             }
 
             &.edit-button {
-
                 svg {
-                    margin: -2px -2px 0 0;
+                    margin: 0 0 0 -1px;
                 }
             }
         }
@@ -727,6 +726,14 @@ form {
 
             .timezone {
                 top: 1em!important;
+                color: $secondary-color!important;
+                border: 2px solid $secondary-color!important;
+            }
+
+            .fact {
+                svg {
+                    color: $secondary-color!important;
+                }
             }
         }
     }
