@@ -1,0 +1,122 @@
+<ng-container *ngIf="guideline">
+  <main class="specialist-wrapper" *ngIf="!editShow">
+
+    <section class="action-toolbar-top">
+      <div class="left">
+        <button class="icon-button" [routerLink]="['../']">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
+      <div class="middle">
+        <h1>Guideline ID: {{guideline.productID}}</h1>
+      </div>
+      <div class="right">
+        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+          <i class="fas fa-edit"></i>
+        </button>
+      </div>
+    </section>
+
+    <div class="package-container">
+
+      <section class="package-controls last-package">
+          <button class="slide-control-btn" (click)="linkToPrevious(guideline)" 
+          [class.disabled]="guideline.productID === 1"
+          [disabled]="guideline.productID === 1"
+          >
+              <i class="fas fa-chevron-left"></i>
+          </button>
+      </section>
+
+      <mat-card class="list-item-card" *ngIf="guideline">
+          <section class="product-photo">
+            Oh hey there
+          </section>
+          <p class="subtitle">
+            {{guideline.productCategory}}
+          </p>
+          <section class="middle">
+            <div class="title">
+                <h2>{{guideline.productName}}</h2>
+            </div>
+        
+            <div class="quick-info">
+              <p class="speciality-title">Guideline ID: {{guideline.productID}}</p>
+              <ul class="contact-menu">
+                <li>
+                  <i class="fas fa-balance-scale"></i>
+                  {{guideline.portion.amount}} {{guideline.portion.unit}}
+                </li>
+              </ul>
+            </div>
+            <div class="preperations-container">
+              <h4>Ways of Preperation</h4>
+              <ul class="contact-menu">
+                <li *ngFor="let preperation of guideline.preperations">
+                  <span *ngIf="preperation.prepValue === 'Cooked'" class="emoji">
+                    🥘
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Cooked w/Spinach'" class="emoji">
+                    🥬
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Sauteed w/Veggies'" class="emoji">
+                    🍆
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Grated'" class="emoji">
+                    🧀
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Steamed'" class="emoji">
+                    ♨️
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Raw'" class="emoji">
+                    🍣
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Whole'" class="emoji">
+                    🍎
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Snacked'" class="emoji">
+                    🍿
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Scrambled' || 
+                               preperation.prepValue === 'Omelette' || 
+                               preperation.prepVAlue === 'Hard Boiled'" class="emoji">
+                    🍳
+                  </span>
+                  <span *ngIf="preperation.prepValue === 'Diced' || 
+                               preperation.prepValue === 'Chopped' || 
+                               preperation.prepValue === 'Sliced'" class="emoji">
+                    🔪
+                  </span>
+                  {{preperation.prepValue}}
+                </li>
+              </ul>
+            </div>
+          </section>        
+        </mat-card>
+      <section class="package-controls next-package">
+        <button class="slide-control-btn" (click)="linkToNext(guideline)"
+          [class.disabled]="guideline.packageID === 3"
+          [disabled]="guideline.packageID === 3"
+          >
+            <i class="fas fa-chevron-right"></i>
+        </button>
+      </section>
+
+    </div>
+  </main>
+
+  <ng-container *ngIf="editShow">
+    <app-edit-guideline [guideline]="guideline"></app-edit-guideline>
+  </ng-container>
+
+</ng-container>
+  
+<ng-container *ngIf="!guideline">
+  <div class="not-available">
+    <h3>😔 Woops! This guideline is not (yet) avaliable.</h3>
+    <p>Please go back to the available guidelines on the guidelines tab.</p>
+    <button class="btn-primary" [routerLink]="['../']">
+      Go back
+    </button>
+  </div>
+</ng-container>

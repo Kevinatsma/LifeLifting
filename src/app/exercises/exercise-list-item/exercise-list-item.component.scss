@@ -53,6 +53,7 @@ mat-card.list-item-card {
             width: 100%;
             border-right: $light-border;
             padding: 0 2em 1em;
+            box-shadow: none;
 
             .title {
                 display: flex;

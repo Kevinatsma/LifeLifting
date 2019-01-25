@@ -6,12 +6,12 @@ import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from './../user/user.model';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpecialistService {
-
   specialistCol: AngularFirestoreCollection<Specialist>;
   specialists: Observable<Specialist[]>;
   specialistDoc: AngularFirestoreDocument<Specialist>;
@@ -20,6 +20,7 @@ export class SpecialistService {
   editStateChange: Subject<boolean> = new Subject<boolean>();
 
   constructor( private afs: AngularFirestore,
+               private userService: UserService,
                public snackBar: MatSnackBar,
                private afAuth: AngularFireAuth
              ) {

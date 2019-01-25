@@ -14,7 +14,6 @@ import { User, Roles } from './../../user/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-
   user: Observable<User>;
   userData: User;
   authState: any = null;

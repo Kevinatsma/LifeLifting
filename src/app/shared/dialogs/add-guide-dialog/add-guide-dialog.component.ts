@@ -1,202 +1,138 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { SpecialistService } from '../../../specialists/specialist.service';
-import { Observable } from 'rxjs';
-import { DataService } from '../../data/data.service';
-import { Timezone } from '../../data/models/timezone.model';
-import languages from '../../data/JSON/languages.json';
-import { Language } from '../../data/models/language.model';
+import { GuidelineService } from '../../../guidelines/guideline.service';
+import { MatDialog } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { User } from 'src/app/user/user.model';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
-  selector: 'app-guide-specialist-dialog',
+  selector: 'app-add-guide-dialog',
   templateUrl: './add-guide-dialog.component.html',
   styleUrls: ['./add-guide-dialog.component.scss']
 })
 export class AddGuideDialogComponent implements OnInit {
-  // FormGroups
-  signUpForm: FormGroup;
-  personalForm: FormGroup;
-  aboutForm: FormGroup;
-  experienceForm: FormGroup;
-  locationForm: FormGroup;
-  extrasForm: FormGroup;
-
-  addSpecialistForm: FormGroup;
+  user = User;
+  specialistID;
   hide = true;
+  // FormGroups
+  addGuidelineForm: FormGroup;
+  infoForm: FormGroup;
+  categoryForm: FormGroup;
+  prepForm: FormGroup;
+  portionForm: FormGroup;
+  prepArr: FormArray;
+  prepValue = new FormControl('', [Validators.required]);
 
-  downloadURL: string | null;
-  languages: Language[] = languages.languages;
-  timezones: Observable<Timezone[]>;
-  selectedTimezone: string;
-  languageArr: FormArray;
-  languageValue = new FormControl('', [Validators.required]);
-  languageLevel = new FormControl('', [Validators.required]);
-  reviews: FormArray;
-  reviewerName = new FormControl('', [Validators.required]);
-  reviewText = new FormControl('', [Validators.required]);
 
-  languageLevels = [
+  preperations = [
     {
-      value: 'proficient',
-      viewValue: 'Fluent - pretty much mother tongue'
+      prepValue: 'Cooked',
     },
     {
-      value: 'advanced',
-      viewValue: 'Advanced - comfortable in most situations'
+      prepValue: 'Cooked w/Spinach',
     },
     {
-      value: 'intermediate',
-      viewValue: 'Intermediate - able to have a conversation'
+      prepValue: 'Sauteed w/Veggies',
     },
     {
-      value: 'beginner',
-      viewValue: 'Beginner - a few words and sentences'
+      prepValue: 'Chopped',
     },
-  ]; selectedLevel: string;
+    {
+      prepValue: 'Sliced',
+    },
+    {
+      prepValue: 'Diced',
+    },
+    {
+      prepValue: 'Raw',
+    },
+    {
+      prepValue: 'Snacked',
+    },
+    {
+      prepValue: 'Hard Boiled',
+    },
+    {
+      prepValue: 'Omelette',
+    },
+    {
+      prepValue: 'Scrambled',
+    },
+    {
+      prepValue: 'Grated',
+    },
+    {
+      prepValue: 'Whole',
+    },
+  ];
 
   constructor( private fb: FormBuilder,
-               private dataService: DataService,
-               private specialistService: SpecialistService) {}
+               private auth: AuthService,
+               private userService: UserService,
+               private guidelineService: GuidelineService,
+               public matDialog: MatDialog,
+               @Inject(MAT_DIALOG_DATA) public userData: any) {
+                 alert(userData.uid);
+               }
 
   ngOnInit() {
-    this.timezones = this.dataService.getTimezones();
-    this.signUpForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: [
-        '',
-        [
-          Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-          Validators.minLength(6),
-          Validators.maxLength(25)
-        ]
-      ]
+    this.infoForm = this.fb.group({
+      productID: ['', [Validators.required]],
+      productName: ['', [Validators.required]],
     });
 
-    this.personalForm = this.fb.group({
-      specialistID: ['',
-        [
-          Validators.required,
-          Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-          Validators.minLength(8),
-        ]
-      ],
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+    this.categoryForm = this.fb.group({
+      productCategory: ['', [Validators.required]],
     });
 
-    this.aboutForm = this.fb.group({
-      description: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]],
+    this.prepForm = this.fb.group({
+      prepArr: this.fb.array([ this.createPrep() ]),
     });
 
-    this.experienceForm = this.fb.group({
-      position: ['', [Validators.required]],
-      speciality: ['', [Validators.required]],
-      yearsOfExperience: ['', [Validators.required]],
-      patientsTotal: ['', [Validators.required]],
+    this.portionForm = this.fb.group({
+      amount: ['', [Validators.required]],
+      unit: ['', [Validators.required]],
     });
-
-    this.locationForm = this.fb.group({
-      timeZone: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      country: ['', [Validators.required]],
-    });
-
-    this.extrasForm = this.fb.group({
-      languageArr: this.fb.array([ this.createLanguage() ]),
-      reviews: this.fb.array([ this.createReview() ]),
+    this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
+      this.specialistID = user.uid;
+      console.log(this.specialistID);
     });
   }
-
-  receiveDownloadURL($event) {
-    return this.downloadURL = $event;
-  }
-
 
   // Getters
-  get email() {
-    return this.signUpForm.get('email');
-  }
-  get password() {
-    return this.signUpForm.get('password');
+  get prepForms() {
+    return this.prepForm.get('prepArr') as FormArray;
   }
 
-  get languageForms() {
-    return this.extrasForm.get('languageArr') as FormArray;
-  }
-
-  get reviewForms() {
-    return this.extrasForm.get('reviews') as FormArray;
-  }
-
-    // Create a new Language Mat Card
-    createLanguage(): FormGroup {
+    // Create a new Package prep Mat Card
+    createPrep(): FormGroup {
       return this.fb.group({
-        languageValue: '',
-        languageLevel:  ''
+        prepValue: ''
       });
     }
 
-    addLanguage(): void {
-      this.languageArr = this.extrasForm.get('languageArr') as FormArray;
-      this.languageArr.push(this.createLanguage());
+    addPrep(): void {
+      this.prepArr = this.prepForm.get('prepArr') as FormArray;
+      this.prepArr.push(this.createPrep());
     }
 
-    deleteLanguage(i) {
-      (this.extrasForm.get('languageArr') as FormArray).removeAt(i);
+    deletePrep(i) {
+      (this.prepForm.get('prepArr') as FormArray).removeAt(i);
     }
 
-    // Create a new Package benefit Mat Card
-    createReview(): FormGroup {
-      return this.fb.group({
-        reviewerName: '',
-        reviewText: '',
-      });
-    }
-
-    addReview(): void {
-      this.reviews = this.extrasForm.get('reviews') as FormArray;
-      this.reviews.push(this.createReview());
-    }
-
-    deleteReview(i) {
-      (this.extrasForm.get('reviews') as FormArray).removeAt(i);
-    }
-
-    specialistSignUp() {
-      const email = this.email.value;
-      const password = this.password.value;
+    addGuideline() {
       const data = {
-        specialistID: this.personalForm.get('specialistID').value,
-        firstName: this.personalForm.get('firstName').value,
-        lastName: this.personalForm.get('lastName').value,
-        photoURL: this.downloadURL,
-        email: email,
-        description: this.aboutForm.get('description').value,
-        isClient: false,
-        isSpecialist: true,
-        phoneNumber: this.aboutForm.get('phoneNumber').value,
-        position: this.experienceForm.get('position').value,
-        timeZone: this.locationForm.get('timeZone').value,
-        yearsOfExperience: this.experienceForm.get('yearsOfExperience').value,
-        patientsTotal: this.experienceForm.get('patientsTotal').value,
-        speciality: this.experienceForm.get('speciality').value,
-        city: this.locationForm.get('city').value,
-        country: this.locationForm.get('country').value,
-        languages: this.languageForms.value,
-        reviews: this.reviewForms.value,
+        clientID: this.userData.uid,
+        specialistID: this.specialistID,
+        productID: this.infoForm.get('productID').value,
+        productName: this.infoForm.get('productName').value,
+        productCategory: this.categoryForm.get('productCategory').value,
+        portion: this.portionForm.value,
+        preperations: this.prepForms.value,
       };
-
-      // Add user in FireAuth
-      return this.specialistService.emailSignUp(email, password, data)
-      .then(() => {
-        // Reset form
-        this.signUpForm.reset();
-        this.personalForm.reset();
-        this.aboutForm.reset();
-        this.experienceForm.reset();
-        this.locationForm.reset();
-        // this.addSpecialistForm.reset();
-      });
+      const uid = this.userData.uid;
+      this.guidelineService.addGuideline(data, uid);
     }
 }

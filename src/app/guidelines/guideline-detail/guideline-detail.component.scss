@@ -1,0 +1,89 @@
+@import './../../../assets/scss/_master.scss';
+
+// General
+p {
+    white-space: normal;
+}
+
+h5 {
+    &.purple {
+        color: $secondary-color;
+    }
+}
+
+
+
+main.specialist-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1.5em 2em;
+
+    .action-toolbar-top {
+
+        button.icon-button {
+            position: inherit;
+        }
+    
+    }
+
+    .package-container {
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+
+        .package-controls {
+            @extend %flex-center;
+            width: 15%;
+        }
+
+        mat-card.list-item-card {
+            width: 60%;
+            margin: 1.5em;
+            cursor: auto;
+
+            .subtitle {
+                width: 90%;
+            }
+
+            .product-photo {
+                height: 250px;
+                position: relative;
+            }
+
+
+            .preperation-container {
+                ul {
+                    li {
+                        display: block;
+                        margin: 1em 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+section.btn-area {
+    padding-left: 3em;
+
+    button.text-link {
+        margin: 1em 0;
+        svg {
+            font-size: 12px;
+            margin-left: 5px;
+        }     
+    }
+}
+
+div.not-available {
+    @extend %flex-center;
+    flex-flow: column wrap;
+    width: 100%;
+    height: 100%;
+}

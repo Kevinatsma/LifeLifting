@@ -83,14 +83,18 @@ export class MyClientDetailComponent implements OnInit {
   openMealDialog() {
     // Set data for Dialog
     this.dialog.open(AddMealDialogComponent, {
-
+        data: {
+          uid: this.user.uid,
+        },
     });
   }
 
   openGuideDialog() {
     // Set data for Dialog
     this.dialog.open(AddGuideDialogComponent, {
-
+      data: {
+        uid: this.user.uid,
+      },
     });
   }
 

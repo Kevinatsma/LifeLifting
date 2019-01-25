@@ -71,6 +71,15 @@ export class UserService {
     return this.user;
   }
 
+  // getSID() {
+  //   const uid = this.auth.currentUserId;
+  //   this.getUserDataByID(uid);
+  //   this.user.subscribe(user => {
+  //     this.specialistID = user.sID;
+  //     return this.specialistID;
+  //   });
+  // }
+
   updateUser(uid, data) {
     this.userDoc = this.afs.doc<User>(`users/${uid}`);
     this.userDoc.update(data);

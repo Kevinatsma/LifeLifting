@@ -35,6 +35,9 @@ import { MyClientsComponent } from './specialist-dashboard/my-clients/my-clients
 import { MyClientDetailComponent } from './specialist-dashboard/my-clients/my-client-detail/my-client-detail.component';
 import { MyClientListComponent } from './specialist-dashboard/my-clients/my-client-list/my-client-list.component';
 import { MyClientListItemComponent } from './specialist-dashboard/my-clients/my-client-list-item/my-client-list-item.component';
+import { GuidelinesModule } from './../guidelines/guidelines.module';
+import { GuidelinesComponent } from '../guidelines/guidelines.component';
+import { GuidelineDetailComponent } from '../guidelines/guideline-detail/guideline-detail.component';
 
 const routes: Routes = [
   {
@@ -50,8 +53,10 @@ const routes: Routes = [
       {path: 'specialists/:id', component: SpecialistDetailComponent, canActivate: [AuthGuard]},
       {path: 'clients', component: ClientsComponent, data: {state: 'clients'}, canActivate: [AuthGuard]},
       {path: 'clients/:id', component: ClientDetailComponent, canActivate: [AuthGuard]},
-      {path: 'my-clients', component: MyClientsComponent, data: {state: 'clients'}, canActivate: [AuthGuard]},
+      {path: 'my-clients', component: MyClientsComponent, data: {state: 'my-clients'}, canActivate: [AuthGuard]},
       {path: 'my-clients/:id', component: MyClientDetailComponent, canActivate: [AuthGuard]},
+      {path: 'guidelines', component: GuidelinesComponent, data: {state: 'guidelines'}, canActivate: [AuthGuard]},
+      {path: 'guidelines/:id', component: GuidelineDetailComponent, canActivate: [AuthGuard]},
       {path: 'finances', component: FinancesComponent, data: {state: 'finances'}, canActivate: [AuthGuard]},
       {path: 'packages', component: PackagesComponent, data: {state: 'packages'}, canActivate: [AuthGuard]},
       {path: 'packages/:id', component: PackageDetailComponent, canActivate: [AuthGuard]},
@@ -88,6 +93,7 @@ const routes: Routes = [
     FoodsModule,
     ExercisesModule,
     FinancesModule,
+    GuidelinesModule,
     MaterialModule
   ],
   exports: [
