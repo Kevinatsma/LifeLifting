@@ -3,9 +3,9 @@ import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@ang
 import { GuidelineService } from '../../../guidelines/guideline.service';
 import { MatDialog } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import { User } from 'src/app/user/user.model';
-import { AuthService } from 'src/app/core/auth/auth.service';
-import { UserService } from 'src/app/user/user.service';
+import { User } from './../../../user/user.model';
+import { AuthService } from './../../../core/auth/auth.service';
+import { UserService } from './../../../user/user.service';
 
 @Component({
   selector: 'app-add-guide-dialog',
@@ -99,6 +99,7 @@ export class AddGuideDialogComponent implements OnInit {
       this.specialistID = user.uid;
       console.log(this.specialistID);
     });
+    // this.userService.getUserDataByID(this.guideline.clientID).subscribe(user => this.client = user);
   }
 
   // Getters
@@ -126,7 +127,7 @@ export class AddGuideDialogComponent implements OnInit {
       const data = {
         clientID: this.userData.uid,
         specialistID: this.specialistID,
-        productID: this.infoForm.get('productID').value,
+        productID: this.userData.uid + '_' + this.infoForm.get('productID').value,
         productName: this.infoForm.get('productName').value,
         productCategory: this.categoryForm.get('productCategory').value,
         portion: this.portionForm.value,

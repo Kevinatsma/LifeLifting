@@ -41,17 +41,34 @@ main.specialist-wrapper {
         }
 
         mat-card.list-item-card {
-            width: 60%;
-            margin: 1.5em;
+            width: 80%;
+            margin: 3.5em auto;
             cursor: auto;
 
             .subtitle {
                 width: 90%;
             }
+            .card-circle {
+                @extend %flex-center;
+                flex-flow: column wrap;
+                width: 175px;
+                height: 175px;
+                margin: -85px auto 0;
+                box-shadow: $card-shadow;
+                background-size: cover!important;
+                background-position: center!important;
+                border-radius: 50%;
+
+                svg {
+                    font-size: 38px;
+                }
+            }
 
             .product-photo {
                 height: 250px;
                 position: relative;
+                background-size: cover!important;
+                background-position: center!important;
             }
 
 

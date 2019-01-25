@@ -6,6 +6,8 @@ import { GuidelineService } from '../guideline.service';
 import { Specialist } from '../../specialists/specialist.model';
 import { SpecialistService } from '../../specialists/specialist.service';
 import { Guideline } from '../guideline.model';
+import { User } from './../../user/user.model';
+import { UserService } from './../../user/user.service';
 
 
 @Component({
@@ -18,13 +20,14 @@ export class GuidelineDetailComponent implements OnInit {
   specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
-
+  client: User;
 
   // specialist = Observable<Specialist>;
 
   constructor( private cdr: ChangeDetectorRef,
                public router: Router,
                public route: ActivatedRoute,
+               private userService: UserService,
                public guidelineService: GuidelineService,
                public specialistService: SpecialistService,
                public location: Location) {
@@ -32,12 +35,12 @@ export class GuidelineDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getGuideline();
-  }
-
-  getGuideline() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.guidelineService.getGuidelineDataById(id).subscribe(guideline => (this.guideline = guideline));
+    console.log(id);
+    this.guidelineService.getGuidelineDataById(id).subscribe(guideline => {
+      this.guideline = guideline;
+      this.userService.getUserDataByID(this.guideline.clientID).subscribe(user => this.client = user);
+    });
   }
 
   aboutExtendedOpen() {
@@ -63,17 +66,18 @@ export class GuidelineDetailComponent implements OnInit {
 
   // Control buttons
 
-  linkToPrevious(guideline) {
-    const productID = guideline.productID - 1;
-    const url = `dashboard/guidelines/${productID}`;
-    this.router.navigate([url]);
-    this.guidelineService.getGuidelineDataById(productID).subscribe(a => (this.guideline = a));
-  }
+  // linkToPrevious(guideline) {
+  //   const productID = guideline.productID - 1;
+  //   const url = `dashboard/guidelines/${productID}`;
+  //   this.router.navigate([url]);
+  //   this.guidelineService.getGuidelineDataById(productID).subscribe(a => (this.guideline = a));
+  // }
 
-  linkToNext(guideline) {
-    const productID = guideline.productID + 1;
-    const url = `dashboard/guidelines/${productID}`;
-    this.router.navigate([url]);
-    this.guidelineService.getGuidelineDataById(productID).subscribe(a => (this.guideline = a));
-  }
+  // linkToNext(guideline) {
+  //   const productID = guideline.clientID + 1;
+  //   console.log(productID);
+  //   const url = `dashboard/guidelines/${productID}`;
+  //   this.router.navigate([url]);
+  //   this.guidelineService.getGuidelineDataById(productID).subscribe(a => (this.guideline = a));
+  // }
 }

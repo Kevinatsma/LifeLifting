@@ -4,7 +4,7 @@ import { GuidelineService } from '../guideline.service';
 import { Location } from '@angular/common';
 import { SpecialistService } from '../../specialists/specialist.service';
 import { Guideline } from '../guideline.model';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AuthService } from './../../core/auth/auth.service';
 
 @Component({
   selector: 'app-edit-guideline',
@@ -63,7 +63,7 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
       productCategory: this.editProductForm.get('productCategory').value || this.guideline.productCategory,
     };
     const uid = this.auth.currentUserId;
-    this.guidelineService.updateGuideline(this.guideline.productID, uid, data);
+    this.guidelineService.updateGuideline(this.guideline.productID, data);
     this.toggleEdit();
   }
 

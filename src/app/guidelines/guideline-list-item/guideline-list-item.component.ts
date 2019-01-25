@@ -54,7 +54,7 @@ export class GuidelineListItemComponent implements OnInit {
   }
 
 
-  linkToChild(guideline) {
+  linkToChild(guideline, client) {
     const url = `dashboard/guidelines/${guideline.productID}`;
     this.router.navigate([url]);
   }

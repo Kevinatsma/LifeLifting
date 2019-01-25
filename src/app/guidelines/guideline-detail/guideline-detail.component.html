@@ -8,7 +8,10 @@
         </button>
       </div>
       <div class="middle">
-        <h1>Guideline ID: {{guideline.productID}}</h1>
+        <h1 *ngIf="client; else gID">Guideline for: {{client.displayName}}</h1>
+        <ng-template #gID>
+          <h1>Guideline for: {{guideline.productID}}</h1>
+        </ng-template>
       </div>
       <div class="right">
         <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
@@ -19,18 +22,17 @@
 
     <div class="package-container">
 
-      <section class="package-controls last-package">
+      <!-- <section class="package-controls last-package">
           <button class="slide-control-btn" (click)="linkToPrevious(guideline)" 
           [class.disabled]="guideline.productID === 1"
           [disabled]="guideline.productID === 1"
           >
               <i class="fas fa-chevron-left"></i>
           </button>
-      </section>
+      </section> -->
 
       <mat-card class="list-item-card" *ngIf="guideline">
-          <section class="product-photo">
-            Oh hey there
+          <section *ngIf="client" class="card-circle" (click)="linkToChild(guideline, client)" [style.background]="'url('+ client.photoURL +')'">
           </section>
           <p class="subtitle">
             {{guideline.productCategory}}
@@ -93,14 +95,14 @@
             </div>
           </section>        
         </mat-card>
-      <section class="package-controls next-package">
-        <button class="slide-control-btn" (click)="linkToNext(guideline)"
+      <!-- <section class="package-controls next-package">
+        <button class="slide-control-btn" (click)="linkToNext(guideline, client)"
           [class.disabled]="guideline.packageID === 3"
           [disabled]="guideline.packageID === 3"
           >
             <i class="fas fa-chevron-right"></i>
         </button>
-      </section>
+      </section> -->
 
     </div>
   </main>

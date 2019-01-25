@@ -55,15 +55,16 @@ export class GuidelineService {
 
   getGuidelineDataById(id) {
     this.guidelineDoc = this.afs.doc<Guideline>(`guidelines/${id}`);
+    console.log(id);
     this.guideline = this.guidelineDoc.valueChanges();
     return this.guideline;
   }
 
-  getGuidelineData(id, uid) {
-    this.guidelineDoc = this.afs.doc<Guideline>(`users/${uid}/guidelines/${id}`);
-    this.guideline = this.guidelineDoc.valueChanges();
-    return this.guideline;
-  }
+  // getGuidelineData(id, uid) {
+  //   this.guidelineDoc = this.afs.doc<Guideline>(`users/${uid}/guidelines/${uid}_${id}`);
+  //   this.guideline = this.guidelineDoc.valueChanges();
+  //   return this.guideline;
+  // }
 
   // getSpecialistGuidelineData(id) {
   //   const specialistID = this.userService.getSID();
@@ -98,7 +99,7 @@ export class GuidelineService {
     this.afs.collection<Guideline>(`guidelines`).doc(`${data.productID}`).set(data, {merge: true})
     .then(() => {
       this.afs.collection<Guideline>(`specialists/specialist${this.specialistID}/guidelines`)
-        .doc(`${data.productID}`).set(data, {merge: true});
+        .doc(`${uid}_${data.productID}`).set(data, {merge: true});
     })
     .then(() => {
       // Show Snackbar

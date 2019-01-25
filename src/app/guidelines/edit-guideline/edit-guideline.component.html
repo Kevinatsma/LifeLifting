@@ -1,4 +1,4 @@
-<ng-container *ngIf="food">
+<ng-container *ngIf="guideline">
   <main class="specialist-wrapper">
 
     <section class="action-toolbar-top">
@@ -8,18 +8,18 @@
         </button>
       </div>
       <div class="middle">
-        <h1>Product ID: {{food.productID}}</h1>
+        <h1>Guideline ID: {{guideline.productID}}</h1>
       </div>
       <div class="right">
-        <button class="icon-button edit-button" (click)="editProduct()">
+        <button class="icon-button edit-button" (click)="editGuideline()">
           <i class="fas fa-check"></i>
         </button>
       </div>
     </section>
 
-      <form class="package-container" [formGroup]="editProductForm" *ngIf="editShow">
+      <form class="package-container" [formGroup]="editGuidelineForm" *ngIf="editShow">
 
-        <mat-card class="list-item-card" *ngIf="food">
+        <mat-card class="list-item-card" *ngIf="guideline">
             <section class="product-photo">
                 <!-- <i class="fas fa-carrot"></i>
               <h1>{{i+1}}</h1> -->
@@ -34,7 +34,7 @@
               </div>
           
               <div class="quick-info">
-                <p class="speciality-title">Product ID: {{food.productID}}</p>
+                <p class="speciality-title">Guideline ID: {{guideline.productID}}</p>
                 <ul class="contact-menu">
                   <li>
                     <i class="fas fa-balance-scale"></i>
@@ -46,7 +46,7 @@
               <div class="preperations-container">
                 <h4>Ways of Preperation</h4>
                 <ul class="contact-menu">
-                  <li *ngFor="let preperation of food.preperations">
+                  <li *ngFor="let preperation of guideline.preperations">
                     <span *ngIf="preperation.prepValue === 'Cooked'" class="emoji">
                       🥘
                     </span>
