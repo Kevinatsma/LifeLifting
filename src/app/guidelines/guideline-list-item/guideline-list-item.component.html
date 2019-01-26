@@ -17,6 +17,7 @@
     <div class="quick-info">
       <p class="speciality-title">Product ID: {{guideline.productID}}</p>
       <p *ngIf="client" class="speciality-title">For: {{client.displayName}}</p>
+      <p class="speciality-title">Created: {{guideline.creationDate.toDate() | date:'MM/dd/yy'}}</p>
       <ul class="contact-menu">
         <li>
           <i class="fas fa-balance-scale"></i>
@@ -26,10 +27,10 @@
     </div>
   </section>
   <section class="actions">
-    <button type="button" (click)="deleteFoodDialog(guideline)">
+    <button type="button" (click)="deleteGuidelineDialog(guideline)">
       <i class="fas fa-trash"></i>
     </button>
-    <button (click)="editFood(guideline)">
+    <button (click)="editGuideline(guideline)">
       <i class="fas fa-edit"></i>
     </button>
   </section>

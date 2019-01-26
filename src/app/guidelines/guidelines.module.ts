@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { GuidelineItemComponent } from './guideline-item/guideline-item.component';
 import { GuidelineListItemComponent } from './guideline-list-item/guideline-list-item.component';
 import { GuidelineListComponent } from '../guidelines/guideline-list/guideline-list.component';
 import { EditGuidelineComponent } from '../guidelines/edit-guideline/edit-guideline.component';
@@ -14,7 +13,6 @@ import { GuidelineDetailComponent } from './guideline-detail/guideline-detail.co
 
 @NgModule({
   declarations: [
-    GuidelineItemComponent,
     GuidelineListItemComponent,
     GuidelineListComponent,
     EditGuidelineComponent,
@@ -28,7 +26,6 @@ import { GuidelineDetailComponent } from './guideline-detail/guideline-detail.co
     SharedModule
   ],
   exports: [
-    GuidelineItemComponent,
     GuidelineListItemComponent,
     GuidelineListComponent,
     EditGuidelineComponent,

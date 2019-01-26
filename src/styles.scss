@@ -88,7 +88,7 @@ a.menu-link, button.menu-link {
     border-left: 3px solid transparent;
 
     &:hover, &:focus, &.active {
-        background: lighten($primary-color, 32%); 
+        background: $primary-light; 
         border-left: 3px solid $primary-color;
         color: $primary-color;
         svg {
@@ -526,6 +526,28 @@ mat-card {
         box-shadow: $card-shadow;
         border-radius: 5px;
         padding: 20px 1.5em;
+    }
+}
+
+// Mat Snackbar
+
+.success-snackbar {
+    background: $icon-black!important;
+    span {
+        font-family: $main-font;
+        font-size: 14px;
+        font-weight: $regular;
+        color: rgba(255, 255, 255, 0.75);
+        letter-spacing: 0.8px;
+    }
+    .mat-button-wrapper {
+        background: transparent;
+        color: #fff;
+        font-family: $main-font;
+        font-weight: $semi-bold;
+        &:hover, &:focus {
+            transform: scale(1.1);
+        }
     }
 }
 

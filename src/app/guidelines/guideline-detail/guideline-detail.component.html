@@ -34,9 +34,18 @@
       <mat-card class="list-item-card" *ngIf="guideline">
           <section *ngIf="client" class="card-circle" (click)="linkToChild(guideline, client)" [style.background]="'url('+ client.photoURL +')'">
           </section>
-          <p class="subtitle">
-            {{guideline.productCategory}}
-          </p>
+          <section class="chip-area">
+            <p class="secondary-chip">
+              Guideline number: {{guideline.productNR}}
+            </p>
+            <p class="secondary-chip">
+              Created: {{guideline.creationDate.toDate() | date: 'MM/dd/yy'}}
+            </p>
+            <p *ngIf="guideline.lastEdited" class="secondary-chip">
+              Last edited: {{guideline.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
+            </p>
+          </section>
+
           <section class="middle">
             <div class="title">
                 <h2>{{guideline.productName}}</h2>
@@ -108,7 +117,7 @@
   </main>
 
   <ng-container *ngIf="editShow">
-    <app-edit-guideline [guideline]="guideline"></app-edit-guideline>
+    <app-edit-guideline [client]="client" [guideline]="guideline"></app-edit-guideline>
   </ng-container>
 
 </ng-container>

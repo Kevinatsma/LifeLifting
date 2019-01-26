@@ -36,7 +36,6 @@ export class GuidelineDetailComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
     this.guidelineService.getGuidelineDataById(id).subscribe(guideline => {
       this.guideline = guideline;
       this.userService.getUserDataByID(this.guideline.clientID).subscribe(user => this.client = user);

@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { SpecialistService } from '../../specialists/specialist.service';
 import { Guideline } from '../guideline.model';
 import { AuthService } from './../../core/auth/auth.service';
+import { User } from 'src/app/user/user.model';
 
 @Component({
   selector: 'app-edit-guideline',
@@ -17,11 +18,12 @@ import { AuthService } from './../../core/auth/auth.service';
 })
 export class EditGuidelineComponent implements OnInit, OnDestroy {
   @Input() guideline: Guideline;
+  @Input() client: User;
   aboutExtended = false;
   reviewsVisible = true;
 
   // Form
-  editProductForm: FormGroup;
+  editGuidelineForm: FormGroup;
   downloadURL: string | any;
   url: any;
 
@@ -33,7 +35,7 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
                }
 
   ngOnInit() {
-    this.editProductForm = this.fb.group({
+    this.editGuidelineForm = this.fb.group({
       productName: '' || this.guideline.productName,
       productCategory: '' || this.guideline.productCategory,
       amount: '' || this.guideline.portion.amount,
@@ -57,12 +59,12 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
     this.guidelineService.editShow = false;
   }
 
-  editProduct() {
+  editGuideline() {
     const data = {
-      productName: this.editProductForm.get('productName').value || this.guideline.productName,
-      productCategory: this.editProductForm.get('productCategory').value || this.guideline.productCategory,
+      lastEdited: new Date(),
+      productName: this.editGuidelineForm.get('productName').value || this.guideline.productName,
+      productCategory: this.editGuidelineForm.get('productCategory').value || this.guideline.productCategory,
     };
-    const uid = this.auth.currentUserId;
     this.guidelineService.updateGuideline(this.guideline.productID, data);
     this.toggleEdit();
   }

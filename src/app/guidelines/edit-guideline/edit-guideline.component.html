@@ -8,7 +8,10 @@
         </button>
       </div>
       <div class="middle">
-        <h1>Guideline ID: {{guideline.productID}}</h1>
+        <h1 *ngIf="client; else gID">Guideline for: {{client.displayName}}</h1>
+        <ng-template #gID>
+          <h1>Guideline for: {{guideline.productID}}</h1>
+        </ng-template>
       </div>
       <div class="right">
         <button class="icon-button edit-button" (click)="editGuideline()">
@@ -20,14 +23,19 @@
       <form class="package-container" [formGroup]="editGuidelineForm" *ngIf="editShow">
 
         <mat-card class="list-item-card" *ngIf="guideline">
-            <section class="product-photo">
-                <!-- <i class="fas fa-carrot"></i>
-              <h1>{{i+1}}</h1> -->
-              Hey
+            <section *ngIf="client" class="card-circle" (click)="linkToChild(guideline, client)" [style.background]="'url('+ client.photoURL +')'">
             </section>
-            <p class="subtitle">
-              <input type="text" class="text-field" name="productCategory" formControlName="productCategory">
-            </p>
+            <section class="chip-area">
+              <p class="secondary-chip">
+                Guideline number: {{guideline.productNR}}
+              </p>
+              <p class="secondary-chip">
+                Created: {{guideline.creationDate.toDate() | date: 'MM/dd/yy'}}
+              </p>
+              <p *ngIf="guideline.lastEdited" class="secondary-chip">
+                Last edited: {{guideline.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
+              </p>
+            </section>
             <section class="middle">
               <div class="title">
                   <h2><input type="text" class="text-field" name="productName" formControlName="productName"></h2>

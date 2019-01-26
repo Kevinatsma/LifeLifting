@@ -74,7 +74,6 @@ export class AddGuideDialogComponent implements OnInit {
                private guidelineService: GuidelineService,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
-                 alert(userData.uid);
                }
 
   ngOnInit() {
@@ -126,8 +125,10 @@ export class AddGuideDialogComponent implements OnInit {
     addGuideline() {
       const data = {
         clientID: this.userData.uid,
+        creationDate: new Date(),
         specialistID: this.specialistID,
         productID: this.userData.uid + '_' + this.infoForm.get('productID').value,
+        productNR: this.infoForm.get('productID').value,
         productName: this.infoForm.get('productName').value,
         productCategory: this.categoryForm.get('productCategory').value,
         portion: this.portionForm.value,
