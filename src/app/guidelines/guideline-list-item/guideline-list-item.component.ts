@@ -30,8 +30,8 @@ export class GuidelineListItemComponent implements OnInit {
   deleteGuidelineDialog(guideline) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        productID: guideline.productID,
-        productName: guideline.productName,
+        guidelineID: guideline.guidelineID,
+        guidelineName: guideline.guidelineName,
       },
     });
 
@@ -39,7 +39,7 @@ export class GuidelineListItemComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
       if (result === true) {
         console.log('i"m being called');
-        const id = guideline.productID;
+        const id = guideline.guidelineID;
         this.guidelineService.deleteGuideline(id);
       } else if (result === false) {
         return null;
@@ -48,14 +48,14 @@ export class GuidelineListItemComponent implements OnInit {
   }
 
   editGuideline(guideline) {
-    const url = `dashboard/guidelines/${guideline.productID}`;
+    const url = `dashboard/guidelines/${guideline.guidelineID}`;
     this.router.navigate([url]);
     return this.guidelineService.editShow = true;
   }
 
 
-  linkToChild(guideline, client) {
-    const url = `dashboard/guidelines/${guideline.productID}`;
+  linkToChild(guideline) {
+    const url = `dashboard/guidelines/${guideline.guidelineID}`;
     this.router.navigate([url]);
   }
 

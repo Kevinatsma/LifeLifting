@@ -114,9 +114,22 @@
           <mat-label>
             Factor Calorie: This is by how many times the basal amount of calories calculated by the system will be multiplied.
           </mat-label>
-          <input type="number" matInput name="factorCalorie" formControlName="factorCalorie" 
+          <input type="number" matInput (input)="calculateCalories()" name="factorCalorie" formControlName="factorCalorie" 
           placeholder="Factor (eg. 1.1)" autofocus="off" autocomplete="off">
-          <mat-hint>“1.1” would mean a 10% increase</mat-hint>
+          <mat-hint>
+            <ng-container *ngIf="calcForm['controls'].factorCalorie.dirty">
+              {{calcForm['controls'].factorCalorie.value}} would mean a {{calculatedPerc | number}}% 
+              <ng-container *ngIf="increase">
+                increase
+              </ng-container>
+              <ng-container *ngIf="!increase">
+                decrease
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="!calcForm['controls'].factorCalorie.dirty">
+              1.1 would mean a 10% increase
+            </ng-container>
+          </mat-hint>
           <mat-error class="input-error" *ngIf="!calcForm['controls'].factorCalorie.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
       </form>
@@ -159,7 +172,7 @@
         </mat-form-field>
 
         <div class="add-form-field-container" formArrayName="macroArr">
-          <h5>Distribution of macros in %. They all need to add up to a maximum of 100</h5>
+          <h4>Distribution of macros in %. They all need to add up to a maximum of 100</h4>
           <section class="dynamic-form-field-container" *ngFor="let macro of macroForms.controls; let i=index" [formGroupName]="i">
             <div class="number-id">
               <h1>{{i+1}}</h1>

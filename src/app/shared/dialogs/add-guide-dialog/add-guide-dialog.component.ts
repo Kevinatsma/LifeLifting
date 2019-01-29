@@ -37,6 +37,8 @@ export class AddGuideDialogComponent implements OnInit {
   ]; selectedTarget: string;
 
   calcForm: FormGroup;
+  calculatedPerc: number;
+  increase: boolean;
   basalValues = [
     {
       value: 'increase',
@@ -93,7 +95,18 @@ export class AddGuideDialogComponent implements OnInit {
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
     });
+
     // this.userService.getUserDataByID(this.guideline.clientID).subscribe(user => this.client = user);
+  }
+
+  calculateCalories() {
+    const factor = this.calcForm.get('factorCalorie').value;
+    this.calculatedPerc = (factor * 100 - 100);
+    if (this.calculatedPerc >= 1) {
+      this.increase = true;
+    } else {
+      this.increase =  false;
+    }
   }
 
 

@@ -80,6 +80,9 @@ mat-card.list-item-card {
                     margin: 0;
                     width: auto;
                     font-weight: $bold;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
                 }
 
                 .dividing-circle {
@@ -111,6 +114,8 @@ mat-card.list-item-card {
                         width: 100%;
                         font-size: 15px;
                         margin-top: 5px;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
                         overflow: hidden;
                     }
 
