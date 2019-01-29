@@ -3,7 +3,7 @@
   <div *ngIf="client" class="card-circle" (click)="linkToChild(guideline, client)">
     <i class="far fa-file-alt"></i>
     <div class="nr-circle">
-      <span>{{i}}</span>
+      <span>{{guideline.productNR}}</span>
     </div>
   </div>
   <p class="subtitle">
@@ -19,10 +19,10 @@
       <p *ngIf="client" class="speciality-title">For: {{client.displayName}}</p>
       <p class="speciality-title">Created: {{guideline.creationDate.toDate() | date:'MM/dd/yy'}}</p>
       <ul class="contact-menu">
-        <li>
+        <!-- <li>
           <i class="fas fa-balance-scale"></i>
           {{guideline.portion.amount}} {{guideline.portion.unit}}
-        </li>
+        </li> -->
       </ul>
     </div>
   </section>

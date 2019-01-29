@@ -3,23 +3,24 @@
     <mat-step [stepControl]="infoForm">
       <form [formGroup]="infoForm">
         <ng-template matStepLabel>Info</ng-template>
-        <h3>🥐 Guideline Info</h3>
+        <h3>ℹ️ Guideline Info</h3>
         <p class="card-text">
-          Basic data that we need from the package. This data will be displayed at step 2 of the signup process.
-          This can be important in the decision making process of the future client.
+          The guideline for the client. This guideline has to be filled out on the first meeting with the client(!).
+          This document is of huge importance, since we can calculate heaps of things based on the values you'll enter
+          here. Be precise and ask thouroughly to be as personal as possible for you client.
         </p>
     
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Guideline ID</mat-label>
-          <input type="number" matInput name="title" formControlName="productID" placeholder="Always a number" autocomplete="new-password">
-          <mat-hint *ngIf="!infoForm['controls'].productID.dirty">Check the guideline list for the numbers already taken.</mat-hint>
-          <mat-error class="input-error" *ngIf="!infoForm['controls'].productID.valid">This is <strong>required</strong></mat-error>
+          <input type="number" matInput name="guidelineID" formControlName="guidelineID" placeholder="Always a number" autocomplete="new-password">
+          <mat-hint *ngIf="!infoForm['controls'].guidelineID.dirty">Check the guideline list for the numbers already taken.</mat-hint>
+          <mat-error class="input-error" *ngIf="!infoForm['controls'].guidelineID.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
     
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Guideline name</mat-label>
-          <input type="text" matInput name="title" formControlName="productName" placeholder="Give the product a name" autofocus="none">
-          <mat-error class="input-error" *ngIf="!infoForm['controls'].productName.valid">This is <strong>required</strong></mat-error>
+          <input type="text" matInput name="guidelineName" formControlName="guidelineName" placeholder="Give the guideline a name" autofocus="none">
+          <mat-error class="input-error" *ngIf="!infoForm['controls'].guidelineName.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
       </form>
 
@@ -28,22 +29,56 @@
       </section>
     </mat-step>
 
-    <mat-step [stepControl]="categoryForm">
-      <form [formGroup]="categoryForm">
-        <ng-template matStepLabel>Category</ng-template>
-        <h3>🛒 Guideline Category</h3>
+    <mat-step [stepControl]="targetForm">
+      <form [formGroup]="targetForm">
+        <ng-template matStepLabel>Targets</ng-template>
+        <h3>🎯 Guideline targets</h3>
         <p class="card-text">
-          Put the product in a guideline category for filtering and organizing purposes. 
+          Define the targets that your users want to reach here.  
         </p>
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>The Categories</mat-label>
-          <textarea type="text" matInput formControlName="productCategory" placeholder="Choose one or more categories" 
+          <mat-label>Ideal weight</mat-label>
+          <input type="number" matInput name="idealWeight" formControlName="idealWeight" placeholder="What's the clients ideal weight?" autofocus="none">
+          <mat-error class="input-error" *ngIf="!targetForm['controls'].idealWeight.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Ideal kg of muscle</mat-label>
+          <input type="number" matInput name="idealKiloOfMuscle" formControlName="idealKiloOfMuscle" placeholder="How many kg's?" autofocus="none">
+          <mat-error class="input-error" *ngIf="!targetForm['controls'].idealKiloOfMuscle.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Gain or lose weight</mat-label>
+          <mat-select matInput name="target" placeholder="What's the goal?" [(value)]="selectedTarget" formControlName="target" autocomplete="off" 
+          panelClass="dropdown-regular" required>
+            <mat-option *ngFor="let target of targets" [value]="target.value">{{target.viewValue}}</mat-option>
+          </mat-select>
+          <mat-error class="input-error" *ngIf="!targetForm['controls'].target.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Kg's the client will lose/gain</mat-label>
+          <input type="number" matInput name="totalTarget" formControlName="totalTarget" placeholder="Amount in kg's" autofocus="none">
+          <mat-error class="input-error" *ngIf="!targetForm['controls'].idealKiloOfMuscle.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>The Duration to reach it</mat-label>
+          <input type="number" matInput name="targetDuration" formControlName="targetDuration" placeholder="Aprox. amount of weeks" autofocus="none">
+          <mat-error class="input-error" *ngIf="!targetForm['controls'].targetDuration.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>The targets</mat-label>
+          <textarea type="text" matInput formControlName="guidelineCategory" placeholder="Choose one or more categories" 
           matTextareaAutosize autofocus="off" autocomplete="off">
           </textarea>
-          <mat-error class="input-error" *ngIf="!categoryForm['controls'].productCategory.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
+          <mat-error class="input-error" *ngIf="!categoryForm['controls'].guidelineCategory.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field> -->
       </form>
+
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
@@ -51,25 +86,38 @@
       </section>
     </mat-step>
 
-    <mat-step [stepControl]="portionForm">
-      <form [formGroup]="portionForm">
-        <ng-template matStepLabel>Portion</ng-template>
-        <h3>⚖️ Portion</h3>
+    <mat-step [stepControl]="calcForm">
+      <form [formGroup]="calcForm">
+        <ng-template matStepLabel>Metrics</ng-template>
+        <h3>🧮 Calculative values</h3>
         <p class="card-text">
-          Indicate the portion here. < text needed! >
+          We need to calculate some things under the hood. Help us by providing these values.
         </p>
+
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>The Amount</mat-label>
-          <input type="number" matInput formControlName="amount" placeholder="Amount in nr." autofocus="off" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!portionForm['controls'].amount.valid">This is <strong>required</strong></mat-error>
+          <mat-label>Increase or decrease calories from the basal metabolism</mat-label>
+          <mat-select matInput name="increaseCalories" placeholder="Pick one" [(value)]="selectedBasalValue" 
+          formControlName="increaseCalories" autocomplete="off" panelClass="dropdown-regular" required>
+            <mat-option *ngFor="let value of basalValues" [value]="value.value">{{value.viewValue}}</mat-option>
+          </mat-select>
+          <mat-error class="input-error" *ngIf="!calcForm['controls'].increaseCalories.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
+
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>The Unit</mat-label>
-          <!-- <mat-select>
-            <mat-option *ngFor="let unit of units" [value]="unit.value">{{unit.viewValue}}</mat-option>
-          </mat-select> -->
-          <input type="text" matInput formControlName="unit" placeholder="Pick a unit" autofocus="off" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!portionForm['controls'].unit.valid">This is <strong>required</strong></mat-error>
+          <mat-label>How many calories we are going to increase or decrease</mat-label>
+          <input type="number" matInput formControlName="increaseAmount" placeholder="Amount in kcal." 
+          name="increaseAmount" autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!calcForm['controls'].increaseAmount.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>
+            Factor Calorie: This is by how many times the basal amount of calories calculated by the system will be multiplied.
+          </mat-label>
+          <input type="number" matInput name="factorCalorie" formControlName="factorCalorie" 
+          placeholder="Factor (eg. 1.1)" autofocus="off" autocomplete="off">
+          <mat-hint>“1.1” would mean a 10% increase</mat-hint>
+          <mat-error class="input-error" *ngIf="!calcForm['controls'].factorCalorie.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
       </form>
 
@@ -79,44 +127,74 @@
       </section>
     </mat-step>
 
-    <mat-step [stepControl]="prepForm">
-      <form [formGroup]="prepForm">
-        <ng-template matStepLabel>Preperation</ng-template>
-        <h3>🍳 Preperations</h3>
-        <p class="intro-text">Describe and add a few preperation methods for the product.  
+    <mat-step [stepControl]="activityForm">
+      <form [formGroup]="activityForm">
+        <ng-template matStepLabel>Activities</ng-template>
+        <h3>🏂 Activities</h3>
+        <p class="intro-text">
+          Describe more about the activity that the client mainly loves and does. Also put in the macro distribution values. 
         </p>
-        <div class="add-form-field-container" formArrayName="prepArr">
-          <section class="dynamic-form-field-container" *ngFor="let prep of prepForms.controls; let i=index" [formGroupName]="i">
+
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Which activity does the client do?</mat-label>
+          <mat-select matInput placeholder="Which activity do you do?" formControlName="activity" 
+          panelClass="dropdown-regular" autocomplete="off" required>
+            <mat-option *ngFor="let exercise of exercises | async" [value]="exercise.exerciseName"> {{exercise.exerciseName}}</mat-option>
+          </mat-select>
+          <mat-error class="input-error" *ngIf="!activityForm['controls'].activity.touched">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>How long does the user do this activity?</mat-label>
+          <input type="number" matInput formControlName="activityDuration" placeholder="Amount in minutes" 
+          name="activityDuration" autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!activityForm['controls'].activityDuration.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>The activity frequency</mat-label>
+          <input type="number" matInput formControlName="activityPerWeek" placeholder="How many times per week" 
+          name="activityPerWeek" autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!activityForm['controls'].activityPerWeek.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <div class="add-form-field-container" formArrayName="macroArr">
+          <h5>Distribution of macros in %. They all need to add up to a maximum of 100</h5>
+          <section class="dynamic-form-field-container" *ngFor="let macro of macroForms.controls; let i=index" [formGroupName]="i">
             <div class="number-id">
               <h1>{{i+1}}</h1>
             </div>
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Preperation method</mat-label>
-              <mat-select matInput placeholder="Way of Preparing" formControlName="prepValue" 
-              panelClass="dropdown-regular" autocomplete="off" required>
-                <mat-option *ngFor="let preperation of preperations" [value]="preperation.prepValue"> {{preperation.prepValue}}</mat-option>
-              </mat-select>
-              <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">This is <strong>required</strong></mat-error>
+              <mat-label>Percentage value</mat-label>
+              <input type="number" matInput name="percentage" formControlName="percentage" 
+              placeholder="Percentage (of 100)" autofocus="off" autocomplete="off">
+              <mat-error class="input-error" *ngIf="!percentage.valid && activityForm.touched">This is <strong>required</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>What is the macro value?</mat-label>
+              <input type="text" matInput name="macroValue" formControlName="macroValue" 
+              placeholder="Macro value" autofocus="off" autocomplete="off">
+              <mat-error class="input-error" *ngIf="!macroValue.valid && activityForm.touched">This is <strong>required</strong></mat-error>
             </mat-form-field>
             <div class="btn-area">
-              <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deletePrep(i)">
+              <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteMacro(i)">
                 <i class="fa fa-trash"></i>
               </button>
             </div>
           </section>
         </div>
 
-        <button type="button" class="add-form-field" (click)="addPrep()">
+        <button type="button" class="add-form-field" (click)="addMacro()">
           <i class="fa fa-plus"></i>
-          Add a Preperation method
+          Add a Macro
         </button>
       </form>
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
         <button type="submit" class="dialog-button" (click)="addGuideline()"
-          [disabled]="!infoForm.valid || !categoryForm.valid || !prepForm.valid || !portionForm.valid"
-          [class.disabled]="!infoForm.valid || !categoryForm.valid  || !prepForm.valid || !portionForm.valid"
+          [disabled]="!infoForm.valid || !targetForm.valid || !calcForm.valid || !activityForm.valid"
+          [class.disabled]="!infoForm.valid || !targetForm.valid  || !calcForm.valid || !activityForm.valid"
           mat-dialog-close
         >
           Done

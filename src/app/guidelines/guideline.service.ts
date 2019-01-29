@@ -20,10 +20,10 @@ export class GuidelineService {
   guidelineDoc: AngularFirestoreDocument<Guideline>;
   guideline: Observable<Guideline>;
 
-  specialistGuideCol: AngularFirestoreCollection<Guideline>;
-  specialistGuidelines: Observable<Guideline[]>;
-  specialistGuideDoc: AngularFirestoreDocument<Guideline>;
-  specialistGuide: Observable<Guideline>;
+  clientGuideCol: AngularFirestoreCollection<Guideline>;
+  clientGuidelines: Observable<Guideline[]>;
+  clientGuideDoc: AngularFirestoreDocument<Guideline>;
+  clientGuide: Observable<Guideline>;
 
   editShow: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
@@ -67,16 +67,16 @@ export class GuidelineService {
     return this.guidelines;
   }
 
-  getSpecialistGuidelines() {
-    this.specialistGuideCol = this.afs.collection('guidelines');
-    this.specialistGuidelines = this.specialistGuideCol.valueChanges();
+  getClientGuidelines(uid) {
+    this.clientGuideCol = this.afs.collection('guidelines', ref => ref.where('clientID', '==', `${uid}`));
+    this.clientGuidelines = this.clientGuideCol.valueChanges();
   }
 
-  addGuideline(data, uid) {
-    this.afs.collection<Guideline>(`guidelines`).doc(`${data.productID}`).set(data, {merge: true})
+  addGuideline(data) {
+    this.afs.collection<Guideline>(`guidelines`).doc(`${data.guidelineID}`).set(data, {merge: true})
     .then(() => {
       // Show Snackbar
-      const message = `The ${data.productName} was added succesfully`;
+      const message = `${data.guidelineName} was added succesfully`;
       const action = 'Close';
 
       this.snackBar.open(message, action, {
@@ -93,8 +93,6 @@ export class GuidelineService {
   updateGuideline(id, data) {
     this.guidelineDoc = this.afs.doc<Guideline>(`guidelines/${id}`);
     this.guidelineDoc.update(data);
-    // this.specialistGuideDoc = this.afs.doc<Guideline>(`specialists/${this.specialistID}/guidelines/${id}`);
-    // this.specialistGuideDoc.update(data);
   }
 
   deleteGuideline(id) {

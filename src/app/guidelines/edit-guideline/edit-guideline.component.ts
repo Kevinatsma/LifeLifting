@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { SpecialistService } from '../../specialists/specialist.service';
 import { Guideline } from '../guideline.model';
 import { AuthService } from './../../core/auth/auth.service';
-import { User } from 'src/app/user/user.model';
+import { User } from './../../user/user.model';
 
 @Component({
   selector: 'app-edit-guideline',
@@ -36,11 +36,7 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.editGuidelineForm = this.fb.group({
-      productName: '' || this.guideline.productName,
-      productCategory: '' || this.guideline.productCategory,
-      amount: '' || this.guideline.portion.amount,
-      unit: '' || this.guideline.portion.unit,
-      preperations: '' || this.guideline.preparations,
+      guidelineName: '' || this.guideline.guidelineName,
     });
     this.url = `guidelines`;
   }
@@ -62,10 +58,9 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
   editGuideline() {
     const data = {
       lastEdited: new Date(),
-      productName: this.editGuidelineForm.get('productName').value || this.guideline.productName,
-      productCategory: this.editGuidelineForm.get('productCategory').value || this.guideline.productCategory,
+      guidelineName: this.editGuidelineForm.get('guidelineName').value || this.guideline.guidelineName,
     };
-    this.guidelineService.updateGuideline(this.guideline.productID, data);
+    this.guidelineService.updateGuideline(this.guideline.guidelineID, data);
     this.toggleEdit();
   }
 

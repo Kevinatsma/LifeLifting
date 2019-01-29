@@ -6,6 +6,9 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import { User } from './../../../user/user.model';
 import { AuthService } from './../../../core/auth/auth.service';
 import { UserService } from './../../../user/user.service';
+import { Exercise } from './../../../exercises/exercise.model';
+import { Observable } from 'rxjs';
+import { ExerciseService } from 'src/app/exercises/exercise.service';
 
 @Component({
   selector: 'app-add-guide-dialog',
@@ -16,125 +19,127 @@ export class AddGuideDialogComponent implements OnInit {
   user = User;
   specialistID;
   hide = true;
+  exercises: Observable<Exercise[]>;
+
   // FormGroups
   addGuidelineForm: FormGroup;
   infoForm: FormGroup;
-  categoryForm: FormGroup;
-  prepForm: FormGroup;
-  portionForm: FormGroup;
-  prepArr: FormArray;
-  prepValue = new FormControl('', [Validators.required]);
+  targetForm: FormGroup;
+  targets = [
+    {
+      value: 'gain',
+      viewValue: 'Gain weight'
+    },
+    {
+      value: 'lose',
+      viewValue: 'Lose weight'
+    },
+  ]; selectedTarget: string;
 
+  calcForm: FormGroup;
+  basalValues = [
+    {
+      value: 'increase',
+      viewValue: 'Increase calories'
+    },
+    {
+      value: 'decrease',
+      viewValue: 'Decrease calories'
+    },
+  ]; selectedBasalValue: string;
 
-  preperations = [
-    {
-      prepValue: 'Cooked',
-    },
-    {
-      prepValue: 'Cooked w/Spinach',
-    },
-    {
-      prepValue: 'Sauteed w/Veggies',
-    },
-    {
-      prepValue: 'Chopped',
-    },
-    {
-      prepValue: 'Sliced',
-    },
-    {
-      prepValue: 'Diced',
-    },
-    {
-      prepValue: 'Raw',
-    },
-    {
-      prepValue: 'Snacked',
-    },
-    {
-      prepValue: 'Hard Boiled',
-    },
-    {
-      prepValue: 'Omelette',
-    },
-    {
-      prepValue: 'Scrambled',
-    },
-    {
-      prepValue: 'Grated',
-    },
-    {
-      prepValue: 'Whole',
-    },
-  ];
+  activityForm: FormGroup;
+  macroArr: FormArray;
+  percentage = new FormControl('', [Validators.required]);
+  macroValue = new FormControl('', [Validators.required]);
 
   constructor( private fb: FormBuilder,
                private auth: AuthService,
                private userService: UserService,
+               private exerciseService: ExerciseService,
                private guidelineService: GuidelineService,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
+                this.exercises = this.exerciseService.getExercises();
                }
 
   ngOnInit() {
     this.infoForm = this.fb.group({
-      productID: ['', [Validators.required]],
-      productName: ['', [Validators.required]],
+      guidelineID: ['', [Validators.required]],
+      guidelineName: ['', [Validators.required]],
     });
 
-    this.categoryForm = this.fb.group({
-      productCategory: ['', [Validators.required]],
+    this.targetForm = this.fb.group({
+      idealWeight: ['', [Validators.required]],
+      idealKiloOfMuscle: ['', [Validators.required]],
+      target: ['', [Validators.required]],
+      totalTarget: ['', [Validators.required]],
+      targetDuration: ['', [Validators.required]],
     });
 
-    this.prepForm = this.fb.group({
-      prepArr: this.fb.array([ this.createPrep() ]),
+    this.calcForm = this.fb.group({
+      increaseCalories: ['', [Validators.required]],
+      increaseAmount: ['', [Validators.required]],
+      factorCalorie: ['', [Validators.required]],
     });
 
-    this.portionForm = this.fb.group({
-      amount: ['', [Validators.required]],
-      unit: ['', [Validators.required]],
+    this.activityForm = this.fb.group({
+      activity: ['', [Validators.required]],
+      activityDuration: ['', [Validators.required]],
+      activityPerWeek: ['', [Validators.required]],
+      macroArr: this.fb.array([ this.createMacro() ]),
     });
+
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
-      console.log(this.specialistID);
     });
     // this.userService.getUserDataByID(this.guideline.clientID).subscribe(user => this.client = user);
   }
 
-  // Getters
-  get prepForms() {
-    return this.prepForm.get('prepArr') as FormArray;
+
+  // Macro form
+  get macroForms() {
+    return this.activityForm.get('macroArr') as FormArray;
   }
 
-    // Create a new Package prep Mat Card
-    createPrep(): FormGroup {
-      return this.fb.group({
-        prepValue: ''
-      });
-    }
+  createMacro(): FormGroup {
+    return this.fb.group({
+      percentage: '',
+      macroValue: ''
+    });
+  }
 
-    addPrep(): void {
-      this.prepArr = this.prepForm.get('prepArr') as FormArray;
-      this.prepArr.push(this.createPrep());
-    }
+  addMacro(): void {
+    this.macroArr = this.activityForm.get('macroArr') as FormArray;
+    this.macroArr.push(this.createMacro());
+  }
 
-    deletePrep(i) {
-      (this.prepForm.get('prepArr') as FormArray).removeAt(i);
-    }
+  deleteMacro(i) {
+    (this.activityForm.get('macroArr') as FormArray).removeAt(i);
+  }
 
-    addGuideline() {
-      const data = {
-        clientID: this.userData.uid,
-        creationDate: new Date(),
-        specialistID: this.specialistID,
-        productID: this.userData.uid + '_' + this.infoForm.get('productID').value,
-        productNR: this.infoForm.get('productID').value,
-        productName: this.infoForm.get('productName').value,
-        productCategory: this.categoryForm.get('productCategory').value,
-        portion: this.portionForm.value,
-        preperations: this.prepForms.value,
-      };
-      const uid = this.userData.uid;
-      this.guidelineService.addGuideline(data, uid);
-    }
+  addGuideline() {
+    const gID: number =  this.infoForm.get('guidelineID').value;
+    const data = {
+      clientID: this.userData.uid,
+      specialistID: this.specialistID,
+      creationDate: new Date(),
+      guidelineID: this.userData.uid + '_' + gID,
+      guidelineNR: gID,
+      guidelineName: this.infoForm.get('guidelineName').value,
+      idealWeight: this.targetForm.get('idealWeight').value,
+      idealKiloOfMuscle: this.targetForm.get('idealKiloOfMuscle').value,
+      target: this.targetForm.get('target').value,
+      totalTarget: this.targetForm.get('totalTarget').value,
+      targetDuration: this.targetForm.get('targetDuration').value,
+      increaseCalories: this.calcForm.get('increaseCalories').value,
+      increaseAmount: this.calcForm.get('increaseAmount').value,
+      factorCalorie: this.calcForm.get('factorCalorie').value,
+      activity: this.activityForm.get('activity').value,
+      activityDuration: this.activityForm.get('activityDuration').value,
+      activityPerWeek: this.activityForm.get('activityPerWeek').value,
+      macroDistribution: this.macroForms.value
+    };
+    this.guidelineService.addGuideline(data);
+  }
 }
