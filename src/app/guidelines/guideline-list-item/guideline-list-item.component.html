@@ -7,7 +7,7 @@
     </div>
   </div>
   <p class="subtitle" *ngIf="guideline.lastEdited">
-    {{guideline.lastEdited}}
+    Edited: {{guideline.lastEdited.toDate() | date: 'short'}}
   </p>
   <section class="middle" (click)="linkToChild(guideline)">
     <div class="title">

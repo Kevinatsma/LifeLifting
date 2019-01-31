@@ -17,7 +17,7 @@ mat-card.list-item-card {
     }
 
     p.subtitle,  p.subtitle input {
-        text-transform: uppercase;
+        text-transform: capitalize;
         color: $secondary-color;
         font-size: 13px;
         font-weight: $bold;

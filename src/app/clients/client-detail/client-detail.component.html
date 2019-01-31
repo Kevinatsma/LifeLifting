@@ -98,7 +98,7 @@
             </li>
             <li>
               <i class="far fa-comment-alt"></i>
-              <a class="text-link" *ngIf="user.basicData" href="tel:{{user.basicData.phoneNumber}}">
+              <a class="text-link" *ngIf="user.basicData" (click)="chat()">
                 Chat
               </a>
             </li>

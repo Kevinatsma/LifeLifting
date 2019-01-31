@@ -44,7 +44,8 @@ export class SignupStepOneComponent implements OnInit {
       country: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required]],
       mainGoal: ['', [Validators.required]],
-      heardFromUs: ['', [Validators.required]]
+      heardFromUs: ['', [Validators.required]],
+      currentWeight: ['', [Validators.required]]
     });
   }
 
@@ -57,7 +58,8 @@ export class SignupStepOneComponent implements OnInit {
         country: this.basicUserDataForm.get('country').value,
         phoneNumber: this.basicUserDataForm.get('phoneNumber').value,
         heardFromUs: this.selectedMedium,
-        mainGoal: this.basicUserDataForm.get('mainGoal').value
+        mainGoal: this.basicUserDataForm.get('mainGoal').value,
+        currentWeight: this.basicUserDataForm.get('currentWeight').value
       }
     };
     console.log(data);

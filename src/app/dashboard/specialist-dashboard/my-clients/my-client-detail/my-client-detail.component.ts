@@ -94,6 +94,8 @@ export class MyClientDetailComponent implements OnInit {
     this.dialog.open(AddGuideDialogComponent, {
       data: {
         uid: this.user.uid,
+        displayName: this.user.displayName,
+        currentWeight: this.user.basicData.currentWeight
       },
     });
   }

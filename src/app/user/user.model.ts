@@ -11,6 +11,7 @@ export interface Roles {
     phoneNumber?: number;
     mainGoal?: string;
     heardFromUs?: string;
+    currentWeight?: string;
  }
 
 export class User {

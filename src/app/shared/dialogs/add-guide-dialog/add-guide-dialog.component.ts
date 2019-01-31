@@ -8,7 +8,7 @@ import { AuthService } from './../../../core/auth/auth.service';
 import { UserService } from './../../../user/user.service';
 import { Exercise } from './../../../exercises/exercise.model';
 import { Observable } from 'rxjs';
-import { ExerciseService } from 'src/app/exercises/exercise.service';
+import { ExerciseService } from './../../../exercises/exercise.service';
 
 @Component({
   selector: 'app-add-guide-dialog',
@@ -54,6 +54,20 @@ export class AddGuideDialogComponent implements OnInit {
   macroArr: FormArray;
   percentage = new FormControl('', [Validators.required]);
   macroValue = new FormControl('', [Validators.required]);
+  macroValues = [
+    {
+      value: 'protein',
+      viewValue: 'Protein'
+    },
+    {
+      value: 'fat',
+      viewValue: 'Fat'
+    },
+    {
+      value: 'carbohydrates',
+      viewValue: 'Carbohydrates'
+    },
+  ]; selectedMacroValue: string;
 
   constructor( private fb: FormBuilder,
                private auth: AuthService,
@@ -73,7 +87,7 @@ export class AddGuideDialogComponent implements OnInit {
 
     this.targetForm = this.fb.group({
       idealWeight: ['', [Validators.required]],
-      idealKiloOfMuscle: ['', [Validators.required]],
+      idealKiloOfMuscle: [''],
       target: ['', [Validators.required]],
       totalTarget: ['', [Validators.required]],
       targetDuration: ['', [Validators.required]],
