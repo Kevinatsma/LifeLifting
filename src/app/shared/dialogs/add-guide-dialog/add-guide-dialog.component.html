@@ -155,7 +155,7 @@
           <mat-label>Which activity does the client do?</mat-label>
           <mat-select matInput placeholder="Which activity do you do?" formControlName="activity" 
           panelClass="dropdown-regular" autocomplete="off" required>
-            <mat-option *ngFor="let exercise of exercises | async" [value]="exercise.exerciseName"> {{exercise.exerciseName}}</mat-option>
+            <mat-option *ngFor="let exercise of exercises | async" [value]="exercise.exerciseID"> {{exercise.exerciseName}}</mat-option>
           </mat-select>
           <mat-error class="input-error" *ngIf="!activityForm['controls'].activity.touched">This is <strong>required</strong></mat-error>
         </mat-form-field>

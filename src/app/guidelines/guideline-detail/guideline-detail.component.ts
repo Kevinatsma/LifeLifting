@@ -8,6 +8,8 @@ import { SpecialistService } from '../../specialists/specialist.service';
 import { Guideline } from '../guideline.model';
 import { User } from './../../user/user.model';
 import { UserService } from './../../user/user.service';
+import { ExerciseService } from 'src/app/exercises/exercise.service';
+import { Exercise } from 'src/app/exercises/exercise.model';
 
 
 @Component({
@@ -17,10 +19,13 @@ import { UserService } from './../../user/user.service';
 })
 export class GuidelineDetailComponent implements OnInit {
   guideline: Guideline;
+  exercise: Exercise;
   specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
   client: User;
+  targetIsLoss: boolean;
+  increaseCals: boolean;
 
   // specialist = Observable<Specialist>;
 
@@ -28,10 +33,11 @@ export class GuidelineDetailComponent implements OnInit {
                public router: Router,
                public route: ActivatedRoute,
                private userService: UserService,
+               public exerciseService: ExerciseService,
                public guidelineService: GuidelineService,
                public specialistService: SpecialistService,
                public location: Location) {
-    this.aboutExtended = false;
+                this.aboutExtended = false;
   }
 
   ngOnInit() {
@@ -43,7 +49,28 @@ export class GuidelineDetailComponent implements OnInit {
     this.guidelineService.getGuidelineDataById(id).subscribe(guideline => {
       this.guideline = guideline;
       this.userService.getUserDataByID(this.guideline.clientID).subscribe(user => this.client = user);
+      this.setTarget(guideline);
+      this.setIncreaseCals(guideline);
+      this.exerciseService.getExerciseData(guideline.activity).subscribe(exercise => this.exercise = exercise);
     });
+  }
+
+  // Set values
+
+  setTarget(guideline) {
+    if ( guideline.target === 'gain') {
+      return this.targetIsLoss = false;
+    } else {
+      return this.targetIsLoss = true;
+    }
+  }
+
+  setIncreaseCals(guideline) {
+    if ( guideline.increaseCalories === 'increase') {
+      return this.increaseCals = true;
+    } else {
+      return this.increaseCals = false;
+    }
   }
 
   aboutExtendedOpen() {
