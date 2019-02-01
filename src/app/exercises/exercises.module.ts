@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ExerciseListItemComponent } from './exercise-list-item/exercise-list-item.component';
 import { ExerciseListComponent } from '../exercises/exercise-list/exercise-list.component';
 import { EditExerciseComponent } from '../exercises/edit-exercise/edit-exercise.component';
 
@@ -14,7 +13,6 @@ import { AddExerciseDialogComponent } from '../shared/dialogs/add-exercise-dialo
 
 @NgModule({
   declarations: [
-    ExerciseListItemComponent,
     AddExerciseDialogComponent,
     ExerciseListComponent,
     EditExerciseComponent,
@@ -28,7 +26,6 @@ import { AddExerciseDialogComponent } from '../shared/dialogs/add-exercise-dialo
     SharedModule
   ],
   exports: [
-    ExerciseListItemComponent,
     AddExerciseDialogComponent,
     ExerciseListComponent,
     EditExerciseComponent,

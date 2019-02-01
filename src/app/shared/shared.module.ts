@@ -7,6 +7,7 @@ import { FileSizePipe } from './pipes/file-size.pipe';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { DialogsModule } from './dialogs/dialogs.module';
 import { FileUploadButtonComponent } from './file-upload/file-upload-button/file-upload-button.component';
+import { ExerciseListItemComponent } from '../exercises/exercise-list-item/exercise-list-item.component';
 
 @NgModule({
   imports: [
@@ -19,12 +20,14 @@ import { FileUploadButtonComponent } from './file-upload/file-upload-button/file
     FileSizePipe,
     DropZoneDirective,
     FileUploadButtonComponent,
+    ExerciseListItemComponent
   ],
   exports: [
     MaterialModule,
     DataModule,
     DialogsModule,
-    FileUploadButtonComponent
+    FileUploadButtonComponent,
+    ExerciseListItemComponent
   ],
   providers: [
     FileUploadService

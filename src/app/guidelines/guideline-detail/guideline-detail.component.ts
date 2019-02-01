@@ -10,6 +10,8 @@ import { User } from './../../user/user.model';
 import { UserService } from './../../user/user.service';
 import { ExerciseService } from 'src/app/exercises/exercise.service';
 import { Exercise } from 'src/app/exercises/exercise.model';
+import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material';
 
 
 @Component({
@@ -30,6 +32,7 @@ export class GuidelineDetailComponent implements OnInit {
   // specialist = Observable<Specialist>;
 
   constructor( private cdr: ChangeDetectorRef,
+               public dialog: MatDialog,
                public router: Router,
                public route: ActivatedRoute,
                private userService: UserService,
@@ -94,20 +97,25 @@ export class GuidelineDetailComponent implements OnInit {
     this.guidelineService.toggleEdit();
   }
 
-  // Control buttons
+  // Delete guideline
 
-  // linkToPrevious(guideline) {
-  //   const productID = guideline.productID - 1;
-  //   const url = `dashboard/guidelines/${productID}`;
-  //   this.router.navigate([url]);
-  //   this.guidelineService.getGuidelineDataById(productID).subscribe(a => (this.guideline = a));
-  // }
+  deleteGuidelineDialog(guideline) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        guidelineID: guideline.guidelineID,
+        guidelineName: guideline.guidelineName,
+      },
+    });
 
-  // linkToNext(guideline) {
-  //   const productID = guideline.clientID + 1;
-  //   console.log(productID);
-  //   const url = `dashboard/guidelines/${productID}`;
-  //   this.router.navigate([url]);
-  //   this.guidelineService.getGuidelineDataById(productID).subscribe(a => (this.guideline = a));
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if (result === true) {
+        console.log('i"m being called');
+        const id = guideline.guidelineID;
+        this.guidelineService.deleteGuideline(id);
+      } else if (result === false) {
+        return null;
+      }
+    });
+  }
 }

@@ -17,6 +17,9 @@
         <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
           <i class="fas fa-edit"></i>
         </button>
+        <button class="icon-button edit-button" (click)="deleteGuidelineDialog(guideline)" *ngIf="!editShow">
+          <i class="fas fa-trash"></i>
+        </button>
       </div>
     </section>
 
@@ -112,10 +115,33 @@
             </div>
           </section>
           
-          <section class="guideline-activities">
+          <section class="guideline-activities" *ngIf="exercise">
             <h2 class="section-title">Activities and Macros</h2>
-
-            <!-- <app-exercise-list-item [exercise]="exercise"></app-exercise-list-item> -->
+            <!-- <h2>ID: {{exercise.exerciseID}}</h2> -->
+            <div class="activity">
+              <app-exercise-list-item class="activity__left" [exercise]="exercise"></app-exercise-list-item>
+              <div class="activity__right">
+                <div class="target-block" *ngIf="guideline.activityPerWeek">
+                  <h6 class="target-block__title">Per week</h6>
+                  <span class="target-block__value">{{guideline.activityPerWeek}}x</span>
+                </div>
+                <div class="target-block" *ngIf="guideline.activityDuration">
+                  <h6 class="target-block__title">How long</h6>
+                  <span class="target-block__value">{{guideline.activityDuration}} min</span>
+                </div>
+                <div class="target-block__full-width">
+                  <h6 class="target-block__title">Macros</h6>
+                  <ul>
+                    <li *ngFor="let macro of guideline.macroDistribution">
+                      <span class="percentage">
+                        {{macro.percentage}}%
+                      </span>
+                      <h4>{{macro.macroValue}}</h4>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </section>
 
       </mat-card>
@@ -123,7 +149,7 @@
   </main>
 
   <ng-container *ngIf="editShow">
-    <app-edit-guideline [client]="client" [guideline]="guideline"></app-edit-guideline>
+    <app-edit-guideline [client]="client" [exercise]="exercise" [guideline]="guideline"></app-edit-guideline>
   </ng-container>
 
 </ng-container>

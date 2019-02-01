@@ -6,6 +6,7 @@ import { SpecialistService } from '../../specialists/specialist.service';
 import { Guideline } from '../guideline.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { User } from './../../user/user.model';
+import { Exercise } from 'src/app/exercises/exercise.model';
 
 @Component({
   selector: 'app-edit-guideline',
@@ -19,6 +20,7 @@ import { User } from './../../user/user.model';
 export class EditGuidelineComponent implements OnInit, OnDestroy {
   @Input() guideline: Guideline;
   @Input() client: User;
+  @Input() exercise: Exercise;
   aboutExtended = false;
   reviewsVisible = true;
 

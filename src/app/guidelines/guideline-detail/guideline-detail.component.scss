@@ -29,6 +29,23 @@ main.specialist-wrapper {
     
     }
 
+    .target-block {
+        width: 50%;
+        margin-bottom: 2rem;
+
+        &__title {
+
+        }
+
+        &__value {
+            font-size: 42px;
+            font-weight: $bold;
+            font-family: $main-font;
+            text-align: center;
+        }
+    }
+
+
     .package-container {
         width: 100%;
         display: flex;
@@ -163,22 +180,6 @@ main.specialist-wrapper {
                         flex-flow: row wrap;
                         position: relative;
 
-                        .target-block {
-                            width: 50%;
-                            margin-bottom: 2rem;
-
-                            &__title {
-
-                            }
-
-                            &__value {
-                                font-size: 42px;
-                                font-weight: $bold;
-                                font-family: $main-font;
-                                text-align: center;
-                            }
-                        }
-
                         &::after {
                             content: '';
                             width: 1px;
@@ -243,10 +244,10 @@ main.specialist-wrapper {
                     }
 
                     .icon-circle {
+                        background: $primary-color;
+                        height: 75px;
                         margin-top: -2rem;
                         width: 75px;
-                        height: 75px;
-                        background: $primary-color;
                         svg {
                             color: #fff;
                         }
@@ -256,8 +257,63 @@ main.specialist-wrapper {
             }
 
             &.guideline-activities {
-                height: 300px;
+                height: auto;
                 padding: 3em 3em 3em 5em;
+
+                .activity {
+                    align-items: center;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    height: 100%;
+                    justify-content: flex-start;
+                    width: 100%;
+
+                    &__left {
+                        display: flex;
+                        margin: 2em 4em 2em 0;
+                        width: 40%;
+                    }
+
+                    &__right {
+                        align-items: center;
+                        display: flex;
+                        flex-flow: row wrap;
+                        width: 60%;
+
+                        .target-block {
+
+                            &__full-width {
+                                width: 100%;
+                                ul {
+                                    li {
+                                        align-items: center;
+                                        display: flex;
+                                        flex-direction: row;
+                                        margin: 1em 0;
+
+                                        span {
+                                            border-right: 1px solid $border-color;
+                                            color: $text-black;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: flex-start;
+                                            font-size: 28px;
+                                            font-weight: $bold;
+                                            height: 65px;
+                                            margin-right: 1em;
+                                            text-align: center;
+                                            width: 85px;
+                                        }
+
+                                        h4 {
+                                            text-transform: capitalize;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
         }

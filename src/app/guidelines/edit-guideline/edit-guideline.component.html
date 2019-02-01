@@ -1,25 +1,155 @@
-<ng-container *ngIf="guideline">
-  <main class="specialist-wrapper">
-
-    <section class="action-toolbar-top">
-      <div class="left">
-        <button class="icon-button" [routerLink]="['../']">
-            <i class="fas fa-arrow-left"></i>
-        </button>
+<ng-container>
+    <main class="specialist-wrapper">
+  
+      <section class="action-toolbar-top">
+        <div class="left">
+          <button class="icon-button" [routerLink]="['../']">
+              <i class="fas fa-arrow-left"></i>
+          </button>
+        </div>
+        <div class="middle">
+          <h1 *ngIf="client; else gID">Guideline for: {{client.displayName}}</h1>
+          <ng-template #gID>
+            <h1>Guideline for: {{guideline.productID}}</h1>
+          </ng-template>
+        </div>
+        <div class="right">
+          <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="icon-button edit-button" (click)="deleteGuidelineDialog(guideline)" *ngIf="!editShow">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </section>
+  
+      <div class="package-container">
+        <mat-card class="list-item-card" *ngIf="guideline">
+            <section *ngIf="client" class="card-circle" (click)="linkToChild(guideline, client)" [style.background]="'url('+ client.photoURL +')'">
+            </section>
+            <section class="chip-area">
+              <p class="secondary-chip">
+                Guideline number: {{guideline.productNR}}
+              </p>
+              <p class="secondary-chip">
+                Created: {{guideline.creationDate.toDate() | date: 'MM/dd/yy'}}
+              </p>
+              <p *ngIf="guideline.lastEdited" class="secondary-chip">
+                Last edited: {{guideline.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
+              </p>
+            </section>
+  
+            <section class="introduction">
+              <h2>{{guideline.guidelineName}}</h2>
+              <h5>
+                gID: {{guideline.guidelineID}}
+              </h5>
+            </section>
+  
+            <section class="guideline-targets" *ngIf="guideline">
+              <h2 class="section-title">Guideline targets</h2>
+              <div class="target-container">
+                <div class="target-container__left">
+                  <div class="target-block">
+                    <h6 class="target-block__title">Ideal weight</h6>
+                    <span class="target-block__value">{{guideline.idealWeight}} kg</span>
+                  </div>
+                  <div class="target-block">
+                    <h6 class="target-block__title">Amount of 
+                      <ng-container *ngIf="targetIsLoss">loss</ng-container>
+                      <ng-container *ngIf="!targetIsLoss">gain</ng-container>
+                    </h6>
+                    <span class="target-block__value">{{guideline.totalTarget}} kg</span>
+                  </div>
+                  <div class="target-block" *ngIf="guideline.idealKiloOfMuscle">
+                    <h6 class="target-block__title">Ideal Kg of muscle</h6>
+                    <span class="target-block__value">{{guideline.idealKiloOfMuscle}} kg</span>
+                  </div>
+                  <div class="target-block" *ngIf="guideline.idealKiloOfMuscle">
+                    <h6 class="target-block__title">Total duration</h6>
+                    <span class="target-block__value">{{guideline.targetDuration}} weeks</span>
+                  </div>
+                </div>
+  
+                <div class="target-container__right">
+                  <div class="icon-circle">
+                    <ng-container *ngIf="targetIsLoss">
+                      <i class="fas fa-angle-double-down"></i>
+                    </ng-container>
+                    <ng-container *ngIf="!targetIsLoss">
+                      <i class="fas fa-angle-double-up"></i>
+                    </ng-container>
+                  </div>
+                  <h6>{{guideline.target}} weight</h6>
+                </div>
+              </div>
+            </section>
+  
+            <section class="calorie-metrics" *ngIf="guideline">
+              <div class="metric">
+                <span class="metric__value">{{guideline.increaseAmount}}</span>
+                <h6 class="metric__title">Kcal Increase/decrease</h6>
+              </div>
+              <div class="metric">
+                <div class="icon-circle">
+                  <ng-container *ngIf="increaseCals">
+                    <i class="fas fa-level-up-alt"></i>
+                  </ng-container>
+                  <ng-container *ngIf="!increaseCals">
+                    <i class="fas fa-level-down-alt"></i>
+                  </ng-container>
+                </div>
+                <h6 class="metric__title">
+                  <ng-container *ngIf="increaseCals">
+                    Increase
+                  </ng-container>
+                  <ng-container *ngIf="!increaseCals">
+                    Decrease
+                  </ng-container>
+                  calories from the basal metabolism
+                </h6>
+              </div>
+              <div class="metric">
+                <span class="metric__value">x{{guideline.factorCalorie}}</span>
+                <h6 class="metric__title">Factor Calorie</h6>
+              </div>
+            </section>
+            
+            <section class="guideline-activities" *ngIf="exercise">
+              <h2 class="section-title">Activities and Macros</h2>
+              <!-- <h2>ID: {{exercise.exerciseID}}</h2> -->
+              <div class="activity">
+                <app-exercise-list-item class="activity__left" [exercise]="exercise"></app-exercise-list-item>
+                <div class="activity__right">
+                  <div class="target-block" *ngIf="guideline.activityPerWeek">
+                    <h6 class="target-block__title">Per week</h6>
+                    <span class="target-block__value">{{guideline.activityPerWeek}}x</span>
+                  </div>
+                  <div class="target-block" *ngIf="guideline.activityDuration">
+                    <h6 class="target-block__title">How long</h6>
+                    <span class="target-block__value">{{guideline.activityDuration}} min</span>
+                  </div>
+                  <div class="target-block__full-width">
+                    <h6 class="target-block__title">Macros</h6>
+                    <ul>
+                      <li *ngFor="let macro of guideline.macroDistribution">
+                        <span class="percentage">
+                          {{macro.percentage}}%
+                        </span>
+                        <h4>{{macro.macroValue}}</h4>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+  
+        </mat-card>
       </div>
-      <div class="middle">
-        <h1 *ngIf="client; else gID">Guideline for: {{client.displayName}}</h1>
-        <ng-template #gID>
-          <h1>Guideline for: {{guideline.productID}}</h1>
-        </ng-template>
-      </div>
-      <div class="right">
-        <button class="icon-button edit-button" (click)="editGuideline()">
-          <i class="fas fa-check"></i>
-        </button>
-      </div>
-    </section>
-
+    </main>
+</ng-container>
+<!-- <ng-container *ngIf="guideline">
+  <main>
       <form class="package-container" [formGroup]="editGuidelineForm" *ngIf="editShow">
 
         <mat-card class="list-item-card" *ngIf="guideline">
@@ -44,11 +174,11 @@
               <div class="quick-info">
                 <p class="speciality-title">Guideline ID: {{guideline.productID}}</p>
                 <ul class="contact-menu">
-                  <!-- <li>
+                   <li>
                     <i class="fas fa-balance-scale"></i>
                     <input type="number" class="text-field half" name="amount" formControlName="amount">
                     <input type="text" class="text-field half" name="unit" formControlName="unit">
-                  </li> -->
+                  </li> 
                 </ul>
               </div>
             </section>        
@@ -56,4 +186,4 @@
     </form>
 
   </main> 
-</ng-container>
+</ng-container> -->

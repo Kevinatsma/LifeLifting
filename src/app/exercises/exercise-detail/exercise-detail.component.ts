@@ -61,6 +61,11 @@ export class ExerciseDetailComponent implements OnInit {
     this.exerciseService.toggleEdit();
   }
 
+  // Links
+  goBack() {
+    this.location.back();
+  }
+
   // Control buttons
   linkToPrevious(exercise) {
     const exerciseID = exercise.exerciseID - 1;

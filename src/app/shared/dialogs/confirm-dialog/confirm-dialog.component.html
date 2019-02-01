@@ -36,6 +36,12 @@
         Are you sure that you want to delete <strong>{{data.exerciseName}}</strong>?
       </p>
     </ng-container>
+    <ng-container *ngIf="data.guidelineID">
+      <h1>Delete this Guideline?</h1>
+      <p class="card-text">
+        Are you sure that you want to delete <strong>{{data.guidelineName}}</strong>?
+      </p>
+    </ng-container>
 
 
     <section class="dialog-actions">
