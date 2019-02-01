@@ -6,7 +6,7 @@ import { SpecialistService } from '../../specialists/specialist.service';
 import { Guideline } from '../guideline.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { User } from './../../user/user.model';
-import { Exercise } from 'src/app/exercises/exercise.model';
+import { Exercise } from './../../exercises/exercise.model';
 
 @Component({
   selector: 'app-edit-guideline',
@@ -39,6 +39,12 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.editGuidelineForm = this.fb.group({
       guidelineName: '' || this.guideline.guidelineName,
+      idealWeight: '' || this.guideline.idealWeight,
+      totalTarget: '' || this.guideline.totalTarget,
+      idealKiloOfMuscle: '' || this.guideline.idealKiloOfMuscle,
+      guidelineDuration: '' || this.guideline.totalTarget,
+      increaseAmount: '' || this.guideline.increaseAmount,
+      factorCalorie: '' || this.guideline.factorCalorie
     });
     this.url = `guidelines`;
   }
@@ -61,6 +67,12 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
     const data = {
       lastEdited: new Date(),
       guidelineName: this.editGuidelineForm.get('guidelineName').value || this.guideline.guidelineName,
+      idealWeight: this.editGuidelineForm.get('idealWeight').value || this.guideline.idealWeight,
+      totalTarget: this.editGuidelineForm.get('totalTarget').value || this.guideline.totalTarget,
+      idealKiloOfMuscle: this.editGuidelineForm.get('idealKiloOfMuscle').value || this.guideline.idealKiloOfMuscle,
+      guidelineDuration: this.editGuidelineForm.get('guidelineDuration').value || this.guideline.totalTarget,
+      increaseAmount: this.editGuidelineForm.get('increaseAmount').value || this.guideline.increaseAmount,
+      factorCalorie: this.editGuidelineForm.get('factorCalorie').value || this.guideline.factorCalorie,
     };
     this.guidelineService.updateGuideline(this.guideline.guidelineID, data);
     this.toggleEdit();

@@ -20,6 +20,10 @@ form {
     height: 100%;
 }
 
+.middle {
+    margin-left: 4.4em;
+}
+
 .subtitle {
     margin-top: 3em;
 }
@@ -33,6 +37,20 @@ form {
             }
             &:last-child{
                 width: 60px;
+            }
+        }
+    }
+}
+
+main.specialist-wrapper {
+    .package-container {
+        flex-flow: column wrap;
+
+        .target-block {
+            &__value {
+                input {
+                    width: 35%;
+                }
             }
         }
     }

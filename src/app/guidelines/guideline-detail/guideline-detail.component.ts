@@ -8,8 +8,8 @@ import { SpecialistService } from '../../specialists/specialist.service';
 import { Guideline } from '../guideline.model';
 import { User } from './../../user/user.model';
 import { UserService } from './../../user/user.service';
-import { ExerciseService } from 'src/app/exercises/exercise.service';
-import { Exercise } from 'src/app/exercises/exercise.model';
+import { ExerciseService } from './../../exercises/exercise.service';
+import { Exercise } from './../../exercises/exercise.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 

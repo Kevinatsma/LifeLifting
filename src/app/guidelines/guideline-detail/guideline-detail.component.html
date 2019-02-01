@@ -8,9 +8,11 @@
         </button>
       </div>
       <div class="middle">
-        <h1 *ngIf="client; else gID">Guideline for: {{client.displayName}}</h1>
+        <h1 *ngIf="client; else gID">
+          Guideline for: {{client.displayName}}
+        <h5>Current weight: {{client.basicData.currentWeight}}</h5></h1>
         <ng-template #gID>
-          <h1>Guideline for: {{guideline.productID}}</h1>
+            <h1>Guideline ID: {{guideline.guidelineID}}</h1>
         </ng-template>
       </div>
       <div class="right">
