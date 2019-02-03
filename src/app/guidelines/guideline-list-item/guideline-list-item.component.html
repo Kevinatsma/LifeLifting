@@ -6,6 +6,9 @@
       <span>{{guideline.guidelineNR}}</span>
     </div>
   </div>
+  <p class="subtitle" *ngIf="!guideline.lastEdited">
+    Edited: Not edited yet...
+  </p>
   <p class="subtitle" *ngIf="guideline.lastEdited">
     Edited: {{guideline.lastEdited.toDate() | date: 'short'}}
   </p>

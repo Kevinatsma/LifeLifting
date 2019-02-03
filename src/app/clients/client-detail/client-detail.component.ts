@@ -7,23 +7,29 @@ import { ClientService } from '../client.service';
 import { Specialist } from './../../specialists/specialist.model';
 import { SpecialistService } from './../../specialists/specialist.service';
 import { ChatThreadService } from './../../chat/chat-thread.service';
+import { Guideline } from './../../guidelines/guideline.model';
+import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
 
 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './client-detail.component.html',
-  styleUrls: ['./client-detail.component.scss']
+  styleUrls: ['./client-detail.component.scss', './../../dashboard/specialist-dashboard/my-clients/my-clients.component.scss']
 })
 export class ClientDetailComponent implements OnInit {
   user: User;
   specialist: Specialist;
+  guidelinesCol: AngularFirestoreCollection<Guideline>;
+  guidelines: Observable<Guideline[]>;
   aboutExtended = false;
   reviewsVisible = true;
 
 
   // specialist = Observable<Specialist>;
 
-  constructor( private cdr: ChangeDetectorRef,
+  constructor( private afs: AngularFirestore,
+               private cdr: ChangeDetectorRef,
                public route: ActivatedRoute,
                public clientService: ClientService,
                public specialistService: SpecialistService,
@@ -43,11 +49,17 @@ export class ClientDetailComponent implements OnInit {
       const sID  = this.user.specialist;
       console.log(sID);
       this.getSpecialist(sID);
+      this.getGuidelines(user.uid);
     });
   }
 
   getSpecialist(sID: string) {
     this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
+  }
+
+  getGuidelines(uid) {
+    this.guidelinesCol = this.afs.collection('guidelines', ref => ref.where('clientID', '==', `${uid}`));
+    this.guidelines = this.guidelinesCol.valueChanges();
   }
 
   aboutExtendedOpen() {

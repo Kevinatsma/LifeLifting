@@ -297,6 +297,47 @@ section.middle {
 
 }
 
+.guidelines {
+    height: auto;
+    width: calc(100% + 4em);
+    display: flex;
+    flex-flow: column wrap;
+    overflow: hidden;
+    padding: 0;
+    margin: 2em 0 2em -2em;
+
+    h1 {
+        margin: 0.5em 0 0 3em;
+        text-align: left;
+    }
+
+    &__container {
+        display: flex;
+        flex-flow: row nowrap;
+        overflow-x: auto;
+        padding: 4em 4em;
+        margin: 0 0 2em;
+        width: auto;
+
+        app-guideline-list-item {
+            display: flex;
+            width: 300px;
+            margin-right: 2em;
+            flex: 1;
+        }
+
+        &__filler {
+            width: 0px;
+            height: 100%;
+            display: flex;
+            flex: 1;
+            visibility: hidden;
+            z-index: -1;
+        }
+    }
+
+}
+
 section.reviews-opened {
     padding-left: 2em;
     width: calc(100% + 4em);

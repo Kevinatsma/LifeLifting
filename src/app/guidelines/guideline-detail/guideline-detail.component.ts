@@ -118,4 +118,8 @@ export class GuidelineDetailComponent implements OnInit {
       }
     });
   }
+
+  goBack() {
+    this.location.back();
+  }
 }
