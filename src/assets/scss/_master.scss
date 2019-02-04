@@ -13,7 +13,7 @@ $semi-bold: 600;
 $bold: 700;
 
 // Colors
-$primary-color: #DB9969;
+$primary-color: #db9969;
 $primary-light: lighten($primary-color, 32%);;
 $secondary-color: #1e3799;
 $secondary-dark: darken($secondary-color, 2%);
@@ -28,6 +28,7 @@ $middle-grey: #F2EEEB;
 $light-grey: #F8F7F6;
 
 $title-black: #312E2C;
+$title-light-black: #000000ab;
 $text-black: #595655;
 $icon-black: #2C2825;
 
@@ -39,6 +40,7 @@ $transparent-border: rgba(248, 251, 255, 0.46);
 $card-shadow: 0 3px 10px 4px rgba(63,66,68,0.07);
 $sidebar-shadow: 1px 3px 10px 4px rgba(63, 66, 68, 0.07);
 $toolbar-shadow: 10px 3px 10px 4px rgba(63, 66, 68, 0.07);
+$gold-glow: 0 3px 10px 4px rgba(219, 153, 105,0.43);
 
 // Borders
 

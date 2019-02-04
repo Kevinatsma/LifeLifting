@@ -12,12 +12,23 @@ export class ExerciseService {
   exerciseCol: AngularFirestoreCollection<Exercise>;
   exercises: Observable<Exercise[]>;
   exerciseDoc: AngularFirestoreDocument<Exercise>;
+  exerciseDocOne: AngularFirestoreDocument<Exercise>;
+  exerciseDocTwo: AngularFirestoreDocument<Exercise>;
+  exerciseDocThree: AngularFirestoreDocument<Exercise>;
   exercise: Observable<Exercise>;
+  guideExercises: {
+    eOne: Observable<Exercise>;
+    eTwo: Observable<Exercise>;
+    eThree: Observable<Exercise>;
+  };
+  exerciseOne: Observable<Exercise>;
+  exerciseTwo: Observable<Exercise>;
+  exerciseThree: Observable<Exercise>;
 
   editShow: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
 
-  constructor( private afs: AngularFirestore,
+  constructor( public afs: AngularFirestore,
                public snackBar: MatSnackBar
              ) {
     this.exerciseCol = this.afs.collection<Exercise>(`exercises`);
@@ -36,6 +47,26 @@ export class ExerciseService {
     this.exerciseDoc = this.afs.doc<Exercise>(`exercises/${id}`);
     this.exercise = this.exerciseDoc.valueChanges();
     return this.exercise;
+  }
+
+  getMultipleExercises(guideline) {
+    console.log(guideline.activities[0]);
+    console.log(guideline.activities[1]);
+    console.log(guideline.activities[2]);
+    this.exerciseDocOne = this.afs.doc<Exercise>(`exercises/${guideline.activities[1].activityID}`);
+    this.exerciseOne = this.exerciseDocOne.valueChanges();
+    if (guideline.activities[0]) {
+      this.exerciseDocTwo = this.afs.doc<Exercise>(`exercises/${guideline.activities[0].activityID}`);
+      this.exerciseTwo = this.exerciseDocTwo.valueChanges();
+    } else if (guideline.activities[2]) {
+      this.exerciseDocThree = this.afs.doc<Exercise>(`exercises/${guideline.activities[2].activityID}`);
+      this.exerciseThree = this.exerciseDocThree.valueChanges();
+    }
+    this.guideExercises = {
+      eOne: this.exerciseOne,
+      eTwo: this.exerciseTwo,
+      eThree: this.exerciseThree
+    };
   }
 
   getExercises() {

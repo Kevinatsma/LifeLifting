@@ -117,31 +117,45 @@
             </div>
           </section>
           
-          <section class="guideline-activities" *ngIf="exercise">
-            <h2 class="section-title">Activities and Macros</h2>
-            <!-- <h2>ID: {{exercise.exerciseID}}</h2> -->
+          <section class="guideline-activities" *ngIf="guideline && guideline.activities">
+            <h2 class="section-title">Activities</h2>
             <div class="activity">
-              <app-exercise-list-item class="activity__left" [exercise]="exercise"></app-exercise-list-item>
+              <div class="activity__left" *ngIf="exerciseOne">
+                <app-exercise-list-item class="activity__left" [exercise]="exerciseOne"></app-exercise-list-item>
+                <app-exercise-list-item class="activity__left" [exercise]="exerciseTwo"></app-exercise-list-item>
+                <app-exercise-list-item class="activity__left" [exercise]="exerciseThree"></app-exercise-list-item>
+              </div>
               <div class="activity__right">
-                <div class="target-block" *ngIf="guideline.activityPerWeek">
-                  <h6 class="target-block__title">Per week</h6>
-                  <span class="target-block__value">{{guideline.activityPerWeek}}x</span>
+                <div class="container" *ngFor="let activity of guideline.activities; let i of index;">
+                  <div class="target-block" *ngIf="activity.activityPerWeek">
+                    <h6 class="target-block__title">Per week</h6>
+                    <span class="target-block__value">{{activity.activityPerWeek}}x</span>
+                  </div>
+                  <div class="target-block" *ngIf="activity.activityDuration">
+                    <h6 class="target-block__title">How long</h6>
+                    <span class="target-block__value">{{activity.activityDuration}} min</span>
+                  </div>
+                  <div class="target-block" *ngIf="activity.activityLevel">
+                    <h6 class="target-block__title">Level</h6>
+                    <span class="target-block__value" id="level">{{activity.activityLevel}}</span>
+                  </div>
                 </div>
-                <div class="target-block" *ngIf="guideline.activityDuration">
-                  <h6 class="target-block__title">How long</h6>
-                  <span class="target-block__value">{{guideline.activityDuration}} min</span>
+              </div>
+            </div>
+          </section>
+          
+          <section class="macro-metrics macros" *ngIf="guideline">
+            <h2 class="section-title">
+              Macro Distribution
+            </h2>
+            <div class="container">
+              <div class="metric" *ngFor="let macro of guideline.macroDistribution">
+                <div class="icon-circle">
+                  {{macro.percentage}}%
                 </div>
-                <div class="target-block__full-width">
-                  <h6 class="target-block__title">Macros</h6>
-                  <ul>
-                    <li *ngFor="let macro of guideline.macroDistribution">
-                      <span class="percentage">
-                        {{macro.percentage}}%
-                      </span>
-                      <h4>{{macro.macroValue}}</h4>
-                    </li>
-                  </ul>
-                </div>
+                <h6 class="metric__title">
+                  {{macro.macroValue}}
+                </h6>
               </div>
             </div>
           </section>

@@ -19,7 +19,7 @@ export class AddGuideDialogComponent implements OnInit {
   user = User;
   specialistID;
   hide = true;
-  exercises: Observable<Exercise[]>;
+  exercises: Exercise[];
 
   // FormGroups
   addGuidelineForm: FormGroup;
@@ -51,6 +51,27 @@ export class AddGuideDialogComponent implements OnInit {
   ]; selectedBasalValue: string;
 
   activityForm: FormGroup;
+  activityArr: FormArray;
+  activityID = new FormControl('', [Validators.required]);
+  activityDuration = new FormControl('', [Validators.required]);
+  activityPerWeek = new FormControl('', [Validators.required]);
+  showAddActivity = true;
+  activityLevels = [
+    {
+      value: 'beginner',
+      viewValue: 'Beginner'
+    },
+    {
+      value: 'intermediate',
+      viewValue: 'Intermediate'
+    },
+    {
+      value: 'professional',
+      viewValue: 'Professional'
+    },
+  ]; selectedActivityLevel: string;
+
+  macroForm: FormGroup;
   macroArr: FormArray;
   percentage = new FormControl('', [Validators.required]);
   macroValue = new FormControl('', [Validators.required]);
@@ -76,7 +97,7 @@ export class AddGuideDialogComponent implements OnInit {
                private guidelineService: GuidelineService,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
-                this.exercises = this.exerciseService.getExercises();
+                this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
                }
 
   ngOnInit() {
@@ -100,9 +121,10 @@ export class AddGuideDialogComponent implements OnInit {
     });
 
     this.activityForm = this.fb.group({
-      activity: ['', [Validators.required]],
-      activityDuration: ['', [Validators.required]],
-      activityPerWeek: ['', [Validators.required]],
+      activityArr: this.fb.array([ this.createActivity() ]),
+    });
+
+    this.macroForm = this.fb.group({
       macroArr: this.fb.array([ this.createMacro() ]),
     });
 
@@ -123,10 +145,41 @@ export class AddGuideDialogComponent implements OnInit {
     }
   }
 
+  // Activity form
+  get activityForms() {
+    return this.activityForm.get('activityArr') as FormArray;
+  }
+
+  createActivity(): FormGroup {
+    return this.fb.group({
+      activityID: '',
+      activityDuration: '',
+      activityPerWeek: '',
+      activityLevel: ''
+    });
+  }
+
+  addActivity(): void {
+    this.activityArr = this.activityForm.get('activityArr') as FormArray;
+    this.activityArr.push(this.createActivity());
+  }
+
+  checkActivity(): void {
+    if (this.activityArr.length < 3) {
+      this.showAddActivity = true;
+    } else {
+      this.showAddActivity = false;
+    }
+  }
+
+  deleteActivity(i) {
+    (this.activityForm.get('activityArr') as FormArray).removeAt(i);
+  }
+
 
   // Macro form
   get macroForms() {
-    return this.activityForm.get('macroArr') as FormArray;
+    return this.macroForm.get('macroArr') as FormArray;
   }
 
   createMacro(): FormGroup {
@@ -137,14 +190,15 @@ export class AddGuideDialogComponent implements OnInit {
   }
 
   addMacro(): void {
-    this.macroArr = this.activityForm.get('macroArr') as FormArray;
+    this.macroArr = this.macroForm.get('macroArr') as FormArray;
     this.macroArr.push(this.createMacro());
   }
 
   deleteMacro(i) {
-    (this.activityForm.get('macroArr') as FormArray).removeAt(i);
+    (this.macroForm.get('macroArr') as FormArray).removeAt(i);
   }
 
+  // Collect the data and send to service
   addGuideline() {
     const gID: number =  this.infoForm.get('guidelineID').value;
     const data = {
@@ -162,9 +216,7 @@ export class AddGuideDialogComponent implements OnInit {
       increaseCalories: this.calcForm.get('increaseCalories').value,
       increaseAmount: this.calcForm.get('increaseAmount').value,
       factorCalorie: this.calcForm.get('factorCalorie').value,
-      activity: this.activityForm.get('activity').value,
-      activityDuration: this.activityForm.get('activityDuration').value,
-      activityPerWeek: this.activityForm.get('activityPerWeek').value,
+      activities: this.activityForms.value,
       macroDistribution: this.macroForms.value
     };
     this.guidelineService.addGuideline(data);

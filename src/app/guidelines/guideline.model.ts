@@ -14,9 +14,14 @@ export class Guideline {
     increaseCalories: boolean;
     increaseAmount: number;
     factorCalorie: number;
-    activity: string;
-    activityDuration: number;
-    activityPerWeek: number;
+    activities: [
+        {
+            activityID: number;
+            activityLevel: string;
+            activityDuration: number;
+            activityPerWeek: number;
+        }
+    ];
     macroDistribution: [
         {
             percentage: number;

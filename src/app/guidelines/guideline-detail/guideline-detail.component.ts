@@ -12,6 +12,7 @@ import { ExerciseService } from './../../exercises/exercise.service';
 import { Exercise } from './../../exercises/exercise.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -21,7 +22,11 @@ import { MatDialog } from '@angular/material';
 })
 export class GuidelineDetailComponent implements OnInit {
   guideline: Guideline;
-  exercise: Exercise;
+  guideExercises: Object;
+  exercises: any;
+  exerciseOne: Exercise;
+  exerciseTwo: Exercise;
+  exerciseThree: Exercise;
   specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
@@ -54,7 +59,7 @@ export class GuidelineDetailComponent implements OnInit {
       this.userService.getUserDataByID(this.guideline.clientID).subscribe(user => this.client = user);
       this.setTarget(guideline);
       this.setIncreaseCals(guideline);
-      this.exerciseService.getExerciseData(guideline.activity).subscribe(exercise => this.exercise = exercise);
+      this.getExercises(guideline);
     });
   }
 
@@ -84,6 +89,32 @@ export class GuidelineDetailComponent implements OnInit {
   aboutExtendedClose() {
     this.aboutExtended = false;
     this.cdr.detectChanges();
+  }
+
+  // Getters
+  getExercises(guideline) {
+    this.exerciseService.getMultipleExercises(guideline);
+    this.exerciseService.guideExercises.eOne.subscribe(exercise => {
+      this.exerciseOne = exercise;
+      console.log(this.exerciseOne);
+    });
+    if (this.exerciseService.guideExercises.eTwo) {
+      this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
+        this.exerciseTwo = exercise;
+        console.log(this.exerciseTwo);
+      });
+    } else if (this.exerciseService.guideExercises.eThree) {
+      this.exerciseService.guideExercises.eThree.subscribe(exercise => {
+        this.exerciseTwo = exercise;
+        console.log(this.exerciseThree);
+      });
+    }
+    this.exercises = [
+      this.exerciseOne,
+      this.exerciseTwo,
+      this.exerciseThree
+    ];
+    console.log(this.exercises);
   }
 
   // Like this to avoid State Changed Error

@@ -151,29 +151,73 @@
           Describe more about the activity that the client mainly loves and does. Also put in the macro distribution values. 
         </p>
 
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Which activity does the client do?</mat-label>
-          <mat-select matInput placeholder="Which activity do you do?" formControlName="activity" 
-          panelClass="dropdown-regular" autocomplete="off" required>
-            <mat-option *ngFor="let exercise of exercises | async" [value]="exercise.exerciseID"> {{exercise.exerciseName}}</mat-option>
-          </mat-select>
-          <mat-error class="input-error" *ngIf="!activityForm['controls'].activity.touched">This is <strong>required</strong></mat-error>
-        </mat-form-field>
+        <div class="add-form-field-container" formArrayName="activityArr">
+          <h4>Add the client's activities</h4>
+          <section class="dynamic-form-field-container" *ngFor="let activity of activityForms.controls; let i=index" [formGroupName]="i">
+            <div class="number-id">
+              <h1>{{i+1}}</h1>
+            </div>
+            <div class="form-fields multiple-lines">
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Which activity does the client do?</mat-label>
+                <mat-select matInput placeholder="Pick an activity" formControlName="activityID" 
+                panelClass="dropdown-regular" autocomplete="off" required>
+                  <mat-option *ngFor="let exercise of exercises" [value]="exercise.exerciseID"> {{exercise.exerciseName}}</mat-option>
+                </mat-select>
+                <mat-error class="input-error" *ngIf="!activityID.touched">This is <strong>required</strong></mat-error>
+              </mat-form-field>
 
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>How long does the user do this activity?</mat-label>
-          <input type="number" matInput formControlName="activityDuration" placeholder="Amount in minutes" 
-          name="activityDuration" autofocus="off" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!activityForm['controls'].activityDuration.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>How proficient is the client?</mat-label>
+                <mat-select matInput placeholder="Pick a level" formControlName="activityLevel" 
+                panelClass="dropdown-regular" autocomplete="off" required>
+                  <mat-option *ngFor="let level of activityLevels" [value]="level.value"> {{level.viewValue}}</mat-option>
+                </mat-select>
+                <mat-error class="input-error" *ngIf="!activityLevel.touched">This is <strong>required</strong></mat-error>
+              </mat-form-field>
+      
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>How long does the user do this activity?</mat-label>
+                <input type="number" matInput formControlName="activityDuration" placeholder="Amount in minutes" 
+                name="activityDuration" autofocus="off" autocomplete="off">
+                <mat-error class="input-error" *ngIf="!activityDuration.valid">This is <strong>required</strong></mat-error>
+              </mat-form-field>
+      
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>The activity frequency</mat-label>
+                <input type="number" matInput formControlName="activityPerWeek" placeholder="How many times per week" 
+                name="activityPerWeek" autofocus="off" autocomplete="off">
+                <mat-error class="input-error" *ngIf="!activityPerWeek.valid">This is <strong>required</strong></mat-error>
+              </mat-form-field>
+            </div>
+            <div class="btn-area">
+              <button type="button"mat-icon-button type="button" class="delete-btn" (click)="deleteActivity(i); checkActivity();">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </section>
+        </div>
 
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>The activity frequency</mat-label>
-          <input type="number" matInput formControlName="activityPerWeek" placeholder="How many times per week" 
-          name="activityPerWeek" autofocus="off" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!activityForm['controls'].activityPerWeek.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
 
+        <button type="button" *ngIf="showAddActivity" class="add-form-field" (click)="addActivity(); checkActivity();">
+          <i class="fa fa-plus"></i>
+          Add an Activity
+        </button>
+      </form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="macroForm">
+      <form [formGroup]="macroForm">
+        <ng-template matStepLabel>Macros</ng-template>
+        <h3>🥜 Macros for {{userData.displayName}}</h3>
+        <p class="intro-text">
+          Define the way the macros will be divided during the time the client follows this guideline.
+        </p>
         <div class="add-form-field-container" formArrayName="macroArr">
           <h4>Distribution of macros in %. They all need to add up to a maximum of 100.</h4>
           <section class="dynamic-form-field-container" *ngFor="let macro of macroForms.controls; let i=index" [formGroupName]="i">
@@ -184,7 +228,7 @@
               <mat-label>Percentage value</mat-label>
               <input type="number" matInput name="percentage" formControlName="percentage" 
               placeholder="Percentage (of 100)" autofocus="off" autocomplete="off">
-              <mat-error class="input-error" *ngIf="!percentage.valid && activityForm.touched">This is <strong>required</strong></mat-error>
+              <mat-error class="input-error" *ngIf="!percentage.valid && macroForm.touched">This is <strong>required</strong></mat-error>
             </mat-form-field>
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>What is the Macro value?</mat-label>
@@ -192,7 +236,7 @@
               formControlName="macroValue" autocomplete="off" panelClass="dropdown-regular" required>
                 <mat-option *ngFor="let value of macroValues" [value]="value.value">{{value.viewValue}}</mat-option>
               </mat-select>
-              <mat-error class="input-error" *ngIf="!targetForm['controls'].target.valid">This is <strong>required</strong></mat-error>
+              <mat-error class="input-error" *ngIf="!macroValue.valid">This is <strong>required</strong></mat-error>
             </mat-form-field>
             <div class="btn-area">
               <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteMacro(i)">
@@ -211,8 +255,8 @@
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
         <button type="submit" class="dialog-button" (click)="addGuideline()"
-          [disabled]="!infoForm.valid || !targetForm.valid || !calcForm.valid || !activityForm.valid"
-          [class.disabled]="!infoForm.valid || !targetForm.valid  || !calcForm.valid || !activityForm.valid"
+          [disabled]="!infoForm.valid || !targetForm.valid || !calcForm.valid || !activityForm.valid || !macroForm.valid"
+          [class.disabled]="!infoForm.valid || !targetForm.valid  || !calcForm.valid || !activityForm.valid || !macroForm.valid"
           mat-dialog-close
         >
           Done

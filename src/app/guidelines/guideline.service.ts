@@ -56,20 +56,22 @@ export class GuidelineService {
     return this.guideline;
   }
 
-  getGuidelines() {
-    this.guidelines = this.guidelineCol.snapshotChanges().pipe(map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data() as Guideline;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      });
-    }));
-    return this.guidelines;
-  }
+  // getGuidelines() {
+  //   this.guidelines = this.guidelineCol.snapshotChanges().pipe(map(actions => {
+  //     return actions.map(a => {
+  //       const data = a.payload.doc.data() as Guideline;
+  //       const id = a.payload.doc.id;
+  //       return { id, ...data };
+  //     });
+  //   }));
+  //   return this.guidelines;
+  // }
 
-  getClientGuidelines(uid) {
-    this.clientGuideCol = this.afs.collection('guidelines', ref => ref.where('clientID', '==', `${uid}`));
-    this.clientGuidelines = this.clientGuideCol.valueChanges();
+  getGuidelines() {
+    this.guidelineCol = this.afs.collection('guidelines', ref => ref
+      .orderBy('creationDate', 'asc'));
+    this.guidelines = this.clientGuideCol.valueChanges();
+    return this.guidelines;
   }
 
   addGuideline(data) {
