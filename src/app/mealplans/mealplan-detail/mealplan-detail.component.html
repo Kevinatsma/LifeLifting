@@ -1,0 +1,195 @@
+<ng-container *ngIf="mealplan">
+  <main class="specialist-wrapper" *ngIf="!editShow">
+
+    <section class="action-toolbar-top">
+      <div class="left">
+        <button type="button" class="icon-button" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
+      <div class="middle">
+        <h1 *ngIf="client; else gID">
+          Mealplan for: {{client.displayName}}
+        <h5>Current weight: {{client.basicData.currentWeight}}kg</h5></h1>
+        <ng-template #gID>
+            <h1>Mealplan ID: {{mealplan.mealplanID}}</h1>
+        </ng-template>
+      </div>
+      <div class="right">
+        <button type="button" class="icon-button edit-button" (click)="deleteMealplanDialog(mealplan)" *ngIf="!editShow">
+          <i class="fas fa-trash"></i>
+        </button>
+        <button type="button" class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+          <i class="fas fa-edit"></i>
+        </button>
+      </div>
+    </section>
+
+    <div class="package-container">
+      <mat-card class="list-item-card" *ngIf="mealplan">
+          <section *ngIf="client" class="card-circle" (click)="linkToChild(mealplan, client)" [style.background]="'url('+ client.photoURL +')'">
+          </section>
+          <section class="chip-area">
+            <p class="secondary-chip">
+              Mealplan number: {{mealplan.mealplanNR}}
+            </p>
+            <p class="secondary-chip">
+              Created: {{mealplan.creationDate.toDate() | date: 'MM/dd/yy'}}
+            </p>
+            <p *ngIf="mealplan.lastEdited" class="secondary-chip">
+              Last edited: {{mealplan.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
+            </p>
+          </section>
+
+          <section class="introduction">
+            <h2>{{mealplan.mealplanName}}</h2>
+            <h5>
+              gID: {{mealplan.mealplanID}}
+            </h5>
+          </section>
+
+          <section class="mealplan-targets" *ngIf="mealplan">
+            <h2 class="section-title">Mealplan targets</h2>
+            <div class="target-container">
+              <div class="target-container__left">
+                <div class="target-block">
+                  <h6 class="target-block__title">Ideal weight</h6>
+                  <span class="target-block__value">{{mealplan.idealWeight}} kg</span>
+                </div>
+                <div class="target-block">
+                  <h6 class="target-block__title">Amount of {{mealplan.target}}
+                  </h6>
+                  <span class="target-block__value">{{mealplan.totalTarget}} kg</span>
+                </div>
+                <div class="target-block" *ngIf="mealplan.idealKiloOfMuscle">
+                  <h6 class="target-block__title">Ideal Kg of muscle</h6>
+                  <span class="target-block__value">{{mealplan.idealKiloOfMuscle}} kg</span>
+                </div>
+                <div class="target-block" *ngIf="mealplan.idealKiloOfMuscle">
+                  <h6 class="target-block__title">Total duration</h6>
+                  <span class="target-block__value">{{mealplan.targetDuration}} weeks</span>
+                </div>
+              </div>
+
+              <div class="target-container__right">
+                <div class="icon-circle">
+                  <ng-container *ngIf="!gainWeight">
+                    <i class="fas fa-angle-double-down"></i>
+                  </ng-container>
+                  <ng-container *ngIf="gainWeight">
+                    <i class="fas fa-angle-double-up"></i>
+                  </ng-container>
+                </div>
+                <h6>{{mealplan.target}} weight</h6>
+              </div>
+            </div>
+          </section>
+
+          <section class="calorie-metrics" *ngIf="mealplan">
+            <div class="metric">
+              <span class="metric__value">{{mealplan.increaseAmount}}</span>
+              <h6 class="metric__title">Kcal Increase/decrease</h6>
+            </div>
+            <div class="metric">
+              <div class="icon-circle">
+                <ng-container *ngIf="increaseCals">
+                  <i class="fas fa-level-up-alt"></i>
+                </ng-container>
+                <ng-container *ngIf="!increaseCals">
+                  <i class="fas fa-level-down-alt"></i>
+                </ng-container>
+              </div>
+              <h6 class="metric__title">
+                <ng-container *ngIf="increaseCals">
+                  Increase
+                </ng-container>
+                <ng-container *ngIf="!increaseCals">
+                  Decrease
+                </ng-container>
+                calories from the basal metabolism
+              </h6>
+            </div>
+            <div class="metric">
+              <span class="metric__value">x{{mealplan.factorCalorie}}</span>
+              <h6 class="metric__title">Factor Calorie</h6>
+            </div>
+          </section>
+          
+          <section class="mealplan-activities" *ngIf="mealplan && mealplan.activities">
+            <h2 class="section-title">Activities</h2>
+            <div class="activity">
+              <div class="activity__left" *ngIf="exerciseOne">
+                <app-exercise-list-item class="activity__left" [exercise]="exerciseOne"></app-exercise-list-item>
+                <app-exercise-list-item class="activity__left" [exercise]="exerciseTwo"></app-exercise-list-item>
+                <app-exercise-list-item class="activity__left" [exercise]="exerciseThree"></app-exercise-list-item>
+              </div>
+              <div class="activity__right">
+                <div class="container" *ngFor="let activity of mealplan.activities; let i of index;">
+                  <div class="target-block" *ngIf="activity.activityPerWeek">
+                    <h6 class="target-block__title">Per week</h6>
+                    <span class="target-block__value">{{activity.activityPerWeek}}x</span>
+                  </div>
+                  <div class="target-block" *ngIf="activity.activityDuration">
+                    <h6 class="target-block__title">How long</h6>
+                    <span class="target-block__value">{{activity.activityDuration}} min</span>
+                  </div>
+                  <div class="target-block" *ngIf="activity.activityLevel">
+                    <h6 class="target-block__title">Level</h6>
+                    <span class="target-block__value" id="level">{{activity.activityLevel}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <section class="macro-metrics macros" *ngIf="mealplan">
+            <h2 class="section-title">
+              Macro Distribution
+            </h2>
+            <div class="container">
+              <div class="metric">
+                <div class="icon-circle">
+                  {{mealplan.macroDistribution.proteinValue}}%
+                </div>
+                <h6 class="metric__title">
+                  Protein
+                </h6>
+              </div>
+              <div class="metric">
+                <div class="icon-circle">
+                  {{mealplan.macroDistribution.carbValue}}%
+                </div>
+                <h6 class="metric__title">
+                  Carbohydrates
+                </h6>
+              </div>
+              <div class="metric">
+                <div class="icon-circle">
+                  {{mealplan.macroDistribution.fatValue}}%
+                </div>
+                <h6 class="metric__title">
+                  Fat
+                </h6>
+              </div>
+            </div>
+          </section>
+
+      </mat-card>
+    </div>
+  </main>
+
+  <ng-container *ngIf="editShow">
+    <app-edit-mealplan [client]="client" [exercise]="exercise" [mealplan]="mealplan"></app-edit-mealplan>
+  </ng-container>
+
+</ng-container>
+  
+<ng-container *ngIf="!mealplan">
+  <div class="not-available">
+    <h3>😔 Woops! This mealplan is not (yet) avaliable.</h3>
+    <p>Please go back to the available mealplans on the mealplans tab.</p>
+    <button type="button" class="btn-primary" [routerLink]="['../']">
+      Go back
+    </button>
+  </div>
+</ng-container>

@@ -84,7 +84,6 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
   }
 
   toggleGainWeight() {
-    console.log(this.selectedTarget);
     if (this.selectedTarget === 'gain') {
       this.gainWeight = 'Gain';
     } else {

@@ -24,7 +24,6 @@ export class MyClientListComponent implements OnInit {
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
       this.specialist = user;
       const specialistID = 'specialist'  + this.specialist.sID;
-      console.log(specialistID);
       this.myClientsCol = this.afs.collection('users', ref => ref.where('specialist', '==', `${specialistID}`));
       this.myClients = this.myClientsCol.valueChanges();
     });

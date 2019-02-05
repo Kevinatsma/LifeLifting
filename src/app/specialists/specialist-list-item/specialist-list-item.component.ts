@@ -33,9 +33,7 @@ export class SpecialistListItemComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       if (result === true) {
-        console.log('i"m being called');
         const id = specialist.specialistID;
         this.specialistService.deleteSpecialist(id);
       } else if (result === false) {

@@ -136,9 +136,7 @@ export class ChatThreadService {
   async deleteThread(threadId: string) {
     const batch = this.afs.firestore.batch();
     const query = await this.afs.collection(`chats/${threadId}/messages`).ref.get();
-    console.log(query);
     query.forEach(doc => {
-      console.log(doc);
       console.log(`Deleting: ${doc.ref}`);
       batch.delete(doc.ref);
     });

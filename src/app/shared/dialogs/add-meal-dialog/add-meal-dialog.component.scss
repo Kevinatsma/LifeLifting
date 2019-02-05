@@ -74,7 +74,7 @@ form {
         display: flex;
         flex-flow: row nowrap;
         width: 100%;
-        height: 100px;
+        height: 100%;
         margin: 2em 0;
 
         div.number-id {
@@ -92,11 +92,23 @@ form {
             }
         }
 
-        mat-form-field.mat-form-field {
+        .form-fields {
             width: 80%;
+            display: flex;
+            flex-flow: row wrap;
+            box-sizing: border-box;
+        }
+
+        mat-form-field.mat-form-field {
+            box-sizing: border-box;
+            width: 50%;
             border-top: $light-border;
             border-bottom: $light-border;
             padding: 5px 30px 5px 20px;
+
+            &:nth-child(1n) {
+                margin-right: 0;
+            }
 
             &.language-name {
                 border-right: $light-border;
@@ -110,7 +122,6 @@ form {
         div.btn-area {
             @extend %flex-center;
             width: 10%;
-            max-height: 100px;
             border-radius: 0;
             border: $light-border;
             transition: all 300ms ease-in-out;
@@ -127,6 +138,18 @@ form {
                     transition: transform 300ms ease-in-out;
                     transform: scale(1.1);
                 }
+            }
+        }
+
+        .multiple-lines {
+            border-top: $light-border;
+            border-bottom: $light-border;
+            mat-form-field.mat-form-field {
+                border: none;
+            }
+
+            div.btn-area {
+                max-height: auto;
             }
         }
 

@@ -113,7 +113,6 @@ export class MyClientDetailComponent implements OnInit {
 
   // chat() {
   //   const profileId = this.route.snapshot.paramMap.get('id');
-  //   console.log('hello');
   //   return this.threadService.createThread(profileId)
   //     .then(() => console.log('Thread Created!'))
   //     .catch(error => console.log(error.message));

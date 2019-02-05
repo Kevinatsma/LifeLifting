@@ -47,7 +47,6 @@ export class ClientDetailComponent implements OnInit {
     this.clientService.getUserDataByID(id).subscribe(user => {
       this.user = user;
       const sID  = this.user.specialist;
-      console.log(sID);
       this.getSpecialist(sID);
       this.getGuidelines(user.uid);
     });

@@ -2,10 +2,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GuidelineService } from '../guideline.service';
+import { MealplanService } from '../mealplan.service';
 import { Specialist } from '../../specialists/specialist.model';
 import { SpecialistService } from '../../specialists/specialist.service';
-import { Guideline } from '../guideline.model';
+import { Mealplan } from '../mealplan.model';
 import { User } from './../../user/user.model';
 import { UserService } from './../../user/user.service';
 import { ExerciseService } from './../../exercises/exercise.service';
@@ -16,12 +16,12 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-guideline-detail',
-  templateUrl: './guideline-detail.component.html',
-  styleUrls: ['./guideline-detail.component.scss', './../guideline-list-item/guideline-list-item.component.scss']
+  selector: 'app-mealplan-detail',
+  templateUrl: './mealplan-detail.component.html',
+  styleUrls: ['./mealplan-detail.component.scss', './../mealplan-list-item/mealplan-list-item.component.scss']
 })
-export class GuidelineDetailComponent implements OnInit {
-  guideline: Guideline;
+export class MealplanDetailComponent implements OnInit {
+  mealplan: Mealplan;
   guideExercises: Object;
   exercises: any;
   exerciseOne: Exercise;
@@ -42,42 +42,42 @@ export class GuidelineDetailComponent implements OnInit {
                public route: ActivatedRoute,
                private userService: UserService,
                public exerciseService: ExerciseService,
-               public guidelineService: GuidelineService,
+               public mealplanService: MealplanService,
                public specialistService: SpecialistService,
                public location: Location) {
                 this.aboutExtended = false;
   }
 
   ngOnInit() {
-    this.getGuideline();
+    this.getMealplan();
   }
 
-  getGuideline() {
-    this.gainWeight = this.guidelineService.gainWeight;
+  getMealplan() {
+    this.gainWeight = this.mealplanService.gainWeight;
     const id = this.route.snapshot.paramMap.get('id');
-    this.guidelineService.getGuidelineDataById(id)
-      .subscribe(guideline => {
-        this.guideline = guideline;
-        this.userService.getUserDataByID(guideline.clientID).subscribe(user => this.client = user);
-        this.setTarget(guideline);
-        this.setIncreaseCals(guideline);
-        this.getExercises(guideline);
+    this.mealplanService.getMealplanDataById(id)
+      .subscribe(mealplan => {
+        this.mealplan = mealplan;
+        this.userService.getUserDataByID(mealplan.clientID).subscribe(user => this.client = user);
+        this.setTarget(mealplan);
+        this.setIncreaseCals(mealplan);
+        this.getExercises(mealplan);
       });
   }
 
   // Set values
 
-  setTarget(guideline) {
-    if ( guideline.target === 'gain') {
-      this.guidelineService.gainWeight = true;
+  setTarget(mealplan) {
+    if ( mealplan.target === 'gain') {
+      this.mealplanService.gainWeight = true;
     } else {
-      this.guidelineService.gainWeight = false;
+      this.mealplanService.gainWeight = false;
     }
-    return this.gainWeight = this.guidelineService.gainWeight;
+    return this.gainWeight = this.mealplanService.gainWeight;
   }
 
-  setIncreaseCals(guideline) {
-    if ( guideline.increaseCalories === 'increase') {
+  setIncreaseCals(mealplan) {
+    if ( mealplan.increaseCalories === 'increase') {
       return this.increaseCals = true;
     } else {
       return this.increaseCals = false;
@@ -95,8 +95,8 @@ export class GuidelineDetailComponent implements OnInit {
   }
 
   // Getters
-  getExercises(guideline) {
-    this.exerciseService.getMultipleExercises(guideline);
+  getExercises(mealplan) {
+    this.exerciseService.getMultipleExercises(mealplan);
     this.exerciseService.guideExercises.eOne.subscribe(exercise => {
       this.exerciseOne = exercise;
     });
@@ -120,27 +120,27 @@ export class GuidelineDetailComponent implements OnInit {
   // Open/closers
 
   get editShow(): boolean {
-    return this.guidelineService.editShow;
+    return this.mealplanService.editShow;
   }
 
   toggleEdit() {
-    this.guidelineService.toggleEdit();
+    this.mealplanService.toggleEdit();
   }
 
-  // Delete guideline
+  // Delete mealplan
 
-  deleteGuidelineDialog(guideline) {
+  deleteMealplanDialog(mealplan) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        guidelineID: guideline.guidelineID,
-        guidelineName: guideline.guidelineName,
+        mealplanID: mealplan.mealplanID,
+        mealplanName: mealplan.mealplanName,
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        const id = guideline.guidelineID;
-        this.guidelineService.deleteGuideline(id);
+        const id = mealplan.mealplanID;
+        this.mealplanService.deleteMealplan(id);
         this.router.navigate(['../']);
       } else if (result === false) {
         return null;

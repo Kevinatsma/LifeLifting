@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable, Subject } from 'rxjs';
-import { Guideline } from './guideline.model';
+import { Mealplan } from './mealplan.model';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { Specialist } from '../specialists/specialist.model';
@@ -12,18 +12,18 @@ import { User } from '../user/user.model';
 @Injectable({
   providedIn: 'root'
 })
-export class GuidelineService {
+export class MealplanService {
   specialistID: string;
   user: User;
-  guidelineCol: AngularFirestoreCollection<Guideline>;
-  guidelines: Observable<Guideline[]>;
-  guidelineDoc: AngularFirestoreDocument<Guideline>;
-  guideline: Observable<Guideline>;
+  mealplanCol: AngularFirestoreCollection<Mealplan>;
+  mealplans: Observable<Mealplan[]>;
+  mealplanDoc: AngularFirestoreDocument<Mealplan>;
+  mealplan: Observable<Mealplan>;
 
-  clientGuideCol: AngularFirestoreCollection<Guideline>;
-  clientGuidelines: Observable<Guideline[]>;
-  clientGuideDoc: AngularFirestoreDocument<Guideline>;
-  clientGuide: Observable<Guideline>;
+  clientGuideCol: AngularFirestoreCollection<Mealplan>;
+  clientMealplans: Observable<Mealplan[]>;
+  clientGuideDoc: AngularFirestoreDocument<Mealplan>;
+  clientGuide: Observable<Mealplan>;
 
   editShow: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
@@ -39,7 +39,7 @@ export class GuidelineService {
       this.user = user;
       this.specialistID = this.user.sID;
     });
-    this.guidelineCol = this.afs.collection<Guideline>(`guidelines`);
+    this.mealplanCol = this.afs.collection<Mealplan>(`mealplans`);
     this.editStateChange.subscribe((value) => {
       this.editShow = value;
     });
@@ -50,35 +50,35 @@ export class GuidelineService {
     this.editStateChange.next(!this.editShow);
   }
 
-  getGuidelineDataById(id) {
-    this.guidelineDoc = this.afs.doc<Guideline>(`guidelines/${id}`);
-    this.guideline = this.guidelineDoc.valueChanges();
-    return this.guideline;
+  getMealplanDataById(id) {
+    this.mealplanDoc = this.afs.doc<Mealplan>(`mealplans/${id}`);
+    this.mealplan = this.mealplanDoc.valueChanges();
+    return this.mealplan;
   }
 
-  // getGuidelines() {
-  //   this.guidelines = this.guidelineCol.snapshotChanges().pipe(map(actions => {
+  // getMealplans() {
+  //   this.mealplans = this.mealplanCol.snapshotChanges().pipe(map(actions => {
   //     return actions.map(a => {
-  //       const data = a.payload.doc.data() as Guideline;
+  //       const data = a.payload.doc.data() as Mealplan;
   //       const id = a.payload.doc.id;
   //       return { id, ...data };
   //     });
   //   }));
-  //   return this.guidelines;
+  //   return this.mealplans;
   // }
 
-  getGuidelines() {
-    this.guidelineCol = this.afs.collection('guidelines', ref => ref
+  getMealplans() {
+    this.mealplanCol = this.afs.collection('mealplans', ref => ref
       .orderBy('creationDate', 'asc'));
-    this.guidelines = this.clientGuideCol.valueChanges();
-    return this.guidelines;
+    this.mealplans = this.clientGuideCol.valueChanges();
+    return this.mealplans;
   }
 
-  addGuideline(data) {
-    this.afs.collection<Guideline>(`guidelines`).doc(`${data.guidelineID}`).set(data, {merge: true})
+  addMealplan(data) {
+    this.afs.collection<Mealplan>(`mealplans`).doc(`${data.mealplanID}`).set(data, {merge: true})
     .then(() => {
       // Show Snackbar
-      const message = `${data.guidelineName} was added succesfully`;
+      const message = `${data.mealplanName} was added succesfully`;
       const action = 'Close';
 
       this.snackBar.open(message, action, {
@@ -92,13 +92,13 @@ export class GuidelineService {
     });
   }
 
-  updateGuideline(id, data) {
-    this.guidelineDoc = this.afs.doc<Guideline>(`guidelines/${id}`);
-    this.guidelineDoc.update(data);
+  updateMealplan(id, data) {
+    this.mealplanDoc = this.afs.doc<Mealplan>(`mealplans/${id}`);
+    this.mealplanDoc.update(data);
   }
 
-  deleteGuideline(id) {
-    this.guidelineDoc = this.afs.doc(`guidelines/${id}`);
-    this.guidelineDoc.delete();
+  deleteMealplan(id) {
+    this.mealplanDoc = this.afs.doc(`mealplans/${id}`);
+    this.mealplanDoc.delete();
   }
 }

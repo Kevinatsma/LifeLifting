@@ -32,9 +32,7 @@ export class UserListItemComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       if (result === true) {
-        console.log('i"m being called');
         const id = user.uid;
         this.userService.deleteUser(id);
       } else if (result === false) {

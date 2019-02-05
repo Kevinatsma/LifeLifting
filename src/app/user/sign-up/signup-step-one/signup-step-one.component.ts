@@ -62,7 +62,6 @@ export class SignupStepOneComponent implements OnInit {
         currentWeight: this.basicUserDataForm.get('currentWeight').value
       }
     };
-    console.log(data);
     this.auth.setUserData(data, user);
     this.router.navigate(['../step-two'], { relativeTo: this.route });
   }

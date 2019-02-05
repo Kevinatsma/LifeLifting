@@ -31,9 +31,7 @@ export class FoodListItemComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       if (result === true) {
-        console.log('i"m being called');
         const id = food.productID;
         this.foodService.deleteFood(id);
       } else if (result === false) {
