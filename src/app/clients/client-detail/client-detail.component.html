@@ -29,7 +29,9 @@
               <ng-container *ngIf="user.roles.admin">
                 Admin<ng-container *ngIf="user.roles.specialist || user.roles.member">, </ng-container>
               </ng-container>
-              <ng-container *ngIf="user.roles.specialist">Specialist<ng-container *ngIf="user.roles.member">, </ng-container>
+              <ng-container *ngIf="user.roles.specialist">
+                Specialist
+                <ng-container *ngIf="user.roles.member">, </ng-container>
               </ng-container>
               <ng-container *ngIf="user.roles.member">Client</ng-container>
           </p>

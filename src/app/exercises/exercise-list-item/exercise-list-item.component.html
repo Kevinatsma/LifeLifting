@@ -24,13 +24,15 @@
       </ul>
     </div>
   </section>
-  <section class="actions">
-    <button type="button" (click)="deleteExerciseDialog(exercise)">
-      <i class="fas fa-trash"></i>
-    </button>
-    <button (click)="editExercise(exercise)">
-      <i class="fas fa-edit"></i>
-    </button>
-  </section>
+  <ng-container *ngIf="user">
+    <section class="actions" *ngIf="user.roles.admin">
+      <button type="button" (click)="deleteExerciseDialog(exercise)">
+        <i class="fas fa-trash"></i>
+      </button>
+      <button (click)="editExercise(exercise)">
+        <i class="fas fa-edit"></i>
+      </button>
+    </section>
+  </ng-container>
 
 </mat-card>

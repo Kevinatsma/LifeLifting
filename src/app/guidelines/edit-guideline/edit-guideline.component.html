@@ -3,22 +3,22 @@
     <form class="package-container" [formGroup]="editGuidelineForm" *ngIf="editShow">
       <section class="action-toolbar-top">
         <div class="left">
-          <button class="icon-button" [routerLink]="['../']">
+          <button type="button" class="icon-button" [routerLink]="['../']">
               <i class="fas fa-arrow-left"></i>
           </button>
         </div>
         <div class="middle">
           <h1 *ngIf="client; else gID">Guideline for: {{client.displayName}}</h1>
-          <h5 *ngIf="client">Guideline for: {{client.basicData.currentWeight}}</h5>
+          <h5 *ngIf="client">Current weight: {{client.basicData.currentWeight}}kg</h5>
           <ng-template #gID>
             <h1>Guideline ID: {{guideline.guidelineID}}</h1>
           </ng-template>
         </div>
         <div class="right">
-          <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+          <button type="button" class="icon-button edit-button hidden">
             <i class="fas fa-edit"></i>
           </button>
-          <button class="icon-button edit-button" (click)="editGuideline()" *ngIf="editShow">
+          <button type="submit" class="icon-button edit-button" (click)="editGuideline()" *ngIf="editShow">
             <i class="fas fa-check"></i>
           </button>
         </div>
@@ -61,8 +61,9 @@
                   </div>
                   <div class="target-block">
                     <h6 class="target-block__title">Amount of 
-                      <ng-container *ngIf="targetIsLoss">loss</ng-container>
-                      <ng-container *ngIf="!targetIsLoss">gain</ng-container>
+                      <ng-container *ngIf="selectedTarget">
+                        {{gainWeight}}
+                      </ng-container>
                     </h6>
                     <span class="target-block__value">
                       <input type="number" class="text-field" name="totalTarget" formControlName="totalTarget"> kg
@@ -84,14 +85,12 @@
   
                 <div class="target-container__right">
                   <div class="icon-circle">
-                    <ng-container *ngIf="targetIsLoss">
-                      <i class="fas fa-angle-double-down"></i>
-                    </ng-container>
-                    <ng-container *ngIf="!targetIsLoss">
-                      <i class="fas fa-angle-double-up"></i>
-                    </ng-container>
+                    <i class="fas fa-question"></i>
                   </div>
-                  <h6>{{guideline.target}} weight</h6>
+                  <mat-select matInput placeholder="{{guideline.target}} weight" [class.dropdown-edit]="guideline.target" [(value)]="selectedTarget" 
+                  autocomplete="off" panelClass="dropdown-edit" required (selectionChange)="toggleGainWeight(selectedTarget)">
+                    <mat-option *ngFor="let target of targets" [value]="target.value">{{target.viewValue}}</mat-option>
+                  </mat-select>
                 </div>
               </div>
             </section>
@@ -106,21 +105,14 @@
               </div>
               <div class="metric">
                 <div class="icon-circle">
-                  <ng-container *ngIf="increaseCals">
-                    <i class="fas fa-level-up-alt"></i>
-                  </ng-container>
-                  <ng-container *ngIf="!increaseCals">
-                    <i class="fas fa-level-down-alt"></i>
-                  </ng-container>
+                  <i class="fas fa-question"></i>
                 </div>
                 <h6 class="metric__title">
-                  <ng-container *ngIf="increaseCals">
-                    Increase
-                  </ng-container>
-                  <ng-container *ngIf="!increaseCals">
-                    Decrease
-                  </ng-container>
-                  calories from the basal metabolism
+                  <mat-select matInput placeholder="{{guideline.increaseCalories}} calories" [class.dropdown-cals]="guideline.increaseCalories" 
+                  [(value)]="selectedBasalValue" autocomplete="off" panelClass="dropdown-edit" required>
+                    <mat-option *ngFor="let value of basalValues" [value]="value.value">{{value.viewValue}}</mat-option>
+                  </mat-select>
+                  from the basal metabolism
                 </h6>
               </div>
               <div class="metric">
@@ -157,6 +149,41 @@
                       </li>
                     </ul>
                   </div>
+                </div>
+              </div>
+            </section>
+                      
+            <section class="macro-metrics macros" *ngIf="guideline">
+              <h2 class="section-title">
+                Macro Distribution
+              </h2>
+              <div class="container">
+                <div class="metric">
+                  <div class="icon-circle">
+                    <input type="number" name="proteinValue" formControlName="proteinValue">
+                    %
+                  </div>
+                  <h6 class="metric__title">
+                    Protein
+                  </h6>
+                </div>
+                <div class="metric">
+                  <div class="icon-circle">
+                    <input type="number" name="carbValue" formControlName="carbValue">
+                    %
+                  </div>
+                  <h6 class="metric__title">
+                    Carbohydrates
+                  </h6>
+                </div>
+                <div class="metric">
+                  <div class="icon-circle">
+                      <input type="number" name="fatValue" formControlName="fatValue">
+                      %
+                  </div>
+                  <h6 class="metric__title">
+                    Fat
+                  </h6>
                 </div>
               </div>
             </section>

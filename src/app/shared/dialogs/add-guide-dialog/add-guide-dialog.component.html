@@ -217,39 +217,33 @@
         <h3>🥜 Macros for {{userData.displayName}}</h3>
         <p class="intro-text">
           Define the way the macros will be divided during the time the client follows this guideline.
+          Please note: The total must add up to 100!
         </p>
-        <div class="add-form-field-container" formArrayName="macroArr">
-          <h4>Distribution of macros in %. They all need to add up to a maximum of 100.</h4>
-          <section class="dynamic-form-field-container" *ngFor="let macro of macroForms.controls; let i=index" [formGroupName]="i">
-            <div class="number-id">
-              <h1>{{i+1}}</h1>
-            </div>
-            <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Percentage value</mat-label>
-              <input type="number" matInput name="percentage" formControlName="percentage" 
-              placeholder="Percentage (of 100)" autofocus="off" autocomplete="off">
-              <mat-error class="input-error" *ngIf="!percentage.valid && macroForm.touched">This is <strong>required</strong></mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>What is the Macro value?</mat-label>
-              <mat-select matInput name="macroValue" placeholder="Choose a value" 
-              formControlName="macroValue" autocomplete="off" panelClass="dropdown-regular" required>
-                <mat-option *ngFor="let value of macroValues" [value]="value.value">{{value.viewValue}}</mat-option>
-              </mat-select>
-              <mat-error class="input-error" *ngIf="!macroValue.valid">This is <strong>required</strong></mat-error>
-            </mat-form-field>
-            <div class="btn-area">
-              <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteMacro(i)">
-                <i class="fa fa-trash"></i>
-              </button>
-            </div>
-          </section>
-        </div>
 
-        <button type="button" class="add-form-field" (click)="addMacro()">
-          <i class="fa fa-plus"></i>
-          Add a Macro
-        </button>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Protein</mat-label>
+          <input type="number" matInput name="proteinValue" formControlName="proteinValue" 
+          placeholder="Percentage (of 100)" autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!macroForm['controls'].proteinValue.valid && macroForm.touched">
+            This is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Carbohydrates</mat-label>
+          <input type="number" matInput name="carbValue" formControlName="carbValue" 
+          placeholder="Percentage (of 100)" autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!macroForm['controls'].carbValue.valid && macroForm.touched">
+            This is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Fat</mat-label>
+          <input type="number" matInput name="fatValue" formControlName="fatValue" 
+          placeholder="Percentage (of 100)" autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!macroForm['controls'].fatValue.valid && macroForm.touched">
+            This is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
       </form>
 
       <section class="btn-area">

@@ -55,6 +55,7 @@ export class AddGuideDialogComponent implements OnInit {
   activityID = new FormControl('', [Validators.required]);
   activityDuration = new FormControl('', [Validators.required]);
   activityPerWeek = new FormControl('', [Validators.required]);
+  activityLevel = new FormControl('', [Validators.required]);
   showAddActivity = true;
   activityLevels = [
     {
@@ -72,23 +73,6 @@ export class AddGuideDialogComponent implements OnInit {
   ]; selectedActivityLevel: string;
 
   macroForm: FormGroup;
-  macroArr: FormArray;
-  percentage = new FormControl('', [Validators.required]);
-  macroValue = new FormControl('', [Validators.required]);
-  macroValues = [
-    {
-      value: 'protein',
-      viewValue: 'Protein'
-    },
-    {
-      value: 'fat',
-      viewValue: 'Fat'
-    },
-    {
-      value: 'carbohydrates',
-      viewValue: 'Carbohydrates'
-    },
-  ]; selectedMacroValue: string;
 
   constructor( private fb: FormBuilder,
                private auth: AuthService,
@@ -125,7 +109,9 @@ export class AddGuideDialogComponent implements OnInit {
     });
 
     this.macroForm = this.fb.group({
-      macroArr: this.fb.array([ this.createMacro() ]),
+      proteinValue: ['', [Validators.required]],
+      carbValue: ['', [Validators.required]],
+      fatValue: ['', [Validators.required]],
     });
 
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
@@ -176,28 +162,6 @@ export class AddGuideDialogComponent implements OnInit {
     (this.activityForm.get('activityArr') as FormArray).removeAt(i);
   }
 
-
-  // Macro form
-  get macroForms() {
-    return this.macroForm.get('macroArr') as FormArray;
-  }
-
-  createMacro(): FormGroup {
-    return this.fb.group({
-      percentage: '',
-      macroValue: ''
-    });
-  }
-
-  addMacro(): void {
-    this.macroArr = this.macroForm.get('macroArr') as FormArray;
-    this.macroArr.push(this.createMacro());
-  }
-
-  deleteMacro(i) {
-    (this.macroForm.get('macroArr') as FormArray).removeAt(i);
-  }
-
   // Collect the data and send to service
   addGuideline() {
     const gID: number =  this.infoForm.get('guidelineID').value;
@@ -217,7 +181,11 @@ export class AddGuideDialogComponent implements OnInit {
       increaseAmount: this.calcForm.get('increaseAmount').value,
       factorCalorie: this.calcForm.get('factorCalorie').value,
       activities: this.activityForms.value,
-      macroDistribution: this.macroForms.value
+      macroDistribution: {
+        proteinValue: this.macroForm.get('proteinValue').value,
+        carbValue: this.macroForm.get('carbValue').value,
+        fatValue: this.macroForm.get('fatValue').value
+      }
     };
     this.guidelineService.addGuideline(data);
   }

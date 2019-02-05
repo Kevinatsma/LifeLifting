@@ -27,6 +27,8 @@ export class GuidelineService {
 
   editShow: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
+  gainWeight: boolean;
+  increaseCals: boolean;
 
   constructor( private afs: AngularFirestore,
                private auth: AuthService,
@@ -44,7 +46,6 @@ export class GuidelineService {
     });
 
   }
-
 
   toggleEdit() {
     this.editStateChange.next(!this.editShow);

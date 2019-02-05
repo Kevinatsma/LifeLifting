@@ -31,7 +31,7 @@ export class GuidelineDetailComponent implements OnInit {
   aboutExtended = false;
   reviewsVisible = true;
   client: User;
-  targetIsLoss: boolean;
+  gainWeight: boolean;
   increaseCals: boolean;
 
   // specialist = Observable<Specialist>;
@@ -53,24 +53,27 @@ export class GuidelineDetailComponent implements OnInit {
   }
 
   getGuideline() {
+    this.gainWeight = this.guidelineService.gainWeight;
     const id = this.route.snapshot.paramMap.get('id');
-    this.guidelineService.getGuidelineDataById(id).subscribe(guideline => {
-      this.guideline = guideline;
-      this.userService.getUserDataByID(this.guideline.clientID).subscribe(user => this.client = user);
-      this.setTarget(guideline);
-      this.setIncreaseCals(guideline);
-      this.getExercises(guideline);
-    });
+    this.guidelineService.getGuidelineDataById(id)
+      .subscribe(guideline => {
+        this.guideline = guideline;
+        this.userService.getUserDataByID(guideline.clientID).subscribe(user => this.client = user);
+        this.setTarget(guideline);
+        this.setIncreaseCals(guideline);
+        this.getExercises(guideline);
+      });
   }
 
   // Set values
 
   setTarget(guideline) {
     if ( guideline.target === 'gain') {
-      return this.targetIsLoss = false;
+      this.guidelineService.gainWeight = true;
     } else {
-      return this.targetIsLoss = true;
+      this.guidelineService.gainWeight = false;
     }
+    return this.gainWeight = this.guidelineService.gainWeight;
   }
 
   setIncreaseCals(guideline) {
@@ -96,17 +99,14 @@ export class GuidelineDetailComponent implements OnInit {
     this.exerciseService.getMultipleExercises(guideline);
     this.exerciseService.guideExercises.eOne.subscribe(exercise => {
       this.exerciseOne = exercise;
-      console.log(this.exerciseOne);
     });
     if (this.exerciseService.guideExercises.eTwo) {
       this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
         this.exerciseTwo = exercise;
-        console.log(this.exerciseTwo);
       });
     } else if (this.exerciseService.guideExercises.eThree) {
       this.exerciseService.guideExercises.eThree.subscribe(exercise => {
         this.exerciseTwo = exercise;
-        console.log(this.exerciseThree);
       });
     }
     this.exercises = [
@@ -114,7 +114,6 @@ export class GuidelineDetailComponent implements OnInit {
       this.exerciseTwo,
       this.exerciseThree
     ];
-    console.log(this.exercises);
   }
 
   // Like this to avoid State Changed Error
@@ -141,9 +140,9 @@ export class GuidelineDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       if (result === true) {
-        console.log('i"m being called');
         const id = guideline.guidelineID;
         this.guidelineService.deleteGuideline(id);
+        this.router.navigate(['../']);
       } else if (result === false) {
         return null;
       }

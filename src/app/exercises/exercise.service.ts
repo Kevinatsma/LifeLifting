@@ -50,13 +50,10 @@ export class ExerciseService {
   }
 
   getMultipleExercises(guideline) {
-    console.log(guideline.activities[0]);
-    console.log(guideline.activities[1]);
-    console.log(guideline.activities[2]);
-    this.exerciseDocOne = this.afs.doc<Exercise>(`exercises/${guideline.activities[1].activityID}`);
+    this.exerciseDocOne = this.afs.doc<Exercise>(`exercises/${guideline.activities[0].activityID}`);
     this.exerciseOne = this.exerciseDocOne.valueChanges();
-    if (guideline.activities[0]) {
-      this.exerciseDocTwo = this.afs.doc<Exercise>(`exercises/${guideline.activities[0].activityID}`);
+    if (guideline.activities[1]) {
+      this.exerciseDocTwo = this.afs.doc<Exercise>(`exercises/${guideline.activities[1].activityID}`);
       this.exerciseTwo = this.exerciseDocTwo.valueChanges();
     } else if (guideline.activities[2]) {
       this.exerciseDocThree = this.afs.doc<Exercise>(`exercises/${guideline.activities[2].activityID}`);

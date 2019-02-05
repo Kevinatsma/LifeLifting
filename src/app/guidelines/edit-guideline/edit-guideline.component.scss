@@ -28,6 +28,36 @@ form {
     margin-top: 3em;
 }
 
+.hidden {
+    visibility: hidden;
+    z-index: -5;
+}
+
+
+.dropdown-edit, .dropdown-cals  {
+    width: 50%!important;
+    box-shadow: none!important;
+    background: transparent!important;
+
+    &.dropdown-cals {
+        width: 100%!important;
+    }
+    ::ng-deep mat-select {
+        width: auto!important;
+        max-width: 240px!important;
+        text-align: center;
+        margin: 10px auto;
+
+        .mat-select-placeholder {
+            font-family: $main-font!important;
+            text-transform: capitalize;
+            font-size: 20px!important;
+            font-weight: $semi-bold!important;
+        }
+
+    }
+}
+
 .contact-menu {
     li {
         input.half {

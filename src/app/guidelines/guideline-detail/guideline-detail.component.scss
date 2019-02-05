@@ -331,6 +331,16 @@ main.specialist-wrapper {
                             width: 75px;
                             border: 2.5px solid $primary-color;
                             box-shadow: 0 0 0 3.5px #fff;
+
+                            input {
+                                color: $primary-color;
+                                width: 35px;
+                                text-align: right;
+                                height: auto;
+                                font-size: 18px;
+                                font-family: $main-font;
+                                font-weight: $semi-bold;
+                            }
                         }
                     }
                 }

@@ -22,10 +22,9 @@ export class Guideline {
             activityPerWeek: number;
         }
     ];
-    macroDistribution: [
-        {
-            percentage: number;
-            macroValue: string;
-        }
-    ];
+    macroDistribution: {
+        proteinValue: number;
+        carbValue: number;
+        fatValue: number;
+    };
 }

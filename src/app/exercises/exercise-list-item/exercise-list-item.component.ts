@@ -4,6 +4,9 @@ import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/conf
 import { MatDialog } from '@angular/material';
 import { ExerciseService } from '../exercise.service';
 import { Exercise } from '../exercise.model';
+import { AuthService } from './../../core/auth/auth.service';
+import { UserService } from './../../user/user.service';
+import { User } from './../../user/user.model';
 
 @Component({
   selector: 'app-exercise-list-item',
@@ -13,13 +16,24 @@ import { Exercise } from '../exercise.model';
 export class ExerciseListItemComponent implements OnInit {
   @Input() exercise: Exercise;
   @Input() i;
+  user: User;
   detailOpen = false;
 
-  constructor( public router: Router,
+  constructor( private auth: AuthService,
+               public userService: UserService,
+               public router: Router,
                public dialog: MatDialog,
                private exerciseService: ExerciseService) { }
 
   ngOnInit() {
+    this.getUser();
+  }
+
+  getUser() {
+    const id = this.auth.currentUserId;
+    this.userService.getUserDataByID(id).subscribe(user => {
+      this.user = user;
+    });
   }
 
   deleteExerciseDialog(exercise) {

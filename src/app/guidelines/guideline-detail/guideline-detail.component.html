@@ -3,24 +3,24 @@
 
     <section class="action-toolbar-top">
       <div class="left">
-        <button class="icon-button" (click)="goBack()">
+        <button type="button" class="icon-button" (click)="goBack()">
             <i class="fas fa-arrow-left"></i>
         </button>
       </div>
       <div class="middle">
         <h1 *ngIf="client; else gID">
           Guideline for: {{client.displayName}}
-        <h5>Current weight: {{client.basicData.currentWeight}}</h5></h1>
+        <h5>Current weight: {{client.basicData.currentWeight}}kg</h5></h1>
         <ng-template #gID>
             <h1>Guideline ID: {{guideline.guidelineID}}</h1>
         </ng-template>
       </div>
       <div class="right">
-        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
-          <i class="fas fa-edit"></i>
-        </button>
-        <button class="icon-button edit-button" (click)="deleteGuidelineDialog(guideline)" *ngIf="!editShow">
+        <button type="button" class="icon-button edit-button" (click)="deleteGuidelineDialog(guideline)" *ngIf="!editShow">
           <i class="fas fa-trash"></i>
+        </button>
+        <button type="button" class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+          <i class="fas fa-edit"></i>
         </button>
       </div>
     </section>
@@ -57,9 +57,7 @@
                   <span class="target-block__value">{{guideline.idealWeight}} kg</span>
                 </div>
                 <div class="target-block">
-                  <h6 class="target-block__title">Amount of 
-                    <ng-container *ngIf="targetIsLoss">loss</ng-container>
-                    <ng-container *ngIf="!targetIsLoss">gain</ng-container>
+                  <h6 class="target-block__title">Amount of {{guideline.target}}
                   </h6>
                   <span class="target-block__value">{{guideline.totalTarget}} kg</span>
                 </div>
@@ -75,10 +73,10 @@
 
               <div class="target-container__right">
                 <div class="icon-circle">
-                  <ng-container *ngIf="targetIsLoss">
+                  <ng-container *ngIf="!gainWeight">
                     <i class="fas fa-angle-double-down"></i>
                   </ng-container>
-                  <ng-container *ngIf="!targetIsLoss">
+                  <ng-container *ngIf="gainWeight">
                     <i class="fas fa-angle-double-up"></i>
                   </ng-container>
                 </div>
@@ -149,12 +147,28 @@
               Macro Distribution
             </h2>
             <div class="container">
-              <div class="metric" *ngFor="let macro of guideline.macroDistribution">
+              <div class="metric">
                 <div class="icon-circle">
-                  {{macro.percentage}}%
+                  {{guideline.macroDistribution.proteinValue}}%
                 </div>
                 <h6 class="metric__title">
-                  {{macro.macroValue}}
+                  Protein
+                </h6>
+              </div>
+              <div class="metric">
+                <div class="icon-circle">
+                  {{guideline.macroDistribution.carbValue}}%
+                </div>
+                <h6 class="metric__title">
+                  Carbohydrates
+                </h6>
+              </div>
+              <div class="metric">
+                <div class="icon-circle">
+                  {{guideline.macroDistribution.fatValue}}%
+                </div>
+                <h6 class="metric__title">
+                  Fat
                 </h6>
               </div>
             </div>
@@ -174,7 +188,7 @@
   <div class="not-available">
     <h3>😔 Woops! This guideline is not (yet) avaliable.</h3>
     <p>Please go back to the available guidelines on the guidelines tab.</p>
-    <button class="btn-primary" [routerLink]="['../']">
+    <button type="button" class="btn-primary" [routerLink]="['../']">
       Go back
     </button>
   </div>
