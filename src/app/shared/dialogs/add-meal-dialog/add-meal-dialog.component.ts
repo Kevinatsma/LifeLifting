@@ -35,6 +35,15 @@ export class AddMealDialogComponent implements OnInit {
     },
   ]; selectedTarget: string;
 
+  mealTimes: [
+    {time: string}
+  ];
+  mondayMeals: FormArray;
+  tuesdayMeals: FormArray;
+  wednesdayMeals: FormArray;
+  thursdayMeals: FormArray;
+  fridayMeals: FormArray;
+
   calcForm: FormGroup;
   calculatedPerc: number;
   increase: boolean;
@@ -49,28 +58,17 @@ export class AddMealDialogComponent implements OnInit {
     },
   ]; selectedBasalValue: string;
 
-  activityForm: FormGroup;
-  activityArr: FormArray;
-  activityID = new FormControl('', [Validators.required]);
-  activityDuration = new FormControl('', [Validators.required]);
-  activityPerWeek = new FormControl('', [Validators.required]);
-  activityLevel = new FormControl('', [Validators.required]);
-  showAddActivity = true;
-  activityLevels = [
-    {
-      value: 'beginner',
-      viewValue: 'Beginner'
-    },
-    {
-      value: 'intermediate',
-      viewValue: 'Intermediate'
-    },
-    {
-      value: 'professional',
-      viewValue: 'Professional'
-    },
-  ]; selectedActivityLevel: string;
+  mealTimeForm: FormGroup;
+  mealTimeArr: FormArray;
+  showAddMealTime = true;
 
+  mondayForm: FormGroup;
+  tuesdayForm: FormGroup;
+  wednesdayForm: FormGroup;
+  thursdayForm: FormGroup;
+  fridayForm: FormGroup;
+
+  suppForm: FormGroup;
   macroForm: FormGroup;
 
   constructor( private fb: FormBuilder,
@@ -89,22 +87,65 @@ export class AddMealDialogComponent implements OnInit {
       mealplanName: ['', [Validators.required]],
     });
 
-    this.targetForm = this.fb.group({
-      idealWeight: ['', [Validators.required]],
-      idealKiloOfMuscle: [''],
-      target: ['', [Validators.required]],
-      totalTarget: ['', [Validators.required]],
-      targetDuration: ['', [Validators.required]],
+    this.mealTimeForm = this.fb.group({
+      mealTimeArr: this.fb.array([ this.createMealTime(), this.createMealTime(), this.createMealTime() ]),
     });
 
-    this.calcForm = this.fb.group({
-      increaseCalories: ['', [Validators.required]],
-      increaseAmount: ['', [Validators.required]],
-      factorCalorie: ['', [Validators.required]],
+    this.mondayForm = this.fb.group({
+      mealTimeValue: [''],
+      mealTimeOne: [''],
+      mealTimeTwo: [''],
+      mealTimeThree: [''],
+      mealTimeFour: [''],
+      mealTimeFive: [''],
+      mealTimeSix: [''],
+      mealTimeSeven: [''],
     });
 
-    this.activityForm = this.fb.group({
-      activityArr: this.fb.array([ this.createActivity() ]),
+    this.tuesdayForm = this.fb.group({
+      mealTimeOne: [''],
+      mealTimeTwo: [''],
+      mealTimeThree: [''],
+      mealTimeFour: [''],
+      mealTimeFive: [''],
+      mealTimeSix: [''],
+      mealTimeSeven: [''],
+    });
+
+    this.wednesdayForm = this.fb.group({
+      mealTimeOne: [''],
+      mealTimeTwo: [''],
+      mealTimeThree: [''],
+      mealTimeFour: [''],
+      mealTimeFive: [''],
+      mealTimeSix: [''],
+      mealTimeSeven: [''],
+    });
+
+    this.thursdayForm = this.fb.group({
+      mealTimeOne: [''],
+      mealTimeTwo: [''],
+      mealTimeThree: [''],
+      mealTimeFour: [''],
+      mealTimeFive: [''],
+      mealTimeSix: [''],
+      mealTimeSeven: [''],
+    });
+
+    this.fridayForm = this.fb.group({
+      mealTimeOne: [''],
+      mealTimeTwo: [''],
+      mealTimeThree: [''],
+      mealTimeFour: [''],
+      mealTimeFive: [''],
+      mealTimeSix: [''],
+      mealTimeSeven: [''],
+    });
+
+    this.suppForm = this.fb.group({
+      before: ['', [Validators.required]],
+      during: ['', [Validators.required]],
+      after: ['', [Validators.required]],
     });
 
     this.macroForm = this.fb.group({
@@ -130,60 +171,55 @@ export class AddMealDialogComponent implements OnInit {
     }
   }
 
-  // Activity form
-  get activityForms() {
-    return this.activityForm.get('activityArr') as FormArray;
+  // MealTime form
+  get mealTimeForms() {
+    return this.mealTimeForm.get('mealTimeArr') as FormArray;
   }
 
-  createActivity(): FormGroup {
+  createMealTime(): FormGroup {
     return this.fb.group({
-      activityID: '',
-      activityDuration: '',
-      activityPerWeek: '',
-      activityLevel: ''
+      mealTimeID: '',
     });
   }
 
-  addActivity(): void {
-    this.activityArr = this.activityForm.get('activityArr') as FormArray;
-    this.activityArr.push(this.createActivity());
+  addMealTime(): void {
+    this.mealTimeArr = this.mealTimeForm.get('mealTimeArr') as FormArray;
+    this.mealTimeArr.push(this.createMealTime());
   }
 
-  checkActivity(): void {
-    if (this.activityArr.length < 3) {
-      this.showAddActivity = true;
+  checkMealTime(): void {
+    if (this.mealTimeArr.length < 7) {
+      this.showAddMealTime = true;
     } else {
-      this.showAddActivity = false;
+      this.showAddMealTime = false;
     }
   }
 
-  deleteActivity(i) {
-    (this.activityForm.get('activityArr') as FormArray).removeAt(i);
+  deleteMealTime(i) {
+    (this.mealTimeForm.get('mealTimeArr') as FormArray).removeAt(i);
   }
 
   // Collect the data and send to service
   addMealplan() {
-    const gID: number =  this.infoForm.get('mealplanID').value;
+    const mID: number =  this.infoForm.get('mealplanID').value;
     const data = {
       clientID: this.userData.uid,
       specialistID: this.specialistID,
       creationDate: new Date(),
-      mealplanID: this.userData.uid + '_' + gID,
-      mealplanNR: gID,
+      mealplanID: this.userData.uid + '_' + mID,
+      mealplanNR: mID,
       mealplanName: this.infoForm.get('mealplanName').value,
-      idealWeight: this.targetForm.get('idealWeight').value,
-      idealKiloOfMuscle: this.targetForm.get('idealKiloOfMuscle').value,
-      target: this.targetForm.get('target').value,
-      totalTarget: this.targetForm.get('totalTarget').value,
-      targetDuration: this.targetForm.get('targetDuration').value,
-      increaseCalories: this.calcForm.get('increaseCalories').value,
-      increaseAmount: this.calcForm.get('increaseAmount').value,
-      factorCalorie: this.calcForm.get('factorCalorie').value,
-      activities: this.activityForms.value,
-      macroDistribution: {
-        proteinValue: this.macroForm.get('proteinValue').value,
-        carbValue: this.macroForm.get('carbValue').value,
-        fatValue: this.macroForm.get('fatValue').value
+      mealTimes: this.mealTimes,
+      mondayMeals: this.mondayMeals,
+      tuesdayMeals: this.tuesdayMeals,
+      wednesdayMeals: this.wednesdayMeals,
+      thursdayMeals: this.thursdayMeals,
+      fridayMeals: this.fridayMeals,
+      supplementation: {
+        mealTimeID: this.mealTimeForm.get('mealTimeID').value,
+        before: this.suppForm.get('before').value || null,
+        during: this.suppForm.get('during').value || null,
+        after: this.suppForm.get('after').value || null
       }
     };
     this.mealplanService.addMealplan(data);

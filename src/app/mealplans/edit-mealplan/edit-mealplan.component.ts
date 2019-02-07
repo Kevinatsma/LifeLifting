@@ -61,15 +61,6 @@ export class EditMealplanComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.editMealplanForm = this.fb.group({
       mealplanName: '' || this.mealplan.mealplanName,
-      idealWeight: '' || this.mealplan.idealWeight,
-      totalTarget: '' || this.mealplan.totalTarget,
-      idealKiloOfMuscle: '' || this.mealplan.idealKiloOfMuscle,
-      mealplanDuration: '' || this.mealplan.totalTarget,
-      increaseAmount: '' || this.mealplan.increaseAmount,
-      factorCalorie: '' || this.mealplan.factorCalorie,
-      proteinValue: '' || this.mealplan.macroDistribution.proteinValue,
-      carbValue: '' || this.mealplan.macroDistribution.carbValue,
-      fatValue: '' || this.mealplan.macroDistribution.fatValue,
     });
   }
 
@@ -99,26 +90,8 @@ export class EditMealplanComponent implements OnInit, OnDestroy {
     const data = {
       lastEdited: new Date(),
       mealplanName: this.editMealplanForm.get('mealplanName').value || this.mealplan.mealplanName,
-      idealWeight: this.editMealplanForm.get('idealWeight').value || this.mealplan.idealWeight,
-      totalTarget: this.editMealplanForm.get('totalTarget').value || this.mealplan.totalTarget,
-      target: this.selectedTarget || this.mealplan.target,
-      idealKiloOfMuscle: this.editMealplanForm.get('idealKiloOfMuscle').value || this.mealplan.idealKiloOfMuscle,
-      mealplanDuration: this.editMealplanForm.get('mealplanDuration').value || this.mealplan.totalTarget,
-      increaseAmount: this.editMealplanForm.get('increaseAmount').value || this.mealplan.increaseAmount,
-      increaseCalories: this.selectedBasalValue || this.mealplan.increaseCalories,
-      factorCalorie: this.editMealplanForm.get('factorCalorie').value || this.mealplan.factorCalorie,
-      macroDistribution: {
-        proteinValue: this.editMealplanForm.get('proteinValue').value || this.mealplan.macroDistribution.proteinValue,
-        carbValue: this.editMealplanForm.get('carbValue').value || this.mealplan.macroDistribution.carbValue,
-        fatValue: this.editMealplanForm.get('fatValue').value || this.mealplan.macroDistribution.fatValue,
-      }
     };
     this.mealplanService.updateMealplan(this.mealplan.mealplanID, data);
-    if (data.target === 'gain') {
-      this.mealplanService.gainWeight = true;
-    } else {
-      this.mealplanService.gainWeight = false;
-    }
     this.toggleEdit();
   }
 

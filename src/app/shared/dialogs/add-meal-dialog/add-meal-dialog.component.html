@@ -3,7 +3,7 @@
     <mat-step [stepControl]="infoForm">
       <form [formGroup]="infoForm">
         <ng-template matStepLabel>Info</ng-template>
-        <h3>ℹ️ Mealplan Info for {{userData.displayName}}</h3>
+        <h3>⏲️ Mealplan Info for {{userData.displayName}}</h3>
         <p class="card-text">
           The mealplan for the client. This mealplan has to be filled out on the first meeting with the client(!).
           This document is of huge importance, since we can calculate heaps of things based on the values you'll enter
@@ -29,169 +29,32 @@
       </section>
     </mat-step>
 
-    <mat-step [stepControl]="targetForm">
-      <form [formGroup]="targetForm">
-        <ng-template matStepLabel>Targets</ng-template>
-        <h3>🎯 Mealplan targets for {{userData.displayName}}</h3>
-        <p class="card-text">
-          Define the targets that your users want to reach here.
-        </p>
-        <p class="card-text">
-          <strong>Current Client Weight: {{userData.currentWeight}}kg</strong>
-        </p>
-
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Ideal weight</mat-label>
-          <input type="number" matInput name="idealWeight" formControlName="idealWeight" placeholder="What's the clients ideal weight?" autofocus="none">
-          <mat-error class="input-error" *ngIf="!targetForm['controls'].idealWeight.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Ideal kg of muscle</mat-label>
-          <input type="number" matInput name="idealKiloOfMuscle" formControlName="idealKiloOfMuscle" placeholder="How many kg's?" autofocus="none">
-          <!-- <mat-error class="input-error" *ngIf="!targetForm['controls'].idealKiloOfMuscle.valid">This is <strong>required</strong></mat-error> -->
-        </mat-form-field>
-
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Gain or lose weight</mat-label>
-          <mat-select matInput name="target" placeholder="What's the goal?" [(value)]="selectedTarget" formControlName="target" autocomplete="off" 
-          panelClass="dropdown-regular" required>
-            <mat-option *ngFor="let target of targets" [value]="target.value">{{target.viewValue}}</mat-option>
-          </mat-select>
-          <mat-error class="input-error" *ngIf="!targetForm['controls'].target.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Kg's the client will lose/gain</mat-label>
-          <input type="number" matInput name="totalTarget" formControlName="totalTarget" placeholder="Amount in kg's" autofocus="none">
-          <mat-error class="input-error" *ngIf="!targetForm['controls'].idealKiloOfMuscle.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>The Duration to reach it</mat-label>
-          <input type="number" matInput name="targetDuration" formControlName="targetDuration" placeholder="Aprox. amount of weeks" autofocus="none">
-          <mat-error class="input-error" *ngIf="!targetForm['controls'].targetDuration.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-
-        <!-- <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>The targets</mat-label>
-          <textarea type="text" matInput formControlName="mealplanCategory" placeholder="Choose one or more categories" 
-          matTextareaAutosize autofocus="off" autocomplete="off">
-          </textarea>
-          <mat-error class="input-error" *ngIf="!categoryForm['controls'].mealplanCategory.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field> -->
-      </form>
-
-
-      <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
-      </section>
-    </mat-step>
-
-    <mat-step [stepControl]="calcForm">
-      <form [formGroup]="calcForm">
-        <ng-template matStepLabel>Metrics</ng-template>
-        <h3>🧮 Calculative values for {{userData.displayName}}</h3>
-        <p class="card-text">
-          We need to calculate some things under the hood. Help us by providing these values.
-        </p>
-
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Increase or decrease calories from the basal metabolism</mat-label>
-          <mat-select matInput name="increaseCalories" placeholder="Pick one" [(value)]="selectedBasalValue" 
-          formControlName="increaseCalories" autocomplete="off" panelClass="dropdown-regular" required>
-            <mat-option *ngFor="let value of basalValues" [value]="value.value">{{value.viewValue}}</mat-option>
-          </mat-select>
-          <mat-error class="input-error" *ngIf="!calcForm['controls'].increaseCalories.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>How many calories we are going to increase or decrease</mat-label>
-          <input type="number" matInput formControlName="increaseAmount" placeholder="Amount in kcal." 
-          name="increaseAmount" autofocus="off" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!calcForm['controls'].increaseAmount.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-        
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>
-            Factor Calorie: This is by how many times the basal amount of calories calculated by the system will be multiplied.
-          </mat-label>
-          <input type="number" matInput (input)="calculateCalories()" name="factorCalorie" formControlName="factorCalorie" 
-          placeholder="Factor (eg. 1.1)" autofocus="off" autocomplete="off">
-          <mat-hint>
-            <ng-container *ngIf="calcForm['controls'].factorCalorie.dirty">
-              {{calcForm['controls'].factorCalorie.value}} would mean a {{calculatedPerc | number}}% 
-              <ng-container *ngIf="increase">
-                increase
-              </ng-container>
-              <ng-container *ngIf="!increase">
-                decrease
-              </ng-container>
-            </ng-container>
-            <ng-container *ngIf="!calcForm['controls'].factorCalorie.dirty">
-              1.1 would mean a 10% increase
-            </ng-container>
-          </mat-hint>
-          <mat-error class="input-error" *ngIf="!calcForm['controls'].factorCalorie.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-      </form>
-
-      <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
-      </section>
-    </mat-step>
-
-    <mat-step [stepControl]="activityForm">
-      <form [formGroup]="activityForm">
-        <ng-template matStepLabel>Activities</ng-template>
-        <h3>🏂 Activities for {{userData.displayName}}</h3>
+    <mat-step [stepControl]="mealTimeForm">
+      <form [formGroup]="mealTimeForm">
+        <ng-template matStepLabel>Meal times</ng-template>
+        <h3>🏂 Meal Times for {{userData.displayName}}</h3>
         <p class="intro-text">
-          Describe more about the activity that the client mainly loves and does. Also put in the macro distribution values. 
+          Define the meal times for this client. You will have to fill out meals for all the meal times you enter. 
         </p>
 
-        <div class="add-form-field-container" formArrayName="activityArr">
-          <h4>Add the client's activities</h4>
-          <section class="dynamic-form-field-container" *ngFor="let activity of activityForms.controls; let i=index" [formGroupName]="i">
+        <div class="add-form-field-container" formArrayName="mealTimeArr">
+          <h4>Add the Meal Times</h4>
+          <section class="dynamic-form-field-container mealtimes" *ngFor="let mealTime of mealTimeForms.controls; let i=index" [formGroupName]="i">
             <div class="number-id">
               <h1>{{i+1}}</h1>
             </div>
-            <div class="form-fields multiple-lines">
+            <div class="form-fields">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>Which activity does the client do?</mat-label>
-                <mat-select matInput placeholder="Pick an activity" formControlName="activityID" 
+                <mat-label>Which meal times suit the client best?</mat-label>
+                <mat-select matInput placeholder="Pick a Meal Time" formControlName="mealTimeID" 
                 panelClass="dropdown-regular" autocomplete="off" required>
                   <mat-option *ngFor="let exercise of exercises" [value]="exercise.exerciseID"> {{exercise.exerciseName}}</mat-option>
                 </mat-select>
-                <mat-error class="input-error" *ngIf="!activityID.touched">This is <strong>required</strong></mat-error>
-              </mat-form-field>
-
-              <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>How proficient is the client?</mat-label>
-                <mat-select matInput placeholder="Pick a level" formControlName="activityLevel" 
-                panelClass="dropdown-regular" autocomplete="off" required>
-                  <mat-option *ngFor="let level of activityLevels" [value]="level.value"> {{level.viewValue}}</mat-option>
-                </mat-select>
-                <mat-error class="input-error" *ngIf="!activityLevel.touched">This is <strong>required</strong></mat-error>
-              </mat-form-field>
-      
-              <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>How long does the user do this activity?</mat-label>
-                <input type="number" matInput formControlName="activityDuration" placeholder="Amount in minutes" 
-                name="activityDuration" autofocus="off" autocomplete="off">
-                <mat-error class="input-error" *ngIf="!activityDuration.valid">This is <strong>required</strong></mat-error>
-              </mat-form-field>
-      
-              <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>The activity frequency</mat-label>
-                <input type="number" matInput formControlName="activityPerWeek" placeholder="How many times per week" 
-                name="activityPerWeek" autofocus="off" autocomplete="off">
-                <mat-error class="input-error" *ngIf="!activityPerWeek.valid">This is <strong>required</strong></mat-error>
+                <!-- <mat-error class="input-error" *ngIf="!mealTimeID.touched">This is <strong>required</strong></mat-error> -->
               </mat-form-field>
             </div>
             <div class="btn-area">
-              <button type="button"mat-icon-button type="button" class="delete-btn" (click)="deleteActivity(i); checkActivity();">
+              <button type="button"mat-icon-button type="button" class="delete-btn" (click)="deleteMealTime(i); checkMealTime();">
                 <i class="fa fa-trash"></i>
               </button>
             </div>
@@ -199,9 +62,9 @@
         </div>
 
 
-        <button type="button" *ngIf="showAddActivity" class="add-form-field" (click)="addActivity(); checkActivity();">
+        <button type="button" *ngIf="showAddMealTime" class="add-form-field" (click)="addMealTime(); checkMealTime();">
           <i class="fa fa-plus"></i>
-          Add an Activity
+          Add a Meal Time
         </button>
       </form>
 
@@ -211,36 +74,126 @@
       </section>
     </mat-step>
 
-    <mat-step [stepControl]="macroForm">
-      <form [formGroup]="macroForm">
-        <ng-template matStepLabel>Macros</ng-template>
-        <h3>🥜 Macros for {{userData.displayName}}</h3>
+    <mat-step [stepControl]="mondayForm">
+      <form [formGroup]="mondayForm">
+        <ng-template matStepLabel>Monday</ng-template>
+        <h3>🥜 Monday Meals for {{userData.displayName}}</h3>
         <p class="intro-text">
-          Define the way the macros will be divided during the time the client follows this mealplan.
-          Please note: The total must add up to 100!
+          Add ingredients and meals to the meal times you specified earlier. Add a maximum of 2 meals per meal time.
+        </p>
+
+        <!-- <p>{{mealTimeArr.mealTimeID}}</p> -->
+
+        <!-- <mat-form-field *ngFor="let mealTime of mealTimes" appearance="standard" floatLabel="always">
+          <mat-label>Meal time</mat-label>
+          <input type="number" matInput name="mealTimeValue" formControlName="mealTimeValue" 
+          placeholder="Percentage (of 100)" autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTimeValue.valid && mondayForm.touched">
+            This is <strong>required</strong>
+          </mat-error>
+        </mat-form-field> -->
+      </form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
+      </section>
+
+    </mat-step>
+
+    <mat-step [stepControl]="tuesdayForm">
+      <form [formGroup]="tuesdayForm">
+        <ng-template matStepLabel>Tuesday</ng-template>
+        <h3>🥜 Tuesday Meals for {{userData.displayName}}</h3>
+        <p class="intro-text">
+          Add ingredients and meals to the meal times you specified earlier. Add a maximum of 2 meals per meal time.
+        </p>
+      </form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
+      </section>
+
+    </mat-step>
+
+    <mat-step [stepControl]="wednesdayForm">
+      <form [formGroup]="wednesdayForm">
+        <ng-template matStepLabel>Wednesday</ng-template>
+        <h3>🥜 Wednesday Meals for {{userData.displayName}}</h3>
+        <p class="intro-text">
+          Add ingredients and meals to the meal times you specified earlier. Add a maximum of 2 meals per meal time.
+        </p>
+      </form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
+      </section>
+
+    </mat-step>
+
+    <mat-step [stepControl]="thursdayForm">
+      <form [formGroup]="thursdayForm">
+        <ng-template matStepLabel>Thursday</ng-template>
+        <h3>🥜 Thursday Meals for {{userData.displayName}}</h3>
+        <p class="intro-text">
+          Add ingredients and meals to the meal times you specified earlier. Add a maximum of 2 meals per meal time.
+        </p>
+      </form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
+      </section>
+
+    </mat-step>
+
+    <mat-step [stepControl]="fridayForm">
+      <form [formGroup]="fridayForm">
+        <ng-template matStepLabel>Friday</ng-template>
+        <h3>🥜 Friday Meals for {{userData.displayName}}</h3>
+        <p class="intro-text">
+          Add ingredients and meals to the meal times you specified earlier. Add a maximum of 2 meals per meal time.
+        </p>
+      </form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
+      </section>
+
+    </mat-step>
+
+    <mat-step [stepControl]="suppForm">
+      <form [formGroup]="suppForm">
+        <ng-template matStepLabel>Macros</ng-template>
+        <h3>🥜 Supplements for {{userData.displayName}}</h3>
+        <p class="intro-text">
+          Define the supplements the user should take before, during and/or after the training. All values are optional.
         </p>
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Protein</mat-label>
-          <input type="number" matInput name="proteinValue" formControlName="proteinValue" 
-          placeholder="Percentage (of 100)" autofocus="off" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!macroForm['controls'].proteinValue.valid && macroForm.touched">
+          <mat-label>Before the training</mat-label>
+          <input type="text" matInput name="before" formControlName="before" 
+          placeholder="Which supplements?" autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!suppForm['controls'].before.valid && suppForm.touched">
             This is <strong>required</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Carbohydrates</mat-label>
-          <input type="number" matInput name="carbValue" formControlName="carbValue" 
-          placeholder="Percentage (of 100)" autofocus="off" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!macroForm['controls'].carbValue.valid && macroForm.touched">
+          <mat-label>During the training</mat-label>
+          <input type="text" matInput name="during" formControlName="during" 
+          placeholder="Which supplements?" autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!suppForm['controls'].during.valid && suppForm.touched">
             This is <strong>required</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Fat</mat-label>
-          <input type="number" matInput name="fatValue" formControlName="fatValue" 
-          placeholder="Percentage (of 100)" autofocus="off" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!macroForm['controls'].fatValue.valid && macroForm.touched">
+          <mat-label>After the training</mat-label>
+          <input type="text" matInput name="after" formControlName="after" 
+          placeholder="Which supplements?" autofocus="off" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!suppForm['controls'].after.valid && suppForm.touched">
             This is <strong>required</strong>
           </mat-error>
         </mat-form-field>
@@ -249,8 +202,8 @@
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
         <button type="submit" class="dialog-button" (click)="addMealplan()"
-          [disabled]="!infoForm.valid || !targetForm.valid || !calcForm.valid || !activityForm.valid || !macroForm.valid"
-          [class.disabled]="!infoForm.valid || !targetForm.valid  || !calcForm.valid || !activityForm.valid || !macroForm.valid"
+          [disabled]="!infoForm.valid || !targetForm.valid || !calcForm.valid || !mealTimeForm.valid || !macroForm.valid"
+          [class.disabled]="!infoForm.valid || !targetForm.valid  || !calcForm.valid || !mealTimeForm.valid || !macroForm.valid"
           mat-dialog-close
         >
           Done

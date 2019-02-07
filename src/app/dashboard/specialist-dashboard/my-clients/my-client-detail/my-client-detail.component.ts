@@ -96,7 +96,10 @@ export class MyClientDetailComponent implements OnInit {
     this.dialog.open(AddMealDialogComponent, {
         data: {
           uid: this.user.uid,
+          displayName: this.user.displayName,
+          currentWeight: this.user.basicData.currentWeight
         },
+        panelClass: 'mealplan-dialog'
     });
   }
 

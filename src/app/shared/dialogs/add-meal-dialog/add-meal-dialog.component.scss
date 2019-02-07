@@ -16,6 +16,10 @@
     }
 }
 
+::ng-deep .mealplan-dialog {
+    max-width: 90vw!important;
+}
+
 ::ng-deep mat-form-field {
     &.text-field {
 
@@ -92,18 +96,31 @@ form {
             }
         }
 
+        &.mealtimes {
+            &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+                .btn-area {
+                    display: none;
+                }
+            }
+
+            .form-fields {
+                width: 90%;
+                border-right: $light-border;
+            }
+        }
+
         .form-fields {
             width: 80%;
             display: flex;
             flex-flow: row wrap;
             box-sizing: border-box;
+            border-top: $light-border;
+            border-bottom: $light-border;
         }
 
         mat-form-field.mat-form-field {
             box-sizing: border-box;
-            width: 50%;
-            border-top: $light-border;
-            border-bottom: $light-border;
+            width: 100%;
             padding: 5px 30px 5px 20px;
 
             &:nth-child(1n) {
@@ -146,6 +163,7 @@ form {
             border-bottom: $light-border;
             mat-form-field.mat-form-field {
                 border: none;
+                width: 50%;
             }
 
             div.btn-area {
