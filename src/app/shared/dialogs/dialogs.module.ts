@@ -15,6 +15,7 @@ import { FileUploadExerciseComponent } from './../file-upload/file-upload-exerci
 import { AddExerciseDialogComponent } from './add-exercise-dialog/add-exercise-dialog.component';
 import { AddMealDialogComponent } from './add-meal-dialog/add-meal-dialog.component';
 import { AddGuideDialogComponent } from './add-guide-dialog/add-guide-dialog.component';
+import { DialogModule } from './add-meal-dialog/dialog.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AddGuideDialogComponent } from './add-guide-dialog/add-guide-dialog.com
     ReactiveFormsModule,
     CommonModule,
     MaterialModule,
-    MatDialogModule
+    MatDialogModule,
+    DialogModule
   ],
   exports: [
     ConfirmDialogComponent,

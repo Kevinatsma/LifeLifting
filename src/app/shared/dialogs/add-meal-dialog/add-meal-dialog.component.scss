@@ -103,6 +103,12 @@ form {
                 }
             }
 
+            &:nth-child(5), &:nth-child(6), &:nth-child(7), &:nth-child(8) {
+                .form-fields {
+                    width: 80%;
+                }
+            }
+
             .form-fields {
                 width: 90%;
                 border-right: $light-border;
@@ -171,5 +177,41 @@ form {
             }
         }
 
+    }
+
+    &.day-form {
+        .time-container {
+            min-height: 100px;
+            section.header {
+                box-sizing: border-box;
+                display: flex;
+                flex-flow: row nowrap;
+                width: 100%;
+                padding: 0 3em 0 0;
+                align-items: center;
+                justify-content: space-between;
+                .title {
+
+
+                    h4 {
+                        font-size: 22px;
+                        &.not-filled {
+                            color: $grey;
+                        }
+                    }
+                }
+                .time {
+                    font-size: 20px;
+                    position: relative;
+                    top: 5px;
+
+                    svg {
+                        font-size: 20px;
+                    }
+                }
+            }
+
+
+        }
     }
 }

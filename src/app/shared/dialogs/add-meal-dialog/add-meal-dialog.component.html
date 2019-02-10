@@ -46,9 +46,9 @@
             <div class="form-fields">
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Which meal times suit the client best?</mat-label>
-                <mat-select matInput placeholder="Pick a Meal Time" formControlName="mealTimeID" 
-                panelClass="dropdown-regular" autocomplete="off" required>
-                  <mat-option *ngFor="let exercise of exercises" [value]="exercise.exerciseID"> {{exercise.exerciseName}}</mat-option>
+                <mat-select matInput placeholder="Pick a Meal Time" formControlName="mealTime" 
+                panelClass="dropdown-regular" autocomplete="off" (selectionChange)="updateMealTimes()" required>
+                  <mat-option *ngFor="let time of times" [value]="time.value"> {{time.value}}</mat-option>
                 </mat-select>
                 <!-- <mat-error class="input-error" *ngIf="!mealTimeID.touched">This is <strong>required</strong></mat-error> -->
               </mat-form-field>
@@ -75,24 +75,12 @@
     </mat-step>
 
     <mat-step [stepControl]="mondayForm">
-      <form [formGroup]="mondayForm">
-        <ng-template matStepLabel>Monday</ng-template>
-        <h3>🥜 Monday Meals for {{userData.displayName}}</h3>
-        <p class="intro-text">
-          Add ingredients and meals to the meal times you specified earlier. Add a maximum of 2 meals per meal time.
-        </p>
-
-        <!-- <p>{{mealTimeArr.mealTimeID}}</p> -->
-
-        <!-- <mat-form-field *ngFor="let mealTime of mealTimes" appearance="standard" floatLabel="always">
-          <mat-label>Meal time</mat-label>
-          <input type="number" matInput name="mealTimeValue" formControlName="mealTimeValue" 
-          placeholder="Percentage (of 100)" autofocus="off" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTimeValue.valid && mondayForm.touched">
-            This is <strong>required</strong>
-          </mat-error>
-        </mat-form-field> -->
-      </form>
+    <ng-template matStepLabel>Monday</ng-template>
+      <ng-container *ngIf="!mealTimeForms.dirty">
+        <h5>🤦 Fill out some mealtimes to see something here</h5>
+      </ng-container>
+      <app-monday-form *ngIf="mealTimeForms.dirty" [foods]="foods" [mealTimes]="mealTimeArr">
+      </app-monday-form>
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
@@ -102,13 +90,6 @@
     </mat-step>
 
     <mat-step [stepControl]="tuesdayForm">
-      <form [formGroup]="tuesdayForm">
-        <ng-template matStepLabel>Tuesday</ng-template>
-        <h3>🥜 Tuesday Meals for {{userData.displayName}}</h3>
-        <p class="intro-text">
-          Add ingredients and meals to the meal times you specified earlier. Add a maximum of 2 meals per meal time.
-        </p>
-      </form>
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
@@ -118,13 +99,6 @@
     </mat-step>
 
     <mat-step [stepControl]="wednesdayForm">
-      <form [formGroup]="wednesdayForm">
-        <ng-template matStepLabel>Wednesday</ng-template>
-        <h3>🥜 Wednesday Meals for {{userData.displayName}}</h3>
-        <p class="intro-text">
-          Add ingredients and meals to the meal times you specified earlier. Add a maximum of 2 meals per meal time.
-        </p>
-      </form>
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
@@ -134,13 +108,6 @@
     </mat-step>
 
     <mat-step [stepControl]="thursdayForm">
-      <form [formGroup]="thursdayForm">
-        <ng-template matStepLabel>Thursday</ng-template>
-        <h3>🥜 Thursday Meals for {{userData.displayName}}</h3>
-        <p class="intro-text">
-          Add ingredients and meals to the meal times you specified earlier. Add a maximum of 2 meals per meal time.
-        </p>
-      </form>
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
@@ -150,13 +117,6 @@
     </mat-step>
 
     <mat-step [stepControl]="fridayForm">
-      <form [formGroup]="fridayForm">
-        <ng-template matStepLabel>Friday</ng-template>
-        <h3>🥜 Friday Meals for {{userData.displayName}}</h3>
-        <p class="intro-text">
-          Add ingredients and meals to the meal times you specified earlier. Add a maximum of 2 meals per meal time.
-        </p>
-      </form>
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
@@ -167,7 +127,7 @@
 
     <mat-step [stepControl]="suppForm">
       <form [formGroup]="suppForm">
-        <ng-template matStepLabel>Macros</ng-template>
+        <ng-template matStepLabel>Supps</ng-template>
         <h3>🥜 Supplements for {{userData.displayName}}</h3>
         <p class="intro-text">
           Define the supplements the user should take before, during and/or after the training. All values are optional.
@@ -202,8 +162,12 @@
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
         <button type="submit" class="dialog-button" (click)="addMealplan()"
-          [disabled]="!infoForm.valid || !targetForm.valid || !calcForm.valid || !mealTimeForm.valid || !macroForm.valid"
-          [class.disabled]="!infoForm.valid || !targetForm.valid  || !calcForm.valid || !mealTimeForm.valid || !macroForm.valid"
+          [disabled]="!infoForm.valid || !mealTimeForm.valid || !mondayForm.valid || 
+                      !tuesdayForm.valid || !wednesdayForm.valid || !thursdayForm.valid ||
+                      !fridayForm.valid || !suppForm.valid"
+          [class.disabled]="!infoForm.valid || !mealTimeForm.valid || !mondayForm.valid || 
+                            !tuesdayForm.valid || !wednesdayForm.valid || !thursdayForm.valid || 
+                            !fridayForm.valid || !suppForm.valid"
           mat-dialog-close
         >
           Done

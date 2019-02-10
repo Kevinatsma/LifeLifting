@@ -8,6 +8,13 @@ import { AuthService } from '../../../core/auth/auth.service';
 import { UserService } from '../../../user/user.service';
 import { Exercise } from '../../../exercises/exercise.model';
 import { ExerciseService } from '../../../exercises/exercise.service';
+import times from './../../data/JSON/times.json';
+import { Time } from '../../data/models/time.model';
+import { Food } from './../../../foods/food.model';
+import { Observable } from 'rxjs';
+import { FoodService } from './../../../foods/food.service';
+import { MondayFormComponent } from './monday-form/monday-form.component';
+import { AddMealDialogService } from './add-meal-dialog.service';
 
 @Component({
   selector: 'app-add-meal-dialog',
@@ -23,62 +30,45 @@ export class AddMealDialogComponent implements OnInit {
   // FormGroups
   addMealplanForm: FormGroup;
   infoForm: FormGroup;
-  targetForm: FormGroup;
-  targets = [
-    {
-      value: 'gain',
-      viewValue: 'Gain weight'
-    },
-    {
-      value: 'lose',
-      viewValue: 'Lose weight'
-    },
-  ]; selectedTarget: string;
 
+  //
   mealTimes: [
-    {time: string}
+    {value: string}
   ];
+
+  // Day forms, these get changed by events emitted from the child components
   mondayMeals: FormArray;
   tuesdayMeals: FormArray;
   wednesdayMeals: FormArray;
   thursdayMeals: FormArray;
   fridayMeals: FormArray;
 
-  calcForm: FormGroup;
-  calculatedPerc: number;
-  increase: boolean;
-  basalValues = [
-    {
-      value: 'increase',
-      viewValue: 'Increase calories'
-    },
-    {
-      value: 'decrease',
-      viewValue: 'Decrease calories'
-    },
-  ]; selectedBasalValue: string;
+  // retreive times from  json file
+  times: Time[] = times.times;
 
+  // form to add meal times -->  they get send to the child components
   mealTimeForm: FormGroup;
   mealTimeArr: FormArray;
   showAddMealTime = true;
 
-  mondayForm: FormGroup;
+  foods: Food[];
+
   tuesdayForm: FormGroup;
   wednesdayForm: FormGroup;
   thursdayForm: FormGroup;
   fridayForm: FormGroup;
 
   suppForm: FormGroup;
-  macroForm: FormGroup;
 
   constructor( private fb: FormBuilder,
                private auth: AuthService,
                private userService: UserService,
-               private exerciseService: ExerciseService,
+               private foodService: FoodService,
                private mealplanService: MealplanService,
+               public mealService: AddMealDialogService,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
-                this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
+                this.foodService.getFoods().subscribe(foods => this.foods = foods);
                }
 
   ngOnInit() {
@@ -91,85 +81,27 @@ export class AddMealDialogComponent implements OnInit {
       mealTimeArr: this.fb.array([ this.createMealTime(), this.createMealTime(), this.createMealTime() ]),
     });
 
-    this.mondayForm = this.fb.group({
-      mealTimeValue: [''],
-      mealTimeOne: [''],
-      mealTimeTwo: [''],
-      mealTimeThree: [''],
-      mealTimeFour: [''],
-      mealTimeFive: [''],
-      mealTimeSix: [''],
-      mealTimeSeven: [''],
-    });
-
-    this.tuesdayForm = this.fb.group({
-      mealTimeOne: [''],
-      mealTimeTwo: [''],
-      mealTimeThree: [''],
-      mealTimeFour: [''],
-      mealTimeFive: [''],
-      mealTimeSix: [''],
-      mealTimeSeven: [''],
-    });
-
-    this.wednesdayForm = this.fb.group({
-      mealTimeOne: [''],
-      mealTimeTwo: [''],
-      mealTimeThree: [''],
-      mealTimeFour: [''],
-      mealTimeFive: [''],
-      mealTimeSix: [''],
-      mealTimeSeven: [''],
-    });
-
-    this.thursdayForm = this.fb.group({
-      mealTimeOne: [''],
-      mealTimeTwo: [''],
-      mealTimeThree: [''],
-      mealTimeFour: [''],
-      mealTimeFive: [''],
-      mealTimeSix: [''],
-      mealTimeSeven: [''],
-    });
-
-    this.fridayForm = this.fb.group({
-      mealTimeOne: [''],
-      mealTimeTwo: [''],
-      mealTimeThree: [''],
-      mealTimeFour: [''],
-      mealTimeFive: [''],
-      mealTimeSix: [''],
-      mealTimeSeven: [''],
-    });
-
     this.suppForm = this.fb.group({
       before: ['', [Validators.required]],
       during: ['', [Validators.required]],
       after: ['', [Validators.required]],
     });
 
-    this.macroForm = this.fb.group({
-      proteinValue: ['', [Validators.required]],
-      carbValue: ['', [Validators.required]],
-      fatValue: ['', [Validators.required]],
-    });
-
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
     });
-
     // this.userService.getUserDataByID(this.mealplan.clientID).subscribe(user => this.client = user);
+
+    // Subscribe to Form day Objects
   }
 
-  calculateCalories() {
-    const factor = this.calcForm.get('factorCalorie').value;
-    this.calculatedPerc = (factor * 100 - 100);
-    if (this.calculatedPerc >= 1) {
-      this.increase = true;
-    } else {
-      this.increase =  false;
-    }
-  }
+  // get mondayForm(): any {
+  //   return this.mealService.mondayMealForm;
+  // }
+
+  // updateMondayForm() {
+  //     this.mealService.updateMondayForm();
+  // }
 
   // MealTime form
   get mealTimeForms() {
@@ -178,7 +110,7 @@ export class AddMealDialogComponent implements OnInit {
 
   createMealTime(): FormGroup {
     return this.fb.group({
-      mealTimeID: '',
+      mealTime: '',
     });
   }
 
@@ -198,6 +130,12 @@ export class AddMealDialogComponent implements OnInit {
   deleteMealTime(i) {
     (this.mealTimeForm.get('mealTimeArr') as FormArray).removeAt(i);
   }
+
+  updateMealTimes() {
+    this.mealTimeArr = this.mealTimeForm.get('mealTimeArr') as FormArray;
+  }
+
+  // Update formgroups
 
   // Collect the data and send to service
   addMealplan() {
