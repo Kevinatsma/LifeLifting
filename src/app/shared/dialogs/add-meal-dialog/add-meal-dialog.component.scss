@@ -96,6 +96,19 @@ form {
             }
         }
 
+        &.chip-container {
+            &:first-child {
+                .btn-area {
+                    display: none;
+                }
+            }
+
+            mat-select {
+                border-radius: 10px;
+                border: 1.5px solid $secondary-color;
+            }
+        }
+
         &.mealtimes {
             &:nth-child(2), &:nth-child(3), &:nth-child(4) {
                 .btn-area {
@@ -126,7 +139,7 @@ form {
 
         mat-form-field.mat-form-field {
             box-sizing: border-box;
-            width: 100%;
+            width: auto;
             padding: 5px 30px 5px 20px;
 
             &:nth-child(1n) {
@@ -195,6 +208,7 @@ form {
 
                     h4 {
                         font-size: 22px;
+                        text-align: left;
                         &.not-filled {
                             color: $grey;
                         }

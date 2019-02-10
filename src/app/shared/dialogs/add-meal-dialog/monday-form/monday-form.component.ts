@@ -28,11 +28,15 @@ export class MondayFormComponent implements OnInit {
 
   // FormGroups
   mondayMealForm: FormGroup;
-  mondayMealArr: FormArray;
+  mOneMealOneForm: FormGroup;
+  mOneMealOneArr: FormArray;
+  mOneMealTwoForm: FormGroup;
+  mOneMealTwoShow = false;
+  mOneMealTwoArr: FormArray;
   selectedProduct: Food;
 
 
-  showAddMeal = true;
+  showAddProduct = true;
 
   constructor( private fb: FormBuilder,
                private auth: AuthService,
@@ -54,15 +58,10 @@ export class MondayFormComponent implements OnInit {
 
   ngOnInit() {
     this.mondayMealForm = this.fb.group({
-      mealTimeOne: [''],
-      mealTimeTwo: [''],
-      mealTimeThree: [''],
-      mealTimeFour: [''],
-      mealTimeFive: [''],
-      mealTimeSix: [''],
-      mealTimeSeven: [''],
-      mealTitle: ['', [Validators.required]],
-      mealArr: this.fb.array([ this.createMeal()])
+      mOneMealOneTitle: ['', [Validators.required]],
+      mOneMealOneArr: this.fb.array([ this.createProduct()]),
+      mOneMealTwoTitle: [''],
+      mOneMealTwoArr: this.fb.array([ this.createProduct()]),
     });
 
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
@@ -79,30 +78,47 @@ export class MondayFormComponent implements OnInit {
   }
 
   // Meal form
-  get mondayMealForms() {
-    return this.mondayMealForm.get('mondayMealArr') as FormArray;
+  get mOneMealOneForms() {
+    return this.mondayMealForm.get('mOneMealOneArr') as FormArray;
+  }
+  get mOneMealTwoForms() {
+    return this.mondayMealForm.get('mOneMealTwoArr') as FormArray;
   }
 
-  createMeal(): FormGroup {
+  // Product array item
+  createProduct(): FormGroup {
     return this.fb.group({
-      mondayMealTitle: '',
+      productTitle: '',
     });
   }
 
-  addMeal(): void {
-    this.mondayMealArr = this.mondayMealForm.get('mondayMealArr') as FormArray;
-    this.mondayMealArr.push(this.createMeal());
-  }
-
-  checkMeal(): void {
-    if (this.mondayMealArr.length < 2) {
-      this.showAddMeal = true;
-    } else {
-      this.showAddMeal = false;
+  addProduct(number): void {
+    let array;
+    if (number === 11) {
+      array = this.mondayMealForm.get('mOneMealOneArr') as FormArray;
+    } else if (number ===  12 ) {
+      array = this.mondayMealForm.get('mOneMealTwoArr') as FormArray;
     }
+    this.checkProduct(array);
+    return array.push(this.createProduct());
   }
 
-  deleteMeal(i) {
-    (this.mondayMealForm.get('mondayMealArr') as FormArray).removeAt(i);
+  deleteProduct(number, i) {
+    let array;
+    if (number === 11) {
+      array = this.mondayMealForm.get('mOneMealOneArr') as FormArray;
+    } else if (number ===  12 ) {
+      array = this.mondayMealForm.get('mOneMealTwoArr') as FormArray;
+    }
+    this.checkProduct(array);
+    return array.removeAt(i);
+  }
+
+  checkProduct(array): void {
+    if (array.length < 10) {
+      this.showAddProduct = true;
+    } else {
+      this.showAddProduct = false;
+    }
   }
 }

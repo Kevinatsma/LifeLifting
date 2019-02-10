@@ -1,16 +1,14 @@
-<form class="day-form" [formGroup]="mondayMealForm">
+<form class="day-form"  [formGroup]="mondayMealForm">
   <h3>🥜 Monday Meals for {{userData.displayName}}</h3>
   <p class="intro-text">
     Add ingredients and meals to the meal times you specified earlier. Add a maximum of 2 meals per meal time.
   </p>
 
   <ng-container *ngIf="mealTimes">
-    Oh hey there {{mealTimes}}
-  <div class="time-container" *ngFor="let time of mealTimes.controls; let i = index;">
+  <div class="time-container" *ngIf="mealTimes.controls[0] as time">
     <section class="header">
-
       <!--  Conditional meal titles -->
-      <div class="title">
+      <div class="title" *ngIf="time.value.mealTime">
         <h4 *ngIf="time.value.mealTime >= 06.00 && time.value.mealTime < 10.15">Breakfast</h4>
         <h4 *ngIf="time.value.mealTime > 10.15 && time.value.mealTime < 12.15">Morning Snack</h4>
         <h4 *ngIf="time.value.mealTime > 12.15 && time.value.mealTime < 14.15">Lunch</h4>
@@ -21,7 +19,7 @@
         <h4 *ngIf="time.value.mealTime > 00.00 && time.value.mealTime < 00.46">Post-workout meal</h4>
       </div>
       <div class="title" *ngIf="!time.value.mealTime">
-        <h4 class="not-filled">Add a meal time</h4>
+        <h4 class="not-filled">This meal doesn't contain a meal time yet</h4>
       </div>
       <h5 class="time" *ngIf="time.value.mealTime">
         <i class="far fa-clock"></i>
@@ -33,33 +31,76 @@
       </h5>
     </section>
 
-    <mat-form-field appearance="standard" floatLabel="always">
-      <input class="f-input" type="text" matInput name="mealTitle" formControlName="mealTitle" placeholder="Name of the Meal" autofocus="none">
-      <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
-    </mat-form-field>
+    <div class="add-form-field-container meals">
+      <mat-form-field appearance="standard" floatLabel="always">
+        <input class="f-input" type="text" matInput formControlName="mOneMealOneTitle" name="mealTitle" placeholder="Name of the Meal" 
+        autofocus="none">
+        <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
+      </mat-form-field>
 
-    <!-- <div class="add-form-field-container" formArrayName="mondayMealArr">
-      <section class="dynamic-form-field-container chip-container" *ngFor="let meal of mondayMealForms.controls; let i=index" 
-      [formGroupName]="i">
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-select matInput class="f-input select" placeholder="Pick a Product" [(value)]="selectedProduct" formControlName="ingredient"
-            panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
-            </mat-select>
-             <mat-error class="input-error" *ngIf="!mealTimeID.touched">This is <strong>required</strong></mat-error>
+      <div class="add-form-field-container" formArrayName="mOneMealOneArr">
+        <section class="dynamic-form-field-container chip-container" *ngFor="let food of mOneMealOneForms.controls; let i=index" 
+        [formGroupName]="i">
+        <mat-form-field appearance="standard" floatLabel="always" >
+          <mat-select matInput class="f-input select" placeholder="Pick a Product"
+          panelClass="dropdown-regular" autocomplete="off" formControlName="productTitle" required>
+            <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!mealTimeID.touched">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
           <div class="btn-area">
-            <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteMeal(i); checkMeal();">
-              <i class="fa fa-trash"></i>
+            <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteProduct(11, i);">
+              <!-- <i class="fa fa-trash"></i> -->
+              x
             </button>
           </div>
-      </section>
-      <button type="button" *ngIf="showAddMeal" class="add-form-field" (click)="addMeal(); checkMeal();">
-        <i class="fa fa-plus"></i>
-        Add Meal
-      </button>
-    </div> -->
+        </section>
+        <button type="button" *ngIf="showAddProduct" class="add-form-field" (click)="addProduct(11);">
+          <i class="fa fa-plus"></i>
+          Add a Product
+        </button>
+      </div>
+    </div>
+    
+    <div class="add-form-field-container meals" *ngIf="mOneMealTwoShow">
+      <mat-form-field appearance="standard" floatLabel="always">
+        <input class="f-input" type="text" matInput formControlName="mOneMealTwoTitle" name="mealTitle" placeholder="Name of the Meal" autofocus="none">
+        <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
+      </mat-form-field>
 
-  </div>
-  </ng-container>
+      <div class="add-form-field-container" formArrayName="mOneMealTwoArr">
+        <section class="dynamic-form-field-container chip-container" *ngFor="let food of mOneMealTwoForms.controls; let i=index" 
+        [formGroupName]="i">
+        <mat-form-field appearance="standard" floatLabel="always" >
+          <mat-select matInput class="f-input select" placeholder="Pick a Product" [(value)]="selectedProduct"
+          panelClass="dropdown-regular" autocomplete="off" formControlName="productTitle" required>
+            <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!mealTimeID.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+          <div class="btn-area">
+            <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteProduct(12, i);">
+              <!-- <i class="fa fa-trash"></i> -->
+              x
+            </button>
+          </div>
+        </section>
+        <button type="button" *ngIf="showAddProduct" class="add-form-field" (click)="addProduct(12);">
+          <i class="fa fa-plus"></i>
+          Add a Product
+        </button>
+      </div>
+    </div>
+
+    <button type="button" *ngIf="!mOneMealTwoShow" class="add-form-field" (click)="mOneMealTwoShow = true">
+      <i class="fa fa-plus"></i>
+      Add a Meal
+    </button>
+
+    <button type="button" *ngIf="mOneMealTwoShow" class="add-form-field" (click)="mOneMealTwoShow = false">
+      <i class="fa fa-plus"></i>
+      Remove a Meal
+    </button>
+  </div> <!-- End Timecontainer -->
+</ng-container>
 </form>

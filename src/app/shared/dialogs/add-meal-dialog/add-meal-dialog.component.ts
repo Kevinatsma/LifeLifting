@@ -52,7 +52,7 @@ export class AddMealDialogComponent implements OnInit {
   showAddMealTime = true;
 
   foods: Food[];
-
+  mondayForm: FormGroup;
   tuesdayForm: FormGroup;
   wednesdayForm: FormGroup;
   thursdayForm: FormGroup;

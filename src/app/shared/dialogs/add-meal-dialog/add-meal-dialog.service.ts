@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Food } from 'src/app/foods/food.model';
+import { Food } from './../../../foods/food.model';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { DayForm } from './day-form.model';
 import { FormArray } from '@angular/forms';
