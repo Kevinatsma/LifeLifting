@@ -88,7 +88,8 @@ export class MondayFormComponent implements OnInit {
   // Product array item
   createProduct(): FormGroup {
     return this.fb.group({
-      productTitle: '',
+      product: '',
+      amount: '',
     });
   }
 
@@ -120,5 +121,10 @@ export class MondayFormComponent implements OnInit {
     } else {
       this.showAddProduct = false;
     }
+  }
+
+  checkArray() {
+    const array = this.mondayMealForm.get('mOneMealOneArr').value;
+    console.log(array);
   }
 }

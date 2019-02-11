@@ -31,21 +31,18 @@
     }
 }
 
-    .image-uploader{
-        width: 80%;
-        margin: 4em auto;
-    }
-
-
-    .image-subtitle {
-        margin: 0.5em 1.6em;
-    }
-
-    section.photo-title {
-        margin: 2em 3em;
-    }
-
 // Component Css
+.not-there {
+    padding: 2em 3em 3em;
+    width: 100%;
+    h5 {
+        margin-bottom: 1em;
+    }
+    p {
+        width: 60%;
+        margin: 0;
+    }
+}
 
 form {
     margin: 2em auto 3em;
@@ -59,19 +56,6 @@ form {
 
     p.card-text {
         margin: 0.5em 0 1.5em;
-    }
-
-    div.review-container {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: flex-start;
-        width: 100%;
-        overflow-x: scroll;
-        padding: 1em 2em;
-
-        p.hide {
-            visibility: hidden;
-        }
     }
 
     .dynamic-form-field-container {
@@ -93,19 +77,6 @@ form {
                 font-size: 22px;
                 font-weight: $bold;
                 color: $primary-color;
-            }
-        }
-
-        &.chip-container {
-            &:first-child {
-                .btn-area {
-                    display: none;
-                }
-            }
-
-            mat-select {
-                border-radius: 10px;
-                border: 1.5px solid $secondary-color;
             }
         }
 
@@ -139,7 +110,7 @@ form {
 
         mat-form-field.mat-form-field {
             box-sizing: border-box;
-            width: auto;
+            width: 50%;
             padding: 5px 30px 5px 20px;
 
             &:nth-child(1n) {
@@ -192,6 +163,7 @@ form {
 
     }
 
+    // CSS for all the child forms
     &.day-form {
         .time-container {
             min-height: 100px;
@@ -225,7 +197,146 @@ form {
                 }
             }
 
+            .meals {
+                position: relative;
+                padding-bottom: 1em;
+                margin: 3em 0;
 
+                &::after {
+                    content:  '';
+                    width: 80%;
+                    position: absolute;
+                    left: 10%;
+                    bottom: 0;
+                    height: 2px;
+                    background: $light-grey;
+                }
+
+                &:nth-child(2) {
+                    margin-top: 0;
+                }
+
+                &:nth-child(3){
+                    &::after {
+                        display: none;
+                    }
+                }
+
+                &__title {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    flex-flow: row nowrap;
+                    h1 {
+                        width: 10%;
+                        margin-top: -25px;
+                        font-size: 45px;
+                        font-weight: $semi-bold;
+                    }
+
+                    mat-form-field {
+                        width: 75%;
+                    }
+                }
+
+                // Food/product item chips
+                .add-form-field-container {
+                    display: flex;
+                    flex-flow: row wrap;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                    .chip-container {
+                        border-radius: 25px;
+                        border: 1.5px solid $secondary-color;
+                        display: flex;
+                        align-items: center;
+                        flex-flow: row nowrap;
+                        height: 50px;
+                        margin: 0 1em 1em;
+                        padding: 0 1em 0 2em;
+                        width: auto;
+
+                        mat-form-field * {
+                            padding: 0!important;
+                            border-top: 0!important;
+                        }
+
+                        mat-form-field:nth-child(1) {
+                            width: 120px;
+                        }
+
+                        .unit {
+                            display: flex;
+                            flex-flow: row nowrap;
+                            align-items: center;
+                            margin-left: 1.5em;
+
+                            mat-form-field {
+                                width: 50px;
+                            }
+
+                            span {
+                                margin-left: 1em;
+                            }
+                        }
+            
+                        &:first-child {
+                            .btn-area {
+                                display: none;
+                            }
+                        }
+            
+                        mat-select {
+                            border: none;
+                            box-shadow: none;
+                        }
+
+                        .icon-btn {
+                            margin-left: 1em;
+                            svg {
+                                font-size: 18px;
+                                color: $secondary-color;
+                            }
+                        }
+                    }
+
+                    .add-chip {
+                        width: 60px;
+                        height: 50px;
+                        border-radius: 25px;
+                        border: 1.5px solid $secondary-color;
+                        margin-top: -1em;
+                        svg {
+                            color: $secondary-color;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .btn-area {
+            width: 100%;
+
+            .add-form-field {
+                width: 50%;
+                margin: 0 auto;
+                @extend %flex-column-center;
+                .icon {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    background: #fff;
+                    box-shadow: $card-shadow;
+                    @extend %flex-center;
+
+                    svg {
+                        margin: 0;
+                        font-size: 28px;
+                        color: $secondary-color;
+                    }
+                }
+            }
         }
     }
 }

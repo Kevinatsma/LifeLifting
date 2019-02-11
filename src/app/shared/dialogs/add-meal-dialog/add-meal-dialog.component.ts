@@ -22,19 +22,21 @@ import { AddMealDialogService } from './add-meal-dialog.service';
   styleUrls: ['./add-meal-dialog.component.scss']
 })
 export class AddMealDialogComponent implements OnInit {
+  // Values for storing data
   user = User;
   specialistID;
-  hide = true;
-  exercises: Exercise[];
 
   // FormGroups
-  addMealplanForm: FormGroup;
   infoForm: FormGroup;
-
-  //
-  mealTimes: [
-    {value: string}
-  ];
+  // MealTimes get shared with child forms
+  mealTimeForm: FormGroup;
+  mealTimeArr: FormArray;
+  mondayForm: FormGroup;
+  tuesdayForm: FormGroup;
+  wednesdayForm: FormGroup;
+  thursdayForm: FormGroup;
+  fridayForm: FormGroup;
+  suppForm: FormGroup;
 
   // Day forms, these get changed by events emitted from the child components
   mondayMeals: FormArray;
@@ -43,22 +45,21 @@ export class AddMealDialogComponent implements OnInit {
   thursdayMeals: FormArray;
   fridayMeals: FormArray;
 
-  // retreive times from  json file
+  // Select value loops - retreive from json/firestore
+  mealTimeNames = [
+    {value: 'Breakfast'},
+    {value: 'Morning snack'},
+    {value: 'Lunch'},
+    {value: 'Afternoon snack'},
+    {value: 'Pre-workout meal'},
+    {value: 'Dinner'},
+    {value: 'Post-workout meal'}
+  ];
   times: Time[] = times.times;
-
-  // form to add meal times -->  they get send to the child components
-  mealTimeForm: FormGroup;
-  mealTimeArr: FormArray;
-  showAddMealTime = true;
-
   foods: Food[];
-  mondayForm: FormGroup;
-  tuesdayForm: FormGroup;
-  wednesdayForm: FormGroup;
-  thursdayForm: FormGroup;
-  fridayForm: FormGroup;
 
-  suppForm: FormGroup;
+  // Hide/show booleans
+  showAddMealTime = true;
 
   constructor( private fb: FormBuilder,
                private auth: AuthService,
@@ -95,14 +96,6 @@ export class AddMealDialogComponent implements OnInit {
     // Subscribe to Form day Objects
   }
 
-  // get mondayForm(): any {
-  //   return this.mealService.mondayMealForm;
-  // }
-
-  // updateMondayForm() {
-  //     this.mealService.updateMondayForm();
-  // }
-
   // MealTime form
   get mealTimeForms() {
     return this.mealTimeForm.get('mealTimeArr') as FormArray;
@@ -111,6 +104,7 @@ export class AddMealDialogComponent implements OnInit {
   createMealTime(): FormGroup {
     return this.fb.group({
       mealTime: '',
+      mealTimeName: '',
     });
   }
 
@@ -135,7 +129,12 @@ export class AddMealDialogComponent implements OnInit {
     this.mealTimeArr = this.mealTimeForm.get('mealTimeArr') as FormArray;
   }
 
-  // Update formgroups
+  // Subscribe to mealService formgroups so we can receive changes made in child forms
+
+  // get mondayForm(): any {
+  //   return this.mealService.mondayMealForm;
+  // }
+
 
   // Collect the data and send to service
   addMealplan() {
@@ -147,7 +146,7 @@ export class AddMealDialogComponent implements OnInit {
       mealplanID: this.userData.uid + '_' + mID,
       mealplanNR: mID,
       mealplanName: this.infoForm.get('mealplanName').value,
-      mealTimes: this.mealTimes,
+      mealTimes: this.mealTimeForm.value,
       mondayMeals: this.mondayMeals,
       tuesdayMeals: this.tuesdayMeals,
       wednesdayMeals: this.wednesdayMeals,

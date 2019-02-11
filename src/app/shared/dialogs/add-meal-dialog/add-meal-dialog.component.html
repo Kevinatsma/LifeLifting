@@ -52,6 +52,13 @@
                 </mat-select>
                 <!-- <mat-error class="input-error" *ngIf="!mealTimeID.touched">This is <strong>required</strong></mat-error> -->
               </mat-form-field>
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Mealtime name</mat-label>
+                <mat-select matInput placeholder="Attach a name to the time" formControlName="mealTimeName" 
+                panelClass="dropdown-regular" autocomplete="off" (selectionChange)="updateMealTimes()" required>
+                  <mat-option *ngFor="let name of mealTimeNames" [value]="name.value"> {{name.value}}</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
             <div class="btn-area">
               <button type="button"mat-icon-button type="button" class="delete-btn" (click)="deleteMealTime(i); checkMealTime();">
@@ -77,7 +84,12 @@
     <mat-step [stepControl]="mondayForm">
     <ng-template matStepLabel>Monday</ng-template>
       <ng-container *ngIf="!mealTimeForms.dirty">
-        <h5>🤦 Fill out some mealtimes to see something here</h5>
+        <div class="not-there">
+          <h5>🤦 Fill out some in step 2 mealtimes to see something here</h5>
+          <p class="card-text">
+            To be able to create meals and add ingredients for this client's mealplan, you have to first specify when the client is going to eat.
+          </p>
+        </div>
       </ng-container>
       <app-monday-form *ngIf="mealTimeForms.dirty" [foods]="foods" [mealTimes]="mealTimeArr">
       </app-monday-form>
