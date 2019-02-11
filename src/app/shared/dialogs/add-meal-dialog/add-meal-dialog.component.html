@@ -48,7 +48,7 @@
                 <mat-label>Which meal times suit the client best?</mat-label>
                 <mat-select matInput placeholder="Pick a Meal Time" formControlName="mealTime" 
                 panelClass="dropdown-regular" autocomplete="off" (selectionChange)="updateMealTimes()" required>
-                  <mat-option *ngFor="let time of times" [value]="time.value"> {{time.value}}</mat-option>
+                  <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
                 </mat-select>
                 <!-- <mat-error class="input-error" *ngIf="!mealTimeID.touched">This is <strong>required</strong></mat-error> -->
               </mat-form-field>
@@ -56,7 +56,7 @@
                 <mat-label>Mealtime name</mat-label>
                 <mat-select matInput placeholder="Attach a name to the time" formControlName="mealTimeName" 
                 panelClass="dropdown-regular" autocomplete="off" (selectionChange)="updateMealTimes()" required>
-                  <mat-option *ngFor="let name of mealTimeNames" [value]="name.value"> {{name.value}}</mat-option>
+                  <mat-option *ngFor="let name of mealTimeNames" [value]="name.value">{{name.value}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -85,7 +85,7 @@
     <ng-template matStepLabel>Monday</ng-template>
       <ng-container *ngIf="!mealTimeForms.dirty">
         <div class="not-there">
-          <h5>🤦 Fill out some in step 2 mealtimes to see something here</h5>
+          <h5>🤦 Fill out the meal times in step 2 to see something here</h5>
           <p class="card-text">
             To be able to create meals and add ingredients for this client's mealplan, you have to first specify when the client is going to eat.
           </p>
@@ -102,7 +102,7 @@
     </mat-step>
 
     <mat-step [stepControl]="tuesdayForm">
-
+      <button type="button" (click)="checkMondayForm()">Check monday form</button>
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
         <button type="button" class="dialog-button" matStepperNext>Next</button>

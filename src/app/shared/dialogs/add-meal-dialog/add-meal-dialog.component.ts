@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 import { FoodService } from './../../../foods/food.service';
 import { MondayFormComponent } from './monday-form/monday-form.component';
 import { AddMealDialogService } from './add-meal-dialog.service';
+import { DayForm } from './day-form.model';
 
 @Component({
   selector: 'app-add-meal-dialog',
@@ -39,11 +40,11 @@ export class AddMealDialogComponent implements OnInit {
   suppForm: FormGroup;
 
   // Day forms, these get changed by events emitted from the child components
-  mondayMeals: FormArray;
-  tuesdayMeals: FormArray;
-  wednesdayMeals: FormArray;
-  thursdayMeals: FormArray;
-  fridayMeals: FormArray;
+  mondayMeals: Observable<DayForm>;
+  tuesdayMeals: Observable<DayForm>;
+  wednesdayMeals: Observable<DayForm>;
+  thursdayMeals: Observable<DayForm>;
+  fridayMeals: Observable<DayForm>;
 
   // Select value loops - retreive from json/firestore
   mealTimeNames = [
@@ -53,7 +54,8 @@ export class AddMealDialogComponent implements OnInit {
     {value: 'Afternoon snack'},
     {value: 'Pre-workout meal'},
     {value: 'Dinner'},
-    {value: 'Post-workout meal'}
+    {value: 'Post-workout meal'},
+    {value: 'Late-night snack'}
   ];
   times: Time[] = times.times;
   foods: Food[];
@@ -94,6 +96,7 @@ export class AddMealDialogComponent implements OnInit {
     // this.userService.getUserDataByID(this.mealplan.clientID).subscribe(user => this.client = user);
 
     // Subscribe to Form day Objects
+    this.mealService.mondayFormChange.subscribe(obj => this.mondayMeals = obj);
   }
 
   // MealTime form
@@ -134,6 +137,9 @@ export class AddMealDialogComponent implements OnInit {
   // get mondayForm(): any {
   //   return this.mealService.mondayMealForm;
   // }
+  checkMondayForm() {
+    console.log(this.mondayMeals);
+  }
 
 
   // Collect the data and send to service

@@ -46,7 +46,7 @@
 
 form {
     margin: 2em auto 3em;
-    padding: 0 3em;
+    padding: 0 4em;
     display: flex;
     flex-flow: column wrap;
 
@@ -175,11 +175,10 @@ form {
                 padding: 0 3em 0 0;
                 align-items: center;
                 justify-content: space-between;
+
                 .title {
-
-
                     h4 {
-                        font-size: 22px;
+                        font-size: 26px;
                         text-align: left;
                         &.not-filled {
                             color: $grey;
@@ -193,27 +192,28 @@ form {
 
                     svg {
                         font-size: 20px;
+                        margin-right: 5px;
                     }
                 }
             }
 
             .meals {
                 position: relative;
-                padding-bottom: 1em;
-                margin: 3em 0;
+                padding-bottom: 3em;
+                margin: 3em 0 0;
 
                 &::after {
                     content:  '';
-                    width: 80%;
+                    width: 100%;
                     position: absolute;
-                    left: 10%;
+                    left: 0;
                     bottom: 0;
                     height: 2px;
                     background: $light-grey;
                 }
 
                 &:nth-child(2) {
-                    margin-top: 0;
+                    margin-top: 1em;
                 }
 
                 &:nth-child(3){
@@ -245,6 +245,7 @@ form {
                     flex-flow: row wrap;
                     align-items: center;
                     justify-content: flex-start;
+                    margin-top: 1em;
 
                     .chip-container {
                         border-radius: 25px;
@@ -306,9 +307,16 @@ form {
                         height: 50px;
                         border-radius: 25px;
                         border: 1.5px solid $secondary-color;
-                        margin-top: -1em;
+                        margin: 0 1em 1em;
                         svg {
                             color: $secondary-color;
+                        }
+
+                        &:hover {
+                            background: $secondary-color;
+                            svg {
+                                color:  #fff;
+                            }
                         }
                     }
                 }
@@ -317,10 +325,11 @@ form {
         
         .btn-area {
             width: 100%;
-
+            margin: 3em auto;
             .add-form-field {
                 width: 50%;
                 margin: 0 auto;
+                font-size: 20px;
                 @extend %flex-column-center;
                 .icon {
                     width: 50px;
@@ -328,12 +337,17 @@ form {
                     border-radius: 50%;
                     background: #fff;
                     box-shadow: $card-shadow;
+                    margin-bottom: 1em;
+                    transition: transform 300ms ease-in-out;
                     @extend %flex-center;
 
                     svg {
                         margin: 0;
-                        font-size: 28px;
+                        font-size: 20px;
                         color: $secondary-color;
+                    }
+                    &:hover {
+                        transform: scale(1.05);
                     }
                 }
             }
