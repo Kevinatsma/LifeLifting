@@ -35,7 +35,7 @@ export class DayForm {
             }
         ]
     };
-    mealTimeFour?: {
+    mealTimeFour: {
         meals: [
             {
                 mealTitle: string;
@@ -47,7 +47,7 @@ export class DayForm {
             }
         ]
     };
-    mealTimeFive?: {
+    mealTimeFive: {
         meals: [
             {
                 mealTitle: string;
@@ -59,7 +59,7 @@ export class DayForm {
             }
         ]
     };
-    mealTimeSix?: {
+    mealTimeSix: {
         meals: [
             {
                 mealTitle: string;
@@ -71,7 +71,7 @@ export class DayForm {
             }
         ]
     };
-    mealTimeSeven?: {
+    mealTimeSeven: {
         meals: [
             {
                 mealTitle: string;

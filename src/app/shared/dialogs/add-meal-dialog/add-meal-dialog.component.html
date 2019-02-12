@@ -3,7 +3,7 @@
     <mat-step [stepControl]="infoForm">
       <form [formGroup]="infoForm">
         <ng-template matStepLabel>Info</ng-template>
-        <h3>⏲️ Mealplan Info for {{userData.displayName}}</h3>
+        <h3>🍔 Mealplan Info for {{userData.displayName}}</h3>
         <p class="card-text">
           The mealplan for the client. This mealplan has to be filled out on the first meeting with the client(!).
           This document is of huge importance, since we can calculate heaps of things based on the values you'll enter
@@ -32,7 +32,7 @@
     <mat-step [stepControl]="mealTimeForm">
       <form [formGroup]="mealTimeForm">
         <ng-template matStepLabel>Meal times</ng-template>
-        <h3>🏂 Meal Times for {{userData.displayName}}</h3>
+        <h3>⏲️ Meal Times for {{userData.displayName}}</h3>
         <p class="intro-text">
           Define the meal times for this client. You will have to fill out meals for all the meal times you enter. 
         </p>
@@ -95,46 +95,108 @@
       </app-monday-form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          Back
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          Next
+        </button>
       </section>
 
     </mat-step>
 
     <mat-step [stepControl]="">
-      <button type="button" (click)="checkMondayForm()">Check monday form</button>
-      <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
-      </section>
+      <ng-template matStepLabel>Tuesday</ng-template>
+      <ng-container *ngIf="!mealTimeForms.dirty">
+        <div class="not-there">
+          <h5>🤦 Fill out the meal times in step 2 to see something here</h5>
+          <p class="card-text">
+            To be able to create meals and add ingredients for this client's mealplan, you have to first specify when the client is going to eat.
+          </p>
+        </div>
+      </ng-container>
+      <app-tuesday-form *ngIf="mealTimeForms.dirty" [foods]="foods" [mealTimes]="mealTimeArr">
+      </app-tuesday-form>
 
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>
+          Back
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          Next
+        </button>
+      </section>
+  
     </mat-step>
 
     <mat-step [stepControl]="">
+      <ng-template matStepLabel>Wednesday</ng-template>
+      <ng-container *ngIf="!mealTimeForms.dirty">
+        <div class="not-there">
+          <h5>🤦 Fill out the meal times in step 2 to see something here</h5>
+          <p class="card-text">
+            To be able to create meals and add ingredients for this client's mealplan, you have to first specify when the client is going to eat.
+          </p>
+        </div>
+      </ng-container>
+      <app-wednesday-form *ngIf="mealTimeForms.dirty" [foods]="foods" [mealTimes]="mealTimeArr">
+      </app-wednesday-form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          Back
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          Next
+        </button>
       </section>
-
     </mat-step>
 
     <mat-step [stepControl]="">
+      <ng-template matStepLabel>Thursday</ng-template>
+      <ng-container *ngIf="!mealTimeForms.dirty">
+        <div class="not-there">
+          <h5>🤦 Fill out the meal times in step 2 to see something here</h5>
+          <p class="card-text">
+            To be able to create meals and add ingredients for this client's mealplan, you have to first specify when the client is going to eat.
+          </p>
+        </div>
+      </ng-container>
+      <app-thursday-form *ngIf="mealTimeForms.dirty" [foods]="foods" [mealTimes]="mealTimeArr">
+      </app-thursday-form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          Back
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          Next
+        </button>
       </section>
-
+  
     </mat-step>
 
     <mat-step [stepControl]="">
+      <ng-template matStepLabel>Friday</ng-template>
+      <ng-container *ngIf="!mealTimeForms.dirty">
+        <div class="not-there">
+          <h5>🤦 Fill out the meal times in step 2 to see something here</h5>
+          <p class="card-text">
+            To be able to create meals and add ingredients for this client's mealplan, you have to first specify when the client is going to eat.
+          </p>
+        </div>
+      </ng-container>
+      <app-friday-form *ngIf="mealTimeForms.dirty" [foods]="foods" [mealTimes]="mealTimeArr">
+      </app-friday-form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          Back
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          Next
+        </button>
       </section>
-
     </mat-step>
 
     <mat-step [stepControl]="suppForm">

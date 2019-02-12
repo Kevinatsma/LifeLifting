@@ -92,6 +92,10 @@ export class AddMealDialogComponent implements OnInit {
 
     // Subscribe to Form day Objects
     this.mealService.mondayFormChange.subscribe(obj => this.mondayMeals = obj);
+    this.mealService.tuesdayFormChange.subscribe(obj => this.tuesdayMeals = obj);
+    this.mealService.wednesdayFormChange.subscribe(obj => this.wednesdayMeals = obj);
+    this.mealService.thursdayFormChange.subscribe(obj => this.thursdayMeals = obj);
+    this.mealService.fridayFormChange.subscribe(obj => this.fridayMeals = obj);
   }
 
   // MealTime form
@@ -127,15 +131,6 @@ export class AddMealDialogComponent implements OnInit {
     this.mealTimeArr = this.mealTimeForm.get('mealTimeArr') as FormArray;
   }
 
-  // Subscribe to mealService formgroups so we can receive changes made in child forms
-
-  // get mondayForm(): any {
-  //   return this.mealService.mondayMealForm;
-  // }
-  checkMondayForm() {
-    console.log(this.mondayMeals);
-  }
-
 
   // Collect the data and send to service
   addMealplan() {
@@ -154,7 +149,6 @@ export class AddMealDialogComponent implements OnInit {
       thursdayMeals: this.thursdayMeals,
       fridayMeals: this.fridayMeals,
       supplementation: {
-        mealTimeID: this.mealTimeForm.get('mealTimeID').value,
         before: this.suppForm.get('before').value || null,
         during: this.suppForm.get('during').value || null,
         after: this.suppForm.get('after').value || null
