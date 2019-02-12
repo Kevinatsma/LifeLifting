@@ -32,11 +32,6 @@ export class AddMealDialogComponent implements OnInit {
   // MealTimes get shared with child forms
   mealTimeForm: FormGroup;
   mealTimeArr: FormArray;
-  mondayForm: FormGroup;
-  tuesdayForm: FormGroup;
-  wednesdayForm: FormGroup;
-  thursdayForm: FormGroup;
-  fridayForm: FormGroup;
   suppForm: FormGroup;
 
   // Day forms, these get changed by events emitted from the child components

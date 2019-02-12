@@ -44,12 +44,40 @@ export class MondayFormComponent implements OnInit {
   mTwoMealTwoShow = false;
   mTwoMealTwoArr: FormArray;
 
-  // Mealtime 2
+  // Mealtime 3
   mThreeMealOneForm: FormGroup;
   mThreeMealOneArr: FormArray;
   mThreeMealTwoForm: FormGroup;
   mThreeMealTwoShow = false;
   mThreeMealTwoArr: FormArray;
+
+  // Mealtime 4
+  mFourMealOneForm: FormGroup;
+  mFourMealOneArr: FormArray;
+  mFourMealTwoForm: FormGroup;
+  mFourMealTwoShow = false;
+  mFourMealTwoArr: FormArray;
+
+  // Mealtime 5
+  mFiveMealOneForm: FormGroup;
+  mFiveMealOneArr: FormArray;
+  mFiveMealTwoForm: FormGroup;
+  mFiveMealTwoShow = false;
+  mFiveMealTwoArr: FormArray;
+
+  // Mealtime 6
+  mSixMealOneForm: FormGroup;
+  mSixMealOneArr: FormArray;
+  mSixMealTwoForm: FormGroup;
+  mSixMealTwoShow = false;
+  mSixMealTwoArr: FormArray;
+
+  // Mealtime 7
+  mSevenMealOneForm: FormGroup;
+  mSevenMealOneArr: FormArray;
+  mSevenMealTwoForm: FormGroup;
+  mSevenMealTwoShow = false;
+  mSevenMealTwoArr: FormArray;
 
   selectedProduct: Food;
 
@@ -94,6 +122,26 @@ export class MondayFormComponent implements OnInit {
       mThreeMealOneArr: this.fb.array([ this.createProduct()]),
       mThreeMealTwoTitle: [''],
       mThreeMealTwoArr: this.fb.array([ this.createProduct()]),
+
+      mFourMealOneTitle: ['', [Validators.required]],
+      mFourMealOneArr: this.fb.array([ this.createProduct()]),
+      mFourMealTwoTitle: [''],
+      mFourMealTwoArr: this.fb.array([ this.createProduct()]),
+
+      mFiveMealOneTitle: ['', [Validators.required]],
+      mFiveMealOneArr: this.fb.array([ this.createProduct()]),
+      mFiveMealTwoTitle: [''],
+      mFiveMealTwoArr: this.fb.array([ this.createProduct()]),
+
+      mSixMealOneTitle: ['', [Validators.required]],
+      mSixMealOneArr: this.fb.array([ this.createProduct()]),
+      mSixMealTwoTitle: [''],
+      mSixMealTwoArr: this.fb.array([ this.createProduct()]),
+
+      mSevenMealOneTitle: ['', [Validators.required]],
+      mSevenMealOneArr: this.fb.array([ this.createProduct()]),
+      mSevenMealTwoTitle: [''],
+      mSevenMealTwoArr: this.fb.array([ this.createProduct()]),
     });
 
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
@@ -123,6 +171,31 @@ export class MondayFormComponent implements OnInit {
   get mThreeMealTwoForms() {
     return this.mondayMealForm.get('mThreeMealTwoArr') as FormArray;
   }
+  get mFourMealOneForms() {
+    return this.mondayMealForm.get('mFourMealOneArr') as FormArray;
+  }
+  get mFourMealTwoForms() {
+    return this.mondayMealForm.get('mFourMealTwoArr') as FormArray;
+  }
+  get mFiveMealOneForms() {
+    return this.mondayMealForm.get('mFiveMealOneArr') as FormArray;
+  }
+  get mFiveMealTwoForms() {
+    return this.mondayMealForm.get('mFiveMealTwoArr') as FormArray;
+  }
+  get mSixMealOneForms() {
+    return this.mondayMealForm.get('mSixMealOneArr') as FormArray;
+  }
+  get mSixMealTwoForms() {
+    return this.mondayMealForm.get('mSixMealTwoArr') as FormArray;
+  }
+  get mSevenMealOneForms() {
+    return this.mondayMealForm.get('mSevenMealOneArr') as FormArray;
+  }
+  get mSevenMealTwoForms() {
+    return this.mondayMealForm.get('mSevenMealTwoArr') as FormArray;
+  }
+
 
   //////////////////////////////////////////////////////////////
   // Creating, adding, deleting and checking product Formarrays
@@ -158,6 +231,30 @@ export class MondayFormComponent implements OnInit {
       case 32:
       array = this.mondayMealForm.get('mThreeMealTwoArr') as FormArray;
         break;
+      case 41:
+      array = this.mondayMealForm.get('mFourMealOneArr') as FormArray;
+        break;
+      case 42:
+      array = this.mondayMealForm.get('mFourMealTwoArr') as FormArray;
+        break;
+      case 51:
+      array = this.mondayMealForm.get('mFiveMealOneArr') as FormArray;
+        break;
+      case 52:
+      array = this.mondayMealForm.get('mFiveMealTwoArr') as FormArray;
+        break;
+      case 61:
+      array = this.mondayMealForm.get('mSixMealOneArr') as FormArray;
+        break;
+      case 62:
+      array = this.mondayMealForm.get('mSixMealTwoArr') as FormArray;
+        break;
+      case 71:
+      array = this.mondayMealForm.get('mSevenMealOneArr') as FormArray;
+        break;
+      case 72:
+      array = this.mondayMealForm.get('mSevenMealTwoArr') as FormArray;
+        break;
       default:
         array = null;
     }
@@ -185,6 +282,30 @@ export class MondayFormComponent implements OnInit {
         break;
       case 32:
       array = this.mondayMealForm.get('mThreeMealTwoArr') as FormArray;
+        break;
+      case 41:
+        array = this.mondayMealForm.get('mFourMealOneArr') as FormArray;
+        break;
+      case 42:
+        array = this.mondayMealForm.get('mFourMealTwoArr') as FormArray;
+        break;
+      case 51:
+        array = this.mondayMealForm.get('mFiveMealOneArr') as FormArray;
+        break;
+      case 52:
+      array = this.mondayMealForm.get('mFiveMealTwoArr') as FormArray;
+        break;
+      case 61:
+      array = this.mondayMealForm.get('mSixMealOneArr') as FormArray;
+        break;
+      case 62:
+      array = this.mondayMealForm.get('mSixMealTwoArr') as FormArray;
+        break;
+      case 71:
+      array = this.mondayMealForm.get('mSevenMealOneArr') as FormArray;
+        break;
+      case 72:
+      array = this.mondayMealForm.get('mSevenMealTwoArr') as FormArray;
         break;
       default:
         array = null;

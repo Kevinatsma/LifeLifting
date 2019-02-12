@@ -81,7 +81,7 @@
       </section>
     </mat-step>
 
-    <mat-step [stepControl]="mondayForm">
+    <mat-step [stepControl]="">
     <ng-template matStepLabel>Monday</ng-template>
       <ng-container *ngIf="!mealTimeForms.dirty">
         <div class="not-there">
@@ -101,7 +101,7 @@
 
     </mat-step>
 
-    <mat-step [stepControl]="tuesdayForm">
+    <mat-step [stepControl]="">
       <button type="button" (click)="checkMondayForm()">Check monday form</button>
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
@@ -110,7 +110,7 @@
 
     </mat-step>
 
-    <mat-step [stepControl]="wednesdayForm">
+    <mat-step [stepControl]="">
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
@@ -119,7 +119,7 @@
 
     </mat-step>
 
-    <mat-step [stepControl]="thursdayForm">
+    <mat-step [stepControl]="">
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
@@ -128,7 +128,7 @@
 
     </mat-step>
 
-    <mat-step [stepControl]="fridayForm">
+    <mat-step [stepControl]="">
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
@@ -174,12 +174,8 @@
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
         <button type="submit" class="dialog-button" (click)="addMealplan()"
-          [disabled]="!infoForm.valid || !mealTimeForm.valid || !mondayForm.valid || 
-                      !tuesdayForm.valid || !wednesdayForm.valid || !thursdayForm.valid ||
-                      !fridayForm.valid || !suppForm.valid"
-          [class.disabled]="!infoForm.valid || !mealTimeForm.valid || !mondayForm.valid || 
-                            !tuesdayForm.valid || !wednesdayForm.valid || !thursdayForm.valid || 
-                            !fridayForm.valid || !suppForm.valid"
+          [disabled]="!infoForm.valid || !mealTimeForm.valid || !suppForm.valid"
+          [class.disabled]="!infoForm.valid || !mealTimeForm.valid || !suppForm.valid"
           mat-dialog-close
         >
           Done
