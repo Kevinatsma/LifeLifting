@@ -9,6 +9,7 @@ import { UserService } from '../../../user/user.service';
 import { Exercise } from '../../../exercises/exercise.model';
 import { ExerciseService } from '../../../exercises/exercise.service';
 import times from './../../data/JSON/times.json';
+import mealTimes from './../../data/JSON/mealTimes.json';
 import { Time } from '../../data/models/time.model';
 import { Food } from './../../../foods/food.model';
 import { Observable } from 'rxjs';
@@ -42,16 +43,7 @@ export class AddMealDialogComponent implements OnInit {
   fridayMeals: Observable<DayForm>;
 
   // Select value loops - retreive from json/firestore
-  mealTimeNames = [
-    {value: 'Breakfast'},
-    {value: 'Morning snack'},
-    {value: 'Lunch'},
-    {value: 'Afternoon snack'},
-    {value: 'Pre-workout meal'},
-    {value: 'Dinner'},
-    {value: 'Post-workout meal'},
-    {value: 'Late-night snack'}
-  ];
+  mealTimeNames = mealTimes.mealTimes;
   times: Time[] = times.times;
   foods: Food[];
 

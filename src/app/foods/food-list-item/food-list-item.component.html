@@ -4,8 +4,8 @@
       <!-- <i class="fas fa-carrot"></i>
     <h1>{{i+1}}</h1> -->
   </section>
-  <p class="subtitle">
-    {{food.productCategory}}
+  <p class="subtitle" (click)="linkToChild(food)">
+    {{food.categories.nutritionType}}
   </p>
   <section class="middle" (click)="linkToChild(food)">
     <div class="title">
@@ -17,7 +17,7 @@
       <ul class="contact-menu">
         <li>
           <i class="fas fa-balance-scale"></i>
-          {{food.portion.amount}} {{food.portion.unit}}
+          {{food.unit}}
         </li>
       </ul>
     </div>

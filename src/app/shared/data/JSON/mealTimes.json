@@ -1,0 +1,8 @@
+{
+    "mealTimes": [
+    {"value":"Breakfast"},
+    {"value":"Snacks"},
+    {"value":"Lunch"},
+    {"value":"Dinner"}
+  ]
+}

@@ -4,6 +4,7 @@ import { FoodService } from './../food.service';
 import { Location } from '@angular/common';
 import { SpecialistService } from './../../specialists/specialist.service';
 import { Food } from '../food.model';
+import units from './../../shared/data/JSON/units.json';
 
 @Component({
   selector: 'app-edit-food',
@@ -23,6 +24,12 @@ export class EditFoodComponent implements OnInit, OnDestroy {
   editProductForm: FormGroup;
   downloadURL: string | any;
   url: any;
+  units = units.units;
+  nutritionTypes =  [
+    {value: 'Protein'},
+    {value: 'Carbohydrates'},
+    {value: 'Fat'}
+  ];
 
   constructor( private fb: FormBuilder,
                private foodService: FoodService,
@@ -33,9 +40,8 @@ export class EditFoodComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.editProductForm = this.fb.group({
       productName: '' || this.food.productName,
-      productCategory: '' || this.food.productCategory,
-      amount: '' || this.food.portion.amount,
-      unit: '' || this.food.portion.unit,
+      nutritionType: '' || this.food.categories.nutritionType,
+      unit: '' || this.food.unit,
       preperations: '' || this.food.preparations,
     });
     this.url = `foods`;
@@ -58,7 +64,10 @@ export class EditFoodComponent implements OnInit, OnDestroy {
   editProduct() {
     const data = {
       productName: this.editProductForm.get('productName').value || this.food.productName,
-      productCategory: this.editProductForm.get('productCategory').value || this.food.productCategory,
+      categories: {
+        nutritionType: this.editProductForm.get('nutritionType').value || this.food.categories.nutritionType,
+        productMealTimes: this.food.categories.productMealTimes,
+      },
       productPhoto: this.downloadURL || this.food.productPhoto
     };
     this.foodService.updateFood(this.food.productID, data);

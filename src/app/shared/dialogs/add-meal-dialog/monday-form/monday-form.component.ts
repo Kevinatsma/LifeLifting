@@ -55,29 +55,31 @@ export class MondayFormComponent implements OnInit {
   mFourMealOneForm: FormGroup;
   mFourMealOneArr: FormArray;
   mFourMealTwoForm: FormGroup;
-  mFourMealTwoShow = false;
   mFourMealTwoArr: FormArray;
+  mFourMealTwoShow = false;
 
   // Mealtime 5
   mFiveMealOneForm: FormGroup;
   mFiveMealOneArr: FormArray;
   mFiveMealTwoForm: FormGroup;
-  mFiveMealTwoShow = false;
   mFiveMealTwoArr: FormArray;
+  mFiveMealTwoShow = false;
 
   // Mealtime 6
   mSixMealOneForm: FormGroup;
   mSixMealOneArr: FormArray;
   mSixMealTwoForm: FormGroup;
-  mSixMealTwoShow = false;
   mSixMealTwoArr: FormArray;
+  mSixMealTwoShow = false;
+
 
   // Mealtime 7
   mSevenMealOneForm: FormGroup;
   mSevenMealOneArr: FormArray;
   mSevenMealTwoForm: FormGroup;
-  mSevenMealTwoShow = false;
   mSevenMealTwoArr: FormArray;
+  mSevenMealTwoShow = false;
+
 
   selectedProduct: Food;
 
@@ -122,22 +124,18 @@ export class MondayFormComponent implements OnInit {
       mThreeMealOneArr: this.fb.array([ this.createProduct()]),
       mThreeMealTwoTitle: [''],
       mThreeMealTwoArr: this.fb.array([ this.createProduct()]),
-
       mFourMealOneTitle: ['', [Validators.required]],
       mFourMealOneArr: this.fb.array([ this.createProduct()]),
       mFourMealTwoTitle: [''],
       mFourMealTwoArr: this.fb.array([ this.createProduct()]),
-
       mFiveMealOneTitle: ['', [Validators.required]],
       mFiveMealOneArr: this.fb.array([ this.createProduct()]),
       mFiveMealTwoTitle: [''],
       mFiveMealTwoArr: this.fb.array([ this.createProduct()]),
-
       mSixMealOneTitle: ['', [Validators.required]],
       mSixMealOneArr: this.fb.array([ this.createProduct()]),
       mSixMealTwoTitle: [''],
       mSixMealTwoArr: this.fb.array([ this.createProduct()]),
-
       mSevenMealOneTitle: ['', [Validators.required]],
       mSevenMealOneArr: this.fb.array([ this.createProduct()]),
       mSevenMealTwoTitle: [''],

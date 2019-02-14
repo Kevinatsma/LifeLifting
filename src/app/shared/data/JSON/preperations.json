@@ -1,0 +1,17 @@
+{
+    "preperations": [
+    {"prepValue":"Cooked"},
+    {"prepValue":"Cooked w/Spinach"},
+    {"prepValue":"Sauteed w/Veggies"},
+    {"prepValue":"Chopped"},
+    {"prepValue":"Sliced"},
+    {"prepValue":"Diced"},
+    {"prepValue":"Raw"},
+    {"prepValue":"Snacked"},
+    {"prepValue":"Hard Boiled"},
+    {"prepValue":"Omelette"},
+    {"prepValue":"Scrambled"},
+    {"prepValue":"Grated"},
+    {"prepValue":"Whole"}
+  ]
+}
