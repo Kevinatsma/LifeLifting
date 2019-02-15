@@ -10,6 +10,7 @@ import { ChatThreadService } from './../../chat/chat-thread.service';
 import { Guideline } from './../../guidelines/guideline.model';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
+import { Mealplan } from './../../mealplans/mealplan.model';
 
 
 @Component({
@@ -22,6 +23,8 @@ export class ClientDetailComponent implements OnInit {
   specialist: Specialist;
   guidelinesCol: AngularFirestoreCollection<Guideline>;
   guidelines: Observable<Guideline[]>;
+  mealplansCol: AngularFirestoreCollection<Mealplan>;
+  mealplans: Observable<Mealplan[]>;
   aboutExtended = false;
   reviewsVisible = true;
 
@@ -49,6 +52,7 @@ export class ClientDetailComponent implements OnInit {
       const sID  = this.user.specialist;
       this.getSpecialist(sID);
       this.getGuidelines(user.uid);
+      this.getMealplans(user.uid);
     });
   }
 
@@ -59,6 +63,11 @@ export class ClientDetailComponent implements OnInit {
   getGuidelines(uid) {
     this.guidelinesCol = this.afs.collection('guidelines', ref => ref.where('clientID', '==', `${uid}`));
     this.guidelines = this.guidelinesCol.valueChanges();
+  }
+
+  getMealplans(uid) {
+    this.mealplansCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${uid}`));
+    this.mealplans = this.mealplansCol.valueChanges();
   }
 
   aboutExtendedOpen() {

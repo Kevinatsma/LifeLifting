@@ -12,6 +12,7 @@ import { DataService } from '../shared/data/data.service';
 import { ClientListItemComponent } from './client-list-item/client-list-item.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
+import { MealplansModule } from '../mealplans/mealplans.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { EditClientComponent } from './edit-client/edit-client.component';
     ReactiveFormsModule,
     SharedModule,
     GuidelinesModule,
+    MealplansModule,
     MaterialModule
   ],
   exports: [

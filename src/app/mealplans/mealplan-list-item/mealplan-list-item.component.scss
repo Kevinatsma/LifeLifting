@@ -38,6 +38,7 @@ mat-card.list-item-card {
         border-radius: 50%;
         svg {
             font-size: 38px;
+            color: darken($middle-grey, 5%);
         }
 
         .nr-circle {

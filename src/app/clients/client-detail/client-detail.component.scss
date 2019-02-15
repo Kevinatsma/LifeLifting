@@ -286,10 +286,11 @@ div.review-container {
         margin: 0 0 2em;
         width: auto;
 
-        app-guideline-list-item {
+        app-guideline-list-item, app-mealplan-list-item {
             display: flex;
-            width: 300px;
+            max-width: 300px;
             margin-right: 2em;
+            box-sizing: border-box;
             flex: 1;
         }
 
