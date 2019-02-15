@@ -115,6 +115,26 @@
           </ul>
         </div>
       </section>
+            
+      <section class="guidelines" *ngIf="guidelines">
+        <h1 class="section-title">Guidelines</h1>
+        <div class="guidelines__container">
+          <app-guideline-list-item *ngFor="let guideline of guidelines | async" [guideline]="guideline"></app-guideline-list-item>
+          <div class="guidelines__container__filler">
+            Filler
+          </div>
+        </div>
+      </section>
+      
+      <section class="guidelines" *ngIf="mealplans">
+        <h1 class="section-title">Mealplans</h1>
+        <div class="guidelines__container">
+          <app-mealplan-list-item *ngFor="let mealplan of mealplans | async" [mealplan]="mealplan"></app-mealplan-list-item>
+          <div class="guidelines__container__filler">
+            Filler
+          </div>
+        </div>
+      </section>
     </ng-container>
 
   </main>

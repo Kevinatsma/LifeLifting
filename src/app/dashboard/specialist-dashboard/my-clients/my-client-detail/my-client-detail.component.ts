@@ -13,6 +13,7 @@ import { AddMealDialogComponent } from './../../../../shared/dialogs/add-meal-di
 import { AddGuideDialogComponent } from './../../../../shared/dialogs/add-guide-dialog/add-guide-dialog.component';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Guideline } from './../../../../guidelines/guideline.model';
+import { Mealplan } from './../../../../mealplans/mealplan.model';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class MyClientDetailComponent implements OnInit {
   specialist: Specialist;
   guidelinesCol: AngularFirestoreCollection<Guideline>;
   guidelines: Observable<Guideline[]>;
+  mealplansCol: AngularFirestoreCollection<Mealplan>;
+  mealplans: Observable<Mealplan[]>;
   reviewsVisible = true;
   actionMenuOpen: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
@@ -56,6 +59,7 @@ export class MyClientDetailComponent implements OnInit {
       const sID  = this.user.specialist;
       this.getSpecialist(sID);
       this.getGuidelines(user.uid);
+      this.getMealplans(user.uid);
     });
   }
 
@@ -66,6 +70,11 @@ export class MyClientDetailComponent implements OnInit {
   getGuidelines(uid) {
     this.guidelinesCol = this.afs.collection('guidelines', ref => ref.where('clientID', '==', `${uid}`));
     this.guidelines = this.guidelinesCol.valueChanges();
+  }
+
+  getMealplans(uid) {
+    this.mealplansCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${uid}`));
+    this.mealplans = this.mealplansCol.valueChanges();
   }
 
   // Like this to avoid State Changed Error

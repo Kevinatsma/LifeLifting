@@ -14,6 +14,8 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { UserListItemComponent } from './users/user-list-item/user-list-item.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { GuidelinesModule } from '../guidelines/guidelines.module';
+import { MealplansModule } from '../mealplans/mealplans.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
     RouterModule,
     CoreModule,
     SharedModule,
-    SignUpModule
+    SignUpModule,
+    GuidelinesModule,
+    MealplansModule
   ],
   exports: [
     SignUpModule,
