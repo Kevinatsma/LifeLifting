@@ -22,17 +22,30 @@ import { Observable } from 'rxjs';
 })
 export class MealplanDetailComponent implements OnInit {
   mealplan: Mealplan;
+
+  // Navigation
+  tabs = document.querySelectorAll('.nav-item');
+  mondayTab = true;
+  tuesdayTab = false;
+  wednesdayTab = false;
+  thursdayTab = false;
+  fridayTab = false;
+  suppsTab = false;
+
+  // Exercises
   guideExercises: Object;
   exercises: any;
   exerciseOne: Exercise;
   exerciseTwo: Exercise;
   exerciseThree: Exercise;
+
   specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
   client: User;
   gainWeight: boolean;
   increaseCals: boolean;
+
 
   // specialist = Observable<Specialist>;
 
@@ -49,6 +62,7 @@ export class MealplanDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.setMenu();
     this.getMealplan();
   }
 
@@ -59,29 +73,41 @@ export class MealplanDetailComponent implements OnInit {
       .subscribe(mealplan => {
         this.mealplan = mealplan;
         this.userService.getUserDataByID(mealplan.clientID).subscribe(user => this.client = user);
-        this.setTarget(mealplan);
-        this.setIncreaseCals(mealplan);
-        this.getExercises(mealplan);
+        // this.getExercises(mealplan);
       });
   }
 
-  // Set values
+  // Getters
+  // getExercises(mealplan) {
+  //   this.exerciseService.getMultipleExercises(mealplan);
+  //   this.exerciseService.guideExercises.eOne.subscribe(exercise => {
+  //     this.exerciseOne = exercise;
+  //   });
+  //   if (this.exerciseService.guideExercises.eTwo) {
+  //     this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
+  //       this.exerciseTwo = exercise;
+  //     });
+  //   } else if (this.exerciseService.guideExercises.eThree) {
+  //     this.exerciseService.guideExercises.eThree.subscribe(exercise => {
+  //       this.exerciseTwo = exercise;
+  //     });
+  //   }
+  //   this.exercises = [
+  //     this.exerciseOne,
+  //     this.exerciseTwo,
+  //     this.exerciseThree
+  //   ];
+  // }
 
-  setTarget(mealplan) {
-    if ( mealplan.target === 'gain') {
-      this.mealplanService.gainWeight = true;
-    } else {
-      this.mealplanService.gainWeight = false;
-    }
-    return this.gainWeight = this.mealplanService.gainWeight;
+  // Like this to avoid State Changed Error
+  // Open/closers
+
+  get editShow(): boolean {
+    return this.mealplanService.editShow;
   }
 
-  setIncreaseCals(mealplan) {
-    if ( mealplan.increaseCalories === 'increase') {
-      return this.increaseCals = true;
-    } else {
-      return this.increaseCals = false;
-    }
+  toggleEdit() {
+    this.mealplanService.toggleEdit();
   }
 
   aboutExtendedOpen() {
@@ -94,37 +120,55 @@ export class MealplanDetailComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  // Getters
-  getExercises(mealplan) {
-    this.exerciseService.getMultipleExercises(mealplan);
-    this.exerciseService.guideExercises.eOne.subscribe(exercise => {
-      this.exerciseOne = exercise;
-    });
-    if (this.exerciseService.guideExercises.eTwo) {
-      this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
-        this.exerciseTwo = exercise;
-      });
-    } else if (this.exerciseService.guideExercises.eThree) {
-      this.exerciseService.guideExercises.eThree.subscribe(exercise => {
-        this.exerciseTwo = exercise;
-      });
+  // Form tab navigation
+
+  // setMenu() {
+  //   this.tabs.forEach(tab => {
+  //     tab.addEventListener('click', () => this.updateTabStates);
+  //   });
+  // }
+
+  updateTabStates(e) {
+    const tabs: NodeListOf<Element> = document.querySelectorAll('.nav-item');
+
+    // Reset first
+    this.resetDisplayContent(tabs);
+
+    // Redirect click behavior
+    const link = e.target.getAttribute('id');
+    const activeLink = document.getElementById(link);
+    activeLink.classList.add('active');
+
+    // show/hide containers
+    if (link === 'monday') {
+      this.mondayTab = true;
+    } else if (link === 'tuesday') {
+      this.tuesdayTab = true;
+    } else if (link === 'wednesday') {
+      this.wednesdayTab = true;
+    } else if (link === 'thursday') {
+      this.thursdayTab = true;
+    } else if (link === 'friday') {
+      this.fridayTab = true;
+    } else if (link === 'supps') {
+      this.suppsTab = true;
+    } else {
+      return null;
     }
-    this.exercises = [
-      this.exerciseOne,
-      this.exerciseTwo,
-      this.exerciseThree
-    ];
+
   }
 
-  // Like this to avoid State Changed Error
-  // Open/closers
+  resetDisplayContent(tabs) {
+    tabs.forEach(tab => {
+      tab.classList.remove('active');
+    });
+    this.mondayTab = false;
+    this.tuesdayTab = false;
+    this.wednesdayTab = false;
+    this.thursdayTab = false;
+    this.fridayTab = false;
+    this.suppsTab = false;
 
-  get editShow(): boolean {
-    return this.mealplanService.editShow;
-  }
-
-  toggleEdit() {
-    this.mealplanService.toggleEdit();
   }
 
   // Delete mealplan

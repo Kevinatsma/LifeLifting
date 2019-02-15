@@ -179,6 +179,29 @@ mat-card.list-item-card {
             }
         }
 
+        &.navigation {
+            nav {
+                display: flex;
+                width: 100%;
+                height: 100px;
+                margin: 1em 0;
+                flex-flow: row nowrap;
+                justify-content: space-evenly;
+                align-items: center;
+                a {
+                    color: $secondary-color;
+                    font-weight: $semi-bold;
+                    font-size: 16px;
+                    padding-bottom: 25px;
+                    border-bottom: 2px solid transparent;
+
+                    &.active {
+                    border-bottom: 2px solid $secondary-color;
+                    }
+                }
+            }
+        }
+
         &.actions {
             width: 100%;
             display: flex;
