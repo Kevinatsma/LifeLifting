@@ -9,11 +9,9 @@ import { SharedModule } from '../shared/shared.module';
 import { ExerciseService } from './exercise.service';
 import { ExercisesComponent } from './exercises.component';
 import { ExerciseDetailComponent } from './exercise-detail/exercise-detail.component';
-import { AddExerciseDialogComponent } from '../shared/dialogs/add-exercise-dialog/add-exercise-dialog.component';
 
 @NgModule({
   declarations: [
-    AddExerciseDialogComponent,
     ExerciseListComponent,
     EditExerciseComponent,
     ExercisesComponent,
@@ -26,7 +24,6 @@ import { AddExerciseDialogComponent } from '../shared/dialogs/add-exercise-dialo
     SharedModule
   ],
   exports: [
-    AddExerciseDialogComponent,
     ExerciseListComponent,
     EditExerciseComponent,
     ExercisesComponent,

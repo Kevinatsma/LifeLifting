@@ -43,8 +43,5 @@ import { EditSpecialistComponent } from './edit-specialist/edit-specialist.compo
     SpecialistService,
     DataService
   ],
-  entryComponents: [
-    AddSpecialistDialogComponent
-  ]
 })
 export class SpecialistModule { }

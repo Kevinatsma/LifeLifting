@@ -103,7 +103,6 @@ export class MondayFormComponent implements OnInit {
                 controlButtons.forEach(input => {
                    // Update the form object in the service
                   input.addEventListener('click', ((e) => {
-                    console.log('im fired');
                     const mondayMealForm = this.mondayMealForm.value;
                     return this.mealService.mondayFormChange.next(mondayMealForm);
                   }) as EventListener);

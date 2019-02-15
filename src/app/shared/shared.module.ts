@@ -5,27 +5,33 @@ import { DataModule } from './data/data.module';
 import { FileUploadService } from './file-upload/file-upload.service';
 import { FileSizePipe } from './pipes/file-size.pipe';
 import { DropZoneDirective } from './directives/drop-zone.directive';
-import { DialogsModule } from './dialogs/dialogs.module';
 import { FileUploadButtonComponent } from './file-upload/file-upload-button/file-upload-button.component';
 import { ExerciseListItemComponent } from '../exercises/exercise-list-item/exercise-list-item.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FileUploadExerciseComponent } from './file-upload/file-upload-exercise/file-upload-exercise.component';
+import { FileUploadProductComponent } from './file-upload/file-upload-product/file-upload-product.component';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     DataModule,
-    DialogsModule
   ],
   declarations: [
     FileSizePipe,
     DropZoneDirective,
+    FileUploadComponent,
+    FileUploadExerciseComponent,
+    FileUploadProductComponent,
     FileUploadButtonComponent,
     ExerciseListItemComponent
   ],
   exports: [
     MaterialModule,
     DataModule,
-    DialogsModule,
+    FileUploadComponent,
+    FileUploadExerciseComponent,
+    FileUploadProductComponent,
     FileUploadButtonComponent,
     ExerciseListItemComponent
   ],

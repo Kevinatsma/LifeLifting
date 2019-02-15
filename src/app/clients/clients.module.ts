@@ -37,7 +37,5 @@ import { EditClientComponent } from './edit-client/edit-client.component';
     ClientService,
     DataService
   ],
-  entryComponents: [
-  ]
 })
 export class ClientsModule { }

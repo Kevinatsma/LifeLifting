@@ -54,7 +54,6 @@ export class MyClientDetailComponent implements OnInit {
     this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
       const sID  = this.user.specialist;
-      console.log(sID);
       this.getSpecialist(sID);
       this.getGuidelines(user.uid);
     });
@@ -78,7 +77,6 @@ export class MyClientDetailComponent implements OnInit {
       button.classList.toggle('visible');
     });
     this.editStateChange.next(!this.actionMenuOpen);
-    console.log(this.actionMenuOpen);
   }
 
   openReviews() {
@@ -113,13 +111,6 @@ export class MyClientDetailComponent implements OnInit {
       },
     });
   }
-
-  // chat() {
-  //   const profileId = this.route.snapshot.paramMap.get('id');
-  //   return this.threadService.createThread(profileId)
-  //     .then(() => console.log('Thread Created!'))
-  //     .catch(error => console.log(error.message));
-  // }
 
   chat() {
     const profileId = this.user.uid;

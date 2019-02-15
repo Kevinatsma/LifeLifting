@@ -16,10 +16,10 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
-          This meal doesn't contain a meal time yet..
+          1. This meal doesn't contain a meal time yet..
         </h4>
         <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          {{time.value.mealTimeName}}
+          1. {{time.value.mealTimeName}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.value.mealTime">
@@ -59,7 +59,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(11, i);">
             <i class="fas fa-ban"></i>
@@ -98,7 +98,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(12, i);">
             <i class="fas fa-ban"></i>
@@ -137,10 +137,10 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
-          This meal doesn't contain a meal time yet..
+          2. This meal doesn't contain a meal time yet..
         </h4>
         <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          {{time.value.mealTimeName}}
+          2. {{time.value.mealTimeName}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.value.mealTime">
@@ -180,7 +180,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(21, i);">
             <i class="fas fa-ban"></i>
@@ -219,7 +219,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(22, i);">
             <i class="fas fa-ban"></i>
@@ -260,10 +260,10 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
-          This meal doesn't contain a meal time yet..
+          3. This meal doesn't contain a meal time yet..
         </h4>
         <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          {{time.value.mealTimeName}}
+          3. {{time.value.mealTimeName}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.value.mealTime">
@@ -303,7 +303,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(31, i)">
             <i class="fas fa-ban"></i>
@@ -342,7 +342,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(32, i);">
             <i class="fas fa-ban"></i>
@@ -383,10 +383,10 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
-          This meal doesn't contain a meal time yet..
+          4. This meal doesn't contain a meal time yet..
         </h4>
         <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          {{time.value.mealTimeName}}
+          4. {{time.value.mealTimeName}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.value.mealTime">
@@ -426,7 +426,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(41, i)">
             <i class="fas fa-ban"></i>
@@ -465,7 +465,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(42, i);">
             <i class="fas fa-ban"></i>
@@ -506,10 +506,10 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
-          This meal doesn't contain a meal time yet..
+          5. This meal doesn't contain a meal time yet..
         </h4>
         <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          {{time.value.mealTimeName}}
+          5. {{time.value.mealTimeName}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.value.mealTime">
@@ -549,7 +549,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(51, i)">
             <i class="fas fa-ban"></i>
@@ -588,7 +588,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(52, i);">
             <i class="fas fa-ban"></i>
@@ -629,10 +629,10 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
-          This meal doesn't contain a meal time yet..
+          6. This meal doesn't contain a meal time yet..
         </h4>
         <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          {{time.value.mealTimeName}}
+          6. {{time.value.mealTimeName}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.value.mealTime">
@@ -672,7 +672,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(61, i)">
             <i class="fas fa-ban"></i>
@@ -711,7 +711,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(62, i);">
             <i class="fas fa-ban"></i>
@@ -752,10 +752,10 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
-          This meal doesn't contain a meal time yet..
+          7. This meal doesn't contain a meal time yet..
         </h4>
         <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          {{time.value.mealTimeName}}
+          7. {{time.value.mealTimeName}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.value.mealTime">
@@ -795,7 +795,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(71, i)">
             <i class="fas fa-ban"></i>
@@ -834,7 +834,7 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.portion.unit}}</span>
+            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(72, i);">
             <i class="fas fa-ban"></i>

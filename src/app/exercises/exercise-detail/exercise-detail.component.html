@@ -33,30 +33,28 @@
               <!-- <i class="fas fa-carrot"></i>
             <h1>{{i+1}}</h1> -->
           </section>
-          <p class="subtitle">
-            <span *ngFor="let category of exercise.categories">
-              {{category.categoryValue}}
-            </span>
-          </p>
+          <section class="subtitle-container">
+            <p class="subtitle">
+              <span *ngFor="let category of exercise.categories">
+                {{category.categoryValue}}
+              </span>
+            </p>
+            <div class="met-value">
+              <span>MET</span>
+              <span class="circle">
+                {{exercise.metsValue}}
+              </span>
+            </div>
+          </section>
           <section class="middle">
             <div class="title">
                 <h2>{{exercise.exerciseName}}</h2>
             </div>
-        
-            <div class="quick-info">
-              <p class="speciality-title">Exercise ID: {{exercise.exerciseID}}</p>
-              <ul class="contact-menu">
-                <li>
-                  <i class="fas fa-balance-scale"></i>
-                  {{exercise.metsValue}}
-                </li>
-              </ul>
-            </div>
             <div class="preperations-container">
-              <h4>Possible Locations</h4>
+              <h5 class="section-title">Possible Locations</h5>
               <ul class="contact-menu">
                 <li *ngFor="let location of exercise.locations">
-                  {{location.locationValue}}
+                  - {{location.locationValue}}
                 </li>
               </ul>
             </div>

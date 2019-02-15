@@ -1,22 +1,27 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MealplanService } from '../../../mealplans/mealplan.service';
 import { MatDialog } from '@angular/material';
-import { MAT_DIALOG_DATA } from '@angular/material';
-import { User } from '../../../user/user.model';
+
+// Services
 import { AuthService } from '../../../core/auth/auth.service';
 import { UserService } from '../../../user/user.service';
-import { Exercise } from '../../../exercises/exercise.model';
 import { ExerciseService } from '../../../exercises/exercise.service';
-import times from './../../data/JSON/times.json';
-import mealTimes from './../../data/JSON/mealTimes.json';
+import { FoodService } from './../../../foods/food.service';
+import { MealplanService } from '../../../mealplans/mealplan.service';
+import { AddMealDialogService } from './add-meal-dialog.service';
+import { GuidelineService } from './../../../guidelines/guideline.service';
+import { Observable } from 'rxjs';
+
+// Data
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { User } from '../../../user/user.model';
+import { Guideline } from './../../../guidelines/guideline.model';
+import { Exercise } from '../../../exercises/exercise.model';
 import { Time } from '../../data/models/time.model';
 import { Food } from './../../../foods/food.model';
-import { Observable } from 'rxjs';
-import { FoodService } from './../../../foods/food.service';
-import { MondayFormComponent } from './monday-form/monday-form.component';
-import { AddMealDialogService } from './add-meal-dialog.service';
 import { DayForm } from './day-form.model';
+import times from './../../data/JSON/times.json';
+import mealTimes from './../../data/JSON/mealTimes.json';
 
 @Component({
   selector: 'app-add-meal-dialog',
@@ -50,15 +55,27 @@ export class AddMealDialogComponent implements OnInit {
   // Hide/show booleans
   showAddMealTime = true;
 
+  // Guidelines and Exercises
+  guideline: Guideline;
+  guidelines: Guideline[];
+  guideExercises: Object;
+  exercises: any;
+  exerciseOne: Exercise;
+  exerciseTwo: Exercise;
+  exerciseThree: Exercise;
+
   constructor( private fb: FormBuilder,
                private auth: AuthService,
                private userService: UserService,
                private foodService: FoodService,
+               private exerciseService: ExerciseService,
                private mealplanService: MealplanService,
+               public guidelineService: GuidelineService,
                public mealService: AddMealDialogService,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
                 this.foodService.getFoods().subscribe(foods => this.foods = foods);
+                this.guidelineService.getGuidelinesByClient(userData.uid).subscribe(guidelines => this.guidelines = guidelines);
                }
 
   ngOnInit() {
@@ -72,9 +89,16 @@ export class AddMealDialogComponent implements OnInit {
     });
 
     this.suppForm = this.fb.group({
-      before: ['', [Validators.required]],
-      during: ['', [Validators.required]],
-      after: ['', [Validators.required]],
+      guideline: ['', [Validators.required]],
+      beforeOne: ['', [Validators.required]],
+      duringOne: ['', [Validators.required]],
+      afterOne: ['', [Validators.required]],
+      beforeTwo: [''],
+      duringTwo: [''],
+      afterTwo: [''],
+      beforeThree: [''],
+      duringThree: [''],
+      afterThree: [''],
     });
 
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
@@ -123,6 +147,41 @@ export class AddMealDialogComponent implements OnInit {
     this.mealTimeArr = this.mealTimeForm.get('mealTimeArr') as FormArray;
   }
 
+  // Guidelines
+
+  guidelineHandler() {
+    const id = this.suppForm.get('guideline').value;
+    console.log(id);
+    this.guidelineService.getGuidelineDataById(id)
+      .subscribe(guideline => {
+        this.guideline = guideline;
+        this.getExercises(guideline);
+      });
+  }
+
+
+  // Getters
+  getExercises(guideline) {
+    this.exerciseService.getMultipleExercises(guideline);
+    this.exerciseService.guideExercises.eOne.subscribe(exercise => {
+      this.exerciseOne = exercise;
+    });
+    if (this.exerciseService.guideExercises.eTwo) {
+      this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
+        this.exerciseTwo = exercise;
+      });
+    } else if (this.exerciseService.guideExercises.eThree) {
+      this.exerciseService.guideExercises.eThree.subscribe(exercise => {
+        this.exerciseTwo = exercise;
+      });
+    }
+    this.exercises = [
+      this.exerciseOne,
+      this.exerciseTwo,
+      this.exerciseThree
+    ];
+  }
+
 
   // Collect the data and send to service
   addMealplan() {
@@ -134,6 +193,7 @@ export class AddMealDialogComponent implements OnInit {
       mealplanID: this.userData.uid + '_' + mID,
       mealplanNR: mID,
       mealplanName: this.infoForm.get('mealplanName').value,
+      guideline: this.suppForm.get('guideline').value,
       mealTimes: this.mealTimeForm.value,
       mondayMeals: this.mondayMeals,
       tuesdayMeals: this.tuesdayMeals,
@@ -141,9 +201,15 @@ export class AddMealDialogComponent implements OnInit {
       thursdayMeals: this.thursdayMeals,
       fridayMeals: this.fridayMeals,
       supplementation: {
-        before: this.suppForm.get('before').value || null,
-        during: this.suppForm.get('during').value || null,
-        after: this.suppForm.get('after').value || null
+        beforeOne: this.suppForm.get('beforeOne').value || null,
+        duringOne: this.suppForm.get('duringOne').value || null,
+        afterOne: this.suppForm.get('afterOne').value || null,
+        beforeTwo: this.suppForm.get('beforeTwo').value || null,
+        duringTwo: this.suppForm.get('duringTwo').value || null,
+        afterTwo: this.suppForm.get('afterTwo').value || null,
+        beforeThree: this.suppForm.get('beforeThree').value || null,
+        duringThree: this.suppForm.get('duringThree').value || null,
+        afterThree: this.suppForm.get('afterThree').value || null
       }
     };
     this.mealplanService.addMealplan(data);

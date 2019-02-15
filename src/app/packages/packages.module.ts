@@ -11,13 +11,11 @@ import { SharedModule } from '../shared/shared.module';
 import { PackageService } from './package.service';
 import { PackagesComponent } from './packages.component';
 import { PackageDetailComponent } from './package-detail/package-detail.component';
-import { AddPackageDialogComponent } from '../shared/dialogs/add-package-dialog/add-package-dialog.component';
 
 @NgModule({
   declarations: [
     PackageItemComponent,
     PackageListItemComponent,
-    AddPackageDialogComponent,
     PackageListComponent,
     EditPackageComponent,
     PackagesComponent,
@@ -32,7 +30,6 @@ import { AddPackageDialogComponent } from '../shared/dialogs/add-package-dialog/
   exports: [
     PackageItemComponent,
     PackageListItemComponent,
-    AddPackageDialogComponent,
     PackageListComponent,
     EditPackageComponent,
     PackagesComponent,

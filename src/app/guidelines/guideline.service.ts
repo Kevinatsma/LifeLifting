@@ -70,6 +70,13 @@ export class GuidelineService {
   getGuidelines() {
     this.guidelineCol = this.afs.collection('guidelines', ref => ref
       .orderBy('creationDate', 'asc'));
+    this.guidelines = this.guidelineCol.valueChanges();
+    return this.guidelines;
+  }
+
+  getGuidelinesByClient(uid) {
+    this.clientGuideCol = this.afs.collection('guidelines', ref => ref
+      .where('clientID', '==', `${uid}`));
     this.guidelines = this.clientGuideCol.valueChanges();
     return this.guidelines;
   }
