@@ -1,8 +1,11 @@
 {
     "mealTimes": [
     {"value":"Breakfast"},
-    {"value":"Snacks"},
+    {"value":"Middle Morning Snack"},
     {"value":"Lunch"},
-    {"value":"Dinner"}
+    {"value":"Middle Afternoon Snack"},
+    {"value":"Dinner"},
+    {"value":"Collation"}
+
   ]
 }

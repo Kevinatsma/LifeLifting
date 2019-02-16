@@ -72,7 +72,7 @@
           </section>
 
           <section class="monday" *ngIf="mondayTab">
-            Monday
+            <app-monday [monday]="mealplan.mondayMeals"></app-monday>
           </section>
           <section class="monday" *ngIf="tuesdayTab">
             Tuesday

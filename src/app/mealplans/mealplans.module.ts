@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MealplanService } from './mealplan.service';
 import { MealplansComponent } from './mealplans.component';
 import { MealplanDetailComponent } from './mealplan-detail/mealplan-detail.component';
+import { MondayComponent } from './mealplan-detail/monday/monday.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MealplanDetailComponent } from './mealplan-detail/mealplan-detail.compo
     MealplanListComponent,
     EditMealplanComponent,
     MealplansComponent,
-    MealplanDetailComponent
+    MondayComponent,
+    MealplanDetailComponent,
   ],
   imports: [
     CommonModule,
