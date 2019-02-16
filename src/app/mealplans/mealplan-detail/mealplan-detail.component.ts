@@ -12,13 +12,12 @@ import { ExerciseService } from './../../exercises/exercise.service';
 import { Exercise } from './../../exercises/exercise.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
-import { Observable } from 'rxjs';
 
 
 @Component({
   selector: 'app-mealplan-detail',
   templateUrl: './mealplan-detail.component.html',
-  styleUrls: ['./mealplan-detail.component.scss', './../mealplan-list-item/mealplan-list-item.component.scss']
+  styleUrls: ['./mealplan-detail.component.scss', './../mealplan-list-item/mealplan-list-item.component.scss'],
 })
 export class MealplanDetailComponent implements OnInit {
   mealplan: Mealplan;
@@ -155,7 +154,6 @@ export class MealplanDetailComponent implements OnInit {
     } else {
       return null;
     }
-
   }
 
   resetDisplayContent(tabs) {
@@ -168,7 +166,6 @@ export class MealplanDetailComponent implements OnInit {
     this.thursdayTab = false;
     this.fridayTab = false;
     this.suppsTab = false;
-
   }
 
   // Delete mealplan

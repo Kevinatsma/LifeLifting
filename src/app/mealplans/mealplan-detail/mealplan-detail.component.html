@@ -71,22 +71,22 @@
             </nav>
           </section>
 
-          <section class="monday" *ngIf="mondayTab">
-            <app-monday [monday]="mealplan.mondayMeals"></app-monday>
+          <section class="day-section monday" *ngIf="mondayTab">
+            <app-monday [monday]="mealplan.mondayMeals" [mealTimes]="mealplan.mealTimes"></app-monday>
           </section>
-          <section class="monday" *ngIf="tuesdayTab">
+          <section class="day-section tuesday" *ngIf="tuesdayTab">
             Tuesday
           </section>
-          <section class="monday" *ngIf="wednesdayTab">
+          <section class="day-section wednesday" *ngIf="wednesdayTab">
             Wednesday
           </section>
-          <section class="monday" *ngIf="thursdayTab">
+          <section class="day-section thursday" *ngIf="thursdayTab">
             Thursday
           </section>
-          <section class="monday" *ngIf="fridayTab">
+          <section class="day-section friday" *ngIf="fridayTab">
             Friday
           </section>
-          <section class="monday" *ngIf="suppsTab">
+          <section class="supps" *ngIf="suppsTab">
             Supplements
           </section>
 

@@ -76,4 +76,8 @@ export class FoodDetailComponent implements OnInit {
     this.router.navigate([url]);
     this.foodService.getFoodData(productID).subscribe(a => (this.food = a));
   }
+
+  goBack() {
+    this.location.back();
+  }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MondayFormComponent } from 'src/app/shared/dialogs/add-meal-dialog/monday-form/monday-form.component';
 
 @Component({
   selector: 'app-monday',
@@ -8,10 +7,28 @@ import { MondayFormComponent } from 'src/app/shared/dialogs/add-meal-dialog/mond
 })
 export class MondayComponent implements OnInit {
   @Input() monday;
+  @Input() mealTimes;
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit() {
+  }
+
+  toggleSection(e) {
+    const id = e.target.parentNode.getAttribute('id');
+    const sections: NodeListOf<Element> = document.querySelectorAll('.meals__container');
+    const toggleButton = document.getElementById(id).querySelector('.indicator');
+    console.log(toggleButton);
+    sections.forEach(section => {
+      if (section.classList.contains('hidden')) {
+        section.classList.remove('hidden');
+        toggleButton.classList.remove('closed');
+      } else {
+        section.classList.add('hidden');
+        toggleButton.classList.add('closed');
+      }
+    });
   }
 
 }

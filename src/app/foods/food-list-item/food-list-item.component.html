@@ -13,16 +13,31 @@
     </div>
 
     <div class="quick-info">
-      <p class="speciality-title">Product ID: {{food.productID}}</p>
-      <ul class="contact-menu">
+      <p class="speciality-title" *ngIf="!amount">
+        Product ID: {{food.productID}}
+      </p>
+      <ul class="contact-menu" *ngIf="!amount">
         <li>
           <i class="fas fa-balance-scale"></i>
           {{food.unit}}
         </li>
       </ul>
+      <div class="wrapper" *ngIf="amount">
+        <span class="card-text" *ngFor="let prep of food.preperations; let i=index">
+          <ng-container *ngIf="i !== 0">
+            /
+          </ng-container>{{prep.prepValue}}
+        </span>
+        <ul class="contact-menu">
+          <li>
+            <i class="fas fa-balance-scale"></i>
+            {{amount}} {{food.unit}}
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
-  <section class="actions">
+  <section class="actions" *ngIf="!amount">
     <button type="button" (click)="deleteFoodDialog(food)">
       <i class="fas fa-trash"></i>
     </button>

@@ -24,3 +24,21 @@
         margin-left: 0;
     }
 }
+
+
+@keyframes slideInRight {
+    0% {
+        position: relative;
+        transform: translateX(0);
+        opacity: 1;
+        z-index: 2;
+    }
+    99% {
+        transform: translateX(100%);
+        opacity: 0.3;
+        z-index: -1;
+    }
+    100% {
+        position: absolute;
+    }
+}

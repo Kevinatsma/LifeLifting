@@ -194,7 +194,7 @@ export class AddMealDialogComponent implements OnInit {
       mealplanNR: mID,
       mealplanName: this.infoForm.get('mealplanName').value,
       guideline: this.suppForm.get('guideline').value,
-      mealTimes: this.mealTimeForm.value,
+      mealTimes: this.mealTimeForms.value,
       mondayMeals: this.mondayMeals,
       tuesdayMeals: this.tuesdayMeals,
       wednesdayMeals: this.wednesdayMeals,

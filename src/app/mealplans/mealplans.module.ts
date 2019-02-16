@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FoodsModule } from './../foods/foods.module';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MealplanListItemComponent } from './mealplan-list-item/mealplan-list-item.component';
@@ -25,6 +26,7 @@ import { MondayComponent } from './mealplan-detail/monday/monday.component';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+    FoodsModule,
     SharedModule
   ],
   exports: [
