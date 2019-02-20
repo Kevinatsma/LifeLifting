@@ -13,9 +13,6 @@ main {
 
             .title {
                 width: 100%;
-
-
-
                 h4 {
                     font-size: 26px;
                     text-align: left;
@@ -48,7 +45,7 @@ main {
             width: 100%;
 
             .meals {
-                height: 580px;
+                height: auto;
                 width: 100%;
                 display: flex;
                 flex-flow: column wrap;
@@ -102,8 +99,8 @@ main {
                     display: flex;
                     flex-flow: row nowrap;
                     overflow-x: auto;
-                    padding: 2em 3em 4em 2em;
-                    margin: 0 0 2em;
+                    padding: 2em 3em 2em 2em;
+                    margin: 0;
                     width: 100%;
                     max-width: 100%;
                     box-sizing: border-box;

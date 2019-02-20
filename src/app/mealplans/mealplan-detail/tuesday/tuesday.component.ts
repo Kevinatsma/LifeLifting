@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-monday',
-  templateUrl: './monday.component.html',
-  styleUrls: ['./monday.component.scss']
+  selector: 'app-tuesday',
+  templateUrl: './tuesday.component.html',
+  styleUrls: ['./../monday/monday.component.scss']
 })
-export class MondayComponent implements OnInit {
-  @Input() monday;
+export class TuesdayComponent implements OnInit {
+  @Input() tuesday;
   @Input() mealTimes;
 
   constructor() {

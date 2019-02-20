@@ -12,6 +12,10 @@ import { MealplanService } from './mealplan.service';
 import { MealplansComponent } from './mealplans.component';
 import { MealplanDetailComponent } from './mealplan-detail/mealplan-detail.component';
 import { MondayComponent } from './mealplan-detail/monday/monday.component';
+import { TuesdayComponent } from './mealplan-detail/tuesday/tuesday.component';
+import { WednesdayComponent } from './mealplan-detail/wednesday/wednesday.component';
+import { ThursdayComponent } from './mealplan-detail/thursday/thursday.component';
+import { FridayComponent } from './mealplan-detail/friday/friday.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,10 @@ import { MondayComponent } from './mealplan-detail/monday/monday.component';
     EditMealplanComponent,
     MealplansComponent,
     MondayComponent,
+    TuesdayComponent,
+    WednesdayComponent,
+    ThursdayComponent,
+    FridayComponent,
     MealplanDetailComponent,
   ],
   imports: [
