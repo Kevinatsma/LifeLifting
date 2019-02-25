@@ -12,6 +12,8 @@ import { ExerciseService } from './../../exercises/exercise.service';
 import { Exercise } from './../../exercises/exercise.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
+import { GuidelineService } from 'src/app/guidelines/guideline.service';
+import { Guideline } from 'src/app/guidelines/guideline.model';
 
 
 @Component({
@@ -32,8 +34,13 @@ export class MealplanDetailComponent implements OnInit {
   suppsTab = false;
 
   // Exercises
+  guideline: Guideline;
   guideExercises: Object;
-  exercises: any;
+  exercises: {
+    eOne: any;
+    eTwo: any;
+    eThree: any;
+  };
   exerciseOne: Exercise;
   exerciseTwo: Exercise;
   exerciseThree: Exercise;
@@ -54,6 +61,7 @@ export class MealplanDetailComponent implements OnInit {
                public route: ActivatedRoute,
                private userService: UserService,
                public exerciseService: ExerciseService,
+               public guidelineService: GuidelineService,
                public mealplanService: MealplanService,
                public specialistService: SpecialistService,
                public location: Location) {
@@ -72,31 +80,47 @@ export class MealplanDetailComponent implements OnInit {
       .subscribe(mealplan => {
         this.mealplan = mealplan;
         this.userService.getUserDataByID(mealplan.clientID).subscribe(user => this.client = user);
-        // this.getExercises(mealplan);
+        this.getGuideline(mealplan);
       });
   }
 
   // Getters
-  // getExercises(mealplan) {
-  //   this.exerciseService.getMultipleExercises(mealplan);
-  //   this.exerciseService.guideExercises.eOne.subscribe(exercise => {
-  //     this.exerciseOne = exercise;
-  //   });
-  //   if (this.exerciseService.guideExercises.eTwo) {
-  //     this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
-  //       this.exerciseTwo = exercise;
-  //     });
-  //   } else if (this.exerciseService.guideExercises.eThree) {
-  //     this.exerciseService.guideExercises.eThree.subscribe(exercise => {
-  //       this.exerciseTwo = exercise;
-  //     });
-  //   }
-  //   this.exercises = [
-  //     this.exerciseOne,
-  //     this.exerciseTwo,
-  //     this.exerciseThree
-  //   ];
-  // }
+
+  getGuideline(mealplan) {
+    const id = mealplan.guideline;
+    console.log(id);
+    this.guidelineService.getGuidelineDataById(id)
+      .subscribe(guideline => {
+        this.guideline = guideline;
+        console.log(this.guideline);
+        this.getExercises(this.guideline);
+      });
+  }
+
+  getExercises(guideline) {
+    console.log(guideline);
+    this.exerciseService.getMultipleExercises(guideline);
+    this.exerciseService.guideExercises.eOne.subscribe(exercise => {
+      this.exercises.eOne = exercise;
+      console.log(exercise);
+    });
+    if (this.exerciseService.guideExercises.eTwo) {
+      this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
+        return this.exercises.eTwo = exercise;
+      });
+    } else if (this.exerciseService.guideExercises.eThree) {
+      this.exerciseService.guideExercises.eThree.subscribe(exercise => {
+        this.exerciseTwo = exercise;
+      });
+    }
+    this.exercises = {
+      eOne: this.exerciseOne,
+      eTwo: this.exerciseTwo,
+      eThree: this.exerciseThree
+    };
+    console.log(this.exercises.eTwo);
+
+  }
 
   // Like this to avoid State Changed Error
   // Open/closers

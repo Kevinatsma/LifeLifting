@@ -105,6 +105,7 @@ export class Mealplan {
     mealplanID: string;
     mealplanNR: number;
     mealplanName: string;
+    guideline: string;
     mealTimes: [{}];
     mondayMeals: DayForm;
     tuesdayMeals: DayForm;

@@ -1,0 +1,3629 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "/Users/kevinatsma/Desktop/LifeLifting/code/LifeLifting",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2019-02-23 00:06:29",
+            "filesum": 596,
+            "codesum": 183580,
+            "commentsum": 73320,
+            "blanksum": 14184,
+            "filelist": [
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 1,
+                    "filename": ".editorconfig"
+                },
+                {
+                    "blank": 0,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": ".firebase/hosting.ZGlzdC9icm93c2Vy.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": ".firebase/hosting.ZGlzdC9MaWZlTGlmdGluZw.cache"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": ".firebaserc"
+                },
+                {
+                    "blank": 4,
+                    "code": 18,
+                    "comment": 20,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 8,
+                    "code": 151,
+                    "comment": 0,
+                    "filename": "angular.json"
+                },
+                {
+                    "blank": 113,
+                    "code": 316,
+                    "comment": 3,
+                    "filename": "dist/browser/3rdpartylicenses.txt"
+                },
+                {
+                    "filename": "dist/browser/assets/icons/icon-128x128.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/assets/icons/icon-144x144.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/assets/icons/icon-152x152.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/assets/icons/icon-192x192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/assets/icons/icon-384x384.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/assets/icons/icon-512x512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/assets/icons/icon-72x72.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/assets/icons/icon-96x96.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/assets/img/bgs/home-bg-2.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/assets/img/bgs/home-bg-3.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/assets/img/bgs/home-bg-4.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/assets/img/bgs/home-bg.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/assets/img/bgs/home-bg.webp",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 1,
+                    "filename": "dist/browser/assets/img/icons/chat.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 1,
+                    "filename": "dist/browser/assets/img/icons/next.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 64,
+                    "comment": 1,
+                    "filename": "dist/browser/assets/img/logo-extended.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 1,
+                    "filename": "dist/browser/assets/img/logo-icon.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "dist/browser/assets/img/logo-text.svg"
+                },
+                {
+                    "blank": 5,
+                    "code": 38,
+                    "comment": 1,
+                    "filename": "dist/browser/assets/scss/_animations.scss"
+                },
+                {
+                    "blank": 16,
+                    "code": 67,
+                    "comment": 0,
+                    "filename": "dist/browser/assets/scss/_dialogs.scss"
+                },
+                {
+                    "blank": 10,
+                    "code": 41,
+                    "comment": 1,
+                    "filename": "dist/browser/assets/scss/_forms.scss"
+                },
+                {
+                    "blank": 17,
+                    "code": 69,
+                    "comment": 8,
+                    "filename": "dist/browser/assets/scss/_master.scss"
+                },
+                {
+                    "filename": "dist/browser/favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/browser/home-bg.b5a565f554bd90e3791e.webp",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 3,
+                    "code": 33,
+                    "comment": 3,
+                    "filename": "dist/browser/index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist/browser/main.7e881772970e2f6e04a3.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "dist/browser/manifest.json"
+                },
+                {
+                    "blank": 21,
+                    "code": 1780,
+                    "comment": 912,
+                    "filename": "dist/browser/ngsw-worker.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 113,
+                    "comment": 0,
+                    "filename": "dist/browser/ngsw.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist/browser/polyfills.461a4db507cd04dae25c.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "dist/browser/robots.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist/browser/runtime.a5dd35324ddfd942bef1.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 8,
+                    "filename": "dist/browser/safety-worker.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist/browser/styles.c0cb91fac3ac36e5f3b8.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 8,
+                    "filename": "dist/browser/worker-basic.min.js"
+                },
+                {
+                    "blank": 45,
+                    "code": 211,
+                    "comment": 2,
+                    "filename": "dist/LifeLifting/3rdpartylicenses.txt"
+                },
+                {
+                    "filename": "dist/LifeLifting/assets/img/bgs/home-bg-2.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/LifeLifting/assets/img/bgs/home-bg-3.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/LifeLifting/assets/img/bgs/home-bg-4.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/LifeLifting/assets/img/bgs/home-bg.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 1,
+                    "filename": "dist/LifeLifting/assets/img/icons/chat.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 1,
+                    "filename": "dist/LifeLifting/assets/img/icons/next.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 64,
+                    "comment": 1,
+                    "filename": "dist/LifeLifting/assets/img/logo-extended.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 1,
+                    "filename": "dist/LifeLifting/assets/img/logo-icon.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "dist/LifeLifting/assets/img/logo-text.svg"
+                },
+                {
+                    "blank": 3,
+                    "code": 22,
+                    "comment": 1,
+                    "filename": "dist/LifeLifting/assets/scss/_animations.scss"
+                },
+                {
+                    "blank": 16,
+                    "code": 67,
+                    "comment": 0,
+                    "filename": "dist/LifeLifting/assets/scss/_dialogs.scss"
+                },
+                {
+                    "blank": 10,
+                    "code": 41,
+                    "comment": 1,
+                    "filename": "dist/LifeLifting/assets/scss/_forms.scss"
+                },
+                {
+                    "blank": 17,
+                    "code": 67,
+                    "comment": 8,
+                    "filename": "dist/LifeLifting/assets/scss/_master.scss"
+                },
+                {
+                    "filename": "dist/LifeLifting/favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "dist/LifeLifting/home-bg.dce71004d3e88449dc3e.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 3,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "dist/LifeLifting/index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist/LifeLifting/main.ab1158ed28d823245449.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist/LifeLifting/polyfills.f6ae3e8b63939c618130.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist/LifeLifting/runtime.ec2944dd8b20ec099bf3.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "dist/LifeLifting/styles.1ee2cb47fba155ac9fac.css"
+                },
+                {
+                    "blank": 9395,
+                    "code": 140294,
+                    "comment": 70752,
+                    "filename": "dist/server.js"
+                },
+                {
+                    "filename": "dist/server/home-bg.webp",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 181,
+                    "code": 164,
+                    "comment": 179,
+                    "filename": "dist/server/main.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "dist/server/main.js.map"
+                },
+                {
+                    "blank": 3,
+                    "code": 23,
+                    "comment": 2,
+                    "filename": "e2e/protractor.conf.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "e2e/src/app.e2e-spec.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "e2e/src/app.po.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "e2e/tsconfig.e2e.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "firebase.json"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "LICENSE"
+                },
+                {
+                    "blank": 3,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "ngsw-config.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 12141,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 69,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "blank": 13,
+                    "code": 14,
+                    "comment": 5,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 11,
+                    "code": 29,
+                    "comment": 12,
+                    "filename": "server.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 29,
+                    "comment": 6,
+                    "filename": "src/app/app-routing.module.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 2,
+                    "filename": "src/app/app.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/app.component.scss"
+                },
+                {
+                    "blank": 0,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "src/app/app.component.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 14,
+                    "comment": 3,
+                    "filename": "src/app/app.component.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 49,
+                    "comment": 3,
+                    "filename": "src/app/app.module.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/app.server.module.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/booking/appointment.model.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src/app/booking/booking.module.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/booking/booking.service.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src/app/booking/booking.service.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 15,
+                    "comment": 2,
+                    "filename": "src/app/booking/face-to-face-appointment/face-to-face-appointment.component.html"
+                },
+                {
+                    "blank": 2,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/app/booking/face-to-face-appointment/face-to-face-appointment.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/booking/face-to-face-appointment/face-to-face-appointment.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/booking/face-to-face-appointment/face-to-face-appointment.component.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 66,
+                    "comment": 12,
+                    "filename": "src/app/booking/online-appointment/online-appointment.component.html"
+                },
+                {
+                    "blank": 10,
+                    "code": 45,
+                    "comment": 0,
+                    "filename": "src/app/booking/online-appointment/online-appointment.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/booking/online-appointment/online-appointment.component.spec.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 78,
+                    "comment": 2,
+                    "filename": "src/app/booking/online-appointment/online-appointment.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-detail/chat-detail.component.html"
+                },
+                {
+                    "blank": 8,
+                    "code": 56,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-detail/chat-detail.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-detail/chat-detail.component.spec.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 45,
+                    "comment": 3,
+                    "filename": "src/app/chat/chat-detail/chat-detail.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-feed/chat-feed.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-feed/chat-feed.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-feed/chat-feed.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-feed/chat-feed.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-input/chat-input.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-input/chat-input.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-input/chat-input.component.spec.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-input/chat-input.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-message.service.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 55,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-message.service.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-message/chat-message.component.html"
+                },
+                {
+                    "blank": 12,
+                    "code": 60,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-message/chat-message.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-message/chat-message.component.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-message/chat-message.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-messages/chat-messages.component.html"
+                },
+                {
+                    "blank": 3,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-messages/chat-messages.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-messages/chat-messages.component.spec.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 37,
+                    "comment": 6,
+                    "filename": "src/app/chat/chat-messages/chat-messages.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-thread.service.spec.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 133,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-thread.service.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 13,
+                    "comment": 5,
+                    "filename": "src/app/chat/chat-thread/chat-thread.component.html"
+                },
+                {
+                    "blank": 10,
+                    "code": 59,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-thread/chat-thread.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-thread/chat-thread.component.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 40,
+                    "comment": 1,
+                    "filename": "src/app/chat/chat-thread/chat-thread.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-threads/chat-threads.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 52,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-threads/chat-threads.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-threads/chat-threads.component.spec.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 40,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat-threads/chat-threads.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat.module.spec.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 57,
+                    "comment": 0,
+                    "filename": "src/app/chat/chat.module.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/app/chat/message.model.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/app/chat/thread.model.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 62,
+                    "comment": 0,
+                    "filename": "src/app/clients/client-detail/client-detail.component.html"
+                },
+                {
+                    "blank": 50,
+                    "code": 268,
+                    "comment": 1,
+                    "filename": "src/app/clients/client-detail/client-detail.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/clients/client-detail/client-detail.component.spec.ts"
+                },
+                {
+                    "blank": 21,
+                    "code": 90,
+                    "comment": 4,
+                    "filename": "src/app/clients/client-detail/client-detail.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 66,
+                    "comment": 0,
+                    "filename": "src/app/clients/client-list-item/client-list-item.component.html"
+                },
+                {
+                    "blank": 27,
+                    "code": 145,
+                    "comment": 0,
+                    "filename": "src/app/clients/client-list-item/client-list-item.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/clients/client-list-item/client-list-item.component.spec.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 48,
+                    "comment": 4,
+                    "filename": "src/app/clients/client-list-item/client-list-item.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/clients/client-list/client-list.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 12,
+                    "comment": 2,
+                    "filename": "src/app/clients/client-list/client-list.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/clients/client-list/client-list.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/app/clients/client-list/client-list.component.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 51,
+                    "comment": 4,
+                    "filename": "src/app/clients/client.service.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 3,
+                    "filename": "src/app/clients/clients.component.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/clients/clients.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/clients/clients.component.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 22,
+                    "comment": 1,
+                    "filename": "src/app/clients/clients.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "src/app/clients/clients.module.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 75,
+                    "comment": 8,
+                    "filename": "src/app/clients/edit-client/edit-client.component.html"
+                },
+                {
+                    "blank": 49,
+                    "code": 266,
+                    "comment": 2,
+                    "filename": "src/app/clients/edit-client/edit-client.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/clients/edit-client/edit-client.component.spec.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 81,
+                    "comment": 4,
+                    "filename": "src/app/clients/edit-client/edit-client.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src/app/core/animations/fade.animation.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src/app/core/animations/router.animations.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/core/animations/slide-up-down.animation.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 17,
+                    "comment": 4,
+                    "filename": "src/app/core/animations/slide.animation.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/core/auth/auth.service.spec.ts"
+                },
+                {
+                    "blank": 27,
+                    "code": 189,
+                    "comment": 5,
+                    "filename": "src/app/core/auth/auth.service.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/core/auth/auth.style.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/core/auth/guards/admin.guard.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src/app/core/auth/guards/admin.guard.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/core/auth/guards/auth.guard.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 29,
+                    "comment": 26,
+                    "filename": "src/app/core/auth/guards/auth.guard.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/core/auth/guards/editor.guard.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src/app/core/auth/guards/editor.guard.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/core/auth/guards/subscriber.guard.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src/app/core/auth/guards/subscriber.guard.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/core/chat-old/chat-detail/chat-detail.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/core/chat-old/chat-detail/chat-detail.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/core/chat-old/chat-detail/chat-detail.component.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "src/app/core/chat-old/chat-detail/chat-detail.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/core/chat-old/chat-list/chat-list.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/core/chat-old/chat-list/chat-list.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/core/chat-old/chat-list/chat-list.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/core/chat-old/chat-list/chat-list.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/app/core/chat-old/chat.module.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/core/chat-old/chat.service.spec.ts"
+                },
+                {
+                    "blank": 15,
+                    "code": 74,
+                    "comment": 2,
+                    "filename": "src/app/core/chat-old/chat.service.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/app/core/core.module.spec.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 23,
+                    "comment": 3,
+                    "filename": "src/app/core/core.module.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-home/dashboard-home.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-home/dashboard-home.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-home/dashboard-home.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-home/dashboard-home.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/admin-menu/admin-menu.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/admin-menu/admin-menu.component.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/admin-menu/admin-menu.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/client-menu/client-menu.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/client-menu/client-menu.component.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/client-menu/client-menu.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/dashboard-menu.component.html"
+                },
+                {
+                    "blank": 12,
+                    "code": 79,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/dashboard-menu.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/dashboard-menu.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/dashboard-menu.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/misc-menu/misc-menu.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/misc-menu/misc-menu.component.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/misc-menu/misc-menu.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/specialist-menu/specialist-menu.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/specialist-menu/specialist-menu.component.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-menu/specialist-menu/specialist-menu.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-top-nav/dashboard-top-nav.component.html"
+                },
+                {
+                    "blank": 18,
+                    "code": 115,
+                    "comment": 1,
+                    "filename": "src/app/dashboard/dashboard-top-nav/dashboard-top-nav.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-top-nav/dashboard-top-nav.component.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard-top-nav/dashboard-top-nav.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 107,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard.module.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard/dashboard.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard/dashboard.component.spec.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 54,
+                    "comment": 1,
+                    "filename": "src/app/dashboard/dashboard/dashboard.component.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/dashboard/dashboard.scss"
+                },
+                {
+                    "blank": 9,
+                    "code": 77,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-client-detail/my-client-detail.component.html"
+                },
+                {
+                    "blank": 52,
+                    "code": 308,
+                    "comment": 1,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-client-detail/my-client-detail.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-client-detail/my-client-detail.component.spec.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 109,
+                    "comment": 6,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-client-detail/my-client-detail.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 62,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-client-list-item/my-client-list-item.component.html"
+                },
+                {
+                    "blank": 24,
+                    "code": 134,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-client-list-item/my-client-list-item.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-client-list-item/my-client-list-item.component.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-client-list-item/my-client-list-item.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-client-list/my-client-list.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 12,
+                    "comment": 2,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-client-list/my-client-list.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-client-list/my-client-list.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 28,
+                    "comment": 1,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-client-list/my-client-list.component.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 12,
+                    "comment": 6,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-clients.component.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-clients.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-clients.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src/app/dashboard/specialist-dashboard/my-clients/my-clients.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 81,
+                    "comment": 2,
+                    "filename": "src/app/exercises/edit-exercise/edit-exercise.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 34,
+                    "comment": 1,
+                    "filename": "src/app/exercises/edit-exercise/edit-exercise.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/exercises/edit-exercise/edit-exercise.component.spec.ts"
+                },
+                {
+                    "blank": 15,
+                    "code": 59,
+                    "comment": 3,
+                    "filename": "src/app/exercises/edit-exercise/edit-exercise.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 79,
+                    "comment": 2,
+                    "filename": "src/app/exercises/exercise-detail/exercise-detail.component.html"
+                },
+                {
+                    "blank": 22,
+                    "code": 97,
+                    "comment": 1,
+                    "filename": "src/app/exercises/exercise-detail/exercise-detail.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/exercises/exercise-detail/exercise-detail.component.spec.ts"
+                },
+                {
+                    "blank": 15,
+                    "code": 63,
+                    "comment": 5,
+                    "filename": "src/app/exercises/exercise-detail/exercise-detail.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 33,
+                    "comment": 2,
+                    "filename": "src/app/exercises/exercise-list-item/exercise-list-item.component.html"
+                },
+                {
+                    "blank": 27,
+                    "code": 164,
+                    "comment": 2,
+                    "filename": "src/app/exercises/exercise-list-item/exercise-list-item.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/exercises/exercise-list-item/exercise-list-item.component.spec.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 59,
+                    "comment": 0,
+                    "filename": "src/app/exercises/exercise-list-item/exercise-list-item.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/exercises/exercise-list/exercise-list.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 14,
+                    "comment": 2,
+                    "filename": "src/app/exercises/exercise-list/exercise-list.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/exercises/exercise-list/exercise-list.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/app/exercises/exercise-list/exercise-list.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/app/exercises/exercise.model.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/exercises/exercise.service.spec.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 94,
+                    "comment": 1,
+                    "filename": "src/app/exercises/exercise.service.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 15,
+                    "comment": 3,
+                    "filename": "src/app/exercises/exercises.component.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/exercises/exercises.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/exercises/exercises.component.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 22,
+                    "comment": 1,
+                    "filename": "src/app/exercises/exercises.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "src/app/exercises/exercises.module.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/app/finances/finances.module.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/finances/finances/finances.component.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/app/finances/finances/finances.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/finances/finances/finances.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/finances/finances/finances.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 56,
+                    "comment": 2,
+                    "filename": "src/app/foods/edit-food/edit-food.component.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 34,
+                    "comment": 1,
+                    "filename": "src/app/foods/edit-food/edit-food.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/foods/edit-food/edit-food.component.spec.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 70,
+                    "comment": 3,
+                    "filename": "src/app/foods/edit-food/edit-food.component.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 130,
+                    "comment": 2,
+                    "filename": "src/app/foods/food-detail/food-detail.component.html"
+                },
+                {
+                    "blank": 19,
+                    "code": 81,
+                    "comment": 1,
+                    "filename": "src/app/foods/food-detail/food-detail.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/foods/food-detail/food-detail.component.spec.ts"
+                },
+                {
+                    "blank": 16,
+                    "code": 63,
+                    "comment": 4,
+                    "filename": "src/app/foods/food-detail/food-detail.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/app/foods/food-item/food-item.component.html"
+                },
+                {
+                    "blank": 6,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "src/app/foods/food-item/food-item.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/foods/food-item/food-item.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/app/foods/food-item/food-item.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 44,
+                    "comment": 2,
+                    "filename": "src/app/foods/food-list-item/food-list-item.component.html"
+                },
+                {
+                    "blank": 28,
+                    "code": 167,
+                    "comment": 2,
+                    "filename": "src/app/foods/food-list-item/food-list-item.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/foods/food-list-item/food-list-item.component.spec.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "src/app/foods/food-list-item/food-list-item.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/foods/food-list/food-list.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 14,
+                    "comment": 2,
+                    "filename": "src/app/foods/food-list/food-list.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/foods/food-list/food-list.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/app/foods/food-list/food-list.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/app/foods/food.model.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/foods/food.service.spec.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 67,
+                    "comment": 1,
+                    "filename": "src/app/foods/food.service.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 15,
+                    "comment": 3,
+                    "filename": "src/app/foods/foods.component.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/foods/foods.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/foods/foods.component.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 22,
+                    "comment": 1,
+                    "filename": "src/app/foods/foods.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 40,
+                    "comment": 0,
+                    "filename": "src/app/foods/foods.module.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 186,
+                    "comment": 40,
+                    "filename": "src/app/guidelines/edit-guideline/edit-guideline.component.html"
+                },
+                {
+                    "blank": 13,
+                    "code": 73,
+                    "comment": 1,
+                    "filename": "src/app/guidelines/edit-guideline/edit-guideline.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/edit-guideline/edit-guideline.component.spec.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 114,
+                    "comment": 3,
+                    "filename": "src/app/guidelines/edit-guideline/edit-guideline.component.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 183,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/guideline-detail/guideline-detail.component.html"
+                },
+                {
+                    "blank": 76,
+                    "code": 423,
+                    "comment": 3,
+                    "filename": "src/app/guidelines/guideline-detail/guideline-detail.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/guideline-detail/guideline-detail.component.spec.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 129,
+                    "comment": 6,
+                    "filename": "src/app/guidelines/guideline-detail/guideline-detail.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 34,
+                    "comment": 4,
+                    "filename": "src/app/guidelines/guideline-list-item/guideline-list-item.component.html"
+                },
+                {
+                    "blank": 28,
+                    "code": 183,
+                    "comment": 2,
+                    "filename": "src/app/guidelines/guideline-list-item/guideline-list-item.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/guideline-list-item/guideline-list-item.component.spec.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/guideline-list-item/guideline-list-item.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/guideline-list/guideline-list.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 14,
+                    "comment": 2,
+                    "filename": "src/app/guidelines/guideline-list/guideline-list.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/guideline-list/guideline-list.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/guideline-list/guideline-list.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/guideline.model.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/guideline.service.spec.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 86,
+                    "comment": 11,
+                    "filename": "src/app/guidelines/guideline.service.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 12,
+                    "comment": 6,
+                    "filename": "src/app/guidelines/guidelines.component.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/guidelines.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/guidelines.component.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 8,
+                    "filename": "src/app/guidelines/guidelines.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "src/app/guidelines/guidelines.module.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 233,
+                    "filename": "src/app/mealplans/edit-mealplan/edit-mealplan.component.html"
+                },
+                {
+                    "blank": 13,
+                    "code": 73,
+                    "comment": 1,
+                    "filename": "src/app/mealplans/edit-mealplan/edit-mealplan.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/edit-mealplan/edit-mealplan.component.spec.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 87,
+                    "comment": 3,
+                    "filename": "src/app/mealplans/edit-mealplan/edit-mealplan.component.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 186,
+                    "comment": 12,
+                    "filename": "src/app/mealplans/mealplan-detail/friday/friday.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-detail/friday/friday.component.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-detail/friday/friday.component.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 103,
+                    "comment": 1,
+                    "filename": "src/app/mealplans/mealplan-detail/mealplan-detail.component.html"
+                },
+                {
+                    "blank": 58,
+                    "code": 302,
+                    "comment": 3,
+                    "filename": "src/app/mealplans/mealplan-detail/mealplan-detail.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-detail/mealplan-detail.component.spec.ts"
+                },
+                {
+                    "blank": 27,
+                    "code": 130,
+                    "comment": 38,
+                    "filename": "src/app/mealplans/mealplan-detail/mealplan-detail.component.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 186,
+                    "comment": 12,
+                    "filename": "src/app/mealplans/mealplan-detail/monday/monday.component.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 128,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-detail/monday/monday.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-detail/monday/monday.component.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-detail/monday/monday.component.ts"
+                },
+                {
+                    "blank": 20,
+                    "code": 186,
+                    "comment": 12,
+                    "filename": "src/app/mealplans/mealplan-detail/thursday/thursday.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-detail/thursday/thursday.component.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-detail/thursday/thursday.component.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 186,
+                    "comment": 12,
+                    "filename": "src/app/mealplans/mealplan-detail/tuesday/tuesday.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-detail/tuesday/tuesday.component.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-detail/tuesday/tuesday.component.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 186,
+                    "comment": 12,
+                    "filename": "src/app/mealplans/mealplan-detail/wednesday/wednesday.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-detail/wednesday/wednesday.component.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-detail/wednesday/wednesday.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 34,
+                    "comment": 4,
+                    "filename": "src/app/mealplans/mealplan-list-item/mealplan-list-item.component.html"
+                },
+                {
+                    "blank": 28,
+                    "code": 184,
+                    "comment": 2,
+                    "filename": "src/app/mealplans/mealplan-list-item/mealplan-list-item.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-list-item/mealplan-list-item.component.spec.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-list-item/mealplan-list-item.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-list/mealplan-list.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 14,
+                    "comment": 2,
+                    "filename": "src/app/mealplans/mealplan-list/mealplan-list.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-list/mealplan-list.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan-list/mealplan-list.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 113,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan.model.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplan.service.spec.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 80,
+                    "comment": 11,
+                    "filename": "src/app/mealplans/mealplan.service.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 12,
+                    "comment": 6,
+                    "filename": "src/app/mealplans/mealplans.component.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplans.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplans.component.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 8,
+                    "filename": "src/app/mealplans/mealplans.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 49,
+                    "comment": 0,
+                    "filename": "src/app/mealplans/mealplans.module.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 48,
+                    "comment": 2,
+                    "filename": "src/app/packages/edit-package/edit-package.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 56,
+                    "comment": 1,
+                    "filename": "src/app/packages/edit-package/edit-package.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/packages/edit-package/edit-package.component.spec.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 52,
+                    "comment": 3,
+                    "filename": "src/app/packages/edit-package/edit-package.component.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 74,
+                    "comment": 0,
+                    "filename": "src/app/packages/package-detail/package-detail.component.html"
+                },
+                {
+                    "blank": 22,
+                    "code": 93,
+                    "comment": 1,
+                    "filename": "src/app/packages/package-detail/package-detail.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/packages/package-detail/package-detail.component.spec.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 71,
+                    "comment": 4,
+                    "filename": "src/app/packages/package-detail/package-detail.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/app/packages/package-item/package-item.component.html"
+                },
+                {
+                    "blank": 6,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "src/app/packages/package-item/package-item.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/packages/package-item/package-item.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/app/packages/package-item/package-item.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 42,
+                    "comment": 4,
+                    "filename": "src/app/packages/package-list-item/package-list-item.component.html"
+                },
+                {
+                    "blank": 27,
+                    "code": 153,
+                    "comment": 2,
+                    "filename": "src/app/packages/package-list-item/package-list-item.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/packages/package-list-item/package-list-item.component.spec.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "src/app/packages/package-list-item/package-list-item.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/packages/package-list/package-list.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 12,
+                    "comment": 2,
+                    "filename": "src/app/packages/package-list/package-list.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/packages/package-list/package-list.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/app/packages/package-list/package-list.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/packages/package.model.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/packages/package.service.spec.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 67,
+                    "comment": 1,
+                    "filename": "src/app/packages/package.service.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 15,
+                    "comment": 3,
+                    "filename": "src/app/packages/packages.component.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/packages/packages.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/packages/packages.component.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 22,
+                    "comment": 1,
+                    "filename": "src/app/packages/packages.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 40,
+                    "comment": 0,
+                    "filename": "src/app/packages/packages.module.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/data.module.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/data.service.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/data.service.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 247,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/JSON/countries.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 187,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/JSON/languages.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/JSON/mealTimes.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/JSON/preperations.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 80,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/JSON/times.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/JSON/units.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/models/country.model.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/models/language.model.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/models/time.model.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src/app/shared/data/models/timezone.model.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-client-dialog/add-client-dialog.component.html"
+                },
+                {
+                    "blank": 29,
+                    "code": 130,
+                    "comment": 2,
+                    "filename": "src/app/shared/dialogs/add-client-dialog/add-client-dialog.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-client-dialog/add-client-dialog.component.spec.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 76,
+                    "comment": 4,
+                    "filename": "src/app/shared/dialogs/add-client-dialog/add-client-dialog.component.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-exercise-dialog/add-exercise-dialog.component.html"
+                },
+                {
+                    "blank": 24,
+                    "code": 107,
+                    "comment": 2,
+                    "filename": "src/app/shared/dialogs/add-exercise-dialog/add-exercise-dialog.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-exercise-dialog/add-exercise-dialog.component.spec.ts"
+                },
+                {
+                    "blank": 20,
+                    "code": 134,
+                    "comment": 10,
+                    "filename": "src/app/shared/dialogs/add-exercise-dialog/add-exercise-dialog.component.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 162,
+                    "comment": 1,
+                    "filename": "src/app/shared/dialogs/add-food-dialog/add-food-dialog.component.html"
+                },
+                {
+                    "blank": 26,
+                    "code": 114,
+                    "comment": 2,
+                    "filename": "src/app/shared/dialogs/add-food-dialog/add-food-dialog.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-food-dialog/add-food-dialog.component.spec.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 97,
+                    "comment": 4,
+                    "filename": "src/app/shared/dialogs/add-food-dialog/add-food-dialog.component.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 106,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-guide-dialog/add-guide-dialog.component.html"
+                },
+                {
+                    "blank": 29,
+                    "code": 126,
+                    "comment": 2,
+                    "filename": "src/app/shared/dialogs/add-guide-dialog/add-guide-dialog.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-guide-dialog/add-guide-dialog.component.spec.ts"
+                },
+                {
+                    "blank": 20,
+                    "code": 168,
+                    "comment": 4,
+                    "filename": "src/app/shared/dialogs/add-guide-dialog/add-guide-dialog.component.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 209,
+                    "comment": 1,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/add-meal-dialog.component.html"
+                },
+                {
+                    "blank": 69,
+                    "code": 403,
+                    "comment": 6,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/add-meal-dialog.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/add-meal-dialog.component.spec.ts"
+                },
+                {
+                    "blank": 26,
+                    "code": 176,
+                    "comment": 15,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/add-meal-dialog.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/add-meal-dialog.service.spec.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 79,
+                    "comment": 1,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/add-meal-dialog.service.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/day-form.model.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/dialog.module.ts"
+                },
+                {
+                    "blank": 33,
+                    "code": 317,
+                    "comment": 38,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/friday-form/friday-form.component.html"
+                },
+                {
+                    "blank": 30,
+                    "code": 279,
+                    "comment": 20,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/friday-form/friday-form.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/friday-form/friday-form.spec.ts"
+                },
+                {
+                    "blank": 33,
+                    "code": 317,
+                    "comment": 38,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/monday-form/monday-form.component.html"
+                },
+                {
+                    "blank": 28,
+                    "code": 278,
+                    "comment": 20,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/monday-form/monday-form.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/monday-form/monday-form.spec.ts"
+                },
+                {
+                    "blank": 33,
+                    "code": 317,
+                    "comment": 38,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/thursday-form/thursday-form.component.html"
+                },
+                {
+                    "blank": 30,
+                    "code": 279,
+                    "comment": 20,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/thursday-form/thursday-form.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/thursday-form/thursday-form.spec.ts"
+                },
+                {
+                    "blank": 33,
+                    "code": 317,
+                    "comment": 38,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/tuesday-form/tuesday-form.component.html"
+                },
+                {
+                    "blank": 30,
+                    "code": 279,
+                    "comment": 20,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/tuesday-form/tuesday-form.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/tuesday-form/tuesday-form.spec.ts"
+                },
+                {
+                    "blank": 33,
+                    "code": 317,
+                    "comment": 38,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/wednesday-form/wednesday-form.component.html"
+                },
+                {
+                    "blank": 30,
+                    "code": 279,
+                    "comment": 20,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/wednesday-form/wednesday-form.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-meal-dialog/wednesday-form/wednesday-form.spec.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 70,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-package-dialog/add-package-dialog.component.html"
+                },
+                {
+                    "blank": 25,
+                    "code": 107,
+                    "comment": 2,
+                    "filename": "src/app/shared/dialogs/add-package-dialog/add-package-dialog.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-package-dialog/add-package-dialog.component.spec.ts"
+                },
+                {
+                    "blank": 16,
+                    "code": 65,
+                    "comment": 3,
+                    "filename": "src/app/shared/dialogs/add-package-dialog/add-package-dialog.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-specialist-dialog/add-specialist-dialog.component.html"
+                },
+                {
+                    "blank": 29,
+                    "code": 130,
+                    "comment": 2,
+                    "filename": "src/app/shared/dialogs/add-specialist-dialog/add-specialist-dialog.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-specialist-dialog/add-specialist-dialog.component.spec.ts"
+                },
+                {
+                    "blank": 24,
+                    "code": 171,
+                    "comment": 7,
+                    "filename": "src/app/shared/dialogs/add-specialist-dialog/add-specialist-dialog.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-user-dialog/add-user-dialog.component.html"
+                },
+                {
+                    "blank": 28,
+                    "code": 130,
+                    "comment": 2,
+                    "filename": "src/app/shared/dialogs/add-user-dialog/add-user-dialog.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/add-user-dialog/add-user-dialog.component.spec.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 75,
+                    "comment": 4,
+                    "filename": "src/app/shared/dialogs/add-user-dialog/add-user-dialog.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 56,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/confirm-dialog/confirm-dialog.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 45,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/confirm-dialog/confirm-dialog.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/confirm-dialog/confirm-dialog.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/confirm-dialog/confirm-dialog.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 63,
+                    "comment": 0,
+                    "filename": "src/app/shared/dialogs/dialogs.module.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/shared/directives/drop-zone.directive.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "src/app/shared/directives/drop-zone.directive.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "src/app/shared/file-upload/file-upload-button/file-upload-button.component.html"
+                },
+                {
+                    "blank": 3,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src/app/shared/file-upload/file-upload-button/file-upload-button.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/file-upload/file-upload-button/file-upload-button.component.spec.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 51,
+                    "comment": 7,
+                    "filename": "src/app/shared/file-upload/file-upload-button/file-upload-button.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 37,
+                    "comment": 12,
+                    "filename": "src/app/shared/file-upload/file-upload-exercise/file-upload-exercise.component.html"
+                },
+                {
+                    "blank": 36,
+                    "code": 210,
+                    "comment": 2,
+                    "filename": "src/app/shared/file-upload/file-upload-exercise/file-upload-exercise.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/file-upload/file-upload-exercise/file-upload-exercise.component.spec.ts"
+                },
+                {
+                    "blank": 16,
+                    "code": 51,
+                    "comment": 10,
+                    "filename": "src/app/shared/file-upload/file-upload-exercise/file-upload-exercise.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 37,
+                    "comment": 12,
+                    "filename": "src/app/shared/file-upload/file-upload-product/file-upload-product.component.html"
+                },
+                {
+                    "blank": 36,
+                    "code": 210,
+                    "comment": 2,
+                    "filename": "src/app/shared/file-upload/file-upload-product/file-upload-product.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/file-upload/file-upload-product/file-upload-product.component.spec.ts"
+                },
+                {
+                    "blank": 16,
+                    "code": 51,
+                    "comment": 10,
+                    "filename": "src/app/shared/file-upload/file-upload-product/file-upload-product.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 37,
+                    "comment": 12,
+                    "filename": "src/app/shared/file-upload/file-upload.component.html"
+                },
+                {
+                    "blank": 36,
+                    "code": 210,
+                    "comment": 2,
+                    "filename": "src/app/shared/file-upload/file-upload.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/shared/file-upload/file-upload.component.spec.ts"
+                },
+                {
+                    "blank": 16,
+                    "code": 51,
+                    "comment": 10,
+                    "filename": "src/app/shared/file-upload/file-upload.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/shared/file-upload/file-upload.service.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 26,
+                    "comment": 3,
+                    "filename": "src/app/shared/file-upload/file-upload.service.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 68,
+                    "comment": 5,
+                    "filename": "src/app/shared/material.module.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/shared/pipes/file-size.pipe.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/shared/pipes/file-size.pipe.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/app/shared/shared.module.spec.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "src/app/shared/shared.module.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 121,
+                    "comment": 14,
+                    "filename": "src/app/specialists/edit-specialist/edit-specialist.component.html"
+                },
+                {
+                    "blank": 54,
+                    "code": 294,
+                    "comment": 2,
+                    "filename": "src/app/specialists/edit-specialist/edit-specialist.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/specialists/edit-specialist/edit-specialist.component.spec.ts"
+                },
+                {
+                    "blank": 17,
+                    "code": 99,
+                    "comment": 4,
+                    "filename": "src/app/specialists/edit-specialist/edit-specialist.component.ts"
+                },
+                {
+                    "blank": 15,
+                    "code": 124,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist-detail/specialist-detail.component.html"
+                },
+                {
+                    "blank": 44,
+                    "code": 227,
+                    "comment": 1,
+                    "filename": "src/app/specialists/specialist-detail/specialist-detail.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist-detail/specialist-detail.component.spec.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 61,
+                    "comment": 4,
+                    "filename": "src/app/specialists/specialist-detail/specialist-detail.component.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 56,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist-item/specialist-item.component.html"
+                },
+                {
+                    "blank": 21,
+                    "code": 112,
+                    "comment": 1,
+                    "filename": "src/app/specialists/specialist-item/specialist-item.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist-item/specialist-item.component.spec.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 34,
+                    "comment": 2,
+                    "filename": "src/app/specialists/specialist-item/specialist-item.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 49,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist-list-item/specialist-list-item.component.html"
+                },
+                {
+                    "blank": 26,
+                    "code": 141,
+                    "comment": 2,
+                    "filename": "src/app/specialists/specialist-list-item/specialist-list-item.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist-list-item/specialist-list-item.component.spec.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 54,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist-list-item/specialist-list-item.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist-list/specialist-list.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 12,
+                    "comment": 2,
+                    "filename": "src/app/specialists/specialist-list/specialist-list.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist-list/specialist-list.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist-list/specialist-list.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist.model.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 45,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist.module.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialist.service.spec.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 130,
+                    "comment": 2,
+                    "filename": "src/app/specialists/specialist.service.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 3,
+                    "filename": "src/app/specialists/specialists/specialists.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialists/specialists.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/specialists/specialists/specialists.component.spec.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 22,
+                    "comment": 1,
+                    "filename": "src/app/specialists/specialists/specialists.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/app/user/login/login.component.html"
+                },
+                {
+                    "blank": 25,
+                    "code": 120,
+                    "comment": 2,
+                    "filename": "src/app/user/login/login.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/login/login.component.spec.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 65,
+                    "comment": 1,
+                    "filename": "src/app/user/login/login.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/first-step-success/first-step-success.component.html"
+                },
+                {
+                    "blank": 10,
+                    "code": 45,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/first-step-success/first-step-success.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/first-step-success/first-step-success.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/first-step-success/first-step-success.component.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 67,
+                    "comment": 3,
+                    "filename": "src/app/user/sign-up/sign-up.module.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 35,
+                    "comment": 8,
+                    "filename": "src/app/user/sign-up/signup-step-four/signup-step-four.component.html"
+                },
+                {
+                    "blank": 9,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup-step-four/signup-step-four.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup-step-four/signup-step-four.component.spec.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup-step-four/signup-step-four.component.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 55,
+                    "comment": 13,
+                    "filename": "src/app/user/sign-up/signup-step-one/signup-step-one.component.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup-step-one/signup-step-one.component.spec.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 58,
+                    "comment": 2,
+                    "filename": "src/app/user/sign-up/signup-step-one/signup-step-one.component.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 77,
+                    "comment": 1,
+                    "filename": "src/app/user/sign-up/signup-step-one/signup-steps.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup-step-three/signup-step-three.component.html"
+                },
+                {
+                    "blank": 9,
+                    "code": 49,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup-step-three/signup-step-three.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup-step-three/signup-step-three.component.spec.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup-step-three/signup-step-three.component.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup-step-two/signup-step-two.component.html"
+                },
+                {
+                    "blank": 16,
+                    "code": 83,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup-step-two/signup-step-two.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup-step-two/signup-step-two.component.spec.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 40,
+                    "comment": 1,
+                    "filename": "src/app/user/sign-up/signup-step-two/signup-step-two.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup/signup.component.html"
+                },
+                {
+                    "blank": 6,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup/signup.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/sign-up/signup/signup.component.spec.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 83,
+                    "comment": 1,
+                    "filename": "src/app/user/sign-up/signup/signup.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/app/user/user.model.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/app/user/user.module.spec.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 46,
+                    "comment": 1,
+                    "filename": "src/app/user/user.module.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/user/user.service.spec.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 65,
+                    "comment": 12,
+                    "filename": "src/app/user/user.service.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 74,
+                    "comment": 8,
+                    "filename": "src/app/user/users/edit-user/edit-user.component.html"
+                },
+                {
+                    "blank": 51,
+                    "code": 272,
+                    "comment": 2,
+                    "filename": "src/app/user/users/edit-user/edit-user.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/users/edit-user/edit-user.component.spec.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 83,
+                    "comment": 4,
+                    "filename": "src/app/user/users/edit-user/edit-user.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 60,
+                    "comment": 0,
+                    "filename": "src/app/user/users/user-detail/user-detail.component.html"
+                },
+                {
+                    "blank": 54,
+                    "code": 272,
+                    "comment": 1,
+                    "filename": "src/app/user/users/user-detail/user-detail.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/users/user-detail/user-detail.component.spec.ts"
+                },
+                {
+                    "blank": 23,
+                    "code": 91,
+                    "comment": 12,
+                    "filename": "src/app/user/users/user-detail/user-detail.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 70,
+                    "comment": 0,
+                    "filename": "src/app/user/users/user-list-item/user-list-item.component.html"
+                },
+                {
+                    "blank": 29,
+                    "code": 160,
+                    "comment": 0,
+                    "filename": "src/app/user/users/user-list-item/user-list-item.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/users/user-list-item/user-list-item.component.spec.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/app/user/users/user-list-item/user-list-item.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/user/users/user-list/user-list.component.html"
+                },
+                {
+                    "blank": 7,
+                    "code": 12,
+                    "comment": 2,
+                    "filename": "src/app/user/users/user-list/user-list.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/users/user-list/user-list.component.spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/app/user/users/user-list/user-list.component.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 14,
+                    "comment": 3,
+                    "filename": "src/app/user/users/users.component.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/users/users.component.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/app/user/users/users.component.spec.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 22,
+                    "comment": 1,
+                    "filename": "src/app/user/users/users.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/assets/.gitkeep"
+                },
+                {
+                    "filename": "src/assets/icons/icon-128x128.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/icons/icon-144x144.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/icons/icon-152x152.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/icons/icon-192x192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/icons/icon-384x384.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/icons/icon-512x512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/icons/icon-72x72.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/icons/icon-96x96.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/img/bgs/home-bg-2.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/img/bgs/home-bg-3.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/img/bgs/home-bg-4.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/img/bgs/home-bg.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/img/bgs/home-bg.webp",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 1,
+                    "filename": "src/assets/img/icons/chat.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 1,
+                    "filename": "src/assets/img/icons/next.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 64,
+                    "comment": 1,
+                    "filename": "src/assets/img/logo-extended.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 1,
+                    "filename": "src/assets/img/logo-icon.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "src/assets/img/logo-text.svg"
+                },
+                {
+                    "blank": 5,
+                    "code": 38,
+                    "comment": 1,
+                    "filename": "src/assets/scss/_animations.scss"
+                },
+                {
+                    "blank": 16,
+                    "code": 67,
+                    "comment": 0,
+                    "filename": "src/assets/scss/_dialogs.scss"
+                },
+                {
+                    "blank": 10,
+                    "code": 41,
+                    "comment": 1,
+                    "filename": "src/assets/scss/_forms.scss"
+                },
+                {
+                    "blank": 17,
+                    "code": 69,
+                    "comment": 8,
+                    "filename": "src/assets/scss/_master.scss"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 1,
+                    "filename": "src/browserslist"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/environments/environment.prod.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 10,
+                    "filename": "src/environments/environment.ts"
+                },
+                {
+                    "filename": "src/favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 3,
+                    "code": 33,
+                    "comment": 3,
+                    "filename": "src/index.html"
+                },
+                {
+                    "blank": 1,
+                    "code": 28,
+                    "comment": 3,
+                    "filename": "src/karma.conf.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/main.server.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/main.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/manifest.json"
+                },
+                {
+                    "blank": 15,
+                    "code": 2,
+                    "comment": 64,
+                    "filename": "src/polyfills.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "src/robots.txt"
+                },
+                {
+                    "blank": 120,
+                    "code": 613,
+                    "comment": 36,
+                    "filename": "src/styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 13,
+                    "comment": 4,
+                    "filename": "src/test.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/tsconfig.app.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/tsconfig.server.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/tsconfig.spec.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/tslint.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "tsconfig.json"
+                },
+                {
+                    "blank": 12,
+                    "code": 118,
+                    "comment": 0,
+                    "filename": "tslint.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 38,
+                    "comment": 9,
+                    "filename": "webpack.server.config.js"
+                }
+            ]
+        }
+    ]
+}

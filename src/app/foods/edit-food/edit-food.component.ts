@@ -28,7 +28,9 @@ export class EditFoodComponent implements OnInit, OnDestroy {
   nutritionTypes =  [
     {value: 'Protein'},
     {value: 'Carbohydrates'},
-    {value: 'Fat'}
+    {value: 'Fat'},
+    {value: 'Vegetables'},
+    {value: 'Supplements'}
   ];
 
   constructor( private fb: FormBuilder,

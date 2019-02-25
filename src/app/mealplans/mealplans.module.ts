@@ -16,6 +16,7 @@ import { TuesdayComponent } from './mealplan-detail/tuesday/tuesday.component';
 import { WednesdayComponent } from './mealplan-detail/wednesday/wednesday.component';
 import { ThursdayComponent } from './mealplan-detail/thursday/thursday.component';
 import { FridayComponent } from './mealplan-detail/friday/friday.component';
+import { SuppsComponent } from './mealplan-detail/supps/supps.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { FridayComponent } from './mealplan-detail/friday/friday.component';
     ThursdayComponent,
     FridayComponent,
     MealplanDetailComponent,
+    SuppsComponent,
   ],
   imports: [
     CommonModule,

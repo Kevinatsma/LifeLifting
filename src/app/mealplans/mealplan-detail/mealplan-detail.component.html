@@ -87,7 +87,8 @@
             <app-friday [friday]="mealplan.fridayMeals" [mealTimes]="mealplan.mealTimes"></app-friday>
           </section>
           <section class="supps" *ngIf="suppsTab">
-            Supplements
+            <app-supps [supps]="mealplan.supplementation" [exercises]="exercises"></app-supps>
+            <!-- <app-edit-supps [supps]="mealplan.supplementation" *ngIf="!editShow"></app-edit-supps> -->
           </section>
 
       </mat-card>

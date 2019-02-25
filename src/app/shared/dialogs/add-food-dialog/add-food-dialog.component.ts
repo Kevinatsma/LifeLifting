@@ -31,7 +31,9 @@ export class AddFoodDialogComponent implements OnInit {
   nutritionTypes =  [
     {value: 'Protein'},
     {value: 'Carbohydrates'},
-    {value: 'Fat'}
+    {value: 'Fat'},
+    {value: 'Vegetables'},
+    {value: 'Supplements'}
   ];
   preperations = preperations.preperations;
 
