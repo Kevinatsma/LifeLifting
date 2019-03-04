@@ -1,0 +1,485 @@
+<main *ngIf="friday">
+
+  <!------------------------------------->
+  <!--------- Mealtime One -------------->
+  <!------------------------------------->
+  <div class="mealtime-wrapper" *ngIf="mealTimes[0] as time">
+    <section class="header">
+      <div class="title">
+        <h4 class="not-filled" *ngIf="!time.mealTimeName">
+          1. This meal doesn't contain a meal time yet..
+        </h4>
+        <h4 class="not-filled" *ngIf="time.mealTimeName">
+          1. {{time.mealTimeName}}
+        </h4>
+      </div>
+      <h5 class="time" *ngIf="time.mealTime">
+        <i class="far fa-clock"></i>
+        {{time.mealTime}}
+      </h5>
+      <h5 class="time" *ngIf="!time.mealTime">
+        <i class="far fa-clock"></i>
+        hh.mm
+      </h5>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mOneMealOneArr as meals">
+      <div class="meals" *ngIf="meals?.length >= 1">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mOneMealOne">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mOneMealOneTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mOneMealOne">
+            <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+            *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+            <div class="meals__container__filler">
+              Filler
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mOneMealTwoArr as meals">
+      <div class="meals" *ngIf="meals?.length == 2">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mOneMealTwo">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mOneMealTwoTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mOneMealTwo">
+          <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+          *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+          <div class="meals__container__filler">
+            Filler
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!------------------------------------->
+  <!--------- Mealtime Two -------------->
+  <!------------------------------------->
+  <div class="mealtime-wrapper" *ngIf="mealTimes[1] as time">
+    <section class="header">
+      <div class="title">
+        <h4 class="not-filled" *ngIf="!time.mealTimeName">
+          2. This meal doesn't contain a meal time yet..
+        </h4>
+        <h4 class="not-filled" *ngIf="time.mealTimeName">
+          2. {{time.mealTimeName}}
+        </h4>
+      </div>
+      <h5 class="time" *ngIf="time.mealTime">
+        <i class="far fa-clock"></i>
+        {{time.mealTime}}
+      </h5>
+      <h5 class="time" *ngIf="!time.mealTime">
+        <i class="far fa-clock"></i>
+        hh.mm
+      </h5>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mTwoMealOneArr as meals">
+      <div class="meals" *ngIf="meals?.length >= 1">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mTwoMealOne">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mTwoMealOneTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mTwoMealOne">
+            <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+            *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+            <div class="meals__container__filler">
+              Filler
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mTwoMealTwoArr as meals">
+      <div class="meals" *ngIf="meals?.length == 2">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mTwoMealTwoTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mTwoMealTwo">
+          <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+          *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+          <div class="meals__container__filler">
+            Filler
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!--------------------------------------->
+  <!--------- Mealtime Three -------------->
+  <!--------------------------------------->
+  <div class="mealtime-wrapper" *ngIf="mealTimes[2] as time">
+    <section class="header">
+      <div class="title">
+        <h4 class="not-filled" *ngIf="!time.mealTimeName">
+          3. This meal doesn't contain a meal time yet..
+        </h4>
+        <h4 class="not-filled" *ngIf="time.mealTimeName">
+          3. {{time.mealTimeName}}
+        </h4>
+      </div>
+      <h5 class="time" *ngIf="time.mealTime">
+        <i class="far fa-clock"></i>
+        {{time.mealTime}}
+      </h5>
+      <h5 class="time" *ngIf="!time.mealTime">
+        <i class="far fa-clock"></i>
+        hh.mm
+      </h5>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mThreeMealOneArr as meals">
+      <div class="meals" *ngIf="meals?.length >= 1">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mThreeMealOne">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mThreeMealOneTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mThreeMealOne">
+            <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+            *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+            <div class="meals__container__filler">
+              Filler
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mThreeMealTwoArr as meals">
+      <div class="meals" *ngIf="meals?.length == 2">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mThreeMealTwoTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mThreeMealTwo">
+          <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+          *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+          <div class="meals__container__filler">
+            Filler
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!--------------------------------------->
+  <!---------- Mealtime Four -------------->
+  <!--------------------------------------->
+  <div class="mealtime-wrapper" *ngIf="mealTimes[3] as time">
+    <section class="header">
+      <div class="title">
+        <h4 class="not-filled" *ngIf="!time.mealTimeName">
+          4. This meal doesn't contain a meal time yet..
+        </h4>
+        <h4 class="not-filled" *ngIf="time.mealTimeName">
+          4. {{time.mealTimeName}}
+        </h4>
+      </div>
+      <h5 class="time" *ngIf="time.mealTime">
+        <i class="far fa-clock"></i>
+        {{time.mealTime}}
+      </h5>
+      <h5 class="time" *ngIf="!time.mealTime">
+        <i class="far fa-clock"></i>
+        hh.mm
+      </h5>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mFourMealOneArr as meals">
+      <div class="meals" *ngIf="meals?.length >= 1">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mFourMealOne">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mFourMealOneTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mFourMealOne">
+            <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+            *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+            <div class="meals__container__filler">
+              Filler
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mFourMealTwoArr as meals">
+      <div class="meals" *ngIf="meals?.length == 2">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mFourMealTwoTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mFourMealTwo">
+          <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+          *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+          <div class="meals__container__filler">
+            Filler
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!--------------------------------------->
+  <!---------- Mealtime Five -------------->
+  <!--------------------------------------->
+  <div class="mealtime-wrapper" *ngIf="mealTimes[4] as time">
+    <section class="header">
+      <div class="title">
+        <h4 class="not-filled" *ngIf="!time.mealTimeName">
+          5. This meal doesn't contain a meal time yet..
+        </h4>
+        <h4 class="not-filled" *ngIf="time.mealTimeName">
+          5. {{time.mealTimeName}}
+        </h4>
+      </div>
+      <h5 class="time" *ngIf="time.mealTime">
+        <i class="far fa-clock"></i>
+        {{time.mealTime}}
+      </h5>
+      <h5 class="time" *ngIf="!time.mealTime">
+        <i class="far fa-clock"></i>
+        hh.mm
+      </h5>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mFiveMealOneArr as meals">
+      <div class="meals" *ngIf="meals?.length >= 1">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mFiveMealOne">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mFiveMealOneTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mFiveMealOne">
+            <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+            *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+            <div class="meals__container__filler">
+              Filler
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mFiveMealTwoArr as meals">
+      <div class="meals" *ngIf="meals?.length == 2">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mFiveMealTwoTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mFiveMealTwo">
+          <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+          *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+          <div class="meals__container__filler">
+            Filler
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!--------------------------------------->
+  <!---------- Mealtime Six --------------->
+  <!--------------------------------------->
+  <div class="mealtime-wrapper" *ngIf="mealTimes[5] as time">
+    <section class="header">
+      <div class="title">
+        <h4 class="not-filled" *ngIf="!time.mealTimeName">
+          6. This meal doesn't contain a meal time yet..
+        </h4>
+        <h4 class="not-filled" *ngIf="time.mealTimeName">
+          6. {{time.mealTimeName}}
+        </h4>
+      </div>
+      <h5 class="time" *ngIf="time.mealTime">
+        <i class="far fa-clock"></i>
+        {{time.mealTime}}
+      </h5>
+      <h5 class="time" *ngIf="!time.mealTime">
+        <i class="far fa-clock"></i>
+        hh.mm
+      </h5>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mSixMealOneArr as meals">
+      <div class="meals" *ngIf="meals?.length >= 1">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mSixMealOne">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mSixMealOneTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mSixMealOne">
+            <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+            *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+            <div class="meals__container__filler">
+              Filler
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mSixMealTwoArr as meals">
+      <div class="meals" *ngIf="meals?.length == 2">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mSixMealTwoTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mSixMealTwo">
+          <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+          *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+          <div class="meals__container__filler">
+            Filler
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!--------------------------------------->
+  <!--------- Mealtime Seven -------------->
+  <!--------------------------------------->
+  <div class="mealtime-wrapper" *ngIf="mealTimes[6] as time">
+    <section class="header">
+      <div class="title">
+        <h4 class="not-filled" *ngIf="!time.mealTimeName">
+          7. This meal doesn't contain a meal time yet..
+        </h4>
+        <h4 class="not-filled" *ngIf="time.mealTimeName">
+          7. {{time.mealTimeName}}
+        </h4>
+      </div>
+      <h5 class="time" *ngIf="time.mealTime">
+        <i class="far fa-clock"></i>
+        {{time.mealTime}}
+      </h5>
+      <h5 class="time" *ngIf="!time.mealTime">
+        <i class="far fa-clock"></i>
+        hh.mm
+      </h5>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mSevenMealOneArr as meals">
+      <div class="meals" *ngIf="meals?.length >= 1">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mSevenMealOne">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mSevenMealOneTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mSevenMealOne">
+            <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+            *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+            <div class="meals__container__filler">
+              Filler
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="meals-container" *ngIf="friday.mSevenMealTwoArr as meals">
+      <div class="meals" *ngIf="meals?.length == 2">
+        <div class="title">
+          <span class="up-title">Meal name</span>
+          <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
+            <span class="indicator">
+              <i class="fas fa-sort-down"></i>
+            </span>
+            <h4>{{friday.mSevenMealTwoTitle}}</h4>
+          </a>
+
+        </div>
+        <div class="meals__container mSevenMealTwo">
+          <app-food-list-item  class="meal-carousel__item" [amount]="meal.amount"
+          *ngFor="let meal of meals" [food]="meal.product" ></app-food-list-item>
+          <div class="meals__container__filler">
+            Filler
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
