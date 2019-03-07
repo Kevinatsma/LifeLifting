@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MealplanService } from '../mealplan.service';
@@ -22,10 +22,15 @@ import { Guideline } from './../../guidelines/guideline.model';
   styleUrls: ['./mealplan-detail.component.scss', './../mealplan-list-item/mealplan-list-item.component.scss'],
 })
 export class MealplanDetailComponent implements OnInit {
-  mealplan: Mealplan;
+  mealplanNav: ElementRef;
+  firstNavItem: ElementRef;
+  @ViewChild('mealplanNav') set content(content: ElementRef) {
+    this.mealplanNav = content;
+  }
+ mealplan: Mealplan;
 
   // Navigation
-  tabs = document.querySelectorAll('.nav-item');
+  highlight: HTMLSpanElement;
   mondayTab = true;
   tuesdayTab = false;
   wednesdayTab = false;
@@ -52,9 +57,6 @@ export class MealplanDetailComponent implements OnInit {
   gainWeight: boolean;
   increaseCals: boolean;
 
-
-  // specialist = Observable<Specialist>;
-
   constructor( private cdr: ChangeDetectorRef,
                public dialog: MatDialog,
                public router: Router,
@@ -66,12 +68,16 @@ export class MealplanDetailComponent implements OnInit {
                public specialistService: SpecialistService,
                public location: Location) {
                 this.aboutExtended = false;
+                setTimeout(() => {
+                  this.createHighlight(this.mealplanNav.nativeElement);
+                }, 100);
   }
 
   ngOnInit() {
-    // this.setMenu();
     this.getMealplan();
   }
+
+  // Getters
 
   getMealplan() {
     this.gainWeight = this.mealplanService.gainWeight;
@@ -84,25 +90,20 @@ export class MealplanDetailComponent implements OnInit {
       });
   }
 
-  // Getters
 
   getGuideline(mealplan) {
     const id = mealplan.guideline;
-    console.log(id);
     this.guidelineService.getGuidelineDataById(id)
       .subscribe(guideline => {
         this.guideline = guideline;
-        console.log(this.guideline);
         this.getExercises(this.guideline);
       });
   }
 
   getExercises(guideline) {
-    console.log(guideline);
     this.exerciseService.getMultipleExercises(guideline);
     this.exerciseService.guideExercises.eOne.subscribe(exercise => {
       this.exercises.eOne = exercise;
-      console.log(exercise);
     });
     if (this.exerciseService.guideExercises.eTwo) {
       this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
@@ -118,7 +119,6 @@ export class MealplanDetailComponent implements OnInit {
       eTwo: this.exerciseTwo,
       eThree: this.exerciseThree
     };
-    console.log(this.exercises.eTwo);
 
   }
 
@@ -133,25 +133,37 @@ export class MealplanDetailComponent implements OnInit {
     this.mealplanService.toggleEdit();
   }
 
-  aboutExtendedOpen() {
-    this.aboutExtended = true;
-    this.cdr.detectChanges();
+  aboutExtendedToggle() {
+    this.aboutExtended = this.aboutExtended ? this.aboutExtended : false;
+    // this.cdr.detectChanges();
   }
 
-  aboutExtendedClose() {
-    this.aboutExtended = false;
-    this.cdr.detectChanges();
+  /*
+  ** Form tab navigation
+  */
+
+  createHighlight(nav) {
+    // Create Element
+    this.highlight = document.createElement('span');
+    this.highlight.classList.add('highlight');
+    nav.append(this.highlight);
+
+    // Set initial value
+    const firstItem = document.getElementById('monday');
+    const firstItemCoords = (firstItem as any).getBoundingClientRect();
+    this.highlight.style.width = '5vw';
+    this.highlight.style.left = `translateX(${firstItemCoords.left}px)`;
   }
 
-  // Form tab navigation
-
-  // setMenu() {
-  //   this.tabs.forEach(tab => {
-  //     tab.addEventListener('click', () => this.updateTabStates);
-  //   });
+  // initiateHighlight() {
+  //   this.highlight.style.left = '5vw';
   // }
 
   updateTabStates(e) {
+    const highlighter: NodeListOf<Element> = document.querySelectorAll('.highlight');
+    highlighter.forEach(el => {
+      el.classList.add('left');
+    });
     const tabs: NodeListOf<Element> = document.querySelectorAll('.nav-item');
 
     // Reset first
@@ -180,6 +192,13 @@ export class MealplanDetailComponent implements OnInit {
     }
   }
 
+  resetHighlights() {
+    const highlights = document.querySelectorAll('.highlight');
+    highlights.forEach(e => {
+      e.parentNode.removeChild(e);
+    });
+  }
+
   resetDisplayContent(tabs) {
     tabs.forEach(tab => {
       tab.classList.remove('active');
@@ -190,6 +209,27 @@ export class MealplanDetailComponent implements OnInit {
     this.thursdayTab = false;
     this.fridayTab = false;
     this.suppsTab = false;
+  }
+
+
+  highlightLinks(e) {
+    const highlights: NodeListOf<Element> = document.querySelectorAll('.highlight');
+    highlights.forEach(hl => {
+      hl.classList.add('left');
+    });
+
+    const el = e.target;
+    const linkCoords = (el as any).getBoundingClientRect();
+    const coords = {
+      width: linkCoords.width,
+      height: linkCoords.height,
+      top: linkCoords.top + scrollY,
+      left: linkCoords.left
+    };
+    const highlighter: HTMLSpanElement = document.querySelector('.highlight') || this.highlight;
+    highlighter.style.width = `${coords.width}px`;
+    highlighter.style.height = `${coords.height}px`;
+    highlighter.style.transform = `translateX(${coords.left}px)`;
   }
 
   // Delete mealplan
