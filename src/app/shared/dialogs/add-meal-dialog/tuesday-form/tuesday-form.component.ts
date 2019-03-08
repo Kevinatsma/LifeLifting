@@ -80,8 +80,6 @@ export class TuesdayFormComponent implements OnInit {
   mSevenMealTwoArr: FormArray;
 
   selectedProduct: Food;
-
-
   showAddProduct = true;
 
   constructor( private fb: FormBuilder,

@@ -80,6 +80,10 @@ main {
                         align-items: center;
                         justify-content: flex-start;
                         box-sizing: border-box;
+
+                        h4 {
+                            width: 100%;
+                        }
                     }
 
                     span.indicator {

@@ -10,14 +10,14 @@ import { openClose } from './../../../core/animations/open-close.animation';
   styleUrls: ['./../dashboard-menu.component.scss']
 })
 export class SpecialistMenuComponent implements OnInit {
-  linksCollapsed = false;
+  linksOpened = true;
   constructor() { }
 
   ngOnInit() {
   }
 
   toggle() {
-    this.linksCollapsed = !this.linksCollapsed;
+    this.linksOpened = !this.linksOpened;
   }
 
 }

@@ -51,9 +51,11 @@ export class AddMealDialogComponent implements OnInit {
   mealTimeNames = mealTimes.mealTimes;
   times: Time[] = times.times;
   foods: Food[];
+  selectedProduct: Food;
 
   // Hide/show booleans
   showAddMealTime = true;
+  showAddProduct = true;
 
   // Guidelines and Exercises
   guideline: Guideline;
@@ -90,12 +92,12 @@ export class AddMealDialogComponent implements OnInit {
 
     this.suppForm = this.fb.group({
       guideline: ['', [Validators.required]],
-      beforeOne: ['', [Validators.required]],
-      duringOne: ['', [Validators.required]],
-      afterOne: ['', [Validators.required]],
-      beforeTwo: [''],
-      duringTwo: [''],
-      afterTwo: [''],
+      beforeTrainOneArr: this.fb.array([ this.createProduct()]),
+      duringTrainOneArr: this.fb.array([ this.createProduct()]),
+      afterTrainOneArr: this.fb.array([ this.createProduct()]),
+      beforeTrainTwoArr: this.fb.array([ this.createProduct()]),
+      duringTrainTwoArr: this.fb.array([ this.createProduct()]),
+      afterTrainTwoArr: this.fb.array([ this.createProduct()]),
       beforeThree: [''],
       duringThree: [''],
       afterThree: [''],
@@ -159,6 +161,8 @@ export class AddMealDialogComponent implements OnInit {
       });
   }
 
+  // Supp form
+
 
   // Getters
   getExercises(guideline) {
@@ -182,6 +186,146 @@ export class AddMealDialogComponent implements OnInit {
     ];
   }
 
+  get beforeOneForms() {
+    return this.suppForm.get('beforeTrainOneArr') as FormArray;
+  }
+
+  get duringOneForms() {
+    return this.suppForm.get('duringTrainOneArr') as FormArray;
+  }
+
+  get afterOneForms() {
+    return this.suppForm.get('afterTrainOneArr') as FormArray;
+  }
+
+  get beforeTwoForms() {
+    return this.suppForm.get('beforeTrainTwoArr') as FormArray;
+  }
+
+  get duringTwoForms() {
+    return this.suppForm.get('duringTrainTwoArr') as FormArray;
+  }
+
+  get afterTwoForms() {
+    return this.suppForm.get('afterTrainTwoArr') as FormArray;
+  }
+
+  get beforeThreeForms() {
+    return this.suppForm.get('beforeTrainThreeArr') as FormArray;
+  }
+
+  get duringThreeForms() {
+    return this.suppForm.get('duringTrainThreeArr') as FormArray;
+  }
+
+  get afterThreeForms() {
+    return this.suppForm.get('afterTrainThreeArr') as FormArray;
+  }
+
+  // Supp form
+
+
+  //////////////////////////////////////////////////////////////
+  // Creating, adding, deleting and checking product Formarrays
+  //////////////////////////////////////////////////////////////
+
+  createProduct(): FormGroup {
+    return this.fb.group({
+      product: '',
+      amount: '',
+      prep: '',
+    });
+  }
+
+  addProduct(number): void {
+    let array;
+
+    // Conditionals for all 7 possible mealtimes and thus 14 possible meals
+    switch (number) {
+      case 11:
+        array = this.suppForm.get('beforeTrainOneArr') as FormArray;
+        break;
+      case 12:
+        array = this.suppForm.get('duringTrainOneArr') as FormArray;
+        break;
+      case 13:
+        array = this.suppForm.get('afterTrainOneArr') as FormArray;
+        break;
+      case 21:
+        array = this.suppForm.get('beforeTrainTwoArr') as FormArray;
+        break;
+      case 22:
+        array = this.suppForm.get('duringTrainTwoArr') as FormArray;
+        break;
+      case 23:
+        array = this.suppForm.get('afterTrainTwoArr') as FormArray;
+        break;
+      case 31:
+        array = this.suppForm.get('beforeTrainThreeArr') as FormArray;
+        break;
+      case 32:
+        array = this.suppForm.get('duringTrainThreeArr') as FormArray;
+        break;
+      case 33:
+        array = this.suppForm.get('afterTrainThreeArr') as FormArray;
+        break;
+      default:
+        array = null;
+    }
+    this.checkProduct(array);
+    return array.push(this.createProduct());
+  }
+
+  deleteProduct(number, i) {
+    let array;
+    switch (number) {
+      case 11:
+        array = this.suppForm.get('beforeTrainOneArr') as FormArray;
+        break;
+      case 12:
+        array = this.suppForm.get('duringTrainOneArr') as FormArray;
+        break;
+      case 13:
+        array = this.suppForm.get('afterTrainOneArr') as FormArray;
+        break;
+      case 21:
+        array = this.suppForm.get('beforeTrainTwoArr') as FormArray;
+        break;
+      case 22:
+        array = this.suppForm.get('duringTrainTwoArr') as FormArray;
+        break;
+      case 23:
+        array = this.suppForm.get('afterTrainTwoArr') as FormArray;
+        break;
+      case 21:
+        array = this.suppForm.get('beforeTrainThreeArr') as FormArray;
+        break;
+      case 22:
+        array = this.suppForm.get('duringTrainThreeArr') as FormArray;
+        break;
+      case 23:
+        array = this.suppForm.get('afterTrainThreeArr') as FormArray;
+        break;
+      default:
+        array = null;
+    }
+    this.checkProduct(array);
+    return array.removeAt(i);
+  }
+
+  checkProduct(array): void {
+    if (array.length < 10) {
+      this.showAddProduct = true;
+    } else {
+      this.showAddProduct = false;
+    }
+  }
+
+  checkArray() {
+    const array = this.suppForm.get('beforeTrainOneArr').value;
+    console.log(array);
+  }
+
 
   // Collect the data and send to service
   addMealplan() {
@@ -201,15 +345,9 @@ export class AddMealDialogComponent implements OnInit {
       thursdayMeals: this.thursdayMeals,
       fridayMeals: this.fridayMeals,
       supplementation: {
-        beforeOne: this.suppForm.get('beforeOne').value || null,
-        duringOne: this.suppForm.get('duringOne').value || null,
-        afterOne: this.suppForm.get('afterOne').value || null,
-        beforeTwo: this.suppForm.get('beforeTwo').value || null,
-        duringTwo: this.suppForm.get('duringTwo').value || null,
-        afterTwo: this.suppForm.get('afterTwo').value || null,
-        beforeThree: this.suppForm.get('beforeThree').value || null,
-        duringThree: this.suppForm.get('duringThree').value || null,
-        afterThree: this.suppForm.get('afterThree').value || null
+        beforeOneArr: this.beforeOneForms.value || null,
+        beforeTwoArr: this.beforeOneForms.value || null,
+        beforeThreeArr: this.beforeOneForms.value || null,
       }
     };
     this.mealplanService.addMealplan(data);

@@ -10,7 +10,7 @@ import { openClose } from './../../../core/animations/open-close.animation';
   styleUrls: ['./../dashboard-menu.component.scss']
 })
 export class AdminMenuComponent implements OnInit {
-  linksCollapsed = true;
+  linksOpened = false;
 
   constructor() { }
 
@@ -18,7 +18,7 @@ export class AdminMenuComponent implements OnInit {
   }
 
   toggle() {
-    this.linksCollapsed = !this.linksCollapsed;
+    this.linksOpened = !this.linksOpened;
   }
 
 }

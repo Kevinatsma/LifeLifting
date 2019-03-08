@@ -20,9 +20,30 @@ h5 {
     position: absolute;
     z-index: 5;
 
-    &.left {
-        left: -24.4vw!important;
+    @media only screen and (min-width: 1024px) {
+        &.left {
+            left: -24.6vw!important;
+        }
     }
+
+    @media only screen and (min-width: 1200px) {
+        &.left {
+            left: -24.2vw!important;
+        }
+    }
+
+    @media only screen and (min-width: 1440px) {
+        &.left {
+            left: -23.8vw!important;
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+        &.left {
+            left: -25vw!important;
+        }
+    }
+
 }
 
 
