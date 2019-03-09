@@ -47,7 +47,7 @@
         <section class="chip-container" *ngFor="let food of mOneMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard" floatLabel="always" >
-            <mat-select matInput class="f-input select" placeholder="Pick a Product" (selectionChange)="checkArray()"
+            <mat-select matInput class="f-input select" placeholder="Pick a Product" 
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
             </mat-select>
@@ -59,7 +59,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(11, i);">
             <i class="fas fa-ban"></i>
@@ -98,7 +104,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(12, i);">
             <i class="fas fa-ban"></i>
@@ -168,7 +180,7 @@
         <section class="chip-container" *ngFor="let food of mTwoMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard" floatLabel="always" >
-            <mat-select matInput class="f-input select" placeholder="Pick a Product" (selectionChange)="checkArray()"
+            <mat-select matInput class="f-input select" placeholder="Pick a Product" 
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
             </mat-select>
@@ -180,7 +192,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(21, i);">
             <i class="fas fa-ban"></i>
@@ -219,7 +237,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(22, i);">
             <i class="fas fa-ban"></i>
@@ -291,7 +315,7 @@
         <section class="chip-container" *ngFor="let food of mThreeMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard" floatLabel="always" >
-            <mat-select matInput class="f-input select" placeholder="Pick a Product" (selectionChange)="checkArray()"
+            <mat-select matInput class="f-input select" placeholder="Pick a Product" 
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
             </mat-select>
@@ -303,7 +327,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(31, i)">
             <i class="fas fa-ban"></i>
@@ -342,7 +372,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(32, i);">
             <i class="fas fa-ban"></i>
@@ -414,7 +450,7 @@
         <section class="chip-container" *ngFor="let food of mFourMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard" floatLabel="always" >
-            <mat-select matInput class="f-input select" placeholder="Pick a Product" (selectionChange)="checkArray()"
+            <mat-select matInput class="f-input select" placeholder="Pick a Product" 
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
             </mat-select>
@@ -426,7 +462,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(41, i)">
             <i class="fas fa-ban"></i>
@@ -465,7 +507,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(42, i);">
             <i class="fas fa-ban"></i>
@@ -537,7 +585,7 @@
         <section class="chip-container" *ngFor="let food of mFiveMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard" floatLabel="always" >
-            <mat-select matInput class="f-input select" placeholder="Pick a Product" (selectionChange)="checkArray()"
+            <mat-select matInput class="f-input select" placeholder="Pick a Product" 
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
             </mat-select>
@@ -549,7 +597,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(51, i)">
             <i class="fas fa-ban"></i>
@@ -588,7 +642,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(52, i);">
             <i class="fas fa-ban"></i>
@@ -660,7 +720,7 @@
         <section class="chip-container" *ngFor="let food of mSixMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard" floatLabel="always" >
-            <mat-select matInput class="f-input select" placeholder="Pick a Product" (selectionChange)="checkArray()"
+            <mat-select matInput class="f-input select" placeholder="Pick a Product" 
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
             </mat-select>
@@ -672,7 +732,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(61, i)">
             <i class="fas fa-ban"></i>
@@ -711,7 +777,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(62, i);">
             <i class="fas fa-ban"></i>
@@ -783,7 +855,7 @@
         <section class="chip-container" *ngFor="let food of mSevenMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard" floatLabel="always" >
-            <mat-select matInput class="f-input select" placeholder="Pick a Product" (selectionChange)="checkArray()"
+            <mat-select matInput class="f-input select" placeholder="Pick a Product" 
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
             </mat-select>
@@ -795,7 +867,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(71, i)">
             <i class="fas fa-ban"></i>
@@ -834,7 +912,13 @@
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!thursdayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
-            <span>{{prodObj.unit}} - {{prodObj.preperations[0].prepValue}}</span>
+            <span>{{prodObj.unit}}</span>
+            <mat-form-field appearance="standard" class="select">
+              <mat-select matInput class="f-input select" placeholder="Preperation"
+              panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(72, i);">
             <i class="fas fa-ban"></i>

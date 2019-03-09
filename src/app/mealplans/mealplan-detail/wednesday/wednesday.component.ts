@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class WednesdayComponent implements OnInit {
   @Input() wednesday;
+  @Input() preps;
   @Input() mealTimes;
 
   constructor() {

@@ -23,17 +23,32 @@
         </li>
       </ul>
       <div class="wrapper" *ngIf="amount">
-        <span class="card-text" *ngFor="let prep of food.preperations; let i=index">
+        <ng-container *ngIf="prep">
+          <span class="card-text">
+            {{prep.prepValue}}
+          </span>
+          <ul class="contact-menu">
+            <li>
+              <i class="fas fa-balance-scale"></i>
+              {{amount}} {{food.unit}}
+            </li>
+          </ul>
+        </ng-container>
+        <ng-container *ngIf="!prep">
+          <span class="card-text" *ngFor="let prep of food.preperations; let i=index">
           <ng-container *ngIf="i !== 0">
             /
-          </ng-container>{{prep.prepValue}}
-        </span>
-        <ul class="contact-menu">
-          <li>
-            <i class="fas fa-balance-scale"></i>
-            {{amount}} {{food.unit}}
-          </li>
-        </ul>
+          </ng-container>
+          {{prep.prepValue}}
+          </span>
+          <ul class="contact-menu">
+            <li>
+              <i class="fas fa-balance-scale"></i>
+              {{amount}} {{food.unit}}
+            </li>
+          </ul>
+        </ng-container>
+
       </div>
     </div>
   </section>

@@ -6,51 +6,40 @@ main {
         padding: 3em 3em 3em 5em;
 
         .activity {
-            align-items: flex-start;
+            align-items: center;
             display: flex;
             flex-flow: row nowrap;
             height: 100%;
-            padding: 2em 0;
+            padding: 1em 0;
             justify-content: flex-start;
             width: 100%;
+
+            app-exercise-list-item {
+                margin: 0 0 3em;
+                height: auto;
+                width: 30%;
+            }
 
             &:last-child {
                 padding-bottom: 0;
             }
 
-            &__left {
-                box-sizing: border-box;
-                display: flex;
-                flex-flow: column wrap;
-                width: 40%;
-                justify-content: flex-start;
-
-                app-exercise-list-item {
-                    margin: 0 0 3em;
-                    height: auto;
-                    width: 100%;
-                }
-            }
-
-            &__right {
+            .container {
                 box-sizing: border-box;
                 align-items: center;
                 display: flex;
-                flex-flow: column wrap;
-                width: 60%;
-
-                .container {
-                    box-sizing: border-box;
-                    display: flex;
-                    flex-flow: row wrap;
-                    height: 385px;
-                    margin: 0 0 3em;
-                    padding: 2em 0 2em 3em;
-                    align-items: center;
-                    width: 100%;
+                flex-direction: column;
+                width: 70%;
+                background: lighten($light-grey, 2.5%);
+                border: 1px solid lighten($border-color, 5%);
+                max-height: 455px;
+                margin: 0 0 3em;
+                overflow-y: scroll;
+                padding: 2em 0 1em 3em;
+                align-items: center;
 
                     .target-block {
-                        width: 50%;
+                        width: 100%;
                         h6 {
                             text-transform: capitalize;
                         }
@@ -87,7 +76,6 @@ main {
                         }
                     }
                 }
-            }
         }
     }
 }

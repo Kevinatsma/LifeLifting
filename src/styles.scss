@@ -657,6 +657,27 @@ form {
 
 }
 
+// Override styling for mat selects arrow bug
+.ng-touched .mat-select-arrow-wrapper {
+    transform: translateY(0%)!important;
+}
+
+.mat-select-disabled 
+.mat-select-arrow-wrapper
+{
+    transform: translateY(0%)!important;
+}
+
+::ng-deep mat-select.ng-dirty{
+    .mat-select-arrow-wrapper {
+        transform: translateY(0%)!important;
+    } 
+}
+
+::ng-deep .mat-form-field-appearance-standard.mat-form-field-has-label .mat-select:not(.mat-select-empty) .mat-select-arrow-wrapper {
+    transform: translateY(0%)!important;
+}
+
 // Mat Stepper
 
 .mat-step-icon {

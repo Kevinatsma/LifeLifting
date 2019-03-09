@@ -13,6 +13,7 @@ import { Food } from '../food.model';
 export class FoodListItemComponent implements OnInit {
   @Input() food: Food;
   @Input() amount;
+  @Input() prep;
   @Input() i;
   detailOpen = false;
 

@@ -2,17 +2,12 @@
   <section class="guideline-activities" *ngIf="exercises && supps">
     <h2 class="section-title">Supplements</h2>
     <div class="activity">
-      <div class="activity__left">
         <app-exercise-list-item class="activity__left" [exercise]="exercises.eOne"></app-exercise-list-item>
-        <app-exercise-list-item class="activity__left" [exercise]="exercises.eTwo"></app-exercise-list-item>
-        <app-exercise-list-item class="activity__left" [exercise]="exercises.eThree"></app-exercise-list-item>
-      </div>
-      <div class="activity__right">
         <div class="container">
           <div class="target-block">
             <h6>Before the training</h6>
-            <p class="card-text">
-              {{supps.beforeOne}}
+            <p class="card-text" *ngFor="let meal of supps.beforeOneArray">
+              {{meal.productName}}
             </p>
           </div>
           <div class="target-block">
@@ -28,6 +23,9 @@
             </p>
           </div>
         </div>
+    </div>
+    <div class="activity">
+        <app-exercise-list-item class="activity__left" [exercise]="exercises.eTwo"></app-exercise-list-item>
         <div class="container">
           <div class="target-block">
             <h6>Before the training</h6>
@@ -48,7 +46,10 @@
             </p>
           </div>
         </div>
-        <div class="container" *ngIf="exerciseThree">
+    </div>
+    <div class="activity">
+      <app-exercise-list-item class="activity__left" [exercise]="exercises.eThree"></app-exercise-list-item>
+      <div class="container">
           <div class="target-block">
             <h6>Before the training</h6>
             <p class="card-text">
@@ -67,7 +68,6 @@
               {{ supps.afterThree}}
             </p>
           </div>
-        </div>
       </div>
     </div>
   </section>

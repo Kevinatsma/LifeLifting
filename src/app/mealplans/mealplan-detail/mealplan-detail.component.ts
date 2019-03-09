@@ -109,9 +109,10 @@ export class MealplanDetailComponent implements OnInit {
       this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
         return this.exercises.eTwo = exercise;
       });
-    } else if (this.exerciseService.guideExercises.eThree) {
+    }
+    if (this.exerciseService.guideExercises.eThree) {
       this.exerciseService.guideExercises.eThree.subscribe(exercise => {
-        this.exerciseTwo = exercise;
+        return this.exercises.eThree = exercise;
       });
     }
     this.exercises = {
@@ -119,6 +120,7 @@ export class MealplanDetailComponent implements OnInit {
       eTwo: this.exerciseTwo,
       eThree: this.exerciseThree
     };
+    console.log(this.exercises);
 
   }
 

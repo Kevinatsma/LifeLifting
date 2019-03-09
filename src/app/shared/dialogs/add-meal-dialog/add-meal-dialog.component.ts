@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 
@@ -77,7 +77,13 @@ export class AddMealDialogComponent implements OnInit {
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
                 this.foodService.getFoods().subscribe(foods => this.foods = foods);
-                this.guidelineService.getGuidelinesByClient(userData.uid).subscribe(guidelines => this.guidelines = guidelines);
+                this.guidelineService.getGuidelinesByClient(userData.uid).subscribe(guidelines => {
+                  this.guidelines = guidelines;
+
+                  if (this.guidelines.length < 1) {
+                    this.guidelines = null;
+                  }
+                });
                }
 
   ngOnInit() {
@@ -98,9 +104,9 @@ export class AddMealDialogComponent implements OnInit {
       beforeTrainTwoArr: this.fb.array([ this.createProduct()]),
       duringTrainTwoArr: this.fb.array([ this.createProduct()]),
       afterTrainTwoArr: this.fb.array([ this.createProduct()]),
-      beforeThree: [''],
-      duringThree: [''],
-      afterThree: [''],
+      beforeTrainThreeArr: this.fb.array([ this.createProduct()]),
+      duringTrainThreeArr: this.fb.array([ this.createProduct()]),
+      afterTrainThreeArr: this.fb.array([ this.createProduct()]),
     });
 
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
@@ -153,7 +159,6 @@ export class AddMealDialogComponent implements OnInit {
 
   guidelineHandler() {
     const id = this.suppForm.get('guideline').value;
-    console.log(id);
     this.guidelineService.getGuidelineDataById(id)
       .subscribe(guideline => {
         this.guideline = guideline;
@@ -170,15 +175,13 @@ export class AddMealDialogComponent implements OnInit {
     this.exerciseService.guideExercises.eOne.subscribe(exercise => {
       this.exerciseOne = exercise;
     });
-    if (this.exerciseService.guideExercises.eTwo) {
-      this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
-        this.exerciseTwo = exercise;
-      });
-    } else if (this.exerciseService.guideExercises.eThree) {
-      this.exerciseService.guideExercises.eThree.subscribe(exercise => {
-        this.exerciseTwo = exercise;
-      });
-    }
+    this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
+      this.exerciseTwo = exercise;
+    });
+    this.exerciseService.guideExercises.eThree.subscribe(exercise => {
+      console.log(this.exerciseService.guideExercises.eThree);
+      this.exerciseThree = exercise;
+    });
     this.exercises = [
       this.exerciseOne,
       this.exerciseTwo,
@@ -297,13 +300,13 @@ export class AddMealDialogComponent implements OnInit {
       case 23:
         array = this.suppForm.get('afterTrainTwoArr') as FormArray;
         break;
-      case 21:
+      case 31:
         array = this.suppForm.get('beforeTrainThreeArr') as FormArray;
         break;
-      case 22:
+      case 32:
         array = this.suppForm.get('duringTrainThreeArr') as FormArray;
         break;
-      case 23:
+      case 33:
         array = this.suppForm.get('afterTrainThreeArr') as FormArray;
         break;
       default:
@@ -319,11 +322,6 @@ export class AddMealDialogComponent implements OnInit {
     } else {
       this.showAddProduct = false;
     }
-  }
-
-  checkArray() {
-    const array = this.suppForm.get('beforeTrainOneArr').value;
-    console.log(array);
   }
 
 
@@ -346,8 +344,14 @@ export class AddMealDialogComponent implements OnInit {
       fridayMeals: this.fridayMeals,
       supplementation: {
         beforeOneArr: this.beforeOneForms.value || null,
-        beforeTwoArr: this.beforeOneForms.value || null,
-        beforeThreeArr: this.beforeOneForms.value || null,
+        duringOneArr: this.beforeOneForms.value || null,
+        afterOneArr: this.beforeTwoForms.value || null,
+        beforeTwoArr: this.beforeTwoForms.value || null,
+        duringTwoArr: this.beforeTwoForms.value || null,
+        afterTwoArr: this.beforeTwoForms.value || null,
+        beforeThreeArr: this.beforeThreeForms.value || null,
+        duringThreeArr: this.beforeThreeForms.value || null,
+        afterThreeArr: this.beforeThreeForms.value || null,
       }
     };
     this.mealplanService.addMealplan(data);

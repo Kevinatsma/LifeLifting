@@ -55,7 +55,8 @@ export class ExerciseService {
     if (guideline.activities[1]) {
       this.exerciseDocTwo = this.afs.doc<Exercise>(`exercises/${guideline.activities[1].activityID}`);
       this.exerciseTwo = this.exerciseDocTwo.valueChanges();
-    } else if (guideline.activities[2]) {
+    }
+    if (guideline.activities[2]) {
       this.exerciseDocThree = this.afs.doc<Exercise>(`exercises/${guideline.activities[2].activityID}`);
       this.exerciseThree = this.exerciseDocThree.valueChanges();
     }

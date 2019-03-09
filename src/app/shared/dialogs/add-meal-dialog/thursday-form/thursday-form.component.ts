@@ -101,7 +101,6 @@ export class ThursdayFormComponent implements OnInit {
                 controlButtons.forEach(input => {
                    // Update the form object in the service
                   input.addEventListener('click', ((e) => {
-                    console.log('im fired');
                     const thursdayMealForm = this.thursdayMealForm.value;
                     return this.mealService.thursdayFormChange.next(thursdayMealForm);
                   }) as EventListener);
@@ -205,6 +204,7 @@ export class ThursdayFormComponent implements OnInit {
     return this.fb.group({
       product: '',
       amount: '',
+      prep: '',
     });
   }
 
@@ -320,10 +320,5 @@ export class ThursdayFormComponent implements OnInit {
     } else {
       this.showAddProduct = false;
     }
-  }
-
-  checkArray() {
-    const array = this.thursdayMealForm.get('mOneMealOneArr').value;
-    console.log(array);
   }
 }

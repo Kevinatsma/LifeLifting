@@ -202,6 +202,7 @@ export class MondayFormComponent implements OnInit {
     return this.fb.group({
       product: '',
       amount: '',
+      prep: '',
     });
   }
 
@@ -317,10 +318,5 @@ export class MondayFormComponent implements OnInit {
     } else {
       this.showAddProduct = false;
     }
-  }
-
-  checkArray() {
-    const array = this.mondayMealForm.get('mOneMealOneArr').value;
-    console.log(array);
   }
 }
