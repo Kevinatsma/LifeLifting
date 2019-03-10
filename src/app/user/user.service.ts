@@ -52,7 +52,6 @@ export class UserService {
       this.specialistID = this.specialist.sID;
       const specialistQuery = `specialist${this.specialistID}`;
       this.myClientsCol = this.afs.collection('users', ref => ref.where('specialist', '==', `${specialistQuery}`));
-      console.log(this.myClientsCol);
       this.myClients = this.myClientsCol.valueChanges();
     });
     return this.myClients;
@@ -65,7 +64,6 @@ export class UserService {
   // }
 
   getUserDataByID(uid) {
-    console.log(uid);
     this.userDoc = this.afs.doc<User>(`users/${uid}`);
     this.user = this.userDoc.valueChanges();
     return this.user;

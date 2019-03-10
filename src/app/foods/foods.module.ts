@@ -11,13 +11,11 @@ import { SharedModule } from '../shared/shared.module';
 import { FoodService } from './food.service';
 import { FoodsComponent } from './foods.component';
 import { FoodDetailComponent } from './food-detail/food-detail.component';
-import { AddFoodDialogComponent } from './../shared/dialogs/add-food-dialog/add-food-dialog.component';
 
 @NgModule({
   declarations: [
     FoodItemComponent,
     FoodListItemComponent,
-    AddFoodDialogComponent,
     FoodListComponent,
     EditFoodComponent,
     FoodsComponent,
@@ -32,7 +30,6 @@ import { AddFoodDialogComponent } from './../shared/dialogs/add-food-dialog/add-
   exports: [
     FoodItemComponent,
     FoodListItemComponent,
-    AddFoodDialogComponent,
     FoodListComponent,
     EditFoodComponent,
     FoodsComponent,

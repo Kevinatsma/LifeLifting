@@ -15,10 +15,13 @@
     </div>
 
     <div class="quick-info">
-      <p class="speciality-title">Exercise ID: {{exercise.exerciseID}}</p>
       <ul class="contact-menu">
         <li>
-          <i class="fas fa-balance-scale"></i>
+          <span class="met-value">Exercise ID:</span>
+          {{exercise.exerciseID}}
+        </li>
+        <li>
+          <span class="met-value">MET Value:</span>
           {{exercise.metsValue}}
         </li>
       </ul>

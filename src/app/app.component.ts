@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { fadeAnimation } from './core/animations/fade.animation';
 import * as moment from 'moment';
 
@@ -11,6 +11,7 @@ import * as moment from 'moment';
 
 export class AppComponent {
   title = 'LifeLifting';
+  encapsulation: ViewEncapsulation.None;
 
   constructor( ) {
   }

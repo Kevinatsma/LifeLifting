@@ -100,15 +100,14 @@ export class GuidelineDetailComponent implements OnInit {
     this.exerciseService.guideExercises.eOne.subscribe(exercise => {
       this.exerciseOne = exercise;
     });
-    if (this.exerciseService.guideExercises.eTwo) {
-      this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
-        this.exerciseTwo = exercise;
-      });
-    } else if (this.exerciseService.guideExercises.eThree) {
-      this.exerciseService.guideExercises.eThree.subscribe(exercise => {
-        this.exerciseTwo = exercise;
-      });
-    }
+    this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
+      this.exerciseTwo = exercise;
+    });
+    this.exerciseService.guideExercises.eThree.subscribe(exercise => {
+      console.log(exercise);
+      this.exerciseThree = exercise;
+    });
+
     this.exercises = [
       this.exerciseOne,
       this.exerciseTwo,
@@ -138,7 +137,6 @@ export class GuidelineDetailComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       if (result === true) {
         const id = guideline.guidelineID;
         this.guidelineService.deleteGuideline(id);

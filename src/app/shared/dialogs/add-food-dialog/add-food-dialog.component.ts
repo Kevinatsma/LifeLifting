@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { FoodService } from './../../../foods/food.service';
 
+import preperations from './../../data/JSON/preperations.json';
+import mealTimes from './../../data/JSON/mealTimes.json';
+import units from './../../data/JSON/units.json';
+
 @Component({
   selector: 'app-add-food-dialog',
   templateUrl: './add-food-dialog.component.html',
@@ -15,54 +19,23 @@ export class AddFoodDialogComponent implements OnInit {
   infoForm: FormGroup;
   categoryForm: FormGroup;
   prepForm: FormGroup;
-  portionForm: FormGroup;
+  unitForm: FormGroup;
 
   downloadURL: string | null;
   prepArr: FormArray;
   prepValue = new FormControl('', [Validators.required]);
-
-
-  preperations = [
-    {
-      prepValue: 'Cooked',
-    },
-    {
-      prepValue: 'Cooked w/Spinach',
-    },
-    {
-      prepValue: 'Sauteed w/Veggies',
-    },
-    {
-      prepValue: 'Chopped',
-    },
-    {
-      prepValue: 'Sliced',
-    },
-    {
-      prepValue: 'Diced',
-    },
-    {
-      prepValue: 'Raw',
-    },
-    {
-      prepValue: 'Snacked',
-    },
-    {
-      prepValue: 'Hard Boiled',
-    },
-    {
-      prepValue: 'Omelette',
-    },
-    {
-      prepValue: 'Scrambled',
-    },
-    {
-      prepValue: 'Grated',
-    },
-    {
-      prepValue: 'Whole',
-    },
+  mealTimeArr: FormArray;
+  mealTimeValue = new FormControl('', [Validators.required]);
+  mealTimes = mealTimes.mealTimes;
+  units = units.units;
+  nutritionTypes =  [
+    {value: 'Protein'},
+    {value: 'Carbohydrates'},
+    {value: 'Fat'},
+    {value: 'Vegetables'},
+    {value: 'Supplements'}
   ];
+  preperations = preperations.preperations;
 
   constructor( private fb: FormBuilder,
                private foodService: FoodService) {}
@@ -74,15 +47,15 @@ export class AddFoodDialogComponent implements OnInit {
     });
 
     this.categoryForm = this.fb.group({
-      productCategory: ['', [Validators.required]],
+      nutritionType: ['', [Validators.required]],
+      mealTimeArr: this.fb.array([ this.createMealTime() ]),
     });
 
     this.prepForm = this.fb.group({
       prepArr: this.fb.array([ this.createPrep() ]),
     });
 
-    this.portionForm = this.fb.group({
-      amount: ['', [Validators.required]],
+    this.unitForm = this.fb.group({
       unit: ['', [Validators.required]],
     });
   }
@@ -96,31 +69,54 @@ export class AddFoodDialogComponent implements OnInit {
     return this.prepForm.get('prepArr') as FormArray;
   }
 
-    // Create a new Package prep Mat Card
-    createPrep(): FormGroup {
-      return this.fb.group({
-        prepValue: ''
-      });
-    }
+  get mealTimeForms() {
+    return this.categoryForm.get('mealTimeArr') as FormArray;
+  }
 
-    addPrep(): void {
-      this.prepArr = this.prepForm.get('prepArr') as FormArray;
-      this.prepArr.push(this.createPrep());
-    }
+  // Create a new prep Mat Card
+  createPrep(): FormGroup {
+    return this.fb.group({
+      prepValue: ''
+    });
+  }
 
-    deletePrep(i) {
-      (this.prepForm.get('prepArr') as FormArray).removeAt(i);
-    }
+  addPrep(): void {
+    this.prepArr = this.prepForm.get('prepArr') as FormArray;
+    this.prepArr.push(this.createPrep());
+  }
 
-    addFood() {
-      const data = {
-        productID: this.infoForm.get('productID').value,
-        productName: this.infoForm.get('productName').value,
-        productPhoto: this.downloadURL,
-        productCategory: this.categoryForm.get('productCategory').value,
-        portion: this.portionForm.value,
-        preperations: this.prepForms.value,
-      };
-      this.foodService.addFood(data);
-    }
+  deletePrep(i) {
+    (this.prepForm.get('prepArr') as FormArray).removeAt(i);
+  }
+
+  // Create a new mealtime array item
+  createMealTime(): FormGroup {
+    return this.fb.group({
+      mealTimeValue: ''
+    });
+  }
+
+  addMealTime(): void {
+    this.mealTimeArr = this.categoryForm.get('mealTimeArr') as FormArray;
+    this.mealTimeArr.push(this.createMealTime());
+  }
+
+  deleteMealTime(i) {
+    (this.categoryForm.get('mealTimeArr') as FormArray).removeAt(i);
+  }
+
+  addFood() {
+    const data = {
+      productID: this.infoForm.get('productID').value,
+      productName: this.infoForm.get('productName').value,
+      productPhoto: this.downloadURL,
+      categories: {
+          nutritionType: this.categoryForm.get('nutritionType').value,
+          productMealTimes: this.mealTimeForms.value
+      },
+      unit: this.unitForm.get('unit').value,
+      preperations: this.prepForms.value,
+    };
+    this.foodService.addFood(data);
+  }
 }

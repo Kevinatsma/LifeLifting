@@ -54,12 +54,24 @@ main.specialist-wrapper {
                 position: relative;
             }
 
-
-            .preperation-container {
-                ul {
-                    li {
-                        display: block;
-                        margin: 1em 0;
+            .list-container {
+                display: flex;
+                flex-flow: row nowrap;
+                .preperations-container {
+                    width: 45%;
+                    &:first-child {
+                        margin-right: 5%;
+                    }
+                    ul {
+                        li {
+                            display: block;
+                            margin: 1em 0;
+                        }
+                    }
+                    &.mealtimes {
+                        h4 {
+                            margin-bottom: 1.5em;
+                        }
                     }
                 }
             }

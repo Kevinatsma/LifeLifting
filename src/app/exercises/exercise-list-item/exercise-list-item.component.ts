@@ -45,9 +45,7 @@ export class ExerciseListItemComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       if (result === true) {
-        console.log('i"m being called');
         const id = exercise.exerciseID;
         this.exerciseService.deleteExercise(id);
       } else if (result === false) {

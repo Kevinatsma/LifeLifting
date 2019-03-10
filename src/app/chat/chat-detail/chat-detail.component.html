@@ -1,6 +1,6 @@
 <main class="detail-wrapper">
   <mat-toolbar>
-    <button mat-icon-button routerLink="../../../" class="back-btn">
+    <button mat-icon-button (click)="goBack()" class="back-btn">
       <mat-icon>arrow_back</mat-icon>
     </button>
     <button mat-icon-button [matMenuTriggerFor]="menu">

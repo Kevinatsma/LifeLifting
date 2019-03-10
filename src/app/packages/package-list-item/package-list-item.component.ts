@@ -31,9 +31,7 @@ export class PackageListItemComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       if (result === true) {
-        console.log('i"m being called');
         const id = llPackage.packageID;
         this.packageService.deletePackage(id);
       } else if (result === false) {

@@ -42,7 +42,7 @@ div.dashboard-menu-wrapper {
 
             &::after {
                 content: '';
-                height: 1.5px;
+                height: 2.5px;
                 width: 50%;
                 position: absolute;
                 bottom: -15px;
@@ -51,7 +51,7 @@ div.dashboard-menu-wrapper {
             }
             &.active {
                 &::after {
-                    height: 2.5px;
+                    height: 1.5px;
                 }
             }
         }
@@ -81,6 +81,7 @@ div.dashboard-menu-wrapper {
         padding: 0;
         width: 100%;
         height: auto;
+        transition: all 300ms ease-in-out;
 
         li {
             display: flex;

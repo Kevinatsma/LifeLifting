@@ -7,6 +7,10 @@ import { UserService } from './../../user.service';
 import { Specialist } from './../../../specialists/specialist.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { ChatThreadService } from './../../../chat/chat-thread.service';
+import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { Guideline } from './../../../guidelines/guideline.model';
+import { Observable } from 'rxjs';
+import { Mealplan } from './../../../mealplans/mealplan.model';
 
 
 @Component({
@@ -17,13 +21,18 @@ import { ChatThreadService } from './../../../chat/chat-thread.service';
 export class UserDetailComponent implements OnInit {
   user: User;
   specialist: Specialist;
+  guidelinesCol: AngularFirestoreCollection<Guideline>;
+  guidelines: Observable<Guideline[]>;
+  mealplansCol: AngularFirestoreCollection<Mealplan>;
+  mealplans: Observable<Mealplan[]>;
   aboutExtended = false;
   reviewsVisible = true;
 
 
   // specialist = Observable<Specialist>;
 
-  constructor( private cdr: ChangeDetectorRef,
+  constructor( private afs: AngularFirestore,
+               private cdr: ChangeDetectorRef,
                public route: ActivatedRoute,
                public userService: UserService,
                public specialistService: SpecialistService,
@@ -36,19 +45,35 @@ export class UserDetailComponent implements OnInit {
     this.getUser();
   }
 
+  // Getters
+
   getUser() {
     const id = this.route.snapshot.paramMap.get('id');
     this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
+      const uid = this.user.uid;
       const sID  = this.user.specialist;
-      console.log(sID);
       this.getSpecialist(sID);
+      this.getGuidelines(uid);
+      this.getMealplans(uid);
     });
   }
 
   getSpecialist(sID: string) {
     this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
   }
+
+  getGuidelines(uid) {
+    this.guidelinesCol = this.afs.collection('guidelines', ref => ref.where('clientID', '==', `${uid}`));
+    this.guidelines = this.guidelinesCol.valueChanges();
+  }
+
+  getMealplans(uid) {
+    this.mealplansCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${uid}`));
+    this.mealplans = this.mealplansCol.valueChanges();
+  }
+
+  // Toggles
 
   aboutExtendedOpen() {
     this.aboutExtended = true;
@@ -83,7 +108,6 @@ export class UserDetailComponent implements OnInit {
 
   // chat() {
   //   const profileId = this.route.snapshot.paramMap.get('id');
-  //   console.log('hello');
   //   return this.threadService.createThread(profileId)
   //     .then(() => console.log('Thread Created!'))
   //     .catch(error => console.log(error.message));

@@ -32,9 +32,7 @@ export class ClientListItemComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       if (result === true) {
-        console.log('i"m being called');
         const id = client.uid;
         this.clientService.deleteUser(id);
       } else if (result === false) {

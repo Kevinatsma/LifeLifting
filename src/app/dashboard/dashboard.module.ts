@@ -38,6 +38,9 @@ import { MyClientListItemComponent } from './specialist-dashboard/my-clients/my-
 import { GuidelinesModule } from './../guidelines/guidelines.module';
 import { GuidelinesComponent } from '../guidelines/guidelines.component';
 import { GuidelineDetailComponent } from '../guidelines/guideline-detail/guideline-detail.component';
+import { MealplansComponent } from '../mealplans/mealplans.component';
+import { MealplanDetailComponent } from '../mealplans/mealplan-detail/mealplan-detail.component';
+import { MealplansModule } from '../mealplans/mealplans.module';
 
 const routes: Routes = [
   {
@@ -57,6 +60,8 @@ const routes: Routes = [
       {path: 'my-clients/:id', component: MyClientDetailComponent, canActivate: [AuthGuard]},
       {path: 'guidelines', component: GuidelinesComponent, data: {state: 'guidelines'}, canActivate: [AuthGuard]},
       {path: 'guidelines/:id', component: GuidelineDetailComponent, canActivate: [AuthGuard]},
+      {path: 'mealplans', component: MealplansComponent, data: {state: 'mealplans'}, canActivate: [AuthGuard]},
+      {path: 'mealplans/:id', component: MealplanDetailComponent, canActivate: [AuthGuard]},
       {path: 'finances', component: FinancesComponent, data: {state: 'finances'}, canActivate: [AuthGuard]},
       {path: 'packages', component: PackagesComponent, data: {state: 'packages'}, canActivate: [AuthGuard]},
       {path: 'packages/:id', component: PackageDetailComponent, canActivate: [AuthGuard]},
@@ -94,6 +99,7 @@ const routes: Routes = [
     ExercisesModule,
     FinancesModule,
     GuidelinesModule,
+    MealplansModule,
     MaterialModule
   ],
   exports: [

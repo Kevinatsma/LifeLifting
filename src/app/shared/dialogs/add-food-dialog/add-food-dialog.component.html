@@ -55,12 +55,40 @@
         </p>
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>The Categories</mat-label>
-          <textarea type="text" matInput formControlName="productCategory" placeholder="Choose one or more categories" 
-          matTextareaAutosize autofocus="off" autocomplete="off">
-          </textarea>
-          <mat-error class="input-error" *ngIf="!categoryForm['controls'].productCategory.valid">This is <strong>required</strong></mat-error>
+          <mat-label>Nutrition group</mat-label>
+          <mat-select matInput placeholder="Under which category falls this product?" formControlName="nutritionType" 
+          panelClass="dropdown-regular" autocomplete="off" required>
+            <mat-option *ngFor="let type of nutritionTypes" [value]="type.value"> {{type.value}}</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
+
+        <div class="add-form-field-container" formArrayName="mealTimeArr">
+          <section class="dynamic-form-field-container" *ngFor="let time of mealTimeForms.controls; let i=index" [formGroupName]="i">
+            <div class="number-id">
+              <h1>{{i+1}}</h1>
+            </div>
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Mostly consumed during</mat-label>
+              <mat-select matInput placeholder="Pick a meal time" formControlName="mealTimeValue" 
+              panelClass="dropdown-regular" autocomplete="off" required>
+                <mat-option *ngFor="let time of mealTimes" [value]="time.value"> {{time.value}}</mat-option>
+              </mat-select>
+              <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">This is <strong>required</strong></mat-error>
+            </mat-form-field>
+            <div class="btn-area">
+              <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteMealTime(i)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </section>
+        </div>
+
+        <button type="button" class="add-form-field" (click)="addMealTime()">
+          <i class="fa fa-plus"></i>
+          Add a Mealtime period
+        </button>
+
       </form>
 
       <section class="btn-area">
@@ -69,26 +97,32 @@
       </section>
     </mat-step>
 
-    <mat-step [stepControl]="portionForm">
-      <form [formGroup]="portionForm">
+    <mat-step [stepControl]="unitForm">
+      <form [formGroup]="unitForm">
         <ng-template matStepLabel>Portion</ng-template>
-        <h3>⚖️ Portion</h3>
+        <h3>⚖️ Unit value</h3>
         <p class="card-text">
-          Indicate the portion here. < text needed! >
+          Indicate the measurement unit here. What is the best way to describe an amount of the product?
+          Eg. 1 <strong>gram</strong> of <i>eggs</i>? Or 1 <strong>unit</strong> of <i>eggs</i>? 
+          This will be visible later when you start adding meal plans, and is an important part 
+          for the calculations.
         </p>
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>The Amount</mat-label>
-          <input type="number" matInput formControlName="amount" placeholder="Amount in nr." autofocus="off" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!portionForm['controls'].amount.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>The Unit</mat-label>
-          <!-- <mat-select>
-            <mat-option *ngFor="let unit of units" [value]="unit.value">{{unit.viewValue}}</mat-option>
-          </mat-select> -->
-          <input type="text" matInput formControlName="unit" placeholder="Pick a unit" autofocus="off" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!portionForm['controls'].unit.valid">This is <strong>required</strong></mat-error>
+          <mat-select matInput formControlName="unit" placeholder="Pick a value (cup, liter, etc)" 
+          panelClass="dropdown-regular" autofocus="off">
+            <mat-option *ngFor="let unit of units" [value]="unit.value">{{unit.value}}</mat-option>
+          </mat-select>
+          <mat-error class="input-error" *ngIf="!unitForm['controls'].unit.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
+        <div class="result" *ngIf="unitForm['controls'].unit.value && infoForm['controls'].productName.value">
+          <p class="card-text">
+            1 
+            <strong>{{unitForm['controls'].unit.value}}</strong>
+            of 
+            <strong>{{infoForm['controls'].productName.value}}</strong>
+          </p>
+        </div>
       </form>
 
       <section class="btn-area">
@@ -133,8 +167,8 @@
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
         <button type="submit" class="dialog-button" (click)="addFood()"
-          [disabled]="!infoForm.valid || !categoryForm.valid || !prepForm.valid || !portionForm.valid"
-          [class.disabled]="!infoForm.valid || !categoryForm.valid  || !prepForm.valid || !portionForm.valid"
+          [disabled]="!infoForm.valid || !categoryForm.valid || !prepForm.valid || !unitForm.valid"
+          [class.disabled]="!infoForm.valid || !categoryForm.valid  || !prepForm.valid || !unitForm.valid"
           mat-dialog-close
         >
           Done

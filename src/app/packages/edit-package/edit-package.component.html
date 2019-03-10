@@ -39,7 +39,7 @@
           <p class="card-text">
             <textarea matInput matTextareaAutosize name="packageDescription" formControlName="packageDescription"></textarea>
           </p>
-          <div class="list-container">
+          <div class="list-container" *ngIf="editArray">
             <ul>
               <li *ngFor="let benefit of package.packageBenefits">
                 <i class="fas fa-check"></i>

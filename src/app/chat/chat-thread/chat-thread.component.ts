@@ -23,34 +23,22 @@ export class ChatThreadComponent implements OnInit {
                private userService: UserService,
                private route: ActivatedRoute) {
                 // this.checkCreator();
-                console.log(this.thread);
                }
 
   ngOnInit() {
   }
 
   checkCreator() {
-    // console.log(this.thread);
     const id = this.auth.currentUserId;
     this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
-      // console.log(`${this.thread.creator.creatorID} - ${user.uid}`);
       if (this.thread.creator.creatorID === this.user.uid) {
-        // console.log('true');
         return this.isCreator = true;
       } else {
-        // console.log('false');
         return this.isCreator = false;
       }
     });
   }
-
-  // checkUser() {
-  //   const uid = this.auth.currentUserId;
-  //   if (this.thread.creator.creatorID && uid) {
-  //     this.isCreator = this.thread.creator.creatorID === uid;
-  //   }
-  // }
 
   delete(threadId) {
     this.threadService.deleteThread(threadId);

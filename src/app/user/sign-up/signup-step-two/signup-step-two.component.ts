@@ -33,7 +33,6 @@ export class SignupStepTwoComponent implements OnInit {
 
   ngOnInit() {
     this.packages = this.packageService.getPackages();
-    console.log(this.packages);
     this.chosenPackage = null;
   }
 

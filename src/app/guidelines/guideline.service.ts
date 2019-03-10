@@ -38,7 +38,6 @@ export class GuidelineService {
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.user = user;
       this.specialistID = this.user.sID;
-      console.log(this.specialistID);
     });
     this.guidelineCol = this.afs.collection<Guideline>(`guidelines`);
     this.editStateChange.subscribe((value) => {
@@ -71,6 +70,13 @@ export class GuidelineService {
   getGuidelines() {
     this.guidelineCol = this.afs.collection('guidelines', ref => ref
       .orderBy('creationDate', 'asc'));
+    this.guidelines = this.guidelineCol.valueChanges();
+    return this.guidelines;
+  }
+
+  getGuidelinesByClient(uid) {
+    this.clientGuideCol = this.afs.collection('guidelines', ref => ref
+      .where('clientID', '==', `${uid}`));
     this.guidelines = this.clientGuideCol.valueChanges();
     return this.guidelines;
   }

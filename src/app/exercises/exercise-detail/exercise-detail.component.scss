@@ -45,15 +45,46 @@ main.specialist-wrapper {
             margin: 1.5em;
             cursor: auto;
 
-            .subtitle {
+            .subtitle-container {
                 width: 90%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-flow: row nowrap;
+                padding: 1.5em 1.5em 0;
+
+                .subtitle {
+                    width: auto;
+                    margin: 0;
+                }
+
+                .met-value {
+                    font-size: 16px;
+                    font-weight: $semi-bold;
+                    color: $text-black;
+                    @extend %flex-row-center;
+
+                    span {
+                        letter-spacing: 2px;
+                        font-size: 14px;
+                        color: $primary-color;
+                        font-weight: $semi-bold;
+                        margin-right: 0.6em;
+                    }
+                    span.circle {
+                        border: 2px solid $primary-color;
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 50%;
+                        @extend %flex-center;
+                    }
+                }
             }
 
             .exercise-photo {
                 height: 250px;
                 position: relative;
             }
-
 
             .preperation-container {
                 ul {

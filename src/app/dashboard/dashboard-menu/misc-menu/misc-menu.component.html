@@ -1,19 +1,19 @@
 <section class="admin-menu">
     <div class="title-container">
-      <h5 class="sidebar-title" [class.active]="!linksCollapsed">
+      <h5 class="sidebar-title" [class.active]="!linksOpened">
         Misc
       </h5>
       <section class="btn-area">
-        <button type="button" (click)="linksCollapsed = true" *ngIf="!linksCollapsed">
+        <button type="button" (click)="toggle()" *ngIf="linksOpened">
           <i class="fas fa-minus"></i>Hide
         </button>
-        <button type="button" (click)="linksCollapsed = false" *ngIf="linksCollapsed">
+        <button type="button" (click)="toggle()" *ngIf="!linksOpened">
           <i class="fas fa-plus"></i>Show
         </button>
       </section>
 
     </div>
-    <ul class="link-container" *ngIf="!linksCollapsed">
+    <ul class="link-container" [@openClose]="linksOpened ? 'open' : 'closed'">
       <li>
         <a class="menu-link" routerLink="foods" routerLinkActive="active">
           <i class="fas fa-lemon"></i>

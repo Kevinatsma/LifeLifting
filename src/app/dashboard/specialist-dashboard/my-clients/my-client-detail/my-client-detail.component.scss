@@ -319,10 +319,11 @@ section.middle {
         margin: 0 0 2em;
         width: auto;
 
-        app-guideline-list-item {
+        app-guideline-list-item, app-mealplan-list-item {
             display: flex;
-            width: 300px;
+            max-width: 300px;
             margin-right: 2em;
+            box-sizing: border-box;
             flex: 1;
         }
 
@@ -344,41 +345,6 @@ section.reviews-opened {
 
     h5 {
         padding-left: 2em;
-    }
-}
-
-div.review-container {
-    width: auto;
-    height: auto;
-    padding: 1em 0;
-    margin-left: -2em;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-
-    mat-card.review-item {
-        flex: 0 0 auto;
-        height: 100%;
-        width: 400px;
-        margin: 0.5em 2em;
-        padding: 1.5em 1em;
-        box-sizing: border-box;
-        box-shadow: $card-shadow;
-
-        &:first-child {
-            margin-left: 2em;
-        }
-
-        p {
-            white-space: normal;
-            width: 100%;
-        }
-    }
-
-    div.placeholder {
-        width: 15px;
-        height: 30px;
-        visibility: hidden;
     }
 }
 
