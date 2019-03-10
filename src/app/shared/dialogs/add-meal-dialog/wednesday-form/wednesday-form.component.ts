@@ -80,8 +80,6 @@ export class WednesdayFormComponent implements OnInit {
   mSevenMealTwoArr: FormArray;
 
   selectedProduct: Food;
-
-
   showAddProduct = true;
 
   constructor( private fb: FormBuilder,
@@ -95,7 +93,6 @@ export class WednesdayFormComponent implements OnInit {
 
                 // Query elements
                 const controlButtons = document.querySelectorAll('.dialog-button');
-                const inputs = document.querySelectorAll('.f-input');
 
                 // Set event listeners
                 controlButtons.forEach(input => {

@@ -5,6 +5,13 @@ main {
         height: auto;
         padding: 3em 3em 3em 5em;
 
+        .section-title {
+            &__subtitle {
+                width: 75%;
+                margin: 0 0 1em 0;
+            }
+        }
+
         .activity {
             align-items: center;
             display: flex;
@@ -40,8 +47,43 @@ main {
 
                     .target-block {
                         width: 100%;
+                        margin: 1em 0;
+
                         h6 {
+                            font-size: 22px;
                             text-transform: capitalize;
+                        }
+                        
+                        >div {
+                            margin: 0.5em 0;
+                        }
+
+                        h4 {
+                            position: relative;
+                            margin-bottom: 5px;
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                left: -15px;
+                                height: 4px;
+                                top: calc(50% - 1px);
+                                width: 4px;
+                                border-radius: 1px;
+                                background: $border-color;
+                            }
+                        }
+
+                        .subtitle {
+                            .card-text {
+                                font-size: 16px;
+
+                                .emoji {
+                                    &:nth-child(2) {
+                                        margin-left: 0.75em;
+                                    }
+                                }
+                            }
                         }
 
                         &__full-width {
