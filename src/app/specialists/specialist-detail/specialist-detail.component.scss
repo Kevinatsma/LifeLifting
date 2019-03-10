@@ -118,7 +118,7 @@ section.specialist-header {
         .bottom {
             flex-flow: row nowrap;
             border-top: 1px solid $border-color;
-            padding-top: 2.5em;
+            padding-top: 0.5em;
 
             p.tab {
                 @extend %flex-center;
@@ -216,31 +216,33 @@ section.middle {
 }
 
 section.reviews-opened {
-    padding-left: 2em;
     width: calc(100% + 4em);
+    margin: 3em 0 0 -2em;
+    overflow-x: hidden;
 
     h5 {
         padding-left: 2em;
+        font-size: 22px;
     }
 }
 
 div.review-container {
-    width: auto;
+    width: 100%;
     height: auto;
-    padding: 1em 0;
-    margin-left: -2em;
+    padding: 1em 0.5em;
+    margin: 1em 0 0;
     display: flex;
     flex-wrap: nowrap;
+    box-sizing: border-box;
     overflow-x: auto;
+    max-width: 80vw;
 
-    mat-card.review-item {
+    app-review-list-item {
         flex: 0 0 auto;
         height: 100%;
         width: 400px;
         margin: 0.5em 2em;
-        padding: 1.5em 1em;
         box-sizing: border-box;
-        box-shadow: $card-shadow;
 
         &:first-child {
             margin-left: 2em;
@@ -256,11 +258,12 @@ div.review-container {
         width: 15px;
         height: 30px;
         visibility: hidden;
+        display: flex;
     }
 }
 
 section.btn-area {
-    padding-left: 3em;
+    padding-left: 1em;
 
     button.text-link {
         margin: 1em 0;

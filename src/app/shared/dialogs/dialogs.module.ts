@@ -15,6 +15,7 @@ import { AddGuideDialogComponent } from './add-guide-dialog/add-guide-dialog.com
 import { SharedModule } from '../shared.module';
 import { AddSpecialistDialogComponent } from './add-specialist-dialog/add-specialist-dialog.component';
 import { DialogModule } from './add-meal-dialog/dialog.module';
+import { AddReviewDialogComponent } from './add-review-dialog/add-review-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { DialogModule } from './add-meal-dialog/dialog.module';
     AddClientDialogComponent,
     AddPackageDialogComponent,
     AddFoodDialogComponent,
+    AddReviewDialogComponent,
     AddExerciseDialogComponent,
     AddMealDialogComponent,
     AddGuideDialogComponent,
@@ -42,6 +44,7 @@ import { DialogModule } from './add-meal-dialog/dialog.module';
     AddClientDialogComponent,
     AddPackageDialogComponent,
     AddFoodDialogComponent,
+    AddReviewDialogComponent,
     AddExerciseDialogComponent,
     AddMealDialogComponent,
     AddGuideDialogComponent,
@@ -53,6 +56,7 @@ import { DialogModule } from './add-meal-dialog/dialog.module';
     AddClientDialogComponent,
     AddPackageDialogComponent,
     AddFoodDialogComponent,
+    AddReviewDialogComponent,
     AddExerciseDialogComponent,
     AddMealDialogComponent,
     AddGuideDialogComponent

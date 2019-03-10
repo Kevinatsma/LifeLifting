@@ -1,6 +1,5 @@
 <ng-container *ngIf="specialist">
   <main class="specialist-wrapper" *ngIf="!editShow">
-
     <section class="action-toolbar-top">
       <div class="left">
         <button class="icon-button" (click)="goBack()">
@@ -16,6 +15,9 @@
           <i class="fas fa-edit"></i>
         </button>
 
+        <button class="icon-button edit-button" (click)="openReviewDialog(specialist)" *ngIf="!editShow">
+          <i class="fas fa-star"></i>
+        </button>
       </div>
     </section>
 
@@ -98,42 +100,37 @@
       </section>
     </ng-container>
 
-  </main>
-
-
-  <ng-container *ngIf="!editShow">
-    <section class="reviews-opened">
-        <h5 class="purple">Reviews</h5>
-        <div class="review-container" *ngIf="reviewsVisible">
-          <mat-card class="review-item" *ngFor="let review of specialist.reviews">
-            <p>{{review.reviewText}}</p>
-            <p><strong>- {{review.reviewerName}}</strong></p>
-          </mat-card>
-          <div class="placeholder">
-            Oh hello there.
+    <ng-container *ngIf="!editShow">
+      <section class="reviews-opened">
+          <h5 class="purple">Reviews</h5>
+          <div class="review-container" *ngIf="reviewsVisible">
+            <app-review-list-item *ngFor="let review of reviews |  async" [review]="review"></app-review-list-item>
+            <div class="placeholder">
+              Oh hello there.
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="btn-area">
-        <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
-          Show reviews
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <button class="text-link" *ngIf="reviewsVisible" (click)="closeReviews()">
-          Hide reviews
-          <i class="fas fa-chevron-up"></i>
-        </button>
-      </section>
+        <section class="btn-area">
+          <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
+            Show reviews
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <button class="text-link" *ngIf="reviewsVisible" (click)="closeReviews()">
+            Hide reviews
+            <i class="fas fa-chevron-up"></i>
+          </button>
+        </section>
 
-  </ng-container>
+    </ng-container>
 
-  <ng-container *ngIf="editShow">
-    <app-edit-specialist [specialist]="specialist"></app-edit-specialist>
-  </ng-container>
+    <ng-container *ngIf="editShow">
+      <app-edit-specialist [specialist]="specialist"></app-edit-specialist>
+    </ng-container>
 
+  </main>
 </ng-container>
   
 <ng-container *ngIf="!specialist">
-  Hello  I exist
+  Woops something went wrong... Please go back.
 </ng-container>

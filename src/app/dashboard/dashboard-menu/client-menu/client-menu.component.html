@@ -15,6 +15,12 @@
     </div>
     <ul class="link-container" [@openClose]="linksOpened ? 'open' : 'closed'">
       <li>
+        <a class="menu-link" routerLink="specialists" routerLinkActive="active">
+          <i class="fas fa-user-ninja"></i>
+          My Specialist
+        </a>
+      </li>
+      <li>
         <a class="menu-link" routerLink="home" routerLinkActive="active">
           <i class="far fa-file-alt"></i>
           Guidelines
@@ -24,12 +30,6 @@
         <a class="menu-link" routerLink="home" routerLinkActive="active">
           <i class="fas fa-weight"></i>
           Meal Plan
-        </a>
-      </li>
-      <li>
-        <a class="menu-link" routerLink="home" routerLinkActive="active">
-          <i class="fas fa-prescription-bottle"></i>
-          Supplements
         </a>
       </li>
       <li>

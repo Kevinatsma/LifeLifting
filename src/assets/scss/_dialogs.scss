@@ -52,30 +52,30 @@ main.dialog-wrapper {
                 }
             }
         }
+    }
+    
+    section.btn-area-one {
+        display: flex;
+        flex-flow: row nowrap;
+        width: 100%;
+        height: 70px;
 
-        section.btn-area-one {
-            display: flex;
-            flex-flow: row nowrap;
+        button {
+            background: transparent;
+            border: $light-border;
             width: 100%;
-            height: 70px;
 
-            button {
-                background: transparent;
-                border: $light-border;
-                width: 100%;
+            &:hover, &:focus {
+                background: darken($light-grey, 5%);
+            }
+
+            &.disabled {
+                cursor: standard;
+                color: $middle-grey;
 
                 &:hover, &:focus {
-                    background: darken($light-grey, 5%);
-                }
-
-                &.disabled {
-                    cursor: standard;
-                    color: $middle-grey;
-
-                    &:hover, &:focus {
-                        background: transparent;
-                        cursor: initial;
-                    }
+                    background: transparent;
+                    cursor: initial;
                 }
             }
         }

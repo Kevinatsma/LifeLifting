@@ -1,0 +1,24 @@
+@import './../../../../../assets/scss/_master.scss';
+
+main.specialist-list-wrapper {
+    margin: 0;
+    padding: 0;
+
+    section.review-list {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        width: 100%;
+
+        app-review-list-item {
+            margin: 2em 0;
+            width: 40%;
+
+            &:nth-child(2n) {
+                margin-left: 4em;
+            }
+        }
+
+    }
+
+}

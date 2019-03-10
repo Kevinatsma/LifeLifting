@@ -35,12 +35,16 @@ import { MyClientsComponent } from './specialist-dashboard/my-clients/my-clients
 import { MyClientDetailComponent } from './specialist-dashboard/my-clients/my-client-detail/my-client-detail.component';
 import { MyClientListComponent } from './specialist-dashboard/my-clients/my-client-list/my-client-list.component';
 import { MyClientListItemComponent } from './specialist-dashboard/my-clients/my-client-list-item/my-client-list-item.component';
+import { MyReviewsComponent } from './specialist-dashboard/my-reviews/my-reviews.component';
+import { MyReviewListComponent } from './specialist-dashboard/my-reviews/my-review-list/my-review-list.component';
 import { GuidelinesModule } from './../guidelines/guidelines.module';
 import { GuidelinesComponent } from '../guidelines/guidelines.component';
 import { GuidelineDetailComponent } from '../guidelines/guideline-detail/guideline-detail.component';
 import { MealplansComponent } from '../mealplans/mealplans.component';
 import { MealplanDetailComponent } from '../mealplans/mealplan-detail/mealplan-detail.component';
 import { MealplansModule } from '../mealplans/mealplans.module';
+import { SharedModule } from '../shared/shared.module';
+
 
 const routes: Routes = [
   {
@@ -58,6 +62,7 @@ const routes: Routes = [
       {path: 'clients/:id', component: ClientDetailComponent, canActivate: [AuthGuard]},
       {path: 'my-clients', component: MyClientsComponent, data: {state: 'my-clients'}, canActivate: [AuthGuard]},
       {path: 'my-clients/:id', component: MyClientDetailComponent, canActivate: [AuthGuard]},
+      {path: 'my-reviews', component: MyReviewsComponent, data: {state: 'reviews'}, canActivate: [AuthGuard]},
       {path: 'guidelines', component: GuidelinesComponent, data: {state: 'guidelines'}, canActivate: [AuthGuard]},
       {path: 'guidelines/:id', component: GuidelineDetailComponent, canActivate: [AuthGuard]},
       {path: 'mealplans', component: MealplansComponent, data: {state: 'mealplans'}, canActivate: [AuthGuard]},
@@ -81,6 +86,8 @@ const routes: Routes = [
     DashboardTopNavComponent,
     AdminMenuComponent,
     SpecialistMenuComponent,
+    MyReviewsComponent,
+    MyReviewListComponent,
     MyClientsComponent,
     MyClientListComponent,
     MyClientListItemComponent,
@@ -92,6 +99,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     CommonModule,
     RouterModule.forRoot(routes),
+    SharedModule,
     UserModule,
     SpecialistModule,
     ClientsModule,

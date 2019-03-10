@@ -10,12 +10,14 @@ import { ExerciseListItemComponent } from '../exercises/exercise-list-item/exerc
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileUploadExerciseComponent } from './file-upload/file-upload-exercise/file-upload-exercise.component';
 import { FileUploadProductComponent } from './file-upload/file-upload-product/file-upload-product.component';
+import { ReviewsModule } from '../reviews/reviews.module';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     DataModule,
+    ReviewsModule
   ],
   declarations: [
     FileSizePipe,
@@ -29,6 +31,7 @@ import { FileUploadProductComponent } from './file-upload/file-upload-product/fi
   exports: [
     MaterialModule,
     DataModule,
+    ReviewsModule,
     FileUploadComponent,
     FileUploadExerciseComponent,
     FileUploadProductComponent,
