@@ -13,7 +13,7 @@
       <mat-error class="input-error" *ngIf="!reviewForm['controls'].reviewText.dirty && reviewForm['controls'].reviewText.touched">
         This is <strong>required</strong>
       </mat-error>
-      <mat-error class="input-error" *ngIf="!reviewForm['controls'].reviewText.minLength">
+      <mat-error class="input-error" *ngIf="reviewText.errors?.minlength">
         You have to have at least <strong>200</strong> characters, you have <strong>{{reviewTextArea.value.length}}</strong> characters at the moment.
       </mat-error>
     </mat-form-field>

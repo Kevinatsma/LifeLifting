@@ -59,8 +59,8 @@ export class SpecialistDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.specialistService.getSpecialistData(id).subscribe(specialist => {
       this.specialist = specialist;
-      this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${specialist.uid}`));
-      console.log(specialist);
+      this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${specialist.uid}`)
+                                            );
       this.reviews = this.reviewsCol.valueChanges();
       });
   }
