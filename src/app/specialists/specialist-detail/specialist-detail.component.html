@@ -104,7 +104,7 @@
       <section class="reviews-opened">
           <h5 class="purple">Reviews</h5>
           <div class="review-container" *ngIf="reviewsVisible">
-            <app-review-list-item *ngFor="let review of reviews |  async" [review]="review"></app-review-list-item>
+            <app-review-list-item *ngFor="let review of reviews |  async" [review]="review" [specialist]="specialist"></app-review-list-item>
             <div class="placeholder">
               Oh hello there.
             </div>
@@ -121,14 +121,9 @@
             <i class="fas fa-chevron-up"></i>
           </button>
         </section>
-
     </ng-container>
-
-    <ng-container *ngIf="editShow">
-      <app-edit-specialist [specialist]="specialist"></app-edit-specialist>
-    </ng-container>
-
   </main>
+  <app-edit-specialist *ngIf="editShow" [specialist]="specialist"></app-edit-specialist>
 </ng-container>
   
 <ng-container *ngIf="!specialist">

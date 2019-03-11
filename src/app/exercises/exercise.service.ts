@@ -86,7 +86,7 @@ export class ExerciseService {
       const action = 'Close';
 
       this.snackBar.open(message, action, {
-        duration: 4000,
+        duration: 3000,
         panelClass: ['success-snackbar']
       });
     })

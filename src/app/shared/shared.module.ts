@@ -11,13 +11,16 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileUploadExerciseComponent } from './file-upload/file-upload-exercise/file-upload-exercise.component';
 import { FileUploadProductComponent } from './file-upload/file-upload-product/file-upload-product.component';
 import { ReviewsModule } from '../reviews/reviews.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     DataModule,
-    ReviewsModule
+    ReviewsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     FileSizePipe,
@@ -26,17 +29,19 @@ import { ReviewsModule } from '../reviews/reviews.module';
     FileUploadExerciseComponent,
     FileUploadProductComponent,
     FileUploadButtonComponent,
-    ExerciseListItemComponent
+    ExerciseListItemComponent,
   ],
   exports: [
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     DataModule,
     ReviewsModule,
     FileUploadComponent,
     FileUploadExerciseComponent,
     FileUploadProductComponent,
     FileUploadButtonComponent,
-    ExerciseListItemComponent
+    ExerciseListItemComponent,
   ],
   providers: [
     FileUploadService

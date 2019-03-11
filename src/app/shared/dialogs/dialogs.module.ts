@@ -16,42 +16,13 @@ import { SharedModule } from '../shared.module';
 import { AddSpecialistDialogComponent } from './add-specialist-dialog/add-specialist-dialog.component';
 import { DialogModule } from './add-meal-dialog/dialog.module';
 import { AddReviewDialogComponent } from './add-review-dialog/add-review-dialog.component';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { EditDialogModule } from './edit-dialog/edit-dialog.module';
 
 @NgModule({
   declarations: [
     ConfirmDialogComponent,
-    AddUserDialogComponent,
-    AddClientDialogComponent,
-    AddPackageDialogComponent,
-    AddFoodDialogComponent,
-    AddReviewDialogComponent,
-    AddExerciseDialogComponent,
-    AddMealDialogComponent,
-    AddGuideDialogComponent,
-  ],
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule,
-    DialogModule,
-    SharedModule,
-    MaterialModule,
-    MatDialogModule
-  ],
-  exports: [
-    ConfirmDialogComponent,
-    AddUserDialogComponent,
-    AddClientDialogComponent,
-    AddPackageDialogComponent,
-    AddFoodDialogComponent,
-    AddReviewDialogComponent,
-    AddExerciseDialogComponent,
-    AddMealDialogComponent,
-    AddGuideDialogComponent,
-  ],
-  entryComponents: [
-    ConfirmDialogComponent,
-    AddSpecialistDialogComponent,
+    EditDialogComponent,
     AddUserDialogComponent,
     AddClientDialogComponent,
     AddPackageDialogComponent,
@@ -60,6 +31,41 @@ import { AddReviewDialogComponent } from './add-review-dialog/add-review-dialog.
     AddExerciseDialogComponent,
     AddMealDialogComponent,
     AddGuideDialogComponent
+  ],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    DialogModule,
+    EditDialogModule,
+    SharedModule,
+    MaterialModule,
+    MatDialogModule,
+  ],
+  exports: [
+    ConfirmDialogComponent,
+    EditDialogComponent,
+    AddUserDialogComponent,
+    AddClientDialogComponent,
+    AddPackageDialogComponent,
+    AddFoodDialogComponent,
+    AddReviewDialogComponent,
+    AddExerciseDialogComponent,
+    AddMealDialogComponent,
+    AddGuideDialogComponent
+  ],
+  entryComponents: [
+    ConfirmDialogComponent,
+    EditDialogComponent,
+    AddSpecialistDialogComponent,
+    AddUserDialogComponent,
+    AddClientDialogComponent,
+    AddPackageDialogComponent,
+    AddFoodDialogComponent,
+    AddReviewDialogComponent,
+    AddExerciseDialogComponent,
+    AddMealDialogComponent,
+    AddGuideDialogComponent,
   ],
   providers: [
     DataService

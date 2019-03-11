@@ -18,7 +18,7 @@ export class ReviewsService {
   editStateChange: Subject<boolean> = new Subject<boolean>();
 
   constructor( private afs: AngularFirestore,
-               public snackBar: MatSnackBar
+               public snackBar: MatSnackBar,
              ) {
     this.reviewCol = this.afs.collection<Review>(`reviews`);
     this.reviews = this.getReviews();
@@ -26,7 +26,6 @@ export class ReviewsService {
       this.editShow = value;
     });
   }
-
 
   toggleEdit() {
     this.editStateChange.next(!this.editShow);
@@ -51,15 +50,28 @@ export class ReviewsService {
 
   addReview(data) {
     this.afs.collection<Review>(`reviews`).add(data)
-    .then(() => {
+    .then(obj => {
       // Show Snackbar
       const message = `The review was added succesfully`;
       const action = 'Close';
 
+      console.log(obj.id);
+      const updateData = {
+        reviewID: obj.id
+      };
+      setTimeout(() => {
+        this.updateReview(obj.id, updateData);
+      }, 500);
+
       this.snackBar.open(message, action, {
-        duration: 4000,
+        duration: 3000,
         panelClass: ['success-snackbar']
       });
+    })
+    .then((docRef) => {
+      const id = docRef;
+      console.log(id);
+
     })
     .catch(error => {
       alert(error.message);
@@ -69,7 +81,18 @@ export class ReviewsService {
 
   updateReview(id, data) {
     this.reviewDoc = this.afs.doc<Review>(`reviews/${id}`);
-    this.reviewDoc.update(data);
+    this.reviewDoc.update(data)
+      .then(() => {
+        // Show Snackbar
+        const message = `The Review was updated succesfully`;
+        const action = 'Close';
+
+        this.snackBar.open(message, action, {
+          duration: 3000,
+          panelClass: ['success-snackbar']
+        });
+      })
+      .catch(error => console.error(error));
   }
 
   deleteReview(id) {
