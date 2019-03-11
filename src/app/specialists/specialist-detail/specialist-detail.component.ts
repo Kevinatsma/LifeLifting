@@ -23,7 +23,6 @@ import { Review } from './../../reviews/review.model';
 export class SpecialistDetailComponent implements OnInit {
   user: User;
   specialist: Specialist;
-  editShow = false;
   aboutExtended = false;
   reviewsVisible = true;
   reviews: Observable<Review[]>;
@@ -46,7 +45,6 @@ export class SpecialistDetailComponent implements OnInit {
   ngOnInit() {
     this.getUser();
     this.getSpecialist();
-    this.getEditShow();
   }
 
   // Getters
@@ -79,13 +77,12 @@ export class SpecialistDetailComponent implements OnInit {
   // Like this to avoid State Changed Error
   // Open/closers
 
-  getEditShow(): boolean {
-    return this.editShow = this.specialistService.editShow;
+  get editShow(): boolean {
+    return this.specialistService.editShow;
   }
 
   toggleEdit() {
       this.specialistService.toggleEdit();
-      this.editShow = this.specialistService.editShow;
   }
 
   // Review functions
