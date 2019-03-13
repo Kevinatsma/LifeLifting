@@ -1,0 +1,23 @@
+@import './../../../../assets/scss/_master.scss';
+
+main.specialist-list-wrapper {
+    margin: 0;
+    padding: 0;
+
+    // section.specialist-filters {
+
+    // }
+
+    section.card-list {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+
+        app-mealplan-list-item {
+            margin: 3em 2.5%;
+            width: 28%;
+        }
+
+    }
+
+}

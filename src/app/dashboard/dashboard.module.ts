@@ -45,6 +45,7 @@ import { MealplansComponent } from '../mealplans/mealplans.component';
 import { MealplanDetailComponent } from '../mealplans/mealplan-detail/mealplan-detail.component';
 import { MealplansModule } from '../mealplans/mealplans.module';
 import { SharedModule } from '../shared/shared.module';
+import { MyMealplanListComponent } from './client-dashboard/my-mealplan-list/my-mealplan-list.component';
 
 
 const routes: Routes = [
@@ -69,6 +70,8 @@ const routes: Routes = [
       {path: 'guidelines/:id', component: GuidelineDetailComponent, canActivate: [AuthGuard]},
       {path: 'mealplans', component: MealplansComponent, data: {state: 'mealplans'}, canActivate: [AuthGuard]},
       {path: 'mealplans/:id', component: MealplanDetailComponent, canActivate: [AuthGuard]},
+      {path: 'my-mealplans', component: MyMealplanListComponent, data: {state: 'my-mealplans'}, canActivate: [AuthGuard]},
+      // {path: 'my-mealplans/:id', component: MyMealplanDetailComponent, canActivate: [AuthGuard]},
       {path: 'finances', component: FinancesComponent, data: {state: 'finances'}, canActivate: [AuthGuard]},
       {path: 'packages', component: PackagesComponent, data: {state: 'packages'}, canActivate: [AuthGuard]},
       {path: 'packages/:id', component: PackageDetailComponent, canActivate: [AuthGuard]},
@@ -95,6 +98,7 @@ const routes: Routes = [
     MyClientListComponent,
     MyClientListItemComponent,
     MyClientDetailComponent,
+    MyMealplanListComponent,
     ClientMenuComponent,
     MiscMenuComponent,
   ],
