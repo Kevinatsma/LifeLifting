@@ -10,7 +10,7 @@ import { openClose } from './../../../core/animations/open-close.animation';
   styleUrls: ['./../dashboard-menu.component.scss']
 })
 export class ClientMenuComponent implements OnInit {
-  linksOpened = false;
+  linksOpened = true;
 
   constructor() { }
 

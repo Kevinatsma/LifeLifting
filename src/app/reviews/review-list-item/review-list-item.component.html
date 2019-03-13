@@ -1,9 +1,9 @@
 <ng-container *ngIf="!editActive">
   <mat-card class="review-card" *ngIf="review">
-    <button class="edit-btn delete" (click)="deleteReviewDialog(review)" *ngIf="!mySpecialistActive">
+    <button class="edit-btn delete" (click)="deleteReviewDialog(review)" *ngIf="auth.adminRoles(user)">
       <i class="far fa-trash-alt"></i>
     </button>
-    <button class="edit-btn" (click)="openEditDialog(review, specialist)" *ngIf="!mySpecialistActive">
+    <button class="edit-btn" (click)="openEditDialog(review, specialist)" *ngIf="auth.adminRoles(user)">
       <i class="far fa-edit"></i>
     </button>
     <section class="introduction">

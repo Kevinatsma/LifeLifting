@@ -7,7 +7,6 @@ import { AuthService } from './../../core/auth/auth.service';
   styleUrls: ['./dashboard-menu.component.scss']
 })
 export class DashboardMenuComponent implements OnInit {
-  adminLinksCollapsed = false;
 
   constructor(public auth: AuthService) { }
 

@@ -15,9 +15,21 @@
     </div>
     <ul class="link-container" [@openClose]="linksOpened ? 'open' : 'closed'">
       <li>
-        <a class="menu-link" routerLink="my-specialist" routerLinkActive="active">
-          <i class="fas fa-user-ninja"></i>
-          My Specialist
+        <a class="menu-link" routerLink="home" routerLinkActive="active">
+          <i class="fas fa-angle-double-up"></i>
+          Workflow
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" routerLink="home" routerLinkActive="active">
+          <i class="fas fa-weight"></i>
+          Meal Plans
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" routerLink="home" routerLinkActive="active">
+          <i class="fas fa-shopping-cart"></i>
+          Shopping lists
         </a>
       </li>
       <li>
@@ -28,20 +40,14 @@
       </li>
       <li>
         <a class="menu-link" routerLink="home" routerLinkActive="active">
-          <i class="fas fa-weight"></i>
-          Meal Plan
-        </a>
-      </li>
-      <li>
-        <a class="menu-link" routerLink="home" routerLinkActive="active">
-          <i class="fas fa-angle-double-up"></i>
-          Workflow
-        </a>
-      </li>
-      <li>
-        <a class="menu-link" routerLink="home" routerLinkActive="active">
           <i class="far fa-calendar-alt"></i>
           Appointments
+        </a>
+      </li>
+      <li>
+        <a class="menu-link" routerLink="my-specialist" routerLinkActive="active">
+          <i class="fas fa-user-ninja"></i>
+          My Specialist
         </a>
       </li>
     </ul>

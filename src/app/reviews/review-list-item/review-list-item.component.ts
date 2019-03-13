@@ -6,6 +6,9 @@ import { EditDialogComponent } from './../../shared/dialogs/edit-dialog/edit-dia
 import { MatDialog } from '@angular/material';
 import { Specialist } from './../../specialists/specialist.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
+import { AuthService } from './../../core/auth/auth.service';
+import { UserService } from './../../user/user.service';
+import { User } from './../../user/user.model';
 
 @Component({
   selector: 'app-review-list-item',
@@ -18,19 +21,29 @@ import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/co
 export class ReviewListItemComponent implements OnInit {
   @Input() review: Review;
   @Input() specialist: Specialist;
-  @Input() mySpecialistActive;
   textOpened = false;
+  user: User;
 
-  constructor( private cdr: ChangeDetectorRef,
+  constructor( public auth: AuthService,
+               private userService: UserService,
+               private cdr: ChangeDetectorRef,
                public dialog: MatDialog,
                private reviewService: ReviewsService) { }
 
   ngOnInit() {
+    this.getUser();
   }
 
   // Getters
   get editActive() {
     return this.reviewService.editShow;
+  }
+
+  getUser() {
+    const id = this.auth.currentUserId;
+    this.userService.getUserDataByID(id).subscribe(user => {
+      this.user = user;
+    });
   }
 
   // Toggles

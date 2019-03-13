@@ -97,9 +97,7 @@
     <section class="reviews-opened">
       <h5 class="purple">Reviews</h5>
       <div class="review-container" *ngIf="reviewsVisible">
-        <app-review-list-item *ngFor="let review of reviews |  async" [review]="review" [specialist]="specialist"
-        [mySpecialistActive]="mySpecialistActive">
-
+        <app-review-list-item *ngFor="let review of reviews |  async" [review]="review" [specialist]="specialist">
         </app-review-list-item>
         <div class="placeholder">
           Oh hello there.
