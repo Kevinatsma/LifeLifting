@@ -19,6 +19,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
   // Form
   editUserForm: FormGroup;
+  specialist: Specialist;
   specialists: Observable<Specialist[]>;
   selectedSpecialist = '';
   downloadURL: string | null;
@@ -52,6 +53,10 @@ export class EditUserComponent implements OnInit, OnDestroy {
       email: '' || this.user.email,
     });
     this.url = `users`;
+
+    setTimeout(() => {
+      this.getSpecialist(this.user);
+    }, 200);
   }
 
   // Getters
@@ -59,6 +64,15 @@ export class EditUserComponent implements OnInit, OnDestroy {
   get editShow(): boolean {
     return this.userService.editShow;
   }
+
+  getSpecialist(user) {
+    console.log(user.specialist);
+    this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => {
+      this.specialist = specialist;
+    });
+  }
+
+  // Toggles
 
   toggleEdit() {
       this.userService.toggleEdit();

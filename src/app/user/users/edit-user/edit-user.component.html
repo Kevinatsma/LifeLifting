@@ -52,16 +52,16 @@
             <div class="icon-fact-container">
               <div class="fact" *ngIf="user.basicData">
                 <i class="fas fa-transgender"></i>
-                <mat-select matInput placeholder="Gender" [(value)]="selectedGender" formControlName="gender" 
+                <mat-select matInput placeholder="{{user.basicData.gender}}" [(value)]="selectedGender" formControlName="gender" 
                 panelClass="dropdown-regular" autocomplete="off" required>
                   <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
                 </mat-select>
               </div>
               <div class="fact" *ngIf="specialists">
                 <i class="fas fa-user-ninja"></i>
-                <mat-select matInput placeholder="Specialist" [(value)]="selectedSpecialist" panelClass="dropdown-regular"
-                formControlName="specialist" autocomplete="off" required name="specialist"
-                >
+                <mat-select matInput placeholder="{{specialist.firstName}} {{specialist.lastName}} || Pick a specialist" 
+                [(value)]="selectedSpecialist" panelClass="dropdown-regular" formControlName="specialist" autocomplete="off" 
+                required name="specialist">
                   <mat-option *ngFor="let specialist of specialists | async" 
                   [value]="specialist.specialistID"
                   > {{specialist.firstName}} {{specialist.lastName}}</mat-option>

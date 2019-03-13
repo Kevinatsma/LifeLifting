@@ -60,7 +60,6 @@ export class MySpecialistComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id') || user.specialist;
     this.specialistService.getSpecialistData(id).subscribe(specialist => {
       this.specialist = specialist;
-      console.log(specialist);
       this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${specialist.uid}`));
       this.reviews = this.reviewsCol.valueChanges();
       });

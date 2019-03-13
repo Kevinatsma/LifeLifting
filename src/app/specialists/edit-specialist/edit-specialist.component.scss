@@ -149,13 +149,27 @@ section.specialist-header {
                 &.h5 {
                     width: 80%;
                 }
+                &.speciality {
+                    width: 70%;
+                }
             }
 
-            p.speciality {
+            .speciality {
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                justify-content: flex-start;
+                margin-top: 0.5em;
+
+                p {
+                    margin: 0 5px 0 0;
+                    font-size: 16px
+                }
+
                 input {
                     letter-spacing: 1px;
-                    line-height: 1.6;
                     font-size: 16px;
+                    width: 100%;
                 }
             }
 
