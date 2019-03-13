@@ -1,34 +1,35 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
-import { Specialist } from '../specialist.model';
+import { Specialist } from '../../../specialists/specialist.model';
 import { ActivatedRoute } from '@angular/router';
-import { SpecialistService } from '../specialist.service';
+import { SpecialistService } from '../../../specialists/specialist.service';
 import { Observable } from 'rxjs';
-import { ChatThreadService } from './../../chat/chat-thread.service';
-import { UserService } from './../../user/user.service';
-import { User } from './../../user/user.model';
-import { AddReviewDialogComponent } from './../../shared/dialogs/add-review-dialog/add-review-dialog.component';
+import { ChatThreadService } from '../../../chat/chat-thread.service';
+import { UserService } from '../../../user/user.service';
+import { User } from '../../../user/user.model';
+import { AddReviewDialogComponent } from '../../../shared/dialogs/add-review-dialog/add-review-dialog.component';
 import { MatDialog } from '@angular/material';
-import { AuthService } from './../../core/auth/auth.service';
+import { AuthService } from '../../../core/auth/auth.service';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Review } from './../../reviews/review.model';
+import { Review } from '../../../reviews/review.model';
 
 
 @Component({
-  selector: 'app-specialist-detail',
-  templateUrl: './specialist-detail.component.html',
-  styleUrls: ['./specialist-detail.component.scss']
+  selector: 'app-my-specialist',
+  templateUrl: './my-specialist.component.html',
+  styleUrls: ['./my-specialist.component.scss']
 })
-export class SpecialistDetailComponent implements OnInit {
+export class MySpecialistComponent implements OnInit {
   user: User;
   specialist: Specialist;
+  mySpecialistActive = true;
   aboutExtended = false;
   reviewsVisible = true;
   reviews: Observable<Review[]>;
   reviewsCol: AngularFirestoreCollection<Review>;
 
-  // specialist = Observable<Specialist>;
+  // specialist = Observable<MySpecialist>;
 
   constructor( private auth: AuthService,
                private afs: AngularFirestore,
@@ -44,7 +45,6 @@ export class SpecialistDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
-    this.getSpecialist();
   }
 
   // Getters
@@ -52,13 +52,15 @@ export class SpecialistDetailComponent implements OnInit {
     const id = this.auth.currentUserId;
     this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
+      this.getMySpecialist(user);
     });
   }
 
-  getSpecialist() {
-    const id = this.route.snapshot.paramMap.get('id');
+  getMySpecialist(user) {
+    const id = this.route.snapshot.paramMap.get('id') || user.specialist;
     this.specialistService.getSpecialistData(id).subscribe(specialist => {
       this.specialist = specialist;
+      console.log(specialist);
       this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${specialist.uid}`));
       this.reviews = this.reviewsCol.valueChanges();
       });

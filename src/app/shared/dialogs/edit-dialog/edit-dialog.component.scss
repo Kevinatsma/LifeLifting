@@ -1,0 +1,67 @@
+@import './../../../../assets/scss/_master.scss';
+@import './../../../../assets/scss/_dialogs.scss';
+
+.padding-layer {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 2em;
+    box-sizing: border-box;
+}
+::ng-deep main.confirm-dialog-container {
+    min-width: 35vw;
+    height: auto;
+    box-sizing: border-box;
+}
+
+::ng-deep .mat-dialog-container {
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    &.card-text {
+    margin: 5px 0 20px 0;
+    padding: 0;
+    width: 70%;
+    }
+
+    &.intro {
+        margin-bottom: 6em;
+    }
+}
+
+// Components
+
+app-review-edit {
+    box-sizing: border-box;
+    max-width: 80%;
+    margin: 4em auto;
+}
+
+.dialog-actions {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    width: 100%;
+    button {
+        width: 50px;
+        transition: all 300ms ease-in-out;
+
+        &:nth-child(2) {
+            width: 100px;
+            margin-left: 2.5em;
+
+            &:hover, &:focus {
+                width: 100px;
+            }
+        }
+
+        &:hover, &:focus {
+            width: 50px;
+            font-weight: $semi-bold;
+        }
+    }
+}

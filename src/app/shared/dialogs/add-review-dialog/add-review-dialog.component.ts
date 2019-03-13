@@ -27,6 +27,12 @@ export class AddReviewDialogComponent implements OnInit {
   }
 
   // Getters
+
+  get reviewText() {
+    return this.reviewForm.get('reviewText');
+  }
+
+  // Add Review
   addReview() {
     const reviewID = `${this.data.clientID}_${this.data.specialist.specialistID}`;
     const data = {

@@ -16,6 +16,7 @@ export class EditSpecialistComponent implements OnInit, OnDestroy {
   @Input() specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
+  // editShow = true;
 
   // Form
   editSpecialistForm: FormGroup;
@@ -50,6 +51,7 @@ export class EditSpecialistComponent implements OnInit, OnDestroy {
       languages: this.fb.array([ this.createLanguage() ]) || this.specialist.languages,
     });
     this.url = `specialists`;
+    // this.getEditShow();
   }
 
   // Getters

@@ -22,6 +22,8 @@ import { Food } from './../../../foods/food.model';
 import { DayForm } from './day-form.model';
 import times from './../../data/JSON/times.json';
 import mealTimes from './../../data/JSON/mealTimes.json';
+import { Specialist } from './../../../specialists/specialist.model';
+import { SpecialistService } from './../../../specialists/specialist.service';
 
 @Component({
   selector: 'app-add-meal-dialog',
@@ -32,6 +34,7 @@ export class AddMealDialogComponent implements OnInit {
   // Values for storing data
   user = User;
   specialistID;
+  specialist: Specialist;
 
   // FormGroups
   infoForm: FormGroup;
@@ -70,6 +73,7 @@ export class AddMealDialogComponent implements OnInit {
                private auth: AuthService,
                private userService: UserService,
                private foodService: FoodService,
+               private specialistService: SpecialistService,
                private exerciseService: ExerciseService,
                private mealplanService: MealplanService,
                public guidelineService: GuidelineService,
@@ -111,6 +115,8 @@ export class AddMealDialogComponent implements OnInit {
 
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
+      const sID =  user.specialist;
+      this.getSpecialist(sID);
     });
     // this.userService.getUserDataByID(this.mealplan.clientID).subscribe(user => this.client = user);
 
@@ -166,9 +172,6 @@ export class AddMealDialogComponent implements OnInit {
       });
   }
 
-  // Supp form
-
-
   // Getters
   getExercises(guideline) {
     this.exerciseService.getMultipleExercises(guideline);
@@ -187,6 +190,10 @@ export class AddMealDialogComponent implements OnInit {
       this.exerciseTwo,
       this.exerciseThree
     ];
+  }
+
+  getSpecialist(sID: string) {
+    this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
   }
 
   get beforeOneForms() {
@@ -331,6 +338,7 @@ export class AddMealDialogComponent implements OnInit {
     const data = {
       clientID: this.userData.uid,
       specialistID: this.specialistID,
+      specialistName: this.specialist.firstName + ' ' + this.specialist.lastName,
       creationDate: new Date(),
       mealplanID: this.userData.uid + '_' + mID,
       mealplanNR: mID,

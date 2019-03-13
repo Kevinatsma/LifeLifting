@@ -1,4 +1,4 @@
-<ng-container *ngIf="specialist">
+<!-- <ng-container *ngIf="specialist"> -->
   <main class="specialist-wrapper">
       
     <section class="action-toolbar-top" *ngIf="editShow">
@@ -114,34 +114,7 @@
       </main>
   
   
-    <ng-container *ngIf="arraysEnabled">
-      <section class="reviews-opened">
-          <h5 class="purple">Reviews</h5>
-          <div class="review-container" *ngIf="reviewsVisible">
-            <mat-card class="review-item" *ngFor="let review of specialist.reviews">
-              <p>{{review.reviewText}}</p>
-              <p><strong>- {{review.reviewerName}}</strong></p>
-            </mat-card>
-            <div class="placeholder">
-              Oh hello there.
-            </div>
-          </div>
-        </section>
-  
-        <section class="btn-area">
-          <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
-            Show reviews
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <button class="text-link" *ngIf="reviewsVisible" (click)="closeReviews()">
-            Hide reviews
-            <i class="fas fa-chevron-up"></i>
-          </button>
-        </section>
-  
-      </ng-container>
-  
-  </ng-container>
+  <!-- </ng-container> -->
     
   <ng-container *ngIf="!specialist">
     Hello I exist
