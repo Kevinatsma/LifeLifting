@@ -18,6 +18,7 @@ import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/co
 export class ReviewListItemComponent implements OnInit {
   @Input() review: Review;
   @Input() specialist: Specialist;
+  @Input() mySpecialistActive;
   textOpened = false;
 
   constructor( private cdr: ChangeDetectorRef,

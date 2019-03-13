@@ -23,6 +23,7 @@ import { Review } from '../../../reviews/review.model';
 export class MySpecialistComponent implements OnInit {
   user: User;
   specialist: Specialist;
+  mySpecialistActive = true;
   aboutExtended = false;
   reviewsVisible = true;
   reviews: Observable<Review[]>;
