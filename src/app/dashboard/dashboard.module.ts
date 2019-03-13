@@ -31,6 +31,7 @@ import { AuthGuard } from '../core/auth/guards/auth.guard';
 import { ExercisesComponent } from '../exercises/exercises.component';
 import { ExerciseDetailComponent } from '../exercises/exercise-detail/exercise-detail.component';
 import { ExercisesModule } from '../exercises/exercises.module';
+import { MySpecialistComponent } from './client-dashboard/my-specialist/my-specialist.component';
 import { MyClientsComponent } from './specialist-dashboard/my-clients/my-clients.component';
 import { MyClientDetailComponent } from './specialist-dashboard/my-clients/my-client-detail/my-client-detail.component';
 import { MyClientListComponent } from './specialist-dashboard/my-clients/my-client-list/my-client-list.component';
@@ -60,6 +61,7 @@ const routes: Routes = [
       {path: 'specialists/:id', component: SpecialistDetailComponent, canActivate: [AuthGuard]},
       {path: 'clients', component: ClientsComponent, data: {state: 'clients'}, canActivate: [AuthGuard]},
       {path: 'clients/:id', component: ClientDetailComponent, canActivate: [AuthGuard]},
+      {path: 'my-specialist', component: MySpecialistComponent, data: {state: 'my-specialist'}, canActivate: [AuthGuard]},
       {path: 'my-clients', component: MyClientsComponent, data: {state: 'my-clients'}, canActivate: [AuthGuard]},
       {path: 'my-clients/:id', component: MyClientDetailComponent, canActivate: [AuthGuard]},
       {path: 'my-reviews', component: MyReviewsComponent, data: {state: 'reviews'}, canActivate: [AuthGuard]},
@@ -88,6 +90,7 @@ const routes: Routes = [
     SpecialistMenuComponent,
     MyReviewsComponent,
     MyReviewListComponent,
+    MySpecialistComponent,
     MyClientsComponent,
     MyClientListComponent,
     MyClientListItemComponent,

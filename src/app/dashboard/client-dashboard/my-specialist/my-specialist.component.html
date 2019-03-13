@@ -1,0 +1,122 @@
+<ng-container *ngIf="specialist">
+  <main class="specialist-wrapper">
+    <section class="action-toolbar-top">
+      <div class="left">
+        <button class="icon-button" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
+      <div class="right">
+        <button class="icon-button" href="#" (click)="chat()">
+          <i class="fas fa-comment-alt"></i>
+        </button>
+
+        <button class="icon-button edit-button" (click)="openReviewDialog(specialist)">
+          <i class="fas fa-star"></i>
+        </button>
+      </div>
+    </section>
+
+    <section class="specialist-header">
+      <div class="profile-picture" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
+
+      </div>
+      <div class="quick-info">
+        <p class="timezone">Timezone: {{specialist.timeZone}}</p>
+        <div class="top">
+        <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
+        <h5>{{specialist.position}}</h5>
+        <p>Speciality: {{specialist.speciality}}</p>
+        <div class="icon-fact-container">
+          <div class="fact">
+            <i class="fas fa-globe-americas"></i> 
+            <span>{{specialist.country}}</span>
+          </div>
+          <div class="fact">
+            <i class="fas fa-city"></i>
+            <span>{{specialist.city}} </span>
+          </div>
+        </div>
+        </div>
+        <div class="bottom">
+          <p class="tab">
+            <span>{{specialist.patientsTotal}}</span>Clients or Patients
+          </p>
+          <p class="tab">
+            <span>{{specialist.yearsOfExperience}}</span>Years of experience
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">  
+      <h5>About {{specialist.firstName}}</h5>
+      <p [class.read-more]="aboutExtended">{{specialist.description}}</p>
+      <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
+        <i class="fas fa-plus"></i>
+        Read More
+      </button>
+      <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
+        <i class="fas fa-minus"></i>
+        Read Less
+      </button>
+    </section>
+
+    <section class="middle">
+      <div class="contact-info">
+        <h5 class="purple">Contact Info</h5>
+        <ul class="contact-menu">
+          <li>
+            <i class="far fa-envelope"></i>
+            <a class="text-link" href="mailto:{{specialist.email}}">
+              {{specialist.email}}
+            </a>
+          </li>
+          <li>
+            <i class="fas fa-mobile-alt"></i>
+            <a class="text-link" href="tel:{{specialist.phoneNumber}}">
+              {{specialist.phoneNumber}}
+            </a>
+          </li>
+          <li>
+            <i class="far fa-comment-alt"></i>
+            <a class="text-link" (click)="chat()">
+              Chat
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="languages">
+        <h5 class="purple">Languages</h5>
+        <ul>
+          <li *ngFor="let language of specialist.languages"><strong>{{language.languageValue}}</strong> - {{language.languageLevel}}</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="reviews-opened">
+      <h5 class="purple">Reviews</h5>
+      <div class="review-container" *ngIf="reviewsVisible">
+        <app-review-list-item *ngFor="let review of reviews |  async" [review]="review" [specialist]="specialist"></app-review-list-item>
+        <div class="placeholder">
+          Oh hello there.
+        </div>
+      </div>
+    </section>
+
+    <section class="btn-area">
+      <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
+        Show reviews
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <button class="text-link" *ngIf="reviewsVisible" (click)="closeReviews()">
+        Hide reviews
+        <i class="fas fa-chevron-up"></i>
+      </button>
+    </section>
+  </main>
+</ng-container>
+    
+<ng-container *ngIf="!specialist">
+  Woops something went wrong... Please go back.
+</ng-container>
