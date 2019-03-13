@@ -18,6 +18,7 @@ import { DialogModule } from './add-meal-dialog/dialog.module';
 import { AddReviewDialogComponent } from './add-review-dialog/add-review-dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { EditDialogModule } from './edit-dialog/edit-dialog.module';
+import { ChooseMealplanDialogComponent } from './choose-mealplan-dialog/choose-mealplan-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EditDialogModule } from './edit-dialog/edit-dialog.module';
     AddReviewDialogComponent,
     AddExerciseDialogComponent,
     AddMealDialogComponent,
-    AddGuideDialogComponent
+    AddGuideDialogComponent,
+    ChooseMealplanDialogComponent
   ],
   imports: [
     FormsModule,
@@ -52,7 +54,8 @@ import { EditDialogModule } from './edit-dialog/edit-dialog.module';
     AddReviewDialogComponent,
     AddExerciseDialogComponent,
     AddMealDialogComponent,
-    AddGuideDialogComponent
+    AddGuideDialogComponent,
+    ChooseMealplanDialogComponent
   ],
   entryComponents: [
     ConfirmDialogComponent,
@@ -66,6 +69,7 @@ import { EditDialogModule } from './edit-dialog/edit-dialog.module';
     AddExerciseDialogComponent,
     AddMealDialogComponent,
     AddGuideDialogComponent,
+    ChooseMealplanDialogComponent
   ],
   providers: [
     DataService

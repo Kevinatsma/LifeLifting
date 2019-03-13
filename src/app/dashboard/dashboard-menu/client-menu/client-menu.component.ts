@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { openClose } from './../../../core/animations/open-close.animation';
+import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { ChooseMealplanDialogComponent } from '../../../shared/dialogs/choose-mealplan-dialog/choose-mealplan-dialog.component';
 
 @Component({
   selector: 'app-client-menu',
@@ -12,13 +15,35 @@ import { openClose } from './../../../core/animations/open-close.animation';
 export class ClientMenuComponent implements OnInit {
   linksOpened = true;
 
-  constructor() { }
+  constructor( private dialog: MatDialog,
+               private router: Router) { }
 
   ngOnInit() {
   }
 
   toggle() {
     this.linksOpened = !this.linksOpened;
+  }
+
+
+  openMealChooseDialog() {
+    this.dialog.open(ChooseMealplanDialogComponent, {
+      data: {
+        // clientID: client.uid,
+        // clientName: client.displayName
+      },
+      panelClass: 'mealplan-choose'
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result === true) {
+    //     console.log('')
+    //     this.router.navigate(['guidelines']);
+    //   } else if (result === false) {
+    //     console.log('')
+    //     this.router.navigate(['users']);
+    //   }
+    // });
   }
 
 }
