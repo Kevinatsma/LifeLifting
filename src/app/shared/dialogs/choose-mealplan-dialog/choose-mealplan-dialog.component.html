@@ -1,21 +1,24 @@
 <div class="padding-layer">
   <main class="confirm-dialog-container">
-      <form [formGroup]="chooseMealplanForm" class="auth-form">
         <div class="animated-container">
           <h1>Choose a mealplan</h1>
           <!-- Call method -->
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Choose a mealplan to get your shopping list</mat-label>
-            <mat-select matInput placeholder="Pick one from the list" [(value)]="selectedMealplan" formControlName="mealplan" autocomplete="off" 
-            panelClass="dropdown-regular" required>
-              <mat-option>Hi</mat-option>
-              <!-- <mat-option *ngFor="let method of callMethods" [value]="method.value">{{method.viewValue}}</mat-option> -->
-            </mat-select>
-            <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
-          </mat-form-field>
+          <form [formGroup]="chooseMealplanForm" class="auth-form"  *ngIf="mealplans._isScalar">
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Choose a mealplan to get your shopping list</mat-label>
+              <mat-select matInput placeholder="Pick one from the list" [(value)]="selectedMealplan" formControlName="mealplan" autocomplete="off" 
+              panelClass="dropdown-regular" required>
+                <mat-option *ngFor="let mealplan of mealplans |  async" [value]="mealplan.mealplanID">
+                  {{mealplan.mealplanName}}
+                </mat-option>
+              </mat-select>
+              <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+            </mat-form-field>
+          </form>
         </div>
-      </form>
-
+      <p class="" *ngIf="!mealplans._isScalar">
+        This user doesn't have any guidelines yet
+      </p>
 
     <section class="dialog-actions">
       <button type="button" class="text-link" [mat-dialog-close]="false">Back</button>
