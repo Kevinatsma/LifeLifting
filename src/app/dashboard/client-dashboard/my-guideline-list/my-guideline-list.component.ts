@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MealplanService } from './../../../mealplans/mealplan.service';
-import { Mealplan } from './../../../mealplans/mealplan.model';
+import { GuidelineService } from './../../../guidelines/guideline.service';
+import { Guideline } from './../../../guidelines/guideline.model';
 import { UserService } from './../../../user/user.service';
 import { AuthService } from './../../../core/auth/auth.service';
 import { User } from './../../../user/user.model';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
-  selector: 'app-my-mealplan-list',
-  templateUrl: './my-mealplan-list.component.html',
-  styleUrls: ['./my-mealplan-list.component.scss']
+  selector: 'app-my-guideline-list',
+  templateUrl: './my-guideline-list.component.html',
+  styleUrls: ['./my-guideline-list.component.scss']
 })
-export class MyMealplanListComponent implements OnInit {
-  mealplanCol: AngularFirestoreCollection<Mealplan[]>;
-  mealplans: Observable<Mealplan[][]>;
+export class MyGuidelineListComponent implements OnInit {
+  guidelineCol: AngularFirestoreCollection<Guideline[]>;
+  guidelines: Observable<Guideline[][]>;
   specialist: User;
 
-  constructor( private mealplanService: MealplanService,
+  constructor( private guidelineService: GuidelineService,
                private userService: UserService,
                private afs: AngularFirestore,
                private auth: AuthService) { }
@@ -25,8 +25,8 @@ export class MyMealplanListComponent implements OnInit {
   ngOnInit() {
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
       const clientID = user.uid;
-      this.mealplanCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${clientID}`));
-      this.mealplans = this.mealplanCol.valueChanges();
+      this.guidelineCol = this.afs.collection('guidelines', ref => ref.where('clientID', '==', `${clientID}`));
+      this.guidelines = this.guidelineCol.valueChanges();
     });
   }
 

@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Mealplan } from './../../../mealplans/mealplan.model';
 import { MealplanService } from './../../../mealplans/mealplan.service';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AuthService } from './../../../core/auth/auth.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -32,7 +32,6 @@ export class ChooseMealplanDialogComponent implements OnInit {
     const uid =  this.auth.currentUserId;
     this.mealplansCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${uid}`));
     this.mealplans = this.mealplansCol.valueChanges();
-    console.log(this.mealplans);
   }
 
 

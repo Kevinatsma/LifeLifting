@@ -182,7 +182,6 @@ export class AddMealDialogComponent implements OnInit {
       this.exerciseTwo = exercise;
     });
     this.exerciseService.guideExercises.eThree.subscribe(exercise => {
-      console.log(this.exerciseService.guideExercises.eThree);
       this.exerciseThree = exercise;
     });
     this.exercises = [

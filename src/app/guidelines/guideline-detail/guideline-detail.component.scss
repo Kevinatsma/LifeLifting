@@ -26,6 +26,14 @@ main.specialist-wrapper {
         button.icon-button {
             position: inherit;
         }
+
+        .right {
+            .icon-btn {
+                &.print {
+                    margin-left: 0;
+                }
+            }
+        }
     
     }
 

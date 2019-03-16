@@ -59,7 +59,7 @@
               </div>
               <div class="fact" *ngIf="specialists">
                 <i class="fas fa-user-ninja"></i>
-                <mat-select matInput placeholder="{{specialist.firstName || null }}" [(value)]="selectedSpecialist" 
+                <mat-select matInput placeholder="{{specialist.firstName}}" [(value)]="selectedSpecialist" 
                 formControlName="specialist" autocomplete="off" required name="specialist"
                 panelClass="dropdown-regular"
                 >

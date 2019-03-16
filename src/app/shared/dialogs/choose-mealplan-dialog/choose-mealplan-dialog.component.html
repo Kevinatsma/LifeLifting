@@ -17,12 +17,12 @@
           </form>
         </div>
       <p class="" *ngIf="!mealplans._isScalar">
-        This user doesn't have any guidelines yet
+        Woops! You don't have any meal plans yet <span class="emoji">😔</span>
       </p>
 
     <section class="dialog-actions">
       <button type="button" class="text-link" [mat-dialog-close]="false">Back</button>
-      <button class="text-link" [mat-dialog-close]="true">Continue</button>
+      <button class="text-link" [mat-dialog-close]="true" *ngIf="mealplans._isScalar">Continue</button>
     </section>
   </main>
 </div>

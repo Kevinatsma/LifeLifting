@@ -29,21 +29,9 @@ export class ClientMenuComponent implements OnInit {
   openMealChooseDialog() {
     this.dialog.open(ChooseMealplanDialogComponent, {
       data: {
-        // clientID: client.uid,
-        // clientName: client.displayName
       },
       panelClass: 'mealplan-choose'
     });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result === true) {
-    //     console.log('')
-    //     this.router.navigate(['guidelines']);
-    //   } else if (result === false) {
-    //     console.log('')
-    //     this.router.navigate(['users']);
-    //   }
-    // });
   }
 
 }

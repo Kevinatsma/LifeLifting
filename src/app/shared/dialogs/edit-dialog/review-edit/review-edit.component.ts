@@ -37,7 +37,6 @@ export class ReviewEditComponent implements OnInit {
       reviewText: this.editReviewForm.get('reviewText').value || review.reviewText
     };
     const id = review.reviewID;
-    console.log(id);
     this.reviewService.updateReview(id, data);
   }
 

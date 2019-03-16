@@ -66,7 +66,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   getSpecialist(user) {
-    console.log(user.specialist);
     this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => {
       this.specialist = specialist;
     });

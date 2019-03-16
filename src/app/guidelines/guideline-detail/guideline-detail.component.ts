@@ -13,6 +13,7 @@ import { Exercise } from './../../exercises/exercise.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 
 @Component({
@@ -36,7 +37,8 @@ export class GuidelineDetailComponent implements OnInit {
 
   // specialist = Observable<Specialist>;
 
-  constructor( private cdr: ChangeDetectorRef,
+  constructor( public auth: AuthService,
+               private cdr: ChangeDetectorRef,
                public dialog: MatDialog,
                public router: Router,
                public route: ActivatedRoute,
@@ -100,13 +102,16 @@ export class GuidelineDetailComponent implements OnInit {
     this.exerciseService.guideExercises.eOne.subscribe(exercise => {
       this.exerciseOne = exercise;
     });
-    this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
-      this.exerciseTwo = exercise;
-    });
-    this.exerciseService.guideExercises.eThree.subscribe(exercise => {
-      console.log(exercise);
+    if (this.exerciseService.guideExercises.eTwo) {
+      this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
+        this.exerciseTwo = exercise;
+      });
+    }
+    if (this.exerciseService.guideExercises.eThree) {
+      this.exerciseService.guideExercises.eThree.subscribe(exercise => {
       this.exerciseThree = exercise;
-    });
+      });
+    }
 
     this.exercises = [
       this.exerciseOne,
@@ -124,6 +129,10 @@ export class GuidelineDetailComponent implements OnInit {
 
   toggleEdit() {
     this.guidelineService.toggleEdit();
+  }
+
+  printGuideline() {
+    alert('TODO: Print Service, Print Templates, Etc.');
   }
 
   // Delete guideline

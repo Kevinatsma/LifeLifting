@@ -120,7 +120,6 @@ export class MealplanDetailComponent implements OnInit {
       eTwo: this.exerciseTwo,
       eThree: this.exerciseThree
     };
-    console.log(this.exercises);
 
   }
 

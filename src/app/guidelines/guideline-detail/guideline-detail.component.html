@@ -16,11 +16,15 @@
         </ng-template>
       </div>
       <div class="right">
-        <button type="button" class="icon-button edit-button" (click)="deleteGuidelineDialog(guideline)" *ngIf="!editShow">
+        <button type="button" class="icon-button edit-button" (click)="deleteGuidelineDialog(guideline)" 
+        *ngIf="!editShow && auth.adminRoles(user)">
           <i class="fas fa-trash"></i>
         </button>
-        <button type="button" class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+        <button type="button" class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && auth.adminRoles(user)">
           <i class="fas fa-edit"></i>
+        </button>
+        <button type="button" class="icon-button edit-button print" (click)="printGuideline()">
+          <i class="fas fa-print"></i>
         </button>
       </div>
     </section>

@@ -55,7 +55,6 @@ export class ReviewsService {
       const message = `The review was added succesfully`;
       const action = 'Close';
 
-      console.log(obj.id);
       const updateData = {
         reviewID: obj.id
       };
@@ -70,7 +69,6 @@ export class ReviewsService {
     })
     .then((docRef) => {
       const id = docRef;
-      console.log(id);
 
     })
     .catch(error => {
