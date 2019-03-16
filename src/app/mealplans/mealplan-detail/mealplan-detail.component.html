@@ -14,11 +14,16 @@
       </ng-template>
     </div>
     <div class="right">
-      <button type="button" class="icon-button edit-button" (click)="deleteMealplanDialog(mealplan)" *ngIf="!editShow">
+      <button type="button" class="icon-button edit-button" (click)="deleteMealplanDialog(mealplan)" 
+      *ngIf="!editShow && user.roles.specialist || user.roles.admin">
         <i class="fas fa-trash"></i>
       </button>
-      <button type="button" class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+      <button type="button" class="icon-button edit-button" (click)="toggleEdit()"
+      *ngIf="!editShow && user.roles.specialist || user.roles.admin">
         <i class="fas fa-edit"></i>
+      </button>
+      <button type="button" class="icon-button edit-button" (click)="printMealplan(mealplan)">
+        <i class="fas fa-print"></i>
       </button>
     </div>
   </section>

@@ -14,6 +14,7 @@ import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/co
 import { MatDialog } from '@angular/material';
 import { GuidelineService } from './../../guidelines/guideline.service';
 import { Guideline } from './../../guidelines/guideline.model';
+import { AuthService } from './../../core/auth/auth.service';
 
 
 @Component({
@@ -53,11 +54,13 @@ export class MealplanDetailComponent implements OnInit {
   specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
+  user: User;
   client: User;
   gainWeight: boolean;
   increaseCals: boolean;
 
-  constructor( private cdr: ChangeDetectorRef,
+  constructor( public auth: AuthService,
+               private cdr: ChangeDetectorRef,
                public dialog: MatDialog,
                public router: Router,
                public route: ActivatedRoute,
@@ -75,6 +78,9 @@ export class MealplanDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getMealplan();
+    this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
+      this.user = user;
+    });
   }
 
   // Getters
@@ -231,6 +237,11 @@ export class MealplanDetailComponent implements OnInit {
     highlighter.style.width = `${coords.width}px`;
     highlighter.style.height = `${coords.height}px`;
     highlighter.style.transform = `translateX(${coords.left}px)`;
+  }
+
+  // Print mealplan
+  printMealplan(mealplan: Mealplan) {
+    alert(`${mealplan}`);
   }
 
   // Delete mealplan
