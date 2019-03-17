@@ -12,11 +12,13 @@ import { FileUploadExerciseComponent } from './file-upload/file-upload-exercise/
 import { FileUploadProductComponent } from './file-upload/file-upload-product/file-upload-product.component';
 import { ReviewsModule } from '../reviews/reviews.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BookingModule } from './../booking/booking.module';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
+    BookingModule,
     DataModule,
     ReviewsModule,
     FormsModule,
@@ -36,6 +38,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     DataModule,
+    BookingModule,
     ReviewsModule,
     FileUploadComponent,
     FileUploadExerciseComponent,

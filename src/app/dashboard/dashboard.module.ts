@@ -47,6 +47,7 @@ import { MealplansModule } from '../mealplans/mealplans.module';
 import { SharedModule } from '../shared/shared.module';
 import { MyMealplanListComponent } from './client-dashboard/my-mealplan-list/my-mealplan-list.component';
 import { MyGuidelineListComponent } from './client-dashboard/my-guideline-list/my-guideline-list.component';
+import { BookingComponent } from './../booking/booking/booking.component';
 
 
 const routes: Routes = [
@@ -63,6 +64,7 @@ const routes: Routes = [
       {path: 'specialists/:id', component: SpecialistDetailComponent, canActivate: [AuthGuard]},
       {path: 'clients', component: ClientsComponent, data: {state: 'clients'}, canActivate: [AuthGuard]},
       {path: 'clients/:id', component: ClientDetailComponent, canActivate: [AuthGuard]},
+      {path: 'booking', component: BookingComponent, data: {state: 'booking'}, canActivate: [AuthGuard]},
       {path: 'my-specialist', component: MySpecialistComponent, data: {state: 'my-specialist'}, canActivate: [AuthGuard]},
       {path: 'my-clients', component: MyClientsComponent, data: {state: 'my-clients'}, canActivate: [AuthGuard]},
       {path: 'my-clients/:id', component: MyClientDetailComponent, canActivate: [AuthGuard]},
