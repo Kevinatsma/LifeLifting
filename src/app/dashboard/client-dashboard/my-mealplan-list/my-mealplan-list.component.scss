@@ -1,12 +1,11 @@
 @import './../../../../assets/scss/_master.scss';
 
-main.specialist-list-wrapper {
+main.mealplan-list-wrapper {
     margin: 0;
-    padding: 0;
-
-    // section.specialist-filters {
-
-    // }
+    width: 100%;
+    height: 100%;
+    padding: 3em;
+    box-sizing: border-box;
 
     section.card-list {
         display: flex;
@@ -19,5 +18,4 @@ main.specialist-list-wrapper {
         }
 
     }
-
 }

@@ -15,11 +15,11 @@
     </div>
     <div class="right">
       <button type="button" class="icon-button edit-button" (click)="deleteMealplanDialog(mealplan)" 
-      *ngIf="!editShow && user.roles.specialist || user.roles.admin">
+      *ngIf="!editShow && user.roles.admin || user.roles.specialist">
         <i class="fas fa-trash"></i>
       </button>
       <button type="button" class="icon-button edit-button" (click)="toggleEdit()"
-      *ngIf="!editShow && user.roles.specialist || user.roles.admin">
+      *ngIf="!editShow && user.roles.admin || user.roles.specialist">
         <i class="fas fa-edit"></i>
       </button>
       <button type="button" class="icon-button edit-button" (click)="printMealplan(mealplan)">

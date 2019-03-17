@@ -3,12 +3,14 @@
         <div class="animated-container">
           <h1>Choose a mealplan</h1>
           <!-- Call method -->
-          <form [formGroup]="chooseMealplanForm" class="auth-form"  *ngIf="mealplans._isScalar">
+          <form [formGroup]="chooseMealplanForm" class="auth-form"  *ngIf="mealplans">
+
+            {{mealplans | json}}
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Choose a mealplan to get your shopping list</mat-label>
               <mat-select matInput placeholder="Pick one from the list" [(value)]="selectedMealplan" formControlName="mealplan" autocomplete="off" 
               panelClass="dropdown-regular" required>
-                <mat-option *ngFor="let mealplan of mealplans |  async" [value]="mealplan.mealplanID">
+                <mat-option *ngFor="let mealplan of mealplans | async; let i=index" [value]="mealplan.mealplanID">
                   {{mealplan.mealplanName}}
                 </mat-option>
               </mat-select>
@@ -16,13 +18,13 @@
             </mat-form-field>
           </form>
         </div>
-      <p class="" *ngIf="!mealplans._isScalar">
+      <p class="" *ngIf="!mealplans">
         Woops! You don't have any meal plans yet <span class="emoji">😔</span>
       </p>
 
     <section class="dialog-actions">
       <button type="button" class="text-link" [mat-dialog-close]="false">Back</button>
-      <button class="text-link" [mat-dialog-close]="true" *ngIf="mealplans._isScalar">Continue</button>
+      <button class="text-link" [mat-dialog-close]="true" *ngIf="mealplans">Continue</button>
     </section>
   </main>
 </div>
