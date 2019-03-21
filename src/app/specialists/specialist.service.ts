@@ -78,7 +78,7 @@ export class SpecialistService {
       displayName: formData.firstName + ' ' + formData.lastName,
       photoURL: user.photoURL || formData.photoURL,
       roles: {
-        member: true,
+        client: true,
         specialist: true,
         admin: false
       },

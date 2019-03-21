@@ -1,5 +1,5 @@
 export interface Roles {
-    member?: boolean;
+    client?: boolean;
     specialist?: boolean;
     admin?: boolean;
  }

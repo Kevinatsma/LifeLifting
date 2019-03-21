@@ -58,25 +58,11 @@ export class UserService {
 
   }
 
-  // getUserData(id) {
-  //   this.userDoc = this.afs.doc(`users/${id}`);
-  //   return this.userDoc.valueChanges();
-  // }
-
   getUserDataByID(uid) {
     this.userDoc = this.afs.doc<User>(`users/${uid}`);
     this.user = this.userDoc.valueChanges();
     return this.user;
   }
-
-  // getSID() {
-  //   const uid = this.auth.currentUserId;
-  //   this.getUserDataByID(uid);
-  //   this.user.subscribe(user => {
-  //     this.specialistID = user.sID;
-  //     return this.specialistID;
-  //   });
-  // }
 
   updateUser(uid, data) {
     this.userDoc = this.afs.doc<User>(`users/${uid}`);

@@ -35,7 +35,7 @@ export class SignupStepFourComponent implements OnInit {
       specialist: this.chosenSpecialist,
       signupCompleted: true,
       isClient: true,
-      isSpecialist: false
+      isSpecialist: false,
     };
     this.auth.setUserData(data, user)
     .then(() => {

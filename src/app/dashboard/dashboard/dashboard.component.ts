@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { AuthService } from './../../core/auth/auth.service';
 import { User } from './../../user/user.model';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -16,7 +17,8 @@ export class DashboardComponent implements OnInit {
 
   constructor( public auth: AuthService,
                public afs: AngularFirestore,
-               public router: Router) { }
+               public router: Router,
+               public location: Location) { }
 
   ngOnInit() {
 
@@ -58,5 +60,9 @@ export class DashboardComponent implements OnInit {
 
   getState(outlet) {
     return outlet.activatedRouteData.state;
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

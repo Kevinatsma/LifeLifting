@@ -1,12 +1,4 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
-  <!-- <section class="slider-nav-container">
-      <button mat-icon-button class="prev-btn control-btn" (click)="prevSpecialist()" [disabled]="!backButton">
-        <i class="fas fa-chevron-left" *ngIf="backButton"></i>
-      </button>
-      <button mat-icon-button class="next-btn control-btn" (click)="nextSpecialist()">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-  </section> -->
   <section class="step-wrapper" *ngIf="!user.specialist">
     <h5>Pick wisely, {{user.displayName || user.email}}</h5>
     <h1>Step 4: Choose a Specialist</h1>
@@ -20,7 +12,7 @@
             <app-specialist-item [specialist]="specialist"></app-specialist-item>
           </mat-radio-button>
         <div class="right-scroll-margin">
-          <p class="hide">HI</p>
+          <p class="hide"></p>
         </div>
       </mat-radio-group>
     </section>

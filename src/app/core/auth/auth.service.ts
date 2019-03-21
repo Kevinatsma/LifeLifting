@@ -83,7 +83,7 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       roles: {
-        member: true,
+        client: true,
         specialist: false,
         admin: false
       },
@@ -101,7 +101,7 @@ export class AuthService {
 
   setUserData(data, user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    return userRef.set(data, {merge: true})
+    return userRef.update(data)
     .then(() => {
       console.log('data updated');
     })
@@ -131,7 +131,7 @@ export class AuthService {
         displayName: formData.displayName,
         photoURL: formData.photoURL,
         roles: {
-          member: true,
+          client: true,
           specialist: false,
           admin: false
         },
@@ -190,7 +190,7 @@ export class AuthService {
   ///// Role-based Authorization //////
 
   clientRoles(user: User): boolean {
-    const allowed = ['admin', 'specialist', 'member'];
+    const allowed = ['admin', 'specialist', 'client'];
     return this.checkAuthorization(user, allowed);
   }
 

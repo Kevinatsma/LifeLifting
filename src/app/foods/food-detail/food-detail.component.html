@@ -55,6 +55,9 @@
                 <h4>Ways of preperation</h4>
                 <ul class="contact-menu">
                   <li *ngFor="let preperation of food.preperations">
+                    <span *ngIf="preperation.prepValue === 'None'" class="emoji">
+                      🙅
+                    </span>
                     <span *ngIf="preperation.prepValue === 'Cooked'" class="emoji">
                       🥘
                     </span>
@@ -81,7 +84,7 @@
                     </span>
                     <span *ngIf="preperation.prepValue === 'Scrambled' || 
                                 preperation.prepValue === 'Omelette' || 
-                                preperation.prepVAlue === 'Hard Boiled'" class="emoji">
+                                preperation.prepValue === 'Hard Boiled'" class="emoji">
                       🍳
                     </span>
                     <span *ngIf="preperation.prepValue === 'Diced' || 
