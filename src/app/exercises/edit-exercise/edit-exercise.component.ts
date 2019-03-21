@@ -24,7 +24,6 @@ export class EditExerciseComponent implements OnInit, OnDestroy {
   downloadURL: string | null;
   url: any;
 
-
   constructor( private fb: FormBuilder,
                private exerciseService: ExerciseService,
                public specialistService: SpecialistService,

@@ -11,7 +11,10 @@
         <h1>Exercise ID: {{exercise.exerciseID}}</h1>
       </div>
       <div class="right">
-        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && auth.adminRoles(user)">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="icon-button edit-button hidden" *ngIf="!editShow && !auth.adminRoles(user)">
           <i class="fas fa-edit"></i>
         </button>
       </div>
