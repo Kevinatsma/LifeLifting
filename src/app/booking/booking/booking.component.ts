@@ -2,7 +2,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  OnInit
 } from '@angular/core';
 import {
   startOfDay,
@@ -14,7 +15,7 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
@@ -22,6 +23,12 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
+import { BookingService } from '../booking.service';
+import { User } from 'src/app/user/user.model';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { UserService } from 'src/app/user/user.service';
+import { Appointment } from '../appointment.model';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 const colors: any = {
   red: {
@@ -44,87 +51,107 @@ const colors: any = {
   styleUrls: ['./booking.component.scss'],
   templateUrl: './booking.component.html'
 })
-export class BookingComponent {
+
+export class BookingComponent implements OnInit {
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
+  user: User;
 
   view: CalendarView = CalendarView.Month;
-
   CalendarView = CalendarView;
-
   viewDate: Date = new Date();
+  appointmentsCol: AngularFirestoreCollection;
+  appointments: Observable<Appointment[]>;
 
   modalData: {
     action: string;
-    event: CalendarEvent;
+    event: Appointment;
   };
 
   actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      }
-    },
-    {
-      label: '<i class="fa fa-fw fa-times"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      }
-    }
+    // {
+    //   label: '<i class="fa fa-fw fa-pencil"></i>',
+    //   onClick: ({ event }: { event: CalendarEvent }): void => {
+    //     this.handleEvent('Edited', event);
+    //   }
+    // },
+    // {
+    //   label: '<i class="fa fa-fw fa-times"></i>',
+    //   onClick: ({ event }: { event: CalendarEvent }): void => {
+    //     this.events = this.events.filter(iEvent => iEvent !== event);
+    //     this.handleEvent('Deleted', event);
+    //   }
+    // }
   ];
 
   refresh: Subject<any> = new Subject();
-
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-  ];
+  // events: CalendarEvent[] = [
+  //   {
+  //     start: subDays(startOfDay(new Date()), 1),
+  //     end: addDays(new Date(), 1),
+  //     title: 'A 3 day event',
+  //     color: colors.red,
+  //     actions: this.actions,
+  //     allDay: true,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true
+  //     },
+  //     draggable: true
+  //   },
+  //   {
+  //     start: startOfDay(new Date()),
+  //     title: 'An event with no end date',
+  //     color: colors.yellow,
+  //     actions: this.actions
+  //   },
+  //   {
+  //     start: subDays(endOfMonth(new Date()), 3),
+  //     end: addDays(endOfMonth(new Date()), 3),
+  //     title: 'A long event that spans 2 months',
+  //     color: colors.blue,
+  //     allDay: true
+  //   },
+  //   {
+  //     start: addHours(startOfDay(new Date()), 2),
+  //     end: new Date(),
+  //     title: 'A draggable and resizable event',
+  //     color: colors.yellow,
+  //     actions: this.actions,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true
+  //     },
+  //     draggable: true
+  //   }
+  // ];
 
   activeDayIsOpen = true;
 
   // TODO: HOOKUP MAT DIALOG INSTEAD OF BOOTSTRAP MODAL
-  constructor(private modal: NgbModal) {}
+  constructor( private userService: UserService,
+               private auth: AuthService,
+               private modal: NgbModal,
+               private bookingService: BookingService,
+               private afs: AngularFirestore) {}
 
+
+
+  ngOnInit() {
+    this.getUser();
+    this.appointments = this.bookingService.getAppointments();
+    // this.appointmentsCol = this.afs.collection('appointments');
+    // this.appointments =  this.appointmentsCol.valueChanges();
+  }
+
+  getUser() {
+    const id = this.auth.currentUserId;
+    this.userService.getUserDataByID(id).subscribe(user => {
+      this.user = user;
+    });
+  }
 
   // Show Events for that day
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  dayClicked({ date, events }: { date: Date; events: Appointment[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       this.viewDate = date;
       if (
@@ -139,26 +166,45 @@ export class BookingComponent {
   }
 
   // REFRESH CALENDAR FUNCTION
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd
-  }: CalendarEventTimesChangedEvent): void {
-    event.start = newStart;
-    event.end = newEnd;
-    this.handleEvent('Dropped or resized', event);
-    this.refresh.next();
-  }
+  // eventTimesChanged({
+  //   event,
+  //   newStart,
+  //   newEnd
+  // }: CalendarEventTimesChangedEvent): void {
+  //   event.start = newStart;
+  //   event.end = newEnd;
+  //   this.handleEvent('Dropped or resized', event);
+  //   this.refresh.next();
+  // }
+
 
   // TODO: OPEN MAT DIALOG AND SEND EVENT OBJECT TO DISPLAY CORRECTLY
-  handleEvent(action: string, event: CalendarEvent): void {
+  handleEvent(action: string, event: Appointment): void {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
   // TODO: LINK TO  FIREBASE
+  // addEvent(): void {
+  //   this.events.push({
+  //     title: 'New event',
+  //     start: startOfDay(new Date()),
+  //     end: endOfDay(new Date()),
+  //     color: colors.red,
+  //     draggable: true,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true
+  //     }
+  //   });
+  //   this.refresh.next();
+  // }
+
+  ////////////////
+  // For Users
+
   addEvent(): void {
-    this.events.push({
+    const data: Appointment = {
       title: 'New event',
       start: startOfDay(new Date()),
       end: endOfDay(new Date()),
@@ -167,8 +213,10 @@ export class BookingComponent {
       resizable: {
         beforeStart: true,
         afterEnd: true
-      }
-    });
-    this.refresh.next();
+      },
+      specialistID: this.user.specialist,
+      clientID: this.user.uid,
+    };
+    this.bookingService.addEvent(data);
   }
 }

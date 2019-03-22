@@ -38,8 +38,8 @@ const routes: Routes = [
       {path: '', redirectTo: 'signup', pathMatch: 'full'},
       {path: 'step-one', component: SignupStepOneComponent, data: {state:  'step-one'}},
       {path: 'step-two', component: SignupStepTwoComponent, data: {state:  'step-two'}},
-      {path: 'step-three', component: SignupStepThreeComponent, data: {state:  'step-three'}},
-      {path: 'step-four', component: SignupStepFourComponent, data: {state:  'step-four'}},
+      {path: 'step-three', component: SignupStepFourComponent, data: {state:  'step-three'}},
+      {path: 'step-four', component: SignupStepThreeComponent, data: {state:  'step-four'}},
     ]
   },
 ];

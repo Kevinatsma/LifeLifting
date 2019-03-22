@@ -83,10 +83,11 @@
   </div>
   <br />
   <div [ngSwitch]="view">
+    <ng-container *ngIf="appointments | async">
     <mwl-calendar-month-view
       *ngSwitchCase="CalendarView.Month"
       [viewDate]="viewDate"
-      [events]="events"
+      [events]="appointments | async"
       [refresh]="refresh"
       [activeDayIsOpen]="activeDayIsOpen"
       (dayClicked)="dayClicked($event.day)"
@@ -97,7 +98,7 @@
     <mwl-calendar-week-view
       *ngSwitchCase="CalendarView.Week"
       [viewDate]="viewDate"
-      [events]="events"
+      [events]="appointments | async"
       [refresh]="refresh"
       (eventClicked)="handleEvent('Clicked', $event.event)"
       (eventTimesChanged)="eventTimesChanged($event)"
@@ -106,12 +107,13 @@
     <mwl-calendar-day-view
       *ngSwitchCase="CalendarView.Day"
       [viewDate]="viewDate"
-      [events]="events"
+      [events]="appointments | async"
       [refresh]="refresh"
       (eventClicked)="handleEvent('Clicked', $event.event)"
       (eventTimesChanged)="eventTimesChanged($event)"
     >
     </mwl-calendar-day-view>
+    </ng-container>
   </div>
   
   <br /><br /><br />
@@ -137,26 +139,26 @@
     </thead>
   
     <tbody>
-      <tr *ngFor="let event of events; let index = index">
+      <tr *ngFor="let event of appointments |  async;">
         <td>
           <input
             type="text"
             class="form-control"
-            [(ngModel)]="event.title"
+            placeholder="{{event.title}}"
             (keyup)="refresh.next()"
           />
         </td>
         <td>
           <input
             type="color"
-            [(ngModel)]="event.color.primary"
+            [value]="event.color.primary"
             (change)="refresh.next()"
           />
         </td>
         <td>
           <input
             type="color"
-            [(ngModel)]="event.color.secondary"
+            [value]="event.color.secondary"
             (change)="refresh.next()"
           />
         </td>
@@ -165,7 +167,7 @@
             class="form-control"
             type="text"
             mwlFlatpickr
-            [(ngModel)]="event.start"
+            placeholder="{{event.start.toDate()}}"
             (ngModelChange)="refresh.next()"
             [altInput]="true"
             [convertModelValue]="true"
@@ -180,7 +182,7 @@
             class="form-control"
             type="text"
             mwlFlatpickr
-            [(ngModel)]="event.end"
+            placeholder="{{event.end.toDate()}}"
             (ngModelChange)="refresh.next()"
             [altInput]="true"
             [convertModelValue]="true"

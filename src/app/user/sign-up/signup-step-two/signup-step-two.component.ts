@@ -23,7 +23,6 @@ export class SignupStepTwoComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public auth: AuthService,
-    private afs: AngularFirestore,
     public router: Router,
     private route: ActivatedRoute,
     private packageService: PackageService
