@@ -49,6 +49,7 @@ button.icon-button {
         transition: transform 200ms ease-in-out;
         transform: scale(1.1);
     }
+
 }
 
 button.slide-control-btn {
@@ -722,7 +723,15 @@ form {
     }
 }
 
-// Misc
+// MISC
+
+.hidden {
+    position: relative;
+    visibility: hidden;
+    pointer-events: none;
+    height: 0;
+    z-index: -5;
+}
 
 .no-photo {
     @extend %flex-center;

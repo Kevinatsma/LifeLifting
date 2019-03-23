@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Appointment } from './appointment.model';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { MatSnackBar } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class BookingService implements OnInit {
   booked = false;
+  eventDoc: AngularFirestoreDocument;
   appointmentsCol: AngularFirestoreCollection;
   appointments: Observable<Appointment[]>;
 
@@ -32,10 +33,19 @@ export class BookingService implements OnInit {
   }
 
   addEvent(data) {
-    this.afs.collection<Appointment>(`appointments`).add(data)
+    return this.afs.collection('appointments').add(data)
+    .then(docRef => {
+      console.log('Document written with ID: ', docRef.id);
+      const eventData = {
+        eventID: docRef.id
+      };
+      this.updateEvent(docRef.id, eventData);
+      // console.log('You can now also access .this as expected: ', this.foo);
+    })
+    .catch(error => console.error('Error adding document: ', error))
     .then(() => {
       // Show Snackbar
-      const message = `The ${data.appointmentName} was added succesfully`;
+      const message = `${data.title} was added succesfully`;
       const action = 'Close';
 
       this.snackbar.open(message, action, {
@@ -47,6 +57,18 @@ export class BookingService implements OnInit {
       alert(error.message);
       console.error(error.message);
     });
+  }
+
+
+  updateEvent(id, data) {
+    this.eventDoc = this.afs.doc<Appointment>(`appointments/${id}`);
+    this.eventDoc.update(data);
+  }
+
+  deleteEvent(id) {
+    console.log(id);
+    this.eventDoc = this.afs.doc(`appointments/${id}`);
+    this.eventDoc.delete().catch((error) => console.error(error.message));
   }
 
   getAppointments() {

@@ -19,13 +19,13 @@
         <i class="fas fa-check-square" *ngIf="user.packageChoice"></i>
         Step 2: Choose a package
       </li>
-      <li [class.activated]="user.appointment">
-        <i class="fas fa-check-square" *ngIf="user.appointment"></i>
-        Step 3: Make an appointment
-      </li>
       <li [class.activated]="user.specialist">
         <i class="fas fa-check-square" *ngIf="user.specialist"></i>
-        Step 4: Choose a specialist
+        Step 3: Choose a specialist
+      </li>
+      <li [class.activated]="user.appointment">
+        <i class="fas fa-check-square" *ngIf="user.appointment"></i>
+        Step 4: Make an appointment
       </li>
     </ul>
     <div class="btn-area">

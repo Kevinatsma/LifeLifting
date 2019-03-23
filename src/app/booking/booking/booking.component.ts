@@ -15,7 +15,7 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
@@ -24,11 +24,18 @@ import {
   CalendarView
 } from 'angular-calendar';
 import { BookingService } from '../booking.service';
-import { User } from 'src/app/user/user.model';
-import { AuthService } from 'src/app/core/auth/auth.service';
-import { UserService } from 'src/app/user/user.service';
+import { User } from './../../user/user.model';
+import { AuthService } from './../../core/auth/auth.service';
+import { UserService } from './../../user/user.service';
 import { Appointment } from '../appointment.model';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material';
+import { Location } from '@angular/common';
+import { SpecialistService } from './../../specialists/specialist.service';
+import { Specialist } from './../../specialists/specialist.model';
+import { ChatThreadService } from './../../chat/chat-thread.service';
+import { map, switchMap } from 'rxjs/operators';
 
 const colors: any = {
   red: {
@@ -55,7 +62,7 @@ const colors: any = {
 export class BookingComponent implements OnInit {
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
   user: User;
-
+  specialist: Specialist;
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
@@ -84,54 +91,57 @@ export class BookingComponent implements OnInit {
   ];
 
   refresh: Subject<any> = new Subject();
-  // events: CalendarEvent[] = [
-  //   {
-  //     start: subDays(startOfDay(new Date()), 1),
-  //     end: addDays(new Date(), 1),
-  //     title: 'A 3 day event',
-  //     color: colors.red,
-  //     actions: this.actions,
-  //     allDay: true,
-  //     resizable: {
-  //       beforeStart: true,
-  //       afterEnd: true
-  //     },
-  //     draggable: true
-  //   },
-  //   {
-  //     start: startOfDay(new Date()),
-  //     title: 'An event with no end date',
-  //     color: colors.yellow,
-  //     actions: this.actions
-  //   },
-  //   {
-  //     start: subDays(endOfMonth(new Date()), 3),
-  //     end: addDays(endOfMonth(new Date()), 3),
-  //     title: 'A long event that spans 2 months',
-  //     color: colors.blue,
-  //     allDay: true
-  //   },
-  //   {
-  //     start: addHours(startOfDay(new Date()), 2),
-  //     end: new Date(),
-  //     title: 'A draggable and resizable event',
-  //     color: colors.yellow,
-  //     actions: this.actions,
-  //     resizable: {
-  //       beforeStart: true,
-  //       afterEnd: true
-  //     },
-  //     draggable: true
-  //   }
-  // ];
+  events: CalendarEvent[] = [
+    {
+      start: subDays(startOfDay(new Date()), 1),
+      end: addDays(new Date(), 1),
+      title: 'A 3 day event',
+      color: colors.red,
+      actions: this.actions,
+      allDay: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      start: startOfDay(new Date()),
+      title: 'An event with no end date',
+      color: colors.yellow,
+      actions: this.actions
+    },
+    {
+      start: subDays(endOfMonth(new Date()), 3),
+      end: addDays(endOfMonth(new Date()), 3),
+      title: 'A long event that spans 2 months',
+      color: colors.blue,
+      allDay: true
+    },
+    {
+      start: addHours(startOfDay(new Date()), 2),
+      end: new Date(),
+      title: 'A draggable and resizable event',
+      color: colors.yellow,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    }
+  ];
 
   activeDayIsOpen = true;
 
   // TODO: HOOKUP MAT DIALOG INSTEAD OF BOOTSTRAP MODAL
   constructor( private userService: UserService,
                private auth: AuthService,
-               private modal: NgbModal,
+               private dialog: MatDialog,
                private bookingService: BookingService,
+               private specialistService: SpecialistService,
+               private threadService: ChatThreadService,
+               public location: Location,
                private afs: AngularFirestore) {}
 
 
@@ -147,6 +157,8 @@ export class BookingComponent implements OnInit {
     const id = this.auth.currentUserId;
     this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
+      // get Specialist
+      this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
     });
   }
 
@@ -181,7 +193,7 @@ export class BookingComponent implements OnInit {
   // TODO: OPEN MAT DIALOG AND SEND EVENT OBJECT TO DISPLAY CORRECTLY
   handleEvent(action: string, event: Appointment): void {
     this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    this.dialog.open(ConfirmDialogComponent);
   }
 
   // TODO: LINK TO  FIREBASE
@@ -206,7 +218,7 @@ export class BookingComponent implements OnInit {
   addEvent(): void {
     const data: Appointment = {
       title: 'New event',
-      start: startOfDay(new Date()),
+      start: new Date(),
       end: endOfDay(new Date()),
       color: colors.red,
       draggable: true,
@@ -218,5 +230,35 @@ export class BookingComponent implements OnInit {
       clientID: this.user.uid,
     };
     this.bookingService.addEvent(data);
+  }
+
+  deleteEventDialog(event) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        eventID: event.eventID,
+        eventTitle: event.title,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        const id = event.eventID;
+        this.bookingService.deleteEvent(id);
+      } else if (result === false) {
+        return null;
+      }
+    });
+  }
+
+  // Chat
+
+  chat(id) {
+    this.threadService.createThread(id);
+  }
+
+  // Misc
+
+  goBack() {
+    this.location.back();
   }
 }

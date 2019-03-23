@@ -1,7 +1,7 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
     <section class="step-wrapper">
       <h5>Choose a date {{user.displayName || user.email}}</h5>
-      <h1>Step 3: Plan your first appointment</h1>
+      <h1>Step 4: Plan your first appointment</h1>
 
       <div class="choice-wrapper" *ngIf="!choiceMade && !user.appointment">
         <button type="link" class="choice-icon-btn" (click)="onlineAppointmentOption()">
@@ -15,11 +15,17 @@
       </div>
 
       <div class="step-done" *ngIf="user.appointment">
-        <p class="intro-text">You already planned an appointment. Go to the next step by clicking the button below. If you want to change your appointment, you can. Chat with your nutritionist in the dashboard.</p>
+        <p class="intro-text">
+          You already planned an appointment. Go to the next step by clicking the button below. 
+          If you want to change your appointment, you can. Chat with your nutritionist in the dashboard.
+        </p>
         <div class="btn-area">
-          <button class="btn-icon-right" routerLink="../step-four">
-            <span>Continue process</span>
-            <i class="fas fa-chevron-right small"></i>
+          <button class="btn-icon-right"
+            [class.btn-disabled]="!user.appointment"
+            [disabled]="!user.appointment"
+            routerLink="../../dashboard">
+            <span>To the dashboard!</span>
+            <span class="emoji">🚀</span>
           </button>
         </div>
       </div>

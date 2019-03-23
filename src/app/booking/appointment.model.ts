@@ -6,6 +6,7 @@ export class Appointment {
     title: string;
     start: Date;
     end: Date;
+    eventID?: string;
     color: {
         primary: string,
         secondary: string

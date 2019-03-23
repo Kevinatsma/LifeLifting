@@ -1,0 +1,105 @@
+@import './_master.scss';
+
+// Month view
+::ng-deep .cal-month-view {
+    .cal-open-day-events {
+
+    }
+
+    .cal-header {
+        padding: 0.5em 0;
+
+        &:hover {
+            background: none;
+        }
+
+        .cal-cell{
+            font-family: $main-font;
+            font-size: 15px;
+            font-weight: $semi-bold;
+
+            &:hover {
+                background: none;
+            }
+        }
+    }
+
+    .cal-days {
+        >div {
+            position: relative;
+            z-index: 5;
+
+            .cal-open-day-events {
+                background: #fff;
+                box-shadow: $card-shadow;
+                color: $black;
+                font-size: 16px;
+                font-weight: $semi-bold;
+                display: flex;
+                flex-flow: column nowrap;
+                position: absolute;
+                z-index: 10;
+                right: 0;
+                top:  0;
+            }
+        }
+    }
+
+    .cal-day-badge {
+        @extend %flex-center;
+        background: none;
+        border: 1.5px solid $secondary-color;
+        border-radius: 50%;
+        color: $secondary-color;
+        height: 20px;
+        padding: 0;
+        position: absolute;
+        width: 20px;
+    }
+
+}
+
+
+// Week view
+::ng-deep .cal-week-view {
+    .cal-header {
+        padding: 0.5em 0;
+        b {
+            font-family: $main-font;
+            font-size: 15px;
+            font-weight: $semi-bold;
+
+            &:hover {
+                background: none;
+            }
+        }
+    }
+
+    .cal-hour-segment {
+        .cal-time {
+            font-family: $main-font;
+            font-size: 15px;
+            font-weight: $semi-bold;
+
+            &:hover {
+                background: none;
+            }
+        }
+    }
+}
+
+
+// Day view
+::ng-deep .cal-day-view {
+    .cal-hour-segment {
+        .cal-time {
+            font-family: $main-font;
+            font-size: 15px;
+            font-weight: $semi-bold;
+
+            &:hover {
+                background: none;
+            }
+        }
+    }
+}

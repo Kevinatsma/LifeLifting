@@ -1,7 +1,7 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
   <section class="step-wrapper" *ngIf="!user.specialist">
     <h5>Pick wisely, {{user.displayName || user.email}}</h5>
-    <h1>Step 4: Choose a Specialist</h1>
+    <h1>Step 3: Choose a Specialist</h1>
 
     <section class="package-container specialist-container">
       <mat-radio-group class="package-slider" [(ngModel)]="chosenSpecialist">
@@ -31,19 +31,16 @@
 
   <section class="step-wrapper success" *ngIf="user.specialist">
     <h5>Pick wisely, {{user.displayName || user.email}}</h5>
-    <h1>Step 4: Choose a Specialist</h1>
+    <h1>Step 3: Choose a Specialist</h1>
     <div class="step-done">
       <p class="intro-text">
         Ooops! You already chose a specialist. Go to the next dashboard by clicking the button below. If you want to change your 
         specialist later. That's allowed after one week of trial.
       </p>
       <div class="btn-area">
-        <button class="btn-icon-right"
-         [class.btn-disabled]="!user.specialist"
-         [disabled]="!user.specialist"
-         routerLink="../../dashboard">
-          <span>To the dashboard!</span>
-          <span class="emoji">🚀</span>
+        <button class="btn-icon-right" routerLink="../step-four">
+          <span>Continue process</span>
+          <i class="fas fa-chevron-right small"></i>
         </button>
       </div>
     </div>
