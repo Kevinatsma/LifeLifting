@@ -24,6 +24,7 @@ import { SpecialistModule } from './specialists/specialist.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ChatModule } from './chat/chat.module';
 import { DialogsModule } from './shared/dialogs/dialogs.module';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 
 // Core Components
@@ -42,6 +43,7 @@ import { DialogsModule } from './shared/dialogs/dialogs.module';
     SharedModule,
     UserModule,
     DashboardModule,
+    FlatpickrModule.forRoot(),
     PackagesModule,
     BookingModule,
     SpecialistModule,

@@ -6,17 +6,17 @@ import {
   OnInit
 } from '@angular/core';
 import {
+  isSameMonth,
+  isSameDay,
+  startOfMonth,
+  endOfMonth,
+  startOfWeek,
+  endOfWeek,
   startOfDay,
   endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours
+  format
 } from 'date-fns';
 import { Subject, Observable, of } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -36,6 +36,8 @@ import { SpecialistService } from './../../specialists/specialist.service';
 import { Specialist } from './../../specialists/specialist.model';
 import { ChatThreadService } from './../../chat/chat-thread.service';
 import { map, switchMap } from 'rxjs/operators';
+import { HttpParams, HttpClient } from '@angular/common/http';
+import { AddAppointmentDialogComponent } from 'src/app/shared/dialogs/add-appointment-dialog/add-appointment-dialog.component';
 
 const colors: any = {
   red: {
@@ -52,6 +54,12 @@ const colors: any = {
   }
 };
 
+interface Film {
+  id: number;
+  title: string;
+  release_date: string;
+}
+
 @Component({
   selector: 'app-booking-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -60,14 +68,14 @@ const colors: any = {
 })
 
 export class BookingComponent implements OnInit {
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
   user: User;
   specialist: Specialist;
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
-  appointmentsCol: AngularFirestoreCollection;
-  appointments: Observable<Appointment[]>;
+  events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
+  // events$: Observable<Array<CalendarEvent<{ film: Film }>>>;
+  // events$: Observable<Appointment[]>;
 
   modalData: {
     action: string;
@@ -90,48 +98,6 @@ export class BookingComponent implements OnInit {
     // }
   ];
 
-  refresh: Subject<any> = new Subject();
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-  ];
-
   activeDayIsOpen = true;
 
   // TODO: HOOKUP MAT DIALOG INSTEAD OF BOOTSTRAP MODAL
@@ -148,9 +114,7 @@ export class BookingComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
-    this.appointments = this.bookingService.getAppointments();
-    // this.appointmentsCol = this.afs.collection('appointments');
-    // this.appointments =  this.appointmentsCol.valueChanges();
+    this.getEvents();
   }
 
   getUser() {
@@ -160,6 +124,21 @@ export class BookingComponent implements OnInit {
       // get Specialist
       this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
     });
+  }
+
+  getTimezoneOffsetString(date: Date): string {
+    const timezoneOffset = date.getTimezoneOffset();
+    const hoursOffset = String(
+      Math.floor(Math.abs(timezoneOffset / 60))
+    ).padStart(2, '0');
+    const minutesOffset = String(Math.abs(timezoneOffset % 60)).padEnd(2, '0');
+    const direction = timezoneOffset > 0 ? '-' : '+';
+
+    return `T00:00:00${direction}${hoursOffset}:${minutesOffset}`;
+  }
+
+  getEvents() {
+    this.events$ = this.bookingService.getAppointments();
   }
 
   // Show Events for that day
@@ -177,60 +156,32 @@ export class BookingComponent implements OnInit {
     }
   }
 
+
+  // TODO: EDIT ON DRAG
+
   // REFRESH CALENDAR FUNCTION
-  // eventTimesChanged({
-  //   event,
-  //   newStart,
-  //   newEnd
-  // }: CalendarEventTimesChangedEvent): void {
-  //   event.start = newStart;
-  //   event.end = newEnd;
-  //   this.handleEvent('Dropped or resized', event);
-  //   this.refresh.next();
-  // }
+  eventTimesChanged({
+    event,
+    newStart,
+    newEnd
+  }: CalendarEventTimesChangedEvent): void {
+    const start = newStart;
+    const end = newEnd;
+    const data = {
+      start: new Date(start).toString(),
+      end: new Date(end).toString()
+    };
+    const obj: Appointment = {...event};
+    this.bookingService.updateEvent(obj.eventID, data);
+  }
 
 
   // TODO: OPEN MAT DIALOG AND SEND EVENT OBJECT TO DISPLAY CORRECTLY
-  handleEvent(action: string, event: Appointment): void {
-    this.modalData = { event, action };
-    this.dialog.open(ConfirmDialogComponent);
+  openEventDetailDialog() {
+    alert('TODO');
   }
-
-  // TODO: LINK TO  FIREBASE
-  // addEvent(): void {
-  //   this.events.push({
-  //     title: 'New event',
-  //     start: startOfDay(new Date()),
-  //     end: endOfDay(new Date()),
-  //     color: colors.red,
-  //     draggable: true,
-  //     resizable: {
-  //       beforeStart: true,
-  //       afterEnd: true
-  //     }
-  //   });
-  //   this.refresh.next();
-  // }
-
   ////////////////
   // For Users
-
-  addEvent(): void {
-    const data: Appointment = {
-      title: 'New event',
-      start: new Date(),
-      end: endOfDay(new Date()),
-      color: colors.red,
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      specialistID: this.user.specialist,
-      clientID: this.user.uid,
-    };
-    this.bookingService.addEvent(data);
-  }
 
   deleteEventDialog(event) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -247,6 +198,15 @@ export class BookingComponent implements OnInit {
       } else if (result === false) {
         return null;
       }
+    });
+  }
+
+  addEvent() {
+    this.dialog.open(AddAppointmentDialogComponent, {
+      data: {
+        user: this.user,
+        specialist: this.specialist
+      },
     });
   }
 

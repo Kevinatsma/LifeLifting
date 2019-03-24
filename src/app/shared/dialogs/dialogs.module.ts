@@ -1,8 +1,15 @@
+// Modules
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './../material.module';
 import { MatDialogModule } from '@angular/material';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { MatNativeDateModule } from '@angular/material';
+
+// Components
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
 import { DataService } from './../data/data.service';
@@ -19,6 +26,7 @@ import { AddReviewDialogComponent } from './add-review-dialog/add-review-dialog.
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { EditDialogModule } from './edit-dialog/edit-dialog.module';
 import { ChooseMealplanDialogComponent } from './choose-mealplan-dialog/choose-mealplan-dialog.component';
+import { AddAppointmentDialogComponent } from './add-appointment-dialog/add-appointment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +36,7 @@ import { ChooseMealplanDialogComponent } from './choose-mealplan-dialog/choose-m
     AddClientDialogComponent,
     AddPackageDialogComponent,
     AddFoodDialogComponent,
+    AddAppointmentDialogComponent,
     AddReviewDialogComponent,
     AddExerciseDialogComponent,
     AddMealDialogComponent,
@@ -43,6 +52,12 @@ import { ChooseMealplanDialogComponent } from './choose-mealplan-dialog/choose-m
     SharedModule,
     MaterialModule,
     MatDialogModule,
+    MatNativeDateModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
   ],
   exports: [
     ConfirmDialogComponent,
@@ -51,6 +66,7 @@ import { ChooseMealplanDialogComponent } from './choose-mealplan-dialog/choose-m
     AddClientDialogComponent,
     AddPackageDialogComponent,
     AddFoodDialogComponent,
+    AddAppointmentDialogComponent,
     AddReviewDialogComponent,
     AddExerciseDialogComponent,
     AddMealDialogComponent,
@@ -65,6 +81,7 @@ import { ChooseMealplanDialogComponent } from './choose-mealplan-dialog/choose-m
     AddClientDialogComponent,
     AddPackageDialogComponent,
     AddFoodDialogComponent,
+    AddAppointmentDialogComponent,
     AddReviewDialogComponent,
     AddExerciseDialogComponent,
     AddMealDialogComponent,

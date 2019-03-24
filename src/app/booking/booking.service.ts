@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { MatSnackBar } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { CalendarEvent } from 'angular-calendar';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class BookingService implements OnInit {
   booked = false;
   eventDoc: AngularFirestoreDocument;
   appointmentsCol: AngularFirestoreCollection;
-  appointments: Observable<Appointment[]>;
+  events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
 
   constructor( private afs: AngularFirestore,
                public snackbar: MatSnackBar) { }
@@ -72,14 +73,28 @@ export class BookingService implements OnInit {
   }
 
   getAppointments() {
-    this.appointmentsCol = this.afs.collection<Appointment>('appointments');
-    this.appointments = this.appointmentsCol.snapshotChanges().pipe(map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data() as Appointment;
-        const id = a.payload.doc.id;
-        return { id, ...data };
+    this.appointmentsCol = this.afs.collection<Appointment>(`appointments`);
+    this.events$ = this.appointmentsCol.snapshotChanges().pipe(map(events => {
+      return events.map(event => {
+        const data = event.payload.doc.data() as Appointment;
+        // const id = event.payload.doc.id;
+        const start = data.start;
+        const end = data.end;
+        const eventData = {
+            eventID: data.eventID,
+            title: data.title,
+            start: new Date(start),
+            end: new Date(end),
+            color: data.color,
+            draggable: data.draggable,
+            resizable: {
+              beforeStart: data.resizable.beforeStart, // this allows you to configure the sides the event is resizable from
+              afterEnd: data.resizable.afterEnd
+            }
+        };
+        return {...eventData };
       });
     }));
-    return this.appointments;
+    return this.events$;
   }
 }

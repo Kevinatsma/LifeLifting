@@ -3,19 +3,19 @@ export class Appointment {
     phoneNumber?: string;
     whatsappNumber?: string;
     skypeName?: string;
-    title: string;
-    start: Date;
-    end: Date;
+    title?: string;
+    start?: any;
+    end?: any;
     eventID?: string;
-    color: {
+    color?: {
         primary: string,
         secondary: string
     };
-    draggable: true;
-    resizable: {
-      beforeStart: boolean,
-      afterEnd: boolean
+    draggable?: boolean;
+    resizable?: {
+      beforeStart?: boolean,
+      afterEnd?: boolean
     };
-    specialistID: string;
-    clientID: string;
+    specialistID?: string;
+    clientID?: string;
 }

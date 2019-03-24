@@ -1,0 +1,88 @@
+<main class="dialog-wrapper">
+  <form [formGroup]="appointmentForm">
+    <h3>Plan an appointment with {{data.specialist.firstName}}</h3>
+    <p class="card-text">
+      Please provide a suitable time. Requests for times that are already taken, are not secured spots.
+    </p>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Describe the meeting. Example: 'First consultation'</mat-label>
+      <input type="text" matInput formControlName="eventTitle" placeholder="Write a title" />
+      <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
+        This is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="color-pickers">
+      <mat-form-field appearance="standard" floatLabel="always" class="color-picker-field" *ngIf="standardColorPrimary">
+        <mat-label>Pick a primary color (event background)</mat-label>
+        <input
+          matInput
+          type="color"
+          formControlName="selectedColorPrimary"
+          [(value)]="standardColorPrimary"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="standard" floatLabel="always" class="color-picker-field" *ngIf="standardColorSecondary">
+        <mat-label>Pick a secondary event color (event border)</mat-label>
+        <input
+          matInput
+          type="color"
+          formControlName="selectedColorSecondary"
+          [(value)]="standardColorSecondary"
+        />
+      </mat-form-field>
+    </div>
+      <!-- <mat-label>Pick a start time</mat-label>
+      <input
+        class="form-control"
+        type="text"
+        mwlFlatpickr
+        [altInput]="true"
+        [convertModelValue]="true"
+        [enableTime]="true"
+        dateFormat="Y-m-dTH:i"
+        altFormat="F j, Y H:i"
+        placeholder="Not set"
+      /> -->
+
+    <!-- TODO: CREATE DROPDOWN AND MEETING TIMES IN JSON -->
+    <div class="add-date-time-container">
+      <mat-form-field class="date-picker" ppearance="standard" floatLabel="always">
+        <mat-label>Pick a date</mat-label>
+        <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
+        <mat-datepicker #datePickerOne></mat-datepicker>
+        <input matInput formControlName="startTime" [matDatepicker]="datePickerOne"
+        placeholder="MM/DD/YYYY (eg. 26/03/2019)">
+      </mat-form-field>
+
+      <div class="time">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Hour</mat-label>
+          <input type="number" matInput formControlName="startHour" placeholder="06" />
+          <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
+            This is <strong>required</strong>
+          </mat-error> -->
+        </mat-form-field>
+        :
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Minutes</mat-label>
+          <input type="number" matInput formControlName="startMinutes" placeholder="30" />
+          <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
+            This is <strong>required</strong>
+          </mat-error> -->
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+  <section class="btn-area-one">
+    <button type="submit" class="dialog-button" (click)="addEvent()"
+    [disabled]="!appointmentForm.valid"
+    [class.disabled]="!appointmentForm.valid"
+    mat-dialog-close
+    >
+      Done
+    </button>
+  </section>
+</main>

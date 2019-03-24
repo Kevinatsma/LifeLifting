@@ -9,7 +9,8 @@
       </button>
     </div>
 
-    <h1>{{specialist.firstName}}'s Calendar</h1>
+    <!-- <h1>{{specialist.firstName}}'s Calendar</h1> -->
+    <h1>Your specialist's Calendar</h1>
 
     <div class="right">
       <button class="icon-button" (click)="chat(specialist.uid)" *ngIf="!editShow">
@@ -53,7 +54,8 @@
       mwlCalendarNextView
       [view]="view"
       [(viewDate)]="viewDate"
-      (viewDateChange)="activeDayIsOpen = false"
+      (viewDateChange)="getEvents()"
+      (viewChange)="getEvents()"
     >
       Next
       <i class="fas fa-arrow-right"></i>
@@ -87,15 +89,15 @@
   </section>
 
   <section class="calendar__view" [ngSwitch]="view">
-    <ng-container *ngIf="events">
+    <ng-container *ngIf="events$ | async; else loading; let events">
+    <!-- <ng-container *ngIf="appointments"> -->
       <mwl-calendar-month-view
         *ngSwitchCase="CalendarView.Month"
         [viewDate]="viewDate"
         [events]="events"
-        [refresh]="refresh"
         [activeDayIsOpen]="activeDayIsOpen"
         (dayClicked)="dayClicked($event.day)"
-        (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventClicked)="openEventDetailDialog($event)"
         (eventTimesChanged)="eventTimesChanged($event)"
       >
       </mwl-calendar-month-view>
@@ -103,8 +105,7 @@
         *ngSwitchCase="CalendarView.Week"
         [viewDate]="viewDate"
         [events]="events"
-        [refresh]="refresh"
-        (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventClicked)="openEventDetailDialog($event)"
         (eventTimesChanged)="eventTimesChanged($event)"
       >
       </mwl-calendar-week-view>
@@ -112,15 +113,14 @@
         *ngSwitchCase="CalendarView.Day"
         [viewDate]="viewDate"
         [events]="events"
-        [refresh]="refresh"
-        (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventClicked)="openEventDetailDialog($event)"
         (eventTimesChanged)="eventTimesChanged($event)"
       >
       </mwl-calendar-day-view>
     </ng-container>
   </section>
 
-  <section class="calendar__edit-events" *ngIf="auth.adminRoles()">
+  <!-- <section class="calendar__edit-events" *ngIf="auth.adminRoles(user)">
     <h3>
       Edit events
       <button class="btn btn-primary pull-right" (click)="addEvent()">
@@ -206,7 +206,7 @@
         </tr>
       </tbody>
     </table>
-  </section>
+  </section> -->
 </main>
 
 
