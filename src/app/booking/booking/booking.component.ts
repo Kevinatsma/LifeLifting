@@ -37,22 +37,7 @@ import { Specialist } from './../../specialists/specialist.model';
 import { ChatThreadService } from './../../chat/chat-thread.service';
 import { map, switchMap } from 'rxjs/operators';
 import { HttpParams, HttpClient } from '@angular/common/http';
-import { AddAppointmentDialogComponent } from 'src/app/shared/dialogs/add-appointment-dialog/add-appointment-dialog.component';
-
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3'
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF'
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
-  }
-};
+import { AddAppointmentDialogComponent } from './../../shared/dialogs/add-appointment-dialog/add-appointment-dialog.component';
 
 interface Film {
   id: number;
@@ -102,7 +87,7 @@ export class BookingComponent implements OnInit {
 
   // TODO: HOOKUP MAT DIALOG INSTEAD OF BOOTSTRAP MODAL
   constructor( private userService: UserService,
-               private auth: AuthService,
+               public auth: AuthService,
                private dialog: MatDialog,
                private bookingService: BookingService,
                private specialistService: SpecialistService,
