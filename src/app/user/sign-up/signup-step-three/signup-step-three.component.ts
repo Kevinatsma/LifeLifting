@@ -47,7 +47,7 @@ export class SignupStepThreeComponent implements OnInit {
       this.specialistService.updateSpecialist(this.chosenSpecialist, clientID);
     })
     .then(() => {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['../step-four'], { relativeTo: this.route });
     });
   }
 

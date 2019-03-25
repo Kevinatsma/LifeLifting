@@ -28,5 +28,5 @@ export class User {
     packageChoice?: string;
     specialist?: string;
     appointment?: string;
-    signupCompleted?: boolean;
+    signUpCompleted?: boolean;
 }

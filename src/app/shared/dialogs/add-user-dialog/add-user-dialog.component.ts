@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, EmailValidator } from '@angular/forms';
 import { AuthService } from './../../../core/auth/auth.service';
 
 @Component({
@@ -75,6 +75,7 @@ export class AddUserDialogComponent implements OnInit {
     const formData = {
       displayName: this.personalForm.get('firstName').value + ' ' + this.personalForm.get('lastName').value,
       photoURL: this.downloadURL,
+      email: email,
       isClient: true,
       isSpecialist: false
     };

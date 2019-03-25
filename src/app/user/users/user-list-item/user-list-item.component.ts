@@ -5,6 +5,7 @@ import { ConfirmDialogComponent } from './../../../shared/dialogs/confirm-dialog
 import { MatDialog } from '@angular/material';
 import { UserService } from './../../user.service';
 import { ChatThreadService } from './../../../chat/chat-thread.service';
+import { AuthService } from './../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-user-list-item',
@@ -15,7 +16,8 @@ export class UserListItemComponent implements OnInit {
   @Input() user: User;
   detailOpen = false;
 
-  constructor( public router: Router,
+  constructor( public auth: AuthService,
+               public router: Router,
                public dialog: MatDialog,
                private userService: UserService,
                public threadService: ChatThreadService) { }

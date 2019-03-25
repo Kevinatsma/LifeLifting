@@ -41,17 +41,18 @@ export class EditUserComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.specialists = this.specialistService.getSpecialists();
     this.editUserForm = this.fb.group({
-      displayName: '' || this.user.displayName,
-      country: '' || this.user.basicData.country,
-      packageChoice: '' || this.user.packageChoice,
-      specialist: this.selectedSpecialist,
-      gender: this.selectedGender,
-      age: '' || this.user.basicData.age,
-      mainGoal: '' || this.user.basicData.mainGoal,
-      heardFromUs: '' || this.user.basicData.heardFromUs,
-      phoneNumber: '' || this.user.basicData.phoneNumber,
-      email: '' || this.user.email,
+      displayName: '' || this.user.displayName || 'Not filled in yet',
+      country: '' || this.user.basicData.country || 'Not filled in yet',
+      packageChoice: '' || this.user.packageChoice || 'Not filled in yet',
+      specialist: this.selectedSpecialist || 'Not filled in yet',
+      gender: this.selectedGender || 'Not filled in yet',
+      age: '' || this.user.basicData.age || 'Not filled in yet',
+      mainGoal: '' || this.user.basicData.mainGoal || 'Not filled in yet',
+      heardFromUs: '' || this.user.basicData.heardFromUs || 'Not filled in yet',
+      phoneNumber: '' || this.user.basicData.phoneNumber || 'Not filled in yet',
+      email: '' || this.user.email || 'Not filled in yet',
     });
+
     this.url = `users`;
 
     setTimeout(() => {

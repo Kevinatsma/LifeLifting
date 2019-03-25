@@ -50,6 +50,22 @@ button.icon-button {
         transform: scale(1.1);
     }
 
+    &-disabled {
+        background: $middle-grey;
+        svg {
+            color: $grey;
+        }
+
+        &:hover, &:focus {
+            transform: scale(1);
+            cursor: not-allowed;
+
+            svg {
+                transform: scale(1)!important;
+            }
+        }
+    }
+
 }
 
 button.slide-control-btn {

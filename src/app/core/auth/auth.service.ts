@@ -89,7 +89,7 @@ export class AuthService {
       },
       isClient: true,
       isSpecialist: false,
-      signupCompleted: false
+      signUpCompleted: false
     };
     return userRef.set(data, { merge: true });
   }
@@ -97,6 +97,18 @@ export class AuthService {
   updateUser(data, user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     return userRef.update(data);
+  }
+
+  addUserData(data, user) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    return userRef.set(data, {merge: true})
+    .then(() => {
+      console.log('data updated');
+    })
+    .catch(error => {
+      console.error(error.message);
+      alert(error.message);
+    });
   }
 
   setUserData(data, user) {
@@ -137,9 +149,10 @@ export class AuthService {
         },
         isClient: formData.isClient,
         isSpecialist: formData.isSpecialist,
-        signupCompleted: formData.isClient
+        signUpCompleted: false,
+        email: formData.email
       };
-      this.setUserData(data, credential.user);
+      this.addUserData(data, credential.user);
     })
     .then(() => console.log('Welcome, your account has been created!'))
     .then(user => {
@@ -160,8 +173,7 @@ export class AuthService {
         this.router.navigate(['dashboard']);
       })
       .catch(error => {
-        alert(error.message);
-        console.log(error.message);
+        console.log('Async issue:' + error.message);
       });
   }
 

@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['signup/step-three']);
     } else if (!this.user.specialist) {
       this.router.navigate(['signup/step-four']);
-    } else if (!this.user.signupCompleted) {
+    } else if (!this.user.signUpCompleted) {
       return null;
     }
   }

@@ -25,6 +25,7 @@ export class UserDetailComponent implements OnInit {
   guidelines: Observable<Guideline[]>;
   mealplansCol: AngularFirestoreCollection<Mealplan>;
   mealplans: Observable<Mealplan[]>;
+  mealPlansActive = false;
   aboutExtended = false;
   reviewsVisible = true;
 

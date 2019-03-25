@@ -79,10 +79,11 @@ export class OnlineAppointmentComponent implements OnInit {
         date: '12-12-2018'
     };
     const appointmentCheck = {
-      appointment: true
+      appointment: true,
+      signUpCompleted: true
     };
     const path = `users/${this.auth.currentUserId}/appointments`;
-    this.bookingService.addAppointment(data, path, user);
+    this.bookingService.addOnlineAppointment(data, path, user);
     this.auth.updateUser(appointmentCheck, user);
     this.router.navigate(['../step-four'], { relativeTo: this.route });
   }

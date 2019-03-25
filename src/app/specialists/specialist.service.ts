@@ -84,7 +84,7 @@ export class SpecialistService {
       },
       isSpecialist: true,
       isClient: false,
-      signupCompleted: false,
+      signUpCompleted: false,
       packageChoice: 'NaN',
       appointment: 'NaN',
     };

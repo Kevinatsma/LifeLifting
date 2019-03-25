@@ -121,7 +121,7 @@ section.specialist-header {
         .bottom {
             flex-flow: row nowrap;
             border-top: 1px solid $border-color;
-            padding-top: 1em;
+            padding-top: 0;
 
             p.tab {
                 @extend %flex-center;
@@ -190,6 +190,7 @@ section.middle {
         width: 50%;
 
         ul.contact-menu {
+
             li {
                 display: flex;
                 flex-flow: row nowrap;
@@ -206,6 +207,12 @@ section.middle {
                 a {
                     font-size: 18px;
                     font-weight: $regular;
+                }
+
+                p {
+                    font-size: 18px;
+                    margin: 0;
+                    text-align: left;
                 }
             }
         }

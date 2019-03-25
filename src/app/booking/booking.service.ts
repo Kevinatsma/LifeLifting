@@ -21,8 +21,8 @@ export class BookingService implements OnInit {
   ngOnInit() {
   }
 
-  addAppointment(data, path, user) {
-    this.afs.collection<Appointment>(`${path}`).doc(`${data.date}`).set(data, {merge: false})
+  addOnlineAppointment(data, path, user) {
+    this.afs.collection<Appointment>(`${path}`).add(data)
     .then(() => {
       this.booked = true;
       return this.booked;
