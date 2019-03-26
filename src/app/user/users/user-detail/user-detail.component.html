@@ -24,7 +24,7 @@
     <ng-container *ngIf="!editShow">
       <section class="specialist-header">
         <div class="profile-picture" [style.backgroundImage]="'url('+ user.photoURL +')'">
-
+          <span *ngIf="!user.photoURL">No Photo Yet</span>
         </div>
         <div class="quick-info">
           <p class="timezone">
@@ -49,11 +49,11 @@
               <i class="fas fa-transgender"></i>
               <span>Not filled out</span>
             </div>
-            <div class="fact" *ngIf="specialist">
+            <div class="fact" *ngIf="specialist | async">
               <i class="fas fa-user-ninja"></i>
               <span>{{specialist.firstName}} {{specialist.lastName}}</span>
             </div>
-            <div class="fact" *ngIf="!specialist">
+            <div class="fact" *ngIf="!specialist | async">
               <i class="fas fa-user-ninja"></i>
               <span>None chosen</span>
             </div>

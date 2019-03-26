@@ -14,7 +14,7 @@ import { Specialist } from './../../specialists/specialist.model';
 })
 export class EditClientComponent implements OnInit, OnDestroy {
   @Input() user: User;
-  @Input() specialist: Specialist;
+  @Input() specialist: Observable<Specialist>;
   aboutExtended = false;
   reviewsVisible = true;
 

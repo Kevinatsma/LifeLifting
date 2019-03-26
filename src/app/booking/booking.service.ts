@@ -28,7 +28,6 @@ export class BookingService implements OnInit {
       return this.booked;
     })
     .catch(error => {
-      alert(error.message);
       console.error(error.message);
     });
   }
@@ -55,7 +54,6 @@ export class BookingService implements OnInit {
       });
     })
     .catch(error => {
-      alert(error.message);
       console.error(error.message);
     });
   }

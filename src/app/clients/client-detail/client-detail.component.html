@@ -12,8 +12,10 @@
           <i class="fas fa-comment-alt"></i>
         </button>
 
-        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && !user.signUpCompleted">
-          <i class="fas fa-edit"></i>
+        <button class="icon-button edit-button" (click)="toggleEdit()"
+        [class.icon-button-disabled]="!user.signUpCompleted" [disabled]="!user.signUpCompleted">
+          <ng-container *ngIf="user.signUpCompleted"> <i class="fas fa-edit"></i> </ng-container>
+          <ng-container *ngIf="!user.signUpCompleted"> <i class="fas fa-ban"></i> </ng-container>
         </button>
 
       </div>
@@ -22,7 +24,7 @@
     <ng-container *ngIf="!editShow">
       <section class="specialist-header">
         <div class="profile-picture" [style.backgroundImage]="'url('+ user.photoURL +')'">
-
+          <span *ngIf="!user.photoURL">No Photo Yet</span>
         </div>
         <div class="quick-info">
           <p class="timezone">
@@ -44,13 +46,12 @@
               <i class="fas fa-transgender"></i>
               <span>{{user.basicData.gender}}</span>
             </div>
-            <div class="fact" *ngIf="specialist">
+            <div class="fact" *ngIf="specialist | async">
               <i class="fas fa-user-ninja"></i>
               <span>{{specialist.firstName}} {{specialist.lastName}}</span>
             </div>
           </div>
           
-
           </div>
           <div class="bottom">
             <p class="tab">
@@ -141,7 +142,7 @@
   </main>
 
   <ng-container *ngIf="editShow">
-    <app-edit-client [user]="user" [specialist]="specialist"></app-edit-client>
+    <app-edit-client [user]="user" [specialist]="specialist | async"></app-edit-client>
   </ng-container>
 
 </ng-container>

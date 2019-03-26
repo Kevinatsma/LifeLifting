@@ -39,6 +39,7 @@ section.specialist-header {
     align-items: flex-start;
 
     div.profile-picture {
+        @extend %flex-center;
         width: 40%;
         height: 350px;
         background-size: cover;
@@ -46,6 +47,13 @@ section.specialist-header {
         background-repeat: no-repeat;
         border-radius: 5px;
         background-color: darken($light-grey, 10%);
+
+        span  {
+            font-size: 18px;
+            font-weight: $semi-bold;
+            font-family: $main-font;
+            text-align: center;
+        }
     }
 
     div.quick-info {

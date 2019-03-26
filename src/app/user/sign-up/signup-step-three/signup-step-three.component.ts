@@ -33,11 +33,10 @@ export class SignupStepThreeComponent implements OnInit {
   updateUser(user) {
     const data = {
       specialist: this.chosenSpecialist,
-      signupCompleted: true,
       isClient: true,
       isSpecialist: false,
     };
-    this.auth.setUserData(data, user)
+    this.auth.updateUser(data, user)
     .then(() => {
       const clientID = {
         clients: [

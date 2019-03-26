@@ -57,7 +57,7 @@ export class SignupStepOneComponent implements OnInit {
         gender: this.selectedGender,
         country: this.basicUserDataForm.get('country').value,
         phoneNumber: this.basicUserDataForm.get('phoneNumber').value,
-        heardFromUs: this.selectedMedium,
+        heardFromUs: this.selectedMedium || this.basicUserDataForm.get('heardFromUs'),
         mainGoal: this.basicUserDataForm.get('mainGoal').value,
         currentWeight: this.basicUserDataForm.get('currentWeight').value
       }

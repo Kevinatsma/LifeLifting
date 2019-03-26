@@ -107,7 +107,6 @@ export class AuthService {
     })
     .catch(error => {
       console.error(error.message);
-      alert(error.message);
     });
   }
 
@@ -186,7 +185,7 @@ export class AuthService {
       .then(user => {
         this.afAuth.auth.currentUser.sendEmailVerification()
           .then(() => console.log('We sent you an email verification'))
-          .catch(error => console.log(error.message));
+          .catch(error => alert(error.message));
           return user;
       });
   }
