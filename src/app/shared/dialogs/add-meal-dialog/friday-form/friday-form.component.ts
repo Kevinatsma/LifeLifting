@@ -95,7 +95,6 @@ export class FridayFormComponent implements OnInit {
 
                 // Query elements
                 const controlButtons = document.querySelectorAll('.dialog-button');
-                const inputs = document.querySelectorAll('.f-input');
 
                 // Set event listeners
                 controlButtons.forEach(input => {

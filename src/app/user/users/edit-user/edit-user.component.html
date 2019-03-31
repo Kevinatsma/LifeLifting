@@ -51,11 +51,12 @@
                   <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
                 </mat-select>
               </div>
-              <div class="fact" *ngIf="specialist | async">
+              <div class="fact" *ngIf="specialist">
                 <i class="fas fa-user-ninja"></i>
                 <mat-select matInput placeholder="{{ specialist.firstName }} {{ specialist.lastName }}" 
                 [(value)]="selectedSpecialist" panelClass="dropdown-regular" formControlName="specialist" autocomplete="off" 
                 required name="specialist">
+                  <mat-option disabled selected>{{specialist.firstName}}</mat-option>
                   <mat-option *ngFor="let specialist of specialists | async" 
                   [value]="specialist.specialistID"
                   > {{specialist.firstName}} {{specialist.lastName}}</mat-option>

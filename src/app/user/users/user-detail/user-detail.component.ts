@@ -11,6 +11,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { Guideline } from './../../../guidelines/guideline.model';
 import { Observable } from 'rxjs';
 import { Mealplan } from './../../../mealplans/mealplan.model';
+import { subscribeOn } from 'rxjs/operators';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class UserDetailComponent implements OnInit {
   reviewsVisible = true;
 
 
-  specialist: Observable<Specialist>;
+  specialist: Specialist;
 
   constructor( private afs: AngularFirestore,
                private cdr: ChangeDetectorRef,
@@ -54,14 +55,16 @@ export class UserDetailComponent implements OnInit {
       this.user = user;
       const uid = this.user.uid;
       const sID  = this.user.specialist;
-      this.getSpecialist(sID);
-      this.getGuidelines(uid);
-      this.getMealplans(uid);
+      setTimeout(() => {
+        this.getSpecialist(sID);
+        this.getGuidelines(uid);
+        this.getMealplans(uid);
+      }, 200);
     });
   }
 
   getSpecialist(sID: string) {
-    this.specialist = this.specialistService.getSpecialistData(sID);
+    this.specialistService.getSpecialistData(sID).subscribe(specialist => this.specialist = specialist);
   }
 
   getGuidelines(uid) {

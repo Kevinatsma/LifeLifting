@@ -11,8 +11,8 @@ import { UserModule } from '../user/user.module';
 import { UsersComponent } from '../user/users/users.component';
 import { ClientsModule } from './../clients/clients.module';
 import { ClientsComponent } from '../clients/clients.component';
-import { FinancesComponent } from '../finances/finances/finances.component';
-import { FinancesModule } from '../finances/finances.module';
+import { UserRequestComponent } from '../user-request/user-request/user-request.component';
+import { UserRequestModule } from '../user-request/user-request.module';
 import { PackagesComponent } from '../packages/packages.component';
 import { PackageDetailComponent } from '../packages/package-detail/package-detail.component';
 import { AdminMenuComponent } from './dashboard-menu/admin-menu/admin-menu.component';
@@ -76,7 +76,7 @@ const routes: Routes = [
       {path: 'my-guidelines', component: MyGuidelineListComponent, data: {state: 'my-guidelines'}, canActivate: [AuthGuard]},
       {path: 'my-mealplans', component: MyMealplanListComponent, data: {state: 'my-mealplans'}, canActivate: [AuthGuard]},
       // {path: 'my-mealplans/:id', component: MyMealplanDetailComponent, canActivate: [AuthGuard]},
-      {path: 'finances', component: FinancesComponent, data: {state: 'finances'}, canActivate: [AuthGuard]},
+      {path: 'user-requests', component: UserRequestComponent, data: {state: 'user-request'}, canActivate: [AuthGuard]},
       {path: 'packages', component: PackagesComponent, data: {state: 'packages'}, canActivate: [AuthGuard]},
       {path: 'packages/:id', component: PackageDetailComponent, canActivate: [AuthGuard]},
       {path: 'foods', component: FoodsComponent, data: {state: 'foods'}, canActivate: [AuthGuard]},
@@ -117,7 +117,7 @@ const routes: Routes = [
     ClientsModule,
     FoodsModule,
     ExercisesModule,
-    FinancesModule,
+    UserRequestModule,
     GuidelinesModule,
     MealplansModule,
     MaterialModule

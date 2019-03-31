@@ -98,7 +98,7 @@ export class MealplanDetailComponent implements OnInit {
 
 
   getGuideline(mealplan) {
-    const id = mealplan.guideline;
+    const id = mealplan.supplementation.guideline;
     this.guidelineService.getGuidelineDataById(id)
       .subscribe(guideline => {
         this.guideline = guideline;
@@ -113,12 +113,12 @@ export class MealplanDetailComponent implements OnInit {
     });
     if (this.exerciseService.guideExercises.eTwo) {
       this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
-        return this.exercises.eTwo = exercise;
+        this.exercises.eTwo = exercise;
       });
     }
     if (this.exerciseService.guideExercises.eThree) {
       this.exerciseService.guideExercises.eThree.subscribe(exercise => {
-        return this.exercises.eThree = exercise;
+        this.exercises.eThree = exercise;
       });
     }
     this.exercises = {

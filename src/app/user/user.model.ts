@@ -20,8 +20,6 @@ export class User {
     cID?: string;
     displayName: string;
     email: string;
-    isClient: boolean;
-    isSpecialist: boolean;
     photoURL?: string;
     roles?: Roles;
     basicData?: BasicData;
@@ -29,4 +27,5 @@ export class User {
     specialist?: string;
     appointment?: string;
     signUpCompleted?: boolean;
+    signUpDate?: Date;
 }

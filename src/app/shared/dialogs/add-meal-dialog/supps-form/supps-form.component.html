@@ -1,0 +1,347 @@
+<form [formGroup]="suppsForm" class="supp-form">
+  <ng-template matStepLabel>Supps</ng-template>
+  <h3>🥜 Supplements for {{userData.displayName}}</h3>
+  <p class="intro-text">
+    Define the supplements the user should take before, during and/or after the training. All values are optional. But first, pick a guideline
+    to hook this mealplan up to. 
+  </p>
+  <h6 *ngIf="!guidelines">
+    There is no guideline for {{userData.displayName}} yet.
+  </h6>
+  <mat-form-field class="guideline" appearance="standard" floatLabel="always" *ngIf="guidelines">
+    <mat-label>Import a guideline you created for {{userData.displayName}}</mat-label>
+    <mat-select matInput class="f-input select" placeholder="Pick a Guideline" (selectionChange)="guidelineHandler()"
+    panelClass="dropdown-regular" autocomplete="off" formControlName="guideline" required>
+      <mat-option *ngFor="let guideline of guidelines" [value]="guideline.guidelineID">
+        {{guideline.guidelineName}} - 
+        <ng-container *ngIf="guideline.lastEdited">
+          Last edited: {{guideline.lastEdited.toDate() | date: 'short'}}
+        </ng-container>
+        <ng-container *ngIf="!guideline.lastEdited">
+          Created: {{guideline.creationDate.toDate() | date: 'short'}}
+        </ng-container>
+      </mat-option>
+    </mat-select>
+    <mat-hint class="" *ngIf="guidelines === null">
+      This user doesn't have any guidelines yet
+    </mat-hint>
+    <!-- <mat-error class="input-error" *ngIf="!mealTimeID.touched">This is <strong>required</strong></mat-error> -->
+  </mat-form-field>
+
+
+<section class="guideline-activities" *ngIf="guideline">
+  <h2 class="section-title">Activities</h2>
+    <div class="activity">
+      <app-exercise-list-item class="activity__left" [exercise]="exerciseOne"></app-exercise-list-item>
+      <div class="container">
+        <div class="target-block">
+          <mat-label>Before the training</mat-label>
+          <div class="add-form-field-container" formArrayName="beforeOneArr">
+            <section class="chip-container" *ngFor="let food of beforeOneForms.controls; let i=index" 
+            [formGroupName]="i">
+              <mat-form-field appearance="standard">
+                <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                  <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="unit" *ngIf="beforeOneForms.controls[i].value.product as prodObj">
+                <mat-form-field appearance="standard" floatLabel="always">
+                  <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                  autofocus="none">
+                </mat-form-field>
+                <span>{{prodObj.unit}}</span>
+                <mat-form-field appearance="standard" class="select">
+                  <mat-select matInput class="f-input select" placeholder="Preperation"
+                  panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                    <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(11, i);">
+                <i class="fas fa-ban"></i>
+              </button>
+            </section>
+            <button type="button" *ngIf="showAddProduct" class="add-chip" (click)="addProduct(11);">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="target-block">
+          <mat-label>During the training</mat-label>
+          <div class="add-form-field-container" formArrayName="duringOneArr">
+            <section class="chip-container" *ngFor="let food of duringOneForms.controls; let i=index" 
+            [formGroupName]="i">
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                  <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="unit" *ngIf="duringOneForms.controls[i].value.product as prodObj">
+                <mat-form-field appearance="standard" floatLabel="always">
+                  <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                  autofocus="none">
+                </mat-form-field>
+                <span>{{prodObj.unit}}</span>
+                <mat-form-field appearance="standard" class="select">
+                  <mat-select matInput class="f-input select" placeholder="Preperation"
+                  panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                    <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(12, i);">
+                <i class="fas fa-ban"></i>
+              </button>
+            </section>
+            <button type="button" *ngIf="showAddProduct" class="add-chip" (click)="addProduct(12);">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="target-block">
+          <mat-label>After the training</mat-label>
+          <div class="add-form-field-container" formArrayName="afterOneArr">
+            <section class="chip-container" *ngFor="let food of afterOneForms.controls; let i=index" 
+            [formGroupName]="i">
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                  <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="unit" *ngIf="afterOneForms.controls[i].value.product as prodObj">
+                <mat-form-field appearance="standard" floatLabel="always">
+                  <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                  autofocus="none">
+                </mat-form-field>
+                <span>{{prodObj.unit}}</span>
+                <mat-form-field appearance="standard" class="select">
+                  <mat-select matInput class="f-input select" placeholder="Preperation"
+                  panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                    <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(13, i);">
+                <i class="fas fa-ban"></i>
+              </button>
+            </section>
+            <button type="button" *ngIf="showAddProduct" class="add-chip" (click)="addProduct(13);">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="activity">
+      <app-exercise-list-item class="activity__left" [exercise]="exerciseTwo"></app-exercise-list-item>
+      <div class="container" *ngIf="exerciseTwo">
+        <div class="target-block">
+            <mat-label>Before the training</mat-label>
+            <div class="add-form-field-container" formArrayName="beforeTwoArr">
+              <section class="chip-container" *ngFor="let food of beforeTwoForms.controls; let i=index" 
+              [formGroupName]="i">
+                <mat-form-field appearance="standard">
+                  <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                  panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                    <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div class="unit" *ngIf="beforeTwoForms.controls[i].value.product as prodObj">
+                  <mat-form-field appearance="standard" floatLabel="always">
+                    <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                    autofocus="none">
+                  </mat-form-field>
+                  <span>{{prodObj.unit}}</span>
+                  <mat-form-field appearance="standard" class="select">
+                    <mat-select matInput class="f-input select" placeholder="Preperation"
+                    panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                      <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(21, i);">
+                  <i class="fas fa-ban"></i>
+                </button>
+              </section>
+              <button type="button" *ngIf="showAddProduct" class="add-chip" (click)="addProduct(21);">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="target-block">
+            <mat-label>During the training</mat-label>
+            <div class="add-form-field-container" formArrayName="duringTwoArr">
+              <section class="chip-container" *ngFor="let food of duringTwoForms.controls; let i=index" 
+              [formGroupName]="i">
+                <mat-form-field appearance="standard" floatLabel="always">
+                  <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                  panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                    <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div class="unit" *ngIf="duringTwoForms.controls[i].value.product as prodObj">
+                  <mat-form-field appearance="standard" floatLabel="always">
+                    <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                    autofocus="none">
+                  </mat-form-field>
+                  <span>{{prodObj.unit}}</span>
+                  <mat-form-field appearance="standard" class="select">
+                    <mat-select matInput class="f-input select" placeholder="Preperation"
+                    panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                      <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(22, i);">
+                  <i class="fas fa-ban"></i>
+                </button>
+              </section>
+              <button type="button" *ngIf="showAddProduct" class="add-chip" (click)="addProduct(22);">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="target-block">
+            <mat-label>After the training</mat-label>
+            <div class="add-form-field-container" formArrayName="afterTwoArr">
+              <section class="chip-container" *ngFor="let food of afterTwoForms.controls; let i=index" 
+              [formGroupName]="i">
+                <mat-form-field appearance="standard" floatLabel="always">
+                  <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                  panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                    <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div class="unit" *ngIf="afterTwoForms.controls[i].value.product as prodObj">
+                  <mat-form-field appearance="standard" floatLabel="always">
+                    <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                    autofocus="none">
+                  </mat-form-field>
+                  <span>{{prodObj.unit}}</span>
+                  <mat-form-field appearance="standard" class="select">
+                    <mat-select matInput class="f-input select" placeholder="Preperation"
+                    panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                      <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(23, i);">
+                  <i class="fas fa-ban"></i>
+                </button>
+              </section>
+              <button type="button" *ngIf="showAddProduct" class="add-chip" (click)="addProduct(23);">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="activity">
+      <app-exercise-list-item class="activity__left" [exercise]="exerciseThree"></app-exercise-list-item>
+      <div class="container" *ngIf="exerciseThree">
+        <div class="target-block">
+          <mat-label>Before the training</mat-label>
+          <div class="add-form-field-container" formArrayName="beforeThreeArr">
+            <section class="chip-container" *ngFor="let food of beforeThreeForms.controls; let i=index" 
+            [formGroupName]="i">
+              <mat-form-field appearance="standard">
+                <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                  <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="unit" *ngIf="beforeThreeForms.controls[i].value.product as prodObj">
+                <mat-form-field appearance="standard" floatLabel="always">
+                  <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                  autofocus="none">
+                </mat-form-field>
+                <span>{{prodObj.unit}}</span>
+                <mat-form-field appearance="standard" class="select">
+                  <mat-select matInput class="f-input select" placeholder="Preperation"
+                  panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                    <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(31, i);">
+                <i class="fas fa-ban"></i>
+              </button>
+            </section>
+            <button type="button" *ngIf="showAddProduct" class="add-chip" (click)="addProduct(31);">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="target-block">
+          <mat-label>During the training</mat-label>
+          <div class="add-form-field-container" formArrayName="duringThreeArr">
+            <section class="chip-container" *ngFor="let food of duringThreeForms.controls; let i=index" 
+            [formGroupName]="i">
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                  <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="unit" *ngIf="duringThreeForms.controls[i].value.product as prodObj">
+                <mat-form-field appearance="standard" floatLabel="always">
+                  <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                  autofocus="none">
+                </mat-form-field>
+                <span>{{prodObj.unit}}</span>
+                <mat-form-field appearance="standard" class="select">
+                  <mat-select matInput class="f-input select" placeholder="Preperation"
+                  panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                    <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(32, i);">
+                <i class="fas fa-ban"></i>
+              </button>
+            </section>
+            <button type="button" *ngIf="showAddProduct" class="add-chip" (click)="addProduct(32);">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="target-block">
+          <mat-label>After the training</mat-label>
+          <div class="add-form-field-container" formArrayName="afterThreeArr">
+            <section class="chip-container" *ngFor="let food of afterThreeForms.controls; let i=index" 
+            [formGroupName]="i">
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                  <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="unit" *ngIf="afterThreeForms.controls[i].value.product as prodObj">
+                <mat-form-field appearance="standard" floatLabel="always">
+                  <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                  autofocus="none">
+                </mat-form-field>
+                <span>{{prodObj.unit}}</span>
+                <mat-form-field appearance="standard" class="select">
+                  <mat-select matInput class="f-input select" placeholder="Preperation"
+                  panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                    <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(33, i);">
+                <i class="fas fa-ban"></i>
+              </button>
+            </section>
+            <button type="button" *ngIf="showAddProduct" class="add-chip" (click)="addProduct(33);">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

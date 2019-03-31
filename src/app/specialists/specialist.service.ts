@@ -82,9 +82,8 @@ export class SpecialistService {
         specialist: true,
         admin: false
       },
-      isSpecialist: true,
-      isClient: false,
       signUpCompleted: false,
+      signUpDate: new Date(),
       packageChoice: 'NaN',
       appointment: 'NaN',
     };
@@ -101,8 +100,6 @@ export class SpecialistService {
       photoURL: formData.photoURL,
       email: formData.email,
       description: formData.description,
-      isClient: false,
-      isSpecialist: true,
       phoneNumber: formData.phoneNumber,
       position: formData.position,
       timeZone: formData.timeZone,

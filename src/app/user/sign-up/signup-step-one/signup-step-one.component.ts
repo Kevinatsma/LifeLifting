@@ -60,7 +60,8 @@ export class SignupStepOneComponent implements OnInit {
         heardFromUs: this.selectedMedium || this.basicUserDataForm.get('heardFromUs'),
         mainGoal: this.basicUserDataForm.get('mainGoal').value,
         currentWeight: this.basicUserDataForm.get('currentWeight').value
-      }
+      },
+      signUpDate: new Date(),
     };
     this.auth.setUserData(data, user);
     this.router.navigate(['../step-two'], { relativeTo: this.route });

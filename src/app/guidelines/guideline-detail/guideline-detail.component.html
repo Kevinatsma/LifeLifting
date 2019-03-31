@@ -1,4 +1,4 @@
-<ng-container *ngIf="guideline">
+<ng-container *ngIf="guideline && auth.user | async as user">
   <main class="specialist-wrapper" *ngIf="!editShow">
 
     <section class="action-toolbar-top">

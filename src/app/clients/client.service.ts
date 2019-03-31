@@ -19,7 +19,7 @@ export class ClientService {
 
   constructor( private afs: AngularFirestore,
                private auth: AuthService) {
-    this.userCol = this.afs.collection(`users`, ref => ref.where('isSpecialist', '==', false));
+    this.userCol = this.afs.collection(`users`, ref => ref.where('roles.specialist', '==', false));
     this.users = this.getClients();
     this.editStateChange.subscribe((value) => {
       this.editShow = value;

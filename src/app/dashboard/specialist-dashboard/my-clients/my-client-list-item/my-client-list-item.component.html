@@ -1,7 +1,7 @@
 <mat-card class="list-item-card" *ngIf="!detailOpen && user">
   <div class="type-chip">
-    <i class="fas fa-user-ninja" *ngIf="user.isSpecialist"></i>
-    <i class="fas fa-user-tie" *ngIf="user.isClient"></i>
+    <i class="fas fa-user-ninja" *ngIf="user.roles.specialist"></i>
+    <i class="fas fa-user-tie" *ngIf="user.roles.client"></i>
   </div>
   <section class="profile-photo" *ngIf="user.photoURL" [style.backgroundImage]="'url('+ user.photoURL +')'">
   </section>

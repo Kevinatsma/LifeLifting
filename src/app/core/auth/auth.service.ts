@@ -87,8 +87,6 @@ export class AuthService {
         specialist: false,
         admin: false
       },
-      isClient: true,
-      isSpecialist: false,
       signUpCompleted: false
     };
     return userRef.set(data, { merge: true });
@@ -146,9 +144,8 @@ export class AuthService {
           specialist: false,
           admin: false
         },
-        isClient: formData.isClient,
-        isSpecialist: formData.isSpecialist,
         signUpCompleted: false,
+        signUpDate: new Date(),
         email: formData.email
       };
       this.addUserData(data, credential.user);

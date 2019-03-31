@@ -19,7 +19,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
   // Form
   editUserForm: FormGroup;
-  specialist: Observable<Specialist>;
+  specialist: Specialist;
   specialists: Observable<Specialist[]>;
   selectedSpecialist = '';
   downloadURL: string | null;
@@ -67,7 +67,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   getSpecialist(user) {
-    this.specialist = this.specialistService.getSpecialistData(user.specialist);
+    this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
   }
 
   // Toggles

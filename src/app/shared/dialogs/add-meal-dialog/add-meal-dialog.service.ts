@@ -6,6 +6,7 @@ import { FormArray } from '@angular/forms';
 import { Mealplan } from './../../../mealplans/mealplan.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { MatSnackBar } from '@angular/material';
+import { SuppsForm } from './supps-form.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,8 @@ export class AddMealDialogService {
   thursdayMealForm: DayForm;
   fridayFormChange: Subject<any> = new Subject<any>();
   fridayMealForm: DayForm;
+  suppsFormChange: Subject<any> = new Subject<any>();
+  suppsForm: SuppsForm;
   mealTimeChange: Subject<any> = new Subject<any>();
   mealTimes: FormArray;
 
@@ -40,6 +43,9 @@ export class AddMealDialogService {
     });
     this.fridayFormChange.subscribe((fridayForm) => {
       this.fridayMealForm = fridayForm;
+    });
+    this.suppsFormChange.subscribe((suppsForm) => {
+      this.suppsForm = suppsForm;
     });
     this.mealTimeChange.subscribe((mealTimes) => {
       this.mealTimes = mealTimes;
@@ -68,6 +74,10 @@ export class AddMealDialogService {
 
   updateFridayForm(fridayMealForm) {
     this.fridayFormChange.next(fridayMealForm);
+  }
+
+  updateSuppsForm(suppsForm) {
+    this.suppsFormChange.next(suppsForm);
   }
 
   addMealplan(data) {
