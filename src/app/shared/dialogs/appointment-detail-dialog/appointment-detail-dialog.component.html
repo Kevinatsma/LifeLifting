@@ -1,0 +1,67 @@
+<main class="dialog-wrapper" *ngIf="event">
+  <div class="profile-pic-bubble">
+    <i class="fas fa-calendar-alt"></i>
+  </div>
+
+  <section class="intro">
+    <button class="edit-btn delete" (click)="deleteEvent(event)" mat-dialog-close>
+      <i class="far fa-trash-alt"></i>
+    </button>
+    <h1>{{event.title}}</h1>
+    <button class="edit-btn" (click)="editEvent(event)">
+      <i class="far fa-edit"></i>
+    </button>
+  </section>
+
+  <section class="chip-area">
+    <p class="secondary-chip" *ngIf="client">
+      <i class="fas fa-user-tie"></i>
+      {{client.displayName}}
+    </p>
+    <p class="secondary-chip" *ngIf="specialist">
+      <i class="fas fa-user-ninja"></i>
+      {{specialist.firstName}} {{specialist.lastName}}
+    </p>
+  </section>
+
+  <section class="timeline">
+    <div class="start">
+      <h5>From: {{startDay}} {{startMonth}} {{startYear}}</h5>
+      <p class="time">
+        <i class="far fa-clock"></i>
+        {{startHours}}{{startMinutes}}
+      </p>
+    </div>
+    <div class="end">
+        <h5>To: {{endDay}} {{endMonth}} {{endYear}}</h5>
+        <p class="time">
+          <i class="far fa-clock"></i>
+          {{endHours}}{{endMinutes}}
+        </p>
+    </div>
+  </section>
+
+  <section class="appointment-type">
+    <h4>Face 2 face</h4>
+    <ul>
+      <li>
+        <i class="fas fa-map-marker-alt"></i>
+        <a class="text-link"  href="https://maps.google.com">Location</a>
+      </li>
+      <li class="phone">
+        <i class="fas fa-phone"></i>
+        <a class="text-link" href="tel:">Phone number</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="appointment-type">
+    <h4>Online call</h4>
+    <p>Via Skype/whatsapp/Tel</p>
+    <p>
+      <i class="fas fa-phone"></i>
+      <i class="fab fa-whatsapp"></i>
+      <i class="fab fa-skype"></i>
+    </p>
+  </section>
+</main>

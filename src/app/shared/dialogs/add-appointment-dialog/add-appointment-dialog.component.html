@@ -50,10 +50,10 @@
     <div class="add-date-time-container">
       <mat-form-field class="date-picker" ppearance="standard" floatLabel="always">
         <mat-label>Pick a date</mat-label>
-        <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
-        <mat-datepicker #datePickerOne></mat-datepicker>
         <input matInput formControlName="startTime" [matDatepicker]="datePickerOne"
         placeholder="MM/DD/YYYY (eg. 26/03/2019)">
+        <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
+        <mat-datepicker #datePickerOne></mat-datepicker>
       </mat-form-field>
 
       <div class="time">

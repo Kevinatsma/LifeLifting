@@ -5,7 +5,13 @@
 // Month view
 ::ng-deep .cal-month-view {
     .cal-open-day-events {
+        > div {
+            pointer-events: none;
+        }
 
+        mwl-calendar-event-title {
+            margin-left: 10px;
+        }
     }
 
     .cal-header {
@@ -89,6 +95,11 @@
                 background: none;
             }
         }
+    }
+
+    .cal-event {
+        width: 92%!important;
+        margin-left: -1%!important;
     }
 }
 

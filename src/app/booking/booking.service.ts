@@ -88,7 +88,9 @@ export class BookingService implements OnInit {
             resizable: {
               beforeStart: data.resizable.beforeStart, // this allows you to configure the sides the event is resizable from
               afterEnd: data.resizable.afterEnd
-            }
+            },
+            clientID: data.clientID,
+            specialistID: data.specialistID,
         };
         return {...eventData };
       });

@@ -1,55 +1,47 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  ViewChild,
-  TemplateRef,
   OnInit
 } from '@angular/core';
 import {
   isSameMonth,
   isSameDay,
-  startOfMonth,
-  endOfMonth,
-  startOfWeek,
-  endOfWeek,
-  startOfDay,
-  endOfDay,
-  format
 } from 'date-fns';
-import { Subject, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
-  CalendarView
+  CalendarView,
+  CalendarEventTitleFormatter
 } from 'angular-calendar';
 import { BookingService } from '../booking.service';
 import { User } from './../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { UserService } from './../../user/user.service';
 import { Appointment } from '../appointment.model';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Location } from '@angular/common';
 import { SpecialistService } from './../../specialists/specialist.service';
 import { Specialist } from './../../specialists/specialist.model';
 import { ChatThreadService } from './../../chat/chat-thread.service';
-import { map, switchMap } from 'rxjs/operators';
-import { HttpParams, HttpClient } from '@angular/common/http';
 import { AddAppointmentDialogComponent } from './../../shared/dialogs/add-appointment-dialog/add-appointment-dialog.component';
-
-interface Film {
-  id: number;
-  title: string;
-  release_date: string;
-}
+import { AppointmentDetailDialogComponent } from './../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
+import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
 
 @Component({
   selector: 'app-booking-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./booking.component.scss'],
-  templateUrl: './booking.component.html'
+  templateUrl: './booking.component.html',
+  providers: [
+    {
+      provide: CalendarEventTitleFormatter,
+      useClass: CustomEventTitleFormatter
+    }
+  ]
 })
 
 export class BookingComponent implements OnInit {
@@ -162,8 +154,13 @@ export class BookingComponent implements OnInit {
 
 
   // TODO: OPEN MAT DIALOG AND SEND EVENT OBJECT TO DISPLAY CORRECTLY
-  openEventDetailDialog() {
-    alert('TODO');
+  openEventDetailDialog(event) {
+    this.dialog.open(AppointmentDetailDialogComponent, {
+      data: {
+        event: event
+      },
+      panelClass: 'event-detail-dialog'
+    });
   }
   ////////////////
   // For Users

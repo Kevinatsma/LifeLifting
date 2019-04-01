@@ -27,6 +27,7 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { EditDialogModule } from './edit-dialog/edit-dialog.module';
 import { ChooseMealplanDialogComponent } from './choose-mealplan-dialog/choose-mealplan-dialog.component';
 import { AddAppointmentDialogComponent } from './add-appointment-dialog/add-appointment-dialog.component';
+import { AppointmentDetailDialogComponent } from './appointment-detail-dialog/appointment-detail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AddAppointmentDialogComponent } from './add-appointment-dialog/add-appo
     AddPackageDialogComponent,
     AddFoodDialogComponent,
     AddAppointmentDialogComponent,
+    AppointmentDetailDialogComponent,
     AddReviewDialogComponent,
     AddExerciseDialogComponent,
     AddMealDialogComponent,
@@ -67,6 +69,7 @@ import { AddAppointmentDialogComponent } from './add-appointment-dialog/add-appo
     AddPackageDialogComponent,
     AddFoodDialogComponent,
     AddAppointmentDialogComponent,
+    AppointmentDetailDialogComponent,
     AddReviewDialogComponent,
     AddExerciseDialogComponent,
     AddMealDialogComponent,
@@ -82,6 +85,7 @@ import { AddAppointmentDialogComponent } from './add-appointment-dialog/add-appo
     AddPackageDialogComponent,
     AddFoodDialogComponent,
     AddAppointmentDialogComponent,
+    AppointmentDetailDialogComponent,
     AddReviewDialogComponent,
     AddExerciseDialogComponent,
     AddMealDialogComponent,
