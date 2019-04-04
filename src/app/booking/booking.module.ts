@@ -6,6 +6,7 @@ import { OnlineAppointmentComponent } from './online-appointment/online-appointm
 import { FaceToFaceAppointmentComponent } from './face-to-face-appointment/face-to-face-appointment.component';
 import { BookingComponent } from './booking/booking.component';
 import { MaterialModule } from '../shared/material.module';
+import { SharedModule } from '../shared/shared.module';
 
 // Booking modules
 import { FlatpickrModule } from 'angularx-flatpickr';
@@ -23,6 +24,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    SharedModule,
     MaterialModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({

@@ -51,6 +51,15 @@ export class BookingComponent implements OnInit {
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
+
+  // Spinner
+  spinner = {
+    color: 'primary',
+    mode: 'indeterminate',
+    value: 70
+  };
+
+
   // events$: Observable<Array<CalendarEvent<{ film: Film }>>>;
   // events$: Observable<Appointment[]>;
 

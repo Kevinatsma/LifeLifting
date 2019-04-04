@@ -12,13 +12,12 @@ import { FileUploadExerciseComponent } from './file-upload/file-upload-exercise/
 import { FileUploadProductComponent } from './file-upload/file-upload-product/file-upload-product.component';
 import { ReviewsModule } from '../reviews/reviews.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BookingModule } from './../booking/booking.module';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
-    BookingModule,
     DataModule,
     ReviewsModule,
     FormsModule,
@@ -32,19 +31,20 @@ import { BookingModule } from './../booking/booking.module';
     FileUploadProductComponent,
     FileUploadButtonComponent,
     ExerciseListItemComponent,
+    LoadingSpinnerComponent,
   ],
   exports: [
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     DataModule,
-    BookingModule,
     ReviewsModule,
     FileUploadComponent,
     FileUploadExerciseComponent,
     FileUploadProductComponent,
     FileUploadButtonComponent,
     ExerciseListItemComponent,
+    LoadingSpinnerComponent
   ],
   providers: [
     FileUploadService

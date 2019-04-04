@@ -13,11 +13,13 @@ import { BookingModule } from './../booking/booking.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    BookingModule
     // ChatModule
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
+    BookingModule
     // ChatModule
   ],
   declarations: [

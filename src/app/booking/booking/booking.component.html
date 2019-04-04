@@ -25,7 +25,7 @@
   </section>
 
   <ng-template #loading>
-    Loading data...
+    <app-loading-spinner></app-loading-spinner>
   </ng-template>
 
   <section class="calendar__title">
@@ -119,94 +119,6 @@
       </mwl-calendar-day-view>
     </ng-container>
   </section>
-
-  <!-- <section class="calendar__edit-events" *ngIf="auth.adminRoles(user)">
-    <h3>
-      Edit events
-      <button class="btn btn-primary pull-right" (click)="addEvent()">
-        Add new
-      </button>
-      <div class="clearfix"></div>
-    </h3>
-    
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Primary color</th>
-          <th>Secondary color</th>
-          <th>Starts at</th>
-          <th>Ends at</th>
-          <th>Remove</th>
-        </tr>
-      </thead>
-    
-      <tbody>
-        <tr *ngFor="let event of appointments |  async;">
-          <td>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="{{event.title}}"
-              (keyup)="refresh.next()"
-            />
-          </td>
-          <td>
-            <input
-              type="color"
-              [value]="event.color.primary"
-              (change)="refresh.next()"
-            />
-          </td>
-          <td>
-            <input
-              type="color"
-              [value]="event.color.secondary"
-              (change)="refresh.next()"
-            />
-          </td>
-          <td>
-            <input
-              class="form-control"
-              type="text"
-              mwlFlatpickr
-              placeholder="{{event.start.toDate()}}"
-              (ngModelChange)="refresh.next()"
-              [altInput]="true"
-              [convertModelValue]="true"
-              [enableTime]="true"
-              dateFormat="Y-m-dTH:i"
-              altFormat="F j, Y H:i"
-              placeholder="Not set"
-            />
-          </td>
-          <td>
-            <input
-              class="form-control"
-              type="text"
-              mwlFlatpickr
-              placeholder="{{event.end.toDate()}}"
-              (ngModelChange)="refresh.next()"
-              [altInput]="true"
-              [convertModelValue]="true"
-              [enableTime]="true"
-              dateFormat="Y-m-dTH:i"
-              altFormat="F j, Y H:i"
-              placeholder="Not set"
-            />
-          </td>
-          <td>
-            <button
-              class="btn btn-danger"
-              (click)="deleteEventDialog(event)"
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section> -->
 </main>
 
 

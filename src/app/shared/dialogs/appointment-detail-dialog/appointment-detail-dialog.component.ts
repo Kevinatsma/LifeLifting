@@ -15,6 +15,7 @@ import { UserService } from './../../../user/user.service';
 })
 export class AppointmentDetailDialogComponent {
   event: Appointment;
+  editTrue: boolean;
 
   // Involved user objects
   specialist: Specialist;
