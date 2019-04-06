@@ -15,24 +15,27 @@ import { UserService } from './../../../user/user.service';
 })
 export class AppointmentDetailDialogComponent {
   event: Appointment;
-  editTrue: boolean;
 
   // Involved user objects
   specialist: Specialist;
   client: User;
 
   // Substrings to display date and time
-  startDay: string;
-  startMonth: string;
-  startYear: string;
-  startHours: string;
-  startMinutes: string;
+  start = {
+    startDay: '',
+    startMonth: '',
+    startYear: '',
+    startHours: '',
+    startMinutes: '',
+  };
 
-  endDay: string;
-  endMonth: string;
-  endYear: string;
-  endHours: string;
-  endMinutes: string;
+  end = {
+    endDay: '',
+    endMonth: '',
+    endYear: '',
+    endHours: '',
+    endMinutes: ''
+  };
 
   // Month list
   monthList = [
@@ -41,6 +44,11 @@ export class AppointmentDetailDialogComponent {
     'October', 'November', 'December'
   ];
 
+  // online call methods
+  whatsApp = false;
+  skype = false;
+  onlinePhone = false;
+
   constructor( private bookingService: BookingService,
                private userService: UserService,
                public matDialog: MatDialog,
@@ -48,6 +56,8 @@ export class AppointmentDetailDialogComponent {
                private specialistService: SpecialistService
     ) {
       this.event = data.event.event;
+      this.doEventCheck(this.event);
+      console.log(this.event);
       this.getTimeAndDate();
       this.getEndTimeAndDate();
       this.getSpecialist(this.event.specialistID);
@@ -56,22 +66,52 @@ export class AppointmentDetailDialogComponent {
 
   // Getters
 
+  get editShow(): boolean {
+    return this.bookingService.editShow;
+  }
+
+  doEventCheck(e) {
+    if (e.whatsappNumber === null) {
+      this.whatsApp = false;
+    } else {
+      this.whatsApp = true;
+    }
+    if (e.skypeName === null) {
+      this.skype = false;
+    } else {
+      this.skype = true;
+    }
+    if (e.onlineAppointmentPhone.phoneAreaCode === '') {
+      this.onlinePhone = false;
+    } else {
+      this.onlinePhone = true;
+    }
+  }
+
   getTimeAndDate() {
     const date  = new Date(this.event.start);
-    this.startDay = date.getDate().toString();
-    this.startMonth = this.monthList[date.getMonth()];
-    this.startYear = date.getFullYear().toString();
-    this.startHours = date.getHours().toString();
-    this.startMinutes = this.convertMinutes(date);
+    const startDay = date.getDate().toString();
+    const startMonth = this.monthList[date.getMonth()];
+    const startYear = date.getFullYear().toString();
+    const startHours = date.getHours().toString();
+    const startMinutes = this.convertMinutes(date);
+
+    this.start = {
+      startDay, startMonth, startYear, startHours, startMinutes
+    };
   }
 
   getEndTimeAndDate() {
     const date  = new Date(this.event.end);
-    this.endDay = date.getDate().toString();
-    this.endMonth = this.monthList[date.getMonth()];
-    this.endYear = date.getFullYear().toString();
-    this.endHours = date.getHours().toString();
-    this.endMinutes = this.convertMinutes(date);
+    const endDay = date.getDate().toString();
+    const endMonth = this.monthList[date.getMonth()];
+    const endYear = date.getFullYear().toString();
+    const endHours = date.getHours().toString();
+    const endMinutes = this.convertMinutes(date);
+
+    this.end = {
+      endDay, endMonth, endYear, endHours, endMinutes
+    };
   }
 
   convertMinutes(date) {
@@ -85,6 +125,11 @@ export class AppointmentDetailDialogComponent {
 
   getClient(uid) {
     this.userService.getUserDataByID(uid).subscribe(obj => this.client = obj);
+  }
+
+  // Edit event
+  toggleEdit() {
+    this.bookingService.toggleEdit();
   }
 
   // Delete event

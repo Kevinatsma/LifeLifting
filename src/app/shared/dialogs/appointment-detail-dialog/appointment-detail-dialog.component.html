@@ -3,69 +3,106 @@
     <i class="fas fa-calendar-alt"></i>
   </div>
 
-  <section class="intro">
-    <button class="edit-btn delete" (click)="deleteEvent(event)" mat-dialog-close>
-      <i class="far fa-trash-alt"></i>
-    </button>
-    <h1>{{event.title}}</h1>
-    <button class="edit-btn" (click)="editEvent(event)">
-      <i class="far fa-edit"></i>
-    </button>
-  </section>
+  <ng-container *ngIf="!editShow">
+    <section class="intro">
+      <button class="edit-btn delete" (click)="deleteEvent(event)" mat-dialog-close>
+        <i class="far fa-trash-alt"></i>
+      </button>
+      <h1>{{event.title}}</h1>
+      <button class="edit-btn" *ngIf="!editShow" (click)="toggleEdit()">
+        <i class="far fa-edit"></i>
+      </button>
+    </section>
 
-  <section class="chip-area">
-    <p class="secondary-chip" *ngIf="client">
-      <i class="fas fa-user-tie"></i>
-      {{client.displayName}}
-    </p>
-    <p class="secondary-chip" *ngIf="specialist">
-      <i class="fas fa-user-ninja"></i>
-      {{specialist.firstName}} {{specialist.lastName}}
-    </p>
-  </section>
-
-  <section class="timeline">
-    <div class="start">
-      <h5>From: {{startDay}} {{startMonth}} {{startYear}}</h5>
-      <p class="time">
-        <i class="far fa-clock"></i>
-        {{startHours}}{{startMinutes}}
+    <section class="chip-area">
+      <p class="secondary-chip" *ngIf="client">
+        <i class="fas fa-user-tie"></i>
+        {{client.displayName}}
       </p>
-    </div>
-    <div class="end">
-        <h5>To: {{endDay}} {{endMonth}} {{endYear}}</h5>
+      <p class="secondary-chip" *ngIf="specialist">
+        <i class="fas fa-user-ninja"></i>
+        {{specialist.firstName}} {{specialist.lastName}}
+      </p>
+    </section>
+
+    <section class="timeline">
+      <div class="start">
+        <h5>From: {{start.startDay}} {{start.startMonth}} {{start.startYear}}</h5>
         <p class="time">
           <i class="far fa-clock"></i>
-          {{endHours}}{{endMinutes}}
+          {{start.startHours}}{{start.startMinutes}}
         </p>
-    </div>
-  </section>
+      </div>
+      <div class="end">
+          <h5>To: {{end.endDay}} {{end.endMonth}} {{end.endYear}}</h5>
+          <p class="time">
+            <i class="far fa-clock"></i>
+            {{end.endHours}}{{end.endMinutes}}
+          </p>
+      </div>
+    </section>
 
-  <section class="appointment-type">
-    <h4>Face 2 face</h4>
-    <ul>
-      <li>
-        <i class="fas fa-map-marker-alt"></i>
-        <a class="text-link"  href="https://maps.google.com">Location</a>
-      </li>
-      <li class="phone">
-        <i class="fas fa-phone"></i>
-        <a class="text-link" href="tel:">Phone number</a>
-      </li>
-    </ul>
-  </section>
+    <!-- <section class="appointment-type" *ngIf="event.faceToFacePhone.whatever">
+      <h4>Face 2 face</h4>
+      <ul>
+        <li>
+          <i class="fas fa-map-marker-alt"></i>
+          <a class="text-link"  href="https://maps.google.com">{{event.location}}</a>
+        </li>
+        <li class="phone">
+          <i class="fas fa-phone"></i>
+          <a class="text-link" href="tel:{{event.faceToFacePhone.phoneAreaCode}}{{event.faceToFacePhone.phoneRest}}">
+            {{event.faceToFacePhone.phoneAreaCode}}{{event.faceToFacePhone.phoneRest}}
+          </a>
+        </li>
+      </ul>
+    </section> -->
 
-  <section class="appointment-type">
-    <h4>Online call</h4>
-    <p>Via Skype/whatsapp/Tel</p>
-    <p>
-      <i class="fas fa-phone"></i>
-      <i class="fab fa-whatsapp"></i>
-      <i class="fab fa-skype"></i>
-    </p>
-  </section>
+    <section class="appointment-type" *ngIf="event">
+      <div class="contact-container" *ngIf="event.onlineAppointmentPhone.phoneAreaCode ||  event.skypeName || event.whatsappNumber">
+        <h4>Online call</h4>
+        <div class="contact-container__item skype" *ngIf="skype">
+          <p>
+            <i class="fab fa-skype"></i> 
+            {{event.skypeName}}
+          </p>
+        </div>
 
-  <section class="edit-event" *ngIf="editTrue">
+        <div class="contact-container__item whatsapp" *ngIf="whatsApp">
+          <p>
+            <i class="fab fa-whatsapp"></i>
+            <a class="text-link" href="tel:{{event.whatsappNumber}}">Add to phone</a>
+          </p>
+        </div>
 
-  </section>
+        <div class="contact-container__item phone" *ngIf="onlinePhone">
+          <p *ngIf="client">
+            <i class="fas fa-phone"></i>
+            <a class="text-link" href="tel:{{event.onlineAppointmentPhone.phoneAreaCode}}{{event.onlineAppointmentPhone.phoneRest}}">
+              Call {{client.displayName}}
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-container__item face-to-face" *ngIf="event.faceToFacePhone.phoneAreaCode">
+        <h4>Face to Face </h4>
+        <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
+        <p *ngIf="client">
+          <i class="fas fa-phone"></i>
+          <a class="text-link" href="tel:{{event.faceToFacePhone.phoneAreaCode}}{{event.faceToFacePhone.phoneRest}}">
+            Call {{client.displayName}}
+          </a>
+        </p>
+      </div>
+    </section>
+
+  </ng-container>
+
+  <ng-container *ngIf="editShow">
+    <app-edit-appointment [event]="event" [client]="client" [specialist]="specialist"
+      [end]="end" [start]="start">
+
+    </app-edit-appointment>
+  </ng-container>
 </main>

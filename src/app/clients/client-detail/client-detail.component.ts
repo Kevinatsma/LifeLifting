@@ -20,7 +20,7 @@ import { Mealplan } from './../../mealplans/mealplan.model';
 })
 export class ClientDetailComponent implements OnInit {
   user: User;
-  specialist: Observable<Specialist>;
+  specialist: Specialist;
   guidelinesCol: AngularFirestoreCollection<Guideline>;
   guidelines: Observable<Guideline[]>;
   mealplansCol: AngularFirestoreCollection<Mealplan>;
@@ -54,7 +54,7 @@ export class ClientDetailComponent implements OnInit {
   }
 
   getSpecialist(sID: string) {
-    this.specialistService.getSpecialistData(sID);
+    this.specialistService.getSpecialistData(sID).subscribe(specialist => this.specialist =  specialist);
   }
 
   getGuidelines(uid) {

@@ -46,7 +46,7 @@
               <i class="fas fa-transgender"></i>
               <span>{{user.basicData.gender}}</span>
             </div>
-            <div class="fact" *ngIf="specialist | async">
+            <div class="fact" *ngIf="specialist">
               <i class="fas fa-user-ninja"></i>
               <span>{{specialist.firstName}} {{specialist.lastName}}</span>
             </div>
@@ -142,7 +142,7 @@
   </main>
 
   <ng-container *ngIf="editShow">
-    <app-edit-client [user]="user" [specialist]="specialist | async"></app-edit-client>
+    <app-edit-client [user]="user" [specialist]="specialist"></app-edit-client>
   </ng-container>
 
 </ng-container>

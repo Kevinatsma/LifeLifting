@@ -16,26 +16,26 @@ import {
   CalendarEventTitleFormatter
 } from 'angular-calendar';
 import { BookingService } from '../booking.service';
-import { User } from './../../user/user.model';
-import { AuthService } from './../../core/auth/auth.service';
-import { UserService } from './../../user/user.service';
+import { User } from '../../user/user.model';
+import { AuthService } from '../../core/auth/auth.service';
+import { UserService } from '../../user/user.service';
 import { Appointment } from '../appointment.model';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Location } from '@angular/common';
-import { SpecialistService } from './../../specialists/specialist.service';
-import { Specialist } from './../../specialists/specialist.model';
-import { ChatThreadService } from './../../chat/chat-thread.service';
-import { AddAppointmentDialogComponent } from './../../shared/dialogs/add-appointment-dialog/add-appointment-dialog.component';
-import { AppointmentDetailDialogComponent } from './../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
+import { SpecialistService } from '../../specialists/specialist.service';
+import { Specialist } from '../../specialists/specialist.model';
+import { ChatThreadService } from '../../chat/chat-thread.service';
+import { AddAppointmentDialogComponent } from '../../shared/dialogs/add-appointment-dialog/add-appointment-dialog.component';
+import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
 
 @Component({
-  selector: 'app-booking-component',
+  selector: 'app-signup-booking-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./booking.component.scss'],
-  templateUrl: './booking.component.html',
+  styleUrls: ['./signup-booking.component.scss'],
+  templateUrl: './signup-booking.component.html',
   providers: [
     {
       provide: CalendarEventTitleFormatter,
@@ -44,7 +44,7 @@ import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provi
   ]
 })
 
-export class BookingComponent implements OnInit {
+export class SignUpBookingComponent implements OnInit {
   user: User;
   specialist: Specialist;
   view: CalendarView = CalendarView.Month;
@@ -67,6 +67,22 @@ export class BookingComponent implements OnInit {
     action: string;
     event: Appointment;
   };
+
+  actions: CalendarEventAction[] = [
+    // {
+    //   label: '<i class="fa fa-fw fa-pencil"></i>',
+    //   onClick: ({ event }: { event: CalendarEvent }): void => {
+    //     this.handleEvent('Edited', event);
+    //   }
+    // },
+    // {
+    //   label: '<i class="fa fa-fw fa-times"></i>',
+    //   onClick: ({ event }: { event: CalendarEvent }): void => {
+    //     this.events = this.events.filter(iEvent => iEvent !== event);
+    //     this.handleEvent('Deleted', event);
+    //   }
+    // }
+  ];
 
   activeDayIsOpen = true;
 
@@ -127,7 +143,9 @@ export class BookingComponent implements OnInit {
   }
 
 
-  // EDIT ON DRAG
+  // TODO: EDIT ON DRAG
+
+  // REFRESH CALENDAR FUNCTION
   eventTimesChanged({
     event,
     newStart,
@@ -144,24 +162,13 @@ export class BookingComponent implements OnInit {
   }
 
 
-  // OPEN MAT DIALOG AND SEND EVENT OBJECT TO DISPLAY CORRECTLY
+  // TODO: OPEN MAT DIALOG AND SEND EVENT OBJECT TO DISPLAY CORRECTLY
   openEventDetailDialog(event) {
-    const dialogRef = this.dialog.open(AppointmentDetailDialogComponent, {
+    this.dialog.open(AppointmentDetailDialogComponent, {
       data: {
         event: event
       },
       panelClass: 'event-detail-dialog'
-    });
-
-    console.log(event),
-
-    dialogRef.afterClosed().subscribe(() => {
-      if (this.bookingService.editShow) {
-        this.bookingService.toggleEdit();
-      } else {
-        return;
-      }
-
     });
   }
   ////////////////

@@ -30,7 +30,6 @@ export class UserService {
     });
   }
 
-
   toggleEdit() {
     this.editStateChange.next(!this.editShow);
   }

@@ -1,3 +1,186 @@
-<p>
-  edit-appointment works!
-</p>
+<main class="dialog-wrapper edit" *ngIf="event && client  && specialist">
+  <form [formGroup]="editAppointmentForm" (ngSubmit)="editAppointment()">
+    <section class="intro">
+      <button class="edit-btn delete" (click)="back()">
+        <i class="fas fa-times"></i>
+      </button>
+      <h1>
+          <input type="text" placeholder="{{event.title}}" matInput formControlName="title">
+      </h1>
+      <button class="edit-btn" *ngIf="editShow" type="submit">
+        <i class="far fa-check-circle"></i>
+      </button>
+    </section>
+
+    <section class="chip-area">
+      <p class="secondary-chip">
+        <i class="fas fa-user-tie"></i>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-select matInput placeholder="{{client.displayName}}"
+          (selectionChange)="pickForm(selectedCallMethod)" formControlName="clientID" autocomplete="off" 
+          panelClass="dropdown-regular" required>
+            <mat-option *ngFor="let client of clients" [value]="client.uid">{{client.displayName}}</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+      </p>
+      <p class="secondary-chip">
+        <i class="fas fa-user-ninja"></i>
+        <mat-form-field appearance="standard" floatLabel="always">
+            <mat-select matInput placeholder="{{specialist.firstName}} {{specialist.lastName}}" 
+            (selectionChange)="pickForm(selectedCallMethod)" formControlName="specialistID" autocomplete="off" 
+            panelClass="dropdown-regular" required>
+              <mat-option *ngFor="let specialist of specialists" [value]="specialist.specialistID">{{specialist.firstName}} {{specialist.lastName}}</mat-option>
+            </mat-select>
+            <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+      </p>
+    </section>
+
+    <section class="pick-colors">
+      <h4>Pick some new colors</h4>
+      <div class="color-pickers">
+        <mat-form-field appearance="standard" floatLabel="always" class="color-picker-field">
+          <mat-label>Pick a primary color (event background)</mat-label>
+          <input
+            matInput
+            type="color"
+            formControlName="colorPrimary"
+            [(value)]="event.color.primary"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="standard" floatLabel="always" class="color-picker-field">
+          <mat-label>Pick a secondary event color (event border)</mat-label>
+          <input
+            matInput
+            type="color"
+            formControlName="colorSecondary"
+            [(value)]="event.color.secondary"
+          />
+        </mat-form-field>
+      </div>
+    </section>
+
+    <section class="pick-a-time">
+      <h4>Choose a timeframe</h4>
+      <div class="timeline">
+        <div class="start">
+          <div class="add-date-time-container">
+            <mat-form-field class="date-picker" ppearance="standard" floatLabel="always">
+              <mat-label>Pick a date or click the icon</mat-label>
+              <input matInput formControlName="startDate" [matDatepicker]="datePickerOne"
+              placeholder="{{start.startDay}}/{{start.startMonth}}/{{start.startYear}}">
+              <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
+              <mat-datepicker #datePickerOne></mat-datepicker>
+            </mat-form-field>
+      
+            <div class="time">
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Hour</mat-label>
+                <input type="number" matInput formControlName="startHour" placeholder="{{start.startHours}}" />
+                <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
+                  This is <strong>required</strong>
+                </mat-error> -->
+              </mat-form-field>
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Minutes</mat-label>
+                <input type="number" matInput formControlName="endHour" placeholder="{{start.startMinutes}}" />
+                <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
+                  This is <strong>required</strong>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="end">
+          <div class="add-date-time-container">
+            <mat-form-field class="date-picker" ppearance="standard" floatLabel="always">
+              <mat-label>Pick a date or click the icon</mat-label>
+              <input matInput formControlName="endDate" [matDatepicker]="datePickerTwo"
+              placeholder="{{end.endDay}}/{{end.endMonth}}/{{end.endYear}}">
+              <mat-datepicker-toggle [for]="datePickerTwo"></mat-datepicker-toggle>
+              <mat-datepicker #datePickerTwo></mat-datepicker>
+            </mat-form-field>
+      
+            <div class="time">
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Hour</mat-label>
+                <input type="number" matInput formControlName="endHour" placeholder="{{end.endHours}}" />
+                <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
+                  This is <strong>required</strong>
+                </mat-error> -->
+              </mat-form-field>
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Minutes</mat-label>
+                <input type="number" matInput formControlName="endMinutes" placeholder="{{end.endMinutes}}" />
+                <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
+                  This is <strong>required</strong>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="appointment-type face-to-face">
+      <h4>Face 2 face</h4>
+      <ul>
+        <li>
+          <i class="fas fa-map-marker-alt"></i>
+          <input type="text" matInput placeholder="{{event.location}}" formControlName="location">
+        </li>
+        <li class="phone">
+          <i class="fas fa-phone"></i>
+          <input type="number" matInput placeholder="{{event.faceToFacePhone}}" formControlName="faceToFacePhone">
+        </li>
+      </ul>
+    </section>
+    
+    <h4>Online call</h4>
+    <section class="appointment-type online" *ngIf="onlineAppointment">
+      <div class="meeting-place-picker">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-select matInput placeholder="How would you like to be contacted?"
+          (selectionChange)="toggleContactMethod()" formControlName="contactMethod" autocomplete="off" 
+          panelClass="dropdown-regular" required>
+            <mat-option value="whatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</mat-option>
+            <mat-option value="skype"><i class="fab fa-skype"></i> Skype</mat-option>
+            <mat-option value="phone"><i class="fas fa-phone"></i> Phone (only Peru)</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+      </div>
+
+      <ng-container *ngIf="whatsApp">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Whatsapp</mat-label>
+          <input type="text" matInput formControlName="wappNumber" placeholder="What's your WhatsApp number?" />
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngIf="skype">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Skype name</mat-label>
+          <input type="text" matInput formControlName="skypeName" placeholder="What's your skype name?" />
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngIf="onlinePhone">
+        <div class="multiple-input" formGroupName="onlinePhone">
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Area code</mat-label>
+              <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
+              <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Phone Number</mat-label>
+              <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off" required>
+          </mat-form-field>
+        </div>
+      </ng-container>
+    </section>
+  </form>
+</main>

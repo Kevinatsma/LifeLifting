@@ -83,8 +83,18 @@
                 }
             }
         }
+
+        .meeting-place-picker {
+            width: 100%;
+
+            mat-form-field {
+                width: 80%;
+            }
+        }
     }
 }
+
+// Ng deeps
 
 ::ng-deep mat-form-field {
     textarea {
@@ -105,19 +115,25 @@
     }
 }
 
-    .image-uploader{
-        width: 80%;
-        margin: 4em auto;
-    }
+::ng-deep mat-option {
+    svg {
+        margin-right: 1em;
+        font-size: 20px!important;
 
+        &.fa-phone {
+            color: $secondary-color;
+            font-size: 18px!important;
+            transform: scale(-1, 1);
+        }
 
-    .image-subtitle {
-        margin: 0.5em 1.6em;
+        &.fa-whatsapp {
+            color: #25D366;
+        }
+        &.fa-skype {
+            color: #00aff0;
+        }
     }
-
-    section.photo-title {
-        margin: 2em 3em;
-    }
+}
 
 // Component Css
 

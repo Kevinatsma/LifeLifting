@@ -13,7 +13,7 @@
           <h1>Mealplan ID: {{mealplan.mealplanID}}</h1>
       </ng-template>
     </div>
-    <div class="right">
+    <div class="right" *ngIf="user">
       <button type="button" class="icon-button edit-button" (click)="deleteMealplanDialog(mealplan)" 
       *ngIf="!editShow && user.roles.admin || user.roles.specialist">
         <i class="fas fa-trash"></i>

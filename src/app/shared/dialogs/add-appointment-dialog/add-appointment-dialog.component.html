@@ -74,7 +74,84 @@
         </mat-form-field>
       </div>
     </div>
+
+    <div class="meeting-place-picker">
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-select matInput placeholder="Pick a place"
+        (selectionChange)="toggleContext()" formControlName="appointmentContext" autocomplete="off" 
+        panelClass="dropdown-regular" required>
+          <mat-option value="faceToFace">Face to face</mat-option>
+          <mat-option value="onlineAppointment">Online appointment</mat-option>
+        </mat-select>
+        <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+      </mat-form-field>
+    </div>
+
+    <ng-container *ngIf="faceToFace">
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Location of the meeting</mat-label>
+        <input type="text" matInput formControlName="location" placeholder="Describe the location" />
+      </mat-form-field>
+
+      <div class="multiple-input" formGroupName="faceToFacePhone">
+        <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Code</mat-label>
+            <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
+            <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+        <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Whatsapp Number</mat-label>
+            <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off" required>
+        </mat-form-field>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="onlineAppointment">
+      <div class="meeting-place-picker">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-select matInput placeholder="How would you like to be contacted?"
+          (selectionChange)="toggleContactMethod()" formControlName="contactMethod" autocomplete="off" 
+          panelClass="dropdown-regular" required>
+            <mat-option value="whatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</mat-option>
+            <mat-option value="skype"><i class="fab fa-skype"></i> Skype</mat-option>
+            <mat-option value="phone"><i class="fas fa-phone"></i> Phone (only Peru)</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+      </div>
+
+      <ng-container *ngIf="whatsApp">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Whatsapp</mat-label>
+          <input type="text" matInput formControlName="wappNumber" placeholder="What's your WhatsApp number?" />
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngIf="skype">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Skype name</mat-label>
+          <input type="text" matInput formControlName="skypeName" placeholder="What's your skype name?" />
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngIf="onlinePhone">
+        <div class="multiple-input" formGroupName="onlinePhone">
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Area code</mat-label>
+              <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
+              <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Phone Number</mat-label>
+              <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off" required>
+          </mat-form-field>
+        </div>
+      </ng-container>
+    </ng-container>
+
   </form>
+
+
 
   <section class="btn-area-one">
     <button type="submit" class="dialog-button" (click)="addEvent()"

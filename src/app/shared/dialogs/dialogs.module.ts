@@ -25,6 +25,7 @@ import { DialogModule } from './add-meal-dialog/dialog.module';
 import { AddReviewDialogComponent } from './add-review-dialog/add-review-dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { EditDialogModule } from './edit-dialog/edit-dialog.module';
+import { BookingModule } from './../../booking/booking.module';
 import { ChooseMealplanDialogComponent } from './choose-mealplan-dialog/choose-mealplan-dialog.component';
 import { AddAppointmentDialogComponent } from './add-appointment-dialog/add-appointment-dialog.component';
 import { AppointmentDetailDialogComponent } from './appointment-detail-dialog/appointment-detail-dialog.component';
@@ -61,7 +62,8 @@ import { EditAppointmentComponent } from './appointment-detail-dialog/edit-appoi
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    BookingModule
   ],
   exports: [
     ConfirmDialogComponent,

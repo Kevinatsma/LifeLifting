@@ -21,6 +21,7 @@ import { SignupStepFourComponent } from './signup-step-four/signup-step-four.com
 
 // Services
 import { AuthService } from './../../core/auth/auth.service';
+import { SignUpBookingComponent } from './../../booking/signup-booking/signup-booking.component';
 
 
 
@@ -40,6 +41,7 @@ const routes: Routes = [
       {path: 'step-two', component: SignupStepTwoComponent, data: {state:  'step-two'}},
       {path: 'step-three', component: SignupStepThreeComponent, data: {state:  'step-three'}},
       {path: 'step-four', component: SignupStepFourComponent, data: {state:  'step-four'}},
+      {path: 'step-five', component: SignUpBookingComponent, data: {state:  'step-five'}},
     ]
   },
 ];

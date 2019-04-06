@@ -44,7 +44,7 @@ export class OnlineAppointmentComponent implements OnInit {
     this.onlineAppointmentForm = this.fb.group({
       'callMethod': [''],
       'contactInfo': [''],
-      phoneNumber: this.fb.group({
+      onlineAppointmentPhone: this.fb.group({
         'phoneAreaCode': [{value: '+51', disabled: true}],
         'phoneRest': [''] || null,
       }),
@@ -62,7 +62,7 @@ export class OnlineAppointmentComponent implements OnInit {
     } else if (selectedCallMethod === 'whatsapp') {
         this.onlineAppointmentForm['controls'].whatsappNumber.reset();
     } else if (selectedCallMethod === 'phonecall') {
-        this.onlineAppointmentForm['controls'].phoneNumber.reset();
+        this.onlineAppointmentForm['controls'].onlineAppointmentPhone.reset();
     }
   }
 
@@ -73,7 +73,7 @@ export class OnlineAppointmentComponent implements OnInit {
 
     const data = {
         callMethod: this.selectedCallMethod,
-        contactDetails: this.onlineAppointmentForm['controls'].phoneNumber.get('phoneRest').value ||
+        contactDetails: this.onlineAppointmentForm['controls'].onlineAppointmentPhone.get('phoneRest').value ||
                         whatsappNumber ||
                         this.onlineAppointmentForm.get('skypeName').value,
         date: '12-12-2018'
@@ -85,6 +85,6 @@ export class OnlineAppointmentComponent implements OnInit {
     const path = `users/${this.auth.currentUserId}/appointments`;
     this.bookingService.addOnlineAppointment(data, path, user);
     this.auth.updateUser(appointmentCheck, user);
-    this.router.navigate(['../step-four'], { relativeTo: this.route });
+    this.router.navigate(['../step-five'], { relativeTo: this.route });
   }
 }

@@ -3,7 +3,7 @@ import { Appointment } from './appointment.model';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { MatSnackBar } from '@angular/material';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { CalendarEvent } from 'angular-calendar';
 
 @Injectable({
@@ -15,8 +15,16 @@ export class BookingService implements OnInit {
   appointmentsCol: AngularFirestoreCollection;
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
 
+  // Edit state
+  editShow: boolean;
+  editStateChange: Subject<boolean> = new Subject<boolean>();
+
   constructor( private afs: AngularFirestore,
-               public snackbar: MatSnackBar) { }
+               public snackbar: MatSnackBar) {
+                this.editStateChange.subscribe((value) => {
+                  this.editShow = value;
+                });
+               }
 
   ngOnInit() {
   }
@@ -70,6 +78,13 @@ export class BookingService implements OnInit {
     this.eventDoc.delete().catch((error) => console.error(error.message));
   }
 
+  // Toggles
+  toggleEdit() {
+    this.editStateChange.next(!this.editShow);
+  }
+
+  // Getters
+
   getAppointments() {
     this.appointmentsCol = this.afs.collection<Appointment>(`appointments`);
     this.events$ = this.appointmentsCol.snapshotChanges().pipe(map(events => {
@@ -91,6 +106,12 @@ export class BookingService implements OnInit {
             },
             clientID: data.clientID,
             specialistID: data.specialistID,
+            meetMethod: data.meetMethod,
+            onlineAppointmentPhone: data.onlineAppointmentPhone,
+            whatsappNumber: data.whatsappNumber,
+            skypeName: data.skypeName,
+            faceToFacePhone: data.faceToFacePhone,
+            location: data.location,
         };
         return {...eventData };
       });

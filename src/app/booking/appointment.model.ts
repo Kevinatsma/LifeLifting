@@ -1,8 +1,4 @@
 export class Appointment {
-    callMethod?: string;
-    phoneNumber?: string;
-    whatsappNumber?: string;
-    skypeName?: string;
     title?: string;
     start?: any;
     end?: any;
@@ -18,4 +14,10 @@ export class Appointment {
     };
     specialistID?: string;
     clientID?: string;
+    meetMethod?: string;
+    onlineAppointmentPhone?: string;
+    whatsappNumber?: string;
+    skypeName?: string;
+    faceToFacePhone?: string;
+    location?: string;
 }

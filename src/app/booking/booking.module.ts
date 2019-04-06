@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { OnlineAppointmentComponent } from './online-appointment/online-appointment.component';
 import { FaceToFaceAppointmentComponent } from './face-to-face-appointment/face-to-face-appointment.component';
 import { BookingComponent } from './booking/booking.component';
+import { SignUpBookingComponent } from './signup-booking/signup-booking.component';
 import { MaterialModule } from '../shared/material.module';
 import { SharedModule } from '../shared/shared.module';
 
@@ -17,7 +18,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
   declarations: [
     OnlineAppointmentComponent,
     FaceToFaceAppointmentComponent,
-    BookingComponent
+    BookingComponent,
+    SignUpBookingComponent
   ],
   imports: [
     RouterModule,
@@ -35,7 +37,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
   exports: [
     OnlineAppointmentComponent,
     FaceToFaceAppointmentComponent,
-    BookingComponent
+    BookingComponent,
+    SignUpBookingComponent
   ]
 })
 export class BookingModule { }
