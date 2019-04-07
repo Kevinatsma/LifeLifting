@@ -6,7 +6,7 @@ import { Specialist } from './../../../specialists/specialist.model';
 import { User } from './../../../user/user.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { UserService } from './../../../user/user.service';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AuthService } from './../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-appointment-detail-dialog',
@@ -58,7 +58,8 @@ export class AppointmentDetailDialogComponent {
                @Inject(MAT_DIALOG_DATA) public data: any,
                private specialistService: SpecialistService
     ) {
-      this.getEvent(data.event);
+      // this.getEvent(data.event);
+      this.event = data.event.event;
       this.doEventCheck(this.event);
       console.log(this.event);
       this.getTimeAndDate();
@@ -83,6 +84,7 @@ export class AppointmentDetailDialogComponent {
   }
 
   doEventCheck(e) {
+    console.log(e);
     if (e.meetMethod === 'faceToFace') {
       this.faceToFace = true;
       this.onlineAppointment = false;
@@ -104,7 +106,8 @@ export class AppointmentDetailDialogComponent {
     } else {
       this.skype = true;
     }
-    if (e.onlineAppointmentPhone.phoneAreaCode === '') {
+    console.log(e.onlineAppointmentPhone);
+    if (e.onlineAppointmentPhone.phoneRest === '') {
       this.onlinePhone = false;
     } else {
       this.onlinePhone = true;

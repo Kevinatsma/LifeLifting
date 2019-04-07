@@ -9,7 +9,7 @@
         <i class="far fa-trash-alt"></i>
       </button>
       <h1>{{event.title}}</h1>
-      <button class="edit-btn" *ngIf="!editShow && event.clientID === user.uid" 
+      <button class="edit-btn" *ngIf="!editShow && user.roles.admin || user.roles.specialist" 
       (click)="toggleEdit()">
         <i class="far fa-edit"></i>
       </button>
