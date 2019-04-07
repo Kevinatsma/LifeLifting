@@ -86,7 +86,7 @@ export class BookingService implements OnInit {
   // Getters
 
   getAppointments() {
-    this.appointmentsCol = this.afs.collection<Appointment>(`appointments`);
+    this.appointmentsCol = this.afs.collection<Appointment>(`appointments`, ref => ref.orderBy('start'));
     this.events$ = this.appointmentsCol.snapshotChanges().pipe(map(events => {
       return events.map(event => {
         const data = event.payload.doc.data() as Appointment;
@@ -107,6 +107,42 @@ export class BookingService implements OnInit {
             clientID: data.clientID,
             specialistID: data.specialistID,
             meetMethod: data.meetMethod,
+            contactMethod: data.contactMethod,
+            onlineAppointmentPhone: data.onlineAppointmentPhone,
+            whatsappNumber: data.whatsappNumber,
+            skypeName: data.skypeName,
+            faceToFacePhone: data.faceToFacePhone,
+            location: data.location,
+        };
+        return {...eventData };
+      });
+    }));
+    return this.events$;
+  }
+
+  getSpecificAppointments(colRef) {
+    this.appointmentsCol = colRef;
+    this.events$ = this.appointmentsCol.snapshotChanges().pipe(map(events => {
+      return events.map(event => {
+        const data = event.payload.doc.data() as Appointment;
+        // const id = event.payload.doc.id;
+        const start = data.start;
+        const end = data.end;
+        const eventData = {
+            eventID: data.eventID,
+            title: data.title,
+            start: new Date(start),
+            end: new Date(end),
+            color: data.color,
+            draggable: data.draggable,
+            resizable: {
+              beforeStart: data.resizable.beforeStart, // this allows you to configure the sides the event is resizable from
+              afterEnd: data.resizable.afterEnd
+            },
+            clientID: data.clientID,
+            specialistID: data.specialistID,
+            meetMethod: data.meetMethod,
+            contactMethod: data.contactMethod,
             onlineAppointmentPhone: data.onlineAppointmentPhone,
             whatsappNumber: data.whatsappNumber,
             skypeName: data.skypeName,

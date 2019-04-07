@@ -26,6 +26,14 @@ main.specialist-wrapper {
         button.icon-button {
             position: inherit;
         }
+
+        a.icon-button {
+            right: 0;
+
+            svg {
+                transform: scale(1, -1);
+            }
+        }
     
     }
 }

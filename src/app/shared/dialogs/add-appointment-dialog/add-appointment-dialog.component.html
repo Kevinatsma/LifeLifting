@@ -1,4 +1,4 @@
-<main class="dialog-wrapper">
+<main class="dialog-wrapper" *ngIf="auth.user | async as user">
   <form [formGroup]="appointmentForm">
     <h3>Plan an appointment with {{data.specialist.firstName}}</h3>
     <p class="card-text">
@@ -13,7 +13,7 @@
       </mat-error>
     </mat-form-field>
 
-    <div class="color-pickers">
+    <div class="color-pickers" *ngIf="user.roles.specialist || user.roles.admin">
       <mat-form-field appearance="standard" floatLabel="always" class="color-picker-field" *ngIf="standardColorPrimary">
         <mat-label>Pick a primary color (event background)</mat-label>
         <input
@@ -135,10 +135,11 @@
       </ng-container>
 
       <ng-container *ngIf="onlinePhone">
-        <div class="multiple-input" formGroupName="onlinePhone">
+        <div class="multiple-input online-phone" formGroupName="onlinePhone">
           <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Area code</mat-label>
-              <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
+              <input type="text" matInput formControlName="phoneAreaCode" [value]="'+51'" readonly
+              autofocus="off" autocomplete="off" maxlength="3" required>
               <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">

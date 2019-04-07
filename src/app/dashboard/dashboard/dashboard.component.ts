@@ -55,6 +55,8 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['signup/step-four']);
     } else if (!this.user.signUpCompleted) {
       return null;
+    } else if (!this.user.accepted && this.user.signUpCompleted && this.auth.currentUserId) {
+      this.router.navigate(['signup/limbo']);
     }
   }
 

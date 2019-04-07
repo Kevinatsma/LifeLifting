@@ -233,4 +233,11 @@ form {
         }
 
     }
+
+    .online-phone {
+        mat-form-field:first-child {
+            margin-right: 1em;
+            width: 75px;
+        }
+    }
 }

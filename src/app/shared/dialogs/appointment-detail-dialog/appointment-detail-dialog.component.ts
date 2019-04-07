@@ -45,6 +45,8 @@ export class AppointmentDetailDialogComponent {
   ];
 
   // online call methods
+  onlineAppointment = false;
+  faceToFace = false;
   whatsApp = false;
   skype = false;
   onlinePhone = false;
@@ -71,6 +73,17 @@ export class AppointmentDetailDialogComponent {
   }
 
   doEventCheck(e) {
+    if (e.meetMethod === 'faceToFace') {
+      this.faceToFace = true;
+      this.onlineAppointment = false;
+    } else {
+      this.onlineAppointment = true;
+      this.faceToFace = false;
+    }
+
+    console.log(this.faceToFace);
+    console.log(this.onlineAppointment);
+
     if (e.whatsappNumber === null) {
       this.whatsApp = false;
     } else {

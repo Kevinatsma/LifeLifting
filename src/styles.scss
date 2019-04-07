@@ -27,7 +27,7 @@ button {
     }
 }
 
-button.icon-button {
+button.icon-button, a.icon-button {
     @extend %flex-center;
     width: 55px;
     height: 55px;

@@ -12,26 +12,35 @@
 
     <ul class="checklist">
       <li [class.activated]="user.basicData">
+        <div class="placeholder" *ngIf="!user.basicData"></div>
         <i class="fas fa-check-square" *ngIf="user.basicData"></i>
         Step 1: Fill out basic data
       </li>
       <li [class.activated]="user.packageChoice">
+        <div class="placeholder" *ngIf="!user.packageChoice"></div>
         <i class="fas fa-check-square" *ngIf="user.packageChoice"></i>
         Step 2: Choose a package
       </li>
       <li [class.activated]="user.specialist">
+        <div class="placeholder" *ngIf="!user.specialist"></div>
         <i class="fas fa-check-square" *ngIf="user.specialist"></i>
         Step 3: Choose a specialist
       </li>
       <li [class.activated]="user.appointment">
+        <div class="placeholder" *ngIf="!user.appointment"></div>
         <i class="fas fa-check-square" *ngIf="user.appointment"></i>
         Step 4: Make an appointment
+      </li>
+      <li [class.activated]="user.accepted">
+        <div class="placeholder" *ngIf="!user.accepted"></div>
+        <i class="fas fa-check-square" *ngIf="user.accepted"></i>
+        Step 5: Payment
       </li>
     </ul>
     <div class="btn-area">
       <button type="link" class="btn-primary" 
-      [class.btn-disabled]="!user.basicData || !user.appointment || !user.specialist || !user.packageChoice" 
-      [disabled]="!user.basicData || !user.appointment || !user.specialist || !user.packageChoice" 
+      [class.btn-disabled]="!user.basicData || !user.appointment || !user.specialist || !user.packageChoice || !user.accepted" 
+      [disabled]="!user.basicData || !user.appointment || !user.specialist || !user.packageChoice || !user.accepted" 
       routerLink="../dashboard">Go to Mirror</button>
       <br>
       <button type="link" class="text-link" routerLink="../login">Go back</button>

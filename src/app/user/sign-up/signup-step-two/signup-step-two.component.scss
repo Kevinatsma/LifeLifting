@@ -6,6 +6,10 @@ section.step-wrapper {
     height: auto;
     box-sizing: border-box;
 
+    &.finished {
+        padding: 2em 0;
+    }
+
     &.success {
         height: 100vh;
         justify-content: center;

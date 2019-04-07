@@ -15,6 +15,7 @@ export class Appointment {
     specialistID?: string;
     clientID?: string;
     meetMethod?: string;
+    contactMethod?: string;
     onlineAppointmentPhone?: string;
     whatsappNumber?: string;
     skypeName?: string;

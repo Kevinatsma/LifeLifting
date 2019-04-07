@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { BookingService } from './../../../booking/booking.service';
 import { Appointment } from './../../../booking/appointment.model';
 import { User } from './../../../user/user.model';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-add-appointment-dialog',
@@ -19,12 +20,14 @@ export class AddAppointmentDialogComponent implements OnInit {
 
   standardColorPrimary = '#db9969';
   standardColorSecondary = '#444444';
+  phoneAreaCode = new FormControl({value: '+51', disabled: true});
 
   whatsApp = false;
   skype = false;
   onlinePhone = false;
 
-  constructor( private fb: FormBuilder,
+  constructor( public auth: AuthService,
+               private fb: FormBuilder,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public data: any,
                private bookingService: BookingService
@@ -45,7 +48,7 @@ export class AddAppointmentDialogComponent implements OnInit {
         'phoneRest': [''] || null,
       }),
       onlinePhone: this.fb.group({
-        'phoneAreaCode': [''] || null,
+        phoneAreaCode: [`${this.phoneAreaCode.value}`],
         'phoneRest': [''] || null,
       }),
       appointmentContext: [''],
@@ -121,6 +124,7 @@ export class AddAppointmentDialogComponent implements OnInit {
       specialistID: this.user.specialist,
       clientID: this.user.uid,
       meetMethod: this.appointmentForm.get('appointmentContext').value,
+      contactMethod: this.appointmentForm.get('contactMethod').value,
       faceToFacePhone: this.appointmentForm.controls.faceToFacePhone.value || null,
       location: this.appointmentForm.get('location').value || null,
       whatsappNumber: this.appointmentForm.get('wappNumber').value || null,

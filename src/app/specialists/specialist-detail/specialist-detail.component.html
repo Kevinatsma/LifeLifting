@@ -1,21 +1,24 @@
-<ng-container *ngIf="specialist">
+<ng-container *ngIf="specialist && auth.user | async as user">
   <main class="specialist-wrapper" *ngIf="!editShow">
     <section class="action-toolbar-top">
       <div class="left">
-        <button class="icon-button" (click)="goBack()">
+        <button class="icon-button" (click)="goBack()" *ngIf="user.accepted">
             <i class="fas fa-arrow-left"></i>
         </button>
+        <a class="icon-button" href="tel:{{specialist.phoneNumber}}" *ngIf="!user.accepted">
+            <i class="fas fa-phone"></i>
+        </a>
       </div>
       <div class="right">
         <button class="icon-button" href="#" *ngIf="!editShow" (click)="chat()">
           <i class="fas fa-comment-alt"></i>
         </button>
 
-        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && user.roles.admin">
           <i class="fas fa-edit"></i>
         </button>
 
-        <button class="icon-button edit-button" (click)="openReviewDialog(specialist)" *ngIf="!editShow">
+        <button class="icon-button edit-button" (click)="openReviewDialog(specialist)" *ngIf="!editShow &&  user.accepted">
           <i class="fas fa-star"></i>
         </button>
       </div>

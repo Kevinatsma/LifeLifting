@@ -59,7 +59,7 @@
     </section> -->
 
     <section class="appointment-type" *ngIf="event">
-      <div class="contact-container" *ngIf="event.onlineAppointmentPhone.phoneAreaCode ||  event.skypeName || event.whatsappNumber">
+      <div class="contact-container" *ngIf="onlineAppointment && event.onlineAppointmentPhone.phoneAreaCode || event.skypeName || event.whatsappNumber">
         <h4>Online call</h4>
         <div class="contact-container__item skype" *ngIf="skype">
           <p>
@@ -75,7 +75,7 @@
           </p>
         </div>
 
-        <div class="contact-container__item phone" *ngIf="onlinePhone">
+        <div class="contact-container__item phone" *ngIf="onlinePhone && event.onlineAppointmentPhone.phoneRest">
           <p *ngIf="client">
             <i class="fas fa-phone"></i>
             <a class="text-link" href="tel:{{event.onlineAppointmentPhone.phoneAreaCode}}{{event.onlineAppointmentPhone.phoneRest}}">
@@ -85,7 +85,7 @@
         </div>
       </div>
 
-      <div class="contact-container__item face-to-face" *ngIf="event.faceToFacePhone.phoneAreaCode">
+      <div class="contact-container__item face-to-face" *ngIf="faceToFace && event.faceToFacePhone.phoneAreaCode || event.location">
         <h4>Face to Face </h4>
         <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
         <p *ngIf="client">

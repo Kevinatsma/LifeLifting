@@ -16,6 +16,7 @@ export interface Roles {
 
 export class User {
     uid: string;
+    accepted?: boolean;
     sID?: string;
     cID?: string;
     displayName: string;

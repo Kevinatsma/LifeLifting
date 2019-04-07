@@ -255,7 +255,7 @@
                     }
 
                     &.skype {
-                        border-left: 10px solid $skype;
+                        border-left: 8px solid $skype;
                         background: lighten($skype, 50%);
 
                         p, p a{
@@ -264,7 +264,7 @@
                     }
 
                     &.whatsapp {
-                        border-left: 10px solid $whatsapp;
+                        border-left: 8px solid $whatsapp;
                         background: lighten($whatsapp, 50%);
 
                         p, p a{
@@ -273,7 +273,7 @@
                     }
 
                     &.phone {
-                        border-left: 10px solid $secondary-color;
+                        border-left: 8px solid $secondary-color;
                         background: lighten($secondary-color, 55%);
 
                         p, p a{

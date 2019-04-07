@@ -1,0 +1,45 @@
+@import './../../../../assets/scss/_master.scss';
+
+
+.limbo-container {
+    flex-flow: column wrap;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: relative;
+
+    @extend %flex-center;
+
+    .text-link {
+        &::after {
+            transition: none;
+        }
+    }
+
+    @keyframes fly-in-from-bottom {
+        0% {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        80% {
+            transform: translateY(-5%);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    app-specialist-detail {
+        animation: fly-in-from-bottom 0.5s;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: transform 0.5s cubic-bezier(.63,.91,.38,1.19);
+    }
+}

@@ -1,15 +1,42 @@
 @import './../../../../../assets/scss/_master.scss';
 
-form {
+// Ng  deeps
+
+::ng-deep mat-option {
+    svg {
+        margin-right: 1em;
+        font-size: 20px!important;
+
+        &.fa-phone {
+            color: $secondary-color;
+            font-size: 18px!important;
+            transform: scale(-1, 1);
+        }
+
+        &.fa-whatsapp {
+            color: #25D366;
+        }
+        &.fa-skype {
+            color: #00aff0;
+        }
+    }
+}
+
+form.edit-appointment {
     .phone {
         input {
             border-bottom: $light-border;
         }
     }
 
+
     ::ng-deep input {
         font-family: $main-font;
         letter-spacing: 1.6px!important;
+    }
+
+    ::ng-deep .mat-select-placeholder {
+        text-transform: capitalize;
     }
 }
 
@@ -33,7 +60,7 @@ section {
     }
 
     &.pick-colors {
-        margin: 2em auto;
+        margin: 2em auto 0;
         width: 75%;
 
         .color-pickers {
@@ -60,6 +87,10 @@ section {
                 }
             }
         }
+    }
+
+    &.meeting-place-picker {
+        padding: 0 4em;
     }
 
     &.pick-a-time {
@@ -98,13 +129,20 @@ section {
     }
 
     &.appointment-type {
+        width: 100%!important;
+        padding: 0 4em;
 
-        &.face-to-face {
-
+        h4 {
+            margin:  0;
         }
 
         &.online {
-
+            .multiple-input {
+                mat-form-field:first-child {
+                    margin-right: 1em;
+                    width: 75px;
+                }
+            }
         }
     }
 

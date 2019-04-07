@@ -16,7 +16,7 @@
         <mat-form-field appearance="standard" floatLabel="always" *ngIf="selectedCallMethod === 'phonecall'" formGroupName="onlineAppointmentPhone">
           <mat-label>Your Phone number</mat-label>
           <div class="multiple-input">
-            <input type="text" matInput placeholder="+51" [value]="'+51'" autofocus="nope" autocomplete="off" formControlName="phoneAreaCode" required>
+            <input type="number" matInput placeholder="+51" [value]="'+51'" autofocus="nope" autocomplete="off" formControlName="phoneAreaCode" required>
             <input type="number" matInput placeholder="1234567890" autocomplete="off" formControlName="phoneRest" required>
             <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
           </div>

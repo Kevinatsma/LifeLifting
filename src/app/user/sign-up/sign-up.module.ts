@@ -22,6 +22,7 @@ import { SignupStepFourComponent } from './signup-step-four/signup-step-four.com
 // Services
 import { AuthService } from './../../core/auth/auth.service';
 import { SignUpBookingComponent } from './../../booking/signup-booking/signup-booking.component';
+import { LimboStateComponent } from './limbo-state/limbo-state.component';
 
 
 
@@ -42,6 +43,7 @@ const routes: Routes = [
       {path: 'step-three', component: SignupStepThreeComponent, data: {state:  'step-three'}},
       {path: 'step-four', component: SignupStepFourComponent, data: {state:  'step-four'}},
       {path: 'step-five', component: SignUpBookingComponent, data: {state:  'step-five'}},
+      {path: 'limbo', component: LimboStateComponent, data: {state:  'limbo'}},
     ]
   },
 ];
@@ -55,6 +57,7 @@ const routes: Routes = [
     FirstStepSuccessComponent,
     SignupStepThreeComponent,
     SignupStepFourComponent,
+    LimboStateComponent,
 ],
   imports: [
     CommonModule,
@@ -70,6 +73,7 @@ const routes: Routes = [
   exports: [
     LoginComponent,
     SignupComponent,
+    LimboStateComponent,
     RouterModule
   ],
   providers: [

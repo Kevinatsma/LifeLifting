@@ -1,5 +1,5 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
-    <section class="step-wrapper" *ngIf="!user.packageChoice">
+    <section class="step-wrapper" *ngIf="!user.packageChoice" [class.finished]="user.packageChoice">
       <h5>Pick a plan and get a free assesment</h5>
       <h1>Step 2: Choose a plan</h1>
   
