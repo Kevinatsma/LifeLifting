@@ -61,7 +61,6 @@ export class AppointmentDetailDialogComponent {
       // this.getEvent(data.event);
       this.event = data.event.event;
       this.doEventCheck(this.event);
-      console.log(this.event);
       this.getTimeAndDate();
       this.getEndTimeAndDate();
       this.getSpecialist(this.event.specialistID);
@@ -84,7 +83,6 @@ export class AppointmentDetailDialogComponent {
   }
 
   doEventCheck(e) {
-    console.log(e);
     if (e.meetMethod === 'faceToFace') {
       this.faceToFace = true;
       this.onlineAppointment = false;
@@ -92,9 +90,6 @@ export class AppointmentDetailDialogComponent {
       this.onlineAppointment = true;
       this.faceToFace = false;
     }
-
-    console.log(this.faceToFace);
-    console.log(this.onlineAppointment);
 
     if (e.whatsappNumber === null) {
       this.whatsApp = false;
@@ -106,7 +101,6 @@ export class AppointmentDetailDialogComponent {
     } else {
       this.skype = true;
     }
-    console.log(e.onlineAppointmentPhone);
     if (e.onlineAppointmentPhone.phoneRest === '') {
       this.onlinePhone = false;
     } else {

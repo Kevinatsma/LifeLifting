@@ -89,7 +89,7 @@ export class GuidelineService {
       const action = 'Close';
 
       this.snackBar.open(message, action, {
-        duration: 10000,
+        duration: 5000,
         panelClass: ['success-snackbar']
       });
     })
@@ -98,6 +98,25 @@ export class GuidelineService {
       console.error(error.message);
     });
   }
+
+  duplicateGuideline(data) {
+    this.afs.collection<Guideline>(`guidelines`).add(data)
+    .then(() => {
+      // Show Snackbar
+      const message = `${data.guidelineName} was duplicated succesfully`;
+      const action = 'Close';
+
+      this.snackBar.open(message, action, {
+        duration: 5000,
+        panelClass: ['success-snackbar']
+      });
+    })
+    .catch(error => {
+      alert(error.message);
+      console.error(error.message);
+    });
+  }
+
 
   updateGuideline(id, data) {
     this.guidelineDoc = this.afs.doc<Guideline>(`guidelines/${id}`);

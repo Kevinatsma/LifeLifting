@@ -6,6 +6,10 @@
         <button type="button" class="icon-button" (click)="goBack()">
             <i class="fas fa-arrow-left"></i>
         </button>
+        <button type="button" class="icon-button edit-button" (click)="deleteGuidelineDialog(guideline)" 
+        *ngIf="!editShow && auth.adminRoles(user)">
+          <i class="fas fa-trash"></i>
+        </button>
       </div>
       <div class="middle">
         <h1 *ngIf="client; else gID">
@@ -16,10 +20,6 @@
         </ng-template>
       </div>
       <div class="right">
-        <button type="button" class="icon-button edit-button" (click)="deleteGuidelineDialog(guideline)" 
-        *ngIf="!editShow && auth.adminRoles(user)">
-          <i class="fas fa-trash"></i>
-        </button>
         <button type="button" class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && auth.adminRoles(user)">
           <i class="fas fa-edit"></i>
         </button>

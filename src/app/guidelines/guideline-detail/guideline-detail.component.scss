@@ -25,13 +25,18 @@ main.specialist-wrapper {
 
         button.icon-button {
             position: inherit;
+            margin-left: 0;
+        }
+
+        .left {
+            button:first-child {
+                margin-right: 2em;
+            }
         }
 
         .right {
-            .icon-btn {
-                &.print {
-                    margin-left: 0;
-                }
+            button:first-child {
+                margin-right: 2em;
             }
         }
     
@@ -65,7 +70,6 @@ main.specialist-wrapper {
 
 
     .middle {
-        margin-left: 7.5em;
         h1, h5 {
             text-align: center;
         }

@@ -153,8 +153,6 @@ export class MyCalendarComponent implements OnInit {
       panelClass: 'event-detail-dialog'
     });
 
-    console.log(event),
-
     dialogRef.afterClosed().subscribe(() => {
       if (this.bookingService.editShow) {
         this.bookingService.toggleEdit();

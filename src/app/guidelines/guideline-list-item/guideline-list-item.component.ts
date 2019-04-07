@@ -51,6 +51,10 @@ export class GuidelineListItemComponent implements OnInit {
     return this.guidelineService.editShow = true;
   }
 
+  duplicateGuideline(guideline) {
+    this.guidelineService.duplicateGuideline(guideline);
+  }
+
 
   linkToChild(guideline) {
     const url = `dashboard/guidelines/${guideline.guidelineID}`;

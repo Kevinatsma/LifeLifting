@@ -1,6 +1,21 @@
 @import './../../../assets/scss/_master.scss';
 @import './../../../assets/scss/_animations.scss';
 
+// NG deeps
+::ng-deep .mat-menu-content {
+    .mat-menu-item {
+        color: $black;
+        font-size: 16px;
+        font-family: $main-font;
+        
+        svg {
+            margin-right: 1em;
+        }
+    }
+}
+
+// Component content
+
 mat-card.list-item-card {
     display: flex;
     flex-flow: column wrap;
@@ -14,6 +29,12 @@ mat-card.list-item-card {
     &:hover, &:focus {
         transition: transform 300ms ease-in-out;
         transform: scale(1.02);
+    }
+
+    .menu-icon-btn {
+        position: absolute;
+        right: 0;
+        top: 0;
     }
 
     p.subtitle,  p.subtitle input {

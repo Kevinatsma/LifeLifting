@@ -131,8 +131,6 @@ export class ClientBookingComponent implements OnInit {
   }
 
   getEvents(user) {
-    const specialist = `specialist${user.sID}`;
-    console.log(user.uid);
     // Pull appointments from service
     const colRef: AngularFirestoreCollection =
     this.afs.collection('appointments', ref => ref.where('clientID', '==', `${user.uid}`).orderBy('start'));

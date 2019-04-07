@@ -82,9 +82,6 @@ export class AppointmentDetailComponent {
       this.faceToFace = false;
     }
 
-    console.log(this.faceToFace);
-    console.log(this.onlineAppointment);
-
     if (e.whatsappNumber === null) {
       this.whatsApp = false;
     } else {

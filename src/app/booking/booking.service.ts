@@ -48,7 +48,6 @@ export class BookingService implements OnInit {
         eventID: docRef.id
       };
       this.updateEvent(docRef.id, eventData);
-      // console.log('You can now also access .this as expected: ', this.foo);
     })
     .catch(error => console.error('Error adding document: ', error))
     .then(() => {
@@ -73,7 +72,6 @@ export class BookingService implements OnInit {
   }
 
   deleteEvent(id) {
-    console.log(id);
     this.eventDoc = this.afs.doc(`appointments/${id}`);
     this.eventDoc.delete().catch((error) => console.error(error.message));
   }

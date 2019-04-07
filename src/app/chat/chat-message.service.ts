@@ -43,7 +43,6 @@ export class ChatMessageService {
       content,
       timestamp: new Date().toString()
     };
-    console.log(data.timestamp);
     return this.afs.collection(`chats/${channelID}/messages`).add(data)
     .then(() => {
       console.log('Message sent!');

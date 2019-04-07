@@ -61,7 +61,6 @@ export class LimboStateComponent implements OnInit {
       this.afs.collection('appointments', ref => ref.where('clientID', '==', `${user.uid}`).limit(1).orderBy('created', 'desc'));
     this.bookingService.getSpecificAppointments(colRef).subscribe(events => {
       this.events = events;
-      console.log(events);
     });
   }
 
