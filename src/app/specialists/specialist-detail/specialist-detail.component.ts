@@ -57,17 +57,20 @@ export class SpecialistDetailComponent implements OnInit {
 
   getSpecialist() {
     setTimeout(() => {
+      let id: string;
+
+      // Check if there is specialist input
       if ( this.specialist ) {
-        return null;
+        id =  this.specialist.uid;
       } else {
-        const id = this.route.snapshot.paramMap.get('id');
+        // Otherwise get id from url parameter
+        id = this.route.snapshot.paramMap.get('id');
         this.specialistService.getSpecialistData(id).subscribe(specialist => {
           this.specialist = specialist;
-          this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${specialist.uid}`));
-          this.reviews = this.reviewsCol.valueChanges();
-          });
+        });
       }
-
+      this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${this.specialist.uid}`));
+      this.reviews = this.reviewsCol.valueChanges();
     }, 400);
 
   }

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../user.model';
-import { Specialist } from 'src/app/specialists/specialist.model';
-import { Appointment } from 'src/app/booking/appointment.model';
-import { BookingService } from 'src/app/booking/booking.service';
+import { Specialist } from './../../../specialists/specialist.model';
+import { Appointment } from './../../../booking/appointment.model';
+import { BookingService } from './../../../booking/booking.service';
 import { UserService } from '../../user.service';
-import { AuthService } from 'src/app/core/auth/auth.service';
-import { SpecialistService } from 'src/app/specialists/specialist.service';
+import { AuthService } from './../../../core/auth/auth.service';
+import { SpecialistService } from './../../../specialists/specialist.service';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
 
@@ -57,8 +57,12 @@ export class LimboStateComponent implements OnInit {
   // Get appointments
 
   getAppointments(user) {
-    const colRef: AngularFirestoreCollection = this.afs.collection('appointments', ref => ref.where('clientID', '==', `${user.uid}`));
-    this.bookingService.getSpecificAppointments(colRef).subscribe(events => this.events = events);
+    const colRef: AngularFirestoreCollection =
+      this.afs.collection('appointments', ref => ref.where('clientID', '==', `${user.uid}`).limit(1).orderBy('created', 'desc'));
+    this.bookingService.getSpecificAppointments(colRef).subscribe(events => {
+      this.events = events;
+      console.log(events);
+    });
   }
 
   // Toggles

@@ -10,6 +10,12 @@ section.step-wrapper {
         height: 100vh;
         justify-content: center;
     }
+
+    .step-done {
+        .btn-area {
+            margin-top: 0;
+        }
+    }
 }
 
 section.slider-nav-container {

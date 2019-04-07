@@ -1,12 +1,9 @@
 
-<main class="calendar" *ngIf="auth.user | async as user">
+<main class="calendar calendar-signup" *ngIf="auth.user | async as user">
   <section class="action-toolbar-top calendar__toolbar">
-    <div class="left">
-      <button class="icon-button" (click)="goBack()">
-          <i class="fas fa-arrow-left"></i>
-      </button>
-      <button class="icon-button hidden">
-          <i class="fas fa-arrow-left"></i>
+    <div class="left" *ngIf="specialist">
+      <button class="icon-button" (click)="chat(specialist.uid)">
+        <i class="fas fa-comment-alt"></i>
       </button>
     </div>
 
@@ -14,10 +11,6 @@
     <!-- <h1>{{user.specialist}} Calendar</h1> -->
 
     <div class="right">
-      <button class="icon-button" (click)="chat(specialist.uid)">
-        <i class="fas fa-comment-alt"></i>
-      </button>
-
       <button class="icon-button" (click)="addEvent()">
         <i class="fas fa-plus"></i>
       </button>
@@ -29,97 +22,98 @@
     <app-loading-spinner></app-loading-spinner>
   </ng-template>
 
-  <section class="calendar__title">
-    <button
-      class="text-link"
-      mwlCalendarPreviousView
-      [view]="view"
-      [(viewDate)]="viewDate"
-      (viewDateChange)="activeDayIsOpen = false"
-    >
-      <i class="fas fa-arrow-left"></i>
-      Previous
-    </button>
-    <!-- <div
-      class="btn btn-outline-secondary"
-      mwlCalendarToday
-      [(viewDate)]="viewDate"
-    >
-      Today
-    </div> -->
-    <h2>
-      {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}
-    </h2>
-    <button
-      class="text-link"
-      mwlCalendarNextView
-      [view]="view"
-      [(viewDate)]="viewDate"
-      (viewDateChange)="getEvents()"
-      (viewChange)="getEvents()"
-    >
-      Next
-      <i class="fas fa-arrow-right"></i>
-    </button>
-  </section>
-
-  <section class="calendar__view-changer">
-    <div class="btn-area">
-      <button
-        class="button tab-group-btn"
-        (click)="view = CalendarView.Month"
-        [class.active]="view === CalendarView.Month"
-      >
-        <span>Month</span>
-      </button>
-      <button
-        class="btn tab-group-btn"
-        (click)="view = CalendarView.Week"
-        [class.active]="view === CalendarView.Week"
-      >
-        <span>Week</span>
-      </button>
-      <button
-        class="btn tab-group-btn"
-        (click)="view = CalendarView.Day"
-        [class.active]="view === CalendarView.Day"
-      >
-        <span>Day</span>
-      </button>
+  <div class="calendar-container">
+    <div class="profile-picture" *ngIf="specialist" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
+      <span *ngIf="!specialist.photoURL">No Photo Yet</span>
     </div>
-  </section>
 
-  <section class="calendar__view" [ngSwitch]="view">
-    <ng-container *ngIf="events$ | async; else loading; let events">
-    <!-- <ng-container *ngIf="appointments"> -->
-      <mwl-calendar-month-view
-        *ngSwitchCase="CalendarView.Month"
-        [viewDate]="viewDate"
-        [events]="events"
-        [activeDayIsOpen]="activeDayIsOpen"
-        (dayClicked)="dayClicked($event.day)"
-        (eventClicked)="openEventDetailDialog($event)"
-        (eventTimesChanged)="eventTimesChanged($event)"
+    <section class="calendar__title">
+      <button
+        class="text-link"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="activeDayIsOpen = false"
       >
-      </mwl-calendar-month-view>
-      <mwl-calendar-week-view
-        *ngSwitchCase="CalendarView.Week"
-        [viewDate]="viewDate"
-        [events]="events"
-        (eventClicked)="openEventDetailDialog($event)"
-        (eventTimesChanged)="eventTimesChanged($event)"
+        <i class="fas fa-arrow-left"></i>
+        Previous
+      </button>
+      <!-- <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
       >
-      </mwl-calendar-week-view>
-      <mwl-calendar-day-view
-        *ngSwitchCase="CalendarView.Day"
-        [viewDate]="viewDate"
-        [events]="events"
-        (eventClicked)="openEventDetailDialog($event)"
-        (eventTimesChanged)="eventTimesChanged($event)"
+        Today
+      </div> -->
+      <h2>
+        {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}
+      </h2>
+      <button
+        class="text-link"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="getEvents(user)"
+        (viewChange)="getEvents(user)"
       >
-      </mwl-calendar-day-view>
-    </ng-container>
-  </section>
+        Next
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </section>
+
+    <section class="calendar__view-changer">
+      <div class="btn-area">
+        <button
+          class="button tab-group-btn"
+          (click)="view = CalendarView.Month"
+          [class.active]="view === CalendarView.Month"
+        >
+          <span>Month</span>
+        </button>
+        <button
+          class="btn tab-group-btn"
+          (click)="view = CalendarView.Week"
+          [class.active]="view === CalendarView.Week"
+        >
+          <span>Week</span>
+        </button>
+        <button
+          class="btn tab-group-btn"
+          (click)="view = CalendarView.Day"
+          [class.active]="view === CalendarView.Day"
+        >
+          <span>Day</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="calendar__view" [ngSwitch]="view">
+      <ng-container *ngIf="events$ | async; else loading; let events">
+      <!-- <ng-container *ngIf="appointments"> -->
+        <mwl-calendar-month-view
+          *ngSwitchCase="CalendarView.Month"
+          [viewDate]="viewDate"
+          [events]="events"
+          [activeDayIsOpen]="activeDayIsOpen"
+          (dayClicked)="dayClicked($event.day)"
+        >
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view
+          *ngSwitchCase="CalendarView.Week"
+          [viewDate]="viewDate"
+          [events]="events"
+        >
+        </mwl-calendar-week-view>
+        <mwl-calendar-day-view
+          *ngSwitchCase="CalendarView.Day"
+          [viewDate]="viewDate"
+          [events]="events"
+        >
+        </mwl-calendar-day-view>
+      </ng-container>
+    </section>
+  </div>
 </main>
+
 
 

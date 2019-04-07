@@ -56,3 +56,17 @@ app-online-appointment, app-face-to-face-appointment {
         margin: 2em auto;
     }
 }
+
+
+.step-wrapper {
+    padding: 3em 1em;
+    height: auto;
+
+    &.success {
+        height: 100vh;
+    }
+
+    app-signup-booking {
+        width: 100%;
+    }
+}

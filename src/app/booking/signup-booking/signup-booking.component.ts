@@ -20,7 +20,7 @@ import { User } from '../../user/user.model';
 import { AuthService } from '../../core/auth/auth.service';
 import { UserService } from '../../user/user.service';
 import { Appointment } from '../appointment.model';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Location } from '@angular/common';
@@ -30,9 +30,10 @@ import { ChatThreadService } from '../../chat/chat-thread.service';
 import { AddAppointmentDialogComponent } from '../../shared/dialogs/add-appointment-dialog/add-appointment-dialog.component';
 import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-signup-booking-component',
+  selector: 'app-signup-booking',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./signup-booking.component.scss'],
   templateUrl: './signup-booking.component.html',
@@ -94,14 +95,19 @@ export class SignUpBookingComponent implements OnInit {
                private specialistService: SpecialistService,
                private threadService: ChatThreadService,
                public location: Location,
-               private afs: AngularFirestore) {}
+               public router: Router,
+               private route: ActivatedRoute,
+               private afs: AngularFirestore) {
+                this.getUser();
+               }
 
 
 
   ngOnInit() {
-    this.getUser();
-    this.getEvents();
+
   }
+
+  // Getters
 
   getUser() {
     const id = this.auth.currentUserId;
@@ -109,6 +115,7 @@ export class SignUpBookingComponent implements OnInit {
       this.user = user;
       // get Specialist
       this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
+      this.getEvents(this.user);
     });
   }
 
@@ -123,8 +130,21 @@ export class SignUpBookingComponent implements OnInit {
     return `T00:00:00${direction}${hoursOffset}:${minutesOffset}`;
   }
 
-  getEvents() {
-    this.events$ = this.bookingService.getAppointments();
+  getEvents(user) {
+    const specialist = user.specialist;
+    // Pull appointments from service
+    const colRef: AngularFirestoreCollection =
+    this.afs.collection('appointments', ref => ref.where('specialistID', '==', `${specialist}`).orderBy('start'));
+    this.events$ = this.bookingService.getSpecificAppointments(colRef);
+  }
+
+  injectEventOverviewTitle(timeOut) {
+    setTimeout(() => {
+      const titleContainer = document.querySelector('.cal-open-day-events');
+      const title = 'Events';
+      const el = `<h1 class="events-title">${title}</h1`;
+      titleContainer.insertAdjacentHTML('afterbegin', `${el}`);
+    }, timeOut);
   }
 
   // Show Events for that day
@@ -138,6 +158,7 @@ export class SignUpBookingComponent implements OnInit {
         this.activeDayIsOpen = false;
       } else {
         this.activeDayIsOpen = true;
+        this.injectEventOverviewTitle(50);
       }
     }
   }
@@ -166,7 +187,7 @@ export class SignUpBookingComponent implements OnInit {
   openEventDetailDialog(event) {
     this.dialog.open(AppointmentDetailDialogComponent, {
       data: {
-        event: event
+        event: event,
       },
       panelClass: 'event-detail-dialog'
     });
@@ -193,11 +214,24 @@ export class SignUpBookingComponent implements OnInit {
   }
 
   addEvent() {
-    this.dialog.open(AddAppointmentDialogComponent, {
+    const dialogRef = this.dialog.open(AddAppointmentDialogComponent, {
       data: {
         user: this.user,
         specialist: this.specialist
       },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        const uid = this.user.uid;
+        const data = {
+          appointment: true,
+        };
+        this.userService.updateUser(uid, data);
+        this.router.navigate(['../limbo'], { relativeTo: this.route });
+      } else {
+        return null;
+      }
     });
   }
 

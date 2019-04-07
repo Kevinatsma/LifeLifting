@@ -1,21 +1,22 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-import { BookingService } from '../../../booking/booking.service';
-import { Appointment } from '../../../booking/appointment.model';
-import { Specialist } from './../../../specialists/specialist.model';
-import { User } from './../../../user/user.model';
-import { SpecialistService } from './../../../specialists/specialist.service';
-import { UserService } from './../../../user/user.service';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { BookingService } from '../../booking/booking.service';
+import { Appointment } from '../../booking/appointment.model';
+import { Specialist } from './../../specialists/specialist.model';
+import { User } from './../../user/user.model';
+import { SpecialistService } from './../../specialists/specialist.service';
+import { UserService } from './../../user/user.service';
+import { AuthService } from './../../core/auth/auth.service';
 
 @Component({
-  selector: 'app-appointment-detail-dialog',
-  templateUrl: './appointment-detail-dialog.component.html',
-  styleUrls: ['./appointment-detail-dialog.component.scss']
+  selector: 'app-appointment-detail',
+  templateUrl: './appointment-detail.component.html',
+  styleUrls: ['./appointment-detail.component.scss']
 })
-export class AppointmentDetailDialogComponent {
-  event: Appointment;
-
+export class AppointmentDetailComponent {
+  @Input() event: Appointment;
+  @Input() editAllowed: boolean;
+  editShow = false;
   // Involved user objects
   specialist: Specialist;
   client: User;
@@ -55,32 +56,22 @@ export class AppointmentDetailDialogComponent {
                private bookingService: BookingService,
                private userService: UserService,
                public matDialog: MatDialog,
-               @Inject(MAT_DIALOG_DATA) public data: any,
                private specialistService: SpecialistService
     ) {
-      this.getEvent(data.event);
-      this.doEventCheck(this.event);
-      console.log(this.event);
-      this.getTimeAndDate();
-      this.getEndTimeAndDate();
-      this.getSpecialist(this.event.specialistID);
-      this.getClient(this.event.clientID);
+      setTimeout(() => {
+        this.doEventCheck(this.event);
+        this.getTimeAndDate();
+        this.getEndTimeAndDate();
+        this.getSpecialist(this.event.specialistID);
+        this.getClient(this.event.clientID);
+      }, 200);
     }
 
   // Getters
 
-  getEvent(data) {
-    setTimeout(() => {
-      if (this.event) {
-        return null;
-      } else {
-        return this.event = data.event;
-      }
-    }, 500);
-  }
-  get editShow(): boolean {
-    return this.bookingService.editShow;
-  }
+  // get editShow(): boolean {
+  //   return this.bookingService.editShow;
+  // }
 
   doEventCheck(e) {
     if (e.meetMethod === 'faceToFace') {
@@ -104,7 +95,7 @@ export class AppointmentDetailDialogComponent {
     } else {
       this.skype = true;
     }
-    if (e.onlineAppointmentPhone.phoneAreaCode === '') {
+    if (e.onlineAppointmentPhone.phoneRest === '') {
       this.onlinePhone = false;
     } else {
       this.onlinePhone = true;

@@ -4,7 +4,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { BookingService } from './../../../booking/booking.service';
 import { Appointment } from './../../../booking/appointment.model';
 import { User } from './../../../user/user.model';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AuthService } from './../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-add-appointment-dialog',
@@ -18,8 +18,8 @@ export class AddAppointmentDialogComponent implements OnInit {
   onlineAppointment = false;
   appointmentForm: FormGroup;
 
-  standardColorPrimary = '#db9969';
-  standardColorSecondary = '#444444';
+  standardColorPrimary = '#2ecc71';
+  standardColorSecondary = '#5ec78a';
   phoneAreaCode = new FormControl({value: '+51', disabled: true});
 
   whatsApp = false;
@@ -33,6 +33,7 @@ export class AddAppointmentDialogComponent implements OnInit {
                private bookingService: BookingService
     ) {
       this.user =  data.user;
+      this.setStandardColors(data.user);
     }
 
   ngOnInit() {
@@ -108,13 +109,14 @@ export class AddAppointmentDialogComponent implements OnInit {
       .replace('00:00:00',
       `${this.appointmentForm.get('startHour').value + 1}` + ':' + `${this.appointmentForm.get('startMinutes').value}` + ':00');
     const data: Appointment = {
+      created: new Date(),
       title: this.appointmentForm.get('eventTitle').value,
       start: start,
       // start: new Date(),
       end: end,
       color: {
-        primary: this.appointmentForm.get('selectedColorPrimary').value || '#db9969',
-        secondary: this.appointmentForm.get('selectedColorSecondary').value ||  '#d6ad8f',
+        primary: this.appointmentForm.get('selectedColorPrimary').value || this.standardColorPrimary,
+        secondary: this.appointmentForm.get('selectedColorSecondary').value ||  this.standardColorSecondary,
       },
       draggable: true,
       resizable: {
@@ -132,6 +134,17 @@ export class AddAppointmentDialogComponent implements OnInit {
       onlineAppointmentPhone: this.appointmentForm.controls.onlinePhone.value || null
     };
     this.bookingService.addEvent(data);
-    console.log(data);
+  }
+
+  // Setters
+
+  setStandardColors(user) {
+    if (user.roles.admin) {
+      this.standardColorPrimary = '#e74c3c';
+      this.standardColorSecondary = '#f58f84';
+    } else if (!user.roles.admin && user.roles.specialist) {
+      this.standardColorPrimary = '#3498db';
+      this.standardColorSecondary = '#6aacd8';
+    }
   }
 }

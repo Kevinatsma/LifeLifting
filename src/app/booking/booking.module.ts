@@ -13,13 +13,15 @@ import { SharedModule } from '../shared/shared.module';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { AppointmentDetailComponent } from './appointment-detail/appointment-detail.component';
 
 @NgModule({
   declarations: [
     OnlineAppointmentComponent,
     FaceToFaceAppointmentComponent,
     BookingComponent,
-    SignUpBookingComponent
+    SignUpBookingComponent,
+    AppointmentDetailComponent
   ],
   imports: [
     RouterModule,
@@ -38,7 +40,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     OnlineAppointmentComponent,
     FaceToFaceAppointmentComponent,
     BookingComponent,
-    SignUpBookingComponent
+    SignUpBookingComponent,
+    AppointmentDetailComponent
   ]
 })
 export class BookingModule { }

@@ -123,7 +123,8 @@ const routes: Routes = [
     MaterialModule
   ],
   exports: [
-    RouterModule
+    RouterModule,
+    MySpecialistComponent,
   ]
 })
 export class DashboardModule { }

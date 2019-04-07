@@ -9,6 +9,7 @@ import { SharedModule } from './../../shared/shared.module';
 import { PackagesModule } from './../../packages/packages.module';
 import { BookingModule } from './../../booking/booking.module';
 import { SpecialistModule } from './../../specialists/specialist.module';
+import { DialogsModule } from './../../shared/dialogs/dialogs.module';
 
 // Components
 import { SignupComponent } from './signup/signup.component';
@@ -66,6 +67,7 @@ const routes: Routes = [
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    DialogsModule,
     PackagesModule,
     BookingModule,
     SpecialistModule

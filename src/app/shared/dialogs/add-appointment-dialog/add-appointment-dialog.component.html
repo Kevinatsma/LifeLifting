@@ -158,7 +158,7 @@
     <button type="submit" class="dialog-button" (click)="addEvent()"
     [disabled]="!appointmentForm.valid"
     [class.disabled]="!appointmentForm.valid"
-    mat-dialog-close
+    [mat-dialog-close]="appointmentForm.valid ? true : false"
     >
       Done
     </button>

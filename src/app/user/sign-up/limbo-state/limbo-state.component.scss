@@ -1,11 +1,13 @@
 @import './../../../../assets/scss/_master.scss';
+@import './../../../../assets/scss/_animations.scss';
 
 
 .limbo-container {
+    box-sizing: border-box;
     flex-flow: column wrap;
-    height: 100%;
+    height: auto;
     margin: 0;
-    padding: 0;
+    padding: 5em 1em 4em;
     width: 100%;
     position: relative;
 
@@ -17,29 +19,41 @@
         }
     }
 
-    @keyframes fly-in-from-bottom {
-        0% {
-            transform: translateY(100%);
-            opacity: 0;
-        }
-        50% {
-            opacity: 1;
-        }
-        80% {
-            transform: translateY(-5%);
-        }
-        100% {
-            transform: translateY(0);
-        }
+    .appointments {
+        margin-top: 5em;
     }
 
-    app-specialist-detail {
-        animation: fly-in-from-bottom 0.5s;
+    .specialist-container {
+        background: $middle-grey;
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
         transition: transform 0.5s cubic-bezier(.63,.91,.38,1.19);
+        z-index: 510;
+
+        .hide-btn {
+            position: absolute;
+            top: 0.6em;
+            left: calc(50% - 25px);
+            font-size: 23px;
+            width: 50px;
+            height: 40px;
+            background: $light-grey;
+            box-shadow: $card-shadow;
+            border-radius: 0 0 5px 5px;
+            transform: translateY(-40px);
+            transition: transform 300ms ease-in-out;
+            z-index: 50;
+
+            &:hover {
+                transform: translateY(-15px);
+            }
+        }
+
+        &.active {
+            animation: fly-in-from-bottom 0.5s;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
     }
 }

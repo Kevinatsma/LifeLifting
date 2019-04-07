@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/auth/auth.service';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-signup-step-four',
@@ -16,12 +16,22 @@ export class SignupStepFourComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public auth: AuthService,
-    public router: Router
+    public router: Router,
+    private route: ActivatedRoute
   ) {
 
   }
 
   ngOnInit() {
+    this.redirect();
+  }
+
+  redirect() {
+    if (this.auth.currentUserId) {
+      return null;
+    } else {
+      this.router.navigate(['../step-three'], {relativeTo: this.route});
+    }
   }
 
   onlineAppointmentOption() {

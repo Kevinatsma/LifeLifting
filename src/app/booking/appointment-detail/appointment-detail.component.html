@@ -1,15 +1,16 @@
-<main class="dialog-wrapper" *ngIf="event && auth.user | async as user">
+<main class="event-wrapper" *ngIf="event && auth.user | async as user">
   <div class="profile-pic-bubble">
     <i class="fas fa-calendar-alt"></i>
   </div>
 
   <ng-container *ngIf="!editShow">
     <section class="intro">
-      <button class="edit-btn delete" (click)="deleteEvent(event)" *ngIf="user.roles.admin || user.roles.specialist" mat-dialog-close>
+      <button class="edit-btn delete" (click)="deleteEvent(event)" 
+      *ngIf="user.roles.admin || user.roles.specialist">
         <i class="far fa-trash-alt"></i>
       </button>
       <h1>{{event.title}}</h1>
-      <button class="edit-btn" *ngIf="!editShow && event.clientID === user.uid" 
+      <button class="edit-btn" *ngIf="!editShow && event.clientID === user.uid || event.specialistID === 'specialist'+user.sID" 
       (click)="toggleEdit()">
         <i class="far fa-edit"></i>
       </button>
@@ -99,11 +100,11 @@
     </section>
 
   </ng-container>
-
+<!-- 
   <ng-container *ngIf="editShow">
     <app-edit-appointment [event]="event" [client]="client" [specialist]="specialist"
       [end]="end" [start]="start">
 
     </app-edit-appointment>
-  </ng-container>
+  </ng-container> -->
 </main>

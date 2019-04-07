@@ -9,11 +9,15 @@
     with your payment, or for any further questions.
   </p>
   
-  <section class="appointments">
-
+  <section class="appointments" *ngIf="events">
+    <app-appointment-detail *ngFor="let event of events" [event]="event"></app-appointment-detail>
   </section>
 
-  <app-specialist-detail [specialist]="specialist" *ngIf="showSpecialist">
-
-  </app-specialist-detail>
+  <section class="specialist-container" [class.active]="showSpecialist">
+    <button class="hide-btn" (click)="toggleSpecialist()" *ngIf="showSpecialist">
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <app-specialist-detail [specialist]="specialist" *ngIf="showSpecialist">
+    </app-specialist-detail>
+  </section>
 </main>

@@ -1,4 +1,5 @@
 export class Appointment {
+    created?: Date;
     title?: string;
     start?: any;
     end?: any;

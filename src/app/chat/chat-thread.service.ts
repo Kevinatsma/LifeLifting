@@ -51,6 +51,7 @@ export class ChatThreadService {
   }
 
   createThread(profileID) {
+    console.log(profileID);
     this.requestedThread = this.auth.currentUserId + '_' + profileID;
     this.reverseRequestedThread = profileID + '_' + this.auth.currentUserId;
     this.afs.collection(`chats`).doc(`${this.requestedThread}`).ref.get()

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from './../../../core/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-first-step-success',
@@ -9,7 +10,8 @@ import { AuthService } from './../../../core/auth/auth.service';
 export class FirstStepSuccessComponent implements OnInit {
   @Output() close = new EventEmitter();
 
-  constructor( public auth: AuthService) { }
+  constructor( public auth: AuthService,
+               public route: Router) { }
 
   ngOnInit() {
   }

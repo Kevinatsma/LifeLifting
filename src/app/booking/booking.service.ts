@@ -94,6 +94,7 @@ export class BookingService implements OnInit {
         const start = data.start;
         const end = data.end;
         const eventData = {
+            created: data.created,
             eventID: data.eventID,
             title: data.title,
             start: new Date(start),
@@ -129,6 +130,7 @@ export class BookingService implements OnInit {
         const start = data.start;
         const end = data.end;
         const eventData = {
+            created: data.created,
             eventID: data.eventID,
             title: data.title,
             start: new Date(start),

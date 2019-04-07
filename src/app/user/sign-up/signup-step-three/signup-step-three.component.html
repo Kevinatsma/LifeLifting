@@ -30,7 +30,7 @@
   </section>
 
   <section class="step-wrapper success" *ngIf="user.specialist">
-    <h5>Pick wisely, {{user.displayName || user.email}}</h5>
+    <h5>You've picked wisely, {{user.displayName || user.email}}</h5>
     <h1>Step 3: Choose a Specialist</h1>
     <div class="step-done">
       <p class="intro-text">
@@ -39,8 +39,8 @@
       </p>
       <div class="btn-area">
         <button class="btn-icon-right" routerLink="../step-four">
-          <span>Continue process</span>
-          <i class="fas fa-chevron-right small"></i>
+          <span>Plan the consultation</span>
+          <span class="emoji">📅</span>
         </button>
       </div>
     </div>

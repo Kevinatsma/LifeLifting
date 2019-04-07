@@ -14,27 +14,31 @@
       <li [class.activated]="user.basicData">
         <div class="placeholder" *ngIf="!user.basicData"></div>
         <i class="fas fa-check-square" *ngIf="user.basicData"></i>
-        Step 1: Fill out basic data
+        <a routerLink="step-one">Step 1: Fill out basic data</a>
       </li>
       <li [class.activated]="user.packageChoice">
         <div class="placeholder" *ngIf="!user.packageChoice"></div>
         <i class="fas fa-check-square" *ngIf="user.packageChoice"></i>
-        Step 2: Choose a package
+        <a routerLink="step-two" *ngIf="user.basicData">Step 2: Choose a package</a>
+        <ng-container *ngIf="!user.basicData">Step 2: Choose a package</ng-container>
       </li>
       <li [class.activated]="user.specialist">
         <div class="placeholder" *ngIf="!user.specialist"></div>
         <i class="fas fa-check-square" *ngIf="user.specialist"></i>
-        Step 3: Choose a specialist
+        <a routerLink="step-three" *ngIf="user.packageChoice">Step 3: Choose a specialist</a>
+        <ng-container *ngIf="!user.packageChoice">Step 3: Choose a specialist</ng-container>
       </li>
       <li [class.activated]="user.appointment">
         <div class="placeholder" *ngIf="!user.appointment"></div>
         <i class="fas fa-check-square" *ngIf="user.appointment"></i>
-        Step 4: Make an appointment
+        <a routerLink="step-four" *ngIf="user.specialist">Step 4: Make an appointment</a>
+        <ng-container *ngIf="!user.specialist">Step 4: Make an appointment</ng-container>
       </li>
       <li [class.activated]="user.accepted">
         <div class="placeholder" *ngIf="!user.accepted"></div>
         <i class="fas fa-check-square" *ngIf="user.accepted"></i>
-        Step 5: Payment
+        <a routerLink="limbo" *ngIf="user.appointment">Step 5: Payment</a>
+        <ng-container *ngIf="!user.appointment">Step 5: Payment</ng-container>
       </li>
     </ul>
     <div class="btn-area">
