@@ -82,7 +82,7 @@ export class AppointmentDetailComponent {
       this.faceToFace = false;
     }
 
-    if (e.whatsappNumber === null) {
+    if (e.whatsappNumber.wappRest === '') {
       this.whatsApp = false;
     } else {
       this.whatsApp = true;

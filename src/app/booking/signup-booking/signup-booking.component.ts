@@ -48,7 +48,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SignUpBookingComponent implements OnInit {
   user: User;
   specialist: Specialist;
-  view: CalendarView = CalendarView.Month;
+  view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
@@ -136,7 +136,6 @@ export class SignUpBookingComponent implements OnInit {
     const colRef: AngularFirestoreCollection =
     this.afs.collection('appointments', ref =>
       ref.where('specialistID', '==', `${specialist}`)
-      .where('accepted', '==', true)
       .orderBy('start'));
     this.events$ = this.bookingService.getSpecificAppointments(colRef);
   }
@@ -228,10 +227,16 @@ export class SignUpBookingComponent implements OnInit {
       if (result === true) {
         const uid = this.user.uid;
         const data = {
-          appointment: true,
+          status: {
+            accepted: false,
+            appointment: true,
+            signUpCompleted: true
+          }
         };
         this.userService.updateUser(uid, data);
-        this.router.navigate(['../limbo'], { relativeTo: this.route });
+        setTimeout(() => {
+          this.router.navigate(['../limbo'], { relativeTo: this.route });
+        }, 500);
       } else {
         return null;
       }

@@ -10,7 +10,7 @@
         <i class="far fa-trash-alt"></i>
       </button>
       <h1>{{event.title}}</h1>
-      <button class="edit-btn" *ngIf="!editShow && event.clientID === user.uid || event.specialistID === 'specialist'+user.sID" 
+      <button class="edit-btn" *ngIf="!editShow && event.specialistID === 'specialist'+user.sID" 
       (click)="toggleEdit()">
         <i class="far fa-edit"></i>
       </button>
@@ -61,7 +61,7 @@
     </section> -->
 
     <section class="appointment-type" *ngIf="event">
-      <div class="contact-container" *ngIf="onlineAppointment && event.onlineAppointmentPhone.phoneAreaCode || event.skypeName || event.whatsappNumber">
+      <div class="contact-container" *ngIf="onlineAppointment">
         <h4>Online call</h4>
         <div class="contact-container__item skype" *ngIf="skype">
           <p>

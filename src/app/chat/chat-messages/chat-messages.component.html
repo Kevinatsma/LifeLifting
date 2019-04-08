@@ -1,3 +1,5 @@
-<div *ngFor="let message of messages$ | async">
-  <app-chat-message [message]="message"></app-chat-message>
-</div>
+<ng-container *ngIf="messages$ | async as messages">
+  <div *ngFor="let message of messages">
+    <app-chat-message [message]="message"></app-chat-message>
+  </div>
+</ng-container>

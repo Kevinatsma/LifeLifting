@@ -2,8 +2,8 @@
 <main class="calendar" *ngIf="auth.user | async as user">
   <section class="action-toolbar-top calendar__toolbar">
     <div class="left">
-        <button class="icon-button hidden">
-          <i class="fas fa-plus"></i>
+        <button class="icon-button" (click)="goBack()">
+          <i class="fas fa-arrow-left"></i>
         </button>
     </div>
 

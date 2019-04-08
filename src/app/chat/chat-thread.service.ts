@@ -56,13 +56,13 @@ export class ChatThreadService {
     this.afs.collection(`chats`).doc(`${this.requestedThread}`).ref.get()
       .then((doc) => {
         if (doc.exists) {
-          this.getExistingThread();
+          this.getExistingThread(doc);
         } else {
           console.log('no such doc...');
           this.afs.collection(`chats`).doc(`${this.reverseRequestedThread}`).ref.get()
             .then((reverseThread) => {
               if (reverseThread.exists) {
-                this.getExistingThread();
+                this.getExistingThread(doc);
               } else {
                 this.threadExists = false;
                 return this.userService.getUserDataByID(profileID).subscribe(user => {
@@ -81,7 +81,7 @@ export class ChatThreadService {
       });
   }
 
-  getExistingThread() {
+  getExistingThread(doc) {
     console.log('doc exists!');
     this.threadExists = true;
     this.messageService.getMessages(`${this.requestedThread}`);
@@ -124,6 +124,11 @@ export class ChatThreadService {
     this.threadDoc = this.afs.doc<Thread>(`chats/${profileId}`);
     this.thread = this.threadDoc.valueChanges();
     return this.thread;
+  }
+
+  updateThread(id, data) {
+    this.threadDoc = this.afs.doc<Thread>(`chats/${id}`);
+    this.threadDoc.update(data);
   }
 
   saveLastMessage(channelId, message) {

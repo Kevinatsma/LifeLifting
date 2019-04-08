@@ -1,17 +1,31 @@
 <main class="limbo-container" *ngIf="auth.user | async as user">
-  <h1>Woops! Payment not processed yet..</h1>
-  <p class="subtitle" *ngIf="specialist">
-    Please contact 
-    <a class="text-link" (click)="toggleSpecialist()">
-      {{specialist.firstName}} {{specialist.lastName}} 
-    </a>
-    if you have any trouble
-    with your payment, or for any further questions.
-  </p>
-  
-  <section class="appointments" *ngIf="events">
-    <app-appointment-detail *ngFor="let event of events" [event]="event"></app-appointment-detail>
-  </section>
+  <ng-container *ngIf="user.status.appointment && !user.status.appointmentAccepted">
+    <div class="step-done">
+      <h1>Cheers to filling that out! 🍻</h1>
+      <p class="intro-text">
+        Congrats on looking for a better version of yourself. Thank you for your trust in <b>LifeLifting Nutrition</b>.
+        <br>
+        <a class="text-link" (click)="toggleSpecialist()">Your specialist</a>
+        will confirm your consultation as soon as possible. 
+      </p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="user.status.appointmentAccepted && !user.status.accepted">
+    <h1>Woops! Payment not processed yet..</h1>
+    <p class="subtitle" *ngIf="specialist">
+      Please contact 
+      <a class="text-link" (click)="toggleSpecialist()">
+        {{specialist.firstName}} {{specialist.lastName}} 
+      </a>
+      if you have any trouble
+      with your payment, or for any further questions.
+    </p>
+    
+    <section class="appointments" *ngIf="events">
+      <app-appointment-detail *ngFor="let event of events" [event]="event"></app-appointment-detail>
+    </section>
+  </ng-container>
 
   <section class="specialist-container" [class.active]="showSpecialist">
     <button class="hide-btn" (click)="toggleSpecialist()" *ngIf="showSpecialist">

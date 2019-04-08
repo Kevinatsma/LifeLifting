@@ -1,54 +1,19 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
-    <section class="step-wrapper" [class.success]="user.status.appointment">
+    <section class="step-wrapper" [class.success]="user.status && user.status.appointment">
       <h5>Choose a date {{user.displayName || user.email}}</h5>
       <h1>Step 4: Plan your first appointment</h1>
-<!-- 
-      <div class="choice-wrapper" *ngIf="!choiceMade && !user.status.appointment">
-        <button type="link" class="choice-icon-btn" (click)="onlineAppointmentOption()">
-          <i class="fas fa-globe-americas"></i>
-          <h4>Online appointment</h4>
-        </button>
-        <button type="link" class="choice-icon-btn" (click)="faceToFaceAppointmentOption()">
-          <i class="fas fa-coffee"></i>
-          <h4>Face 2 Face appointment</h4>
-        </button>
-      </div>
 
-      <div class="step-done" *ngIf="user.status.appointment">
-        <p class="intro-text">
-          You already planned an appointment. Go to the next step by clicking the button below. 
-          If you want to change your appointment, you can. Chat with your nutritionist in the next step.
-        </p>
-        <div class="btn-area">
-          <button class="btn-icon-right"
-            [class.btn-disabled]="!user.status.appointment"
-            [disabled]="!user.status.appointment"
-            routerLink="../limbo">
-            <span>Let's pay!</span>
-            <span class="emoji">🚀</span>
-          </button>
-        </div>
-      </div>
+      <app-signup-booking *ngIf="user.status && !user.status.appointment"></app-signup-booking>
 
-      <ng-container *ngIf="onlineAppointment">
-        <app-online-appointment [user]="user"></app-online-appointment>
-      </ng-container>
-
-      <ng-container *ngIf="faceToFaceAppointment">
-        <app-face-to-face-appointment></app-face-to-face-appointment>
-      </ng-container> -->
-
-      <app-signup-booking *ngIf="!user.status.appointment"></app-signup-booking>
-
-      <div class="step-done" *ngIf="user.status.appointment">
+      <div class="step-done" *ngIf="user.status && user.status.appointment">
         <p class="intro-text">
           You already planned an appointment. The next thing is paying. Go to the next step to
           follow the status of your requested appointment and to chat with your specialist.
         </p>
         <div class="btn-area">
           <button class="btn-icon-right"
-            [class.btn-disabled]="!user.status.appointment"
-            [disabled]="!user.status.appointment"
+            [class.btn-disabled]="user.status && !user.status.appointment"
+            [disabled]="user.status && !user.status.appointment"
             routerLink="../limbo">
             <span>Check your status!</span>
             <span class="emoji">🚧</span>

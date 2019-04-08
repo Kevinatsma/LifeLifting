@@ -1,6 +1,6 @@
-<main class="thread-container">
+<main class="thread-container" *ngIf="threads | async as threads">
   <section class="chat-sidebar">
-    <app-chat-thread *ngFor="let thread of threads | async" [thread]="thread" (click)="linkToChild(thread)" routerLinkActive="active"></app-chat-thread>
+    <app-chat-thread *ngFor="let thread of threads" [thread]="thread" (click)="linkToChild(thread)" routerLinkActive="active"></app-chat-thread>
   </section>
   <section class="router-wrapper">
     <router-outlet #o="outlet"></router-outlet>

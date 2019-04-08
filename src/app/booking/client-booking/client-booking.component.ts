@@ -48,7 +48,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ClientBookingComponent implements OnInit {
   user: User;
   specialist: Specialist;
-  view: CalendarView = CalendarView.Month;
+  view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;

@@ -147,12 +147,12 @@
       <div class="multiple-input" formGroupName="faceToFacePhone">
         <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>Code</mat-label>
-            <input type="text" disabled matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
+            <input type="text" disabled matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
             <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
         <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>Phone Number</mat-label>
-            <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off" required>
+            <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off">
         </mat-form-field>
       </div>
     </section>
@@ -176,12 +176,12 @@
         <div class="multiple-input" formGroupName="wappNumber">
           <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Area Code</mat-label>
-              <input type="text" matInput formControlName="wappAreaCode" placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
+              <input type="text" matInput formControlName="wappAreaCode" placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
               <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Phone Number</mat-label>
-              <input type="number"formControlName="wappRest" matInput placeholder="123456789" autocomplete="off" required>
+              <input type="number"formControlName="wappRest" matInput placeholder="123456789" autocomplete="off">
           </mat-form-field>
         </div>
       </ng-container>

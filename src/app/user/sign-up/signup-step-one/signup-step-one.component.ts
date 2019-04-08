@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../../core/auth/auth.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import countries from './../../../shared/data/JSON/countries.json';
 
 @Component({
   selector: 'app-signup-step-one',
@@ -25,7 +26,9 @@ export class SignupStepOneComponent implements OnInit {
     {value: 'facebook', viewValue: 'Facebook'},
     {value: 'friends', viewValue: 'Friends told me'},
     {value: 'google', viewValue: 'I found you in Google'}
-  ]; selectedMedium: string;
+  ];
+
+  countries = countries.countries;
 
   constructor(
     public fb: FormBuilder,
@@ -42,7 +45,10 @@ export class SignupStepOneComponent implements OnInit {
       age: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       country: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]],
+      phoneNumber: this.fb.group({
+        phoneAreaCode: ['', [Validators.required]],
+        phoneRest: ['', [Validators.required]],
+      }),
       mainGoal: ['', [Validators.required]],
       heardFromUs: ['', [Validators.required]],
       currentWeight: ['', [Validators.required]]
@@ -57,7 +63,7 @@ export class SignupStepOneComponent implements OnInit {
         gender: this.selectedGender,
         country: this.basicUserDataForm.get('country').value,
         phoneNumber: this.basicUserDataForm.get('phoneNumber').value,
-        heardFromUs: this.selectedMedium || this.basicUserDataForm.get('heardFromUs'),
+        heardFromUs: this.basicUserDataForm.get('heardFromUs').value,
         mainGoal: this.basicUserDataForm.get('mainGoal').value,
         currentWeight: this.basicUserDataForm.get('currentWeight').value
       },

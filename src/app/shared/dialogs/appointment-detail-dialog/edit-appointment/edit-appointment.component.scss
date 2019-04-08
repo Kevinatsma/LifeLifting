@@ -136,12 +136,10 @@ section {
             margin:  0;
         }
 
-        &.online {
-            .multiple-input {
-                mat-form-field:first-child {
-                    margin-right: 1em;
-                    width: 75px;
-                }
+        .multiple-input {
+            mat-form-field:first-child {
+                margin-right: 1em;
+                width: 75px;
             }
         }
     }

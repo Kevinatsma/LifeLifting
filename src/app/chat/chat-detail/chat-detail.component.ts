@@ -56,6 +56,6 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
   // }
 
   goBack() {
-    this.location.back();
+    this.router.navigate(['dashboard']);
   }
 }

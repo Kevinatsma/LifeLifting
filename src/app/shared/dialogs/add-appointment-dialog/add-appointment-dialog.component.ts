@@ -158,7 +158,7 @@ export class AddAppointmentDialogComponent implements OnInit {
         beforeStart: true,
         afterEnd: true
       },
-      specialistID: this.appointmentForm.get('specialistID').value || `specialist${this.user.sID}` || this.user.specialist,
+      specialistID: this.appointmentForm.get('specialistID').value || this.user.specialist || `specialist${this.user.sID}`,
       clientID: this.appointmentForm.get('clientID').value || this.user.uid,
       members: [this.user.uid, this.specialist.uid],
       meetMethod: this.appointmentForm.get('appointmentContext').value,

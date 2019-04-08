@@ -1,5 +1,6 @@
 export class Thread {
     id: string;
+    read: boolean;
     creator: {
         creatorID: string,
         creatorName: string,
