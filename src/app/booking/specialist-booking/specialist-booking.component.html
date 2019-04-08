@@ -7,7 +7,7 @@
       </button>
     </div>
 
-    <h1 *ngIf="specialist">{{specialist.firstName}}'s Calendar</h1>
+    <h1>{{user.displayName}}'s Calendar</h1>
     <!-- <h1>{{user.specialist}} Calendar</h1> -->
 
     <div class="right">
@@ -23,8 +23,8 @@
   </ng-template>
 
   <div class="calendar-container">
-    <div class="profile-picture" *ngIf="specialist" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
-      <span *ngIf="!specialist.photoURL">No Photo Yet</span>
+    <div class="profile-picture" [style.backgroundImage]="'url('+ user.photoURL +')'">
+      <span *ngIf="!user.photoURL">No Photo Yet</span>
     </div>
 
     <section class="calendar__title">

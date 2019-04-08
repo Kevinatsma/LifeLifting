@@ -1,10 +1,10 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, HostListener } from '@angular/core';
 
 // import { MaterialModule } from './../../../shared/material.module';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthService } from './../../core/auth/auth.service';
 import { Location } from '@angular/common';
 import { User } from '../user.model';
@@ -16,6 +16,7 @@ import { User } from '../user.model';
 })
 
 export class LoginComponent implements OnInit {
+  capsOn: Subject<boolean> = new Subject();
   signInForm: FormGroup;
   hide = true;
 
@@ -72,5 +73,25 @@ export class LoginComponent implements OnInit {
         alert('Woops, you\'re not logged in. Try again!');
       }
     });
+  }
+
+  // Get Capslock state
+
+  @HostListener('window:keydown', ['$event'])
+    onKeyDown(event) {
+    if (event.getModifierState && event.getModifierState('CapsLock')) {
+      this.capsOn.next(true);
+      } else {
+      this.capsOn.next(false);
+      }
+    }
+
+    @HostListener('window:keyup', ['$event'])
+    onKeyUp(event) {
+    if (event.getModifierState && event.getModifierState('CapsLock')) {
+      this.capsOn.next(true);
+    } else {
+      this.capsOn.next(false);
+    }
   }
 }

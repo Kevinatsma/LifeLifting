@@ -44,7 +44,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     FileUploadProductComponent,
     FileUploadButtonComponent,
     ExerciseListItemComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
   ],
   providers: [
     FileUploadService

@@ -5,6 +5,7 @@ import { BookingService } from './../../../booking/booking.service';
 import { Appointment } from './../../../booking/appointment.model';
 import { User } from './../../../user/user.model';
 import { AuthService } from './../../../core/auth/auth.service';
+import { Specialist } from './../../../specialists/specialist.model';
 
 @Component({
   selector: 'app-add-appointment-dialog',
@@ -13,6 +14,7 @@ import { AuthService } from './../../../core/auth/auth.service';
 })
 export class AddAppointmentDialogComponent implements OnInit {
   user: User;
+  specialist: Specialist;
   hide = true;
   faceToFace = false;
   onlineAppointment = false;
@@ -33,6 +35,7 @@ export class AddAppointmentDialogComponent implements OnInit {
                private bookingService: BookingService
     ) {
       this.user =  data.user;
+      this.specialist =  data.specialist;
       this.setStandardColors(data.user);
     }
 
@@ -125,6 +128,7 @@ export class AddAppointmentDialogComponent implements OnInit {
       },
       specialistID: this.user.specialist,
       clientID: this.user.uid,
+      members: [this.user.uid, this.specialist.uid],
       meetMethod: this.appointmentForm.get('appointmentContext').value,
       contactMethod: this.appointmentForm.get('contactMethod').value,
       faceToFacePhone: this.appointmentForm.controls.faceToFacePhone.value || null,

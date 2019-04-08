@@ -15,6 +15,7 @@ export class Appointment {
     };
     specialistID?: string;
     clientID?: string;
+    members?: Array<string>;
     meetMethod?: string;
     contactMethod?: string;
     onlineAppointmentPhone?: string;

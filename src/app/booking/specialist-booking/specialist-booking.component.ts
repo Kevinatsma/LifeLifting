@@ -7,7 +7,7 @@ import {
   isSameMonth,
   isSameDay,
 } from 'date-fns';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -131,10 +131,11 @@ export class SpecialistBookingComponent implements OnInit {
   }
 
   getEvents(user) {
-    const specialist = `specialist${user.sID}`;
     // Pull appointments from service
     const colRef: AngularFirestoreCollection =
-    this.afs.collection('appointments', ref => ref.where('specialistID', '==', `${specialist}`).orderBy('start'));
+    this.afs.collection('appointments', ref =>
+      ref.where('members', 'array-contains', `${user.uid}`)
+      .orderBy('start'));
     this.events$ = this.bookingService.getSpecificAppointments(colRef);
   }
 
@@ -214,24 +215,11 @@ export class SpecialistBookingComponent implements OnInit {
   }
 
   addEvent() {
-    const dialogRef = this.dialog.open(AddAppointmentDialogComponent, {
+    this.dialog.open(AddAppointmentDialogComponent, {
       data: {
         user: this.user,
         specialist: this.specialist
       },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === true) {
-        const uid = this.user.uid;
-        const data = {
-          appointment: true,
-        };
-        this.userService.updateUser(uid, data);
-        this.router.navigate(['../limbo'], { relativeTo: this.route });
-      } else {
-        return null;
-      }
     });
   }
 

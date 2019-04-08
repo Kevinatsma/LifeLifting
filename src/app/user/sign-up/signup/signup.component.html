@@ -15,11 +15,12 @@
             <mat-error class="input-error" *ngIf="!email.valid && email.dirty">That's <strong>not</strong> a valid e-mail address!</mat-error>
           </mat-form-field>
     
-          <mat-form-field appearance="standard">
+          <mat-form-field appearance="standard" class="password">
             <input class="form-input" type="password" matInput placeholder="Choose a password.." [type]="hide ? 'password' : 'text'" 
             formControlName="password" [class.active]="!password.valid && password.touched" 
             autocomplete="new-password" required
             >
+            <mat-error class="input-error" *ngIf="capsOn | async"><strong>&#x26A0; Warning</strong> Caps lock is turned on</mat-error>
             <mat-error class="input-error" *ngIf="!password.dirty">This is <strong>required</strong></mat-error>
             <mat-error class="input-error" *ngIf="password.errors?.minlength"><strong>Not enough</strong> characters, try harder!</mat-error>
             <mat-error class="input-error" *ngIf="password.errors?.maxlength">Too <strong>much</strong> characters, slow down there.</mat-error>

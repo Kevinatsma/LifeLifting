@@ -25,6 +25,9 @@ import { AuthService } from './../../core/auth/auth.service';
 import { SignUpBookingComponent } from './../../booking/signup-booking/signup-booking.component';
 import { LimboStateComponent } from './limbo-state/limbo-state.component';
 
+// Directives
+import { CapsLockDirective } from './../../shared/directives/caps-lock.directive';
+
 
 
 const routes: Routes = [
@@ -59,6 +62,7 @@ const routes: Routes = [
     SignupStepThreeComponent,
     SignupStepFourComponent,
     LimboStateComponent,
+    CapsLockDirective
 ],
   imports: [
     CommonModule,

@@ -157,7 +157,7 @@
   <section class="btn-area-one">
     <button type="submit" class="dialog-button" (click)="addEvent()"
     [disabled]="!appointmentForm.valid"
-    [class.disabled]="!appointmentForm.valid"
+    [class.disabled]="!appointmentForm.controls['skypeName'].dirty"
     [mat-dialog-close]="appointmentForm.valid ? true : false"
     >
       Done
