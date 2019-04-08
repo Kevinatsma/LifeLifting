@@ -135,6 +135,7 @@ export class ClientBookingComponent implements OnInit {
     const colRef: AngularFirestoreCollection =
     this.afs.collection('appointments', ref =>
       ref.where('members', 'array-contains', `${user.uid}`)
+      .where('accepted', '==', true)
       .orderBy('start'));
     this.events$ = this.bookingService.getSpecificAppointments(colRef);
   }

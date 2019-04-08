@@ -1,4 +1,4 @@
-<main class="dialog-wrapper" *ngIf="auth.user | async as user">
+<main class="dialog-wrapper" *ngIf="(auth.user | async) as user">
   <form [formGroup]="appointmentForm">
     <h3>Plan an appointment with {{data.specialist.firstName}}</h3>
     <p class="card-text">
@@ -12,6 +12,30 @@
         This is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+
+
+    <div class="chip-area"  *ngIf="user.roles.specialist || user.roles.admin">
+      <p class="secondary-chip">
+        <i class="fas fa-user-tie"></i>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-select matInput placeholder="Pick a user" formControlName="clientID" autocomplete="off" 
+          panelClass="dropdown-regular">
+            <mat-option *ngFor="let client of clients" [value]="client.uid">{{client.displayName}}</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+      </p>
+      <p class="secondary-chip" *ngIf="user.roles.admin">
+        <i class="fas fa-user-ninja"></i>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-select matInput placeholder="Pick a specialist"
+          formControlName="specialistID" autocomplete="off" panelClass="dropdown-regular">
+            <mat-option *ngFor="let specialist of specialists" [value]="specialist.specialistID">{{specialist.firstName}} {{specialist.lastName}}</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+      </p>
+    </div>
 
     <div class="color-pickers" *ngIf="user.roles.specialist || user.roles.admin">
       <mat-form-field appearance="standard" floatLabel="always" class="color-picker-field" *ngIf="standardColorPrimary">
@@ -93,20 +117,20 @@
         <input type="text" matInput formControlName="location" placeholder="Describe the location" />
       </mat-form-field>
 
-      <div class="multiple-input" formGroupName="faceToFacePhone">
+      <div class="multiple-input" formGroupName="faceToFacePhone | async">
         <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Code</mat-label>
+            <mat-label>Area Code</mat-label>
             <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
             <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
         <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Whatsapp Number</mat-label>
+            <mat-label>Phone Number</mat-label>
             <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off" required>
         </mat-form-field>
       </div>
     </ng-container>
 
-    <ng-container *ngIf="onlineAppointment">
+    <ng-container *ngIf="onlineAppointment | async">
       <div class="meeting-place-picker">
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-select matInput placeholder="How would you like to be contacted?"
@@ -120,21 +144,28 @@
         </mat-form-field>
       </div>
 
-      <ng-container *ngIf="whatsApp">
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Whatsapp</mat-label>
-          <input type="text" matInput formControlName="wappNumber" placeholder="What's your WhatsApp number?" />
-        </mat-form-field>
+      <ng-container *ngIf="whatsApp | async">
+        <div class="multiple-input" formGroupName="wappNumber">
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Area Code</mat-label>
+              <input type="text" matInput formControlName="wappAreaCode" placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
+              <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Phone Number</mat-label>
+              <input type="number"formControlName="wappRest" matInput placeholder="123456789" autocomplete="off" required>
+          </mat-form-field>
+        </div>
       </ng-container>
 
-      <ng-container *ngIf="skype">
+      <ng-container *ngIf="skype | async">
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Skype name</mat-label>
           <input type="text" matInput formControlName="skypeName" placeholder="What's your skype name?" />
         </mat-form-field>
       </ng-container>
 
-      <ng-container *ngIf="onlinePhone">
+      <ng-container *ngIf="onlinePhone | async">
         <div class="multiple-input online-phone" formGroupName="onlinePhone">
           <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Area code</mat-label>
@@ -152,12 +183,10 @@
 
   </form>
 
-
-
   <section class="btn-area-one">
     <button type="submit" class="dialog-button" (click)="addEvent()"
     [disabled]="!appointmentForm.valid"
-    [class.disabled]="!appointmentForm.controls['skypeName'].dirty"
+    [class.disabled]="!appointmentForm.valid"
     [mat-dialog-close]="appointmentForm.valid ? true : false"
     >
       Done

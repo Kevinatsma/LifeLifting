@@ -1,4 +1,5 @@
 export class Appointment {
+    accepted?: boolean;
     created?: Date;
     title?: string;
     start?: any;

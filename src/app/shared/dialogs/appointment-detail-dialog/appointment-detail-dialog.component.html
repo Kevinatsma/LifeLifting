@@ -69,10 +69,10 @@
           </p>
         </div>
 
-        <div class="contact-container__item whatsapp" *ngIf="whatsApp">
+        <div class="contact-container__item whatsapp" *ngIf="whatsApp && event.whatsappNumber.wappAreaCode">
           <p>
             <i class="fab fa-whatsapp"></i>
-            <a class="text-link" href="tel:{{event.whatsappNumber}}">Add to phone</a>
+            <a class="text-link" href="tel:{{event.whatsappNumber.wappAreaCode}}{{event.whatsappNumber.wappRest}}">Add to phone</a>
           </p>
         </div>
 

@@ -135,6 +135,7 @@ export class SpecialistBookingComponent implements OnInit {
     const colRef: AngularFirestoreCollection =
     this.afs.collection('appointments', ref =>
       ref.where('members', 'array-contains', `${user.uid}`)
+      .where('accepted', '==', true)
       .orderBy('start'));
     this.events$ = this.bookingService.getSpecificAppointments(colRef);
   }
@@ -184,7 +185,8 @@ export class SpecialistBookingComponent implements OnInit {
   }
 
 
-  // TODO: OPEN MAT DIALOG AND SEND EVENT OBJECT TO DISPLAY CORRECTLY
+  // Dialogs
+
   openEventDetailDialog(event) {
     this.dialog.open(AppointmentDetailDialogComponent, {
       data: {
@@ -193,6 +195,17 @@ export class SpecialistBookingComponent implements OnInit {
       panelClass: 'event-detail-dialog'
     });
   }
+
+  openUnacceptedUsers() {
+    alert(`TO DO: show list of requested appointments`);
+    // this.dialog.open(AppointmentDetailDialogComponent, {
+    //   data: {
+    //     event: event,
+    //   },
+    //   panelClass: 'event-detail-dialog'
+    // });
+  }
+
   ////////////////
   // For Users
 

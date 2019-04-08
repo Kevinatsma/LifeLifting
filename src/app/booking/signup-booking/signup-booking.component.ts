@@ -134,7 +134,10 @@ export class SignUpBookingComponent implements OnInit {
     const specialist = user.specialist;
     // Pull appointments from service
     const colRef: AngularFirestoreCollection =
-    this.afs.collection('appointments', ref => ref.where('specialistID', '==', `${specialist}`).orderBy('start'));
+    this.afs.collection('appointments', ref =>
+      ref.where('specialistID', '==', `${specialist}`)
+      .where('accepted', '==', true)
+      .orderBy('start'));
     this.events$ = this.bookingService.getSpecificAppointments(colRef);
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { Appointment } from './../../../../booking/appointment.model';
 import { User } from './../../../../user/user.model';
 import { Specialist } from './../../../../specialists/specialist.model';
@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material';
 import { UserService } from './../../../../user/user.service';
 import { SpecialistService } from './../../../../specialists/specialist.service';
 import { AuthService } from './../../../../core/auth/auth.service';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-edit-appointment',
   templateUrl: './edit-appointment.component.html',
@@ -27,17 +28,20 @@ export class EditAppointmentComponent implements OnInit {
   phoneAreaCode = new FormControl({value: '+51', disabled: true});
   selectedContext = '';
 
-  faceToFace = false;
-  onlineAppointment = false;
-  whatsApp = false;
-  skype = false;
-  onlinePhone = false;
+  // Booleans
+  faceToFace: Subject<boolean> = new Subject();
+  onlineAppointment: Subject<boolean> = new Subject();
+
+  whatsApp: Subject<boolean> = new Subject();
+  skype: Subject<boolean> = new Subject();
+  onlinePhone: Subject<boolean> = new Subject();
 
   constructor( public auth: AuthService,
                private bookingService: BookingService,
                private userService: UserService,
                private specialistService: SpecialistService ,
                private fb: FormBuilder,
+               private cdr: ChangeDetectorRef,
                public dialog: MatDialog
               ) {
               }
@@ -63,10 +67,13 @@ export class EditAppointmentComponent implements OnInit {
         phoneAreaCode: [`${this.phoneAreaCode.value}`],
         'phoneRest': [''],
       }),
+      wappNumber: this.fb.group({
+        'wappAreaCode': [''] || null,
+        'wappRest': [''] || null,
+      }),
       appointmentContext: [''],
       contactMethod: [''],
       location: [''],
-      wappNumber: [''],
       skypeName: ['']
     });
 
@@ -74,8 +81,8 @@ export class EditAppointmentComponent implements OnInit {
 
     this.getClients();
     this.getSpecialists();
-    this.initialContext();
-    this.initialMethod();
+    this.initContext();
+    this.initContactMethod();
   }
 
   editAppointment() {
@@ -146,60 +153,67 @@ export class EditAppointmentComponent implements OnInit {
 
   // Controls
 
-  initialContext() {
-    if (this.event.meetMethod === 'faceToFace') {
-      this.onlineAppointment = false;
-      this.faceToFace = true;
+  initContext() {
+    const formValue = this.event.meetMethod;
+
+    if (formValue === 'faceToFace') {
+      this.onlineAppointment.next(false);
+      this.faceToFace.next(true);
     } else {
-      this.faceToFace = false;
-      this.onlineAppointment = true;
+      this.faceToFace.next(false);
+      this.onlineAppointment.next(true);
     }
+    this.cdr.detectChanges();
+  }
+
+  initContactMethod() {
+    if (this.event.whatsappNumber.length > 0) {
+      this.whatsApp.next(true);
+      this.skype.next(false);
+      this.onlinePhone.next(false);
+    } else if (this.event.skypeName.length > 0) {
+      this.whatsApp.next(false);
+      this.skype.next(true);
+      this.onlinePhone.next(false);
+    } else {
+      this.whatsApp.next(false);
+      this.skype.next(false);
+      this.onlinePhone.next(true);
+    }
+
+    this.cdr.detectChanges();
   }
 
   toggleContext() {
     const formValue = this.editAppointmentForm.get('appointmentContext').value;
-    if (formValue === 'faceToFace') {
-      this.onlineAppointment = false;
-      this.faceToFace = true;
-    } else {
-      this.faceToFace = false;
-      this.onlineAppointment = true;
-    }
-  }
 
-  // TODO
-  initialMethod() {
-    if (this.event.whatsappNumber !== null) {
-      this.whatsApp = true;
-      this.skype = false;
-      this.onlinePhone = false;
-    } else if (this.event.skypeName  !== null) {
-      this.whatsApp = false;
-      this.skype = true;
-      this.onlinePhone = false;
-    } else if (this.event.location !==  null) {
-      this.whatsApp = false;
-      this.skype = false;
-      this.onlinePhone = true;
+    if (formValue === 'faceToFace') {
+      this.onlineAppointment.next(false);
+      this.faceToFace.next(true);
+    } else {
+      this.faceToFace.next(false);
+      this.onlineAppointment.next(true);
     }
+    this.cdr.detectChanges();
   }
 
   toggleContactMethod() {
     const formValue = this.editAppointmentForm.get('contactMethod').value;
-
     if (formValue === 'whatsApp') {
-      this.whatsApp = true;
-      this.skype = false;
-      this.onlinePhone = false;
+      this.whatsApp.next(true);
+      this.skype.next(false);
+      this.onlinePhone.next(false);
     } else if (formValue  === 'skype') {
-      this.whatsApp = false;
-      this.skype = true;
-      this.onlinePhone = false;
+      this.whatsApp.next(false);
+      this.skype.next(true);
+      this.onlinePhone.next(false);
     } else {
-      this.whatsApp = false;
-      this.skype = false;
-      this.onlinePhone = true;
+      this.whatsApp.next(false);
+      this.skype.next(false);
+      this.onlinePhone.next(true);
     }
+
+    this.cdr.detectChanges();
   }
 
   back() {

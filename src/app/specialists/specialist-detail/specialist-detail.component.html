@@ -2,10 +2,10 @@
   <main class="specialist-wrapper" *ngIf="!editShow">
     <section class="action-toolbar-top">
       <div class="left">
-        <button class="icon-button" (click)="goBack()" *ngIf="user.accepted">
+        <button class="icon-button" (click)="goBack()" *ngIf="user.status.accepted">
             <i class="fas fa-arrow-left"></i>
         </button>
-        <a class="icon-button" href="tel:{{specialist.phoneNumber}}" *ngIf="!user.accepted">
+        <a class="icon-button" href="tel:{{specialist.phoneNumber}}" *ngIf="!user.status.accepted">
             <i class="fas fa-phone"></i>
         </a>
       </div>
@@ -18,7 +18,7 @@
           <i class="fas fa-edit"></i>
         </button>
 
-        <button class="icon-button edit-button" (click)="openReviewDialog(specialist)" *ngIf="!editShow &&  user.accepted">
+        <button class="icon-button edit-button" (click)="openReviewDialog(specialist)" *ngIf="!editShow &&  user.status.accepted">
           <i class="fas fa-star"></i>
         </button>
       </div>

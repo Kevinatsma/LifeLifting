@@ -1,5 +1,5 @@
-<main class="dashboard-wrapper" *ngIf="user">
-  <ng-container *ngIf="user.signUpCompleted">
+<main class="dashboard-wrapper" *ngIf="auth.user | async as user">
+  <ng-container *ngIf="user.status.signUpCompleted">
     <app-dashboard-menu></app-dashboard-menu>
     
     <section class="content">
@@ -9,7 +9,7 @@
       </div>
     </section>
   </ng-container>
-  <ng-container *ngIf="!user.signUpCompleted">
+  <ng-container *ngIf="!user.status.signUpCompleted">
     <div class="not-permitted">
       <h1>Woops! You aren't accepted yet..</h1>
       <p class="card-text">

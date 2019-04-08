@@ -4,6 +4,26 @@
 
 // Ng Deeps
 
+::ng-deep mat-option {
+    svg {
+        margin-right: 1em;
+        font-size: 20px!important;
+
+        &.fa-phone {
+            color: $secondary-color;
+            font-size: 18px!important;
+            transform: scale(-1, 1);
+        }
+
+        &.fa-whatsapp {
+            color: #25D366;
+        }
+        &.fa-skype {
+            color: #00aff0;
+        }
+    }
+}
+
 ::ng-deep .mat-dialog-container {
     overflow-y: auto;
     padding: 0;
@@ -14,6 +34,59 @@
         height: auto;
         padding: 0;
         margin: 0;
+
+        .chip-area {
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 1em 0;
+            padding: 0;
+
+            .secondary-chip {
+                margin: 0 1em;
+                background: $primary-light;
+                padding: 10px 1em;
+                width: auto;
+                height: auto;
+                color: $primary-color;
+                font-weight: $semi-bold;
+                font-size: 16px;
+                border-left: 3px solid $primary-color;
+                border-radius: 2px 6px 6px 2px;
+
+                &:nth-child(2n) {
+                    background: lighten($secondary-color, 52%);
+                    color: $secondary-color;
+                    border-left: 3px solid $secondary-color;
+                }
+
+                svg {
+                    margin-right: 10px;
+                }
+            }
+
+            ::ng-deep mat-form-field {
+                .mat-form-field-wrapper {
+                    padding-bottom: 0;
+    
+                    .mat-form-field-flex {
+                        padding-top: 0;
+    
+                        .mat-form-field-infix {
+                            border-top: 0;
+                            padding: 0;
+                        }
+                    }
+                }
+
+                mat-select {
+                    border-bottom: 1.5px solid transparent!important;                
+                }
+            }
+
+        }
 
         .color-pickers {
             display: flex;

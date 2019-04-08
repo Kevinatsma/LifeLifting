@@ -77,9 +77,9 @@
       <i class="fas fa-trash"></i>
     </button>
     <button (click)="editUser(user)"
-      [class.icon-button-disabled]="!user.signUpCompleted" [disabled]="!user.signUpCompleted">
-      <ng-container *ngIf="user.signUpCompleted"> <i class="fas fa-edit"></i> </ng-container>
-      <ng-container *ngIf="!user.signUpCompleted"> <i class="fas fa-ban"></i> </ng-container>
+      [class.icon-button-disabled]="!user.status.signupCompleted" [disabled]="!user.status.signupCompleted">
+      <ng-container *ngIf="user.status.signupCompleted"> <i class="fas fa-edit"></i> </ng-container>
+      <ng-container *ngIf="!user.status.signupCompleted"> <i class="fas fa-ban"></i> </ng-container>
     </button>
   </section>
 

@@ -82,10 +82,13 @@ export class SpecialistService {
         specialist: true,
         admin: false
       },
-      signUpCompleted: false,
+      status: {
+        accepted: false,
+        signUpCompleted: false,
+        appointment: false,
+      },
       signUpDate: new Date(),
       packageChoice: 'NaN',
-      appointment: 'NaN',
     };
     this.addSpecialist(formData, user);
     return userRef.set(data, { merge: true });

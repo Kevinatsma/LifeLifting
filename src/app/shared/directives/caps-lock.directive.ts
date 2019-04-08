@@ -10,13 +10,11 @@ export class CapsLockDirective {
   @HostListener('window:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent): void {
     const capsOn = event.getModifierState && event.getModifierState('CapsLock');
-    console.log(capsOn);
     this.capsLock.emit(capsOn);
   }
   @HostListener('window:keyup', ['$event'])
   onKeyUp(event: KeyboardEvent): void {
     const capsOn = event.getModifierState && event.getModifierState('CapsLock');
-    console.log(capsOn);
     this.capsLock.emit(capsOn);
   }
 }

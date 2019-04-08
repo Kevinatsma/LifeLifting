@@ -108,7 +108,8 @@ export class BookingComponent implements OnInit {
   }
 
   getEvents() {
-    this.events$ = this.bookingService.getAppointments();
+    const colRef = '';
+    this.events$ = this.bookingService.getSpecificAppointments(colRef);
   }
 
   // Show Events for that day

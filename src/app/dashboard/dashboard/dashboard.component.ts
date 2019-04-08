@@ -49,13 +49,13 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['signup/step-one']);
     } else if (!this.user.packageChoice) {
       this.router.navigate(['signup/step-two']);
-    } else if (!this.user.appointment) {
+    } else if (!this.user.status.appointment) {
       this.router.navigate(['signup/step-three']);
     } else if (!this.user.specialist) {
       this.router.navigate(['signup/step-four']);
-    } else if (!this.user.accepted && this.user.signUpCompleted && this.auth.currentUserId) {
+    } else if (!this.user.status.accepted && this.user.status.signUpCompleted && this.auth.currentUserId) {
       this.router.navigate(['signup/limbo']);
-    } else if (!this.user.accepted) {
+    } else if (!this.user.status.accepted) {
       this.router.navigate(['signup/limbo']);
     }
   }

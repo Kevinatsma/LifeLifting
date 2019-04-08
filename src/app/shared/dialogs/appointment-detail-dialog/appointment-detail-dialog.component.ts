@@ -7,6 +7,7 @@ import { User } from './../../../user/user.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { UserService } from './../../../user/user.service';
 import { AuthService } from './../../../core/auth/auth.service';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-appointment-detail-dialog',
@@ -45,11 +46,11 @@ export class AppointmentDetailDialogComponent {
   ];
 
   // online call methods
-  onlineAppointment = false;
-  faceToFace = false;
-  whatsApp = false;
-  skype = false;
-  onlinePhone = false;
+  onlineAppointment: Subject<boolean> = new Subject();
+  faceToFace: Subject<boolean> = new Subject();
+  whatsApp: Subject<boolean> = new Subject();
+  skype: Subject<boolean> = new Subject();
+  onlinePhone: Subject<boolean> = new Subject();
 
   constructor( public auth: AuthService,
                private bookingService: BookingService,
@@ -84,27 +85,26 @@ export class AppointmentDetailDialogComponent {
 
   doEventCheck(e) {
     if (e.meetMethod === 'faceToFace') {
-      this.faceToFace = true;
-      this.onlineAppointment = false;
+      this.faceToFace.next(true);
+      this.onlineAppointment.next(false);
     } else {
-      this.onlineAppointment = true;
-      this.faceToFace = false;
+      this.onlineAppointment.next(true);
+      this.faceToFace.next(false);
     }
-
-    if (e.whatsappNumber === null) {
-      this.whatsApp = false;
+    if (e.whatsappNumber.wappRest === '') {
+      this.whatsApp.next(false);
     } else {
-      this.whatsApp = true;
+      this.whatsApp.next(true);
     }
     if (e.skypeName === null) {
-      this.skype = false;
+      this.skype.next(false);
     } else {
-      this.skype = true;
+      this.skype.next(true);
     }
     if (e.onlineAppointmentPhone.phoneRest === '') {
-      this.onlinePhone = false;
+      this.onlinePhone.next(false);
     } else {
-      this.onlinePhone = true;
+      this.onlinePhone.next(true);
     }
   }
 

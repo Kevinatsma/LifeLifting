@@ -2,19 +2,24 @@
 <main class="calendar" *ngIf="auth.user | async as user">
   <section class="action-toolbar-top calendar__toolbar">
     <div class="left">
-      <button class="icon-button" (click)="goBack();">
+      <button class="icon-button" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <button class="icon-button hidden" (click)="goBack()">
         <i class="fas fa-arrow-left"></i>
       </button>
     </div>
 
-    <h1>{{user.displayName}}'s Calendar</h1>
+    <h1>Your Calendar</h1>
     <!-- <h1>{{user.specialist}} Calendar</h1> -->
 
     <div class="right">
+      <button class="icon-button" (click)="openUnacceptedUsers()">
+        <i class="fas fa-bell"></i>
+      </button>
       <button class="icon-button" (click)="addEvent()">
         <i class="fas fa-plus"></i>
       </button>
-
     </div>
   </section>
 

@@ -24,7 +24,7 @@
           <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
       </p>
-      <p class="secondary-chip">
+      <p class="secondary-chip" *ngIf="user.roles.admin">
         <i class="fas fa-user-ninja"></i>
         <mat-form-field appearance="standard" floatLabel="always">
             <mat-select matInput placeholder="{{specialist.firstName}} {{specialist.lastName}}"
@@ -137,7 +137,7 @@
       </mat-form-field>
     </section>
 
-    <section class="appointment-type face-to-face" *ngIf="faceToFace">
+    <section class="appointment-type face-to-face" *ngIf="faceToFace | async">
       <h4>Face to face</h4>
       <mat-form-field appearance="standard" floatLabel="always">
         <mat-label>Location of the meeting</mat-label>
@@ -157,7 +157,7 @@
       </div>
     </section>
     
-    <section class="appointment-type online" *ngIf="onlineAppointment">
+    <section class="appointment-type online" *ngIf="onlineAppointment | async">
       <h4>Online call</h4>
       <div class="meeting-place-picker" *ngIf="event">
         <mat-form-field appearance="standard" floatLabel="always">
@@ -172,21 +172,28 @@
         </mat-form-field>
       </div>
 
-      <ng-container *ngIf="whatsApp">
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Whatsapp</mat-label>
-          <input type="text" matInput formControlName="wappNumber" placeholder="{{event.whatsappNumber}}" />
-        </mat-form-field>
+      <ng-container *ngIf="whatsApp | async">
+        <div class="multiple-input" formGroupName="wappNumber">
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Area Code</mat-label>
+              <input type="text" matInput formControlName="wappAreaCode" placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
+              <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Phone Number</mat-label>
+              <input type="number"formControlName="wappRest" matInput placeholder="123456789" autocomplete="off" required>
+          </mat-form-field>
+        </div>
       </ng-container>
 
-      <ng-container *ngIf="skype">
+      <ng-container *ngIf="skype | async">
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Skype name</mat-label>
           <input type="text" matInput formControlName="skypeName" placeholder="{{event.skypeName}}" />
         </mat-form-field>
       </ng-container>
 
-      <ng-container *ngIf="onlinePhone">
+      <ng-container *ngIf="onlinePhone | async">
         <div class="multiple-input" formGroupName="onlinePhone">
           <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Area code</mat-label>

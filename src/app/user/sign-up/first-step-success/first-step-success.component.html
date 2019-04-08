@@ -1,4 +1,4 @@
-<div class="success-wrapper" *ngIf="(auth.user | async) || {} as user">
+<div class="success-wrapper" *ngIf="(auth.user | async) as user">
   <section class="login-container">
     <div class="close-section">
       <button mat-icon-button class="close-btn" (click)="closeSection()" type="button">
@@ -28,23 +28,23 @@
         <a routerLink="step-three" *ngIf="user.packageChoice">Step 3: Choose a specialist</a>
         <ng-container *ngIf="!user.packageChoice">Step 3: Choose a specialist</ng-container>
       </li>
-      <li [class.activated]="user.appointment">
-        <div class="placeholder" *ngIf="!user.appointment"></div>
-        <i class="fas fa-check-square" *ngIf="user.appointment"></i>
+      <li [class.activated]="user.status && user.status.appointment">
+        <div class="placeholder" *ngIf="!user.status && user.status.appointment"></div>
+        <i class="fas fa-check-square" *ngIf="user.status && user.status.appointment"></i>
         <a routerLink="step-four" *ngIf="user.specialist">Step 4: Make an appointment</a>
         <ng-container *ngIf="!user.specialist">Step 4: Make an appointment</ng-container>
       </li>
-      <li [class.activated]="user.accepted">
-        <div class="placeholder" *ngIf="!user.accepted"></div>
-        <i class="fas fa-check-square" *ngIf="user.accepted"></i>
-        <a routerLink="limbo" *ngIf="user.appointment">Step 5: Payment</a>
-        <ng-container *ngIf="!user.appointment">Step 5: Payment</ng-container>
+      <li [class.activated]="user.status.accepted">
+        <div class="placeholder" *ngIf="!user.status.accepted"></div>
+        <i class="fas fa-check-square" *ngIf="user.status.accepted"></i>
+        <a routerLink="limbo" *ngIf="user.status && user.status.appointment">Step 5: Payment</a>
+        <ng-container *ngIf="!user.status && user.status.appointment">Step 5: Payment</ng-container>
       </li>
     </ul>
     <div class="btn-area">
       <button type="link" class="btn-primary" 
-      [class.btn-disabled]="!user.basicData || !user.appointment || !user.specialist || !user.packageChoice || !user.accepted" 
-      [disabled]="!user.basicData || !user.appointment || !user.specialist || !user.packageChoice || !user.accepted" 
+      [class.btn-disabled]="!user.basicData || !user.status && user.status.appointment || !user.specialist || !user.packageChoice || !user.status.accepted" 
+      [disabled]="!user.basicData || !user.status && user.status.appointment || !user.specialist || !user.packageChoice || !user.status.accepted" 
       routerLink="../dashboard">Go to Mirror</button>
       <br>
       <button type="link" class="text-link" routerLink="../login">Go back</button>
