@@ -58,6 +58,12 @@ main.specialist-wrapper {
 
     .action-toolbar-top {
 
+        .left {
+            button {
+                margin-right: 2em;
+            }
+        }
+
         button.icon-button {
             position: inherit;
         }
@@ -88,7 +94,6 @@ main.specialist-wrapper {
 
 
     .middle {
-        margin-left: 7.5em;
         h1, h5 {
             text-align: center;
         }

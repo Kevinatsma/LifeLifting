@@ -27,6 +27,7 @@ import { LimboStateComponent } from './limbo-state/limbo-state.component';
 
 // Directives
 import { CapsLockDirective } from './../../shared/directives/caps-lock.directive';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 
 
 
@@ -41,14 +42,19 @@ const routes: Routes = [
     component: SignupComponent,
     data: { state: 'signup' },
     children: [
-      {path: '', redirectTo: 'signup', pathMatch: 'full'},
-      {path: 'step-one', component: SignupStepOneComponent, data: {state:  'step-one'}},
-      {path: 'step-two', component: SignupStepTwoComponent, data: {state:  'step-two'}},
-      {path: 'step-three', component: SignupStepThreeComponent, data: {state:  'step-three'}},
-      {path: 'step-four', component: SignupStepFourComponent, data: {state:  'step-four'}},
-      {path: 'step-five', component: SignUpBookingComponent, data: {state:  'step-five'}},
-      {path: 'limbo', component: LimboStateComponent, data: {state:  'limbo'}},
+      {path: '', redirectTo: 'signup', pathMatch:  'full'},
+      {path: 'step-one', component: SignupStepOneComponent, data: {state: 'step-one'}},
+      {path: 'step-two', component: SignupStepTwoComponent, data: {state: 'step-two'}},
+      {path: 'step-three', component: SignupStepThreeComponent, data: {state: 'step-three'}},
+      {path: 'step-four', component: SignupStepFourComponent, data: {state: 'step-four'}},
+      {path: 'step-five', component: SignUpBookingComponent, data: {state: 'step-five'}},
+      {path: 'limbo', component: LimboStateComponent, data: {state: 'limbo'}},
     ]
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+    data: { state: 'forgot-password' }
   },
 ];
 
@@ -56,6 +62,7 @@ const routes: Routes = [
   declarations: [
     LoginComponent,
     SignupComponent,
+    ForgotPasswordComponent,
     SignupStepOneComponent,
     SignupStepTwoComponent,
     FirstStepSuccessComponent,
@@ -78,6 +85,7 @@ const routes: Routes = [
   ],
   exports: [
     LoginComponent,
+    ForgotPasswordComponent,
     SignupComponent,
     LimboStateComponent,
     RouterModule
