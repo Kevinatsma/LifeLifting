@@ -86,7 +86,7 @@ export class AddGuideDialogComponent implements OnInit {
 
   ngOnInit() {
     this.infoForm = this.fb.group({
-      guidelineID: ['', [Validators.required]],
+      gID: ['', [Validators.required]],
       guidelineName: ['', [Validators.required]],
     });
 
@@ -164,13 +164,11 @@ export class AddGuideDialogComponent implements OnInit {
 
   // Collect the data and send to service
   addGuideline() {
-    const gID: number =  this.infoForm.get('guidelineID').value;
     const data = {
       clientID: this.userData.uid,
       specialistID: this.specialistID,
       creationDate: new Date(),
-      guidelineID: this.userData.uid + '_' + gID,
-      guidelineNR: gID,
+      guidelineNR: this.infoForm.get('gID').value,
       guidelineName: this.infoForm.get('guidelineName').value,
       idealWeight: this.targetForm.get('idealWeight').value,
       idealKiloOfMuscle: this.targetForm.get('idealKiloOfMuscle').value,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
@@ -10,7 +10,8 @@ import { User } from './../../user/user.model';
 @Component({
   selector: 'app-guideline-list-item',
   templateUrl: './guideline-list-item.component.html',
-  styleUrls: ['./guideline-list-item.component.scss']
+  styleUrls: ['./guideline-list-item.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class GuidelineListItemComponent implements OnInit {
   @Input() guideline: Guideline;
@@ -30,14 +31,14 @@ export class GuidelineListItemComponent implements OnInit {
   deleteGuidelineDialog(guideline) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        guidelineID: guideline.guidelineID,
+        gID: guideline.gID,
         guidelineName: guideline.guidelineName,
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        const id = guideline.guidelineID;
+        const id = guideline.gID;
         this.guidelineService.deleteGuideline(id);
         console.log('deleted guideline');
       } else if (result === false) {
@@ -47,7 +48,7 @@ export class GuidelineListItemComponent implements OnInit {
   }
 
   editGuideline(guideline) {
-    const url = `dashboard/guidelines/${guideline.guidelineID}`;
+    const url = `dashboard/guidelines/${guideline.gID}`;
     this.router.navigate([url]);
     return this.guidelineService.editShow = true;
   }
@@ -58,7 +59,7 @@ export class GuidelineListItemComponent implements OnInit {
 
 
   linkToChild(guideline) {
-    const url = `dashboard/guidelines/${guideline.guidelineID}`;
+    const url = `dashboard/guidelines/${guideline.gID}`;
     this.router.navigate([url]);
   }
 

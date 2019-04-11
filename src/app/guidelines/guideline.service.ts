@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable, Subject } from 'rxjs';
 import { Guideline } from './guideline.model';
-import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
-import { Specialist } from '../specialists/specialist.model';
 import { UserService } from '../user/user.service';
 import { AuthService } from '../core/auth/auth.service';
 import { User } from '../user/user.model';
@@ -82,7 +80,13 @@ export class GuidelineService {
   }
 
   addGuideline(data) {
-    this.afs.collection<Guideline>(`guidelines`).doc(`${data.guidelineID}`).set(data, {merge: true})
+    this.afs.collection<Guideline>(`guidelines`).add(data)
+    .then((credential) => {
+      const idData = {
+        gID: credential.id
+      };
+      this.updateGuideline(credential.id, idData);
+    })
     .then(() => {
       // Show Snackbar
       const message = `${data.guidelineName} was added succesfully`;
@@ -101,6 +105,14 @@ export class GuidelineService {
 
   duplicateGuideline(data) {
     this.afs.collection<Guideline>(`guidelines`).add(data)
+    .then((credential) => {
+      // Update guideline
+      const idData = {
+        gID: credential.id,
+        creationDate: new Date()
+      };
+      this.updateGuideline(credential.id, idData);
+    })
     .then(() => {
       // Show Snackbar
       const message = `${data.guidelineName} was duplicated succesfully`;

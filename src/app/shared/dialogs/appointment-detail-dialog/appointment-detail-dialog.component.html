@@ -62,7 +62,7 @@
     <section class="appointment-type" *ngIf="event">
       <div class="contact-container" *ngIf="onlineAppointment && event.onlineAppointmentPhone.phoneAreaCode || event.skypeName || event.whatsappNumber">
         <h4>Online call</h4>
-        <div class="contact-container__item skype" *ngIf="skype">
+        <div class="contact-container__item skype" *ngIf="skype && event.skypeName">
           <p>
             <i class="fab fa-skype"></i> 
             {{event.skypeName}}

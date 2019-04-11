@@ -11,7 +11,7 @@
           <h1 *ngIf="client; else gID">Guideline for: {{client.displayName}}</h1>
           <h5 *ngIf="client">Current weight: {{client.basicData.currentWeight}}kg</h5>
           <ng-template #gID>
-            <h1>Guideline ID: {{guideline.guidelineID}}</h1>
+            <h1>Guideline ID: {{guideline.gID}}</h1>
           </ng-template>
         </div>
         <div class="right">
@@ -45,7 +45,7 @@
                 <input type="text" class="text-field" name="guidelineName" formControlName="guidelineName">
               </h2>
               <h5>
-                gID: {{guideline.guidelineID}}
+                gID: {{guideline.gID}}
               </h5>
             </section>
   

@@ -113,7 +113,7 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
         fatValue: this.editGuidelineForm.get('fatValue').value || this.guideline.macroDistribution.fatValue,
       }
     };
-    this.guidelineService.updateGuideline(this.guideline.guidelineID, data);
+    this.guidelineService.updateGuideline(this.guideline.gID, data);
     if (data.target === 'gain') {
       this.guidelineService.gainWeight = true;
     } else {

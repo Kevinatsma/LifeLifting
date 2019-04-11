@@ -12,7 +12,7 @@
     <mat-label>Import a guideline you created for {{userData.displayName}}</mat-label>
     <mat-select matInput class="f-input select" placeholder="Pick a Guideline" (selectionChange)="guidelineHandler()"
     panelClass="dropdown-regular" autocomplete="off" formControlName="guideline" required>
-      <mat-option *ngFor="let guideline of guidelines" [value]="guideline.guidelineID">
+      <mat-option *ngFor="let guideline of guidelines" [value]="guideline.gID">
         {{guideline.guidelineName}} - 
         <ng-container *ngIf="guideline.lastEdited">
           Last edited: {{guideline.lastEdited.toDate() | date: 'short'}}

@@ -2,14 +2,17 @@
 @import './../../../assets/scss/_animations.scss';
 
 // NG deeps
-::ng-deep .mat-menu-content {
-    .mat-menu-item {
-        color: $black;
-        font-size: 16px;
-        font-family: $main-font;
-        
-        svg {
-            margin-right: 1em;
+.mat-menu-panel {
+    margin-top: 0;
+    .mat-menu-content {
+        .mat-menu-item {
+            color: $black;
+            font-size: 16px;
+            font-family: $main-font;
+            
+            svg {
+                margin-right: 1em;
+            }
         }
     }
 }

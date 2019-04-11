@@ -2,7 +2,7 @@
 
 // Mat items
 
-::ng-deep  div.mat-menu-panel {
+.mat-menu-panel {
     margin: 1em 0 0 -0.5em;
     border-radius: 2px;
     box-shadow: $card-shadow;
@@ -10,11 +10,6 @@
         svg {
             margin-right: 1em;
         }
-    }
-    button.dummy-link {
-        height: 0;
-        width: 0;
-        position: absolute;
     }
 }
 
