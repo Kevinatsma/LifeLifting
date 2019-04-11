@@ -39,6 +39,7 @@ export class GuidelineListItemComponent implements OnInit {
       if (result === true) {
         const id = guideline.guidelineID;
         this.guidelineService.deleteGuideline(id);
+        console.log('deleted guideline');
       } else if (result === false) {
         return null;
       }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChatDetailComponent } from './chat-detail.component';
+import { PasswordResetComponent } from './password-reset.component';
 
-describe('ChatDetailComponent', () => {
-  let component: ChatDetailComponent;
-  let fixture: ComponentFixture<ChatDetailComponent>;
+describe('PasswordResetComponent', () => {
+  let component: PasswordResetComponent;
+  let fixture: ComponentFixture<PasswordResetComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChatDetailComponent ]
+      declarations: [ PasswordResetComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChatDetailComponent);
+    fixture = TestBed.createComponent(PasswordResetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

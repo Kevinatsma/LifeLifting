@@ -14,6 +14,8 @@ import { DialogsModule } from './../../shared/dialogs/dialogs.module';
 // Components
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './../login/login.component';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+import { PasswordResetComponent } from '../password-reset/password-reset.component';
 import { FirstStepSuccessComponent } from './first-step-success/first-step-success.component';
 import { SignupStepOneComponent } from './signup-step-one/signup-step-one.component';
 import { SignupStepTwoComponent } from './signup-step-two/signup-step-two.component';
@@ -27,9 +29,6 @@ import { LimboStateComponent } from './limbo-state/limbo-state.component';
 
 // Directives
 import { CapsLockDirective } from './../../shared/directives/caps-lock.directive';
-import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
-
-
 
 const routes: Routes = [
   {
@@ -56,6 +55,11 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
     data: { state: 'forgot-password' }
   },
+  {
+    path: 'password-reset',
+    component: PasswordResetComponent,
+    data: { state: 'password-reset' }
+  },
 ];
 
 @NgModule({
@@ -63,13 +67,14 @@ const routes: Routes = [
     LoginComponent,
     SignupComponent,
     ForgotPasswordComponent,
+    PasswordResetComponent,
     SignupStepOneComponent,
     SignupStepTwoComponent,
     FirstStepSuccessComponent,
     SignupStepThreeComponent,
     SignupStepFourComponent,
     LimboStateComponent,
-    CapsLockDirective
+    CapsLockDirective,
 ],
   imports: [
     CommonModule,
@@ -86,6 +91,7 @@ const routes: Routes = [
   exports: [
     LoginComponent,
     ForgotPasswordComponent,
+    PasswordResetComponent,
     SignupComponent,
     LimboStateComponent,
     RouterModule
