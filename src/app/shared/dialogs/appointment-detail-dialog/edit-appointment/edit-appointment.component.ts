@@ -49,6 +49,7 @@ export class EditAppointmentComponent implements OnInit {
   ngOnInit() {
     this.editAppointmentForm = this.fb.group ({
       title: [''],
+      edited: true,
       clientID: [''],
       startDate: ['', Validators.required],
       startHour: ['', Validators.required],

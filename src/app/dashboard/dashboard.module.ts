@@ -12,8 +12,8 @@ import { UserModule } from '../user/user.module';
 import { UsersComponent } from '../user/users/users.component';
 import { ClientsModule } from './../clients/clients.module';
 import { ClientsComponent } from '../clients/clients.component';
-import { UserRequestComponent } from '../user-request/user-request/user-request.component';
-import { UserRequestModule } from '../user-request/user-request.module';
+import { UserRequestComponent } from '../requests/user-request/user-request.component';
+import { RequestModule } from '../requests/request.module';
 import { PackagesComponent } from '../packages/packages.component';
 import { PackageDetailComponent } from '../packages/package-detail/package-detail.component';
 import { AdminMenuComponent } from './dashboard-menu/admin-menu/admin-menu.component';
@@ -125,7 +125,7 @@ const routes: Routes = [
     ClientsModule,
     FoodsModule,
     ExercisesModule,
-    UserRequestModule,
+    RequestModule,
     GuidelinesModule,
     MealplansModule,
     MaterialModule

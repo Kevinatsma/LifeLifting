@@ -25,6 +25,11 @@
         }
     }
 
+    .step-container {
+        position: relative;
+        z-index: -1;
+    }
+
     .step-done {
         flex-flow: column wrap;
         width: 100%;
@@ -37,6 +42,21 @@
 
         .btn-icon-right {
             margin-top: 2em;
+        }
+
+        &.not-accepted {
+            @extend %flex-center;
+            background: $middle-grey;
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            top: 5em;
+            overflow:  hidden;
+            z-index: 1500;
+
+            button {
+                margin-top: 2em;
+            }
         }
     }
 

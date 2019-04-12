@@ -1,5 +1,9 @@
 <main class="limbo-container" *ngIf="auth.user | async as user">
-  <ng-container *ngIf="user.status.appointment && !user.status.appointmentAccepted && !user.status.appointmentCompleted">
+  <ng-container *ngIf="
+    user.status.appointment &&
+    !user.status.appointmentAccepted &&
+    !user.status.appointmentCompleted &&
+    !user.status.appointmentRejected">
     <div class="step-done">
       <h1>Cheers to planning that in! 🍻</h1>
       <p class="intro-text">
@@ -11,19 +15,51 @@
     </div>
   </ng-container>
 
+  <!-- display something if it isn't accepted as well -->
+  <ng-container *ngIf="user.status.appointmentRejected">
+    <div class="step-done not-accepted">
+      <h1> Oh.. Appointment not accepted! </h1>
+      <p class="subtitle" *ngIf="specialist">
+        The specialist couldn't fit your request in his schedule. Please contact
+        <a class="text-link" (click)="toggleSpecialist()">
+          {{specialist.firstName}} {{specialist.lastName}},
+        </a>
+        or request another appointment.
+      </p>
+
+      <button class="btn-primary" (click)="requestNewEvent(user)">
+        Request new appointment
+      </button>
+    </div>
+  </ng-container>
+
   <ng-container *ngIf="user.status.appointment && user.status.appointmentAccepted && !user.status.appointmentCompleted">
-    <h1> Appointment accepted! </h1>
+    <h1> Appointment status </h1>
     <p class="subtitle" *ngIf="specialist">
-      But it hasn't taken place, or isn't processed by the specialist yet. Please contact 
+      If you see your appointment down here. Congrats! Then it has been accepted. If not, please wait untill the specialist
+      accepts your request. Is it taking a long time? Please contact 
       <a class="text-link" (click)="toggleSpecialist()">
         {{specialist.firstName}} {{specialist.lastName}} 
       </a>
       if you have any trouble, or for any further questions.
     </p>
     
-    <section class="appointments" *ngIf="events">
-      <app-appointment-detail *ngFor="let event of events" [event]="event"></app-appointment-detail>
-    </section>
+    <ng-container *ngIf="events">
+      <section class="appointments" *ngFor="let event of events">
+        <ng-container *ngIf="event.accepted">
+            <h1> Appointment accepted! </h1>
+            <p class="subtitle" *ngIf="specialist">
+              Congrats. Your appointment has been planned in. Please contact
+              <a class="text-link" (click)="toggleSpecialist()">
+                {{specialist.firstName}} {{specialist.lastName}} 
+              </a>
+              if you have any trouble, or for any further questions.
+            </p>
+        </ng-container>
+
+        <app-appointment-detail [event]="event"></app-appointment-detail>
+      </section>
+    </ng-container>
   </ng-container>
 
   <ng-container *ngIf="user.status.appointmentAccepted && user.status.appointmentCompleted && !user.status.accepted">

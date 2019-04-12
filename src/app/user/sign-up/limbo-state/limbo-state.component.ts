@@ -59,7 +59,7 @@ export class LimboStateComponent implements OnInit {
 
   getAppointments(user) {
     const colRef: AngularFirestoreCollection =
-      this.afs.collection('appointments', ref => ref.where('clientID', '==', `${user.uid}`).limit(1).orderBy('created', 'desc'));
+      this.afs.collection('appointments', ref => ref.where('members', 'array-contains', `${user.uid}`).limit(1).orderBy('created', 'desc'));
     this.bookingService.getSpecificAppointments(colRef).subscribe(events => {
       this.events = events;
     });
@@ -78,6 +78,18 @@ export class LimboStateComponent implements OnInit {
     };
     this.userService.updateUser(user.uid, data);
     this.router.navigate(['signup/step-three']);
+  }
+
+  // Request new appointment if it isn't accepted
+  requestNewEvent(user) {
+    const data = {
+      status: {
+        appointment: false,
+        appointmentAccepted: false
+      }
+    };
+    this.userService.updateUser(user.uid, data);
+    this.router.navigate(['..//signup/step-four']);
   }
 
   // Toggles

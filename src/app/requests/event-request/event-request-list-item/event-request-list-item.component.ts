@@ -1,0 +1,54 @@
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Appointment } from './../../../booking/appointment.model';
+import { Observable } from 'rxjs';
+import { User } from './../../../user/user.model';
+import { UserService } from './../../../user/user.service';
+import { BookingService } from './../../../booking/booking.service';
+
+@Component({
+  selector: 'app-event-request-list-item',
+  templateUrl: './event-request-list-item.component.html',
+  styleUrls: ['./event-request-list-item.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+})
+export class EventRequestListItemComponent implements OnInit {
+  @Input() event: Appointment;
+  user: User;
+  eventAccepted = false;
+
+  constructor( private userService: UserService,
+               private bookingService: BookingService) { }
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.userService.getUserDataByID(this.event.clientID).subscribe(user => this.user = user);
+    }, 500);
+  }
+
+  acceptEvent(event) {
+    const data = {
+      accepted: this.eventAccepted
+    };
+    // this.bookingService.updateEvent(event.eventID, data);
+    return;
+  }
+
+  deleteRequest(event) {
+    const data = {
+      rejected: true
+    };
+    const userData = {
+      status: {
+        appointment: true,
+        appointmentAccepted: false,
+        appointmentCompleted: false,
+        appointmentRejected: true,
+        accepted: false,
+        signUpCompleted: this.user.status.signUpCompleted,
+      }
+    };
+    this.bookingService.updateEvent(event.eventID, data);
+    this.userService.updateUser(this.user.uid, userData);
+  }
+
+}

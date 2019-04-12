@@ -52,7 +52,7 @@ export class BookingService implements OnInit {
     .catch(error => console.error('Error adding document: ', error))
     .then(() => {
       // Show Snackbar
-      const message = `${data.title} was added succesfully`;
+      const message = `${data.title} was requested succesfully`;
       const action = 'Close';
 
       this.snackbar.open(message, action, {
@@ -92,26 +92,28 @@ export class BookingService implements OnInit {
         const start = data.start;
         const end = data.end;
         const eventData = {
-            created: data.created,
-            eventID: data.eventID,
-            title: data.title,
-            start: new Date(start),
-            end: new Date(end),
-            color: data.color,
-            draggable: data.draggable,
-            resizable: {
-              beforeStart: data.resizable.beforeStart, // this allows you to configure the sides the event is resizable from
-              afterEnd: data.resizable.afterEnd
-            },
-            clientID: data.clientID,
-            specialistID: data.specialistID,
-            meetMethod: data.meetMethod,
-            contactMethod: data.contactMethod,
-            onlineAppointmentPhone: data.onlineAppointmentPhone,
-            whatsappNumber: data.whatsappNumber,
-            skypeName: data.skypeName,
-            faceToFacePhone: data.faceToFacePhone,
-            location: data.location,
+          accepted: data.accepted,
+          rejected: data.rejected,
+          created: data.created,
+          eventID: data.eventID,
+          title: data.title,
+          start: new Date(start),
+          end: new Date(end),
+          color: data.color,
+          draggable: data.draggable,
+          resizable: {
+            beforeStart: data.resizable.beforeStart, // this allows you to configure the sides the event is resizable from
+            afterEnd: data.resizable.afterEnd
+          },
+          clientID: data.clientID,
+          specialistID: data.specialistID,
+          meetMethod: data.meetMethod,
+          contactMethod: data.contactMethod,
+          onlineAppointmentPhone: data.onlineAppointmentPhone,
+          whatsappNumber: data.whatsappNumber,
+          skypeName: data.skypeName,
+          faceToFacePhone: data.faceToFacePhone,
+          location: data.location,
         };
         return {...eventData };
       });

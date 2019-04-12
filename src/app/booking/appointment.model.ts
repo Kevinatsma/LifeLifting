@@ -1,6 +1,8 @@
 export class Appointment {
     accepted?: boolean;
+    rejected?: boolean;
     created?: Date;
+    edited?: boolean;
     title?: string;
     start?: any;
     end?: any;

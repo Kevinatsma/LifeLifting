@@ -31,6 +31,7 @@ import { AddAppointmentDialogComponent } from '../../shared/dialogs/add-appointm
 import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EventRequestComponent } from 'src/app/requests/event-request/event-request.component';
 
 @Component({
   selector: 'app-specialist-booking',
@@ -48,7 +49,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SpecialistBookingComponent implements OnInit {
   user: User;
   specialist: Specialist;
-  view: CalendarView = CalendarView.Week;
+  view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
@@ -197,13 +198,13 @@ export class SpecialistBookingComponent implements OnInit {
   }
 
   openUnacceptedUsers() {
-    alert(`TO DO: show list of requested appointments`);
-    // this.dialog.open(AppointmentDetailDialogComponent, {
-    //   data: {
-    //     event: event,
-    //   },
-    //   panelClass: 'event-detail-dialog'
-    // });
+    this.dialog.open(EventRequestComponent, {
+      data: {
+        user: this.user,
+        event: event,
+      },
+      panelClass: 'request-dialog'
+    });
   }
 
   ////////////////

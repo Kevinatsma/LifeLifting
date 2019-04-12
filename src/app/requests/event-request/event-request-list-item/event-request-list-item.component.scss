@@ -1,0 +1,79 @@
+@import './../../../../assets/scss/_master.scss';
+
+
+.mat-checkbox {
+    width: 30px;
+    height: 35px;
+    
+    &-background, &-frame {
+        border-radius: 50%!important;
+        width: 30px;
+        height: 30px;
+    }
+
+    &-frame {
+        border-color: $primary-color;
+    }
+
+    &-checked {
+        .mat-checkbox-background {
+            background-color: $primary-color!important;
+        }
+    }
+
+    &-inner-container {
+        width: 30px!important;
+        height: 30px!important;
+    }
+
+    &:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-ripple .mat-ripple-element {
+        background: $primary-color!important;
+    }
+}
+
+.list-item {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 150px;
+    width: 100%;
+    padding: 1em 2em;
+    background-color: $primary-light;
+    border: 2px solid $primary-color;
+    border-radius: 10px;
+
+    &__check-area {
+        @extend %flex-center;
+        width: 5%;
+        height: 100%;
+        margin-right: 5%;
+    }
+
+    &__data {
+        display: flex;
+        height: 100%;
+        width: 80%;
+
+        .main-info {
+            display: flex;
+            flex-flow: column wrap;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+
+            h1, p {
+                margin: 0 0 10px;
+                text-align: left;
+            }
+        }
+    }
+
+    &__btn-area {
+        @extend %flex-center;
+        width: 15%;
+        height: 100%;
+    }
+}

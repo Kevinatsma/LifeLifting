@@ -1,0 +1,19 @@
+<ng-container *ngIf="event && user">
+  <main class="list-item">
+    <section class="list-item__check-area">
+      <mat-checkbox name="eventAccepted" [(ngModel)]="eventAccepted" (change)="acceptEvent(event)">
+      </mat-checkbox>
+    </section>
+    <section class="list-item__data">
+      <div class="main-info">
+        <h1>{{event.title}}</h1>
+        <h5>{{user.displayName}}</h5>
+      </div>
+    </section>
+    <section class="list-item__btn-area">
+      <button class="icon-button" (click)="deleteRequest(event)">
+        <i class="fas fa-trash"></i>
+      </button>
+    </section>
+  </main>
+</ng-container>

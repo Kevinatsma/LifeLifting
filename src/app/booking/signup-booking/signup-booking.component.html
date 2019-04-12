@@ -18,10 +18,6 @@
     </div>
   </section>
 
-  <ng-template #loading>
-    <app-loading-spinner></app-loading-spinner>
-  </ng-template>
-
   <div class="calendar-container">
     <div class="profile-picture" *ngIf="specialist" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
       <span *ngIf="!specialist.photoURL">No Photo Yet</span>
@@ -88,7 +84,7 @@
     </section>
 
     <section class="calendar__view" [ngSwitch]="view">
-      <ng-container *ngIf="events$ | async; else loading; let events">
+      <div *ngIf="events$ | async; else loading; let events">
       <!-- <ng-container *ngIf="appointments"> -->
         <mwl-calendar-month-view
           *ngSwitchCase="CalendarView.Month"
@@ -110,7 +106,12 @@
           [events]="events"
         >
         </mwl-calendar-day-view>
-      </ng-container>
+      </div>
+
+
+      <ng-template #loading>
+        <app-loading-spinner></app-loading-spinner>
+      </ng-template>
     </section>
   </div>
 </main>

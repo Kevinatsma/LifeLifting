@@ -1,6 +1,10 @@
 <main class="dialog-wrapper" *ngIf="(auth.user | async) as user">
   <form [formGroup]="appointmentForm">
-    <h3>Plan an appointment with {{data.specialist.firstName}}</h3>
+    <h3>Plan an appointment 
+      <ng-container *ngIf="!user.roles.admin || !user.roles.specialist">
+        with {{data.specialist.firstName}}
+      </ng-container>
+    </h3>
     <p class="card-text">
       Please provide a suitable time. Requests for times that are already taken, are not secured spots.
     </p>
