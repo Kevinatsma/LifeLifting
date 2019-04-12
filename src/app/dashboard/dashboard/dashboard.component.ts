@@ -49,15 +49,17 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['signup/step-one']);
     } else if (!this.user.packageChoice) {
       this.router.navigate(['signup/step-two']);
-    } else if (!this.user.status.appointment) {
-      this.router.navigate(['signup/step-three']);
     } else if (!this.user.specialist) {
+      this.router.navigate(['signup/step-three']);
+    } else if (!this.user.status.appointment) {
       this.router.navigate(['signup/step-four']);
     } else if (!this.user.status.accepted  && this.auth.currentUserId) {
       this.router.navigate(['signup/limbo']);
     } else if (!this.user.status.appointmentAccepted) {
       this.router.navigate(['signup/limbo']);
     } else if (!this.user.status.appointmentCompleted) {
+      this.router.navigate(['signup/limbo']);
+    } else if (this.user.status.subscriptionEnded) {
       this.router.navigate(['signup/limbo']);
     }
   }

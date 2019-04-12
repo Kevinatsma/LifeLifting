@@ -41,10 +41,6 @@ export class LimboStateComponent implements OnInit {
     } else {
       this.router.navigate(['../']);
     }
-
-    setTimeout(() => {
-      console.log(this.event);
-    }, 500);
   }
   // Getters
 
@@ -67,6 +63,21 @@ export class LimboStateComponent implements OnInit {
     this.bookingService.getSpecificAppointments(colRef).subscribe(events => {
       this.events = events;
     });
+  }
+
+  // Choose new specialist
+  resetSpecialist(user) {
+    const data = {
+      specialist: null,
+      appointment: null,
+      status: {
+        appointmentAccepted: false,
+        appointmentCompleted: false,
+        accepted: false,
+      }
+    };
+    this.userService.updateUser(user.uid, data);
+    this.router.navigate(['signup/step-three']);
   }
 
   // Toggles

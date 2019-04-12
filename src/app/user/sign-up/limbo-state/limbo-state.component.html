@@ -44,12 +44,39 @@
     <div class="step-done">
       <h1>Aww.. Your subscription has ended</h1>
       <p class="subtitle" *ngIf="specialist">
-        We hope you had an awesome growth in your time with LifeLifting. And your always welcome to train with
+        We hope you had an awesome growth in your time with LifeLifting. And you're always welcome to train with
         <a class="text-link" (click)="toggleSpecialist()">
           {{specialist.firstName}} {{specialist.lastName}} 
         </a>
-        ior you can choose another specialist.
+        or you can choose 
+        <a class="text-link" (click)="resetSpecialist(user)">
+          another specialist.
+        </a>
       </p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="
+  !user.status.subscriptionEnded &&
+  user.status.accepted &&
+  user.status.appointmentAccepted &&
+  user.status.appointmentCompleted &&
+  user.status.appointment">
+
+    <div class="step-done">
+      <h1>Looks like everything is ok!</h1>
+      <p class="subtitle" *ngIf="specialist">
+        You've completed all the steps. Click the button below to continue to the dashboard.
+      </p>
+      <div class="btn-area">
+        <button class="btn-icon-right"
+          [class.btn-disabled]="user.status && !user.status.appointment"
+          [disabled]="user.status && !user.status.appointment"
+          routerLink="../../dashboard">
+          <span>Go to the dashboard!</span>
+          <span class="emoji">🚀</span>
+        </button>
+      </div>
     </div>
   </ng-container>
 

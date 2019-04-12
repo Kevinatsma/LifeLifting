@@ -34,6 +34,10 @@
         padding: 0 6em;
         box-sizing: border-box;
         @extend %flex-center;
+
+        .btn-icon-right {
+            margin-top: 2em;
+        }
     }
 
     .appointments {

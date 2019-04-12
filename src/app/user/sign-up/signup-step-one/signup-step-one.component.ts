@@ -56,13 +56,15 @@ export class SignupStepOneComponent implements OnInit {
   }
 
   updateUser(user) {
+    const phoneNumber = this.basicUserDataForm.controls.phoneNumber.get('phoneRest').value +
+                        this.basicUserDataForm.controls.phoneNumber.get('phoneRest').value;
     const data = {
       displayName: this.basicUserDataForm.get('displayName').value,
       basicData: {
         age: this.basicUserDataForm.get('age').value,
         gender: this.selectedGender,
         country: this.basicUserDataForm.get('country').value,
-        phoneNumber: this.basicUserDataForm.get('phoneNumber').value,
+        phoneNumber: phoneNumber,
         heardFromUs: this.basicUserDataForm.get('heardFromUs').value,
         mainGoal: this.basicUserDataForm.get('mainGoal').value,
         currentWeight: this.basicUserDataForm.get('currentWeight').value

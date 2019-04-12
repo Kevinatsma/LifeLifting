@@ -230,7 +230,9 @@ export class SignUpBookingComponent implements OnInit {
           status: {
             accepted: false,
             appointment: true,
-            signUpCompleted: true
+            signUpCompleted: true,
+            appointmentAccepted: false,
+            appointmentCompleted: false,
           }
         };
         this.userService.updateUser(uid, data);

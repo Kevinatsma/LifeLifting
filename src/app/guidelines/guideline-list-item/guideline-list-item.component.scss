@@ -4,7 +4,7 @@
 // NG deeps
 .mat-menu-panel {
     margin-top: 0;
-    box-shadow: $card-shadow;
+    box-shadow: $card-shadow!important;
     
     .mat-menu-content {
         .mat-menu-item {

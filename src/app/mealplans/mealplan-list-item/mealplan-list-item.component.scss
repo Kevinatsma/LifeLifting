@@ -2,6 +2,7 @@
 @import './../../../assets/scss/_animations.scss';
 
 .mat-menu-panel {
+    box-shadow: $card-shadow;
     margin-top: 0;
     .mat-menu-content {
         .mat-menu-item {
