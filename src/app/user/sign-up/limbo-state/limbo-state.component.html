@@ -1,7 +1,7 @@
 <main class="limbo-container" *ngIf="auth.user | async as user">
-  <ng-container *ngIf="user.status.appointment && !user.status.appointmentAccepted">
+  <ng-container *ngIf="user.status.appointment && !user.status.appointmentAccepted && !user.status.appointmentCompleted">
     <div class="step-done">
-      <h1>Cheers to filling that out! 🍻</h1>
+      <h1>Cheers to planning that in! 🍻</h1>
       <p class="intro-text">
         Congrats on looking for a better version of yourself. Thank you for your trust in <b>LifeLifting Nutrition</b>.
         <br>
@@ -11,20 +11,46 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="user.status.appointmentAccepted && !user.status.accepted">
-    <h1>Woops! Payment not processed yet..</h1>
+  <ng-container *ngIf="user.status.appointment && user.status.appointmentAccepted && !user.status.appointmentCompleted">
+    <h1> Appointment accepted! </h1>
     <p class="subtitle" *ngIf="specialist">
-      Please contact 
+      But it hasn't taken place, or isn't processed by the specialist yet. Please contact 
       <a class="text-link" (click)="toggleSpecialist()">
         {{specialist.firstName}} {{specialist.lastName}} 
       </a>
-      if you have any trouble
-      with your payment, or for any further questions.
+      if you have any trouble, or for any further questions.
     </p>
     
     <section class="appointments" *ngIf="events">
       <app-appointment-detail *ngFor="let event of events" [event]="event"></app-appointment-detail>
     </section>
+  </ng-container>
+
+  <ng-container *ngIf="user.status.appointmentAccepted && user.status.appointmentCompleted && !user.status.accepted">
+    <div class="step-done">
+      <h1>Nice, you completed your first appointment!</h1>
+      <p class="subtitle" *ngIf="specialist">
+        But your payment hasn't been processed yet. Make sure you've paid. Don't hesitate contacting
+        <a class="text-link" (click)="toggleSpecialist()">
+          {{specialist.firstName}} {{specialist.lastName}} 
+        </a>
+        if you have any trouble
+        with your payment, or for any further questions.
+      </p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="user.status.subscriptionEnded">
+    <div class="step-done">
+      <h1>Aww.. Your subscription has ended</h1>
+      <p class="subtitle" *ngIf="specialist">
+        We hope you had an awesome growth in your time with LifeLifting. And your always welcome to train with
+        <a class="text-link" (click)="toggleSpecialist()">
+          {{specialist.firstName}} {{specialist.lastName}} 
+        </a>
+        ior you can choose another specialist.
+      </p>
+    </div>
   </ng-container>
 
   <section class="specialist-container" [class.active]="showSpecialist">

@@ -13,6 +13,12 @@
 
     @extend %flex-center;
 
+    .subtitle {
+        margin: 1.5em auto 0.5em;
+        width: 90%;
+        text-align: center;
+    }
+
     .text-link {
         &::after {
             transition: none;
@@ -25,6 +31,8 @@
         height: 100vh;
         margin: -5em 0 -4em;
         text-align: center!important;
+        padding: 0 6em;
+        box-sizing: border-box;
         @extend %flex-center;
     }
 

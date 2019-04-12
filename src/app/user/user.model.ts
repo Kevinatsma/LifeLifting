@@ -7,6 +7,7 @@ export interface Roles {
 export interface Status {
     appointment?: boolean;
     appointmentAccepted?: boolean;
+    appointmentCompleted?: boolean;
     accepted?: boolean;
     signUpCompleted?: boolean;
  }

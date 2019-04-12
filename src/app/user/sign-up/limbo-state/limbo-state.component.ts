@@ -18,6 +18,7 @@ export class LimboStateComponent implements OnInit {
   user: User;
   specialist: Specialist;
   events: Appointment[];
+  event: Appointment;
 
   // Toggles
   showSpecialist = false;
@@ -40,6 +41,10 @@ export class LimboStateComponent implements OnInit {
     } else {
       this.router.navigate(['../']);
     }
+
+    setTimeout(() => {
+      console.log(this.event);
+    }, 500);
   }
   // Getters
 

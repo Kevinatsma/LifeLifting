@@ -13,9 +13,9 @@
         </button>
 
         <button class="icon-button edit-button" (click)="toggleEdit()"
-        [class.icon-button-disabled]="!user.status.signupCompleted" [disabled]="!user.status.signupCompleted">
-          <ng-container *ngIf="user.status.signupCompleted"> <i class="fas fa-edit"></i> </ng-container>
-          <ng-container *ngIf="!user.status.signupCompleted"> <i class="fas fa-ban"></i> </ng-container>
+        [class.icon-button-disabled]="!user.status.signUpCompleted" [disabled]="!user.status.signUpCompleted">
+          <ng-container *ngIf="user.status.signUpCompleted"> <i class="fas fa-edit"></i> </ng-container>
+          <ng-container *ngIf="!user.status.signUpCompleted"> <i class="fas fa-ban"></i> </ng-container>
         </button>
 
       </div>
@@ -142,8 +142,8 @@
               <ng-container *ngIf="!user.basicData"><strong>Not filled out</strong></ng-container>
             </li>
             <li>Sign Up Completed?
-              <ng-container *ngIf="user.status.signupCompleted"><strong>Yes</strong></ng-container>
-              <ng-container *ngIf="!user.status.signupCompleted"><strong>No</strong></ng-container>
+              <ng-container *ngIf="user.status.signUpCompleted"><strong>Yes</strong></ng-container>
+              <ng-container *ngIf="!user.status.signUpCompleted"><strong>No</strong></ng-container>
             </li>
           </ul>
         </div>

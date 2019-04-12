@@ -74,7 +74,7 @@ export class AddMealDialogComponent implements OnInit {
 
   ngOnInit() {
     this.infoForm = this.fb.group({
-      mealplanID: ['', [Validators.required]],
+      mID: ['', [Validators.required]],
       mealplanName: ['', [Validators.required]],
     });
 
@@ -140,13 +140,13 @@ export class AddMealDialogComponent implements OnInit {
 
   // Collect the data and send to service
   addMealplan() {
-    const mID: number =  this.infoForm.get('mealplanID').value;
+    const mID: number =  this.infoForm.get('mID').value;
     const data = {
       clientID: this.userData.uid,
       specialistID: this.specialistID,
       specialistName: this.specialist.firstName + ' ' + this.specialist.lastName,
       creationDate: new Date(),
-      mealplanID: this.userData.uid + '_' + mID,
+      mID: this.userData.uid + '_' + mID,
       mealplanNR: mID,
       mealplanName: this.infoForm.get('mealplanName').value,
       mealTimes: this.mealTimeForms.value,

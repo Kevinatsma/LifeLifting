@@ -102,7 +102,7 @@ export class Mealplan {
     specialistID: string;
     creationDate: Date;
     lastEdited?: Date;
-    mealplanID: string;
+    mID: string;
     mealplanNR: number;
     mealplanName: string;
     guideline: string;

@@ -1,6 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MealplanService } from '../mealplan.service';
 import { Specialist } from '../../specialists/specialist.model';
@@ -60,7 +59,6 @@ export class MealplanDetailComponent implements OnInit {
   increaseCals: boolean;
 
   constructor( public auth: AuthService,
-               private cdr: ChangeDetectorRef,
                public dialog: MatDialog,
                public router: Router,
                public route: ActivatedRoute,
@@ -249,14 +247,14 @@ export class MealplanDetailComponent implements OnInit {
   deleteMealplanDialog(mealplan) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        mealplanID: mealplan.mealplanID,
+        mID: mealplan.mID,
         mealplanName: mealplan.mealplanName,
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        const id = mealplan.mealplanID;
+        const id = mealplan.mID;
         this.mealplanService.deleteMealplan(id);
         this.router.navigate(['../']);
       } else if (result === false) {

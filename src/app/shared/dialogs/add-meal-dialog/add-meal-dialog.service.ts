@@ -81,7 +81,7 @@ export class AddMealDialogService {
   }
 
   addMealplan(data) {
-    this.afs.collection<Mealplan>(`mealplans`).doc(`${data.mealplanID}`).set(data, {merge: true})
+    this.afs.collection<Mealplan>(`mealplans`).doc(`${data.mID}`).set(data, {merge: true})
     .then(() => {
       // Show Snackbar
       const message = `The ${data.mealplanName} was added succesfully`;

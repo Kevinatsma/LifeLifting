@@ -20,7 +20,7 @@ import { User } from './../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { UserService } from './../../user/user.service';
 import { Appointment } from '../appointment.model';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Location } from '@angular/common';
@@ -108,7 +108,7 @@ export class BookingComponent implements OnInit {
   }
 
   getEvents() {
-    const colRef = '';
+    const colRef: AngularFirestoreCollection = this.afs.collection('appointments');
     this.events$ = this.bookingService.getSpecificAppointments(colRef);
   }
 

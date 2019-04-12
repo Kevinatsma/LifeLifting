@@ -8,7 +8,7 @@
               <mat-label>Choose a mealplan to get your shopping list</mat-label>
               <mat-select matInput placeholder="Pick one from the list" [(value)]="selectedMealplan" formControlName="mealplan" autocomplete="off" 
               panelClass="dropdown-regular" required>
-                <mat-option *ngFor="let mealplan of mealplans | async; let i=index" [value]="mealplan.mealplanID">
+                <mat-option *ngFor="let mealplan of mealplans | async; let i=index" [value]="mealplan.mID">
                   {{mealplan.mealplanName}}
                 </mat-option>
               </mat-select>

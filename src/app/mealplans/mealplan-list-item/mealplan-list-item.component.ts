@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
@@ -10,7 +10,8 @@ import { User } from '../../user/user.model';
 @Component({
   selector: 'app-mealplan-list-item',
   templateUrl: './mealplan-list-item.component.html',
-  styleUrls: ['./mealplan-list-item.component.scss']
+  styleUrls: ['./mealplan-list-item.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MealplanListItemComponent implements OnInit {
   @Input() mealplan: Mealplan;
@@ -30,14 +31,14 @@ export class MealplanListItemComponent implements OnInit {
   deleteMealplanDialog(mealplan) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        mealplanID: mealplan.mealplanID,
+        mID: mealplan.mID,
         mealplanName: mealplan.mealplanName,
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        const id = mealplan.mealplanID;
+        const id = mealplan.mID;
         this.mealplanService.deleteMealplan(id);
       } else if (result === false) {
         return null;
@@ -45,15 +46,24 @@ export class MealplanListItemComponent implements OnInit {
     });
   }
 
+  duplicateMealplan(mealplan) {
+    this.mealplanService.duplicateMealplan(mealplan);
+  }
+
+  openShoppingList(mealplan) {
+    alert('TODO: OPEN SHOPPING LIST FOR THIS MEALPLAN');
+  }
+
   editMealplan(mealplan) {
-    const url = `dashboard/mealplans/${mealplan.mealplanID}`;
-    this.router.navigate([url]);
-    return this.mealplanService.editShow = true;
+    alert('TODO: EDIT MEALPLAN');
+    // const url = `dashboard/mealplans/${mealplan.mID}`;
+    // this.router.navigate([url]);
+    // return this.mealplanService.editShow = true;
   }
 
 
   linkToChild(mealplan) {
-    const url = `dashboard/mealplans/${mealplan.mealplanID}`;
+    const url = `dashboard/mealplans/${mealplan.mID}`;
     this.router.navigate([url]);
   }
 

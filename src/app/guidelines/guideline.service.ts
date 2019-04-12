@@ -109,7 +109,8 @@ export class GuidelineService {
       // Update guideline
       const idData = {
         gID: credential.id,
-        creationDate: new Date()
+        creationDate: new Date(),
+        lastEdited: null
       };
       this.updateGuideline(credential.id, idData);
     })
