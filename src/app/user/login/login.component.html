@@ -35,8 +35,8 @@
         <button class="btn-primary" type="submit" [disabled]="!signInForm.valid">Login</button>
         <br>
         <ng-container *ngIf="(auth.user | async) || {} as user">
-          <button type="link" class="text-link" routerLink="../signup" *ngIf="!user.uid">Sign up for an account</button>
-          <button type="link" class="text-link" routerLink="../dashboard" *ngIf="user.uid">Sign up for an account</button>
+          <button type="button" class="text-link" routerLink="../signup" *ngIf="!user.uid">Sign up for an account</button>
+          <button type="button" class="text-link" routerLink="../dashboard" *ngIf="user.uid">Sign up for an account</button>
         </ng-container>
 
         <p class="light-text">- or -</p>

@@ -636,7 +636,12 @@ form {
             border-bottom: 1.5px solid $middle-grey!important;
 
             &.active {
-                transition: all 400ms ease-in; 
+                transition: all 400ms ease-in;
+            }
+        }
+
+        mat-select {
+            &.active {
                 border-bottom: 2px solid $grey!important;
             }
         }
@@ -656,6 +661,11 @@ form {
         font-size: 16px!important;
         letter-spacing: 1px!important;
         color: $primary-color!important;
+    }
+
+    .mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element {
+        border-bottom: 1.5px solid $middle-grey!important;
+        caret-color: $brand-danger!important;
     }
 
     mat-hint {
@@ -737,6 +747,14 @@ form {
     .mat-option.mat-selected:not(.mat-option-disabled){
         color: $secondary-color;
     }
+}
+
+// Mat Tooltip
+
+.tooltip-warning {
+    background: $brand-danger;
+    font-size: 14px;
+    text-align: center;
 }
 
 // MISC

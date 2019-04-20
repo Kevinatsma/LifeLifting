@@ -5,6 +5,24 @@
     <header>
         <section class="title">
             <h1>The Users of LifeLifting</h1>
+            <button class="filter" mat-button [matMenuTriggerFor]="filterMenu">
+                Filter
+                <i class="fas fa-sort-down"></i>
+            </button>
+            <mat-menu #filterMenu="matMenu">
+                <button mat-menu-item (click)="toggleQuery(event = 'all')" [class.active]="allUsers">
+                    <i class="fas fa-users"></i>
+                    All users
+                </button>
+                <button mat-menu-item (click)="toggleQuery(event = 'accepted')" [class.active]="acceptedUsers">
+                    <i class="fas fa-user-check"></i>
+                    Accepted users
+                </button>
+                <button mat-menu-item (click)="toggleQuery(event = 'unaccepted')" [class.active]="unacceptedUsers">
+                    <i class="fas fa-user-times"></i>
+                    Unaccepted users
+                </button>
+            </mat-menu>
             <button class="icon-button" (click)="openDialog()">
                 <i class="fas fa-plus"></i>
             </button>
@@ -15,7 +33,7 @@
         </p>
     </header>
 
-    <app-user-list></app-user-list>
+    <app-user-list [users]="users"></app-user-list>
 
 </div>
 

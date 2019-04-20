@@ -10,7 +10,7 @@ export interface Status {
     appointmentCompleted?: boolean;
     accepted?: boolean;
     signUpCompleted?: boolean;
-    subscriptionEnded?: boolean;
+    subscriptionValid?: boolean;
  }
 
  export interface BasicData {

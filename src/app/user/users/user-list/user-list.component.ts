@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserService } from '../../user.service';
 import { User } from '../../user.model';
@@ -9,12 +9,11 @@ import { User } from '../../user.model';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  users: Observable<User[]>;
+  @Input() users: Observable<User[]>;
 
   constructor( private userService: UserService) { }
 
   ngOnInit() {
-    this.users = this.userService.getUsers();
   }
 
 }

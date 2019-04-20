@@ -80,7 +80,7 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="user.status.subscriptionEnded">
+  <ng-container *ngIf="!user.status.subscriptionValid">
     <div class="step-done">
       <h1>Aww.. Your subscription has ended</h1>
       <p class="subtitle" *ngIf="specialist">
@@ -97,7 +97,7 @@
   </ng-container>
 
   <ng-container *ngIf="
-  !user.status.subscriptionEnded &&
+  user.status.subscriptionValid &&
   user.status.accepted &&
   user.status.appointmentAccepted &&
   user.status.appointmentCompleted &&

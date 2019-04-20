@@ -34,9 +34,20 @@
       </div>
     </section>
     <section class="list-item__btn-area">
-      <button class="icon-button" (click)="deleteRequest(event)">
+      <button class="icon-button" (click)="deleteConfirm()">
         <i class="fas fa-trash"></i>
       </button>
     </section>
   </main>
+  <div class="confirmation" *ngIf="deleting">
+    <h4>Are you sure you want to reject this request?</h4>
+    <div>
+      <button class="text-link" (click)="deleteRequest(event)">
+        Yes I'm sure
+      </button>
+      <button class="text-link" (click)="deleteCancel()">
+        No
+      </button>
+    </div>
+  </div>
 </ng-container>

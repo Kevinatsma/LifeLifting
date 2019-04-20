@@ -169,7 +169,8 @@
         </div>
       </section>
 
-      <section class="switches">
+      <ng-container *ngIf="auth.user | async as user$">
+      <section class="switches" *ngIf="user$.roles.admin">
         <h1 class="section-title"> User Status</h1>
         <div class="switch-container">
           <div>
@@ -193,11 +194,11 @@
                 Not Accepted
               </p>
 
-              <p class="card-text" *ngIf="user.status.subscriptionEnded">
+              <p class="card-text" *ngIf="!user.status.subscriptionValid">
                 <i class="fas fa-ban"></i>
-                Subscription Valid
+                Subscription Not Valid
               </p>
-              <p class="card-text" *ngIf="!user.status.subscriptionEnded">
+              <p class="card-text" *ngIf="user.status.subscriptionValid">
                 <i class="fas fa-check-circle"></i>
                 Subscribtion Valid
               </p>
@@ -236,6 +237,7 @@
           </div>
         </div>
       </section>
+      </ng-container>
 
     </ng-container>
 

@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['signup/limbo']);
     } else if (!this.user.status.appointmentCompleted) {
       this.router.navigate(['signup/limbo']);
-    } else if (this.user.status.subscriptionEnded) {
+    } else if (!this.user.status.subscriptionValid) {
       this.router.navigate(['signup/limbo']);
     }
   }

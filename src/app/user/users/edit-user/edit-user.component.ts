@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { User } from '../../user.model';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../user.service';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
@@ -13,7 +13,7 @@ export interface Status {
   appointmentCompleted?: boolean;
   accepted?: boolean;
   signUpCompleted?: boolean;
-  subscriptionEnded?: boolean;
+  subscriptionValid?: boolean;
 }
 
 @Component({
@@ -65,7 +65,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       signUpCompleted: ''  || this.user.status.accepted,
       accepted: '' || this.user.status.accepted,
       // TODO subscription ended --> subscription valid
-      subscriptionEnded: '' || this.user.status.subscriptionEnded,
+      subscriptionValid: '' || this.user.status.subscriptionValid,
       appointment: '' || this.user.status.appointment,
       appointmentAccepted: '' || this.user.status.appointmentAccepted,
       appointmentCompleted: '' || this.user.status.appointmentCompleted,
@@ -102,11 +102,9 @@ export class EditUserComponent implements OnInit, OnDestroy {
       this.status.accepted  = $event.checked;
     } else if (el === 'signUpCompleted') {
       this.status.signUpCompleted  = $event.checked;
-    } else if (el === 'subscriptionEnded') {
-      this.status.subscriptionEnded  = $event.checked;
+    } else if (el === 'subscriptionValid') {
+      this.status.subscriptionValid  = $event.checked;
     }
-
-    console.log(this.status);
   }
 
   // Toggles
@@ -136,7 +134,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
       },
       status: this.status
     };
-    console.log(data);
     this.userService.updateUser(this.user.uid, data);
     this.toggleEdit();
   }

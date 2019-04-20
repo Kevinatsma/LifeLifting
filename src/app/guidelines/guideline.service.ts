@@ -137,7 +137,6 @@ export class GuidelineService {
   }
 
   deleteGuideline(id) {
-    console.log(id);
     this.guidelineDoc = this.afs.doc(`guidelines/${id}`);
     this.guidelineDoc.delete();
   }

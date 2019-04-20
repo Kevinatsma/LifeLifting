@@ -15,6 +15,7 @@ import { AuthService } from './../../../core/auth/auth.service';
 export class UserListItemComponent implements OnInit {
   @Input() user: User;
   detailOpen = false;
+  tooltipPosition = 'left';
 
   constructor( public auth: AuthService,
                public router: Router,
@@ -47,6 +48,33 @@ export class UserListItemComponent implements OnInit {
     const url = `dashboard/users/${user.uid}`;
     this.router.navigate([url]);
     return this.userService.editShow = true;
+  }
+
+  acceptUser(user) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        acceptedUser: user.displayName
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        const id = user.uid;
+        const data = {
+          status: {
+            accepted: true,
+            signUpCompleted: user.status.signUpCompleted,
+            subscriptionValid: user.status.subscriptionValid || false,
+            appointment: user.status.appointment,
+            appointmentAccepted: user.status.appointmentAccepted,
+            appointmentCompleted: user.status.appointmentCompleted,
+          }
+        };
+        this.userService.updateUser(id, data);
+      } else if (result === false) {
+        return null;
+      }
+    });
   }
 
 

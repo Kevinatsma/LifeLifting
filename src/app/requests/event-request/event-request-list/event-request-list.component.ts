@@ -33,9 +33,7 @@ export class EventRequestListComponent implements OnInit {
 
     this.events = this.bookingService.getSpecificAppointments(colRef);
     this.events.subscribe(events => {
-      console.log(events);
       this.eventArr = events.length > 0;
-      console.log(this.eventArr);
     });
   }
 

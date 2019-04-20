@@ -66,6 +66,14 @@
             height: 100%;
             width: 100%;
 
+            h1 {
+                max-width: 90%;
+                box-sizing: border-box;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
             > h1, p {
                 margin: 0;
                 text-align: left;
@@ -146,5 +154,35 @@
         @extend %flex-center;
         width: 15%;
         height: 100%;
+
+        .icon-button {
+            background: $brand-danger;
+
+            svg {
+                color: #fff;
+                font-size: 19px;
+            }
+        }
+    }
+}
+
+.confirmation {
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+
+    h4 {
+        margin-bottom: 1em;
+    }
+
+    div {
+        display: flex;
+        flex-flow: row nowrap;
+
+        button {
+            &:first-child {
+                margin-right: 2em;
+            }
+        }
     }
 }

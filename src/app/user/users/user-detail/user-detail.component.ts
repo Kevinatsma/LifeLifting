@@ -11,7 +11,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { Guideline } from './../../../guidelines/guideline.model';
 import { Observable } from 'rxjs';
 import { Mealplan } from './../../../mealplans/mealplan.model';
-import { subscribeOn } from 'rxjs/operators';
+import { AuthService } from './../../../core/auth/auth.service';
 
 
 @Component({
@@ -34,6 +34,7 @@ export class UserDetailComponent implements OnInit {
   specialist: Specialist;
 
   constructor( private afs: AngularFirestore,
+               public auth: AuthService,
                private cdr: ChangeDetectorRef,
                public route: ActivatedRoute,
                public userService: UserService,

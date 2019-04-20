@@ -63,6 +63,18 @@ export class UserService {
     return this.user;
   }
 
+  queryUsers(colRef) {
+    const userCol: AngularFirestoreCollection = colRef;
+    this.users = userCol.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as User;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    }));
+    return this.users;
+  }
+
   updateUser(uid, data) {
     this.userDoc = this.afs.doc<User>(`users/${uid}`);
     this.userDoc.update(data);

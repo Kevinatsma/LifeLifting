@@ -17,6 +17,7 @@ export class EventRequestListItemComponent implements OnInit {
   @Input() event: Appointment;
   user: User;
   eventAccepted = false;
+  deleting = false;
 
   constructor( private userService: UserService,
                private bookingService: BookingService,
@@ -34,6 +35,27 @@ export class EventRequestListItemComponent implements OnInit {
       accepted: this.eventAccepted
     };
     this.bookingService.updateEvent(event.eventID, data);
+
+    // Update user
+    const userData = {
+      status: {
+        appointment: true,
+        appointmentAccepted: true,
+        appointmentCompleted: false,
+        appointmentRejected: false,
+        accepted: false,
+        signUpCompleted: this.user.status.signUpCompleted,
+      }
+    };
+    this.userService.updateUser(this.user.uid, userData);
+  }
+
+  deleteConfirm() {
+    this.deleting  = true;
+  }
+
+  deleteCancel() {
+    this.deleting = false;
   }
 
   deleteRequest(event) {
@@ -52,6 +74,7 @@ export class EventRequestListItemComponent implements OnInit {
     };
     this.bookingService.updateEvent(event.eventID, data);
     this.userService.updateUser(this.user.uid, userData);
+    this.deleting = false;
   }
 
   toUser(uid) {

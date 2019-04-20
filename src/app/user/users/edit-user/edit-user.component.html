@@ -136,9 +136,9 @@
                 </p>
 
                 <p class="card-text">
-                  <mat-slide-toggle formControlName="subscriptionEnded" (change)="onChange($event)">
-                    <ng-container *ngIf="user.status.subscriptionEnded">Subscription Ended</ng-container>
-                    <ng-container *ngIf="!user.status.subscriptionEnded">Subscription Valid</ng-container>
+                  <mat-slide-toggle value="user.status.subscriptionValid" formControlName="subscriptionValid" (change)="onChange($event)">
+                    <ng-container *ngIf="!user.status.subscriptionValid">Subscription Not valid</ng-container>
+                    <ng-container *ngIf="user.status.subscriptionValid">Subscription Valid</ng-container>
                   </mat-slide-toggle>
                 </p>
               </div>
@@ -163,7 +163,7 @@
                 <p class="card-text">
                   <mat-slide-toggle formControlName="appointmentCompleted" (change)="onChange($event)">
                     <ng-container *ngIf="user.status.appointmentCompleted">Appointment Completed</ng-container>
-                    <ng-container *ngIf="!user.status.appointmentCompleted">Appointment Completed</ng-container>
+                    <ng-container *ngIf="!user.status.appointmentCompleted">Appointment Not Completed</ng-container>
                   </mat-slide-toggle>
                 </p>
               </div>

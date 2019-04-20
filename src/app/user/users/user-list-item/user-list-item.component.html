@@ -76,10 +76,18 @@
     <button type="button" (click)="deleteUserDialog(user)">
       <i class="fas fa-trash"></i>
     </button>
-    <button (click)="editUser(user)"
-      [class.icon-button-disabled]="!user.status.signUpCompleted" [disabled]="!user.status.signUpCompleted">
-      <ng-container *ngIf="user.status.signUpCompleted"> <i class="fas fa-edit"></i> </ng-container>
-      <ng-container *ngIf="!user.status.signUpCompleted"> <i class="fas fa-ban"></i> </ng-container>
+    <!-- Disabled button when user hasn't completed signup yet -->
+    <button mat-button *ngIf="!user.status.signUpCompleted " matTooltip="User hasn't completed the Signup process yet"
+      matTooltipClass="tooltip-warning" [matTooltipPosition]="tooltipPosition" [class.icon-button-disabled]="!user.status.signUpCompleted">
+      <i class="fas fa-ban"></i>
+    </button>
+    <!-- Accept user button when Signup is completed -->
+    <button (click)="acceptUser(user)" *ngIf="!user.status.accepted && user.status.signUpCompleted">
+      <i class="fas fa-user-check"></i>
+    </button>
+    <!-- Edit button when user is accepted and has completed the signup process -->
+    <button (click)="editUser(user)" *ngIf="user.status.signUpCompleted && user.status.accepted">
+      <i class="fas fa-edit"></i>
     </button>
   </section>
 
