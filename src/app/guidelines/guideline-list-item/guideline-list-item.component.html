@@ -8,19 +8,21 @@
   </div>
 
   <!-- Menu -->
-  <button class="menu-icon-btn" mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu" backdropClass="context-menu-guideline">
-    <button mat-menu-item (click)="duplicateGuideline(guideline)">
-      <i class="far fa-copy"></i>
-      <span>Duplicate</span>
+  <ng-container *ngIf="auth.user | async as $user">
+    <button class="menu-icon-btn" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
     </button>
-    <button mat-menu-item (click)="printGuideline()">
-      <i class="fas fa-print"></i>
-      <span>Print</span>
-    </button>
-  </mat-menu>
+    <mat-menu #menu="matMenu" backdropClass="context-menu-guideline">
+      <button mat-menu-item (click)="duplicateGuideline(guideline)" *ngIf="$user.roles.admin || $user.roles.specialist">
+        <i class="far fa-copy"></i>
+        <span>Duplicate</span>
+      </button>
+      <button mat-menu-item (click)="printGuideline()">
+        <i class="fas fa-print"></i>
+        <span>Print</span>
+      </button>
+    </mat-menu>
+  </ng-container>
 
   <p class="subtitle" *ngIf="!guideline.lastEdited">
     Edited: Not edited yet...

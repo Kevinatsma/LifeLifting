@@ -18,6 +18,7 @@ export class UsersComponent implements OnInit {
   allUsers = true;
   acceptedUsers = false;
   unacceptedUsers = false;
+  filterSelection: string;
 
   constructor( public location: Location,
                public dialog: MatDialog,

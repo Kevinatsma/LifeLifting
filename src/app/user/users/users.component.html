@@ -10,15 +10,15 @@
                 <i class="fas fa-sort-down"></i>
             </button>
             <mat-menu #filterMenu="matMenu">
-                <button mat-menu-item (click)="toggleQuery(event = 'all')" [class.active]="allUsers">
+                <button mat-menu-item (click)="toggleQuery(filterSelection = 'all')" [class.active]="allUsers">
                     <i class="fas fa-users"></i>
                     All users
                 </button>
-                <button mat-menu-item (click)="toggleQuery(event = 'accepted')" [class.active]="acceptedUsers">
+                <button mat-menu-item (click)="toggleQuery(filterSelection = 'accepted')" [class.active]="acceptedUsers">
                     <i class="fas fa-user-check"></i>
                     Accepted users
                 </button>
-                <button mat-menu-item (click)="toggleQuery(event = 'unaccepted')" [class.active]="unacceptedUsers">
+                <button mat-menu-item (click)="toggleQuery(filterSelection = 'unaccepted')" [class.active]="unacceptedUsers">
                     <i class="fas fa-user-times"></i>
                     Unaccepted users
                 </button>

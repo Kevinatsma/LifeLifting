@@ -6,6 +6,7 @@ import { GuidelineService } from '../guideline.service';
 import { Guideline } from '../guideline.model';
 import { UserService } from './../../user/user.service';
 import { User } from './../../user/user.model';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-guideline-list-item',
@@ -19,7 +20,8 @@ export class GuidelineListItemComponent implements OnInit {
   detailOpen = false;
   client: User;
 
-  constructor( public router: Router,
+  constructor( public auth: AuthService,
+               public router: Router,
                public dialog: MatDialog,
                private userService: UserService,
                private guidelineService: GuidelineService) { }
