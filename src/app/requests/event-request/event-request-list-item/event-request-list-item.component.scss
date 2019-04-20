@@ -43,6 +43,8 @@
     background-color: $primary-light;
     border: 2px solid $primary-color;
     border-radius: 10px;
+    box-shadow: $card-shadow;
+    margin: 1em 0;
 
     &__check-area {
         @extend %flex-center;

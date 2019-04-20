@@ -144,6 +144,7 @@ export class AddAppointmentDialogComponent implements OnInit {
       `${this.appointmentForm.get('startHour').value + 1}` + ':' + `${this.appointmentForm.get('startMinutes').value}` + ':00');
     const data: Appointment = {
       accepted: this.appointmentAccepted,
+      rejected: false,
       created: new Date(),
       title: this.appointmentForm.get('eventTitle').value,
       start: start,

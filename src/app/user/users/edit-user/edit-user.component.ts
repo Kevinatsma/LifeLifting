@@ -1,11 +1,20 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { User } from '../../user.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../user.service';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { Specialist } from './../../../specialists/specialist.model';
+
+export interface Status {
+  appointment?: boolean;
+  appointmentAccepted?: boolean;
+  appointmentCompleted?: boolean;
+  accepted?: boolean;
+  signUpCompleted?: boolean;
+  subscriptionEnded?: boolean;
+}
 
 @Component({
   selector: 'app-edit-user',
@@ -24,6 +33,8 @@ export class EditUserComponent implements OnInit, OnDestroy {
   selectedSpecialist = '';
   downloadURL: string | null;
   url: any;
+
+  status: Status;
 
   // Gender options
   genders = [
@@ -51,12 +62,20 @@ export class EditUserComponent implements OnInit, OnDestroy {
       heardFromUs: '' || this.user.basicData.heardFromUs || 'Not filled in yet',
       phoneNumber: '' || this.user.basicData.phoneNumber || 'Not filled in yet',
       email: '' || this.user.email || 'Not filled in yet',
+      signUpCompleted: ''  || this.user.status.accepted,
+      accepted: '' || this.user.status.accepted,
+      // TODO subscription ended --> subscription valid
+      subscriptionEnded: '' || this.user.status.subscriptionEnded,
+      appointment: '' || this.user.status.appointment,
+      appointmentAccepted: '' || this.user.status.appointmentAccepted,
+      appointmentCompleted: '' || this.user.status.appointmentCompleted,
     });
 
     this.url = `users`;
 
     setTimeout(() => {
       this.getSpecialist(this.user);
+      this.status = this.user.status;
     }, 200);
   }
 
@@ -68,6 +87,26 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
   getSpecialist(user) {
     this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
+  }
+
+  // Listeners
+  onChange($event) {
+    const el = $event.source._elementRef.nativeElement.getAttribute('formControlName');
+    if (el === 'appointment') {
+      this.status.appointment = $event.checked;
+    } else if (el === 'appointmentAccepted') {
+      this.status.appointmentAccepted  = $event.checked;
+    } else if (el === 'appointmentCompleted') {
+      this.status.appointmentCompleted  = $event.checked;
+    } else if (el === 'accepted') {
+      this.status.accepted  = $event.checked;
+    } else if (el === 'signUpCompleted') {
+      this.status.signUpCompleted  = $event.checked;
+    } else if (el === 'subscriptionEnded') {
+      this.status.subscriptionEnded  = $event.checked;
+    }
+
+    console.log(this.status);
   }
 
   // Toggles
@@ -94,8 +133,10 @@ export class EditUserComponent implements OnInit, OnDestroy {
         mainGoal: this.editUserForm.get('mainGoal').value || this.user.basicData.mainGoal,
         heardFromUs:  this.editUserForm.get('heardFromUs').value || this.user.basicData.heardFromUs || null,
         phoneNumber:  this.editUserForm.get('phoneNumber').value || this.user.basicData.phoneNumber,
-      }
+      },
+      status: this.status
     };
+    console.log(data);
     this.userService.updateUser(this.user.uid, data);
     this.toggleEdit();
   }

@@ -3,7 +3,7 @@ import { BookingService } from './../../../booking/booking.service';
 import { Observable } from 'rxjs';
 import { User } from './../../../user/user.model';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Appointment } from 'src/app/booking/appointment.model';
+import { Appointment } from './../../../booking/appointment.model';
 
 @Component({
   selector: 'app-event-request-list',
@@ -28,6 +28,7 @@ export class EventRequestListComponent implements OnInit {
     const colRef = this.afs.collection('appointments', ref =>
     ref.where('members', 'array-contains', `${user.uid}`)
     .where('accepted', '==', false)
+    .where('rejected', '==', false)
     .orderBy('created'));
 
     this.events = this.bookingService.getSpecificAppointments(colRef);

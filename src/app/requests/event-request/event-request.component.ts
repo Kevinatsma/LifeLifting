@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-import { User } from 'src/app/user/user.model';
+import { User } from './../../user/user.model';
 
 @Component({
   selector: 'app-event-request',

@@ -9,6 +9,17 @@
         <h1>{{event.title}}</h1>
         <h5>{{user.displayName}}</h5>
       </div>
+      <div class="contact-method">
+        <p>
+          <i class="fas fa-map-marker-alt"></i> {{event.meetMethod}}
+        </p>
+        <p>
+          <ng-container *ngIf="event.contactMethod == 'skype'"><i class="fab fa-skype"></i></ng-container>
+          <ng-container *ngIf="event.contactMethod == 'whatsapp'"><i class="fab fa-whatsapp"></i></ng-container>
+          <ng-container *ngIf="event.contactMethod == 'phone'"><i class="fas fa-phone"></i></ng-container>
+          {{event.contactMethod}}
+        </p>
+      </div>
     </section>
     <section class="list-item__btn-area">
       <button class="icon-button" (click)="deleteRequest(event)">

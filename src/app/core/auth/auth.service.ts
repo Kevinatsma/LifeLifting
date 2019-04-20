@@ -48,11 +48,6 @@ export class AuthService {
     return this.oAuthLogin(provider);
   }
 
-  facebookLogin() {
-    const provider = new firebase.auth.FacebookAuthProvider();
-    return this.oAuthLogin(provider);
-  }
-
   private oAuthSignUp(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {

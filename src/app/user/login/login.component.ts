@@ -61,18 +61,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  facebookLogin() {
-    this.auth.facebookLogin()
-    .then(() => {
-      if (this.auth.user) {
-        this.router.navigate(['signup/step-one']);
-        console.log('You don\'t have all necessary data yet..');
-      } else {
-        alert('Woops, you\'re not logged in. Try again!');
-      }
-    });
-  }
-
   // Get Capslock state
 
   @HostListener('window:keydown', ['$event'])

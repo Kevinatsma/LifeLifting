@@ -31,7 +31,7 @@ import { AddAppointmentDialogComponent } from '../../shared/dialogs/add-appointm
 import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
 import { Router, ActivatedRoute } from '@angular/router';
-import { EventRequestComponent } from 'src/app/requests/event-request/event-request.component';
+import { EventRequestComponent } from './../../requests/event-request/event-request.component';
 
 @Component({
   selector: 'app-specialist-booking',

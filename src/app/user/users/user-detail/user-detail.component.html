@@ -169,6 +169,74 @@
         </div>
       </section>
 
+      <section class="switches">
+        <h1 class="section-title"> User Status</h1>
+        <div class="switch-container">
+          <div>
+            <h3>General</h3>
+            <div class="switch">
+              <p class="card-text" *ngIf="user.status.signUpCompleted">
+                <i class="fas fa-check-circle"></i>
+                Signup Completed
+              </p>
+              <p class="card-text" *ngIf="!user.status.signUpCompleted">
+                <i class="fas fa-ban"></i>
+                Signup NOT Completed
+              </p>
+
+              <p class="card-text" *ngIf="user.status.accepted">
+                <i class="fas fa-check-circle"></i>
+                Accepted
+              </p>
+              <p class="card-text" *ngIf="!user.status.accepted">
+                <i class="fas fa-ban"></i>
+                Not Accepted
+              </p>
+
+              <p class="card-text" *ngIf="user.status.subscriptionEnded">
+                <i class="fas fa-ban"></i>
+                Subscription Valid
+              </p>
+              <p class="card-text" *ngIf="!user.status.subscriptionEnded">
+                <i class="fas fa-check-circle"></i>
+                Subscribtion Valid
+              </p>
+            </div>
+          </div>
+          <div>
+            <h3 class="section-title">Appointment</h3>
+            <div class="switch">
+              <p class="card-text" *ngIf="user.status.appointment">
+                <i class="fas fa-check-circle"></i>
+                Appointment Requested
+              </p>
+              <p class="card-text" *ngIf="!user.status.appointment">
+                <i class="fas fa-ban"></i>
+                No Appointment Requested
+              </p>
+
+              <p class="card-text" *ngIf="user.status.appointmentAccepted">
+                <i class="fas fa-check-circle"></i>
+                Appointment Accepted
+              </p>
+              <p class="card-text" *ngIf="!user.status.appointmentAccepted">
+                <i class="fas fa-ban"></i>
+                Appointment Not Accepted (Yet)
+              </p>
+
+              <p class="card-text" *ngIf="user.status.appointmentCompleted">
+                <i class="fas fa-check-circle"></i>
+                Appointment Completed
+              </p>
+              <p class="card-text" *ngIf="!user.status.appointmentCompleted">
+                <i class="fas fa-ban"></i>
+                Appointment Not Completed (Yet)
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </ng-container>
 
   </main>

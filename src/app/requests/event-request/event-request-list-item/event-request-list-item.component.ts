@@ -29,8 +29,7 @@ export class EventRequestListItemComponent implements OnInit {
     const data = {
       accepted: this.eventAccepted
     };
-    // this.bookingService.updateEvent(event.eventID, data);
-    return;
+    this.bookingService.updateEvent(event.eventID, data);
   }
 
   deleteRequest(event) {

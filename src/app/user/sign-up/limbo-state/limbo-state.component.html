@@ -43,7 +43,11 @@
       </a>
       if you have any trouble, or for any further questions.
     </p>
-    
+
+    <section class="appointments" *ngFor="let event of events">
+      <app-appointment-detail [event]="event"></app-appointment-detail>
+    </section>
+<!--     
     <ng-container *ngIf="events">
       <section class="appointments" *ngFor="let event of events">
         <ng-container *ngIf="event.accepted">
@@ -59,7 +63,7 @@
 
         <app-appointment-detail [event]="event"></app-appointment-detail>
       </section>
-    </ng-container>
+    </ng-container> -->
   </ng-container>
 
   <ng-container *ngIf="user.status.appointmentAccepted && user.status.appointmentCompleted && !user.status.accepted">
