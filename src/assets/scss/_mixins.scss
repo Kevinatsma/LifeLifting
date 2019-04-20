@@ -17,6 +17,14 @@ $main-font:'Assistant', sans-serif;
     }
 }
 
+//  Rem
+
+$baseFontSize: 10; // Based on HTML reset { font-size: 62.5%; }
+
+@function parseInt($n) {
+  @return $n / ($n * 0 + 1);
+}
+
 @mixin rem($property, $values) {
     $px: ();
     $rem: ();
@@ -52,6 +60,8 @@ $main-font:'Assistant', sans-serif;
       #{$property}: $rem;
     }
 }
+
+// Media queries
 
 @mixin respond-up($size) {
     @if $size == xs {

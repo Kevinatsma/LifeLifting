@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { User } from './../../../user/user.model';
 import { UserService } from './../../../user/user.service';
 import { BookingService } from './../../../booking/booking.service';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-event-request-list-item',
@@ -17,7 +19,9 @@ export class EventRequestListItemComponent implements OnInit {
   eventAccepted = false;
 
   constructor( private userService: UserService,
-               private bookingService: BookingService) { }
+               private bookingService: BookingService,
+               public router: Router,
+               public dialog: MatDialog) { }
 
   ngOnInit() {
     setTimeout(() => {
@@ -48,6 +52,12 @@ export class EventRequestListItemComponent implements OnInit {
     };
     this.bookingService.updateEvent(event.eventID, data);
     this.userService.updateUser(this.user.uid, userData);
+  }
+
+  toUser(uid) {
+    const url = `dashboard/users/${uid}`;
+    this.router.navigate([url]);
+    this.dialog.closeAll();
   }
 
 }
