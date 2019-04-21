@@ -3,13 +3,13 @@
         <mat-step [stepControl]="signUpForm">
           <form [formGroup]="signUpForm">
           <ng-template matStepLabel>General Info</ng-template>
-          <h3>👩‍🦰 Account Settings</h3>
+          <h3>👩‍ Account Settings</h3>
           <p class="card-text">
             These are the account details of the specialist. Write them down so you can send them to 'em!
           </p>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>The Email will be used as Username</mat-label>
-            <input type="text" matInput placeholder="What's your email?" formControlName="email" 
+            <input type="text" matInput placeholder="Type a valid email address" formControlName="email" 
                     [class.active]="!email.valid && email.touched" autofocus autocomplete="off" required
             >
             <mat-error class="input-error" *ngIf="!email.dirty">This is <strong>required</strong></mat-error>
@@ -17,7 +17,7 @@
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>Pick a Password </mat-label>
-            <input class="form-input" type="password" matInput placeholder="Setting it for your specialist is safer" [type]="hide ? 'password' : 'text'" 
+            <input class="form-input" type="password" matInput placeholder="Setting it for your user is safer" [type]="hide ? 'password' : 'text'" 
             formControlName="password" [class.active]="!password.valid && password.touched" 
             autocomplete="new-password" required
             >

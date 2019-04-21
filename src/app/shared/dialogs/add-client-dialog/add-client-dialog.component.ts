@@ -76,8 +76,6 @@ export class AddClientDialogComponent implements OnInit {
     const formData = {
       displayName: this.personalForm.get('firstName').value + ' ' + this.personalForm.get('lastName').value,
       photoURL: this.downloadURL,
-      isClient: true,
-      isSpecialist: false
     };
 
     // Add user in FireAuth

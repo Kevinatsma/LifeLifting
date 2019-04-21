@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { User } from '../../../../user/user.model';
 import { ActivatedRoute } from '@angular/router';
@@ -100,12 +100,13 @@ export class MyClientDetailComponent implements OnInit {
 
   openMealDialog() {
     // Set data for Dialog
-    this.dialog.open(AddMealDialogComponent, {
+    const dialogRef = this.dialog.open(AddMealDialogComponent, {
         data: {
           uid: this.user.uid,
           displayName: this.user.displayName,
-          currentWeight: this.user.basicData.currentWeight
+          currentWeight: this.user.basicData.currentWeight,
         },
+        disableClose: true,
         panelClass: 'mealplan-dialog'
     });
   }
@@ -118,6 +119,7 @@ export class MyClientDetailComponent implements OnInit {
         displayName: this.user.displayName,
         currentWeight: this.user.basicData.currentWeight
       },
+      disableClose: true,
     });
   }
 

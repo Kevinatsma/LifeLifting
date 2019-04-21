@@ -91,7 +91,7 @@ export class EditMealplanComponent implements OnInit, OnDestroy {
       lastEdited: new Date(),
       mealplanName: this.editMealplanForm.get('mealplanName').value || this.mealplan.mealplanName,
     };
-    this.mealplanService.updateMealplan(this.mealplan.mealplanID, data);
+    this.mealplanService.updateMealplan(this.mealplan.mID, data);
     this.toggleEdit();
   }
 

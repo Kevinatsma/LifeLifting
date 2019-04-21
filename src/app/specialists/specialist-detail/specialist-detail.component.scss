@@ -26,6 +26,14 @@ main.specialist-wrapper {
         button.icon-button {
             position: inherit;
         }
+
+        a.icon-button {
+            right: 0;
+
+            svg {
+                transform: scale(-1, 1);
+            }
+        }
     
     }
 }
@@ -229,12 +237,12 @@ section.reviews-opened {
 div.review-container {
     width: 100%;
     height: auto;
-    padding: 1em 0.5em;
+    padding: 2em 0.5em 1em;
     margin: 1em 0 0;
     display: flex;
     flex-wrap: nowrap;
     box-sizing: border-box;
-    overflow-x: auto;
+    overflow-x: scroll;
     max-width: 80vw;
 
     app-review-list-item {

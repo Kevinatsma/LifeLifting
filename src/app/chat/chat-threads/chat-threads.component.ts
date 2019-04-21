@@ -32,7 +32,12 @@ export class ChatThreadsComponent implements OnInit {
     this.messageService.getMessages(channelID);
     this.router.navigate([url]);
     this.setActiveThread(channelID);
-    return this.threadService.getThread(channelID);
+    this.threadService.getThread(channelID);
+
+    const data = {
+      read: true
+    };
+    return this.threadService.updateThread(channelID, data);
   }
 
   setActiveThread(channelID) {

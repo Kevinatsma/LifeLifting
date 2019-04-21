@@ -44,6 +44,13 @@ section.specialist-header {
         background-repeat: no-repeat;
         border-radius: 5px;
         background-color: darken($light-grey, 10%);
+
+        span {
+            font-size: 18px;
+            font-weight: $semi-bold;
+        }
+
+        @extend %flex-center;
     }
 
     div.quick-info {
@@ -121,7 +128,7 @@ section.specialist-header {
         .bottom {
             flex-flow: row nowrap;
             border-top: 1px solid $border-color;
-            padding-top: 1em;
+            padding-top: 0;
 
             p.tab {
                 @extend %flex-center;
@@ -190,6 +197,7 @@ section.middle {
         width: 50%;
 
         ul.contact-menu {
+
             li {
                 display: flex;
                 flex-flow: row nowrap;
@@ -206,6 +214,12 @@ section.middle {
                 a {
                     font-size: 18px;
                     font-weight: $regular;
+                }
+
+                p {
+                    font-size: 18px;
+                    margin: 0;
+                    text-align: left;
                 }
             }
         }
@@ -268,6 +282,55 @@ section.reviews-opened {
         }
     }
 
+}
+
+section.switches {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 2em 3em; 
+    background: #fff;
+    box-shadow: $card-shadow;
+    display: flex;
+    flex-flow: column wrap;
+
+    .switch-container {
+        display:  flex;
+        flex-flow: row nowrap;
+        width: 100%;
+
+        > div {
+            padding: 2em 0 2em 2em;
+            width: 49%;
+
+            &:first-child {
+                border-right: 1px solid $border-color;
+            }
+
+            h1, h3 {
+                text-align: left;
+            }
+
+            p {
+                font-size: 18px;
+                margin: 1em 0;
+                svg {
+                    font-size: 22px;
+                    margin-right: 1em;
+                    padding-right: 1em;
+                    border-right: 1px solid $primary-color;
+
+                    &.fa-ban {
+                        color: $brand-danger;
+                    }
+
+                    &.fa-check-circle {
+                        color: $brand-green;
+                    }
+                }
+            }
+        }
+    }
 }
 
 section.reviews-opened {

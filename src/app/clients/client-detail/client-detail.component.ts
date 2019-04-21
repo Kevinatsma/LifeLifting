@@ -28,9 +28,6 @@ export class ClientDetailComponent implements OnInit {
   aboutExtended = false;
   reviewsVisible = true;
 
-
-  // specialist = Observable<Specialist>;
-
   constructor( private afs: AngularFirestore,
                private cdr: ChangeDetectorRef,
                public route: ActivatedRoute,
@@ -57,7 +54,7 @@ export class ClientDetailComponent implements OnInit {
   }
 
   getSpecialist(sID: string) {
-    this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
+    this.specialistService.getSpecialistData(sID).subscribe(specialist => this.specialist =  specialist);
   }
 
   getGuidelines(uid) {

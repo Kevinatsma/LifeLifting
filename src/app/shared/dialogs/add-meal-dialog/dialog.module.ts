@@ -8,6 +8,8 @@ import { ThursdayFormComponent } from './thursday-form/thursday-form.component';
 import { WednesdayFormComponent } from './wednesday-form/wednesday-form.component';
 import { TuesdayFormComponent } from './tuesday-form/tuesday-form.component';
 import { FridayFormComponent } from './friday-form/friday-form.component';
+import { SuppsFormComponent } from './supps-form/supps-form.component';
+import { SharedModule } from '../../shared.module';
 
 @NgModule({
   declarations: [
@@ -15,20 +17,23 @@ import { FridayFormComponent } from './friday-form/friday-form.component';
     TuesdayFormComponent,
     WednesdayFormComponent,
     ThursdayFormComponent,
-    FridayFormComponent
+    FridayFormComponent,
+    SuppsFormComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [
     MondayFormComponent,
     TuesdayFormComponent,
     WednesdayFormComponent,
     ThursdayFormComponent,
-    FridayFormComponent
+    FridayFormComponent,
+    SuppsFormComponent
   ],
   providers: [
     AddMealDialogService

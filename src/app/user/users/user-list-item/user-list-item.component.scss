@@ -72,6 +72,9 @@ mat-card.list-item-card {
                     font-weight: $semi-bold;
                     margin: 5px 0 0 0;
                     text-transform: capitalize;
+                    &.warning {
+                        color: $primary-color;
+                    }
                 }
 
             }

@@ -1,12 +1,13 @@
 // Imports
 // @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700');
-@import url('https://fonts.googleapis.com/css?family=Assistant:400,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Assistant:400,600,700');
+@import './_mixins.scss';
 
 // Fonts
 $main-font:'Assistant', sans-serif;
 $title-font: $main-font;
-// $title-font: 'Josefin Sans', sans-serif;
 
+// Font weights
 $light: 300;
 $regular: 400;
 $semi-bold: 600;
@@ -21,6 +22,7 @@ $secondary-dark: darken($secondary-color, 2%);
 $brand-accent: rgb(150, 91, 206);
 $brand-warning: #FED230;
 $brand-danger: #f76c74;
+$brand-green: #2ecc71;
 
 $black: #252220;
 $grey: #7A7877;
@@ -32,6 +34,11 @@ $title-light-black: #545454;
 $text-black: #595655;
 $icon-black: #2C2825;
 
+// Brands
+$skype: #00aff0;
+$whatsapp: #25D366;
+
+// Borders
 $border-color: #DFE7F0;
 $icon-color: $middle-grey;
 $transparent-border: rgba(248, 251, 255, 0.46);
@@ -43,11 +50,9 @@ $toolbar-shadow: 10px 3px 10px 4px rgba(63, 66, 68, 0.07);
 $gold-glow: 0 3px 10px 4px rgba(219, 153, 105,0.43);
 
 // Borders
-
 $light-border: 1px solid darken($light-grey, 2%);
 
 // Extends //
-
 %input-reset {
     border: none;
     background: none;
@@ -76,19 +81,10 @@ $light-border: 1px solid darken($light-grey, 2%);
     flex-flow: column nowrap;
 }
 
-@mixin round-btn {
-    width: auto;
-    height: 50px;
-    margin: 0;
-    padding: 5px 3em;
-    border-radius: 25px;
-    font-family: $main-font;
-    font-size: 16px;
-    font-weight: $bold;
-    letter-spacing: 1px;
-    transition: all 300ms ease-in-out;
-
-    &:hover, &:focus, &:active {
-        transition: all 300ms ease-in-out;
-    }
-  }
+// Media breakpoints
+$xs: 400px;
+$sm: 768px;
+$md: 1023px;
+$md-m: 1200px;
+$lg: 1440px;
+$xl: 1800px;

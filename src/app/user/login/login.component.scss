@@ -73,6 +73,24 @@ section.login-container{
             .mat-form-field-infix {
                 padding-top: 0!important;
             }
+
+            input {
+                &.active {
+                    border-bottom: 1.5px solid lighten($brand-danger, 10%)!important;
+                }
+            }
+        }
+
+        .password {
+            mat-error {
+                display: none;
+                &:first-child {
+                    display: block;
+                }
+                &:nth-child(2) {
+                    display: block;
+                }
+            }
         }
     }
 

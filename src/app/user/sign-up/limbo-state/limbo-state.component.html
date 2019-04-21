@@ -1,0 +1,130 @@
+<main class="limbo-container" *ngIf="auth.user | async as user">
+  <ng-container *ngIf="
+    user.status.appointment &&
+    !user.status.appointmentAccepted &&
+    !user.status.appointmentCompleted &&
+    !user.status.appointmentRejected">
+    <div class="step-done">
+      <h1>Cheers to planning that in! 🍻</h1>
+      <p class="intro-text">
+        Congrats on looking for a better version of yourself. Thank you for your trust in <b>LifeLifting Nutrition</b>.
+        <br>
+        <a class="text-link" (click)="toggleSpecialist()">Your specialist</a>
+        will confirm your consultation as soon as possible. 
+      </p>
+    </div>
+  </ng-container>
+
+  <!-- display something if it isn't accepted as well -->
+  <ng-container *ngIf="user.status.appointmentRejected">
+    <div class="step-done not-accepted">
+      <h1> Oh.. Appointment not accepted! </h1>
+      <p class="subtitle" *ngIf="specialist">
+        The specialist couldn't fit your request in his schedule. Please contact
+        <a class="text-link" (click)="toggleSpecialist()">
+          {{specialist.firstName}} {{specialist.lastName}},
+        </a>
+        or request another appointment.
+      </p>
+
+      <button class="btn-primary" (click)="requestNewEvent(user)">
+        Request new appointment
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="user.status.appointment && user.status.appointmentAccepted && !user.status.appointmentCompleted">
+    <h1> Appointment status </h1>
+    <p class="subtitle" *ngIf="specialist">
+      If you see your appointment down here. Congrats! Then it has been accepted. If not, please wait untill the specialist
+      accepts your request. Is it taking a long time? Please contact 
+      <a class="text-link" (click)="toggleSpecialist()">
+        {{specialist.firstName}} {{specialist.lastName}} 
+      </a>
+      if you have any trouble, or for any further questions.
+    </p>
+
+    <section class="appointments" *ngFor="let event of events">
+      <app-appointment-detail [event]="event"></app-appointment-detail>
+    </section>
+<!--     
+    <ng-container *ngIf="events">
+      <section class="appointments" *ngFor="let event of events">
+        <ng-container *ngIf="event.accepted">
+            <h1> Appointment accepted! </h1>
+            <p class="subtitle" *ngIf="specialist">
+              Congrats. Your appointment has been planned in. Please contact
+              <a class="text-link" (click)="toggleSpecialist()">
+                {{specialist.firstName}} {{specialist.lastName}} 
+              </a>
+              if you have any trouble, or for any further questions.
+            </p>
+        </ng-container>
+
+        <app-appointment-detail [event]="event"></app-appointment-detail>
+      </section>
+    </ng-container> -->
+  </ng-container>
+
+  <ng-container *ngIf="user.status.appointmentAccepted && user.status.appointmentCompleted && !user.status.accepted">
+    <div class="step-done">
+      <h1>Nice, you completed your first appointment!</h1>
+      <p class="subtitle" *ngIf="specialist">
+        But your payment hasn't been processed yet. Make sure you've paid. Don't hesitate contacting
+        <a class="text-link" (click)="toggleSpecialist()">
+          {{specialist.firstName}} {{specialist.lastName}} 
+        </a>
+        if you have any trouble
+        with your payment, or for any further questions.
+      </p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!user.status.subscriptionValid">
+    <div class="step-done">
+      <h1>Aww.. Your subscription has ended</h1>
+      <p class="subtitle" *ngIf="specialist">
+        We hope you had an awesome growth in your time with LifeLifting. And you're always welcome to train with
+        <a class="text-link" (click)="toggleSpecialist()">
+          {{specialist.firstName}} {{specialist.lastName}} 
+        </a>
+        or you can choose 
+        <a class="text-link" (click)="resetSpecialist(user)">
+          another specialist.
+        </a>
+      </p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="
+  user.status.subscriptionValid &&
+  user.status.accepted &&
+  user.status.appointmentAccepted &&
+  user.status.appointmentCompleted &&
+  user.status.appointment">
+
+    <div class="step-done">
+      <h1>Looks like everything is ok!</h1>
+      <p class="subtitle" *ngIf="specialist">
+        You've completed all the steps. Click the button below to continue to the dashboard.
+      </p>
+      <div class="btn-area">
+        <button class="btn-icon-right"
+          [class.btn-disabled]="user.status && !user.status.appointment"
+          [disabled]="user.status && !user.status.appointment"
+          routerLink="../../dashboard">
+          <span>Go to the dashboard!</span>
+          <span class="emoji">🚀</span>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <section class="specialist-container" [class.active]="showSpecialist">
+    <button class="hide-btn" (click)="toggleSpecialist()" *ngIf="showSpecialist">
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <app-specialist-detail [specialist]="specialist" *ngIf="showSpecialist">
+    </app-specialist-detail>
+  </section>
+</main>

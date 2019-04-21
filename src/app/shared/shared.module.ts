@@ -12,6 +12,7 @@ import { FileUploadExerciseComponent } from './file-upload/file-upload-exercise/
 import { FileUploadProductComponent } from './file-upload/file-upload-product/file-upload-product.component';
 import { ReviewsModule } from '../reviews/reviews.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FileUploadProductComponent,
     FileUploadButtonComponent,
     ExerciseListItemComponent,
+    LoadingSpinnerComponent,
   ],
   exports: [
     MaterialModule,
@@ -42,6 +44,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FileUploadProductComponent,
     FileUploadButtonComponent,
     ExerciseListItemComponent,
+    LoadingSpinnerComponent,
   ],
   providers: [
     FileUploadService

@@ -3,7 +3,7 @@ export class Guideline {
     specialistID: string;
     creationDate: Date;
     lastEdited?: Date;
-    guidelineID: string;
+    gID: string;
     guidelineNR: number;
     guidelineName: string;
     idealWeight: number;

@@ -1,7 +1,16 @@
 export interface Roles {
-    member?: boolean;
+    client?: boolean;
     specialist?: boolean;
     admin?: boolean;
+ }
+
+export interface Status {
+    appointment?: boolean;
+    appointmentAccepted?: boolean;
+    appointmentCompleted?: boolean;
+    accepted?: boolean;
+    signUpCompleted?: boolean;
+    subscriptionValid?: boolean;
  }
 
  export interface BasicData {
@@ -17,16 +26,13 @@ export interface Roles {
 export class User {
     uid: string;
     sID?: string;
-    cID?: string;
     displayName: string;
     email: string;
-    isClient: boolean;
-    isSpecialist: boolean;
     photoURL?: string;
     roles?: Roles;
+    status?: Status;
     basicData?: BasicData;
     packageChoice?: string;
     specialist?: string;
-    appointment?: string;
-    signupCompleted?: boolean;
+    signUpDate?: Date;
 }

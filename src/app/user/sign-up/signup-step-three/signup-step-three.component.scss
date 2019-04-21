@@ -1,58 +1,65 @@
 @import './../../../../assets/scss/_master.scss';
 
-.choice-wrapper {
-    @extend %flex-row-center;
-    width: 90%;
-    margin: 3em auto;
+section.step-wrapper {
+    justify-content: flex-start;
+    padding: 2em 0 100px;
+    height: auto;
+    box-sizing: border-box;
 
-    .choice-icon-btn {
-        @extend %flex-column-center;
-        width: 200px;
-        height: 200px;
-        background: #fff;
-        box-shadow: $card-shadow;
+    &.success {
+        height: 100vh;
+        justify-content: center;
+    }
 
-        &:first-child {
-            margin-right: 4em;
-        }
-
-        svg {
-            font-size: 48px;
-        }
-
-        h4 {
-            margin-top: 20px;
-        }
-
-        &:hover, &:focus, &:active {
-            transition: transform 300ms ease-in-out;
-            transform: scale(1.05);
+    .step-done {
+        .btn-area {
+            margin-top: 0;
         }
     }
 }
 
-.btn-area {
-    .disabled {
-        background: $light-grey!important;
+section.slider-nav-container {
+    position: absolute;
+    top: 45%;
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .control-btn {
+        position: relative;
+        height: 2em;
+        width: 2em;
+        font-size: 38px;
+
         svg {
-            color: $grey;
-        }
-        &:hover {
-            background: $light-grey;
-            color: $grey;
-            cursor: initial;
+            margin: 0 0 2px 3px;
         }
     }
 }
 
-app-online-appointment, app-face-to-face-appointment {
-    width: 60%;
+app-specialist-item {
+    width: 80%;
+    height: auto;
     margin: 2em auto;
 }
 
-@media only screen and (max-width: 768px) {
-    app-online-appointment, app-face-to-face-appointment {
-        width: 80%;
-        margin: 2em auto;
+.specialist-container {
+    overflow-y: hidden!important;
+    height: auto;
+
+    .package-slider {
+        overflow-x: auto;
+        overflow-y: hidden;
+        width: 100%;
+        display: flex;
+        padding: 1em 1em 1em 0;
+    }
+
+    .specialist-item {
+        width: 70%;
+        margin: 0 2.5em 0 2.5em;
+        height: 100%;
     }
 }

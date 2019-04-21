@@ -13,11 +13,11 @@
         <div class="dividing-circle"></div>
         <p class="location" *ngIf="client.basicData">{{client.basicData.country}} - 
           <ng-container *ngIf="client.roles.admin">
-            Admin<ng-container *ngIf="client.roles.specialist || client.roles.member">, </ng-container>
+            Admin<ng-container *ngIf="client.roles.specialist || client.roles.client">, </ng-container>
           </ng-container>
-          <ng-container *ngIf="client.roles.specialist">Specialist<ng-container *ngIf="client.roles.member">, </ng-container>
+          <ng-container *ngIf="client.roles.specialist">Specialist<ng-container *ngIf="client.roles.client">, </ng-container>
           </ng-container>
-          <ng-container *ngIf="client.roles.member">Client</ng-container>
+          <ng-container *ngIf="client.roles.client">Client</ng-container>
         </p>
     </div>
 

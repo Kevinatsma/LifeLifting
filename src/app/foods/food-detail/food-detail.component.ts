@@ -6,6 +6,9 @@ import { FoodService } from '../food.service';
 import { Specialist } from './../../specialists/specialist.model';
 import { SpecialistService } from './../../specialists/specialist.service';
 import { Food } from '../food.model';
+import { AuthService } from './../../core/auth/auth.service';
+import { UserService } from './../../user/user.service';
+import { User } from './../../user/user.model';
 
 
 @Component({
@@ -14,6 +17,7 @@ import { Food } from '../food.model';
   styleUrls: ['./food-detail.component.scss', './../food-list-item/food-list-item.component.scss']
 })
 export class FoodDetailComponent implements OnInit {
+  user: User;
   food: Food;
   specialist: Specialist;
   aboutExtended = false;
@@ -22,7 +26,9 @@ export class FoodDetailComponent implements OnInit {
 
   // specialist = Observable<Specialist>;
 
-  constructor( private cdr: ChangeDetectorRef,
+  constructor( public auth: AuthService,
+               private userService: UserService,
+               private cdr: ChangeDetectorRef,
                public router: Router,
                public route: ActivatedRoute,
                public foodService: FoodService,
@@ -33,6 +39,14 @@ export class FoodDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getFood();
+    this.getUser();
+  }
+
+  getUser() {
+    const id = this.auth.currentUserId;
+    this.userService.getUserDataByID(id).subscribe(user => {
+      this.user = user;
+    });
   }
 
   getFood() {

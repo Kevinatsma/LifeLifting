@@ -1,4 +1,4 @@
-<div class="success-wrapper" *ngIf="(auth.user | async) || {} as user">
+<div class="success-wrapper" *ngIf="user">
   <section class="login-container">
     <div class="close-section">
       <button mat-icon-button class="close-btn" (click)="closeSection()" type="button">
@@ -10,28 +10,45 @@
     <p class="intro-text">Thanks, {{user.email}}</p>
     <p class="intro-text">Please complete the following steps to use the LifeLifting Mirror.</p>
 
-    <ul class="checklist">
+    <ul class="checklist" *ngIf="user.status">
       <li [class.activated]="user.basicData">
+        <div class="placeholder" *ngIf="!user.basicData"></div>
         <i class="fas fa-check-square" *ngIf="user.basicData"></i>
-        Step 1: Fill out basic data
+        <a routerLink="step-one">Step 1: Fill out basic data</a>
       </li>
       <li [class.activated]="user.packageChoice">
+        <div class="placeholder" *ngIf="!user.packageChoice"></div>
         <i class="fas fa-check-square" *ngIf="user.packageChoice"></i>
-        Step 2: Choose a package
-      </li>
-      <li [class.activated]="user.appointment">
-        <i class="fas fa-check-square" *ngIf="user.appointment"></i>
-        Step 3: Make an appointment
+        <a routerLink="step-two" *ngIf="user.basicData">Step 2: Choose a package</a>
+        <ng-container *ngIf="!user.basicData">Step 2: Choose a package</ng-container>
       </li>
       <li [class.activated]="user.specialist">
+        <div class="placeholder" *ngIf="!user.specialist"></div>
         <i class="fas fa-check-square" *ngIf="user.specialist"></i>
-        Step 4: Choose a specialist
+        <a routerLink="step-three" *ngIf="user.packageChoice">Step 3: Choose a specialist</a>
+        <ng-container *ngIf="!user.packageChoice">Step 3: Choose a specialist</ng-container>
+      </li>
+      <li [class.activated]="user.status.appointment">
+        <div class="placeholder" *ngIf="!user.status.appointment"></div>
+        <i class="fas fa-check-square" *ngIf="user.status.appointment"></i>
+        <a routerLink="step-four" *ngIf="user.specialist">Step 4: Make an appointment</a>
+        <ng-container *ngIf="!user.specialist">Step 4: Make an appointment</ng-container>
+      </li>
+      <li [class.activated]="user.status.accepted">
+        <div class="placeholder" *ngIf="!user.status.accepted"></div>
+        <i class="fas fa-check-square" *ngIf="user.status.accepted"></i>
+        <a routerLink="limbo" *ngIf="user.status.appointment">Step 5: Finishing up</a>
+        <ng-container *ngIf="!user.status.appointment">Step 5: Finishing up</ng-container>
       </li>
     </ul>
-    <div class="btn-area">
+    <div class="btn-area" *ngIf="user.status">
       <button type="link" class="btn-primary" 
-      [class.btn-disabled]="!user.basicData || !user.appointment || !user.specialist || !user.packageChoice" 
-      [disabled]="!user.basicData || !user.appointment || !user.specialist || !user.packageChoice" 
+      [class.btn-disabled]="
+      !user.basicData || !user.status.appointment || !user.specialist || !user.packageChoice ||
+      !user.status.accepted || !user.status.appointmentAccepted || user.status.subscriptionValid"
+      [disabled]="
+      !user.basicData || !user.status.appointment || !user.specialist || !user.packageChoice ||
+      !user.status.accepted || !user.status.appointmentAccepted || user.status.subscriptionValid"
       routerLink="../dashboard">Go to Mirror</button>
       <br>
       <button type="link" class="text-link" routerLink="../login">Go back</button>

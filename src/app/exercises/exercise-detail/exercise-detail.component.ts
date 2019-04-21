@@ -6,6 +6,9 @@ import { ExerciseService } from '../exercise.service';
 import { Specialist } from '../../specialists/specialist.model';
 import { SpecialistService } from '../../specialists/specialist.service';
 import { Exercise } from '../exercise.model';
+import { User } from './../../user/user.model';
+import { AuthService } from './../../core/auth/auth.service';
+import { UserService } from './../../user/user.service';
 
 
 @Component({
@@ -14,6 +17,7 @@ import { Exercise } from '../exercise.model';
   styleUrls: ['./exercise-detail.component.scss', './../exercise-list-item/exercise-list-item.component.scss']
 })
 export class ExerciseDetailComponent implements OnInit {
+  user: User;
   exercise: Exercise;
   specialist: Specialist;
   aboutExtended = false;
@@ -22,9 +26,11 @@ export class ExerciseDetailComponent implements OnInit {
 
   // specialist = Observable<Specialist>;
 
-  constructor( private cdr: ChangeDetectorRef,
+  constructor( public auth: AuthService,
+               private cdr: ChangeDetectorRef,
                public router: Router,
                public route: ActivatedRoute,
+               private userService: UserService,
                public exerciseService: ExerciseService,
                public specialistService: SpecialistService,
                public location: Location) {
@@ -33,6 +39,14 @@ export class ExerciseDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getExercise();
+    this.getUser();
+  }
+
+  getUser() {
+    const id = this.auth.currentUserId;
+    this.userService.getUserDataByID(id).subscribe(user => {
+      this.user = user;
+    });
   }
 
   getExercise() {

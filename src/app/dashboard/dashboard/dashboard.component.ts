@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { AuthService } from './../../core/auth/auth.service';
 import { User } from './../../user/user.model';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -16,7 +17,8 @@ export class DashboardComponent implements OnInit {
 
   constructor( public auth: AuthService,
                public afs: AngularFirestore,
-               public router: Router) { }
+               public router: Router,
+               public location: Location) { }
 
   ngOnInit() {
 
@@ -47,16 +49,26 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['signup/step-one']);
     } else if (!this.user.packageChoice) {
       this.router.navigate(['signup/step-two']);
-    } else if (!this.user.appointment) {
-      this.router.navigate(['signup/step-three']);
     } else if (!this.user.specialist) {
+      this.router.navigate(['signup/step-three']);
+    } else if (!this.user.status.appointment) {
       this.router.navigate(['signup/step-four']);
-    } else if (!this.user.signupCompleted) {
-      return null;
+    } else if (!this.user.status.accepted  && this.auth.currentUserId) {
+      this.router.navigate(['signup/limbo']);
+    } else if (!this.user.status.appointmentAccepted) {
+      this.router.navigate(['signup/limbo']);
+    } else if (!this.user.status.appointmentCompleted) {
+      this.router.navigate(['signup/limbo']);
+    } else if (!this.user.status.subscriptionValid) {
+      this.router.navigate(['signup/limbo']);
     }
   }
 
   getState(outlet) {
     return outlet.activatedRouteData.state;
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

@@ -1,60 +1,26 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
-  <!-- <section class="slider-nav-container">
-      <button mat-icon-button class="prev-btn control-btn" (click)="prevSpecialist()" [disabled]="!backButton">
-        <i class="fas fa-chevron-left" *ngIf="backButton"></i>
-      </button>
-      <button mat-icon-button class="next-btn control-btn" (click)="nextSpecialist()">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-  </section> -->
-  <section class="step-wrapper" *ngIf="!user.specialist">
-    <h5>Pick wisely, {{user.displayName || user.email}}</h5>
-    <h1>Step 4: Choose a Specialist</h1>
+    <section class="step-wrapper" [class.success]="user.status && user.status.appointment">
+      <h5>Choose a date {{user.displayName || user.email}}</h5>
+      <h1>Step 4: Plan your first appointment</h1>
 
-    <section class="package-container specialist-container">
-      <mat-radio-group class="package-slider" [(ngModel)]="chosenSpecialist">
-          <mat-radio-button id="specialist{{i+1}}" class="package-item specialist-item"
-          *ngFor="let specialist of specialists | async; let i=index" 
-          [value]="specialist.specialistID" labelPostition="before"
-          autofocus="none">
-            <app-specialist-item [specialist]="specialist"></app-specialist-item>
-          </mat-radio-button>
-        <div class="right-scroll-margin">
-          <p class="hide">HI</p>
+      <app-signup-booking *ngIf="user.status && !user.status.appointment"></app-signup-booking>
+
+      <div class="step-done" *ngIf="user.status && user.status.appointment">
+        <p class="intro-text">
+          You already planned an appointment. Once the appointment is done, you'll go on to the payment. 
+          Go to the next step to follow the status of your requested appointment and to chat with your specialist.
+        </p>
+        <div class="btn-area">
+          <button class="btn-icon-right"
+            [class.btn-disabled]="user.status && !user.status.appointment"
+            [disabled]="user.status && !user.status.appointment"
+            routerLink="../limbo">
+            <span>Check your status!</span>
+            <span class="emoji">🚧</span>
+          </button>
         </div>
-      </mat-radio-group>
-    </section>
-
-    <div class="btn-area">
-      <button class="btn-icon-left" routerLink="../step-three">
-        <i class="fas fa-chevron-left small"></i>
-        <span>Previous step</span>
-      </button>
-      <button class="btn-icon-right" (click)="updateUser(user)" [class.btn-disabled]="chosenSpecialist === null" [disabled]="chosenSpecialist === null">
-        <span>Next step</span>
-        <i class="fas fa-chevron-right small"></i>
-      </button>
-    </div>
-  </section>
-
-  <section class="step-wrapper success" *ngIf="user.specialist">
-    <h5>Pick wisely, {{user.displayName || user.email}}</h5>
-    <h1>Step 4: Choose a Specialist</h1>
-    <div class="step-done">
-      <p class="intro-text">
-        Ooops! You already chose a specialist. Go to the next dashboard by clicking the button below. If you want to change your 
-        specialist later. That's allowed after one week of trial.
-      </p>
-      <div class="btn-area">
-        <button class="btn-icon-right"
-         [class.btn-disabled]="!user.specialist"
-         [disabled]="!user.specialist"
-         routerLink="../../dashboard">
-          <span>To the dashboard!</span>
-          <span class="emoji">🚀</span>
-        </button>
       </div>
-    </div>
-  </section>
-</ng-container>
+  
+    </section>
+  </ng-container>
   

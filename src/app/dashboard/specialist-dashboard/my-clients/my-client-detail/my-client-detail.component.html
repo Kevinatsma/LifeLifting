@@ -41,11 +41,11 @@
         <div class="quick-info">
           <p class="timezone">
               <ng-container *ngIf="user.roles.admin">
-                Admin<ng-container *ngIf="user.roles.specialist || user.roles.member">, </ng-container>
+                Admin<ng-container *ngIf="user.roles.specialist || user.roles.client">, </ng-container>
               </ng-container>
-              <ng-container *ngIf="user.roles.specialist">Specialist<ng-container *ngIf="user.roles.member">, </ng-container>
+              <ng-container *ngIf="user.roles.specialist">Specialist<ng-container *ngIf="user.roles.client">, </ng-container>
               </ng-container>
-              <ng-container *ngIf="user.roles.member">Client</ng-container>
+              <ng-container *ngIf="user.roles.client">Client</ng-container>
           </p>
           <div class="top">
           <h2>{{user.displayName}}</h2>
@@ -120,8 +120,8 @@
           <ul>
             <li>Heard from us via: <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong></li>
             <li>Sign Up Completed?
-              <ng-container *ngIf="user.signUpCompleted"><strong>Yes</strong></ng-container>
-              <ng-container *ngIf="!user.signUpCompleted"><strong>No</strong></ng-container>
+              <ng-container *ngIf="user.status.signupCompleted"><strong>Yes</strong></ng-container>
+              <ng-container *ngIf="!user.status.signupCompleted"><strong>No</strong></ng-container>
             </li>
           </ul>
         </div>

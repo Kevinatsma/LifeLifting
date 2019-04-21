@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
@@ -24,6 +24,7 @@ import { SpecialistModule } from './specialists/specialist.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ChatModule } from './chat/chat.module';
 import { DialogsModule } from './shared/dialogs/dialogs.module';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 
 // Core Components
@@ -42,6 +43,7 @@ import { DialogsModule } from './shared/dialogs/dialogs.module';
     SharedModule,
     UserModule,
     DashboardModule,
+    FlatpickrModule.forRoot(),
     PackagesModule,
     BookingModule,
     SpecialistModule,
@@ -52,7 +54,7 @@ import { DialogsModule } from './shared/dialogs/dialogs.module';
   declarations: [
     AppComponent
   ],
-  providers: [],
+  providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

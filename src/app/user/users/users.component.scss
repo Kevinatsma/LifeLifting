@@ -22,3 +22,62 @@
         }
     }
 }
+
+::ng-deep .filter {
+    width: auto;
+    padding: 0 28px 6px!important;
+    border-radius: 0!important;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: $semi-bold;
+    position: relative!important;
+    margin-left: auto!important;
+
+    &::after {
+        content: '';
+        background: $middle-grey;
+        height: 2px;
+        position: absolute;
+        bottom: 0;
+        width: 60%;
+        left: 19%;
+    }
+
+    .mat-button-focus-overlay {
+        border-radius: 0px!important;
+    }
+
+    &:hover {
+        .mat-button-focus-overlay {
+            background: none!important;
+        }
+    }
+
+    svg {
+        font-size: 14px;
+        margin-top: -2px;
+        margin-left: 10px;
+        vertical-align: initial!important;
+    }
+}
+
+::ng-deep .mat-button-ripple.mat-ripple {
+    background: none!important;
+}
+
+::ng-deep .mat-menu-content {
+    .mat-menu-item {
+
+        &.active {
+            background: $middle-grey;
+        }
+
+        svg {
+            color: $secondary-color;
+            font-size:  17px;
+            margin-right: 1em;
+        }
+    }
+}

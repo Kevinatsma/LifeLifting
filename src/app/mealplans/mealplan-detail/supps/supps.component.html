@@ -5,7 +5,7 @@
       These are the supplements that should be taken before, during or after the exercise next to it. 
       Your specialist has added these based on the info he/she got during the introduction meeting.
     </p>
-    <div class="activity">
+    <div class="activity" *ngIf="exercises.eOne">
         <app-exercise-list-item class="activity__left" [exercise]="exercises.eOne"></app-exercise-list-item>
         <div class="container">
           <div class="target-block">
@@ -43,7 +43,7 @@
           </div>
         </div>
     </div>
-    <div class="activity">
+    <div class="activity" *ngIf="exercises.eTwo">
         <app-exercise-list-item class="activity__left" [exercise]="exercises.eTwo"></app-exercise-list-item>
         <div class="container">
           <div class="target-block">
@@ -81,7 +81,7 @@
           </div>
         </div>
     </div>
-    <div class="activity">
+    <div class="activity" *ngIf="exercises.eThree">
       <app-exercise-list-item class="activity__left" [exercise]="exercises.eThree"></app-exercise-list-item>
       <div class="container">
           <div class="target-block">

@@ -7,6 +7,15 @@ import { Location } from '@angular/common';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { Specialist } from './../../../specialists/specialist.model';
 
+export interface Status {
+  appointment?: boolean;
+  appointmentAccepted?: boolean;
+  appointmentCompleted?: boolean;
+  accepted?: boolean;
+  signUpCompleted?: boolean;
+  subscriptionValid?: boolean;
+}
+
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -25,6 +34,8 @@ export class EditUserComponent implements OnInit, OnDestroy {
   downloadURL: string | null;
   url: any;
 
+  status: Status;
+
   // Gender options
   genders = [
     {value: 'female', viewValue: 'Female'},
@@ -41,21 +52,30 @@ export class EditUserComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.specialists = this.specialistService.getSpecialists();
     this.editUserForm = this.fb.group({
-      displayName: '' || this.user.displayName,
-      country: '' || this.user.basicData.country,
-      packageChoice: '' || this.user.packageChoice,
-      specialist: this.selectedSpecialist,
-      gender: this.selectedGender,
-      age: '' || this.user.basicData.age,
-      mainGoal: '' || this.user.basicData.mainGoal,
-      heardFromUs: '' || this.user.basicData.heardFromUs,
-      phoneNumber: '' || this.user.basicData.phoneNumber,
-      email: '' || this.user.email,
+      displayName: '' || this.user.displayName || 'Not filled in yet',
+      country: '' || this.user.basicData.country || 'Not filled in yet',
+      packageChoice: '' || this.user.packageChoice || 'Not filled in yet',
+      specialist: this.selectedSpecialist || 'Not filled in yet',
+      gender: this.selectedGender || 'Not filled in yet',
+      age: '' || this.user.basicData.age || 'Not filled in yet',
+      mainGoal: '' || this.user.basicData.mainGoal || 'Not filled in yet',
+      heardFromUs: '' || this.user.basicData.heardFromUs || 'Not filled in yet',
+      phoneNumber: '' || this.user.basicData.phoneNumber || 'Not filled in yet',
+      email: '' || this.user.email || 'Not filled in yet',
+      signUpCompleted: ''  || this.user.status.accepted,
+      accepted: '' || this.user.status.accepted,
+      // TODO subscription ended --> subscription valid
+      subscriptionValid: '' || this.user.status.subscriptionValid,
+      appointment: '' || this.user.status.appointment,
+      appointmentAccepted: '' || this.user.status.appointmentAccepted,
+      appointmentCompleted: '' || this.user.status.appointmentCompleted,
     });
+
     this.url = `users`;
 
     setTimeout(() => {
       this.getSpecialist(this.user);
+      this.status = this.user.status;
     }, 200);
   }
 
@@ -66,9 +86,25 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   getSpecialist(user) {
-    this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => {
-      this.specialist = specialist;
-    });
+    this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
+  }
+
+  // Listeners
+  onChange($event) {
+    const el = $event.source._elementRef.nativeElement.getAttribute('formControlName');
+    if (el === 'appointment') {
+      this.status.appointment = $event.checked;
+    } else if (el === 'appointmentAccepted') {
+      this.status.appointmentAccepted  = $event.checked;
+    } else if (el === 'appointmentCompleted') {
+      this.status.appointmentCompleted  = $event.checked;
+    } else if (el === 'accepted') {
+      this.status.accepted  = $event.checked;
+    } else if (el === 'signUpCompleted') {
+      this.status.signUpCompleted  = $event.checked;
+    } else if (el === 'subscriptionValid') {
+      this.status.subscriptionValid  = $event.checked;
+    }
   }
 
   // Toggles
@@ -95,7 +131,8 @@ export class EditUserComponent implements OnInit, OnDestroy {
         mainGoal: this.editUserForm.get('mainGoal').value || this.user.basicData.mainGoal,
         heardFromUs:  this.editUserForm.get('heardFromUs').value || this.user.basicData.heardFromUs || null,
         phoneNumber:  this.editUserForm.get('phoneNumber').value || this.user.basicData.phoneNumber,
-      }
+      },
+      status: this.status
     };
     this.userService.updateUser(this.user.uid, data);
     this.toggleEdit();

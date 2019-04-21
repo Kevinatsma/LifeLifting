@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CoreModule } from './../core/core.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardMenuComponent } from './dashboard-menu/dashboard-menu.component';
@@ -11,8 +12,8 @@ import { UserModule } from '../user/user.module';
 import { UsersComponent } from '../user/users/users.component';
 import { ClientsModule } from './../clients/clients.module';
 import { ClientsComponent } from '../clients/clients.component';
-import { FinancesComponent } from '../finances/finances/finances.component';
-import { FinancesModule } from '../finances/finances.module';
+import { UserRequestComponent } from '../requests/user-request/user-request.component';
+import { RequestModule } from '../requests/request.module';
 import { PackagesComponent } from '../packages/packages.component';
 import { PackageDetailComponent } from '../packages/package-detail/package-detail.component';
 import { AdminMenuComponent } from './dashboard-menu/admin-menu/admin-menu.component';
@@ -47,6 +48,9 @@ import { MealplansModule } from '../mealplans/mealplans.module';
 import { SharedModule } from '../shared/shared.module';
 import { MyMealplanListComponent } from './client-dashboard/my-mealplan-list/my-mealplan-list.component';
 import { MyGuidelineListComponent } from './client-dashboard/my-guideline-list/my-guideline-list.component';
+import { BookingComponent } from './../booking/booking/booking.component';
+import { MyCalendarComponent } from './specialist-dashboard/my-calendar/my-calendar.component';
+import { MyCalendarClientComponent } from './client-dashboard/my-calendar-client/my-calendar-client.component';
 
 
 const routes: Routes = [
@@ -63,9 +67,11 @@ const routes: Routes = [
       {path: 'specialists/:id', component: SpecialistDetailComponent, canActivate: [AuthGuard]},
       {path: 'clients', component: ClientsComponent, data: {state: 'clients'}, canActivate: [AuthGuard]},
       {path: 'clients/:id', component: ClientDetailComponent, canActivate: [AuthGuard]},
+      {path: 'booking', component: BookingComponent, data: {state: 'booking'}, canActivate: [AuthGuard]},
       {path: 'my-specialist', component: MySpecialistComponent, data: {state: 'my-specialist'}, canActivate: [AuthGuard]},
       {path: 'my-clients', component: MyClientsComponent, data: {state: 'my-clients'}, canActivate: [AuthGuard]},
       {path: 'my-clients/:id', component: MyClientDetailComponent, canActivate: [AuthGuard]},
+      {path: 'my-calendar', component: MyCalendarComponent, data: {state: 'my-calendar'}, canActivate: [AuthGuard]},
       {path: 'my-reviews', component: MyReviewsComponent, data: {state: 'reviews'}, canActivate: [AuthGuard]},
       {path: 'guidelines', component: GuidelinesComponent, data: {state: 'guidelines'}, canActivate: [AuthGuard]},
       {path: 'guidelines/:id', component: GuidelineDetailComponent, canActivate: [AuthGuard]},
@@ -73,8 +79,9 @@ const routes: Routes = [
       {path: 'mealplans/:id', component: MealplanDetailComponent, canActivate: [AuthGuard]},
       {path: 'my-guidelines', component: MyGuidelineListComponent, data: {state: 'my-guidelines'}, canActivate: [AuthGuard]},
       {path: 'my-mealplans', component: MyMealplanListComponent, data: {state: 'my-mealplans'}, canActivate: [AuthGuard]},
+      {path: 'my-calendar-client', component: MyCalendarClientComponent, data: {state: 'my-calendar-client'}, canActivate: [AuthGuard]},
       // {path: 'my-mealplans/:id', component: MyMealplanDetailComponent, canActivate: [AuthGuard]},
-      {path: 'finances', component: FinancesComponent, data: {state: 'finances'}, canActivate: [AuthGuard]},
+      {path: 'user-requests', component: UserRequestComponent, data: {state: 'user-request'}, canActivate: [AuthGuard]},
       {path: 'packages', component: PackagesComponent, data: {state: 'packages'}, canActivate: [AuthGuard]},
       {path: 'packages/:id', component: PackageDetailComponent, canActivate: [AuthGuard]},
       {path: 'foods', component: FoodsComponent, data: {state: 'foods'}, canActivate: [AuthGuard]},
@@ -103,10 +110,13 @@ const routes: Routes = [
     MyMealplanListComponent,
     MyGuidelineListComponent,
     ClientMenuComponent,
+    MyCalendarComponent,
+    MyCalendarClientComponent,
     MiscMenuComponent,
   ],
   imports: [
     BrowserAnimationsModule,
+    CoreModule,
     CommonModule,
     RouterModule.forRoot(routes),
     SharedModule,
@@ -115,13 +125,15 @@ const routes: Routes = [
     ClientsModule,
     FoodsModule,
     ExercisesModule,
-    FinancesModule,
+    RequestModule,
     GuidelinesModule,
     MealplansModule,
     MaterialModule
   ],
   exports: [
-    RouterModule
+    RouterModule,
+    MySpecialistComponent,
+    MyCalendarComponent
   ]
 })
 export class DashboardModule { }

@@ -8,12 +8,14 @@
         </button>
       </div>
       <div class="right">
-        <button class="icon-button" *ngIf="!editShow" (click)="chat()">
+        <button class="icon-button" (click)="chat()">
           <i class="fas fa-comment-alt"></i>
         </button>
 
-        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && !user.signUpCompleted">
-          <i class="fas fa-edit"></i>
+        <button class="icon-button edit-button" (click)="toggleEdit()"
+        [class.icon-button-disabled]="!user.status.signUpCompleted" [disabled]="!user.status.signUpCompleted">
+          <ng-container *ngIf="user.status.signUpCompleted"> <i class="fas fa-edit"></i> </ng-container>
+          <ng-container *ngIf="!user.status.signUpCompleted"> <i class="fas fa-ban"></i> </ng-container>
         </button>
 
       </div>
@@ -22,29 +24,38 @@
     <ng-container *ngIf="!editShow">
       <section class="specialist-header">
         <div class="profile-picture" [style.backgroundImage]="'url('+ user.photoURL +')'">
-
+          <span *ngIf="!user.photoURL">No Photo Yet</span>
         </div>
         <div class="quick-info">
           <p class="timezone">
               <ng-container *ngIf="user.roles.admin">
-                Admin<ng-container *ngIf="user.roles.specialist || user.roles.member">, </ng-container>
+                Admin<ng-container *ngIf="user.roles.specialist || user.roles.client">, </ng-container>
               </ng-container>
-              <ng-container *ngIf="user.roles.specialist">Specialist<ng-container *ngIf="user.roles.member">, </ng-container>
+              <ng-container *ngIf="user.roles.specialist">Specialist<ng-container *ngIf="user.roles.client">, </ng-container>
               </ng-container>
-              <ng-container *ngIf="user.roles.member">Client</ng-container>
+              <ng-container *ngIf="user.roles.client">Client</ng-container>
           </p>
           <div class="top">
           <h2>{{user.displayName}}</h2>
           <h5 *ngIf="user.basicData">{{user.basicData.country}}</h5>
+          <h5 *ngIf="!user.basicData">No country yet</h5>
           <p>User ID: {{user.uid}}</p>
           <div class="icon-fact-container">
             <div class="fact" *ngIf="user.basicData">
               <i class="fas fa-transgender"></i>
               <span>{{user.basicData.gender}}</span>
             </div>
+            <div class="fact" *ngIf="!user.basicData">
+              <i class="fas fa-transgender"></i>
+              <span>Not filled out</span>
+            </div>
             <div class="fact" *ngIf="specialist">
               <i class="fas fa-user-ninja"></i>
               <span>{{specialist.firstName}} {{specialist.lastName}}</span>
+            </div>
+            <div class="fact" *ngIf="!specialist">
+              <i class="fas fa-user-ninja"></i>
+              <span>None chosen</span>
             </div>
           </div>
           
@@ -52,12 +63,18 @@
           </div>
           <div class="bottom">
             <p class="tab">
-              <span>{{user.packageChoice}}</span>Package Choice
+              <span *ngIf="user.packageChoice">{{user.packageChoice}}</span>
+              <span *ngIf="!user.packageChoice">None</span>
+              Package Choice
             </p>
-            <p class="tab">
-              <span *ngIf="user.basicData">
-                <ng-container *ngIf="user.basicData.age">{{user.basicData.age}}</ng-container>
-                <ng-container *ngIf="!user.basicData.age">!</ng-container>
+            <p class="tab" *ngIf="user.basicData">
+              <span>
+                {{user.basicData.age}}
+              </span>Age
+            </p>
+            <p class="tab" *ngIf="!user.basicData">
+              <span>
+                None
               </span>Age
             </p>
           </div>
@@ -67,17 +84,21 @@
       <section class="about">  
         <h5>{{user.displayName}}'s main goal</h5>
         <p [class.read-more]="aboutExtended" *ngIf="user.basicData">
-          <ng-container *ngIf="user.basicData.mainGoal">{{user.basicData.mainGoal}}</ng-container>
-          <ng-container *ngIf="!user.basicData.mainGoal">No goal yet...</ng-container>
+          {{user.basicData.mainGoal}}
         </p>
-        <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
-          <i class="fas fa-plus"></i>
-          Read More
-        </button>
-        <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
-          <i class="fas fa-minus"></i>
-          Read Less
-        </button>
+        <p [class.read-more]="aboutExtended" *ngIf="!user.basicData">
+          No goal yet...
+        </p>
+        <ng-container *ngIf="user.basicData && user.basicData.mainGoal">
+          <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
+            <i class="fas fa-plus"></i>
+            Read More
+          </button>
+          <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
+            <i class="fas fa-minus"></i>
+            Read Less
+          </button>
+        </ng-container>
       </section>
 
       <section class="middle">
@@ -85,38 +106,50 @@
           <h5 class="purple">Contact Info</h5>
           <ul class="contact-menu">
             <li>
-                <i class="far fa-envelope"></i>
-              <a class="text-link" href="mailto:{{user.email}}">
+              <i class="far fa-envelope"></i>
+              <a class="text-link" href="mailto:{{user.email}}" *ngIf="user.basicData">
                 {{user.email}}
               </a>
+              <p class="card-text" *ngIf="!user.basicData">
+                No email filled out
+              </p>
             </li>
             <li>
               <i class="fas fa-mobile-alt"></i>
               <a class="text-link"  *ngIf="user.basicData" href="tel:{{user.basicData.phoneNumber}}">
                 {{user.basicData.phoneNumber}}
               </a>
+              <p class="card-text" *ngIf="!user.basicData">
+                No phone nr. yet
+              </p>
             </li>
             <li>
               <i class="far fa-comment-alt"></i>
               <button class="text-link" *ngIf="user.basicData" (click)="chat()">
                 Chat
               </button>
+              <p class="card-text" *ngIf="!user.basicData">
+                User didn't fill out the basic data yet
+              </p>
             </li>
           </ul>
         </div>
         <div class="languages">
           <h5 class="purple">Practical info</h5>
           <ul>
-            <li>Heard from us via: <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong></li>
+            <li>Heard from us via
+              <ng-container *ngIf="user.basicData"><strong>{{user.basicData.heardFromUs}}</strong></ng-container>
+              <ng-container *ngIf="!user.basicData"><strong>Not filled out</strong></ng-container>
+            </li>
             <li>Sign Up Completed?
-              <ng-container *ngIf="user.signUpCompleted"><strong>Yes</strong></ng-container>
-              <ng-container *ngIf="!user.signUpCompleted"><strong>No</strong></ng-container>
+              <ng-container *ngIf="user.status.signUpCompleted"><strong>Yes</strong></ng-container>
+              <ng-container *ngIf="!user.status.signUpCompleted"><strong>No</strong></ng-container>
             </li>
           </ul>
         </div>
       </section>
             
-      <section class="guidelines" *ngIf="guidelines">
+      <section class="guidelines">
         <h1 class="section-title">Guidelines</h1>
         <div class="guidelines__container">
           <app-guideline-list-item *ngFor="let guideline of guidelines | async" [guideline]="guideline"></app-guideline-list-item>
@@ -126,7 +159,7 @@
         </div>
       </section>
       
-      <section class="guidelines" *ngIf="mealplans">
+      <section class="guidelines">
         <h1 class="section-title">Mealplans</h1>
         <div class="guidelines__container">
           <app-mealplan-list-item *ngFor="let mealplan of mealplans | async" [mealplan]="mealplan"></app-mealplan-list-item>
@@ -135,6 +168,77 @@
           </div>
         </div>
       </section>
+
+      <ng-container *ngIf="auth.user | async as user$">
+      <section class="switches" *ngIf="user$.roles.admin">
+        <h1 class="section-title"> User Status</h1>
+        <div class="switch-container">
+          <div>
+            <h3>General</h3>
+            <div class="switch">
+              <p class="card-text" *ngIf="user.status.signUpCompleted">
+                <i class="fas fa-check-circle"></i>
+                Signup Completed
+              </p>
+              <p class="card-text" *ngIf="!user.status.signUpCompleted">
+                <i class="fas fa-ban"></i>
+                Signup NOT Completed
+              </p>
+
+              <p class="card-text" *ngIf="user.status.accepted">
+                <i class="fas fa-check-circle"></i>
+                Accepted
+              </p>
+              <p class="card-text" *ngIf="!user.status.accepted">
+                <i class="fas fa-ban"></i>
+                Not Accepted
+              </p>
+
+              <p class="card-text" *ngIf="!user.status.subscriptionValid">
+                <i class="fas fa-ban"></i>
+                Subscription Not Valid
+              </p>
+              <p class="card-text" *ngIf="user.status.subscriptionValid">
+                <i class="fas fa-check-circle"></i>
+                Subscribtion Valid
+              </p>
+            </div>
+          </div>
+          <div>
+            <h3 class="section-title">Appointment</h3>
+            <div class="switch">
+              <p class="card-text" *ngIf="user.status.appointment">
+                <i class="fas fa-check-circle"></i>
+                Appointment Requested
+              </p>
+              <p class="card-text" *ngIf="!user.status.appointment">
+                <i class="fas fa-ban"></i>
+                No Appointment Requested
+              </p>
+
+              <p class="card-text" *ngIf="user.status.appointmentAccepted">
+                <i class="fas fa-check-circle"></i>
+                Appointment Accepted
+              </p>
+              <p class="card-text" *ngIf="!user.status.appointmentAccepted">
+                <i class="fas fa-ban"></i>
+                Appointment Not Accepted (Yet)
+              </p>
+
+              <p class="card-text" *ngIf="user.status.appointmentCompleted">
+                <i class="fas fa-check-circle"></i>
+                Appointment Completed
+              </p>
+              <p class="card-text" *ngIf="!user.status.appointmentCompleted">
+                <i class="fas fa-ban"></i>
+                Appointment Not Completed (Yet)
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      </ng-container>
+
     </ng-container>
 
   </main>

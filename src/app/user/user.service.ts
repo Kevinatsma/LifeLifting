@@ -30,7 +30,6 @@ export class UserService {
     });
   }
 
-
   toggleEdit() {
     this.editStateChange.next(!this.editShow);
   }
@@ -58,25 +57,23 @@ export class UserService {
 
   }
 
-  // getUserData(id) {
-  //   this.userDoc = this.afs.doc(`users/${id}`);
-  //   return this.userDoc.valueChanges();
-  // }
-
   getUserDataByID(uid) {
     this.userDoc = this.afs.doc<User>(`users/${uid}`);
     this.user = this.userDoc.valueChanges();
     return this.user;
   }
 
-  // getSID() {
-  //   const uid = this.auth.currentUserId;
-  //   this.getUserDataByID(uid);
-  //   this.user.subscribe(user => {
-  //     this.specialistID = user.sID;
-  //     return this.specialistID;
-  //   });
-  // }
+  queryUsers(colRef) {
+    const userCol: AngularFirestoreCollection = colRef;
+    this.users = userCol.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as User;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    }));
+    return this.users;
+  }
 
   updateUser(uid, data) {
     this.userDoc = this.afs.doc<User>(`users/${uid}`);

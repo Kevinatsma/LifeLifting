@@ -173,8 +173,6 @@ export class AddSpecialistDialogComponent implements OnInit {
         photoURL: this.downloadURL,
         email: email,
         description: this.aboutForm.get('description').value,
-        isClient: false,
-        isSpecialist: true,
         phoneNumber: this.aboutForm.get('phoneNumber').value,
         position: this.experienceForm.get('position').value,
         timeZone: this.locationForm.get('timeZone').value,
@@ -185,6 +183,8 @@ export class AddSpecialistDialogComponent implements OnInit {
         country: this.locationForm.get('country').value,
         languages: this.languageForms.value,
         reviews: this.reviewForms.value,
+        signUpDate: new Date(),
+        signUpCompleted: false
       };
 
       // Add user in FireAuth

@@ -50,8 +50,17 @@ main.dashboard-wrapper {
             }
 
         }
+    }
 
+    .not-permitted {
+        @extend %flex-center;
+        flex-flow: column wrap;
+        height: 100%;
+        width: 100%;
 
+        button {
+            margin-top: 1em;
+        }
     }
 
 }

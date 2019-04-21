@@ -140,14 +140,14 @@ export class GuidelineDetailComponent implements OnInit {
   deleteGuidelineDialog(guideline) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        guidelineID: guideline.guidelineID,
+        gID: guideline.gID,
         guidelineName: guideline.guidelineName,
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        const id = guideline.guidelineID;
+        const id = guideline.gID;
         this.guidelineService.deleteGuideline(id);
         this.router.navigate(['../']);
       } else if (result === false) {

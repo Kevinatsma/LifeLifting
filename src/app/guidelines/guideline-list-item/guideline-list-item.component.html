@@ -6,6 +6,24 @@
       <span>{{guideline.guidelineNR}}</span>
     </div>
   </div>
+
+  <!-- Menu -->
+  <ng-container *ngIf="auth.user | async as $user">
+    <button class="menu-icon-btn" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" backdropClass="context-menu-guideline">
+      <button mat-menu-item (click)="duplicateGuideline(guideline)" *ngIf="$user.roles.admin || $user.roles.specialist">
+        <i class="far fa-copy"></i>
+        <span>Duplicate</span>
+      </button>
+      <button mat-menu-item (click)="printGuideline()">
+        <i class="fas fa-print"></i>
+        <span>Print</span>
+      </button>
+    </mat-menu>
+  </ng-container>
+
   <p class="subtitle" *ngIf="!guideline.lastEdited">
     Edited: Not edited yet...
   </p>
@@ -18,7 +36,7 @@
     </div>
 
     <div class="quick-info">
-      <p class="speciality-title">gID: {{guideline.guidelineID}}</p>
+      <p class="speciality-title">gID: {{guideline.gID}}</p>
       <p *ngIf="client" class="speciality-title">For: {{client.displayName}}</p>
       <p class="speciality-title">Created: {{guideline.creationDate.toDate() | date:'MM/dd/yy'}}</p>
       <ul class="contact-menu">

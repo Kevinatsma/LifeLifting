@@ -17,8 +17,8 @@
 }
 
 ::ng-deep .mealplan-dialog {
-    max-width: 90vw!important;
-    max-height: 100vh!important;
+    min-width: 90%!important;
+    min-height: 90vh!important;
 }
 
 ::ng-deep mat-form-field {
@@ -34,11 +34,17 @@
 
 // Component Css
 .not-there {
+    min-height: 73vh;
     padding: 2em 3em 3em;
     width: 100%;
     h5 {
         margin-bottom: 1em;
     }
+
+    h3 {
+        margin: 0 0 1em;
+    }
+
     p {
         width: 60%;
         margin: 0;
@@ -47,6 +53,7 @@
 
 form {
     margin: 2em auto 3em;
+    min-height: 73vh;
     padding: 0 4em;
     display: flex;
     flex-flow: column wrap;

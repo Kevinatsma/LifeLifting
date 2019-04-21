@@ -1,60 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './../../../core/auth/auth.service';
-import { SpecialistService } from './../../../specialists/specialist.service';
-import { Observable } from 'rxjs';
-import { Specialist } from './../../../specialists/specialist.model';
+import { AuthService } from '../../../core/auth/auth.service';
+import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-signup-step-four',
   templateUrl: './signup-step-four.component.html',
-  styleUrls: [
-    './signup-step-four.component.scss',
-    './../signup-step-two/signup-step-two.component.scss',
-    './../signup-step-one/signup-steps.scss']
+  styleUrls: ['./../signup-step-one/signup-steps.scss', './signup-step-four.component.scss']
 })
 export class SignupStepFourComponent implements OnInit {
-  specialists: Observable<Specialist[]>;
-  chosenSpecialist: string;
-  backButton = false;
+  choiceMade = false;
+  onlineAppointment = false;
+  faceToFaceAppointment = false;
 
+  constructor(
+    public fb: FormBuilder,
+    public auth: AuthService,
+    public router: Router,
+    private route: ActivatedRoute
+  ) {
 
-  constructor( public auth: AuthService,
-               public specialistService: SpecialistService,
-               public router: Router,
-               private route: ActivatedRoute,
-               ) { }
+  }
 
   ngOnInit() {
-    this.specialists = this.specialistService.getSpecialists();
-    this.chosenSpecialist = null;
+    this.redirect();
   }
 
-  updateUser(user) {
-    const data = {
-      specialist: this.chosenSpecialist,
-      signupCompleted: true,
-      isClient: true,
-      isSpecialist: false
-    };
-    this.auth.setUserData(data, user)
-    .then(() => {
-      const clientID = {
-        clients: [
-          user.uid
-        ]
-      };
-      this.specialistService.updateSpecialist(this.chosenSpecialist, clientID);
-    })
-    .then(() => {
-      this.router.navigate(['dashboard']);
-    });
-  }
-
-  nextSpecialist() {
-    if (this.backButton === false) {
-      this.backButton = true;
+  redirect() {
+    if (this.auth.currentUserId) {
+      return null;
+    } else {
+      this.router.navigate(['../step-three'], {relativeTo: this.route});
     }
+  }
+
+  onlineAppointmentOption() {
+    this.onlineAppointment = true;
+    this.choiceMade = true;
+    this.faceToFaceAppointment = false;
+  }
+
+  faceToFaceAppointmentOption() {
+    this.faceToFaceAppointment = true;
+    this.choiceMade = true;
+    this.onlineAppointment = false;
   }
 
 }

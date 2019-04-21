@@ -12,8 +12,10 @@
           <i class="fas fa-comment-alt"></i>
         </button>
 
-        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && !user.signUpCompleted">
-          <i class="fas fa-edit"></i>
+        <button class="icon-button edit-button" (click)="toggleEdit()"
+        [class.icon-button-disabled]="!user.status.signUpCompleted" [disabled]="!user.status.signUpCompleted">
+          <ng-container *ngIf="user.status.signUpCompleted"> <i class="fas fa-edit"></i> </ng-container>
+          <ng-container *ngIf="!user.status.signUpCompleted"> <i class="fas fa-ban"></i> </ng-container>
         </button>
 
       </div>
@@ -22,18 +24,18 @@
     <ng-container *ngIf="!editShow">
       <section class="specialist-header">
         <div class="profile-picture" [style.backgroundImage]="'url('+ user.photoURL +')'">
-
+          <span *ngIf="!user.photoURL">No Photo Yet</span>
         </div>
         <div class="quick-info">
           <p class="timezone">
               <ng-container *ngIf="user.roles.admin">
-                Admin<ng-container *ngIf="user.roles.specialist || user.roles.member">, </ng-container>
+                Admin<ng-container *ngIf="user.roles.specialist || user.roles.client">, </ng-container>
               </ng-container>
               <ng-container *ngIf="user.roles.specialist">
                 Specialist
-                <ng-container *ngIf="user.roles.member">, </ng-container>
+                <ng-container *ngIf="user.roles.client">, </ng-container>
               </ng-container>
-              <ng-container *ngIf="user.roles.member">Client</ng-container>
+              <ng-container *ngIf="user.roles.client">Client</ng-container>
           </p>
           <div class="top">
           <h2>{{user.displayName}}</h2>
@@ -50,7 +52,6 @@
             </div>
           </div>
           
-
           </div>
           <div class="bottom">
             <p class="tab">
@@ -111,8 +112,8 @@
           <ul>
             <li>Heard from us via: <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong></li>
             <li>Sign Up Completed?
-              <ng-container *ngIf="user.signUpCompleted"><strong>Yes</strong></ng-container>
-              <ng-container *ngIf="!user.signUpCompleted"><strong>No</strong></ng-container>
+              <ng-container *ngIf="user.status.signUpCompleted"><strong>Yes</strong></ng-container>
+              <ng-container *ngIf="!user.status.signUpCompleted"><strong>No</strong></ng-container>
             </li>
           </ul>
         </div>

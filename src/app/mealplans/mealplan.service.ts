@@ -75,7 +75,13 @@ export class MealplanService {
   }
 
   addMealplan(data) {
-    this.afs.collection<Mealplan>(`mealplans`).doc(`${data.mealplanID}`).set(data, {merge: true})
+    this.afs.collection<Mealplan>(`mealplans`).add(data)
+    .then((credential) => {
+      const idData = {
+        mID: credential.id
+      };
+      this.updateMealplan(credential.id, idData);
+    })
     .then(() => {
       // Show Snackbar
       const message = `${data.mealplanName} was added succesfully`;
@@ -83,6 +89,34 @@ export class MealplanService {
 
       this.snackBar.open(message, action, {
         duration: 10000,
+        panelClass: ['success-snackbar']
+      });
+    })
+    .catch(error => {
+      alert(error.message);
+      console.error(error.message);
+    });
+  }
+
+
+  duplicateMealplan(data) {
+    this.afs.collection<Mealplan>(`mealplans`).add(data)
+    .then((credential) => {
+      // Update guideline
+      const idData = {
+        mID: credential.id,
+        creationDate: new Date(),
+        lastEdited: null
+      };
+      this.updateMealplan(credential.id, idData);
+    })
+    .then(() => {
+      // Show Snackbar
+      const message = `${data.mealplanName} was duplicated succesfully`;
+      const action = 'Close';
+
+      this.snackBar.open(message, action, {
+        duration: 5000,
         panelClass: ['success-snackbar']
       });
     })

@@ -36,8 +36,11 @@ import { EditSpecialistComponent } from './edit-specialist/edit-specialist.compo
   exports: [
     AddSpecialistDialogComponent,
     SpecialistItemComponent,
+    SpecialistsComponent,
+    SpecialistListComponent,
     SpecialistListItemComponent,
-    SpecialistsComponent
+    SpecialistDetailComponent,
+    EditSpecialistComponent
   ],
   providers: [
     SpecialistService,

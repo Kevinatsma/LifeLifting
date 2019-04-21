@@ -3,7 +3,8 @@
     <ng-container *ngIf="data.uid">
       <h1>Delete User?</h1>
       <p class="card-text">
-        Are you sure that you want to delete <strong>{{data.displayName}}</strong>?
+        Are you sure that you want to delete <strong>{{data.displayName}}</strong>? The user <br>
+        can <strong>NOT</strong> be restored and the data will be <strong>LOST</strong>!!
       </p>
     </ng-container>
     <ng-container *ngIf="data.clientID">
@@ -36,13 +37,13 @@
         Are you sure that you want to delete <strong>{{data.exerciseName}}</strong>?
       </p>
     </ng-container>
-    <ng-container *ngIf="data.guidelineID">
+    <ng-container *ngIf="data.gID">
       <h1>Delete this Guideline?</h1>
       <p class="card-text">
         Are you sure that you want to delete <strong>{{data.guidelineName}}</strong>?
       </p>
     </ng-container>
-    <ng-container *ngIf="data.mealplanID">
+    <ng-container *ngIf="data.mID">
       <h1>Delete this Mealplan?</h1>
       <p class="card-text">
         Are you sure that you want to delete <strong>{{data.mealplanName}}</strong>?
@@ -54,11 +55,27 @@
         Are you sure that you want to delete this review?
       </p>
     </ng-container>
+    <ng-container *ngIf="data.eventID">
+      <h1>Delete this Event?</h1>
+      <p class="card-text">
+        Are you sure that you want to delete <strong>{{data.eventTitle}}</strong>?
+      </p>
+    </ng-container>
+    <ng-container *ngIf="data.acceptedUser">
+      <h1>Accept this User?</h1>
+      <p class="card-text">
+        Are you sure that you want to let <strong>{{data.acceptedUser}}</strong> into the app?
+        If so, <br>don't forget to set the subscription to valid in his/her profile afterwards!
+      </p>
+    </ng-container>
 
 
     <section class="dialog-actions">
       <button type="button" class="text-link" [mat-dialog-close]="false">No</button>
-      <button class="text-link" [mat-dialog-close]="true">Yes, delete</button>
+      <button class="text-link" [mat-dialog-close]="true">Yes, 
+        <ng-container *ngIf="!data.acceptedUser">delete</ng-container>
+        <ng-container *ngIf="data.acceptedUser">accept</ng-container>
+      </button>
     </section>
   </main>
 </div>

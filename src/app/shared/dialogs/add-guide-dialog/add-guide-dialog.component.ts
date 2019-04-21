@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { GuidelineService } from '../../../guidelines/guideline.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { User } from './../../../user/user.model';
 import { AuthService } from './../../../core/auth/auth.service';
@@ -74,19 +74,41 @@ export class AddGuideDialogComponent implements OnInit {
 
   macroForm: FormGroup;
 
+
+  // Disable popup from closing
+  @HostListener('window:keyup.esc') onKeyUp() {
+    const cn = confirm('Are you sure you want to quit creating this guideline? Your progress will be lost.');
+    if (cn) {
+      this.dialogRef.close();
+    }
+  }
+
+  @HostListener('window:beforeunload', ['$event']) unloadHandler(event: Event) {
+      event.returnValue = false;
+  }
+
   constructor( private fb: FormBuilder,
                private auth: AuthService,
                private userService: UserService,
                private exerciseService: ExerciseService,
                private guidelineService: GuidelineService,
                public matDialog: MatDialog,
+               private dialogRef: MatDialogRef<AddGuideDialogComponent>,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
                 this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
                }
 
   ngOnInit() {
+    this.dialogRef.backdropClick().subscribe(_ => {
+      const cn = confirm('Are you sure you want to quit creating this guideline? Your progress will be lost.');
+      if (cn) {
+        this.dialogRef.close();
+      }
+    });
+
+    // Init forms
     this.infoForm = this.fb.group({
-      guidelineID: ['', [Validators.required]],
+      gID: ['', [Validators.required]],
       guidelineName: ['', [Validators.required]],
     });
 
@@ -164,13 +186,11 @@ export class AddGuideDialogComponent implements OnInit {
 
   // Collect the data and send to service
   addGuideline() {
-    const gID: number =  this.infoForm.get('guidelineID').value;
     const data = {
       clientID: this.userData.uid,
       specialistID: this.specialistID,
       creationDate: new Date(),
-      guidelineID: this.userData.uid + '_' + gID,
-      guidelineNR: gID,
+      guidelineNR: this.infoForm.get('gID').value,
       guidelineName: this.infoForm.get('guidelineName').value,
       idealWeight: this.targetForm.get('idealWeight').value,
       idealKiloOfMuscle: this.targetForm.get('idealKiloOfMuscle').value,

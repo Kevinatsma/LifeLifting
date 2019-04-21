@@ -12,6 +12,12 @@ input, textarea {
     box-sizing: border-box;
 }
 
+mat-card {
+    &:hover {
+        transform: scale(1)!important;
+    }
+}
+
 form {
     @extend %flex-center;
     margin: 0;

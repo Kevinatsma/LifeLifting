@@ -22,7 +22,7 @@ import { Review } from './../../reviews/review.model';
 })
 export class SpecialistDetailComponent implements OnInit {
   user: User;
-  specialist: Specialist;
+  @Input() specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
   reviews: Observable<Review[]>;
@@ -30,7 +30,7 @@ export class SpecialistDetailComponent implements OnInit {
 
   // specialist = Observable<Specialist>;
 
-  constructor( private auth: AuthService,
+  constructor( public auth: AuthService,
                private afs: AngularFirestore,
                private cdr: ChangeDetectorRef,
                public dialog: MatDialog,
@@ -56,12 +56,23 @@ export class SpecialistDetailComponent implements OnInit {
   }
 
   getSpecialist() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.specialistService.getSpecialistData(id).subscribe(specialist => {
-      this.specialist = specialist;
-      this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${specialist.uid}`));
+    setTimeout(() => {
+      let id: string;
+
+      // Check if there is specialist input
+      if ( this.specialist ) {
+        id =  this.specialist.uid;
+      } else {
+        // Otherwise get id from url parameter
+        id = this.route.snapshot.paramMap.get('id');
+        this.specialistService.getSpecialistData(id).subscribe(specialist => {
+          this.specialist = specialist;
+        });
+      }
+      this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${this.specialist.uid}`));
       this.reviews = this.reviewsCol.valueChanges();
-      });
+    }, 400);
+
   }
 
   aboutExtendedOpen() {

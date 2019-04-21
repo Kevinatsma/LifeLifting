@@ -1,4 +1,4 @@
-<ng-container *ngIf="guideline">
+<ng-container *ngIf="guideline && auth.user | async as user">
   <main class="specialist-wrapper" *ngIf="!editShow">
 
     <section class="action-toolbar-top">
@@ -6,20 +6,20 @@
         <button type="button" class="icon-button" (click)="goBack()">
             <i class="fas fa-arrow-left"></i>
         </button>
+        <button type="button" class="icon-button edit-button" (click)="deleteGuidelineDialog(guideline)" 
+        *ngIf="!editShow && auth.adminRoles(user)">
+          <i class="fas fa-trash"></i>
+        </button>
       </div>
       <div class="middle">
         <h1 *ngIf="client; else gID">
           Guideline for: {{client.displayName}}
         <h5>Current weight: {{client.basicData.currentWeight}}kg</h5></h1>
         <ng-template #gID>
-            <h1>Guideline ID: {{guideline.guidelineID}}</h1>
+            <h1>Guideline ID: {{guideline.gID}}</h1>
         </ng-template>
       </div>
       <div class="right">
-        <button type="button" class="icon-button edit-button" (click)="deleteGuidelineDialog(guideline)" 
-        *ngIf="!editShow && auth.adminRoles(user)">
-          <i class="fas fa-trash"></i>
-        </button>
         <button type="button" class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && auth.adminRoles(user)">
           <i class="fas fa-edit"></i>
         </button>
@@ -31,7 +31,7 @@
 
     <div class="package-container">
       <mat-card class="list-item-card" *ngIf="guideline">
-          <section *ngIf="client" class="card-circle" (click)="linkToChild(guideline, client)" [style.background]="'url('+ client.photoURL +')'">
+          <section *ngIf="client" class="card-circle" [style.background]="'url('+ client.photoURL +')'">
           </section>
           <section class="chip-area">
             <p class="secondary-chip">
@@ -48,7 +48,7 @@
           <section class="introduction">
             <h2>{{guideline.guidelineName}}</h2>
             <h5>
-              gID: {{guideline.guidelineID}}
+              gID: {{guideline.gID}}
             </h5>
           </section>
 

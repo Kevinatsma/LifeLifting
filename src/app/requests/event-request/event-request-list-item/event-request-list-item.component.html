@@ -1,0 +1,53 @@
+<ng-container *ngIf="event && user">
+  <main class="list-item">
+    <section class="list-item__check-area">
+      <mat-checkbox name="eventAccepted" [(ngModel)]="eventAccepted" (change)="acceptEvent(event)">
+      </mat-checkbox>
+    </section>
+    <section class="list-item__data">
+      <div class="main-info">
+        <h1>{{event.title}}</h1>
+        <h5>With: {{user.displayName}}</h5>
+        <a class="text-link" (click)="toUser(event.clientID)">Visit profile</a>
+
+        <div class="contact-method">
+          <p>
+            <ng-container *ngIf="event.meetMethod == 'onlineAppointment'"><i class="fas fa-globe-americas"></i> Online Appointment</ng-container>
+            <ng-container *ngIf="event.meetMethod == 'faceToFace'"><i class="fas fa-coffee"></i> Face to face meeting</ng-container>
+          </p>
+          <p>
+            <ng-container *ngIf="event.contactMethod == 'skype'"><i class="fab fa-skype"></i> Skype</ng-container>
+            <ng-container *ngIf="event.contactMethod == 'whatsApp'"><i class="fab fa-whatsapp"></i> Whatsapp</ng-container>
+            <ng-container *ngIf="event.contactMethod == 'phone'"><i class="fas fa-phone"></i> Phonecall</ng-container>
+          </p>
+        </div>
+      </div>
+    </section>
+    <section  class="list-item__time">
+      <div class="start">
+        <h5>Starts at</h5>
+        <p>{{event.start}}</p>
+      </div>
+      <div class="end">
+        <h5>Ends at</h5>
+        <p>{{event.end}}</p>
+      </div>
+    </section>
+    <section class="list-item__btn-area">
+      <button class="icon-button" (click)="deleteConfirm()">
+        <i class="fas fa-trash"></i>
+      </button>
+    </section>
+  </main>
+  <div class="confirmation" *ngIf="deleting">
+    <h4>Are you sure you want to reject this request?</h4>
+    <div>
+      <button class="text-link" (click)="deleteRequest(event)">
+        Yes I'm sure
+      </button>
+      <button class="text-link" (click)="deleteCancel()">
+        No
+      </button>
+    </div>
+  </div>
+</ng-container>

@@ -11,7 +11,7 @@
           <h1 *ngIf="client; else gID">Mealplan for: {{client.displayName}}</h1>
           <h5 *ngIf="client">Current weight: {{client.basicData.currentWeight}}kg</h5>
           <ng-template #gID>
-            <h1>Mealplan ID: {{mealplan.mealplanID}}</h1>
+            <h1>Mealplan ID: {{mealplan.mID}}</h1>
           </ng-template>
         </div>
         <div class="right">
@@ -45,7 +45,7 @@
                 <input type="text" class="text-field" name="mealplanName" formControlName="mealplanName">
               </h2>
               <h5>
-                gID: {{mealplan.mealplanID}}
+                gID: {{mealplan.mID}}
               </h5>
             </section>
   

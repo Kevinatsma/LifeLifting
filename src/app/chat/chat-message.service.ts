@@ -41,7 +41,7 @@ export class ChatMessageService {
       sender,
       senderId,
       content,
-      timestamp: new Date()
+      timestamp: new Date().toString()
     };
     return this.afs.collection(`chats/${channelID}/messages`).add(data)
     .then(() => {

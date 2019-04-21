@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Specialist } from './specialist.model';
 import { AngularFirestoreDocument, AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from './../user/user.model';
@@ -78,15 +78,17 @@ export class SpecialistService {
       displayName: formData.firstName + ' ' + formData.lastName,
       photoURL: user.photoURL || formData.photoURL,
       roles: {
-        member: true,
+        client: true,
         specialist: true,
         admin: false
       },
-      isSpecialist: true,
-      isClient: false,
-      signupCompleted: false,
+      status: {
+        accepted: false,
+        signUpCompleted: false,
+        appointment: false,
+      },
+      signUpDate: new Date(),
       packageChoice: 'NaN',
-      appointment: 'NaN',
     };
     this.addSpecialist(formData, user);
     return userRef.set(data, { merge: true });
@@ -101,8 +103,6 @@ export class SpecialistService {
       photoURL: formData.photoURL,
       email: formData.email,
       description: formData.description,
-      isClient: false,
-      isSpecialist: true,
       phoneNumber: formData.phoneNumber,
       position: formData.position,
       timeZone: formData.timeZone,

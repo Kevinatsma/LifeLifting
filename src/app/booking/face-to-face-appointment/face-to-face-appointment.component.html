@@ -1,10 +1,25 @@
-<!-- Calendar Plugin -->
-<div class="placeholder-wrapper">
-  <i class="fas fa-calendar-alt"></i>
-  <h5 class="placeholder">Here comes the calendar</h5>
-  <!-- <app-booking-calendar></app-booking-calendar> -->
-</div>
 
+
+
+<form (ngSubmit)="addFaceToFace()" [formGroup]="faceToFaceForm">
+  <div class="multiple-input" formGroupName="faceToFacePhone">
+    <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Code</mat-label>
+        <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
+        <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+    </mat-form-field>
+    <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Whatsapp Number</mat-label>
+        <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off" required>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Location</mat-label>
+      <input type="text" formControlName="location" matInput 
+      placeholder="Starbucks, East road 102 South, Dallas, Texas" autocomplete="off" required>
+  </mat-form-field>
+</form>
 <div class="btn-area">
   <button type="button" class="btn-icon-left" routerLink="../step-two">
     <i class="fas fa-chevron-left small"></i>
@@ -12,7 +27,7 @@
   </button>
   <button class="btn-icon-right" type="submit"
   >
-    <span>Last step</span>
+    <span>Pick a date</span>
     <i class="fas fa-chevron-right small"></i>
   </button>
 </div>

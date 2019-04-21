@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 // Services
 import { AuthService } from '../../../core/auth/auth.service';
@@ -24,6 +24,7 @@ import times from './../../data/JSON/times.json';
 import mealTimes from './../../data/JSON/mealTimes.json';
 import { Specialist } from './../../../specialists/specialist.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
+import { SuppsForm } from './supps-form.model';
 
 @Component({
   selector: 'app-add-meal-dialog',
@@ -41,7 +42,6 @@ export class AddMealDialogComponent implements OnInit {
   // MealTimes get shared with child forms
   mealTimeForm: FormGroup;
   mealTimeArr: FormArray;
-  suppForm: FormGroup;
 
   // Day forms, these get changed by events emitted from the child components
   mondayMeals: Observable<DayForm>;
@@ -49,6 +49,7 @@ export class AddMealDialogComponent implements OnInit {
   wednesdayMeals: Observable<DayForm>;
   thursdayMeals: Observable<DayForm>;
   fridayMeals: Observable<DayForm>;
+  supps: Observable<SuppsForm>;
 
   // Select value loops - retreive from json/firestore
   mealTimeNames = mealTimes.mealTimes;
@@ -58,59 +59,48 @@ export class AddMealDialogComponent implements OnInit {
 
   // Hide/show booleans
   showAddMealTime = true;
-  showAddProduct = true;
 
-  // Guidelines and Exercises
-  guideline: Guideline;
-  guidelines: Guideline[];
-  guideExercises: Object;
-  exercises: any;
-  exerciseOne: Exercise;
-  exerciseTwo: Exercise;
-  exerciseThree: Exercise;
+  // Disable popup from closing
+  @HostListener('window:keyup.esc') onKeyUp() {
+    const cn = confirm('Are you sure you want to quit creating this mealplan? Your progress will be lost.');
+    if (cn) {
+      this.dialogRef.close();
+    }
+  }
+
+  @HostListener('window:beforeunload', ['$event']) unloadHandler(event: Event) {
+      event.returnValue = false;
+  }
 
   constructor( private fb: FormBuilder,
                private auth: AuthService,
                private userService: UserService,
                private foodService: FoodService,
                private specialistService: SpecialistService,
-               private exerciseService: ExerciseService,
                private mealplanService: MealplanService,
-               public guidelineService: GuidelineService,
                public mealService: AddMealDialogService,
                public matDialog: MatDialog,
+               private dialogRef: MatDialogRef<AddMealDialogComponent>,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
                 this.foodService.getFoods().subscribe(foods => this.foods = foods);
-                this.guidelineService.getGuidelinesByClient(userData.uid).subscribe(guidelines => {
-                  this.guidelines = guidelines;
-
-                  if (this.guidelines.length < 1) {
-                    this.guidelines = null;
-                  }
-                });
                }
 
   ngOnInit() {
+    this.dialogRef.backdropClick().subscribe(_ => {
+      const cn = confirm('Are you sure you want to quit creating this mealplan? Your progress will be lost.');
+      if (cn) {
+        this.dialogRef.close();
+      }
+    });
+
+    // Init forms
     this.infoForm = this.fb.group({
-      mealplanID: ['', [Validators.required]],
+      mID: ['', [Validators.required]],
       mealplanName: ['', [Validators.required]],
     });
 
     this.mealTimeForm = this.fb.group({
       mealTimeArr: this.fb.array([ this.createMealTime(), this.createMealTime(), this.createMealTime() ]),
-    });
-
-    this.suppForm = this.fb.group({
-      guideline: ['', [Validators.required]],
-      beforeTrainOneArr: this.fb.array([ this.createProduct()]),
-      duringTrainOneArr: this.fb.array([ this.createProduct()]),
-      afterTrainOneArr: this.fb.array([ this.createProduct()]),
-      beforeTrainTwoArr: this.fb.array([ this.createProduct()]),
-      duringTrainTwoArr: this.fb.array([ this.createProduct()]),
-      afterTrainTwoArr: this.fb.array([ this.createProduct()]),
-      beforeTrainThreeArr: this.fb.array([ this.createProduct()]),
-      duringTrainThreeArr: this.fb.array([ this.createProduct()]),
-      afterTrainThreeArr: this.fb.array([ this.createProduct()]),
     });
 
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
@@ -126,6 +116,7 @@ export class AddMealDialogComponent implements OnInit {
     this.mealService.wednesdayFormChange.subscribe(obj => this.wednesdayMeals = obj);
     this.mealService.thursdayFormChange.subscribe(obj => this.thursdayMeals = obj);
     this.mealService.fridayFormChange.subscribe(obj => this.fridayMeals = obj);
+    this.mealService.suppsFormChange.subscribe(obj => this.supps = obj);
   }
 
   // MealTime form
@@ -161,205 +152,31 @@ export class AddMealDialogComponent implements OnInit {
     this.mealTimeArr = this.mealTimeForm.get('mealTimeArr') as FormArray;
   }
 
-  // Guidelines
-
-  guidelineHandler() {
-    const id = this.suppForm.get('guideline').value;
-    this.guidelineService.getGuidelineDataById(id)
-      .subscribe(guideline => {
-        this.guideline = guideline;
-        this.getExercises(guideline);
-      });
-  }
-
   // Getters
-  getExercises(guideline) {
-    this.exerciseService.getMultipleExercises(guideline);
-    this.exerciseService.guideExercises.eOne.subscribe(exercise => {
-      this.exerciseOne = exercise;
-    });
-    this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
-      this.exerciseTwo = exercise;
-    });
-    this.exerciseService.guideExercises.eThree.subscribe(exercise => {
-      this.exerciseThree = exercise;
-    });
-    this.exercises = [
-      this.exerciseOne,
-      this.exerciseTwo,
-      this.exerciseThree
-    ];
-  }
 
   getSpecialist(sID: string) {
     this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
   }
 
-  get beforeOneForms() {
-    return this.suppForm.get('beforeTrainOneArr') as FormArray;
-  }
-
-  get duringOneForms() {
-    return this.suppForm.get('duringTrainOneArr') as FormArray;
-  }
-
-  get afterOneForms() {
-    return this.suppForm.get('afterTrainOneArr') as FormArray;
-  }
-
-  get beforeTwoForms() {
-    return this.suppForm.get('beforeTrainTwoArr') as FormArray;
-  }
-
-  get duringTwoForms() {
-    return this.suppForm.get('duringTrainTwoArr') as FormArray;
-  }
-
-  get afterTwoForms() {
-    return this.suppForm.get('afterTrainTwoArr') as FormArray;
-  }
-
-  get beforeThreeForms() {
-    return this.suppForm.get('beforeTrainThreeArr') as FormArray;
-  }
-
-  get duringThreeForms() {
-    return this.suppForm.get('duringTrainThreeArr') as FormArray;
-  }
-
-  get afterThreeForms() {
-    return this.suppForm.get('afterTrainThreeArr') as FormArray;
-  }
-
-  // Supp form
-
-
-  //////////////////////////////////////////////////////////////
-  // Creating, adding, deleting and checking product Formarrays
-  //////////////////////////////////////////////////////////////
-
-  createProduct(): FormGroup {
-    return this.fb.group({
-      product: '',
-      amount: '',
-      prep: '',
-    });
-  }
-
-  addProduct(number): void {
-    let array;
-
-    // Conditionals for all 7 possible mealtimes and thus 14 possible meals
-    switch (number) {
-      case 11:
-        array = this.suppForm.get('beforeTrainOneArr') as FormArray;
-        break;
-      case 12:
-        array = this.suppForm.get('duringTrainOneArr') as FormArray;
-        break;
-      case 13:
-        array = this.suppForm.get('afterTrainOneArr') as FormArray;
-        break;
-      case 21:
-        array = this.suppForm.get('beforeTrainTwoArr') as FormArray;
-        break;
-      case 22:
-        array = this.suppForm.get('duringTrainTwoArr') as FormArray;
-        break;
-      case 23:
-        array = this.suppForm.get('afterTrainTwoArr') as FormArray;
-        break;
-      case 31:
-        array = this.suppForm.get('beforeTrainThreeArr') as FormArray;
-        break;
-      case 32:
-        array = this.suppForm.get('duringTrainThreeArr') as FormArray;
-        break;
-      case 33:
-        array = this.suppForm.get('afterTrainThreeArr') as FormArray;
-        break;
-      default:
-        array = null;
-    }
-    this.checkProduct(array);
-    return array.push(this.createProduct());
-  }
-
-  deleteProduct(number, i) {
-    let array;
-    switch (number) {
-      case 11:
-        array = this.suppForm.get('beforeTrainOneArr') as FormArray;
-        break;
-      case 12:
-        array = this.suppForm.get('duringTrainOneArr') as FormArray;
-        break;
-      case 13:
-        array = this.suppForm.get('afterTrainOneArr') as FormArray;
-        break;
-      case 21:
-        array = this.suppForm.get('beforeTrainTwoArr') as FormArray;
-        break;
-      case 22:
-        array = this.suppForm.get('duringTrainTwoArr') as FormArray;
-        break;
-      case 23:
-        array = this.suppForm.get('afterTrainTwoArr') as FormArray;
-        break;
-      case 31:
-        array = this.suppForm.get('beforeTrainThreeArr') as FormArray;
-        break;
-      case 32:
-        array = this.suppForm.get('duringTrainThreeArr') as FormArray;
-        break;
-      case 33:
-        array = this.suppForm.get('afterTrainThreeArr') as FormArray;
-        break;
-      default:
-        array = null;
-    }
-    this.checkProduct(array);
-    return array.removeAt(i);
-  }
-
-  checkProduct(array): void {
-    if (array.length < 10) {
-      this.showAddProduct = true;
-    } else {
-      this.showAddProduct = false;
-    }
-  }
-
 
   // Collect the data and send to service
   addMealplan() {
-    const mID: number =  this.infoForm.get('mealplanID').value;
+    const mID: number =  this.infoForm.get('mID').value;
     const data = {
       clientID: this.userData.uid,
       specialistID: this.specialistID,
       specialistName: this.specialist.firstName + ' ' + this.specialist.lastName,
       creationDate: new Date(),
-      mealplanID: this.userData.uid + '_' + mID,
+      mID: this.userData.uid + '_' + mID,
       mealplanNR: mID,
       mealplanName: this.infoForm.get('mealplanName').value,
-      guideline: this.suppForm.get('guideline').value,
       mealTimes: this.mealTimeForms.value,
       mondayMeals: this.mondayMeals,
       tuesdayMeals: this.tuesdayMeals,
       wednesdayMeals: this.wednesdayMeals,
       thursdayMeals: this.thursdayMeals,
       fridayMeals: this.fridayMeals,
-      supplementation: {
-        beforeOneArr: this.beforeOneForms.value || null,
-        duringOneArr: this.beforeOneForms.value || null,
-        afterOneArr: this.beforeTwoForms.value || null,
-        beforeTwoArr: this.beforeTwoForms.value || null,
-        duringTwoArr: this.beforeTwoForms.value || null,
-        afterTwoArr: this.beforeTwoForms.value || null,
-        beforeThreeArr: this.beforeThreeForms.value || null,
-        duringThreeArr: this.beforeThreeForms.value || null,
-        afterThreeArr: this.beforeThreeForms.value || null,
-      }
+      supplementation: this.supps
     };
     this.mealplanService.addMealplan(data);
   }

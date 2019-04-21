@@ -11,6 +11,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { Guideline } from './../../../guidelines/guideline.model';
 import { Observable } from 'rxjs';
 import { Mealplan } from './../../../mealplans/mealplan.model';
+import { AuthService } from './../../../core/auth/auth.service';
 
 
 @Component({
@@ -20,18 +21,20 @@ import { Mealplan } from './../../../mealplans/mealplan.model';
 })
 export class UserDetailComponent implements OnInit {
   user: User;
-  specialist: Specialist;
+  // specialist: Specialist;
   guidelinesCol: AngularFirestoreCollection<Guideline>;
   guidelines: Observable<Guideline[]>;
   mealplansCol: AngularFirestoreCollection<Mealplan>;
   mealplans: Observable<Mealplan[]>;
+  mealPlansActive = false;
   aboutExtended = false;
   reviewsVisible = true;
 
 
-  // specialist = Observable<Specialist>;
+  specialist: Specialist;
 
   constructor( private afs: AngularFirestore,
+               public auth: AuthService,
                private cdr: ChangeDetectorRef,
                public route: ActivatedRoute,
                public userService: UserService,
@@ -53,14 +56,16 @@ export class UserDetailComponent implements OnInit {
       this.user = user;
       const uid = this.user.uid;
       const sID  = this.user.specialist;
-      this.getSpecialist(sID);
-      this.getGuidelines(uid);
-      this.getMealplans(uid);
+      setTimeout(() => {
+        this.getSpecialist(sID);
+        this.getGuidelines(uid);
+        this.getMealplans(uid);
+      }, 200);
     });
   }
 
   getSpecialist(sID: string) {
-    this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
+    this.specialistService.getSpecialistData(sID).subscribe(specialist => this.specialist = specialist);
   }
 
   getGuidelines(uid) {
