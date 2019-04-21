@@ -1,4 +1,10 @@
 <div class="nav-wrapper">
+  <section class="left">
+    <img src="./../../../assets/img/icons/menu.svg">
+  </section>
+  <section class="logo">
+    <img src="../../../assets/img/logo-icon.svg">
+  </section>
   <section class="middle">
 
   </section>
@@ -16,7 +22,7 @@
 
       </div>
       <button class="open-dropdown-menu" [matMenuTriggerFor]="menu">
-          {{user.displayName}}
+          <span class="user-name">{{user.displayName}}</span>
           <i class="fas fa-sort-down"></i>
       </button>
 

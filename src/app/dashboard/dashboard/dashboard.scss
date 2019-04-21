@@ -17,6 +17,10 @@ main.dashboard-wrapper {
         overflow-y: scroll;
         position: relative;
         z-index: 10;
+
+        @include respond-down($sm) {
+            display: none;
+        }
     }
 
 
@@ -25,6 +29,10 @@ main.dashboard-wrapper {
         width: calc(100vw - 20vw);
         display: flex;
         flex-flow: column;
+
+        @include respond-down($sm) {
+            width: 100vw;
+        }
 
         app-dashboard-top-nav {
             width: 100%;
