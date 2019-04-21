@@ -6,7 +6,7 @@ import { MealplanService } from '../mealplan.service';
 import { Mealplan } from '../mealplan.model';
 import { UserService } from '../../user/user.service';
 import { User } from '../../user/user.model';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AuthService } from './../../core/auth/auth.service';
 
 @Component({
   selector: 'app-mealplan-list-item',

@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 // Services
 import { AuthService } from '../../../core/auth/auth.service';
@@ -60,6 +60,18 @@ export class AddMealDialogComponent implements OnInit {
   // Hide/show booleans
   showAddMealTime = true;
 
+  // Disable popup from closing
+  @HostListener('window:keyup.esc') onKeyUp() {
+    const cn = confirm('Are you sure you want to quit creating this mealplan? Your progress will be lost.');
+    if (cn) {
+      this.dialogRef.close();
+    }
+  }
+
+  @HostListener('window:beforeunload', ['$event']) unloadHandler(event: Event) {
+      event.returnValue = false;
+  }
+
   constructor( private fb: FormBuilder,
                private auth: AuthService,
                private userService: UserService,
@@ -68,11 +80,20 @@ export class AddMealDialogComponent implements OnInit {
                private mealplanService: MealplanService,
                public mealService: AddMealDialogService,
                public matDialog: MatDialog,
+               private dialogRef: MatDialogRef<AddMealDialogComponent>,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
                 this.foodService.getFoods().subscribe(foods => this.foods = foods);
                }
 
   ngOnInit() {
+    this.dialogRef.backdropClick().subscribe(_ => {
+      const cn = confirm('Are you sure you want to quit creating this mealplan? Your progress will be lost.');
+      if (cn) {
+        this.dialogRef.close();
+      }
+    });
+
+    // Init forms
     this.infoForm = this.fb.group({
       mID: ['', [Validators.required]],
       mealplanName: ['', [Validators.required]],

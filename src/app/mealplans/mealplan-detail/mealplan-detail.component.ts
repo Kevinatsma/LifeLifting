@@ -105,6 +105,7 @@ export class MealplanDetailComponent implements OnInit {
   }
 
   getExercises(guideline) {
+    console.log(guideline);
     this.exerciseService.getMultipleExercises(guideline);
     this.exerciseService.guideExercises.eOne.subscribe(exercise => {
       this.exercises.eOne = exercise;
