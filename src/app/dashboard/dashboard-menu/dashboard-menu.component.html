@@ -5,8 +5,14 @@
   </section>
 
   <ul class="link-container">
+    <li class="mobile">
+      <a (click)="closeMenu()" class="menu-link" routerLink="../chat" routerLinkActive="active">
+        <i class="fas fa-comment-alt"></i>
+        Chat
+      </a>
+    </li>
     <li>
-      <a class="menu-link" routerLink="home" routerLinkActive="active">
+      <a (click)="closeMenu()" class="menu-link" routerLink="home" routerLinkActive="active">
         <i class="fas fa-th-large"></i>
         Overview
       </a>

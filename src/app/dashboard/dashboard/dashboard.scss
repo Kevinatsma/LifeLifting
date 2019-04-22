@@ -10,6 +10,10 @@
 
     .sidenav-desktop {
         width: 20vw;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        z-index: 10;
 
         app-dashboard-menu {
             @include respond-down($sm) {
