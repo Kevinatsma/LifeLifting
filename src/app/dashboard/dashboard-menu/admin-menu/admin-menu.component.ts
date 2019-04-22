@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { openClose } from './../../../core/animations/open-close.animation';
+import { DashboardService } from '../../dashboard.service';
 
 @Component({
   selector: 'app-admin-menu',
@@ -12,13 +13,17 @@ import { openClose } from './../../../core/animations/open-close.animation';
 export class AdminMenuComponent implements OnInit {
   linksOpened = false;
 
-  constructor() { }
+  constructor( private dashboardService: DashboardService) { }
 
   ngOnInit() {
   }
 
   toggle() {
     this.linksOpened = !this.linksOpened;
+  }
+
+  closeMenu() {
+    this.dashboardService.toggleSideNav();
   }
 
 }

@@ -1,7 +1,13 @@
-<main class="dashboard-wrapper" *ngIf="auth.user | async as user">
-  <ng-container *ngIf="user.status.signUpCompleted">
+<mat-sidenav-container [hasBackdrop]="true" (backdropClick)="close()" class="dashboard-wrapper" *ngIf="auth.user | async as user">
+  <mat-sidenav #sidenav mode="side" class="sidenav mobile" [opened]="sideNavOpened" [autoFocus]="true">
     <app-dashboard-menu></app-dashboard-menu>
-    
+  </mat-sidenav>
+
+  <ng-container *ngIf="user.status.signUpCompleted">
+    <div class="sidenav-desktop not-mobile">
+      <app-dashboard-menu></app-dashboard-menu>
+    </div>
+
     <section class="content">
       <app-dashboard-top-nav [user]="user"></app-dashboard-top-nav>
       <div class="router-wrapper" [@slideTransition]="getState(o)">
@@ -21,5 +27,6 @@
       <!--  TODO: SPECIALIST CARD -->
     </div>
   </ng-container>
-</main>
+</mat-sidenav-container>
+
 

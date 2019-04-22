@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { openClose } from './../../../core/animations/open-close.animation';
+import { DashboardService } from '../../dashboard.service';
 
 @Component({
   selector: 'app-specialist-menu',
@@ -11,7 +12,7 @@ import { openClose } from './../../../core/animations/open-close.animation';
 })
 export class SpecialistMenuComponent implements OnInit {
   linksOpened = true;
-  constructor() { }
+  constructor( private dashboardService: DashboardService) { }
 
   ngOnInit() {
   }
@@ -20,4 +21,7 @@ export class SpecialistMenuComponent implements OnInit {
     this.linksOpened = !this.linksOpened;
   }
 
+  closeMenu() {
+    this.dashboardService.toggleSideNav();
+  }
 }

@@ -51,6 +51,7 @@ import { MyGuidelineListComponent } from './client-dashboard/my-guideline-list/m
 import { BookingComponent } from './../booking/booking/booking.component';
 import { MyCalendarComponent } from './specialist-dashboard/my-calendar/my-calendar.component';
 import { MyCalendarClientComponent } from './client-dashboard/my-calendar-client/my-calendar-client.component';
+import { DashboardService } from './dashboard.service';
 
 
 const routes: Routes = [
@@ -134,6 +135,9 @@ const routes: Routes = [
     RouterModule,
     MySpecialistComponent,
     MyCalendarComponent
+  ],
+  providers: [
+    DashboardService,
   ]
 })
 export class DashboardModule { }

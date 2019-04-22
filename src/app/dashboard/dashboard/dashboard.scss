@@ -1,12 +1,22 @@
 @import './../../../assets/scss/_master.scss';
 
-main.dashboard-wrapper {
+.dashboard-wrapper {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-flow: column wrap;
     background: $light-grey;
     position: fixed;
+
+    .sidenav-desktop {
+        width: 20vw;
+
+        app-dashboard-menu {
+            @include respond-down($sm) {
+                display: none;
+            }
+        }
+    }
 
     app-dashboard-menu {
         width: 20vw;
@@ -17,10 +27,6 @@ main.dashboard-wrapper {
         overflow-y: scroll;
         position: relative;
         z-index: 10;
-
-        @include respond-down($sm) {
-            display: none;
-        }
     }
 
 
@@ -70,5 +76,24 @@ main.dashboard-wrapper {
             margin-top: 1em;
         }
     }
+}
 
+// Sidenav
+
+mat-sidenav.sidenav {
+    width: 75%;
+}
+
+.mat-sidenav-content {
+    .content {
+        @include respond-down($sm) {
+            position: absolute;
+        }
+    }
+}
+
+.mat-drawer-content {
+    @include respond-up($sm) {
+        display: flex!important;
+    }
 }

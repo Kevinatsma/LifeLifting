@@ -15,13 +15,13 @@
     </div>
     <ul class="link-container" [@openClose]="linksOpened ? 'open' : 'closed'">
       <li>
-        <a class="menu-link" routerLink="foods" routerLinkActive="active">
+        <a (click)="closeMenu()" class="menu-link" routerLink="foods" routerLinkActive="active">
           <i class="fas fa-lemon"></i>
           Food
         </a>
       </li>
       <li>
-        <a class="menu-link" routerLink="exercises" routerLinkActive="active">
+        <a (click)="closeMenu()" class="menu-link" routerLink="exercises" routerLinkActive="active">
           <i class="fas fa-dumbbell"></i>
           Excercises
         </a>

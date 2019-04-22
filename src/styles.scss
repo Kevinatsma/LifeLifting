@@ -832,3 +832,19 @@ form {
         }
     }
 }
+
+// General responsive styles
+
+.not-mobile {
+    display: flex;
+    @include respond-down($sm) {
+        display: none;
+    }
+}
+
+.mobile {
+    display: flex;
+    @include respond-up($sm) {
+        display: none;
+    }
+}

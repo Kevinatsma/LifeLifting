@@ -1,6 +1,8 @@
 <div class="nav-wrapper">
   <section class="left">
-    <img src="./../../../assets/img/icons/menu.svg">
+    <button class="icon-btn" (click)="toggleSideNav()">
+      <img src="./../../../assets/img/icons/menu.svg">
+    </button>
   </section>
   <section class="logo">
     <img src="../../../assets/img/logo-icon.svg">
@@ -18,7 +20,7 @@
 
     </div>
     <div class="user-menu" *ngIf="user">
-      <div class="user-photo" [style.backgroundImage]="'url('+ user.photoURL +')'">
+      <div class="user-photo" [matMenuTriggerFor]="menu" [style.backgroundImage]="'url('+ user.photoURL +')'">
 
       </div>
       <button class="open-dropdown-menu" [matMenuTriggerFor]="menu">

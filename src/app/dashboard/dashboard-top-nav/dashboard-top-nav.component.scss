@@ -21,6 +21,10 @@
     display: flex;
     flex-flow: row nowrap;
 
+    @include respond-down($sm) {
+        justify-content: space-between;
+    }
+
     section {
         height: 65px;
     }
@@ -37,7 +41,8 @@
 
         img {
             height: auto;
-            width: 25px;
+            width: 24.5px;
+            margin-top: 0.5px;
         }
     }
 
@@ -74,7 +79,7 @@
         border-bottom: $light-border;
 
         @include respond-down($sm) {
-            width: 30%;
+            width: 26%;
         }
 
         div.chat-container {

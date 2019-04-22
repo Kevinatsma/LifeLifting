@@ -2,9 +2,9 @@
 
 .main-wrapper {
     height: 100%;   
-    overflow: hidden;  /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
-    margin: 0px;  /*removes default style*/
-    display: flex;  /*enables flex content for its children*/
+    overflow: hidden;
+    margin: 0px;
+    display: flex;
     box-sizing: border-box;
 
     section {
@@ -20,6 +20,10 @@
         // background-image: url("./../../../assets/img/bgs/home-bg-2.jpg");
         background-size: cover;
         background-repeat: no-repeat;
+    }
+
+    @include respond-down($sm) {
+        background: $light-grey;
     }
 }
 
