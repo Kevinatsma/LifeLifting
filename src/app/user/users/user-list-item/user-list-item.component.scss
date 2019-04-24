@@ -12,6 +12,7 @@ mat-card.list-item-card {
 
     @include respond-down($sm) {
         flex-flow: column wrap;
+        width: 84vw;
     }
 
     &:hover, &:focus {
@@ -120,6 +121,10 @@ mat-card.list-item-card {
                         width: 70%;
                         font-size: 15px;
                         margin-top: 5px;
+                        
+                        @include respond-down($sm) {
+                            display: none;
+                        }
                                                 
                         span {
                             font-weight: $bold;
