@@ -10,13 +10,17 @@ mat-card.list-item-card {
     padding: 0;
     transition: all 300ms ease-in-out;
 
+    @include respond-down($sm) {
+        flex-flow: column wrap;
+        width: 84vw;
+    }
+
     &:hover, &:focus {
         transition: transform 300ms ease-in-out;
         transform: scale(1.02);
     }
 
     .type-chip {
-        @extend %flex-center;
         position: absolute;
         left: -2em;
         top: -2em;
@@ -25,6 +29,10 @@ mat-card.list-item-card {
         box-shadow: $card-shadow;
         background: $icon-black;
         border-radius: 50%;
+        @extend %flex-center;
+        @include respond-down($sm) {
+            display: none;
+        }
 
         svg {
             font-size: 22px;
@@ -33,11 +41,21 @@ mat-card.list-item-card {
     }
 
     section {
+
+        @include respond-down($sm) {
+            box-sizing: border-box;
+            width: 100%!important;
+        }
+
         &.profile-photo {
             width: 25%;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+
+            @include respond-down($sm) {
+                height: 200px;
+            }
         }
 
         &.middle {
@@ -52,9 +70,18 @@ mat-card.list-item-card {
                 align-items: center;
                 margin-top: 0.5em;
 
+                @include respond-down($sm) {
+                    flex-flow: column wrap;
+                    align-items: flex-start;
+                }
+
                 h2 {
                     margin: 0;
                     width: auto;
+
+                    @include respond-down($sm) {
+                        width: 100%;
+                    }
                 }
 
                 .dividing-circle {
@@ -63,6 +90,9 @@ mat-card.list-item-card {
                     border-radius: 50%;
                     background: $primary-color;
                     margin: 5px 15px 0 13px;
+                    @include respond-down($sm) {
+                        display: none;
+                    }
                 }
 
                 p.location {
@@ -91,6 +121,10 @@ mat-card.list-item-card {
                     &.description {
                         height: 80px;
                         overflow: hidden;
+
+                        @include respond-down($sm) {
+                            height: 65px;
+                        }
                         
                         span {
                             font-weight: $bold;
@@ -99,10 +133,27 @@ mat-card.list-item-card {
                 }
 
                 ul.contact-menu {
+                    @include respond-down($sm) {
+                        display: flex;
+                        align-items: center;
+                        flex-flow: row nowrap;
+                        justify-content: space-between;
+                        margin: 1.5em 0;
+                    }
 
                     li {
                         display: inline-block;
                         margin: 1em 1.5em;
+
+                        @include respond-down($sm) {
+                            box-sizing: border-box;
+                            margin: 0;
+                            width: 30%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-start;
+                            width: auto;
+                        }
 
                         &:first-child {
                             margin-left: 0;

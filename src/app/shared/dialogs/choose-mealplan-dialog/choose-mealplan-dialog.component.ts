@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -13,7 +13,8 @@ import { User } from './../../../user/user.model';
 @Component({
   selector: 'app-choose-mealplan-dialog',
   templateUrl: './choose-mealplan-dialog.component.html',
-  styleUrls: ['./choose-mealplan-dialog.component.scss']
+  styleUrls: ['./choose-mealplan-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ChooseMealplanDialogComponent implements OnInit {
   user: User;

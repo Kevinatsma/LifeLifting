@@ -56,6 +56,12 @@ export class MealplanListItemComponent implements OnInit {
     alert('TODO: OPEN SHOPPING LIST FOR THIS MEALPLAN');
   }
 
+  printMealplan(mealplan) {
+    alert('TODO: EXPORT THIS MEALPLAN TO PDF');
+  }
+
+
+
   editMealplan(mealplan) {
     alert('TODO: EDIT MEALPLAN');
     // const url = `dashboard/mealplans/${mealplan.mID}`;

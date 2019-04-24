@@ -49,7 +49,6 @@ mat-card.list-item-card {
                 align-items: center;
                 margin-top: 0.5em;
 
-
                 @include respond-down($sm) {
                     flex-flow: column wrap;
                     align-items: flex-start;
@@ -122,7 +121,6 @@ mat-card.list-item-card {
                 }
 
                 ul.contact-menu {
-
                     @include respond-down($sm) {
                         display: flex;
                         align-items: center;
