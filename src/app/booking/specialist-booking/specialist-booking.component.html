@@ -109,6 +109,7 @@
           *ngSwitchCase="CalendarView.Week"
           [viewDate]="viewDate"
           [events]="events"
+          (hourSegmentClicked)="hourClicked($event.date)"
           (eventClicked)="openEventDetailDialog($event)"
           (eventTimesChanged)="eventTimesChanged($event)"
         >
@@ -117,6 +118,7 @@
           *ngSwitchCase="CalendarView.Day"
           [viewDate]="viewDate"
           [events]="events"
+          (hourSegmentClicked)="hourClicked($event.date)"
           (eventClicked)="openEventDetailDialog($event)"
           (eventTimesChanged)="eventTimesChanged($event)"
         >

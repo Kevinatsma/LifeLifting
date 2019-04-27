@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { CalendarEvent } from 'angular-calendar';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class BookingService implements OnInit {
   editStateChange: Subject<boolean> = new Subject<boolean>();
 
   constructor( private afs: AngularFirestore,
+               private userService: UserService,
                public snackbar: MatSnackBar) {
                 this.editStateChange.subscribe((value) => {
                   this.editShow = value;
@@ -40,7 +42,7 @@ export class BookingService implements OnInit {
     });
   }
 
-  addEvent(data) {
+  addEvent(data, user) {
     return this.afs.collection('appointments').add(data)
     .then(docRef => {
       console.log('Document written with ID: ', docRef.id);
@@ -49,7 +51,23 @@ export class BookingService implements OnInit {
       };
       this.updateEvent(docRef.id, eventData);
     })
-    .catch(error => console.error('Error adding document: ', error))
+    .then(() => {
+      if (user.uid) {
+        if (!user.roles.admin && !user.roles.specialist) {
+          const userData = {
+            status: {
+              accepted: false,
+              appointment: true,
+              appointmentAccepted: false,
+              appointmentCompleted: false,
+              appointmentRejected: false,
+              signUpCompleted: true,
+            }
+          };
+          this.userService.updateUser(user.uid, userData);
+        }
+      }
+    })
     .then(() => {
       // Show Snackbar
       const message = `${data.title} was requested succesfully`;
@@ -60,9 +78,7 @@ export class BookingService implements OnInit {
         panelClass: ['success-snackbar']
       });
     })
-    .catch(error => {
-      console.error(error.message);
-    });
+    .catch(error => console.error('Error adding document: ', error.message));
   }
 
 

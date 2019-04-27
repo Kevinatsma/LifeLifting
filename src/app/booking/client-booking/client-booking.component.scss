@@ -27,6 +27,20 @@
             @extend %flex-center;
         }
 
+        &.calendar__toolbar {
+            .left {
+                .icon-button {
+                    margin-right: 0;
+                }
+            }
+
+            .hidden {
+                opacity: 0;
+                visibility: hidden;
+                z-index: -100;
+            }
+        }
+
     }
 
     .calendar-container {

@@ -11,7 +11,7 @@
     <!-- <h1>{{user.specialist}} Calendar</h1> -->
 
     <div class="right" *ngIf="specialist">
-      <button class="icon-button" (click)="chat(specialist.uid)">
+      <button class="icon-button hidden">
         <i class="fas fa-comment-alt"></i>
       </button>
     </div>
@@ -101,6 +101,7 @@
         <mwl-calendar-week-view
           *ngSwitchCase="CalendarView.Week"
           [viewDate]="viewDate"
+          (hourSegmentClicked)="hourClicked($event.date)"
           [events]="events"
           (eventClicked)="openEventDetailDialog($event)"
         >
@@ -109,6 +110,7 @@
           *ngSwitchCase="CalendarView.Day"
           [viewDate]="viewDate"
           [events]="events"
+          (hourSegmentClicked)="hourClicked($event.date)"
           (eventClicked)="openEventDetailDialog($event)"
         >
         </mwl-calendar-day-view>

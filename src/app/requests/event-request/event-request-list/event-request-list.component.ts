@@ -25,8 +25,10 @@ export class EventRequestListComponent implements OnInit {
   }
 
   getEvents(user) {
+    const id =  `specialist${user.sID}`;
+    console.log(id);
     const colRef = this.afs.collection('appointments', ref =>
-    ref.where('members', 'array-contains', `${user.uid}`)
+    ref.where('specialistID', '==', `specialist${user.sID}`)
     .where('accepted', '==', false)
     .where('rejected', '==', false)
     .orderBy('created'));

@@ -47,7 +47,7 @@ import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provi
 export class BookingComponent implements OnInit {
   user: User;
   specialist: Specialist;
-  view: CalendarView = CalendarView.Month;
+  view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
@@ -78,7 +78,8 @@ export class BookingComponent implements OnInit {
                private specialistService: SpecialistService,
                private threadService: ChatThreadService,
                public location: Location,
-               private afs: AngularFirestore) {}
+               private afs: AngularFirestore) {
+               }
 
 
 
@@ -125,6 +126,16 @@ export class BookingComponent implements OnInit {
         this.activeDayIsOpen = true;
       }
     }
+  }
+
+  hourClicked(date) {
+    this.dialog.open(AddAppointmentDialogComponent, {
+      data: {
+        user: this.user,
+        specialist: this.specialist,
+        date: date
+      },
+    });
   }
 
 

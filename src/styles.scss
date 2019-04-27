@@ -753,10 +753,15 @@ form {
 
 // Mat Tooltip
 
-.tooltip-warning {
-    background: $brand-danger;
+.tooltip {
     font-size: 14px;
     text-align: center;
+    &-warning {
+        background: $brand-danger;
+    }
+    &-info {
+        background: $primary-light;
+    }
 }
 
 // MISC

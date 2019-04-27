@@ -48,7 +48,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SignUpBookingComponent implements OnInit {
   user: User;
   specialist: Specialist;
-  view: CalendarView = CalendarView.Month;
+  view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
@@ -136,6 +136,7 @@ export class SignUpBookingComponent implements OnInit {
     const colRef: AngularFirestoreCollection =
     this.afs.collection('appointments', ref =>
       ref.where('specialistID', '==', `${specialist}`)
+      .where('accepted', '==', true)
       .orderBy('start'));
     this.events$ = this.bookingService.getSpecificAppointments(colRef);
   }
@@ -165,9 +166,6 @@ export class SignUpBookingComponent implements OnInit {
     }
   }
 
-
-  // TODO: EDIT ON DRAG
-
   // REFRESH CALENDAR FUNCTION
   eventTimesChanged({
     event,
@@ -194,6 +192,18 @@ export class SignUpBookingComponent implements OnInit {
       panelClass: 'event-detail-dialog'
     });
   }
+
+
+  hourClicked(date) {
+    this.dialog.open(AddAppointmentDialogComponent, {
+      data: {
+        user: this.user,
+        specialist: this.specialist,
+        date: date
+      },
+    });
+  }
+
   ////////////////
   // For Users
 

@@ -48,7 +48,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ClientBookingComponent implements OnInit {
   user: User;
   specialist: Specialist;
-  view: CalendarView = CalendarView.Month;
+  view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
@@ -184,14 +184,23 @@ export class ClientBookingComponent implements OnInit {
     this.bookingService.updateEvent(obj.eventID, data);
   }
 
-
-  // TODO: OPEN MAT DIALOG AND SEND EVENT OBJECT TO DISPLAY CORRECTLY
   openEventDetailDialog(event) {
     this.dialog.open(AppointmentDetailDialogComponent, {
       data: {
         event: event,
       },
       panelClass: 'event-detail-dialog'
+    });
+  }
+
+
+  hourClicked(date) {
+    this.dialog.open(AddAppointmentDialogComponent, {
+      data: {
+        user: this.user,
+        specialist: this.specialist,
+        date: date
+      },
     });
   }
   ////////////////
@@ -235,12 +244,6 @@ export class ClientBookingComponent implements OnInit {
         return null;
       }
     });
-  }
-
-  // Chat
-
-  chat(id) {
-    this.threadService.createThread(id);
   }
 
   // Misc

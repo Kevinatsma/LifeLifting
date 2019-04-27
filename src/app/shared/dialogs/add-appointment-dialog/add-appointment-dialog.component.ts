@@ -8,7 +8,7 @@ import { AuthService } from './../../../core/auth/auth.service';
 import { Specialist } from './../../../specialists/specialist.model';
 import { UserService } from './../../../user/user.service';
 import { SpecialistService } from './../../../specialists/specialist.service';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-add-appointment-dialog',
@@ -18,25 +18,41 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class AddAppointmentDialogComponent implements OnInit {
   user: User;
   specialist: Specialist;
-
   clients: User[];
   specialists: Specialist[];
 
   hide = true;
   appointmentForm: FormGroup;
 
+  // Meet methods
   faceToFace: Subject<boolean> = new Subject();
   onlineAppointment: Subject<boolean> = new Subject();
 
+  // Call methods
   whatsApp: Subject<boolean> = new Subject();
   skype: Subject<boolean> = new Subject();
   onlinePhone: Subject<boolean> = new Subject();
 
-  // set values
+  // If date check is positive, these values will be filled
+  hasStartDate: boolean;
+  startDate: Date;
+  hasEndDate: boolean;
+  endDate: Date;
+  start: {};
+  end: {};
+  clientEnd: {};
+  monthList = [
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+  ];
+
+  // Set values
   standardColorPrimary = '#2ecc71';
   standardColorSecondary = '#5ec78a';
   phoneAreaCode = new FormControl({value: '+51', disabled: true});
   appointmentAccepted = false;
+
 
   constructor( public auth: AuthService,
                private fb: FormBuilder,
@@ -53,6 +69,10 @@ export class AddAppointmentDialogComponent implements OnInit {
       this.setAppointmentAccepted(data.user);
       this.getClients();
       this.getSpecialists();
+      this.checkForDate(data.date);
+      if ( this.user.roles.client && !this.user.roles.specialist && !this.user.roles.admin) {
+        this.hasEndDate = true;
+      }
     }
 
   ngOnInit() {
@@ -62,9 +82,9 @@ export class AddAppointmentDialogComponent implements OnInit {
       specialistID: [''] || null,
       selectedColorPrimary: [''],
       selectedColorSecondary: [''],
-      startTime: ['', Validators.required],
-      startHour: ['', Validators.required],
-      startMinutes: ['', Validators.required],
+      startTime: [''],
+      startHour: [''],
+      startMinutes: [''],
       faceToFacePhone: this.fb.group({
         'phoneAreaCode': [''] || null,
         'phoneRest': [''] || null,
@@ -132,16 +152,40 @@ export class AddAppointmentDialogComponent implements OnInit {
     this.specialistService.getSpecialists().subscribe(specialists => this.specialists = specialists);
   }
 
+  checkForDate(date) {
+    if (date) {
+      this.hasStartDate = true;
+      this.hasEndDate = true;
+      this.getTimeAndDate(date);
+
+      // Set end date for clients ( + half an hour)
+      if (this.user.roles.admin || this.user.roles.specialist ) {
+        this.hasEndDate = false;
+      }
+
+    }
+  }
+
   // Add Appointment
   addEvent(): void {
     const startNoTime = new Date(this.appointmentForm.get('startTime').value).toString();
     const endNoTime = new Date(this.appointmentForm.get('startTime').value).toString();
-    const start = startNoTime
-      .replace('00:00:00',
-      `${this.appointmentForm.get('startHour').value}` + ':' + `${this.appointmentForm.get('startMinutes').value}` + ':00');
-    const end = endNoTime
-      .replace('00:00:00',
-      `${this.appointmentForm.get('startHour').value + 1}` + ':' + `${this.appointmentForm.get('startMinutes').value}` + ':00');
+    let start;
+    let end;
+
+    if (!this.hasStartDate) {
+      start = startNoTime
+        .replace('00:00:00',
+        `${this.appointmentForm.get('startHour').value}` + ':' + `${this.appointmentForm.get('startMinutes').value}` + ':00');
+
+      end = endNoTime
+        .replace('00:00:00',
+        `${this.appointmentForm.get('startHour').value + 1}` + ':' + `${this.appointmentForm.get('startMinutes').value}` + ':00');
+    } else {
+      start = this.startDate.toString();
+      end = this.endDate.toString();
+    }
+
     const data: Appointment = {
       accepted: this.appointmentAccepted,
       rejected: false,
@@ -170,7 +214,7 @@ export class AddAppointmentDialogComponent implements OnInit {
       skypeName: this.appointmentForm.get('skypeName').value || null,
       onlineAppointmentPhone: this.appointmentForm.controls.onlinePhone.value || null
     };
-    this.bookingService.addEvent(data);
+    this.bookingService.addEvent(data, this.user);
   }
 
   // Setters
@@ -191,5 +235,63 @@ export class AddAppointmentDialogComponent implements OnInit {
     } else if (user.roles.specialist) {
       this.appointmentAccepted = true;
     }
+  }
+
+  // Format date
+
+  getTimeAndDate(dateObj) {
+    const date  = new Date(dateObj);
+    const startDay = date.getDate().toString();
+    const startMonth = this.monthList[date.getMonth()];
+    const startYear = date.getFullYear().toString();
+    const startHours = date.getHours().toString();
+    const startMinutes = this.convertMinutes(date);
+
+    this.start = {
+      startDay, startMonth, startYear, startHours, startMinutes
+    };
+    this.startDate = date;
+    this.getEndTimeAndDate(dateObj);
+  }
+
+  getEndTimeAndDate(dateObj) {
+    const date = this.dateAdd(dateObj, 'minute', 60);
+    const endDay = date.getDate().toString();
+    const endMonth = this.monthList[date.getMonth()];
+    const endYear = date.getFullYear().toString();
+    const endHours = date.getHours().toString();
+    const endMinutes = this.convertMinutes(date);
+
+    this.end = {
+      endDay, endMonth, endYear, endHours, endMinutes
+    };
+    this.endDate = date;
+  }
+
+  convertMinutes(date) {
+    const minutes = ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+    return minutes;
+  }
+
+  dateAdd(date, interval, units) {
+    let ret = new Date(date);
+    const checkRollover = function() {
+      if (ret.getDate() !== date.getDate()) {
+        ret.setDate(0);
+      }
+    };
+
+    switch (interval.toLowerCase()) {
+      case 'year'   :  ret.setFullYear(ret.getFullYear() + units); checkRollover();  break;
+      case 'quarter':  ret.setMonth(ret.getMonth() + 3 * units); checkRollover();  break;
+      case 'month'  :  ret.setMonth(ret.getMonth() + units); checkRollover();  break;
+      case 'week'   :  ret.setDate(ret.getDate() + 7 * units);  break;
+      case 'day'    :  ret.setDate(ret.getDate() + units);  break;
+      case 'hour'   :  ret.setTime(ret.getTime() + units * 3600000);  break;
+      case 'minute' :  ret.setTime(ret.getTime() + units * 60000);  break;
+      case 'second' :  ret.setTime(ret.getTime() + units * 1000);  break;
+      default       :  ret = undefined;  break;
+    }
+    return ret;
   }
 }

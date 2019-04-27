@@ -49,7 +49,7 @@ import { EventRequestComponent } from './../../requests/event-request/event-requ
 export class SpecialistBookingComponent implements OnInit {
   user: User;
   specialist: Specialist;
-  view: CalendarView = CalendarView.Month;
+  view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
@@ -179,6 +179,16 @@ export class SpecialistBookingComponent implements OnInit {
         event: event,
       },
       panelClass: 'event-detail-dialog'
+    });
+  }
+
+  hourClicked(date) {
+    this.dialog.open(AddAppointmentDialogComponent, {
+      data: {
+        user: this.user,
+        specialist: this.specialist,
+        date: date
+      },
     });
   }
 

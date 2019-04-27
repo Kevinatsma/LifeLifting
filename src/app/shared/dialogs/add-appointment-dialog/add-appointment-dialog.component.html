@@ -61,51 +61,98 @@
         />
       </mat-form-field>
     </div>
-      <!-- <mat-label>Pick a start time</mat-label>
-      <input
-        class="form-control"
-        type="text"
-        mwlFlatpickr
-        [altInput]="true"
-        [convertModelValue]="true"
-        [enableTime]="true"
-        dateFormat="Y-m-dTH:i"
-        altFormat="F j, Y H:i"
-        placeholder="Not set"
-      /> -->
 
-    <!-- TODO: CREATE DROPDOWN AND MEETING TIMES IN JSON -->
-    <div class="add-date-time-container">
-      <mat-form-field class="date-picker" ppearance="standard" floatLabel="always">
-        <mat-label>Pick a date</mat-label>
-        <input matInput formControlName="startTime" [matDatepicker]="datePickerOne"
-        placeholder="MM/DD/YYYY (eg. 26/03/2019)">
-        <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
-        <mat-datepicker #datePickerOne></mat-datepicker>
-      </mat-form-field>
+    <div class="add-date-time-container start-date">
+      <h5>Start date & time</h5>
 
-      <div class="time">
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Hour</mat-label>
-          <input type="number" matInput formControlName="startHour" placeholder="06" />
-          <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
-            This is <strong>required</strong>
-          </mat-error> -->
+      <div class="content-container">
+        <mat-form-field class="date-picker" appearance="standard" floatLabel="always" *ngIf="!hasStartDate">
+          <mat-label>Pick a date</mat-label>
+          <input matInput formControlName="startTime" [matDatepicker]="datePickerOne"
+          placeholder="MM/DD/YYYY (eg. 26/03/2019)">
+          <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
+          <mat-datepicker #datePickerOne></mat-datepicker>
         </mat-form-field>
-        :
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Minutes</mat-label>
-          <input type="number" matInput formControlName="startMinutes" placeholder="30" />
-          <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
-            This is <strong>required</strong>
-          </mat-error> -->
+
+        <h3 class="date" *ngIf="hasStartDate">
+          {{ start.startDay }} {{ start.startMonth }} {{ start.startYear }}
+        </h3>
+
+        <div class="time" *ngIf="!hasStartDate">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Hour</mat-label>
+            <input type="number" matInput formControlName="startHour" placeholder="06" />
+          </mat-form-field>
+          :
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Minutes</mat-label>
+            <input type="number" matInput formControlName="startMinutes" placeholder="30" />
+          </mat-form-field>
+        </div>
+
+        <h3 class="date" *ngIf="hasStartDate">
+          <i class="far fa-clock"></i>
+          {{ start.startHours }} {{ start.startMinutes }}
+        </h3>
+      </div>
+    </div>
+
+    <div class="add-date-time-container" *ngIf="user.roles.admin ||  user.roles.specialist">
+      <h5>End date & time</h5>
+
+      <div class="content-container">
+        <mat-form-field class="date-picker" appearance="standard" floatLabel="always" *ngIf="!hasEndDate">
+          <mat-label>Pick a date</mat-label>
+          <input matInput formControlName="startTime" [matDatepicker]="datePickerOne"
+          placeholder="MM/DD/YYYY (eg. 26/03/2019)">
+          <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
+          <mat-datepicker #datePickerOne></mat-datepicker>
         </mat-form-field>
+
+        <h3 class="date" *ngIf="hasEndDate">
+          {{ end.endDay }} {{ end.endMonth }} {{ end.endYear }}
+        </h3>
+
+        <div class="time" *ngIf="!hasEndDate">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Hour</mat-label>
+            <input type="number" matInput formControlName="startHour" placeholder="06" />
+          </mat-form-field>
+          :
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Minutes</mat-label>
+            <input type="number" matInput formControlName="startMinutes" placeholder="30" />
+          </mat-form-field>
+        </div>
+
+        <h3 class="date" *ngIf="hasEndDate">
+          <i class="far fa-clock"></i>
+          {{ end.endHours }} {{ end.endMinutes }}
+        </h3>
+
+      </div>
+
+    </div>
+
+    <div class="add-date-time-container" *ngIf="user.roles.client && !user.roles.specialist && !user.roles.admin ">
+      <h5>End date & time</h5>
+
+      <div class="content-container">
+
+        <h3 class="date" *ngIf="hasEndDate">
+          {{ end.endDay }} {{ end.endMonth }} {{ end.endYear }}
+        </h3>
+        <h3 class="date" *ngIf="hasEndDate">
+          <i class="far fa-clock"></i>
+          {{ end.endHours }} {{ end.endMinutes }}
+        </h3>
       </div>
     </div>
 
     <div class="meeting-place-picker">
+      <h5>How is the meeting taking place?</h5>
       <mat-form-field appearance="standard" floatLabel="always">
-        <mat-select matInput placeholder="Pick a place"
+        <mat-select matInput placeholder="Online or in real?"
         (selectionChange)="toggleContext()" formControlName="appointmentContext" autocomplete="off" 
         panelClass="dropdown-regular" required>
           <mat-option value="faceToFace">Face to face</mat-option>
@@ -123,13 +170,13 @@
 
       <div class="multiple-input online-phone" formGroupName="faceToFacePhone">
         <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Area Code</mat-label>
-            <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
-            <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          <mat-label>Area Code</mat-label>
+          <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
+          <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
         <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Phone Number</mat-label>
-            <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off">
+          <mat-label>Phone Number</mat-label>
+          <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off">
         </mat-form-field>
       </div>
     </ng-container>
