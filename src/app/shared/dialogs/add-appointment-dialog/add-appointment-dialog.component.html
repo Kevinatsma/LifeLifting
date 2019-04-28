@@ -163,10 +163,14 @@
     </div>
 
     <ng-container *ngIf="faceToFace | async">
-      <mat-form-field appearance="standard" floatLabel="always">
-        <mat-label>Location of the meeting</mat-label>
-        <input type="text" matInput formControlName="location" placeholder="Describe the location" />
-      </mat-form-field>
+      <div class="location-card">
+        <img src="./../../../../assets/img/icons/maps.svg">
+        <div class="address">
+          <h3>Jirón Oscar Chocano 499</h3>
+          <p>Santiago de Surco, Lima</p>
+        </div>
+        <a class="text-link" href="https://goo.gl/maps/3dXhLj2B94KLRWZS8" target="_blank">Open in Maps</a>
+      </div>
 
       <div class="multiple-input online-phone" formGroupName="faceToFacePhone">
         <mat-form-field appearance="standard" floatLabel="always">
@@ -235,7 +239,7 @@
   </form>
 
   <section class="btn-area-one">
-    <button type="submit" class="dialog-button" (click)="addEvent()"
+    <button type="submit" class="dialog-button" (click)="getSpecialist()"
     [disabled]="!appointmentForm.valid"
     [class.disabled]="!appointmentForm.valid"
     [mat-dialog-close]="appointmentForm.valid ? true : false"

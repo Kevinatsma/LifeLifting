@@ -39,7 +39,7 @@
           <h2>{{user.displayName}}</h2>
           <h5 *ngIf="user.basicData">{{user.basicData.country}}</h5>
           <h5 *ngIf="!user.basicData">No country yet</h5>
-          <p>User ID: {{user.uid}}</p>
+          <p class="uid">User ID: {{user.uid}}</p>
           <div class="icon-fact-container">
             <div class="fact" *ngIf="user.basicData">
               <i class="fas fa-transgender"></i>
@@ -222,7 +222,7 @@
               </p>
               <p class="card-text" *ngIf="!user.status.appointmentAccepted">
                 <i class="fas fa-ban"></i>
-                Appointment Not Accepted (Yet)
+                Appointment Not Accepted
               </p>
 
               <p class="card-text" *ngIf="user.status.appointmentCompleted">
@@ -231,7 +231,7 @@
               </p>
               <p class="card-text" *ngIf="!user.status.appointmentCompleted">
                 <i class="fas fa-ban"></i>
-                Appointment Not Completed (Yet)
+                Appointment Not Completed
               </p>
             </div>
           </div>

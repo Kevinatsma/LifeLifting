@@ -52,21 +52,18 @@ export class BookingService implements OnInit {
       this.updateEvent(docRef.id, eventData);
     })
     .then(() => {
-      if (user.uid) {
-        if (!user.roles.admin && !user.roles.specialist) {
-          const userData = {
-            status: {
-              accepted: false,
-              appointment: true,
-              appointmentAccepted: false,
-              appointmentCompleted: false,
-              appointmentRejected: false,
-              signUpCompleted: true,
-            }
-          };
-          this.userService.updateUser(user.uid, userData);
+      const userData = {
+        status: {
+          accepted: user.status.accepted || false,
+          signUpCompleted: user.status.signUpCompleted || true,
+          appointment: true,
+          appointmentAccepted: user.status.appointmentAccepted || false,
+          appointmentCompleted: user.status.appointmentCompleted || false,
+          appointmentRejected: user.status.appointmentRejected || false
         }
-      }
+      };
+      console.log(userData);
+      this.userService.updateUser(user.uid, userData);
     })
     .then(() => {
       // Show Snackbar

@@ -224,16 +224,16 @@
         .contact-container {
 
             &__item {
-                background: $light-grey;
-                padding: 5px 1em 5px 2em;
-                border-radius: 10px;
                 margin: 1em 0;
+                padding: 2em;
+                border-radius: 5px 10px 10px 5px;
 
                 p, p a{
                     flex-flow: row nowrap;
                     align-items: center;
                     font-size: 18px;
                     font-weight: $semi-bold;
+                    margin: 0;
                 }
 
 
@@ -272,31 +272,68 @@
                 }
 
                 &.face-to-face {
-                    padding: 25px 2em 10px 2em;
-                    svg {
-                        color: $icon-black;
-                    }
-                        
-                    p {
-                        margin: 0 0 1em!important;
-                    }
-                    p, a {
-                        color: $primary-color;
-                        margin: 0;
-                        padding: 0;
-                        justify-content: flex-start;
+                    padding: 0;
+                    border-radius: 0;
+                    
+                    .phone-number {
                         display: flex;
-                        align-items: center;
-                        flex-flow: row nowrap;
-
                         svg {
-                            width: 25px;
+                            color:$icon-black;
+                        }
+                         
+                        a {
+                            color: $primary-color;
+                            margin: 0;
+                            padding: 0;
+                            justify-content: flex-start;
+                            display: flex;
+                            align-items: center;
+                            flex-flow: row nowrap;
+                        }
+                    }
+
+                    .location-card {
+                        box-sizing: border-box;
+                        border-radius: 10px;
+                        display: flex;
+                        justify-content: flex-start;
+                        background-color: #fff;
+                        box-shadow: $card-shadow;
+                        align-items: center;
+                        height: 130px;
+                        width: 120%;
+                        padding: 0 2em;
+                        margin: 1.5em -10% 2em;
+                
+                        img {
+                            width: 50px;
+                            height: auto;
+                            margin-top: -4px;
+                        }
+                
+                        .address {
+                            display: flex;
+                            flex-flow: column wrap;
+                            align-items: flex-start;
+                            justify-content: center;
+                            margin: 0 auto 0 2em;
+                            width: 55%;
+
+                            h4 {
+                                margin: 0;
+                            }
+                            
+                            p {
+                                font-size: 16px;
+                                font-weight: $regular;
+                                margin: 0;
+                            }
                         }
                     }
                 }
             }
 
-            ::ng-deep svg {
+            svg {
                 font-size: 30px;
                 height: 30px;
                 margin-right: 25px;
@@ -318,7 +355,7 @@
 
 // Misc
 
-::ng-deep .fa-phone {
+.fa-phone {
     transform: scale(-1, 1);
     color: $secondary-color;
 }

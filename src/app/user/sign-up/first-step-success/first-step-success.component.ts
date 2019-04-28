@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from './../../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../user.service';
@@ -15,6 +15,7 @@ export class FirstStepSuccessComponent implements OnInit {
 
   constructor( public auth: AuthService,
                private userService: UserService,
+               private cdr: ChangeDetectorRef,
                public route: Router) { }
 
   ngOnInit() {
@@ -23,7 +24,9 @@ export class FirstStepSuccessComponent implements OnInit {
 
   getUserData() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => this.user = user);
+    this.userService.getUserDataByID(id).subscribe(user => {
+      this.user = user;
+    });
   }
 
 

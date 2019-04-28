@@ -60,7 +60,7 @@
     </section> -->
 
     <section class="appointment-type" *ngIf="event">
-      <div class="contact-container" *ngIf="onlineAppointment && event.onlineAppointmentPhone.phoneAreaCode || event.skypeName || event.whatsappNumber">
+      <div class="contact-container" *ngIf="onlineAppointment">
         <h4>Online call</h4>
         <div class="contact-container__item skype" *ngIf="skype && event.skypeName">
           <p>
@@ -85,16 +85,22 @@
           </p>
         </div>
       </div>
-
       <div class="contact-container__item face-to-face" *ngIf="faceToFace && event.faceToFacePhone.phoneAreaCode || event.location">
         <h4>Face to Face </h4>
-        <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
-        <p *ngIf="client">
+        <p *ngIf="client" class="phone-number">
           <i class="fas fa-phone"></i>
           <a class="text-link" href="tel:{{event.faceToFacePhone.phoneAreaCode}}{{event.faceToFacePhone.phoneRest}}">
             Call {{client.displayName}}
           </a>
         </p>
+        <div class="location-card">
+          <img src="./../../../../assets/img/icons/maps.svg">
+          <div class="address">
+            <h4>Jirón Oscar Chocano 499</h4>
+            <p>Santiago de Surco, Lima</p>
+          </div>
+          <a class="text-link" href="https://goo.gl/maps/3dXhLj2B94KLRWZS8" target="_blank">Open in Maps</a>
+        </div>
       </div>
     </section>
 

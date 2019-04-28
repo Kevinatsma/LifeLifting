@@ -69,5 +69,19 @@ div.success-wrapper {
         p.intro-text {
             width: 80%;
         }
+
+        .btn-area {
+            flex-flow: column wrap;
+            width: 60%;
+            .btn-disabled {
+                cursor: not-allowed;
+                background: $middle-grey;
+            }
+
+            .text-link {
+                width: 50%;
+                margin: 1.5em auto 0;
+            }
+        }
     }
 }

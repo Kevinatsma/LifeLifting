@@ -1,11 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { User } from './../../user/user.model';
 
 @Component({
   selector: 'app-event-request',
   templateUrl: './event-request.component.html',
-  styleUrls: ['./event-request.component.scss']
+  styleUrls: ['./event-request.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EventRequestComponent implements OnInit {
   user: User;

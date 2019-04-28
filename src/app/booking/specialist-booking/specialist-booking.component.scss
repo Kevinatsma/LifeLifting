@@ -1,10 +1,17 @@
 @import './../../../assets/scss/_master.scss';
 @import './../../../assets/scss/_calendar.scss';
+@import './../../../assets/scss/_animations.scss';
 
 ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
     stroke: $secondary-color;
 }
 
+button.has-messages {
+    animation: signal 1s infinite;
+    svg {
+        color: $primary-color;
+    }
+}
 .calendar {
     width: 100%;
 

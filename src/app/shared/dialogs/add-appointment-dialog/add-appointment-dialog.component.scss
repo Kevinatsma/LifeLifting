@@ -256,6 +256,37 @@ form {
         }
     }
 
+    .location-card {
+        box-sizing: border-box;
+        border-radius: 10px;
+        display: flex;
+        justify-content: flex-start;
+        background-color: #fff;
+        box-shadow: $card-shadow;
+        align-items: center;
+        height: 100px;
+        width: 95%;
+        padding: 0 2em;
+        margin: 1.5em 0 2em;
+
+        img {
+            width: 50px;
+            height: auto;
+            margin-top: -4px;
+        }
+        
+        p {
+            margin: 0;
+        }
+
+        .address {
+            display: flex;
+            flex-flow: column wrap;
+            align-items: flex-start;
+            margin: 0 auto 0 2em;
+        }
+    }
+
     div.review-container {
         display: flex;
         flex-flow: row nowrap;

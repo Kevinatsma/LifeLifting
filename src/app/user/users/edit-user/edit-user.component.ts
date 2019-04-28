@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { User } from '../../user.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../user.service';
@@ -46,6 +46,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   constructor( private fb: FormBuilder,
                private userService: UserService,
                public specialistService: SpecialistService,
+               private cdr: ChangeDetectorRef,
                public location: Location) {
                }
 
@@ -104,7 +105,21 @@ export class EditUserComponent implements OnInit, OnDestroy {
       this.status.signUpCompleted  = $event.checked;
     } else if (el === 'subscriptionValid') {
       this.status.subscriptionValid  = $event.checked;
+      if ($event.checked === true) {
+        console.log('TODO DISABLE ALL');
+      }
     }
+    this.cdr.detectChanges();
+  }
+
+  disableAll() {
+    this.status.appointment = false;
+    this.status.appointmentAccepted  = false;
+    this.status.appointmentCompleted  = false;
+    this.status.accepted  = false;
+    this.status.signUpCompleted  = false;
+    this.status.subscriptionValid  = false;
+    this.cdr.detectChanges();
   }
 
   // Toggles

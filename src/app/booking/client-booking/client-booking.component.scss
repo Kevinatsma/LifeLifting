@@ -1,22 +1,20 @@
 @import './../../../assets/scss/_master.scss';
 @import './../../../assets/scss/_calendar.scss';
 
-::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+.mat-progress-spinner circle, .mat-spinner circle {
     stroke: $secondary-color;
+}
+
+// Calendar styles
+
+.cal-open-day-events {
+    left: 0!important;
+    width: 100vw!important;
+    padding: 3em 7em 2em!important;
 }
 
 .calendar {
     width: 100%;
-
-    &-signup {
-        ::ng-deep {
-            .cal-open-day-events {
-                left: 0!important;
-                width: 100vw!important;
-                padding: 3em 7em 2em!important;
-            }
-        }
-    }
 
     section {
 

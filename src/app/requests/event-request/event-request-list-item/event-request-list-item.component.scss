@@ -38,13 +38,13 @@
     justify-content: flex-start;
     align-items: flex-start;
     height: 220px;
-    width: 100%;
+    width: 95%;
     padding: 1em 2em;
     background-color: #fefcfb;
     border: 2px solid #ece6e2;
     border-radius: 10px;
     box-shadow: $card-shadow;
-    margin: 1em 0;
+    margin: 1em auto;
 
     &__check-area {
         @extend %flex-center;
@@ -56,7 +56,7 @@
     &__data {
         display: flex;
         height: 100%;
-        width: 60%;
+        width: 50%;
 
         .main-info {
             display: flex;

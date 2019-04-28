@@ -1,7 +1,8 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  OnInit
+  OnInit,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   isSameMonth,
@@ -53,6 +54,7 @@ export class SpecialistBookingComponent implements OnInit {
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
+  hasEventRequest: boolean;
 
   // Spinner
   spinner = {
@@ -76,6 +78,7 @@ export class SpecialistBookingComponent implements OnInit {
   // TODO: HOOKUP MAT DIALOG INSTEAD OF BOOTSTRAP MODAL
   constructor( private userService: UserService,
                public auth: AuthService,
+               private cdr: ChangeDetectorRef,
                private dialog: MatDialog,
                private bookingService: BookingService,
                private specialistService: SpecialistService,
@@ -84,13 +87,12 @@ export class SpecialistBookingComponent implements OnInit {
                public router: Router,
                private route: ActivatedRoute,
                private afs: AngularFirestore) {
-                this.getUser();
                }
 
 
 
   ngOnInit() {
-
+    this.getUser();
   }
 
   // Getters
@@ -100,7 +102,21 @@ export class SpecialistBookingComponent implements OnInit {
     this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
       // get Specialist
-      this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
+      const sID = `specialist${user.sID}`;
+      this.specialistService.getSpecialistData(sID).subscribe(specialist => {
+        this.specialist = specialist;
+        if (this.specialist.stats) {
+          if (this.specialist.stats.amountOfEventRequests > 0) {
+            this.hasEventRequest = true;
+          } else {
+            this.hasEventRequest = false;
+          }
+        } else {
+          this.hasEventRequest = false;
+        }
+        this.cdr.markForCheck();
+      });
+
       this.getEvents(this.user);
     });
   }
@@ -193,13 +209,28 @@ export class SpecialistBookingComponent implements OnInit {
   }
 
   openUnacceptedUsers() {
-    this.dialog.open(EventRequestComponent, {
+    const dialogRef = this.dialog.open(EventRequestComponent, {
       data: {
         user: this.user,
         event: event,
       },
       panelClass: 'request-dialog'
     });
+    dialogRef.afterClosed().subscribe(result => {
+      this.updateHasRequest();
+    });
+  }
+
+  updateHasRequest() {
+    if (this.specialist.stats) {
+      if (this.specialist.stats.amountOfEventRequests > 0) {
+        this.hasEventRequest = true;
+      } else {
+        this.hasEventRequest = false;
+      }
+    } else {
+      this.hasEventRequest = false;
+    }
   }
 
   ////////////////

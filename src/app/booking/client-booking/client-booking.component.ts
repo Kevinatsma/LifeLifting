@@ -1,7 +1,8 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  OnInit
+  OnInit,
+  ViewEncapsulation
 } from '@angular/core';
 import {
   isSameMonth,
@@ -42,7 +43,8 @@ import { Router, ActivatedRoute } from '@angular/router';
       provide: CalendarEventTitleFormatter,
       useClass: CustomEventTitleFormatter
     }
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class ClientBookingComponent implements OnInit {

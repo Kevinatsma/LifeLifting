@@ -1,17 +1,4 @@
 <main class="mealplan-list-wrapper">
-  <header>
-      <section class="title">
-          <h1>Mealplan History</h1>
-          <!-- <button class="icon-button" (click)="openDialog()">
-              <i class="fas fa-plus"></i>
-          </button> -->
-      </section>
-      
-      <p class="intro-text">
-          In this section you have a quick overview of the mealplans you created. You can view them directly 
-          from the list. Once clicked on a mealpan. You can export it to PDF format, so you can print it easily! <span class="emoji">🖨️</span>
-      </p>
-  </header>
   <section class="card-list" *ngIf="mealplans">
     <app-mealplan-list-item *ngFor="let mealplan of mealplans | async; let i=index" [i]="i" [mealplan]="mealplan"></app-mealplan-list-item>
   </section>

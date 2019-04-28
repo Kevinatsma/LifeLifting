@@ -18,6 +18,7 @@ import { Subject } from 'rxjs';
 export class AddAppointmentDialogComponent implements OnInit {
   user: User;
   specialist: Specialist;
+  specialistID: string;
   clients: User[];
   specialists: Specialist[];
 
@@ -148,26 +149,30 @@ export class AddAppointmentDialogComponent implements OnInit {
     this.userService.getUsers().subscribe(users => this.clients = users);
   }
 
+  getSpecialist() {
+    let sID;
+    if (this.user.roles.admin) {
+      sID = this.appointmentForm.get('specialistID').value;
+    } else if (this.user.roles.specialist && !this.user.roles.admin) {
+      sID = `specialist${this.user.sID}`;
+    } else if (this.user.roles.client && !this.user.roles.specialist && !this.user.roles.admin) {
+      sID = this.user.specialist;
+    }
+    this.specialistID = sID;
+    this.specialistService.getSpecialistData(sID).subscribe(specialist => {
+      this.specialist = specialist;
+    });
+    setTimeout(() => {
+      this.addEvent(this.specialist);
+    }, 1000);
+  }
+
   getSpecialists() {
     this.specialistService.getSpecialists().subscribe(specialists => this.specialists = specialists);
   }
 
-  checkForDate(date) {
-    if (date) {
-      this.hasStartDate = true;
-      this.hasEndDate = true;
-      this.getTimeAndDate(date);
-
-      // Set end date for clients ( + half an hour)
-      if (this.user.roles.admin || this.user.roles.specialist ) {
-        this.hasEndDate = false;
-      }
-
-    }
-  }
-
   // Add Appointment
-  addEvent(): void {
+  addEvent(specialist) {
     const startNoTime = new Date(this.appointmentForm.get('startTime').value).toString();
     const endNoTime = new Date(this.appointmentForm.get('startTime').value).toString();
     let start;
@@ -186,6 +191,8 @@ export class AddAppointmentDialogComponent implements OnInit {
       end = this.endDate.toString();
     }
 
+    const specialistID = this.specialistID;
+
     const data: Appointment = {
       accepted: this.appointmentAccepted,
       rejected: false,
@@ -203,7 +210,7 @@ export class AddAppointmentDialogComponent implements OnInit {
         beforeStart: true,
         afterEnd: true
       },
-      specialistID: this.appointmentForm.get('specialistID').value || this.user.specialist || `specialist${this.user.sID}`,
+      specialistID: specialistID,
       clientID: this.appointmentForm.get('clientID').value || this.user.uid,
       members: [this.user.uid, this.specialist.uid],
       meetMethod: this.appointmentForm.get('appointmentContext').value,
@@ -214,6 +221,11 @@ export class AddAppointmentDialogComponent implements OnInit {
       skypeName: this.appointmentForm.get('skypeName').value || null,
       onlineAppointmentPhone: this.appointmentForm.controls.onlinePhone.value || null
     };
+
+    // Update request amount on specialist
+    this.updateSpecialist(specialist);
+
+    // add event to db
     this.bookingService.addEvent(data, this.user);
   }
 
@@ -235,6 +247,38 @@ export class AddAppointmentDialogComponent implements OnInit {
     } else if (user.roles.specialist) {
       this.appointmentAccepted = true;
     }
+  }
+
+  // Checkers
+
+  checkForDate(date) {
+    if (date) {
+      this.hasStartDate = true;
+      this.hasEndDate = true;
+      this.getTimeAndDate(date);
+
+      // Set end date for clients ( + half an hour)
+      if (this.user.roles.admin || this.user.roles.specialist ) {
+        this.hasEndDate = false;
+      }
+
+    }
+  }
+
+  updateSpecialist(specialist) {
+    let amount;
+    if (specialist.stats) {
+      amount = specialist.stats.amountOfEventRequests + 1;
+    } else {
+      amount = 1;
+    }
+
+    const specialistData = {
+      stats: {
+        amountOfEventRequests: amount
+      }
+    };
+    this.specialistService.updateSpecialist(specialist.specialistID, specialistData);
   }
 
   // Format date

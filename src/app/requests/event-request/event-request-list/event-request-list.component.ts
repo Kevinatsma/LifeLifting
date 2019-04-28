@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { BookingService } from './../../../booking/booking.service';
 import { Observable } from 'rxjs';
 import { User } from './../../../user/user.model';
@@ -13,6 +13,7 @@ import { Appointment } from './../../../booking/appointment.model';
 export class EventRequestListComponent implements OnInit {
   @Input() user: User;
   events: Observable<Appointment[]>;
+  eventLength: number;
   eventArr = true;
 
   constructor( private bookingService: BookingService,
@@ -25,8 +26,6 @@ export class EventRequestListComponent implements OnInit {
   }
 
   getEvents(user) {
-    const id =  `specialist${user.sID}`;
-    console.log(id);
     const colRef = this.afs.collection('appointments', ref =>
     ref.where('specialistID', '==', `specialist${user.sID}`)
     .where('accepted', '==', false)
@@ -36,6 +35,9 @@ export class EventRequestListComponent implements OnInit {
     this.events = this.bookingService.getSpecificAppointments(colRef);
     this.events.subscribe(events => {
       this.eventArr = events.length > 0;
+
+      // TODO UPDATE SPECIALIST HASEVENTREQUEST variable
+      this.eventLength = events.length;
     });
   }
 

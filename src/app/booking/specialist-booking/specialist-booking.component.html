@@ -13,8 +13,8 @@
     <h1>Your Calendar</h1>
     <!-- <h1>{{user.specialist}} Calendar</h1> -->
 
-    <div class="right">
-      <button class="icon-button" (click)="openUnacceptedUsers()">
+    <div class="right" *ngIf="specialist">
+      <button class="icon-button" [class.has-messages]="hasEventRequest" (click)="openUnacceptedUsers()">
         <i class="fas fa-bell"></i>
       </button>
       <button class="icon-button" (click)="addEvent()">
@@ -111,6 +111,8 @@
           [events]="events"
           (hourSegmentClicked)="hourClicked($event.date)"
           (eventClicked)="openEventDetailDialog($event)"
+          [dayStartHour]="6"
+          [dayEndHour]="19"
           (eventTimesChanged)="eventTimesChanged($event)"
         >
         </mwl-calendar-week-view>
@@ -120,6 +122,8 @@
           [events]="events"
           (hourSegmentClicked)="hourClicked($event.date)"
           (eventClicked)="openEventDetailDialog($event)"
+          [dayStartHour]="6"
+          [dayEndHour]="19"
           (eventTimesChanged)="eventTimesChanged($event)"
         >
         </mwl-calendar-day-view>
