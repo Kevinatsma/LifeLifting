@@ -60,6 +60,15 @@ section.specialist-header {
 
     }
 
+    .uid {
+        @include respond-down($sm) {
+            width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: wrap;
+        }
+    }
+
     div.quick-info {
         flex-flow: column wrap;
         width: 50%;
@@ -90,7 +99,10 @@ section.specialist-header {
             box-sizing: border-box;
             @extend %flex-center;
             @include respond-down($sm) {
-                position: unset;
+                background: #f0f1f5;
+                position: absolute;
+                top: -60px!important;
+                right: auto;
             }
         }
 
@@ -163,6 +175,10 @@ section.specialist-header {
                 text-align: center;
                 width: 50%;
 
+                @include respond-down($sm) {
+                    justify-content: flex-start;
+                }
+
                 span {
                     color: $primary-color;
                     font-size: 48px;
@@ -191,7 +207,11 @@ section.about {
 
         &.read-more {
             overflow: visible;
-            height: auto;
+            height: auto!important;
+        }
+
+        &.has-read-more {
+            height: 70px;
         }
     }
 
@@ -264,6 +284,16 @@ section.middle {
         width: 50%;
         @include respond-down($sm) {
             margin-top: 1em;
+        }
+
+        ul {
+            li {
+                &:first-child {
+                    @include respond-down($xs) {
+                        width: 60%;
+                    }
+                }
+            }
         }
     }
 

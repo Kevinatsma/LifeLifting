@@ -29,6 +29,7 @@ export class UserDetailComponent implements OnInit {
   mealPlansActive = false;
   aboutExtended = false;
   reviewsVisible = true;
+  hasReadMore = false;
 
 
   specialist: Specialist;
@@ -60,6 +61,7 @@ export class UserDetailComponent implements OnInit {
         this.getSpecialist(sID);
         this.getGuidelines(uid);
         this.getMealplans(uid);
+        this.checkReadMore(user);
       }, 200);
     });
   }
@@ -88,6 +90,16 @@ export class UserDetailComponent implements OnInit {
   aboutExtendedClose() {
     this.aboutExtended = false;
     this.cdr.detectChanges();
+  }
+
+  // Checkers
+  checkReadMore(user) {
+    if (user.basicData.mainGoal.length > 50) {
+      console.log(user.basicData.mainGoal.length);
+      this.hasReadMore = true;
+    } else {
+      this.hasReadMore = false;
+    }
   }
 
   // Like this to avoid State Changed Error

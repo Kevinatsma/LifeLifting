@@ -38,6 +38,10 @@ main.specialist-list-wrapper {
                     margin-left: 0;
                 }
             }
+
+            @include respond-down($xs) {
+                width: 84vw;
+            }
         }
 
     }
