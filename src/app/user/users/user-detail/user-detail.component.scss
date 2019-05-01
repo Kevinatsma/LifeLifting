@@ -20,7 +20,9 @@ main.specialist-wrapper {
     padding: 1.5em 1em;
 
     .action-toolbar-top {
-
+        @include respond-down($sm) {
+            padding: 0;
+        }
         button.icon-button {
             position: inherit;
         }
@@ -101,7 +103,7 @@ section.specialist-header {
             @include respond-down($sm) {
                 background: #f0f1f5;
                 position: absolute;
-                top: -60px!important;
+                top: -25px!important;
                 right: auto;
             }
         }
@@ -170,11 +172,10 @@ section.specialist-header {
             padding-top: 0;
 
             p.tab {
-                @extend %flex-center;
                 flex-flow: column wrap;
                 text-align: center;
                 width: 50%;
-
+                @extend %flex-center;
                 @include respond-down($sm) {
                     justify-content: flex-start;
                 }
@@ -208,10 +209,32 @@ section.about {
         &.read-more {
             overflow: visible;
             height: auto!important;
+
+            @include respond-down($sm) {
+
+                &::after {
+                    display: none;
+                }
+            }
         }
 
         &.has-read-more {
             height: 70px;
+            position: relative;
+
+            @include respond-down($sm) {
+                height: 70px;
+    
+                &::after {
+                    content: '';
+                    width: 100%;
+                    height: 100%;    
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background: linear-gradient(transparent 30px, white);
+                }
+            }
         }
     }
 
@@ -349,6 +372,10 @@ section.reviews-opened {
             margin-right: 2em;
             box-sizing: border-box;
             flex: 1;
+
+            &:first-child {
+                margin-left: 1.5em;
+            }
         }
 
         &__filler {

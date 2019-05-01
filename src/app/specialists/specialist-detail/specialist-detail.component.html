@@ -107,7 +107,7 @@
         <section class="reviews-opened">
           <h5 class="purple">Reviews</h5>
           <div class="review-container" *ngIf="reviewsVisible">
-            <app-review-list-item *ngFor="let review of reviews |  async" [review]="review" [specialist]="specialist">
+            <app-review-list-item *ngFor="let review of reviews | async as review" [review]="review" [specialist]="specialist">
             </app-review-list-item>
             <div class="placeholder">
               Oh hello there.
@@ -132,5 +132,5 @@
 </ng-container>
   
 <ng-container *ngIf="!specialist">
-  Woops something went wrong... Please go back.
+  <app-loading-spinner></app-loading-spinner>
 </ng-container>

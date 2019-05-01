@@ -31,6 +31,10 @@ export class MyClientDetailComponent implements OnInit {
   reviewsVisible = true;
   actionMenuOpen: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
+  aboutExtended = false;
+  hasReadMore = false;
+  hasGuidelines = false;
+  hasMealplans = false;
 
 
   // specialist = Observable<Specialist>;
@@ -60,6 +64,7 @@ export class MyClientDetailComponent implements OnInit {
       this.getSpecialist(sID);
       this.getGuidelines(user.uid);
       this.getMealplans(user.uid);
+      this.checkReadMore(user);
     });
   }
 
@@ -77,8 +82,28 @@ export class MyClientDetailComponent implements OnInit {
     this.mealplans = this.mealplansCol.valueChanges();
   }
 
+
+  // Checkers
+  checkReadMore(user) {
+    if (user.basicData.mainGoal.length > 50) {
+      console.log(user.basicData.mainGoal.length);
+      this.hasReadMore = true;
+    } else {
+      this.hasReadMore = false;
+    }
+  }
+
   // Like this to avoid State Changed Error
   // Open/closers
+  aboutExtendedOpen() {
+    this.aboutExtended = true;
+    this.cdr.detectChanges();
+  }
+
+  aboutExtendedClose() {
+    this.aboutExtended = false;
+    this.cdr.detectChanges();
+  }
 
   toggleButtonMenu() {
     const buttons = document.querySelectorAll('.action-btn');

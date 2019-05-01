@@ -855,3 +855,19 @@ form {
         display: none!important;
     }
 }
+
+
+.swipe {
+    margin: 25px 0 0 40vw!important;
+    width: 20vw;
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    color: $grey;
+
+    svg {
+        margin: 2px 0 0 10px;
+        font-size: 15px;
+        color: $grey;
+    }
+}

@@ -137,7 +137,7 @@
         <div class="languages">
           <h5 class="purple">Practical info</h5>
           <ul>
-            <li>Heard from us via
+            <li>Heard from us via:
               <ng-container *ngIf="user.basicData"><strong>{{user.basicData.heardFromUs}}</strong></ng-container>
               <ng-container *ngIf="!user.basicData"><strong>Not filled out</strong></ng-container>
             </li>
@@ -149,20 +149,20 @@
         </div>
       </section>
             
-      <section class="guidelines">
+      <section class="guidelines" *ngIf="hasGuidelines">
         <h1 class="section-title">Guidelines</h1>
         <div class="guidelines__container">
-          <app-guideline-list-item *ngFor="let guideline of guidelines | async" [guideline]="guideline"></app-guideline-list-item>
+          <app-guideline-list-item *ngFor="let guideline of guidelines" [guideline]="guideline"></app-guideline-list-item>
           <div class="guidelines__container__filler">
             Filler
           </div>
         </div>
       </section>
       
-      <section class="guidelines">
+      <section class="guidelines" *ngIf="hasMealplans">
         <h1 class="section-title">Mealplans</h1>
         <div class="guidelines__container">
-          <app-mealplan-list-item *ngFor="let mealplan of mealplans | async" [mealplan]="mealplan"></app-mealplan-list-item>
+          <app-mealplan-list-item *ngFor="let mealplan of mealplans" [mealplan]="mealplan"></app-mealplan-list-item>
           <div class="guidelines__container__filler">
             Filler
           </div>

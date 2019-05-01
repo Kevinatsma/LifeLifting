@@ -7,7 +7,6 @@ main.specialist-list-wrapper {
         width: 101vw;
         height: 100%;
         margin: -1em 0 0 -8vw;
-        padding: 0 0 2em;
         overflow-x: auto;
     }
 
@@ -21,7 +20,7 @@ main.specialist-list-wrapper {
             flex-flow: row nowrap;
             margin: 0;
             height: 100%;
-            padding: 1em 1.5em;
+            padding: 1em 1.5em 0;
             overflow-x: auto;
             width: fit-content;
         }

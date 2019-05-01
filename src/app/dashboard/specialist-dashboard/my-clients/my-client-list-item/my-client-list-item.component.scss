@@ -118,16 +118,24 @@ mat-card.list-item-card {
                         margin-top: 5px;
                     }
 
+
                     &.description {
                         height: 80px;
                         overflow: hidden;
+                        position: relative;
 
                         @include respond-down($sm) {
-                            height: 65px;
-                        }
-                        
-                        span {
-                            font-weight: $bold;
+                            height: 70px;
+
+                            &::after {
+                                content: '';
+                                width: 100%;
+                                height: 100%;    
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                                background: linear-gradient(transparent 30px, white);
+                            }
                         }
                     }
                 }

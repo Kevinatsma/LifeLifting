@@ -101,16 +101,6 @@
               </li>
             </ul>
           </div>
-          <div class="languages">
-            <h5 class="purple">Practical info</h5>
-            <ul>
-              <li>Heard from us via: <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong></li>
-              <li>Sign Up Completed?
-                <ng-container *ngIf="user.status.signUpCompleted"><strong>Yes</strong></ng-container>
-                <ng-container *ngIf="!user.status.signUpCompleted"><strong>No</strong></ng-container>
-              </li>
-            </ul>
-          </div>
         </section>
       </form>
       </main>

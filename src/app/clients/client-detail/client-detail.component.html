@@ -69,18 +69,22 @@
 
       <section class="about">  
         <h5>{{user.displayName}}'s main goal</h5>
-        <p [class.read-more]="aboutExtended" *ngIf="user.basicData">
-          <ng-container *ngIf="user.basicData.mainGoal">{{user.basicData.mainGoal}}</ng-container>
-          <ng-container *ngIf="!user.basicData.mainGoal">No goal yet...</ng-container>
+        <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="user.basicData">
+          {{user.basicData.mainGoal}}
         </p>
-        <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
-          <i class="fas fa-plus"></i>
-          Read More
-        </button>
-        <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
-          <i class="fas fa-minus"></i>
-          Read Less
-        </button>
+        <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="!user.basicData">
+          No goal yet...
+        </p>
+        <ng-container *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
+          <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
+            <i class="fas fa-plus"></i>
+            Read More
+          </button>
+          <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
+            <i class="fas fa-minus"></i>
+            Read Less
+          </button>
+        </ng-container>
       </section>
 
       <section class="middle">
@@ -118,20 +122,20 @@
           </ul>
         </div>
       </section>
-      <section class="guidelines">
+      <section class="guidelines" *ngIf="hasGuidelines">
         <h1 class="section-title">Guidelines</h1>
         <div class="guidelines__container">
-          <app-guideline-list-item *ngFor="let guideline of guidelines | async" [guideline]="guideline"></app-guideline-list-item>
-          <div class="guidelines__container__filler" *ngIf="guideline">
-            &nbsp;
+          <app-guideline-list-item *ngFor="let guideline of guidelines" [guideline]="guideline"></app-guideline-list-item>
+          <div class="guidelines__container__filler">
+            Filler
           </div>
         </div>
       </section>
-            
-      <section class="guidelines" *ngIf="mealplans">
+      
+      <section class="guidelines" *ngIf="hasMealplans">
         <h1 class="section-title">Mealplans</h1>
         <div class="guidelines__container">
-          <app-mealplan-list-item *ngFor="let mealplan of mealplans | async" [mealplan]="mealplan"></app-mealplan-list-item>
+          <app-mealplan-list-item *ngFor="let mealplan of mealplans" [mealplan]="mealplan"></app-mealplan-list-item>
           <div class="guidelines__container__filler">
             Filler
           </div>
@@ -148,5 +152,5 @@
 </ng-container>
   
 <ng-container *ngIf="!user">
-  Hello I exist
+  <app-loading-spinner></app-loading-spinner>
 </ng-container>
