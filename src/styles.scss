@@ -40,6 +40,11 @@ button.icon-button, a.icon-button {
     position: relative;
     right: -2em;
     top: 0;
+
+    @include respond-down($sm) {
+        width: 50px;
+        height: 50px;
+    }
     
     svg {
         color: $icon-black;

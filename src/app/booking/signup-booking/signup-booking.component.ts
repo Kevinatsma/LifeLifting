@@ -31,6 +31,7 @@ import { AddAppointmentDialogComponent } from '../../shared/dialogs/add-appointm
 import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UtilService } from './../../shared/services/util.service';
 
 @Component({
   selector: 'app-signup-booking',
@@ -93,6 +94,7 @@ export class SignUpBookingComponent implements OnInit {
                private dialog: MatDialog,
                private bookingService: BookingService,
                private specialistService: SpecialistService,
+               private utilService: UtilService,
                private threadService: ChatThreadService,
                public location: Location,
                public router: Router,
@@ -104,7 +106,11 @@ export class SignUpBookingComponent implements OnInit {
 
 
   ngOnInit() {
+    this.replaceDates();
+  }
 
+  replaceDates() {
+    this.utilService.replaceCalendarHeaderDates();
   }
 
   // Getters

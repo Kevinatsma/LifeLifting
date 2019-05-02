@@ -13,6 +13,7 @@ import { FileUploadProductComponent } from './file-upload/file-upload-product/fi
 import { ReviewsModule } from '../reviews/reviews.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { UtilService } from './services/util.service';
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     LoadingSpinnerComponent,
   ],
   providers: [
-    FileUploadService
+    FileUploadService,
+    UtilService
   ]
 })
 export class SharedModule { }

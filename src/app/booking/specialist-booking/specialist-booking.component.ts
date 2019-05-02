@@ -28,6 +28,7 @@ import { Location } from '@angular/common';
 import { SpecialistService } from '../../specialists/specialist.service';
 import { Specialist } from '../../specialists/specialist.model';
 import { ChatThreadService } from '../../chat/chat-thread.service';
+import { UtilService } from './../../shared/services/util.service';
 import { AddAppointmentDialogComponent } from '../../shared/dialogs/add-appointment-dialog/add-appointment-dialog.component';
 import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
@@ -83,6 +84,7 @@ export class SpecialistBookingComponent implements OnInit {
                private bookingService: BookingService,
                private specialistService: SpecialistService,
                private threadService: ChatThreadService,
+               private utilService: UtilService,
                public location: Location,
                public router: Router,
                private route: ActivatedRoute,
@@ -93,6 +95,11 @@ export class SpecialistBookingComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
+    this.replaceDates();
+  }
+
+  replaceDates() {
+    this.utilService.replaceCalendarHeaderDates();
   }
 
   // Getters

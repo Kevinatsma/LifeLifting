@@ -27,6 +27,24 @@
     }
 }
 
+@keyframes bounce-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(6vh);
+        z-index: -10;
+    }
+    75% {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        transform: translateY(0);
+        z-index: 10;
+    }
+}
+
 @keyframes right-left-right {
     0% {
         margin-left: 0;

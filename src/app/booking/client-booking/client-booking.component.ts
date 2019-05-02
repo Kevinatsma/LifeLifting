@@ -32,6 +32,7 @@ import { AddAppointmentDialogComponent } from '../../shared/dialogs/add-appointm
 import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UtilService } from './../../shared/services/util.service';
 
 @Component({
   selector: 'app-client-booking',
@@ -71,21 +72,7 @@ export class ClientBookingComponent implements OnInit {
     event: Appointment;
   };
 
-  actions: CalendarEventAction[] = [
-    // {
-    //   label: '<i class="fa fa-fw fa-pencil"></i>',
-    //   onClick: ({ event }: { event: CalendarEvent }): void => {
-    //     this.handleEvent('Edited', event);
-    //   }
-    // },
-    // {
-    //   label: '<i class="fa fa-fw fa-times"></i>',
-    //   onClick: ({ event }: { event: CalendarEvent }): void => {
-    //     this.events = this.events.filter(iEvent => iEvent !== event);
-    //     this.handleEvent('Deleted', event);
-    //   }
-    // }
-  ];
+  actions: CalendarEventAction[] = [];
 
   activeDayIsOpen = true;
 
@@ -95,6 +82,7 @@ export class ClientBookingComponent implements OnInit {
                private dialog: MatDialog,
                private bookingService: BookingService,
                private specialistService: SpecialistService,
+               private utilService: UtilService,
                private threadService: ChatThreadService,
                public location: Location,
                public router: Router,
@@ -103,10 +91,12 @@ export class ClientBookingComponent implements OnInit {
                 this.getUser();
                }
 
-
-
   ngOnInit() {
+    this.replaceDates();
+  }
 
+  replaceDates() {
+    this.utilService.replaceCalendarHeaderDates();
   }
 
   // Getters

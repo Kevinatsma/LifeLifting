@@ -1,6 +1,7 @@
 @import './../../../assets/scss/_master.scss';
 @import './../../../assets/scss/_dialogs.scss';
 @import './../../../assets/scss/_forms.scss';
+@import './../../../assets/scss/_animations.scss';
 
 .event-wrapper {
     width: 100%;
@@ -9,24 +10,6 @@
     min-width: 40vw;
     background: #fff;
     box-shadow: $card-shadow;
-
-    @keyframes bounce-appear {
-        0% {
-            opacity: 0;
-            transform: translateY(6vh);
-            z-index: -10;
-        }
-        75% {
-            opacity: 0.5;
-            transform: scale(1.1);
-        }
-        100% {
-            opacity: 1;
-            transform: scale(1);
-            transform: translateY(0);
-            z-index: 10;
-        }
-    }
 
     .profile-pic-bubble {
         animation: bounce-appear 0.9s;
