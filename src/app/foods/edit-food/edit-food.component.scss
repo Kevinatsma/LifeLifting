@@ -28,6 +28,13 @@ form {
 
 .subtitle {
     margin-top: 3em;
+    span {
+        position: absolute;
+    }
+
+    mat-form-field {
+        margin-top: 25px;
+    }
 }
 
 .contact-menu {

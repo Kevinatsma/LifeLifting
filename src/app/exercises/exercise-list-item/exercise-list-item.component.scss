@@ -108,7 +108,10 @@ mat-card.list-item-card {
                 }
 
                 ul.contact-menu {
-
+                    @include respond-down($sm) {
+                        display: flex;
+                        flex-flow: column wrap;
+                    }
                     .met-value {
                         font-weight: $semi-bold;
                         text-transform: uppercase;

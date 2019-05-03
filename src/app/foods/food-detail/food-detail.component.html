@@ -22,7 +22,7 @@
 
     <div class="package-container">
 
-      <section class="package-controls last-package">
+      <section class="package-controls last-package not-mobile">
           <button class="slide-control-btn" (click)="linkToPrevious(food)" 
           [class.disabled]="food.productID === 1"
           [disabled]="food.productID === 1"
@@ -122,7 +122,7 @@
             </div>
           </section>        
         </mat-card>
-      <section class="package-controls next-package">
+      <section class="package-controls next-package not-mobile">
         <button class="slide-control-btn" (click)="linkToNext(food)"
           [class.disabled]="food.packageID === 3"
           [disabled]="food.packageID === 3"

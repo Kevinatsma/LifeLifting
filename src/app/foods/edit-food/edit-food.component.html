@@ -26,7 +26,7 @@
               <app-file-upload-button [url]="url" (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
             </section>
             <p class="subtitle">
-              <input type="text" class="text-field" name="nutritionType" formControlName="nutritionType">
+              <span>{{editProductForm.controls.nutritionType.value}}</span>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Nutrition type</mat-label>
                 <mat-select matInput placeholder="food.categories.nutritionType" formControlName="nutritionType" 

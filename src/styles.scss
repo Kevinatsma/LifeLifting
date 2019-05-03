@@ -44,6 +44,7 @@ button.icon-button, a.icon-button {
     @include respond-down($sm) {
         width: 50px;
         height: 50px;
+        right: 0;
     }
     
     svg {
