@@ -67,6 +67,7 @@ export class EditSuppsFormComponent implements OnInit {
                   });
 
                   this.loadForm(this.supplementation);
+                  this.guidelineHandler();
                 }, 500);
 
                 // Query elements
@@ -98,14 +99,6 @@ export class EditSuppsFormComponent implements OnInit {
 
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
-    });
-  }
-
-  loadForm(data) {
-    const beforeOneArr = this.suppsForm.get('beforeOneArr') as FormArray;
-    const amountOfBeforeOne = this.supplementation.beforeOneArr;
-    amountOfBeforeOne.forEach(time => {
-      beforeOneArr.push(this.createProduct(time));
     });
   }
 
@@ -181,14 +174,35 @@ export class EditSuppsFormComponent implements OnInit {
     return this.suppsForm.get('afterThreeArr') as FormArray;
   }
 
-  // Supp form
+  // Fill the form
 
+  loadForm(data) {
+    const beforeOneArr = this.beforeOneForms;
+    const amountOfBeforeOne = this.supplementation.beforeOneArr;
+    amountOfBeforeOne.forEach(obj => {
+      beforeOneArr.push(this.createProduct(obj));
+    });
+
+    const duringOneArr = this.duringOneForms;
+    const amountOfDuringOne = this.supplementation.duringOneArr;
+    amountOfDuringOne.forEach(obj => {
+      duringOneArr.push(this.createProduct(obj));
+    });
+
+    const afterOneArr = this.afterOneForms;
+    const amountOfAfterOne = this.supplementation.afterOneArr;
+    amountOfAfterOne.forEach(obj => {
+      afterOneArr.push(this.createProduct(obj));
+    });
+
+  }
 
   //////////////////////////////////////////////////////////////
   // Creating, adding, deleting and checking product Formarrays
   //////////////////////////////////////////////////////////////
 
   createProduct(data): FormGroup {
+    console.log(data);
     return this.fb.group({
       product: data.product,
       amount: data.amount,

@@ -40,8 +40,9 @@
             <section class="chip-container" *ngFor="let food of beforeOneForms.controls; let i=index" 
             [formGroupName]="i">
               <mat-form-field appearance="standard">
-                <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                <mat-select matInput class="f-input select"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                  <mat-option selected disabled [value]="food.value.product">{{food.value.product.productName}}</mat-option>
                   <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -54,6 +55,7 @@
                 <mat-form-field appearance="standard" class="select">
                   <mat-select matInput class="f-input select" placeholder="Preperation"
                   panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                    <mat-option disabled selected [value]="food.value.prep"> {{food.value.prep.prepValue}}</mat-option>
                     <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -72,9 +74,10 @@
           <div class="add-form-field-container" formArrayName="duringOneArr">
             <section class="chip-container" *ngFor="let food of duringOneForms.controls; let i=index" 
             [formGroupName]="i">
-              <mat-form-field appearance="standard" floatLabel="always">
-                <mat-select matInput class="f-input select" placeholder="Pick a Product"
+            <mat-form-field appearance="standard">
+                <mat-select matInput class="f-input select"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                  <mat-option selected disabled [value]="food.value.product">{{food.value.product.productName}}</mat-option>
                   <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -87,6 +90,7 @@
                 <mat-form-field appearance="standard" class="select">
                   <mat-select matInput class="f-input select" placeholder="Preperation"
                   panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                    <mat-option disabled selected [value]="food.value.prep"> {{food.value.prep.prepValue}}</mat-option>
                     <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -105,9 +109,10 @@
           <div class="add-form-field-container" formArrayName="afterOneArr">
             <section class="chip-container" *ngFor="let food of afterOneForms.controls; let i=index" 
             [formGroupName]="i">
-              <mat-form-field appearance="standard" floatLabel="always">
-                <mat-select matInput class="f-input select" placeholder="Pick a Product"
+              <mat-form-field appearance="standard">
+                <mat-select matInput class="f-input select"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                  <mat-option selected disabled [value]="food.value.product">{{food.value.product.productName}}</mat-option>
                   <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -120,6 +125,7 @@
                 <mat-form-field appearance="standard" class="select">
                   <mat-select matInput class="f-input select" placeholder="Preperation"
                   panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
+                    <mat-option disabled selected [value]="food.value.prep"> {{food.value.prep.prepValue}}</mat-option>
                     <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
                   </mat-select>
                 </mat-form-field>

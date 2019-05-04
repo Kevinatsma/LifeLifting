@@ -5,12 +5,12 @@ export class SuppsForm {
             product: Object;
         }
     ];
-    duringOne: [
+    duringOneArr: [
         {
             product: Object;
         }
     ];
-    afterOne: [
+    afterOneArr: [
         {
             product: Object;
         }
