@@ -1,6 +1,6 @@
 export class SuppsForm {
     guideline: any;
-    beforeOne: [
+    beforeOneArr: [
         {
             product: Object;
         }

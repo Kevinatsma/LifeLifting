@@ -7,6 +7,7 @@ import { Mealplan } from '../mealplan.model';
 import { UserService } from '../../user/user.service';
 import { User } from '../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
+import { EditMealDialogComponent } from './../../shared/dialogs/edit-meal-dialog/edit-meal-dialog.component';
 
 @Component({
   selector: 'app-mealplan-list-item',
@@ -63,10 +64,16 @@ export class MealplanListItemComponent implements OnInit {
 
 
   editMealplan(mealplan) {
-    alert('TODO: EDIT MEALPLAN');
-    // const url = `dashboard/mealplans/${mealplan.mID}`;
-    // this.router.navigate([url]);
-    // return this.mealplanService.editShow = true;
+    const dialogRef = this.dialog.open(EditMealDialogComponent, {
+      data: {
+        mealplan: mealplan,
+        client: this.client
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // AFter close
+    });
   }
 
 

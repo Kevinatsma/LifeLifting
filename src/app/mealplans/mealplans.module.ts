@@ -37,7 +37,7 @@ import { SuppsComponent } from './mealplan-detail/supps/supps.component';
     RouterModule,
     ReactiveFormsModule,
     FoodsModule,
-    SharedModule
+    SharedModule,
   ],
   exports: [
     MealplanListItemComponent,

@@ -30,6 +30,7 @@ import { ChooseMealplanDialogComponent } from './choose-mealplan-dialog/choose-m
 import { AddAppointmentDialogComponent } from './add-appointment-dialog/add-appointment-dialog.component';
 import { AppointmentDetailDialogComponent } from './appointment-detail-dialog/appointment-detail-dialog.component';
 import { EditAppointmentComponent } from './appointment-detail-dialog/edit-appointment/edit-appointment.component';
+import { EditMealDialogModule } from './edit-meal-dialog/edit-meal-dialog.module';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { EditAppointmentComponent } from './appointment-detail-dialog/edit-appoi
     CommonModule,
     DialogModule,
     EditDialogModule,
+    EditMealDialogModule,
     SharedModule,
     MaterialModule,
     MatDialogModule,
