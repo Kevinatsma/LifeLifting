@@ -278,6 +278,10 @@ section.about {
             bottom: 25px;
             background: $middle-grey;
             width: 2px;
+
+            @include respond-down($sm) {
+                display: none;
+            }
         }
 
         svg {
