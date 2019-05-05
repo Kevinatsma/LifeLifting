@@ -1,4 +1,9 @@
 <main class="dialog-wrapper">
+  <div class="close-section">
+    <button mat-icon-button class="close-btn" (click)="closeDialog()" type="button">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="infoForm">
       <form [formGroup]="infoForm">

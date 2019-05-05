@@ -47,7 +47,7 @@
         <section class="chip-container" *ngFor="let food of mOneMealOneForms.controls; let i=index" 
         [formGroupName]="i">
         <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select" placeholder="Pick a food item"
+            <mat-select matInput (selectionChange)="clearFields(11, i)" placeholder="Pick a food item" class="f-input select" placeholder="Pick a food item"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
                 {{food.value.product.productName}}
@@ -94,7 +94,7 @@
         <section class="chip-container" *ngFor="let food of mOneMealTwoForms.controls; let i=index" 
         [formGroupName]="i">
         <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(12, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
                 {{food.value.product.productName}}
@@ -184,7 +184,7 @@
         <section class="chip-container" *ngFor="let food of mTwoMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(21, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
                 {{food.value.product.productName}}
@@ -231,7 +231,7 @@
         <section class="chip-container" *ngFor="let food of mTwoMealTwoForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(22, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
                 {{food.value.product.productName}}
@@ -323,7 +323,7 @@
         <section class="chip-container" *ngFor="let food of mThreeMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(31, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
                 {{food.value.product.productName}}
@@ -370,7 +370,7 @@
         <section class="chip-container" *ngFor="let food of mThreeMealTwoForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(32, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
                 {{food.value.product.productName}}
@@ -462,7 +462,7 @@
         <section class="chip-container" *ngFor="let food of mFourMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(41, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
                 {{food.value.product.productName}}
@@ -509,7 +509,7 @@
         <section class="chip-container" *ngFor="let food of mFourMealTwoForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(42, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
                 {{food.value.product.productName}}
@@ -601,7 +601,7 @@
         <section class="chip-container" *ngFor="let food of mFiveMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(51, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
                 {{food.value.product.productName}}
@@ -648,7 +648,7 @@
         <section class="chip-container" *ngFor="let food of mFiveMealTwoForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(52, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
                 {{food.value.product.productName}}
@@ -740,7 +740,7 @@
         <section class="chip-container" *ngFor="let food of mSixMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(61, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
                 {{food.value.product.productName}}
@@ -787,7 +787,7 @@
         <section class="chip-container" *ngFor="let food of mSixMealTwoForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(62, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
                 {{food.value.product.productName}}
@@ -879,7 +879,7 @@
         <section class="chip-container" *ngFor="let food of mSevenMealOneForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(71, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option selected disabled [value]="food.value.product">{{food.value.product.productName}}</mat-option>
               <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
@@ -924,7 +924,7 @@
         <section class="chip-container" *ngFor="let food of mSevenMealTwoForms.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
-            <mat-select matInput placeholder="Pick a food item" class="f-input select"
+            <mat-select matInput (selectionChange)="clearFields(72, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
               <mat-option selected disabled [value]="food.value.product">{{food.value.product.productName}}</mat-option>
               <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
@@ -969,5 +969,5 @@
       </button>
     </div>
   </div> <!-- End Timecontainer 7 -->
-  </ng-container>
+</ng-container>
 </form>

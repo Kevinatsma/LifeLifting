@@ -62,12 +62,9 @@ export class SpecialistDetailComponent implements OnInit {
       // Check if there is specialist input
       if ( this.specialist ) {
         id = this.specialist.uid;
-        console.log(id);
       } else {
-        console.log('oh hey');
         // Otherwise get id from url parameter
         id = this.route.snapshot.paramMap.get('id');
-        console.log(id);
         this.specialistService.getSpecialistData(id).subscribe(specialist => {
           this.specialist = specialist;
           this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${this.specialist.uid}`));

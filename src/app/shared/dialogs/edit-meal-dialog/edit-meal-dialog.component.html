@@ -1,4 +1,9 @@
 <main class="dialog-wrapper" *ngIf="client && mealplan">
+  <div class="close-section">
+    <button mat-icon-button class="close-btn" (click)="closeDialog()" type="button">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
   <mat-horizontal-stepper #stepper (selectionChange)="onStepChange($event)">
     <mat-step [stepControl]="infoForm">
       <form [formGroup]="infoForm">
@@ -12,7 +17,7 @@
 
         <p>
           <strong>Mealplan ID</strong><br>
-          {{mealplan.mealplanID}}
+          {{mealplan.mID}}
         </p>
     
         <mat-form-field appearance="standard" floatLabel="always">
@@ -20,6 +25,15 @@
           <input type="text" matInput name="mealplanName" formControlName="mealplanName" placeholder="Give the mealplan a name" autofocus="none">
           <mat-error class="input-error" *ngIf="!infoForm['controls'].mealplanName.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>This mealplan is for {{client.displayName}}</mat-label>
+            <mat-select matInput placeholder="Pick another client" formControlName="clientID" 
+            panelClass="dropdown-regular" autocomplete="off" (selectionChange)="updateClient($event)" required>
+              <mat-option *ngFor="let client of clients | async" [value]="client">{{client.displayName}}</mat-option>
+            </mat-select>
+            <mat-hint>If you choose another client, step 3 (supplements) will be overwritten!</mat-hint>
+          </mat-form-field>
       </form>
 
       <section class="btn-area-one">

@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material';
 import { GuidelineService } from './../../guidelines/guideline.service';
 import { Guideline } from './../../guidelines/guideline.model';
 import { AuthService } from './../../core/auth/auth.service';
+import { EditMealDialogComponent } from './../../shared/dialogs/edit-meal-dialog/edit-meal-dialog.component';
 
 
 @Component({
@@ -87,9 +88,7 @@ export class MealplanDetailComponent implements OnInit {
     this.gainWeight = this.mealplanService.gainWeight;
     setTimeout(() => {
       const id = this.route.snapshot.paramMap.get('id');
-      console.log(id);
       this.mealplanService.getMealplanDataById(id).subscribe(mealplan => {
-        console.log(mealplan);
         this.mealplan = mealplan;
         this.userService.getUserDataByID(mealplan.clientID).subscribe(user => this.client = user);
         this.getGuideline(mealplan);
@@ -108,7 +107,6 @@ export class MealplanDetailComponent implements OnInit {
   }
 
   getExercises(guideline) {
-    console.log(guideline);
     this.exerciseService.getMultipleExercises(guideline);
     this.exerciseService.guideExercises.eOne.subscribe(exercise => {
       this.exercises.eOne = exercise;
@@ -138,8 +136,19 @@ export class MealplanDetailComponent implements OnInit {
     return this.mealplanService.editShow;
   }
 
-  toggleEdit() {
-    this.mealplanService.toggleEdit();
+  editMealplan(mealplan) {
+    const dialogRef = this.dialog.open(EditMealDialogComponent, {
+      data: {
+        mealplan: mealplan,
+        client: this.client
+      },
+      panelClass: 'mealplan-dialog',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // AFter close
+    });
   }
 
   aboutExtendedToggle() {

@@ -51,23 +51,10 @@ export class MealplanService {
   }
 
   getMealplanDataById(id) {
-    console.log(id);
     this.mealplanDoc = this.afs.doc<Mealplan>(`mealplans/${id}`);
     this.mealplan = this.mealplanDoc.valueChanges();
-    console.log(this.mealplanDoc);
     return this.mealplan;
   }
-
-  // getMealplans() {
-  //   this.mealplans = this.mealplanCol.snapshotChanges().pipe(map(actions => {
-  //     return actions.map(a => {
-  //       const data = a.payload.doc.data() as Mealplan;
-  //       const id = a.payload.doc.id;
-  //       return { id, ...data };
-  //     });
-  //   }));
-  //   return this.mealplans;
-  // }
 
   getMealplans() {
     this.mealplanCol = this.afs.collection('mealplans', ref => ref
@@ -78,7 +65,7 @@ export class MealplanService {
 
   addMealplan(data) {
     this.afs.collection<Mealplan>(`mealplans`).add(data)
-    .then((credential) => {
+    .then(credential => {
       const idData = {
         mID: credential.id
       };

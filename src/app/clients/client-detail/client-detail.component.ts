@@ -84,7 +84,6 @@ export class ClientDetailComponent implements OnInit {
   // Checkers
   checkReadMore(user) {
     if (user.basicData.mainGoal.length > 50) {
-      console.log(user.basicData.mainGoal.length);
       this.hasReadMore = true;
     } else {
       this.hasReadMore = false;

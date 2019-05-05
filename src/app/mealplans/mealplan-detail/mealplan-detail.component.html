@@ -18,7 +18,7 @@
       </ng-template>
     </div>
     <div class="right" *ngIf="user">
-      <button type="button" class="icon-button edit-button" (click)="toggleEdit()"
+      <button type="button" class="icon-button edit-button" (click)="editMealplan(mealplan)"
       *ngIf="!editShow && user.roles.admin || user.roles.specialist">
         <i class="fas fa-edit"></i>
       </button>

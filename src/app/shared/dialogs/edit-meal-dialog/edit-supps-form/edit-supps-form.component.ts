@@ -35,6 +35,7 @@ export class EditSuppsFormComponent implements OnInit {
 
   // Show/hide booleans
   showAddProduct = true;
+  showSupps = false;
 
   // Guidelines and Exercises
   guideline: Guideline;
@@ -58,14 +59,7 @@ export class EditSuppsFormComponent implements OnInit {
 
                 // Get guidelines
                 setTimeout(() => {
-                  this.guidelineService.getGuidelinesByClient(this.client.uid).subscribe(guidelines => {
-                    this.guidelines = guidelines;
-
-                    if (this.guidelines.length < 1) {
-                      this.guidelines = null;
-                    }
-                  });
-
+                  this.getGuidelines(this.client.uid);
                   this.loadForm(this.supplementation);
                   this.guidelineHandler();
                 }, 500);
@@ -98,6 +92,17 @@ export class EditSuppsFormComponent implements OnInit {
 
   // Guidelines
 
+  getGuidelines(clientUID) {
+    this.guidelineService.getGuidelinesByClient(clientUID).subscribe(guidelines => {
+      this.guidelines = guidelines;
+
+      if (this.guidelines.length < 1) {
+        this.guidelines = null;
+      }
+    });
+    return this.guidelines;
+  }
+
   guidelineHandler() {
     const id = this.suppsForm.get('guideline').value;
     this.guidelineService.getGuidelineDataById(id)
@@ -105,6 +110,7 @@ export class EditSuppsFormComponent implements OnInit {
         this.guideline = guideline;
         this.getExercises(guideline);
       });
+    this.showSupps = true;
   }
 
   // Getters
@@ -189,79 +195,15 @@ export class EditSuppsFormComponent implements OnInit {
   }
 
   addProduct(number): void {
-    let array;
-
-    // Conditionals for all 7 possible mealtimes and thus 14 possible meals
-    switch (number) {
-      case 11:
-        array = this.suppsForm.get('beforeOneArr') as FormArray;
-        break;
-      case 12:
-        array = this.suppsForm.get('duringOneArr') as FormArray;
-        break;
-      case 13:
-        array = this.suppsForm.get('afterOneArr') as FormArray;
-        break;
-      case 21:
-        array = this.suppsForm.get('beforeTwoArr') as FormArray;
-        break;
-      case 22:
-        array = this.suppsForm.get('duringTwoArr') as FormArray;
-        break;
-      case 23:
-        array = this.suppsForm.get('afterTwoArr') as FormArray;
-        break;
-      case 31:
-        array = this.suppsForm.get('beforeThreeArr') as FormArray;
-        break;
-      case 32:
-        array = this.suppsForm.get('duringThreeArr') as FormArray;
-        break;
-      case 33:
-        array = this.suppsForm.get('afterThreeArr') as FormArray;
-        break;
-      default:
-        array = null;
-    }
-    this.checkProduct(array);
-    return array.push(this.createNewProduct());
+    const productArray = this.checkProductArray(number);
+    this.checkProduct(productArray);
+    return productArray.push(this.createNewProduct());
   }
 
   deleteProduct(number, i) {
-    let array;
-    switch (number) {
-      case 11:
-        array = this.suppsForm.get('beforeOneArr') as FormArray;
-        break;
-      case 12:
-        array = this.suppsForm.get('duringOneArr') as FormArray;
-        break;
-      case 13:
-        array = this.suppsForm.get('afterOneArr') as FormArray;
-        break;
-      case 21:
-        array = this.suppsForm.get('beforeTwoArr') as FormArray;
-        break;
-      case 22:
-        array = this.suppsForm.get('duringTwoArr') as FormArray;
-        break;
-      case 23:
-        array = this.suppsForm.get('afterTwoArr') as FormArray;
-        break;
-      case 31:
-        array = this.suppsForm.get('beforeThreeArr') as FormArray;
-        break;
-      case 32:
-        array = this.suppsForm.get('duringThreeArr') as FormArray;
-        break;
-      case 33:
-        array = this.suppsForm.get('afterThreeArr') as FormArray;
-        break;
-      default:
-        array = null;
-    }
-    this.checkProduct(array);
-    return array.removeAt(i);
+    const productArray = this.checkProductArray(number);
+    this.checkProduct(productArray);
+    return productArray.removeAt(i);
   }
 
   checkProduct(array): void {
@@ -270,6 +212,16 @@ export class EditSuppsFormComponent implements OnInit {
     } else {
       this.showAddProduct = false;
     }
+  }
+
+  clearFields(number, i) {
+    const productArray = this.checkProductArray(number);
+    productArray.controls[i].get('prep').reset();
+  }
+
+  resetForm() {
+    this.showSupps = false;
+    this.suppsForm.reset();
   }
 
   // Fill the form with data
@@ -322,10 +274,54 @@ export class EditSuppsFormComponent implements OnInit {
       duringThreeArr.push(this.createProduct(obj));
     });
 
-    const afterThreeArr = this.afterOneForms;
+    const afterThreeArr = this.afterThreeForms;
     const amountOfAfterThree = this.supplementation.afterThreeArr;
     amountOfAfterThree.forEach(obj => {
       afterThreeArr.push(this.createProduct(obj));
     });
+
+    if (beforeOneArr.length > 0) {
+      this.showSupps = true;
+    }
+  }
+
+
+  checkProductArray(number) {
+    let array;
+
+    // Conditionals for all 7 possible mealtimes and thus 14 possible meals
+    switch (number) {
+      case 11:
+        array = this.suppsForm.get('beforeOneArr') as FormArray;
+        break;
+      case 12:
+        array = this.suppsForm.get('duringOneArr') as FormArray;
+        break;
+      case 13:
+        array = this.suppsForm.get('afterOneArr') as FormArray;
+        break;
+      case 21:
+        array = this.suppsForm.get('beforeTwoArr') as FormArray;
+        break;
+      case 22:
+        array = this.suppsForm.get('duringTwoArr') as FormArray;
+        break;
+      case 23:
+        array = this.suppsForm.get('afterTwoArr') as FormArray;
+        break;
+      case 31:
+        array = this.suppsForm.get('beforeThreeArr') as FormArray;
+        break;
+      case 32:
+        array = this.suppsForm.get('duringThreeArr') as FormArray;
+        break;
+      case 33:
+        array = this.suppsForm.get('afterThreeArr') as FormArray;
+        break;
+      default:
+        array = null;
+    }
+
+    return array;
   }
 }

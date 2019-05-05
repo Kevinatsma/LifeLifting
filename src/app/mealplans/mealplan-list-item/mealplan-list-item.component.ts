@@ -69,6 +69,8 @@ export class MealplanListItemComponent implements OnInit {
         mealplan: mealplan,
         client: this.client
       },
+      panelClass: 'mealplan-dialog',
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -78,7 +80,6 @@ export class MealplanListItemComponent implements OnInit {
 
 
   linkToChild(mealplan) {
-    console.log(mealplan.mID);
     const url = `dashboard/mealplans/${mealplan.mID}`;
     this.router.navigate([url]);
   }

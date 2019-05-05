@@ -81,7 +81,6 @@ export class UserService {
   }
 
   setUserData(uid, data) {
-    console.log(uid);
     this.userDoc = this.afs.doc<User>(`users/${uid}`);
     this.userDoc.set(data, {merge: true});
   }

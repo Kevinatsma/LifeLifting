@@ -28,6 +28,7 @@ import { EditTuesdayFormComponent } from './edit-tuesday-form/edit-tuesday-form.
 import { EditThursdayFormComponent } from './edit-thursday-form/edit-thursday-form.component';
 import { EditFridayFormComponent } from './edit-friday-form/edit-friday-form.component';
 import { EditSuppsFormComponent } from './edit-supps-form/edit-supps-form.component';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-edit-meal-dialog',
@@ -36,15 +37,16 @@ import { EditSuppsFormComponent } from './edit-supps-form/edit-supps-form.compon
 })
 export class EditMealDialogComponent implements OnInit {
   // Child components
-  @ViewChild(EditMondayFormComponent) mondayComp: EditWednesdayFormComponent;
-  @ViewChild(EditTuesdayFormComponent) tuesdayComp: EditWednesdayFormComponent;
-  @ViewChild(EditWednesdayFormComponent) wednesdayComp: EditWednesdayFormComponent;
+  @ViewChild(EditMondayFormComponent) mondayComp: EditMondayFormComponent;
+  @ViewChild(EditTuesdayFormComponent) tuesdayComp: EditTuesdayFormComponent;
+  @ViewChild(EditWednesdayFormComponent) wednesdayComp: EditThursdayFormComponent;
   @ViewChild(EditThursdayFormComponent) thursdayComp: EditWednesdayFormComponent;
-  @ViewChild(EditFridayFormComponent) fridayComp: EditWednesdayFormComponent;
-  @ViewChild(EditSuppsFormComponent) suppsComp: EditWednesdayFormComponent;
+  @ViewChild(EditFridayFormComponent) fridayComp: EditFridayFormComponent;
+  @ViewChild(EditSuppsFormComponent) suppsComp: EditSuppsFormComponent;
 
   // Values for storing data
   client: User;
+  clients: Observable<User[]>;
   specialistID;
   specialist: Specialist;
   mealplan: Mealplan;
@@ -75,9 +77,8 @@ export class EditMealDialogComponent implements OnInit {
   // Disable popup from closing
   @HostListener('window:keyup.esc') onKeyUp() {
     event.preventDefault();
-    const cn = confirm('Are you sure you want to quit creating this mealplan? Your progress will be lost.');
-    if (cn) {
-      this.dialogRef.close();
+    if (confirm('Are you sure you want to quit creating this mealplan? Your progress will be lost.')) {
+      this.dialog.closeAll();
     }
   }
 
@@ -86,13 +87,14 @@ export class EditMealDialogComponent implements OnInit {
   }
 
   constructor( private fb: FormBuilder,
+               private afs: AngularFirestore,
                private auth: AuthService,
                private userService: UserService,
                private foodService: FoodService,
                private specialistService: SpecialistService,
                private mealplanService: MealplanService,
                public editMealService: EditMealDialogService,
-               public matDialog: MatDialog,
+               public dialog: MatDialog,
                private dialogRef: MatDialogRef<EditMealDialogComponent>,
                @Inject(MAT_DIALOG_DATA) public data: any) {
                 this.foodService.getFoods().subscribe(foods => this.foods = foods);
@@ -101,17 +103,10 @@ export class EditMealDialogComponent implements OnInit {
                }
 
   ngOnInit() {
-    // Ask before close
-    this.dialogRef.backdropClick().subscribe(_ => {
-      const cn = confirm('Are you sure you want to stop editing this mealplan? Your progress will be lost.');
-      if (cn) {
-        this.dialogRef.close();
-      }
-    });
-
     // Init forms
     this.infoForm = this.fb.group({
       mealplanName: [`${this.data.mealplan.mealplanName}`, [Validators.required]],
+      clientID: [`${this.data.mealplan.clientID}`]
     });
 
     this.mealTimeForm = this.fb.group({
@@ -122,6 +117,10 @@ export class EditMealDialogComponent implements OnInit {
       this.specialistID = user.uid;
       const sID =  user.specialist;
       this.getSpecialist(sID);
+
+      const myClientsCol: AngularFirestoreCollection<User> =
+        this.afs.collection('users', ref => ref.where('specialist', '==', `${sID}`));
+      this.clients = myClientsCol.valueChanges();
     });
     // this.userService.getUserDataByID(this.mealplan.clientID).subscribe(user => this.client = user);
 
@@ -139,7 +138,6 @@ export class EditMealDialogComponent implements OnInit {
 
   // Save items on step change
   onStepChange(e) {
-    console.log(e);
     this.mondayComp.updateData();
     this.tuesdayComp.updateData();
     this.wednesdayComp.updateData();
@@ -197,6 +195,12 @@ export class EditMealDialogComponent implements OnInit {
     this.mealTimeArr = this.mealTimeForm.get('mealTimeArr') as FormArray;
   }
 
+  updateClient(e) {
+    this.client = e.value;
+    this.suppsComp.getGuidelines(this.client.uid);
+    this.suppsComp.resetForm();
+  }
+
   // Getters
 
   getSpecialist(sID: string) {
@@ -208,11 +212,11 @@ export class EditMealDialogComponent implements OnInit {
   updateMealplan() {
     const mID: string = this.data.mealplan.mID;
     const data = {
-      clientID: this.data.mealplan.clientID,
+      clientID: this.client.uid || this.infoForm.get('clientID').value || this.data.mealplan.clientID,
       specialistID: this.specialistID,
       specialistName: this.specialist.firstName + ' ' + this.specialist.lastName,
       lastEdited: new Date(),
-      mID: this.data.mealplan.mealplanID,
+      mID: this.data.mealplan.mID,
       mealplanNR: this.data.mealplan.mealplanNR,
       mealplanName: this.infoForm.get('mealplanName').value,
       mealTimes: this.mealTimeForms.value,
@@ -223,7 +227,13 @@ export class EditMealDialogComponent implements OnInit {
       fridayMeals: this.fridayMeals || this.mealplan.fridayMeals,
       supplementation: this.supps || this.mealplan.supplementation
     };
-    console.log(data);
-    // this.mealplanService.updateMealplan(mID, data);
+    this.mealplanService.updateMealplan(mID, data);
+    this.dialog.closeAll();
+  }
+
+  closeDialog() {
+    if (confirm('Are you sure you want to stop editing this mealplan? Changes will be lost')) {
+      this.dialog.closeAll();
+    }
   }
 }

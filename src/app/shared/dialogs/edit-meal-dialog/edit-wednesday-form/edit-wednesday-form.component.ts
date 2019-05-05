@@ -208,109 +208,15 @@ export class EditWednesdayFormComponent implements OnInit {
   }
 
   addProduct(number): void {
-    let array;
-
-    // Conditionals for all 7 possible mealtimes and thus 14 possible meals
-    switch (number) {
-      case 11:
-        array = this.wednesdayMealForm.get('mOneMealOneArr') as FormArray;
-        break;
-      case 12:
-        array = this.wednesdayMealForm.get('mOneMealTwoArr') as FormArray;
-        break;
-      case 21:
-        array = this.wednesdayMealForm.get('mTwoMealOneArr') as FormArray;
-        break;
-      case 22:
-      array = this.wednesdayMealForm.get('mTwoMealTwoArr') as FormArray;
-        break;
-      case 31:
-      array = this.wednesdayMealForm.get('mThreeMealOneArr') as FormArray;
-        break;
-      case 32:
-      array = this.wednesdayMealForm.get('mThreeMealTwoArr') as FormArray;
-        break;
-      case 41:
-      array = this.wednesdayMealForm.get('mFourMealOneArr') as FormArray;
-        break;
-      case 42:
-      array = this.wednesdayMealForm.get('mFourMealTwoArr') as FormArray;
-        break;
-      case 51:
-      array = this.wednesdayMealForm.get('mFiveMealOneArr') as FormArray;
-        break;
-      case 52:
-      array = this.wednesdayMealForm.get('mFiveMealTwoArr') as FormArray;
-        break;
-      case 61:
-      array = this.wednesdayMealForm.get('mSixMealOneArr') as FormArray;
-        break;
-      case 62:
-      array = this.wednesdayMealForm.get('mSixMealTwoArr') as FormArray;
-        break;
-      case 71:
-      array = this.wednesdayMealForm.get('mSevenMealOneArr') as FormArray;
-        break;
-      case 72:
-      array = this.wednesdayMealForm.get('mSevenMealTwoArr') as FormArray;
-        break;
-      default:
-        array = null;
-    }
-    this.checkProduct(array);
-    return array.push(this.createNewProduct());
+    const productArray = this.checkProductArray(number);
+    this.checkProduct(productArray);
+    return productArray.push(this.createNewProduct());
   }
 
   deleteProduct(number, i) {
-    let array;
-    switch (number) {
-      case 11:
-        array = this.wednesdayMealForm.get('mOneMealOneArr') as FormArray;
-        break;
-      case 12:
-        array = this.wednesdayMealForm.get('mOneMealTwoArr') as FormArray;
-        break;
-      case 21:
-        array = this.wednesdayMealForm.get('mTwoMealOneArr') as FormArray;
-        break;
-      case 22:
-      array = this.wednesdayMealForm.get('mTwoMealTwoArr') as FormArray;
-        break;
-      case 31:
-      array = this.wednesdayMealForm.get('mThreeMealOneArr') as FormArray;
-        break;
-      case 32:
-      array = this.wednesdayMealForm.get('mThreeMealTwoArr') as FormArray;
-        break;
-      case 41:
-        array = this.wednesdayMealForm.get('mFourMealOneArr') as FormArray;
-        break;
-      case 42:
-        array = this.wednesdayMealForm.get('mFourMealTwoArr') as FormArray;
-        break;
-      case 51:
-        array = this.wednesdayMealForm.get('mFiveMealOneArr') as FormArray;
-        break;
-      case 52:
-      array = this.wednesdayMealForm.get('mFiveMealTwoArr') as FormArray;
-        break;
-      case 61:
-      array = this.wednesdayMealForm.get('mSixMealOneArr') as FormArray;
-        break;
-      case 62:
-      array = this.wednesdayMealForm.get('mSixMealTwoArr') as FormArray;
-        break;
-      case 71:
-      array = this.wednesdayMealForm.get('mSevenMealOneArr') as FormArray;
-        break;
-      case 72:
-      array = this.wednesdayMealForm.get('mSevenMealTwoArr') as FormArray;
-        break;
-      default:
-        array = null;
-    }
-    this.checkProduct(array);
-    return array.removeAt(i);
+    const productArray = this.checkProductArray(number);
+    this.checkProduct(productArray);
+    return productArray.removeAt(i);
   }
 
   checkProduct(array): void {
@@ -319,6 +225,11 @@ export class EditWednesdayFormComponent implements OnInit {
     } else {
       this.showAddProduct = false;
     }
+  }
+
+  clearFields(number, i) {
+    const productArray = this.checkProductArray(number);
+    productArray.controls[i].get('prep').reset();
   }
 
   // Fill the form with data
@@ -406,5 +317,60 @@ export class EditWednesdayFormComponent implements OnInit {
     amountofMealsSevenTwo.forEach(obj => {
       mSevenMealTwoArr.push(this.createProduct(obj));
     });
+  }
+
+
+  checkProductArray(number) {
+    let array;
+
+    // Conditionals for all 7 possible mealtimes and thus 14 possible meals
+    switch (number) {
+      case 11:
+        array = this.mOneMealOneForms;
+        break;
+      case 12:
+        array = this.mOneMealTwoForms;
+        break;
+      case 21:
+        array = this.mTwoMealOneForms;
+        break;
+      case 22:
+      array = this.mTwoMealTwoForms;
+        break;
+      case 31:
+      array = this.mThreeMealOneForms;
+        break;
+      case 32:
+      array = this.mThreeMealTwoForms;
+        break;
+      case 41:
+      array = this.mFourMealOneForms;
+        break;
+      case 42:
+      array = this.mFourMealTwoForms;
+        break;
+      case 51:
+      array = this.mFiveMealOneForms;
+        break;
+      case 52:
+      array = this.mFiveMealTwoForms;
+        break;
+      case 61:
+      array = this.mSixMealOneForms;
+        break;
+      case 62:
+      array = this.mSixMealTwoForms;
+        break;
+      case 71:
+      array = this.mSevenMealOneForms;
+        break;
+      case 72:
+      array = this.mSevenMealTwoForms;
+        break;
+      default:
+        array = null;
+    }
+
+    return array;
   }
 }

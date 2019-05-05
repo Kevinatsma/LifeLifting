@@ -12,13 +12,25 @@
         width: 100%;
         height: auto;
         padding: 0;
+        position: relative;
         margin: 0;
+
+        .mat-horizontal-stepper-header-container {
+            width: 95%;
+            margin-right: 2.5%;
+        }
+
+        .close-section {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
     }
 }
 
 ::ng-deep .mealplan-dialog {
-    min-width: 90%!important;
-    min-height: 90vh!important;
+    min-width: 100vw!important;
+    min-height: 100vh!important;
 }
 
 ::ng-deep mat-form-field {

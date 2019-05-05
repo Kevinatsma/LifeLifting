@@ -62,9 +62,9 @@ export class AddMealDialogComponent implements OnInit {
 
   // Disable popup from closing
   @HostListener('window:keyup.esc') onKeyUp() {
-    const cn = confirm('Are you sure you want to quit creating this mealplan? Your progress will be lost.');
-    if (cn) {
-      this.dialogRef.close();
+    event.preventDefault();
+    if (confirm('Are you sure you want to quit creating this mealplan? Your progress will be lost.')) {
+      this.dialog.closeAll();
     }
   }
 
@@ -79,20 +79,13 @@ export class AddMealDialogComponent implements OnInit {
                private specialistService: SpecialistService,
                private mealplanService: MealplanService,
                public mealService: AddMealDialogService,
-               public matDialog: MatDialog,
+               public dialog: MatDialog,
                private dialogRef: MatDialogRef<AddMealDialogComponent>,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
                 this.foodService.getFoods().subscribe(foods => this.foods = foods);
                }
 
   ngOnInit() {
-    this.dialogRef.backdropClick().subscribe(_ => {
-      const cn = confirm('Are you sure you want to quit creating this mealplan? Your progress will be lost.');
-      if (cn) {
-        this.dialogRef.close();
-      }
-    });
-
     // Init forms
     this.infoForm = this.fb.group({
       mID: ['', [Validators.required]],
@@ -161,14 +154,12 @@ export class AddMealDialogComponent implements OnInit {
 
   // Collect the data and send to service
   addMealplan() {
-    const mID: number =  this.infoForm.get('mID').value;
     const data = {
       clientID: this.userData.uid,
       specialistID: this.specialistID,
       specialistName: this.specialist.firstName + ' ' + this.specialist.lastName,
       creationDate: new Date(),
-      mID: this.userData.uid + '_' + mID,
-      mealplanNR: mID,
+      mealplanNR: this.infoForm.get('mID').value,
       mealplanName: this.infoForm.get('mealplanName').value,
       mealTimes: this.mealTimeForms.value,
       mondayMeals: this.mondayMeals,
@@ -179,5 +170,11 @@ export class AddMealDialogComponent implements OnInit {
       supplementation: this.supps
     };
     this.mealplanService.addMealplan(data);
+  }
+
+  closeDialog() {
+    if (confirm('Are you sure you want to stop editing this mealplan?')) {
+      this.dialog.closeAll();
+    }
   }
 }

@@ -90,17 +90,18 @@
           <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="!user.basicData">
             No goal yet...
           </p>
+
+          <ng-container *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
+            <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
+              <i class="fas fa-plus"></i>
+              Read More
+            </button>
+            <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
+              <i class="fas fa-minus"></i>
+              Read Less
+            </button>
+          </ng-container>
         </div>
-        <ng-container *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
-          <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
-            <i class="fas fa-plus"></i>
-            Read More
-          </button>
-          <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
-            <i class="fas fa-minus"></i>
-            Read Less
-          </button>
-        </ng-container>
       </section>
 
       <section class="middle">
