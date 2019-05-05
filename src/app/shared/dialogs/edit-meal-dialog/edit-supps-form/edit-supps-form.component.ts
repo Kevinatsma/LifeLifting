@@ -50,7 +50,7 @@ export class EditSuppsFormComponent implements OnInit {
                private auth: AuthService,
                private userService: UserService,
                private foodService: FoodService,
-               private mealService: EditMealDialogService,
+               private editMealService: EditMealDialogService,
                private exerciseService: ExerciseService,
                public guidelineService: GuidelineService,
                public matDialog: MatDialog) {
@@ -69,18 +69,6 @@ export class EditSuppsFormComponent implements OnInit {
                   this.loadForm(this.supplementation);
                   this.guidelineHandler();
                 }, 500);
-
-                // Query elements
-                const controlButtons = document.querySelectorAll('.dialog-button');
-
-                // Set event listeners
-                controlButtons.forEach(input => {
-                   // Update the form object in the service
-                  input.addEventListener('click', ((e) => {
-                    const suppsForm = this.suppsForm.value;
-                    return this.mealService.suppsFormChange.next(suppsForm);
-                  }) as EventListener);
-               });
               }
 
   ngOnInit() {
@@ -100,6 +88,12 @@ export class EditSuppsFormComponent implements OnInit {
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
     });
+  }
+
+  // Update data when mat stepper changes steps
+  updateData() {
+    const data = this.suppsForm.value;
+    return this.editMealService.suppsFormChange.next(data);
   }
 
   // Guidelines
@@ -174,35 +168,11 @@ export class EditSuppsFormComponent implements OnInit {
     return this.suppsForm.get('afterThreeArr') as FormArray;
   }
 
-  // Fill the form
-
-  loadForm(data) {
-    const beforeOneArr = this.beforeOneForms;
-    const amountOfBeforeOne = this.supplementation.beforeOneArr;
-    amountOfBeforeOne.forEach(obj => {
-      beforeOneArr.push(this.createProduct(obj));
-    });
-
-    const duringOneArr = this.duringOneForms;
-    const amountOfDuringOne = this.supplementation.duringOneArr;
-    amountOfDuringOne.forEach(obj => {
-      duringOneArr.push(this.createProduct(obj));
-    });
-
-    const afterOneArr = this.afterOneForms;
-    const amountOfAfterOne = this.supplementation.afterOneArr;
-    amountOfAfterOne.forEach(obj => {
-      afterOneArr.push(this.createProduct(obj));
-    });
-
-  }
-
   //////////////////////////////////////////////////////////////
   // Creating, adding, deleting and checking product Formarrays
   //////////////////////////////////////////////////////////////
 
   createProduct(data): FormGroup {
-    console.log(data);
     return this.fb.group({
       product: data.product,
       amount: data.amount,
@@ -300,5 +270,62 @@ export class EditSuppsFormComponent implements OnInit {
     } else {
       this.showAddProduct = false;
     }
+  }
+
+  // Fill the form with data
+  loadForm(data) {
+    const beforeOneArr = this.beforeOneForms;
+    const amountOfBeforeOne = this.supplementation.beforeOneArr;
+    amountOfBeforeOne.forEach(obj => {
+      beforeOneArr.push(this.createProduct(obj));
+    });
+
+    const duringOneArr = this.duringOneForms;
+    const amountOfDuringOne = this.supplementation.duringOneArr;
+    amountOfDuringOne.forEach(obj => {
+      duringOneArr.push(this.createProduct(obj));
+    });
+
+    const afterOneArr = this.afterOneForms;
+    const amountOfAfterOne = this.supplementation.afterOneArr;
+    amountOfAfterOne.forEach(obj => {
+      afterOneArr.push(this.createProduct(obj));
+    });
+
+    const beforeTwoArr = this.beforeTwoForms;
+    const amountOfBeforeTwo = this.supplementation.beforeTwoArr;
+    amountOfBeforeTwo.forEach(obj => {
+      beforeTwoArr.push(this.createProduct(obj));
+    });
+
+    const duringTwoArr = this.duringTwoForms;
+    const amountOfDuringTwo = this.supplementation.duringTwoArr;
+    amountOfDuringTwo.forEach(obj => {
+      duringTwoArr.push(this.createProduct(obj));
+    });
+
+    const afterTwoArr = this.afterTwoForms;
+    const amountOfAfterTwo = this.supplementation.afterTwoArr;
+    amountOfAfterTwo.forEach(obj => {
+      afterTwoArr.push(this.createProduct(obj));
+    });
+
+    const beforeThreeArr = this.beforeThreeForms;
+    const amountOfBeforeThree = this.supplementation.beforeThreeArr;
+    amountOfBeforeThree.forEach(obj => {
+      beforeThreeArr.push(this.createProduct(obj));
+    });
+
+    const duringThreeArr = this.duringThreeForms;
+    const amountOfDuringThree = this.supplementation.duringThreeArr;
+    amountOfDuringThree.forEach(obj => {
+      duringThreeArr.push(this.createProduct(obj));
+    });
+
+    const afterThreeArr = this.afterOneForms;
+    const amountOfAfterThree = this.supplementation.afterThreeArr;
+    amountOfAfterThree.forEach(obj => {
+      afterThreeArr.push(this.createProduct(obj));
+    });
   }
 }

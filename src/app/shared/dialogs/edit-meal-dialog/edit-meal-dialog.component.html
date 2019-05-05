@@ -1,5 +1,5 @@
 <main class="dialog-wrapper" *ngIf="client && mealplan">
-  <mat-horizontal-stepper #stepper>
+  <mat-horizontal-stepper #stepper (selectionChange)="onStepChange($event)">
     <mat-step [stepControl]="infoForm">
       <form [formGroup]="infoForm">
         <ng-template matStepLabel>Info</ng-template>
@@ -97,8 +97,8 @@
 
     <mat-step [stepControl]="">
     <ng-template matStepLabel>Monday</ng-template>
-      <!-- <app-monday-form *ngIf="mealTimeForms.dirty" [foods]="foods" [mealTimes]="mealTimeArr">
-      </app-monday-form> -->
+      <app-edit-monday-form [foods]="foods" [mealTimes]="mealTimeArr" [mealplan]="mealplan" [client]="client">
+      </app-edit-monday-form>
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>
@@ -113,8 +113,8 @@
 
     <mat-step [stepControl]="">
       <ng-template matStepLabel>Tuesday</ng-template>
-      <!-- <app-tuesday-form *ngIf="mealTimeForms.dirty" [foods]="foods" [mealTimes]="mealTimeArr">
-      </app-tuesday-form> -->
+      <app-edit-tuesday-form [foods]="foods" [mealTimes]="mealTimeArr" [mealplan]="mealplan" [client]="client">
+      </app-edit-tuesday-form>
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>
@@ -129,8 +129,8 @@
 
     <mat-step [stepControl]="">
       <ng-template matStepLabel>Wednesday</ng-template>
-      <!-- <app-wednesday-form *ngIf="mealTimeForms.dirty" [foods]="foods" [mealTimes]="mealTimeArr">
-      </app-wednesday-form> -->
+      <app-edit-wednesday-form [foods]="foods" [mealTimes]="mealTimeArr" [mealplan]="mealplan" [client]="client">
+      </app-edit-wednesday-form>
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>
@@ -144,8 +144,8 @@
 
     <mat-step [stepControl]="">
       <ng-template matStepLabel>Thursday</ng-template>
-      <!-- <app-thursday-form *ngIf="mealTimeForms.dirty" [foods]="foods" [mealTimes]="mealTimeArr">
-      </app-thursday-form> -->
+      <app-edit-thursday-form [foods]="foods" [mealTimes]="mealTimeArr" [mealplan]="mealplan" [client]="client">
+      </app-edit-thursday-form>
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>
@@ -160,8 +160,8 @@
 
     <mat-step [stepControl]="">
       <ng-template matStepLabel>Friday</ng-template>
-      <!-- <app-friday-form *ngIf="mealTimeForms.dirty" [foods]="foods" [mealTimes]="mealTimeArr">
-      </app-friday-form> -->
+      <app-edit-friday-form [foods]="foods" [mealTimes]="mealTimeArr" [mealplan]="mealplan" [client]="client">
+      </app-edit-friday-form>
 
 
       <section class="btn-area">
@@ -188,10 +188,9 @@
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="submit" class="dialog-button" (click)="addMealplan()"
+        <button type="submit" class="dialog-button" (click)="updateMealplan()"
           [disabled]="!infoForm.valid || !mealTimeForm.valid"
           [class.disabled]="!infoForm.valid || !mealTimeForm.valid"
-          mat-dialog-close
         >
           Done
         </button>

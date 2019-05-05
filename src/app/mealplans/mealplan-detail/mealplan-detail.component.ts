@@ -71,7 +71,7 @@ export class MealplanDetailComponent implements OnInit {
                 this.aboutExtended = false;
                 setTimeout(() => {
                   this.createHighlight(this.mealplanNav.nativeElement);
-                }, 100);
+                }, 1000);
   }
 
   ngOnInit() {
@@ -85,13 +85,16 @@ export class MealplanDetailComponent implements OnInit {
 
   getMealplan() {
     this.gainWeight = this.mealplanService.gainWeight;
-    const id = this.route.snapshot.paramMap.get('id');
-    this.mealplanService.getMealplanDataById(id)
-      .subscribe(mealplan => {
+    setTimeout(() => {
+      const id = this.route.snapshot.paramMap.get('id');
+      console.log(id);
+      this.mealplanService.getMealplanDataById(id).subscribe(mealplan => {
+        console.log(mealplan);
         this.mealplan = mealplan;
         this.userService.getUserDataByID(mealplan.clientID).subscribe(user => this.client = user);
         this.getGuideline(mealplan);
-      });
+        });
+    }, 500);
   }
 
 

@@ -15,32 +15,32 @@ export class SuppsForm {
             product: Object;
         }
     ];
-    beforeTwo?: [
+    beforeTwoArr?: [
         {
             product: Object;
         }
     ];
-    duringTwo?: [
+    duringTwoArr?: [
         {
             product: Object;
         }
     ];
-    afterTwo?: [
+    afterTwoArr?: [
         {
             product: Object;
         }
     ];
-    beforeThree?: [
+    beforeThreeArr?: [
         {
             product: Object;
         }
     ];
-    duringThree?: [
+    duringThreeArr?: [
         {
             product: Object;
         }
     ];
-    afterThree?: [
+    afterThreeArr?: [
         {
             product: Object;
         }

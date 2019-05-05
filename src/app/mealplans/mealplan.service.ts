@@ -51,8 +51,10 @@ export class MealplanService {
   }
 
   getMealplanDataById(id) {
+    console.log(id);
     this.mealplanDoc = this.afs.doc<Mealplan>(`mealplans/${id}`);
     this.mealplan = this.mealplanDoc.valueChanges();
+    console.log(this.mealplanDoc);
     return this.mealplan;
   }
 

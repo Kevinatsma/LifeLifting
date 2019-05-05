@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation, HostListener, ViewChild } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -22,13 +22,27 @@ import { Specialist } from '../../../specialists/specialist.model';
 import { SpecialistService } from '../../../specialists/specialist.service';
 import { SuppsForm } from '../add-meal-dialog/supps-form.model';
 import { Mealplan } from './../../../mealplans/mealplan.model';
+import { EditWednesdayFormComponent } from './edit-wednesday-form/edit-wednesday-form.component';
+import { EditMondayFormComponent } from './edit-monday-form/edit-monday-form.component';
+import { EditTuesdayFormComponent } from './edit-tuesday-form/edit-tuesday-form.component';
+import { EditThursdayFormComponent } from './edit-thursday-form/edit-thursday-form.component';
+import { EditFridayFormComponent } from './edit-friday-form/edit-friday-form.component';
+import { EditSuppsFormComponent } from './edit-supps-form/edit-supps-form.component';
 
 @Component({
   selector: 'app-edit-meal-dialog',
   templateUrl: './edit-meal-dialog.component.html',
-  styleUrls: ['./edit-meal-dialog.component.scss']
+  styleUrls: ['./edit-meal-dialog.component.scss'],
 })
 export class EditMealDialogComponent implements OnInit {
+  // Child components
+  @ViewChild(EditMondayFormComponent) mondayComp: EditWednesdayFormComponent;
+  @ViewChild(EditTuesdayFormComponent) tuesdayComp: EditWednesdayFormComponent;
+  @ViewChild(EditWednesdayFormComponent) wednesdayComp: EditWednesdayFormComponent;
+  @ViewChild(EditThursdayFormComponent) thursdayComp: EditWednesdayFormComponent;
+  @ViewChild(EditFridayFormComponent) fridayComp: EditWednesdayFormComponent;
+  @ViewChild(EditSuppsFormComponent) suppsComp: EditWednesdayFormComponent;
+
   // Values for storing data
   client: User;
   specialistID;
@@ -60,6 +74,7 @@ export class EditMealDialogComponent implements OnInit {
 
   // Disable popup from closing
   @HostListener('window:keyup.esc') onKeyUp() {
+    event.preventDefault();
     const cn = confirm('Are you sure you want to quit creating this mealplan? Your progress will be lost.');
     if (cn) {
       this.dialogRef.close();
@@ -76,7 +91,7 @@ export class EditMealDialogComponent implements OnInit {
                private foodService: FoodService,
                private specialistService: SpecialistService,
                private mealplanService: MealplanService,
-               public mealService: EditMealDialogService,
+               public editMealService: EditMealDialogService,
                public matDialog: MatDialog,
                private dialogRef: MatDialogRef<EditMealDialogComponent>,
                @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -88,7 +103,7 @@ export class EditMealDialogComponent implements OnInit {
   ngOnInit() {
     // Ask before close
     this.dialogRef.backdropClick().subscribe(_ => {
-      const cn = confirm('Are you sure you want to quit creating this mealplan? Your progress will be lost.');
+      const cn = confirm('Are you sure you want to stop editing this mealplan? Your progress will be lost.');
       if (cn) {
         this.dialogRef.close();
       }
@@ -111,15 +126,26 @@ export class EditMealDialogComponent implements OnInit {
     // this.userService.getUserDataByID(this.mealplan.clientID).subscribe(user => this.client = user);
 
     // Subscribe to Form day Objects
-    this.mealService.mondayFormChange.subscribe(obj => this.mondayMeals = obj);
-    this.mealService.tuesdayFormChange.subscribe(obj => this.tuesdayMeals = obj);
-    this.mealService.wednesdayFormChange.subscribe(obj => this.wednesdayMeals = obj);
-    this.mealService.thursdayFormChange.subscribe(obj => this.thursdayMeals = obj);
-    this.mealService.fridayFormChange.subscribe(obj => this.fridayMeals = obj);
-    this.mealService.suppsFormChange.subscribe(obj => this.supps = obj);
+    this.editMealService.mondayFormChange.subscribe(obj => this.mondayMeals = obj);
+    this.editMealService.tuesdayFormChange.subscribe(obj => this.tuesdayMeals = obj);
+    this.editMealService.wednesdayFormChange.subscribe(obj => this.wednesdayMeals = obj);
+    this.editMealService.thursdayFormChange.subscribe(obj => this.thursdayMeals = obj);
+    this.editMealService.fridayFormChange.subscribe(obj => this.fridayMeals = obj);
+    this.editMealService.suppsFormChange.subscribe(obj => this.supps = obj);
 
     // Fill arrays and objects
     this.loadForm(this.data.mealplan);
+  }
+
+  // Save items on step change
+  onStepChange(e) {
+    console.log(e);
+    this.mondayComp.updateData();
+    this.tuesdayComp.updateData();
+    this.wednesdayComp.updateData();
+    this.thursdayComp.updateData();
+    this.fridayComp.updateData();
+    this.suppsComp.updateData();
   }
 
 
@@ -180,23 +206,24 @@ export class EditMealDialogComponent implements OnInit {
 
   // Collect the data and send to service
   updateMealplan() {
-    const mID: string = this.data.mealplan.mealplanID;
+    const mID: string = this.data.mealplan.mID;
     const data = {
-      clientID: this.data.mealplan.uid,
+      clientID: this.data.mealplan.clientID,
       specialistID: this.specialistID,
       specialistName: this.specialist.firstName + ' ' + this.specialist.lastName,
-      creationDate: new Date(),
+      lastEdited: new Date(),
       mID: this.data.mealplan.mealplanID,
-      mealplanNR: mID,
+      mealplanNR: this.data.mealplan.mealplanNR,
       mealplanName: this.infoForm.get('mealplanName').value,
       mealTimes: this.mealTimeForms.value,
-      mondayMeals: this.mondayMeals,
-      tuesdayMeals: this.tuesdayMeals,
-      wednesdayMeals: this.wednesdayMeals,
-      thursdayMeals: this.thursdayMeals,
-      fridayMeals: this.fridayMeals,
-      supplementation: this.supps
+      mondayMeals: this.mondayMeals || this.mealplan.mondayMeals,
+      tuesdayMeals: this.tuesdayMeals || this.mealplan.tuesdayMeals,
+      wednesdayMeals: this.wednesdayMeals || this.mealplan.wednesdayMeals,
+      thursdayMeals: this.thursdayMeals || this.mealplan.thursdayMeals,
+      fridayMeals: this.fridayMeals || this.mealplan.fridayMeals,
+      supplementation: this.supps || this.mealplan.supplementation
     };
-    this.mealplanService.updateMealplan(mID, data);
+    console.log(data);
+    // this.mealplanService.updateMealplan(mID, data);
   }
 }

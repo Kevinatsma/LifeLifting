@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FridayFormComponent } from './friday-form.component';
+import { EditWednesdayFormComponent } from './edit-wednesday-form.component';
 
-describe('FridayFormComponent', () => {
-  let component: FridayFormComponent;
-  let fixture: ComponentFixture<FridayFormComponent>;
+describe('EditWednesdayFormComponent', () => {
+  let component: EditWednesdayFormComponent;
+  let fixture: ComponentFixture<EditWednesdayFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FridayFormComponent ]
+      declarations: [ EditWednesdayFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FridayFormComponent);
+    fixture = TestBed.createComponent(EditWednesdayFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

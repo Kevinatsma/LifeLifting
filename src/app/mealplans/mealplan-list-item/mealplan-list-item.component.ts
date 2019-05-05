@@ -78,6 +78,7 @@ export class MealplanListItemComponent implements OnInit {
 
 
   linkToChild(mealplan) {
+    console.log(mealplan.mID);
     const url = `dashboard/mealplans/${mealplan.mID}`;
     this.router.navigate([url]);
   }

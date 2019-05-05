@@ -14,12 +14,14 @@ import { Time } from '../../../data/models/time.model';
 
 @Component({
   selector: 'app-edit-friday-form',
-  templateUrl: 'friday-form.component.html',
+  templateUrl: 'edit-friday-form.component.html',
   styleUrls: ['./../edit-meal-dialog.component.scss']
 })
-export class FridayFormComponent implements OnInit {
+export class EditFridayFormComponent implements OnInit {
   @Input() foods: Array<Food>;
   @Input() mealTimes;
+  @Input() client: User;
+  @Input() mealplan;
   @Output() mealFormChange = new EventEmitter();
   user = User;
   specialistID;
@@ -86,64 +88,55 @@ export class FridayFormComponent implements OnInit {
                private auth: AuthService,
                private userService: UserService,
                private foodService: FoodService,
-               private mealService: EditMealDialogService,
+               private editMealService: EditMealDialogService,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
                 this.foodService.getFoods().subscribe(foods => this.foods = foods);
-
-                // Query elements
-                const controlButtons = document.querySelectorAll('.dialog-button');
-
-                // Set event listeners
-                controlButtons.forEach(input => {
-                   // Update the form object in the service
-                  input.addEventListener('click', ((e) => {
-                    const fridayMealForm = this.fridayMealForm.value;
-                    return this.mealService.fridayFormChange.next(fridayMealForm);
-                  }) as EventListener);
-               });
               }
 
   ngOnInit() {
     this.fridayMealForm = this.fb.group({
-      mOneMealOneTitle: ['', [Validators.required]],
-      mOneMealOneArr: this.fb.array([ this.createProduct()]),
-      mOneMealTwoTitle: [''],
-      mOneMealTwoArr: this.fb.array([ this.createProduct()]),
-      mTwoMealOneTitle: ['', [Validators.required]],
-      mTwoMealOneArr: this.fb.array([ this.createProduct()]),
-      mTwoMealTwoTitle: [''],
-      mTwoMealTwoArr: this.fb.array([ this.createProduct()]),
-      mThreeMealOneTitle: ['', [Validators.required]],
-      mThreeMealOneArr: this.fb.array([ this.createProduct()]),
-      mThreeMealTwoTitle: [''],
-      mThreeMealTwoArr: this.fb.array([ this.createProduct()]),
-
-      mFourMealOneTitle: ['', [Validators.required]],
-      mFourMealOneArr: this.fb.array([ this.createProduct()]),
-      mFourMealTwoTitle: [''],
-      mFourMealTwoArr: this.fb.array([ this.createProduct()]),
-
-      mFiveMealOneTitle: ['', [Validators.required]],
-      mFiveMealOneArr: this.fb.array([ this.createProduct()]),
-      mFiveMealTwoTitle: [''],
-      mFiveMealTwoArr: this.fb.array([ this.createProduct()]),
-
-      mSixMealOneTitle: ['', [Validators.required]],
-      mSixMealOneArr: this.fb.array([ this.createProduct()]),
-      mSixMealTwoTitle: [''],
-      mSixMealTwoArr: this.fb.array([ this.createProduct()]),
-
-      mSevenMealOneTitle: ['', [Validators.required]],
-      mSevenMealOneArr: this.fb.array([ this.createProduct()]),
-      mSevenMealTwoTitle: [''],
-      mSevenMealTwoArr: this.fb.array([ this.createProduct()]),
+      mOneMealOneTitle: [`${this.mealplan.fridayMeals.mOneMealOneTitle}`, [Validators.required]],
+      mOneMealOneArr: this.fb.array([]),
+      mOneMealTwoTitle: [`${this.mealplan.fridayMeals.mOneMealTwoTitle}`],
+      mOneMealTwoArr: this.fb.array([]),
+      mTwoMealOneTitle: [`${this.mealplan.fridayMeals.mTwoMealOneTitle}`, [Validators.required]],
+      mTwoMealOneArr: this.fb.array([]),
+      mTwoMealTwoTitle: [`${this.mealplan.fridayMeals.mTwoMealTwoTitle}`],
+      mTwoMealTwoArr: this.fb.array([]),
+      mThreeMealOneTitle: [`${this.mealplan.fridayMeals.mThreeMealOneTitle}`, [Validators.required]],
+      mThreeMealOneArr: this.fb.array([]),
+      mThreeMealTwoTitle: [`${this.mealplan.fridayMeals.mThreeMealTwoTitle}`],
+      mThreeMealTwoArr: this.fb.array([]),
+      mFourMealOneTitle: [`${this.mealplan.fridayMeals.mFourMealOneTitle}`, [Validators.required]],
+      mFourMealOneArr: this.fb.array([]),
+      mFourMealTwoTitle: [`${this.mealplan.fridayMeals.mFourMealTwoTitle}`],
+      mFourMealTwoArr: this.fb.array([]),
+      mFiveMealOneTitle: [`${this.mealplan.fridayMeals.mFiveMealOneTitle}`, [Validators.required]],
+      mFiveMealOneArr: this.fb.array([]),
+      mFiveMealTwoTitle: [`${this.mealplan.fridayMeals.mFiveMealTwoTitle}`],
+      mFiveMealTwoArr: this.fb.array([]),
+      mSixMealOneTitle: [`${this.mealplan.fridayMeals.mSixMealOneTitle}`, [Validators.required]],
+      mSixMealOneArr: this.fb.array([]),
+      mSixMealTwoTitle: [`${this.mealplan.fridayMeals.mSixMealTwoTitle}`],
+      mSixMealTwoArr: this.fb.array([]),
+      mSevenMealOneTitle: [`${this.mealplan.fridayMeals.mSevenMealOneTitle}`, [Validators.required]],
+      mSevenMealOneArr: this.fb.array([]),
+      mSevenMealTwoTitle: [`${this.mealplan.fridayMeals.mSevenMealTwoTitle}`],
+      mSevenMealTwoArr: this.fb.array([]),
     });
 
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
     });
-    // this.userService.getUserDataByID(this.fridayMealplan.clientID).subscribe(user => this.client = user);
+
+    this.loadForm();
+  }
+
+  // Update data when mat stepper changes steps
+  updateData() {
+    const data = this.fridayMealForm.value;
+    return this.editMealService.fridayFormChange.next(data);
   }
 
   ///////////////////////////////////////////////////////////
@@ -197,7 +190,15 @@ export class FridayFormComponent implements OnInit {
   // Creating, adding, deleting and checking product Formarrays
   //////////////////////////////////////////////////////////////
 
-  createProduct(): FormGroup {
+  createProduct(data): FormGroup {
+    return this.fb.group({
+      product: data.product,
+      amount: data.amount,
+      prep: data.prep,
+    });
+  }
+
+  createNewProduct(): FormGroup {
     return this.fb.group({
       product: '',
       amount: '',
@@ -256,7 +257,7 @@ export class FridayFormComponent implements OnInit {
         array = null;
     }
     this.checkProduct(array);
-    return array.push(this.createProduct());
+    return array.push(this.createNewProduct());
   }
 
   deleteProduct(number, i) {
@@ -317,5 +318,92 @@ export class FridayFormComponent implements OnInit {
     } else {
       this.showAddProduct = false;
     }
+  }
+
+  // Fill the form with data
+  loadForm() {
+    const mOneMealOneArr = this.mOneMealOneForms;
+    const amountofMealsOneOne = this.mealplan.fridayMeals.mOneMealOneArr;
+    amountofMealsOneOne.forEach(obj => {
+      mOneMealOneArr.push(this.createProduct(obj));
+    });
+
+    const mOneMealTwoArr = this.mOneMealTwoForms;
+    const amountofMealsOneTwo = this.mealplan.fridayMeals.mOneMealTwoArr;
+    amountofMealsOneTwo.forEach(obj => {
+      mOneMealTwoArr.push(this.createProduct(obj));
+    });
+
+    const mTwoMealOneArr = this.mTwoMealOneForms;
+    const amountofMealsTwoOne = this.mealplan.fridayMeals.mTwoMealOneArr;
+    amountofMealsTwoOne.forEach(obj => {
+      mTwoMealOneArr.push(this.createProduct(obj));
+    });
+
+    const mTwoMealTwoArr = this.mTwoMealTwoForms;
+    const amountofMealsTwoTwo = this.mealplan.fridayMeals.mTwoMealTwoArr;
+    amountofMealsTwoTwo.forEach(obj => {
+      mTwoMealTwoArr.push(this.createProduct(obj));
+    });
+
+    const mThreeMealOneArr = this.mThreeMealOneForms;
+    const amountofMealsThreeOne = this.mealplan.fridayMeals.mThreeMealOneArr;
+    amountofMealsThreeOne.forEach(obj => {
+      mThreeMealOneArr.push(this.createProduct(obj));
+    });
+
+    const mThreeMealTwoArr = this.mThreeMealTwoForms;
+    const amountofMealsThreeTwo = this.mealplan.fridayMeals.mThreeMealTwoArr;
+    amountofMealsThreeTwo.forEach(obj => {
+      mThreeMealTwoArr.push(this.createProduct(obj));
+    });
+
+    const mFourMealOneArr = this.mFourMealOneForms;
+    const amountofMealsFourOne = this.mealplan.fridayMeals.mFourMealOneArr;
+    amountofMealsFourOne.forEach(obj => {
+      mFourMealOneArr.push(this.createProduct(obj));
+    });
+
+    const mFourMealTwoArr = this.mFourMealTwoForms;
+    const amountofMealsFourTwo = this.mealplan.fridayMeals.mFourMealTwoArr;
+    amountofMealsFourTwo.forEach(obj => {
+      mFourMealTwoArr.push(this.createProduct(obj));
+    });
+
+    const mFiveMealOneArr = this.mFiveMealOneForms;
+    const amountofMealsFiveOne = this.mealplan.fridayMeals.mFiveMealOneArr;
+    amountofMealsFiveOne.forEach(obj => {
+      mFiveMealOneArr.push(this.createProduct(obj));
+    });
+
+    const mFiveMealTwoArr = this.mFiveMealTwoForms;
+    const amountofMealsFiveTwo = this.mealplan.fridayMeals.mFiveMealTwoArr;
+    amountofMealsFiveTwo.forEach(obj => {
+      mFiveMealTwoArr.push(this.createProduct(obj));
+    });
+
+    const mSixMealOneArr = this.mSixMealOneForms;
+    const amountofMealsSixOne = this.mealplan.fridayMeals.mSixMealOneArr;
+    amountofMealsSixOne.forEach(obj => {
+      mSixMealOneArr.push(this.createProduct(obj));
+    });
+
+    const mSixMealTwoArr = this.mSixMealTwoForms;
+    const amountofMealsSixTwo = this.mealplan.fridayMeals.mSixMealTwoArr;
+    amountofMealsSixTwo.forEach(obj => {
+      mSixMealTwoArr.push(this.createProduct(obj));
+    });
+
+    const mSevenMealOneArr = this.mSevenMealOneForms;
+    const amountofMealsSevenOne = this.mealplan.fridayMeals.mSevenMealOneArr;
+    amountofMealsSevenOne.forEach(obj => {
+      mSevenMealOneArr.push(this.createProduct(obj));
+    });
+
+    const mSevenMealTwoArr = this.mSevenMealTwoForms;
+    const amountofMealsSevenTwo = this.mealplan.fridayMeals.mSevenMealTwoArr;
+    amountofMealsSevenTwo.forEach(obj => {
+      mSevenMealTwoArr.push(this.createProduct(obj));
+    });
   }
 }
