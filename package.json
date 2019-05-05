@@ -12,7 +12,8 @@
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
     "dev": "npm run build:client-and-server-bundles && npm run compile:server && node dist/server",
-    "build:client-and-server-bundles": "ng build --prod && ng run LifeLifting:server:production"
+    "build-prod": "bash ./scripts/ng.sh build --prod --aot",
+    "build:client-and-server-bundles": "npm run build-prod && ng run LifeLifting:server:production"
   },
   "private": true,
   "dependencies": {

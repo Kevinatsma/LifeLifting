@@ -222,6 +222,7 @@ export class EditSuppsFormComponent implements OnInit {
   resetForm() {
     this.showSupps = false;
     this.suppsForm.reset();
+    this.foodService.getFoods().subscribe(foods => this.foods = foods);
   }
 
   // Fill the form with data

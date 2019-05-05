@@ -43,9 +43,7 @@
                 <mat-select matInput (selectionChange)="clearFields(11, i)" placeholder="Pick a food item" class="f-input select"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
                   <mat-option *ngIf="food.value.product" selected disabled [value]="food.value.product">{{food.value.product.productName}}</mat-option>
-                  <ng-container *ngIf="food.value.product">
-                    <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
-                  </ng-container>
+                  <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
                 </mat-select>
               </mat-form-field>
               <div class="unit" *ngIf="beforeOneForms.controls[i].value.product as prodObj">
