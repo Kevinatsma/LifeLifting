@@ -11,7 +11,7 @@ import { DashboardService } from '../../dashboard.service';
   styleUrls: ['./../dashboard-menu.component.scss']
 })
 export class SpecialistMenuComponent implements OnInit {
-  linksOpened = true;
+  linksOpened = false;
   constructor( private dashboardService: DashboardService) { }
 
   ngOnInit() {

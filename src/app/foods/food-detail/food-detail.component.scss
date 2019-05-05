@@ -74,6 +74,39 @@ main.specialist-wrapper {
                 position: relative;
             }
 
+            .middle {
+                .contact-menu {
+                    margin-top: 10px;
+
+                    li {
+                        text-transform: capitalize;
+                    }
+                }
+            }
+
+            .shopping-list-container {
+                width: calc(100% + 4em);
+                margin-left: -2em;
+                background: $section-grey;
+                padding: 2em;
+                margin: 1.5em -2em 2.5em;
+                box-sizing: border-box;
+                h3 {
+                    margin: 0 0 15px;
+                    text-align: left;
+
+                    svg {
+                        color: darken($section-grey, 20%);
+                        font-size: 21px;
+                        margin-right: 10px;
+                    }
+                }
+
+                p {
+                    margin: 10px 0;
+                }
+            }
+
             .list-container {
                 display: flex;
                 flex-flow: row nowrap;

@@ -14,7 +14,7 @@ import { DashboardService } from '../../dashboard.service';
   styleUrls: ['./../dashboard-menu.component.scss']
 })
 export class ClientMenuComponent implements OnInit {
-  linksOpened = true;
+  linksOpened = false;
 
   constructor( private dialog: MatDialog,
                private router: Router,

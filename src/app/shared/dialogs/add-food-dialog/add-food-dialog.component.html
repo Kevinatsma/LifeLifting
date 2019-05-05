@@ -10,16 +10,22 @@
         </p>
     
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Product ID</mat-label>
-          <input type="number" matInput name="title" formControlName="productID" placeholder="Always a number" autocomplete="new-password">
-          <mat-hint *ngIf="!infoForm['controls'].productID.dirty">Check the food list for the numbers already taken.</mat-hint>
-          <mat-error class="input-error" *ngIf="!infoForm['controls'].productID.valid">This is <strong>required</strong></mat-error>
+          <mat-label>Product Number</mat-label>
+          <input type="number" matInput name="title" formControlName="productNumber" placeholder="Always a number" autocomplete="new-password">
+          <mat-hint *ngIf="!infoForm['controls'].productNumber.dirty">Check the food list for the numbers already taken.</mat-hint>
+          <mat-error class="input-error" *ngIf="!infoForm['controls'].productNumber.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
     
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Product name</mat-label>
           <input type="text" matInput name="title" formControlName="productName" placeholder="Give the product a name" autofocus="none">
           <mat-error class="input-error" *ngIf="!infoForm['controls'].productName.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Shopping list name for the product</mat-label>
+          <input type="text" matInput name="shopping-list-title" formControlName="shoppingListName" placeholder="Make it sound good" autofocus="none">
+          <mat-error class="input-error" *ngIf="!infoForm['controls'].shoppingListName.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
       </form>
 
@@ -56,7 +62,7 @@
 
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Nutrition group</mat-label>
-          <mat-select matInput placeholder="Under which category falls this product?" formControlName="nutritionType" 
+          <mat-select matInput placeholder="Under which category does this product belong?" formControlName="nutritionType" 
           panelClass="dropdown-regular" autocomplete="off" required>
             <mat-option *ngFor="let type of nutritionTypes" [value]="type.value"> {{type.value}}</mat-option>
           </mat-select>
@@ -110,7 +116,7 @@
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>The Unit</mat-label>
           <mat-select matInput formControlName="unit" placeholder="Pick a value (cup, liter, etc)" 
-          panelClass="dropdown-regular" autofocus="off">
+          panelClass="dropdown-regular" autofocus="off" (selectionChange)="updateUnit()">
             <mat-option *ngFor="let unit of units" [value]="unit.value">{{unit.value}}</mat-option>
           </mat-select>
           <mat-error class="input-error" *ngIf="!unitForm['controls'].unit.valid">This is <strong>required</strong></mat-error>
@@ -119,6 +125,36 @@
           <p class="card-text">
             1 
             <strong>{{unitForm['controls'].unit.value}}</strong>
+            of 
+            <strong>{{infoForm['controls'].productName.value}}</strong>
+          </p>
+        </div>
+
+        <ng-container *ngIf="showShoppingUnit">
+        <mat-form-field appearance="standard" floatLabel="always" class="shopping-unit">
+          <mat-label>The Unit for the shopping list</mat-label>
+          <mat-select matInput formControlName="shoppingUnit" placeholder="Pick a value (cup, liter, etc)" 
+          panelClass="dropdown-regular" autofocus="off">
+            <mat-option *ngFor="let unit of units" [value]="unit.value">{{unit.value}}</mat-option>
+          </mat-select>
+          <mat-error class="input-error" *ngIf="!unitForm['controls'].shoppingUnit.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+        </ng-container>
+
+        <mat-form-field appearance="standard" floatLabel="always" *ngIf="unitForm['controls'].unit.dirty">
+          <mat-label>The calculation factor - see example down</mat-label>
+          <input type="number" matInput name="factor" formControlName="factor" placeholder="1" autofocus="none">
+          <mat-error class="input-error" *ngIf="!unitForm['controls'].factor.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+        <div class="result" *ngIf="unitForm['controls'].unit.value && infoForm['controls'].productName.value">
+          <p class="card-text">
+            1 
+            <strong>{{unitForm['controls'].unit.value}}</strong>
+            of 
+            <strong>{{infoForm['controls'].productName.value}}</strong>
+            is
+            {{unitForm['controls'].factor.value}}
+            <strong [class.shopping-unit]="showShoppingUnit">{{unitForm['controls'].shoppingUnit.value || shoppingUnit}}</strong>
             of 
             <strong>{{infoForm['controls'].productName.value}}</strong>
           </p>
