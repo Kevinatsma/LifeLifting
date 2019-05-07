@@ -186,15 +186,6 @@
             }
         }
 
-        h1 {
-            @include respond-down($sm) {
-                text-align: center;
-                margin-top: 0;
-                font-size: 27px;
-                width: 60%;
-            }
-        }
-
         .right {
             button {
                 &:first-child {

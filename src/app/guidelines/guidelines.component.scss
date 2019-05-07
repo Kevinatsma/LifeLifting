@@ -4,6 +4,9 @@
     width: 85%;
     margin: 0 auto;
     padding: 2em 0;
+    @include respond-down($sm) {
+        max-height: calc(100vh - 65px);
+    }
 
     header {
         width: 100%;

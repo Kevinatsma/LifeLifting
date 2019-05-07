@@ -54,7 +54,8 @@
         width: 80%;
 
         @include respond-down($sm) {
-            height: calc(100vh - 65px);
+            min-height: calc(100vh - 65px);
+            height: 100%;
             width: 100vw;
             padding: 2em 16px;
             margin: 2em 0 0 -9%;

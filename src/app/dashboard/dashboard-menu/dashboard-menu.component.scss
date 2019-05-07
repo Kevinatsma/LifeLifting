@@ -1,12 +1,13 @@
 @import './../../../assets/scss/_master.scss';
 
 div.dashboard-menu-wrapper {
-    width: 100%;
+    width: 99%;
     height: auto;
     display: flex;
     flex-flow: column wrap;
     border-right: $light-border;
     overflow-x: hidden;
+    max-width: 99%;
 
     section.logo-wrapper {
         display: flex;

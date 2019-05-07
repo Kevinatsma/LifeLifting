@@ -77,9 +77,16 @@ main.specialist-wrapper {
             .middle {
                 .contact-menu {
                     margin-top: 10px;
+                    @include respond-down($sm) {
+                        flex-flow: row nowrap;
+                    }
 
                     li {
                         text-transform: capitalize;
+                        @include  respond-down($sm) {
+                            width: auto;
+                            margin: 1em 2em 0.5em 0;
+                        }
                     }
                 }
             }

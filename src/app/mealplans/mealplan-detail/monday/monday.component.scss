@@ -53,6 +53,11 @@ main {
                 margin: 1em 0 2em;
                 position: relative;
                 z-index: 1;
+
+                @include respond-down($sm) {
+                    width:  100vw;
+                    margin: 1em 0 -1em;
+                }
             
                 h1 {
                     margin: 0.5em 0 0 3em;

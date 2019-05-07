@@ -76,6 +76,9 @@ main.specialist-wrapper {
                 .subtitle {
                     width: auto;
                     margin: 0;
+                    @include respond-down($sm) {
+                        width: 50%;
+                    }
                 }
 
                 .met-value {

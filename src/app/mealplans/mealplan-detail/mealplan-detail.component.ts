@@ -15,6 +15,8 @@ import { GuidelineService } from './../../guidelines/guideline.service';
 import { Guideline } from './../../guidelines/guideline.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { EditMealDialogComponent } from './../../shared/dialogs/edit-meal-dialog/edit-meal-dialog.component';
+import { Subject } from 'rxjs';
+import { UtilService } from 'src/app/shared/services/util.service';
 
 
 @Component({
@@ -29,6 +31,8 @@ export class MealplanDetailComponent implements OnInit {
     this.mealplanNav = content;
   }
  mealplan: Mealplan;
+
+ isMobile: boolean;
 
   // Navigation
   highlight: HTMLSpanElement;
@@ -58,11 +62,14 @@ export class MealplanDetailComponent implements OnInit {
   client: User;
   gainWeight: boolean;
   increaseCals: boolean;
+  actionMenuOpen: boolean;
+  editStateChange: Subject<boolean> = new Subject<boolean>();
 
   constructor( public auth: AuthService,
                public dialog: MatDialog,
                public router: Router,
                public route: ActivatedRoute,
+               private utils: UtilService,
                private userService: UserService,
                public exerciseService: ExerciseService,
                public guidelineService: GuidelineService,
@@ -73,6 +80,11 @@ export class MealplanDetailComponent implements OnInit {
                 setTimeout(() => {
                   this.createHighlight(this.mealplanNav.nativeElement);
                 }, 1000);
+                this.editStateChange.subscribe((value) => {
+                  this.actionMenuOpen = value;
+                });
+
+                this.isMobile = this.utils.checkIfMobile();
   }
 
   ngOnInit() {
@@ -161,16 +173,18 @@ export class MealplanDetailComponent implements OnInit {
   */
 
   createHighlight(nav) {
-    // Create Element
-    this.highlight = document.createElement('span');
-    this.highlight.classList.add('highlight');
-    nav.append(this.highlight);
+    if (!this.isMobile) {
+      // Create Element
+      this.highlight = document.createElement('span');
+      this.highlight.classList.add('highlight');
+      nav.append(this.highlight);
 
-    // Set initial value
-    const firstItem = document.getElementById('monday');
-    const firstItemCoords = (firstItem as any).getBoundingClientRect();
-    this.highlight.style.width = '5vw';
-    this.highlight.style.left = `translateX(${firstItemCoords.left}px)`;
+      // Set initial value
+      const firstItem = document.getElementById('monday');
+      const firstItemCoords = (firstItem as any).getBoundingClientRect();
+      this.highlight.style.width = '5vw';
+      this.highlight.style.left = `translateX(${firstItemCoords.left}px)`;
+    }
   }
 
   // initiateHighlight() {
@@ -178,10 +192,13 @@ export class MealplanDetailComponent implements OnInit {
   // }
 
   updateTabStates(e) {
-    const highlighter: NodeListOf<Element> = document.querySelectorAll('.highlight');
-    highlighter.forEach(el => {
-      el.classList.add('left');
-    });
+    console.log(e);
+    if (!this.isMobile) {
+      const highlighter: NodeListOf<Element> = document.querySelectorAll('.highlight');
+      highlighter.forEach(el => {
+        el.classList.add('left');
+      });
+    }
     const tabs: NodeListOf<Element> = document.querySelectorAll('.nav-item');
 
     // Reset first
@@ -190,6 +207,7 @@ export class MealplanDetailComponent implements OnInit {
     // Redirect click behavior
     const link = e.target.getAttribute('id');
     const activeLink = document.getElementById(link);
+    console.log(activeLink);
     activeLink.classList.add('active');
 
     // show/hide containers
@@ -229,25 +247,34 @@ export class MealplanDetailComponent implements OnInit {
     this.suppsTab = false;
   }
 
+  toggleButtonMenu() {
+    const buttons = document.querySelectorAll('.action-btn');
+    buttons.forEach(button => {
+      button.classList.toggle('visible');
+    });
+    this.editStateChange.next(!this.actionMenuOpen);
+  }
 
   highlightLinks(e) {
-    const highlights: NodeListOf<Element> = document.querySelectorAll('.highlight');
-    highlights.forEach(hl => {
-      hl.classList.add('left');
-    });
+    if (!this.isMobile) {
+      const highlights: NodeListOf<Element> = document.querySelectorAll('.highlight');
+      highlights.forEach(hl => {
+        hl.classList.add('left');
+      });
 
-    const el = e.target;
-    const linkCoords = (el as any).getBoundingClientRect();
-    const coords = {
-      width: linkCoords.width,
-      height: linkCoords.height,
-      top: linkCoords.top + scrollY,
-      left: linkCoords.left
-    };
-    const highlighter: HTMLSpanElement = document.querySelector('.highlight') || this.highlight;
-    highlighter.style.width = `${coords.width}px`;
-    highlighter.style.height = `${coords.height}px`;
-    highlighter.style.transform = `translateX(${coords.left}px)`;
+      const el = e.target;
+      const linkCoords = (el as any).getBoundingClientRect();
+      const coords = {
+        width: linkCoords.width,
+        height: linkCoords.height,
+        top: linkCoords.top + scrollY,
+        left: linkCoords.left
+      };
+      const highlighter: HTMLSpanElement = document.querySelector('.highlight') || this.highlight;
+      highlighter.style.width = `${coords.width}px`;
+      highlighter.style.height = `${coords.height}px`;
+      highlighter.style.transform = `translateX(${coords.left}px)`;
+    }
   }
 
   // Print mealplan

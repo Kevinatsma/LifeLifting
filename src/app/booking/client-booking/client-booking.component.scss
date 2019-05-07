@@ -1,18 +1,17 @@
 @import './../../../assets/scss/_master.scss';
 @import './../../../assets/scss/_calendar.scss';
+@import './../../../assets/scss/_animations.scss';
 
-.mat-progress-spinner circle, .mat-spinner circle {
+::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
     stroke: $secondary-color;
 }
 
-// Calendar styles
-
-.cal-open-day-events {
-    left: 0!important;
-    width: 100vw!important;
-    padding: 3em 7em 2em!important;
+button.has-messages {
+    animation: signal 1s infinite;
+    svg {
+        color: $primary-color;
+    }
 }
-
 .calendar {
     width: 100%;
 
@@ -21,24 +20,17 @@
         &.loading {
             width: 100%;
             height: 80px;
-
             @extend %flex-center;
         }
 
-        &.calendar__toolbar {
-            .left {
-                .icon-button {
-                    margin-right: 0;
-                }
-            }
+    }
 
-            .hidden {
-                opacity: 0;
-                visibility: hidden;
-                z-index: -100;
+    .right {
+        button:last-child {
+            @include respond-down($sm) {
+                margin-left: 0;
             }
         }
-
     }
 
     .calendar-container {

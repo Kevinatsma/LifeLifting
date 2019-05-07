@@ -26,6 +26,7 @@
     <button
       class="text-link"
       mwlCalendarPreviousView
+      (click)="replaceDates()"
       [view]="view"
       [(viewDate)]="viewDate"
       (viewDateChange)="activeDayIsOpen = false"
@@ -46,6 +47,7 @@
     <button
       class="text-link"
       mwlCalendarNextView
+      (click)="replaceDates()"
       [view]="view"
       [(viewDate)]="viewDate"
       (viewDateChange)="getEvents()"
@@ -67,7 +69,7 @@
       </button>
       <button
         class="btn tab-group-btn"
-        (click)="view = CalendarView.Week"
+        (click)="view = CalendarView.Week; replaceDates()"
         [class.active]="view === CalendarView.Week"
       >
         <span>Week</span>
