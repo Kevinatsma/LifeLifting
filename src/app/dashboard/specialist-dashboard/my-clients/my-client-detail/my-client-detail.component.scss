@@ -330,12 +330,9 @@ section.about {
             &.read-more {
                 overflow: visible;
                 height: auto!important;
-
-                @include respond-down($sm) {
-
-                    &::after {
-                        display: none;
-                    }
+                margin-bottom: 10px;
+                &::after {
+                    display: none;
                 }
             }
 

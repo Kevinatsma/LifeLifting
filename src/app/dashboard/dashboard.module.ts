@@ -52,6 +52,7 @@ import { BookingComponent } from './../booking/booking/booking.component';
 import { MyCalendarComponent } from './specialist-dashboard/my-calendar/my-calendar.component';
 import { MyCalendarClientComponent } from './client-dashboard/my-calendar-client/my-calendar-client.component';
 import { DashboardService } from './dashboard.service';
+import { ShoppingListDetailComponent } from '../shopping-list/shopping-list-detail.component';
 
 
 const routes: Routes = [
@@ -72,6 +73,7 @@ const routes: Routes = [
       {path: 'my-specialist', component: MySpecialistComponent, data: {state: 'my-specialist'}, canActivate: [AuthGuard]},
       {path: 'my-clients', component: MyClientsComponent, data: {state: 'my-clients'}, canActivate: [AuthGuard]},
       {path: 'my-clients/:id', component: MyClientDetailComponent, canActivate: [AuthGuard]},
+      {path: 'shopping-list/:id', component: ShoppingListDetailComponent, data: {state: 'shopping-list'}, canActivate: [AuthGuard]},
       {path: 'my-calendar', component: MyCalendarComponent, data: {state: 'my-calendar'}, canActivate: [AuthGuard]},
       {path: 'my-reviews', component: MyReviewsComponent, data: {state: 'reviews'}, canActivate: [AuthGuard]},
       {path: 'guidelines', component: GuidelinesComponent, data: {state: 'guidelines'}, canActivate: [AuthGuard]},

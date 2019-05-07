@@ -8,6 +8,7 @@ import { UserService } from '../../user/user.service';
 import { User } from '../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { EditMealDialogComponent } from './../../shared/dialogs/edit-meal-dialog/edit-meal-dialog.component';
+import { ChooseMealplanDialogComponent } from './../../shared/dialogs/choose-mealplan-dialog/choose-mealplan-dialog.component';
 
 @Component({
   selector: 'app-mealplan-list-item',
@@ -53,15 +54,9 @@ export class MealplanListItemComponent implements OnInit {
     this.mealplanService.duplicateMealplan(mealplan);
   }
 
-  openShoppingList(mealplan) {
-    alert('TODO: OPEN SHOPPING LIST FOR THIS MEALPLAN');
-  }
-
   printMealplan(mealplan) {
     alert('TODO: EXPORT THIS MEALPLAN TO PDF');
   }
-
-
 
   editMealplan(mealplan) {
     const dialogRef = this.dialog.open(EditMealDialogComponent, {
@@ -78,9 +73,13 @@ export class MealplanListItemComponent implements OnInit {
     });
   }
 
-
   linkToChild(mealplan) {
     const url = `dashboard/mealplans/${mealplan.mID}`;
+    this.router.navigate([url]);
+  }
+
+  linkToShoppingList(mealplan) {
+    const url = `dashboard/shopping-list/${mealplan.mID}`;
     this.router.navigate([url]);
   }
 

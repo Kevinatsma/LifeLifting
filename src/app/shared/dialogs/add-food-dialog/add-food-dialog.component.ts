@@ -143,7 +143,7 @@ export class AddFoodDialogComponent implements OnInit {
   }
 
   // Update on unit change
-  updateUnit($event) {
+  updateUnit() {
     const unit = this.unitForm.get('unit').value;
     console.log(unit);
     switch (unit) {

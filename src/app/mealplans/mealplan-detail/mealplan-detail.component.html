@@ -111,6 +111,7 @@
   
 <ng-container *ngIf="!mealplan">
   <div class="not-available">
+    <app-loading-spinner></app-loading-spinner>
     <h3>😔 Woops! This mealplan is not (yet) avaliable.</h3>
     <p>Please go back to the available mealplans on the mealplans tab.</p>
     <button type="button" class="btn-primary" [routerLink]="['../']">

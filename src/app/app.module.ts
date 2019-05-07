@@ -25,6 +25,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { ChatModule } from './chat/chat.module';
 import { DialogsModule } from './shared/dialogs/dialogs.module';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
 
 // Core Components
@@ -49,6 +50,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     SpecialistModule,
     ChatModule,
     DialogsModule,
+    ShoppingListModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [
