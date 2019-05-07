@@ -303,6 +303,11 @@ export class MealplanDetailComponent implements OnInit {
     });
   }
 
+  linkToShoppingList(mealplan) {
+    const url = `dashboard/shopping-list/${mealplan.mID}`;
+    this.router.navigate([url]);
+  }
+
   goBack() {
     this.location.back();
   }

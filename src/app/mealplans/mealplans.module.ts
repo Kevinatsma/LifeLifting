@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MealplanListItemComponent } from './mealplan-list-item/mealplan-list-item.component';
 import { MealplanListComponent } from '../mealplans/mealplan-list/mealplan-list.component';
-import { EditMealplanComponent } from '../mealplans/edit-mealplan/edit-mealplan.component';
 
 import { SharedModule } from '../shared/shared.module';
 import { MealplanService } from './mealplan.service';
@@ -22,7 +21,6 @@ import { SuppsComponent } from './mealplan-detail/supps/supps.component';
   declarations: [
     MealplanListItemComponent,
     MealplanListComponent,
-    EditMealplanComponent,
     MealplansComponent,
     MondayComponent,
     TuesdayComponent,
@@ -42,7 +40,6 @@ import { SuppsComponent } from './mealplan-detail/supps/supps.component';
   exports: [
     MealplanListItemComponent,
     MealplanListComponent,
-    EditMealplanComponent,
     MealplansComponent,
     MealplanDetailComponent
   ],

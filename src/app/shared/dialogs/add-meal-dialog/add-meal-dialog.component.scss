@@ -12,17 +12,54 @@
         width: 100%;
         height: auto;
         padding: 0;
+        position: relative;
         margin: 0;
 
         .mat-horizontal-stepper-header-container {
             width: 95%;
             margin-right: 2.5%;
+
+            @include  respond-down($sm) {
+                width: 100%;
+                margin: 0 0 0 -0.5em;
+            }
+
+            mat-step-header {
+                @include respond-down($sm) {
+                    display: flex;
+                    align-items: center;
+                    height: 50px;
+                    justify-content: center;
+                }
+                .mat-step-label {
+                    @include respond-down($sm) {
+                        display: none;
+                    }
+                }
+
+                .mat-step-icon {
+                    @include respond-down($sm) {
+                        margin-right: 0;
+                    }
+                }
+            }
         }
 
         .close-section {
             position: absolute;
             right: 10px;
             top: 10px;
+
+            .close-btn {
+                svg {
+                    margin-right: 10px;
+                }
+            }
+
+            @include respond-down($sm) {
+                top: 4em;
+                left: 0.5em;
+            }
         }
     }
 }
@@ -48,6 +85,13 @@
     min-height: 73vh;
     padding: 2em 3em 3em;
     width: 100%;
+
+    @include respond-down($sm) {
+        padding-top: 0;
+        margin-top: 4em;
+        min-height: 69vh;
+    }
+
     h5 {
         margin-bottom: 1em;
     }
@@ -68,13 +112,25 @@ form {
     padding: 0 4em;
     display: flex;
     flex-flow: column wrap;
+    @include respond-down($sm) {
+        margin: 4em 0 2em;
+        padding: 0 16px;
+    }
 
     h3 {
         margin: 0;
+        @include respond-down($sm) {
+            box-sizing: border-box;
+            width: 100%;
+        }
     }
 
     p.card-text {
         margin: 0.5em 0 1.5em;
+        @include respond-down($sm) {
+            box-sizing: border-box;
+            width: 100%;
+        }
     }
 
     .dynamic-form-field-container {
@@ -125,12 +181,19 @@ form {
             box-sizing: border-box;
             border-top: $light-border;
             border-bottom: $light-border;
+
+            @include  respond-down($sm) {
+                flex-flow: column wrap;
+            }
         }
 
         mat-form-field.mat-form-field {
             box-sizing: border-box;
             width: 50%;
             padding: 5px 30px 5px 20px;
+            @include respond-down($sm) {
+                width: 100%;
+            }
 
             &:nth-child(1n) {
                 margin-right: 0;
@@ -187,6 +250,10 @@ form {
             
             &.guideline {
                 width: 50%;
+                @include respond-down($sm) {
+                    margin: 0 5%;
+                    width: 90%;
+                }
             }
         }
 
@@ -211,6 +278,11 @@ form {
         .guideline-activities {
             height: auto;
             padding: 3em 0 3em 2em;
+            @include respond-down($sm) {
+                padding: 2em 0 2em 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
 
             .activity {
                 align-items: center;
@@ -221,10 +293,22 @@ form {
                 justify-content: flex-start;
                 width: 100%;
 
+                @include respond-down($sm) {
+                    align-items: flex-start;
+                    flex-flow: column wrap;
+                }
+
                 app-exercise-list-item {
                     margin: 0 0 3em;
                     height: auto;
                     width: 30%;
+
+                    @include respond-down($sm) {
+                        margin: 0;
+                        position: relative;
+                        width: 70%;
+                        z-index: 100;
+                    }
                 }
 
                 &:last-child {
@@ -245,45 +329,51 @@ form {
                     padding: 2em 0 1em 3em;
                     align-items: center;
 
-                        .target-block {
+                    @include  respond-down($sm) {
+                        width: 100vw;
+                        margin: -50px 0 10px -16px;
+                        padding: 80px 16px 0;
+                    }
+
+                    .target-block {
+                        width: 100%;
+                        h6 {
+                            text-transform: capitalize;
+                        }
+
+                        &__full-width {
                             width: 100%;
-                            h6 {
-                                text-transform: capitalize;
-                            }
+                            ul {
+                                li {
+                                    align-items: center;
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin: 1em 0;
 
-                            &__full-width {
-                                width: 100%;
-                                ul {
-                                    li {
-                                        align-items: center;
+                                    span, input {
+                                        border-right: 1px solid $border-color;
+                                        color: $text-black;
                                         display: flex;
-                                        flex-direction: row;
-                                        margin: 1em 0;
+                                        align-items: center;
+                                        justify-content: flex-start;
+                                        font-size: 28px;
+                                        font-weight: $bold;
+                                        height: 65px;
+                                        margin-right: 1em;
+                                        text-align: center;
+                                        width: 85px;
+                                    }
 
-                                        span, input {
-                                            border-right: 1px solid $border-color;
-                                            color: $text-black;
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: flex-start;
-                                            font-size: 28px;
-                                            font-weight: $bold;
-                                            height: 65px;
-                                            margin-right: 1em;
-                                            text-align: center;
-                                            width: 85px;
-                                        }
-
-                                        h4 {
-                                            text-transform: capitalize;
-                                            color: $secondary-color;
-                                        }
+                                    h4 {
+                                        text-transform: capitalize;
+                                        color: $secondary-color;
                                     }
                                 }
                             }
                         }
                     }
                 }
+            }
         }
     }
 
@@ -307,6 +397,12 @@ form {
             padding: 0 1em 0 2em;
             width: auto;
 
+            @include respond-down($sm) {
+                box-sizing: border-box;
+                margin: 0 0 1em;
+                width: fit-content;
+            }
+
             mat-form-field * {
                 padding: 0!important;
                 border-top: 0!important;
@@ -314,6 +410,16 @@ form {
 
             mat-form-field:nth-child(1) {
                 width: 120px;
+                @include respond-down($sm) {
+                    width: 70px;
+                    &.ng-invalid {
+                        width: 160px;
+                    }
+    
+                    &.ng-valid {
+                        width: 70px;
+                    }
+                }
             }
 
             .unit {
@@ -322,17 +428,33 @@ form {
                 align-items: center;
                 margin-left: 1.5em;
 
+                @include respond-down($sm) {
+                    box-sizing: border-box;
+                    margin-left: 1em;
+                    width: 100%;
+                }
+
                 mat-form-field {
                     width: 50px;
+                    @include respond-down($sm) {
+                        width: 30px;
+                    }
 
                     &.select {
                         width: 150px;
                         margin-left: 1.2em;
+                        @include respond-down($sm) {
+                            margin-left: 0.75em;
+                            width: 95px;
+                        }
                     }
                 }
 
                 span {
                     margin-left: 1em;
+                    @include respond-down($sm) {
+                        margin-left: 0.5em;
+                    }
                 }
             }
 
@@ -393,6 +515,11 @@ form {
     &.day-form {
         .time-container {
             min-height: 100px;
+            @include respond-down($sm) {
+                box-sizing: border-box;
+                width: 100%;
+            }
+
             section.header {
                 box-sizing: border-box;
                 display: flex;
@@ -401,6 +528,9 @@ form {
                 padding: 0 3em 0 0;
                 align-items: center;
                 justify-content: space-between;
+                @include respond-down($sm) {
+                    padding: 0;
+                }
 
                 .title {
                     h4 {
@@ -409,12 +539,20 @@ form {
                         &.not-filled {
                             color: $grey;
                         }
+                        @include respond-down($sm) {
+                            font-size: 22px;
+                            width: 100%;
+                        }
                     }
                 }
                 .time {
                     font-size: 20px;
                     position: relative;
                     top: 5px;
+                    @include respond-down($sm) {
+                        top: 1px;
+                        font-size: 19px;
+                    }
 
                     svg {
                         font-size: 20px;
@@ -458,6 +596,11 @@ form {
                         margin-top: -25px;
                         font-size: 45px;
                         font-weight: $semi-bold;
+
+                        @include respond-down($sm) {
+                            font-size: 40px;
+                            margin: -15px 25px 0 0;
+                        }
                     }
 
                     mat-form-field {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MealplanService } from './../../../mealplans/mealplan.service';
 import { Mealplan } from './../../../mealplans/mealplan.model';
@@ -10,7 +10,8 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 @Component({
   selector: 'app-my-mealplan-list',
   templateUrl: './my-mealplan-list.component.html',
-  styleUrls: ['./my-mealplan-list.component.scss']
+  styleUrls: ['./my-mealplan-list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyMealplanListComponent implements OnInit {
   mealplanCol: AngularFirestoreCollection<Mealplan[]>;

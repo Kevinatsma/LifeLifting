@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, ViewEncapsulation, HostListener, ViewChild } from '@angular/core';
-import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Inject, HostListener, ViewChild } from '@angular/core';
+import { FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 // Services

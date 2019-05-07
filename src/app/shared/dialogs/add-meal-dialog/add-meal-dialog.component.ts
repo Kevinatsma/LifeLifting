@@ -1,22 +1,18 @@
-import { Component, OnInit, Inject, ViewEncapsulation, HostListener } from '@angular/core';
-import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
+import { FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 // Services
 import { AuthService } from '../../../core/auth/auth.service';
 import { UserService } from '../../../user/user.service';
-import { ExerciseService } from '../../../exercises/exercise.service';
 import { FoodService } from './../../../foods/food.service';
 import { MealplanService } from '../../../mealplans/mealplan.service';
 import { AddMealDialogService } from './add-meal-dialog.service';
-import { GuidelineService } from './../../../guidelines/guideline.service';
 import { Observable } from 'rxjs';
 
 // Data
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { User } from '../../../user/user.model';
-import { Guideline } from './../../../guidelines/guideline.model';
-import { Exercise } from '../../../exercises/exercise.model';
 import { Time } from '../../data/models/time.model';
 import { Food } from './../../../foods/food.model';
 import { DayForm } from './day-form.model';
@@ -25,17 +21,20 @@ import mealTimes from './../../data/JSON/mealTimes.json';
 import { Specialist } from './../../../specialists/specialist.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { SuppsForm } from './supps-form.model';
+import { Mealplan } from './../../../mealplans/mealplan.model';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-add-meal-dialog',
   templateUrl: './add-meal-dialog.component.html',
-  styleUrls: ['./add-meal-dialog.component.scss']
+  styleUrls: ['./add-meal-dialog.component.scss', './../edit-meal-dialog/edit-meal-dialog.component.scss']
 })
 export class AddMealDialogComponent implements OnInit {
   // Values for storing data
   user = User;
   specialistID;
   specialist: Specialist;
+  mealplans: Mealplan[];
 
   // FormGroups
   infoForm: FormGroup;
@@ -73,6 +72,7 @@ export class AddMealDialogComponent implements OnInit {
   }
 
   constructor( private fb: FormBuilder,
+               private afs: AngularFirestore,
                private auth: AuthService,
                private userService: UserService,
                private foodService: FoodService,
@@ -83,6 +83,7 @@ export class AddMealDialogComponent implements OnInit {
                private dialogRef: MatDialogRef<AddMealDialogComponent>,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
                 this.foodService.getFoods().subscribe(foods => this.foods = foods);
+                setTimeout(() => this.getMealplans(), 500);
                }
 
   ngOnInit() {
@@ -151,6 +152,19 @@ export class AddMealDialogComponent implements OnInit {
     this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
   }
 
+  getMealplans() {
+    const colRef = this.afs.collection('mealplans', ref => ref.where('clientID', '==',  `${this.userData.uid}`));
+    this.mealplanService.queryMealplans(colRef).subscribe(mealplans => {
+      this.mealplans = mealplans;
+      this.patchForm(this.mealplans);
+    });
+  }
+
+  // Patch form
+  patchForm(mealplans) {
+    const mealplanNumber = mealplans.length + 1;
+    this.infoForm.get('mID').patchValue(mealplanNumber);
+  }
 
   // Collect the data and send to service
   addMealplan() {

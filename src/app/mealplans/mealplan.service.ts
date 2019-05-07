@@ -63,6 +63,11 @@ export class MealplanService {
     return this.mealplans;
   }
 
+  queryMealplans(colRef) {
+    this.mealplans = colRef.valueChanges();
+    return this.mealplans;
+  }
+
   addMealplan(data) {
     this.afs.collection<Mealplan>(`mealplans`).add(data)
     .then(credential => {

@@ -42,7 +42,7 @@ main.specialist-wrapper {
             z-index: 1234;
 
             @include respond-down($sm) {
-                right: 13px;
+                right: -3px;
                 top: 6em;
             }
 
@@ -72,6 +72,12 @@ main.specialist-wrapper {
                     &.visible {
                         transition-delay: 0.2s;
                     }
+                }
+            }
+
+            button.action-btn {
+                @include respond-down($sm) {
+                    svg { font-size: 22px; }
                 }
             }
         }
