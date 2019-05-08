@@ -12,15 +12,18 @@
             <p class="hide">HI</p>
           </div>
         </mat-radio-group>
+        <p class="card-text mobile swipe">Swipe <i class="fas fa-long-arrow-alt-right"></i></p>
       </section>
 
       <div class="btn-area" *ngIf="!user.packageChoice">
         <button class="btn-icon-left" routerLink="../step-one">
           <i class="fas fa-chevron-left small"></i>
-          <span>Previous step</span>
+          <span class="not-mobile">Previous step</span>
+          <span class="mobile">Previous</span>
         </button>
         <button class="btn-icon-right" (click)="updateUser(user)" [class.btn-disabled]="chosenPackage === null" [disabled]="chosenPackage === null">
-          <span>Next step</span>
+          <span class="not-mobile">Next step</span>
+          <span class="mobile">Next</span>
           <i class="fas fa-chevron-right small"></i>
         </button>
       </div>

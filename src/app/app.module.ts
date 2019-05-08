@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,6 +26,9 @@ import { ChatModule } from './chat/chat.module';
 import { DialogsModule } from './shared/dialogs/dialogs.module';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
+
+// Hammer
+import { CustomHammerConfig } from './hammer-config';
 
 
 // Core Components
@@ -56,7 +59,15 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
   declarations: [
     AppComponent
   ],
-  providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [
+    {
+    provide: FirestoreSettingsToken, useValue: {}
+    },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: CustomHammerConfig
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

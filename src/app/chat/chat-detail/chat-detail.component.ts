@@ -5,6 +5,7 @@ import { ChatThreadService } from './../chat-thread.service';
 import { Observable } from 'rxjs';
 import { Thread } from './../thread.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UtilService } from '../../shared/services/util.service';
 
 @Component({
   selector: 'app-chat-detail',
@@ -17,15 +18,23 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
 
   threads: Observable<Thread[]>;
   threadId: string;
+  showThread: boolean;
+  isMobile: boolean;
 
   constructor( public el: ElementRef,
                private location: Location,
                private threadService: ChatThreadService,
+               private utils: UtilService,
                private route: ActivatedRoute,
-               private router: Router) {}
+               private router: Router) {
+                 this.threadService.showThread.subscribe(thread => this.showThread = thread);
+                 this.isMobile = this.utils.checkIfMobile();
+               }
 
   ngAfterViewChecked() {
-    this.scrollToBottom();
+    if (!this.isMobile) {
+      this.scrollToBottom();
+    }
   }
 
   ngOnInit() {
@@ -49,6 +58,10 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
     const threadID = this.route.snapshot.paramMap.get('id');
     this.threadService.deleteThread(threadID);
     return this.router.navigate(['chat']);
+  }
+
+  showThreads() {
+    this.threadService.showThread.next(true);
   }
 
   // delete() {

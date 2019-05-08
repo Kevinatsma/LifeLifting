@@ -11,7 +11,7 @@
     "compile:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
-    "dev": "npm run build:client-and-server-bundles && npm run compile:server && node dist/server",
+    "dev": "npm run build:client-and-server-bundles && npm run compile:server && node dist/server && firebase deploy",
     "build-prod": "bash ./scripts/ng.sh build --prod --aot",
     "build:client-and-server-bundles": "npm run build-prod && ng run LifeLifting:server:production"
   },

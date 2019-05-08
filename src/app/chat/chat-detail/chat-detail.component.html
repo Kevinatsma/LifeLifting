@@ -1,6 +1,9 @@
-<main class="detail-wrapper">
+<main class="detail-wrapper" *ngIf="!showThread">
   <mat-toolbar>
-    <button mat-icon-button (click)="goBack()" class="back-btn">
+    <button mat-icon-button (click)="goBack()" class="back-btn not-mobile">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <button mat-icon-button (click)="showThreads()" class="back-btn mobile">
       <mat-icon>arrow_back</mat-icon>
     </button>
     <button mat-icon-button [matMenuTriggerFor]="menu">

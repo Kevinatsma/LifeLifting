@@ -2,7 +2,7 @@
 <main class="calendar calendar-signup" *ngIf="auth.user | async as user">
   <section class="action-toolbar-top calendar__toolbar">
     <div class="left">
-      <button class="icon-button hidden">
+      <button class="icon-button mobile" (click)="addEvent()">
         <i class="fas fa-plus"></i>
       </button>
     </div>

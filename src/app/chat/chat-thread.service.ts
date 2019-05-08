@@ -5,7 +5,7 @@ import {
   AngularFirestoreCollection,
   AngularFirestoreDocument
 } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Thread } from './thread.model';
 import { Message } from './message.model';
 
@@ -25,6 +25,7 @@ export class ChatThreadService {
   reverseRequestedThread: string;
   thread: Observable<Thread>;
   threads: Observable<Thread[]>;
+  showThread: Subject<boolean> = new Subject;
 
   constructor(
     private router: Router,

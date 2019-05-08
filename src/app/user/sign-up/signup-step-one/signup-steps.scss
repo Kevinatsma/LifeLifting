@@ -12,11 +12,27 @@
     margin: 0;
     box-sizing: border-box;
 
+    @include respond-down($sm) {
+        height: auto!important;
+    }
+
+    form {
+        @include respond-down($sm) {
+            display: flex;
+            flex-flow: column wrap;
+            height: 100%;
+            width: 100vw;
+        }
+    }
+
     form .animated-container {
         position: relative;
         // max-height: 20px;
-        animation: increase-height 1s;
+        animation: increase-height 0.6s;
         overflow: hidden;
+        @include respond-down($sm) {
+            animation: none;
+        }
     }
 
     form .animated-container {
@@ -26,6 +42,9 @@
         justify-content: flex-start;
         width: 80%;
         margin: 3em auto;
+        @include respond-down($sm) {
+            width: 90%;
+        }
 
         .mat-form-field, .multiple-input{
             width: 40%;

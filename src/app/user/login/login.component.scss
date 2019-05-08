@@ -133,7 +133,7 @@ section.login-container{
         flex-flow: column wrap;
         justify-content: flex-start;
         overflow: visible!important;
-        height: auto!important;
+        height: auto;
 
         section.photo-container {
             display: none;

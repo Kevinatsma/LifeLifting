@@ -24,6 +24,12 @@ main.thread-container {
             display: flex;
             flex-flow: column nowrap;
 
+            @include respond-down($sm) {
+                width: 100vw;
+                position: absolute;
+                z-index: 100;
+            }
+
             ::ng-deep app-chat-thread {
                 &.active {
                     background: $light-grey;
@@ -34,6 +40,9 @@ main.thread-container {
         &.router-wrapper {
             width: 75vw;
             position: relative;
+            @include respond-down($sm) {
+                width: 100vw;
+            }
 
             ::ng-deep app-chat-detail {
                 width: 100%;

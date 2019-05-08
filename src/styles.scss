@@ -254,6 +254,12 @@ a.menu-link, button.menu-link {
             color: #fff;
         }
     }
+
+    // @include respond-down($sm) {
+    //     color: $secondary-color;
+    //     background: none;
+    //     box-shadow: none;
+    // }
 }
 
 .btn-icon-left {
@@ -288,17 +294,28 @@ a.menu-link, button.menu-link {
         color: $grey;
         // animation: pulse-blue 2s infinite;  
     }
+
+    @include respond-down($sm) {
+        background: none;
+        border: none;
+    }
 }
 
 .open-side-component {
     position: absolute;
     left: -5px;
-    top: 5em;
+    top: 4em;
     width: 45px;
     height: 50px;
     border-radius: 5px;
     background: $light-grey;
     box-shadow: $card-shadow;
+
+    @include respond-down($sm) {
+        top: -1em;
+        transform: rotate(90deg);
+        left: calc(50% - 22.5px);
+    }
 
     svg {
         font-size: 16px;

@@ -19,6 +19,15 @@ main.detail-wrapper {
 
         button:nth-child(2) {
             margin-left: auto;
+            @include  respond-down($sm) {
+                margin-left: 0;
+            }
+        }
+
+        button:nth-child(3) {
+            @include respond-down($sm) {
+                margin-left: auto;
+            }
         }
         mat-icon {
             color: #fff;

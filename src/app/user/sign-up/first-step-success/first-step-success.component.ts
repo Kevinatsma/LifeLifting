@@ -3,6 +3,7 @@ import { AuthService } from './../../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../user.service';
 import { User } from '../../user.model';
+import { UtilService } from './../../../shared/services/util.service';
 
 @Component({
   selector: 'app-first-step-success',
@@ -12,11 +13,15 @@ import { User } from '../../user.model';
 export class FirstStepSuccessComponent implements OnInit {
   @Output() close = new EventEmitter();
   user: User;
+  isMobile: boolean;
 
   constructor( public auth: AuthService,
                private userService: UserService,
+               private utils: UtilService,
                private cdr: ChangeDetectorRef,
-               public route: Router) { }
+               public route: Router) {
+                this.isMobile = this.utils.checkIfMobile();
+               }
 
   ngOnInit() {
     this.getUserData();
@@ -29,8 +34,8 @@ export class FirstStepSuccessComponent implements OnInit {
     });
   }
 
-
   closeSection() {
+    console.log('hey');
     this.close.emit(null);
   }
 }

@@ -5,6 +5,10 @@ div.success-wrapper {
     height: 100vh;
     overflow: hidden;
 
+    @include  respond-down($sm) {
+        width: 100vw!important;
+    }
+
     .login-container {
         @extend %flex-column-center;
         padding: 0;
@@ -24,6 +28,9 @@ div.success-wrapper {
         img.logo {
             width: 60%;
             margin-top: 0;
+            @include respond-down($sm) {
+                width: 40%;
+            }
         }
 
         ul.checklist {

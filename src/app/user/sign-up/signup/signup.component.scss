@@ -10,7 +10,6 @@ div.router-wrapper {
         width: 100%;
         overflow-y: auto;
     }
-
 }
 
 :host ::ng-deep router-outlet + * {
@@ -21,12 +20,35 @@ div.router-wrapper {
     position: absolute;
 }
 
+.main-wrapper {
+    @include respond-down($sm) {
+        height: 100%!important;
+    }
+}
+
 div.show-section {
     z-index: 500;
 }
 
-@media only screen and (max-width: 768px) {
-    app-first-step-success {
-        display: none;
+@keyframes appear-from-top {
+    0% {
+        transform: translateY(-100%);
+    }
+    60% {
+        transform: translateY(7%);
+    }
+    80% {
+        transform: translateY(-2%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+app-first-step-success {
+    @include respond-down($sm) {
+        animation: appear-from-top 0.5s ease-in-out;
+        position: absolute;
+        z-index: 100;
     }
 }

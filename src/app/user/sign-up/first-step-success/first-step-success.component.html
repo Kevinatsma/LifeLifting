@@ -14,30 +14,44 @@
       <li [class.activated]="user.basicData">
         <div class="placeholder" *ngIf="!user.basicData"></div>
         <i class="fas fa-check-square" *ngIf="user.basicData"></i>
-        <a routerLink="step-one">Step 1: Fill out basic data</a>
+
+        <ng-container *ngIf="!isMobile"><a routerLink="step-one">Step 1: Fill out basic data</a></ng-container>
+        <ng-container *ngIf="isMobile"><a (click)="closeSection()" routerLink="step-one">Step 1: Fill out basic data</a></ng-container>
       </li>
       <li [class.activated]="user.packageChoice">
         <div class="placeholder" *ngIf="!user.packageChoice"></div>
         <i class="fas fa-check-square" *ngIf="user.packageChoice"></i>
-        <a routerLink="step-two" *ngIf="user.basicData">Step 2: Choose a package</a>
+
+        <ng-container *ngIf="!isMobile"><a routerLink="step-two" *ngIf="user.basicData">Step 2: Choose a package</a></ng-container>
+        <ng-container *ngIf="isMobile"><a routerLink="step-two" (click)="closeSection()" *ngIf="user.basicData">Step 2: Choose a package</a></ng-container>
+        
         <ng-container *ngIf="!user.basicData">Step 2: Choose a package</ng-container>
       </li>
       <li [class.activated]="user.specialist">
         <div class="placeholder" *ngIf="!user.specialist"></div>
         <i class="fas fa-check-square" *ngIf="user.specialist"></i>
-        <a routerLink="step-three" *ngIf="user.packageChoice">Step 3: Choose a specialist</a>
+
+        <ng-container *ngIf="!isMobile"><a routerLink="step-three" *ngIf="user.packageChoice">Step 3: Choose a specialist</a></ng-container>
+        <ng-container *ngIf="isMobile"><a routerLink="step-three" (click)="closeSection()" *ngIf="user.packageChoice">Step 3: Choose a specialist</a></ng-container>
+        
         <ng-container *ngIf="!user.packageChoice">Step 3: Choose a specialist</ng-container>
       </li>
       <li [class.activated]="user.status.appointment">
         <div class="placeholder" *ngIf="!user.status.appointment"></div>
         <i class="fas fa-check-square" *ngIf="user.status.appointment"></i>
-        <a routerLink="step-four" *ngIf="user.specialist">Step 4: Make an appointment</a>
+
+        <ng-container *ngIf="!isMobile"><a routerLink="step-four" *ngIf="user.specialist">Step 4: Make an appointment</a></ng-container>
+        <ng-container *ngIf="isMobile"><a routerLink="step-four" (click)="closeSection()" *ngIf="user.specialist">Step 4: Make an appointment</a></ng-container>
+        
         <ng-container *ngIf="!user.specialist">Step 4: Make an appointment</ng-container>
       </li>
       <li [class.activated]="user.status.accepted">
         <div class="placeholder" *ngIf="!user.status.accepted"></div>
         <i class="fas fa-check-square" *ngIf="user.status.accepted"></i>
-        <a routerLink="limbo" *ngIf="user.status.appointment">Step 5: Finishing up</a>
+
+        <ng-container *ngIf="!isMobile"><a routerLink="limbo" *ngIf="user.status.appointment">Step 5: Finishing up</a></ng-container>
+        <ng-container *ngIf="isMobile"><a routerLink="limbo" (click)="closeSection()" *ngIf="user.status.appointment">Step 5: Finishing up</a></ng-container>
+        
         <ng-container *ngIf="!user.status.appointment">Step 5: Finishing up</ng-container>
       </li>
     </ul>

@@ -75,7 +75,7 @@
         </mat-form-field>
 
         <h3 class="date" *ngIf="hasStartDate">
-          {{ start.startDay }} {{ start.startMonth }} {{ start.startYear }}
+          <ng-container *ngIf="start">{{ start.startDay }} {{ start.startMonth }} {{ start.startYear }}</ng-container>
         </h3>
 
         <div class="time" *ngIf="!hasStartDate">
@@ -92,7 +92,7 @@
 
         <h3 class="date" *ngIf="hasStartDate">
           <i class="far fa-clock"></i>
-          {{ start.startHours }} {{ start.startMinutes }}
+          <ng-container *ngIf="start">{{ start.startHours }} {{ start.startMinutes }}</ng-container>
         </h3>
       </div>
     </div>
@@ -110,7 +110,7 @@
         </mat-form-field>
 
         <h3 class="date" *ngIf="hasEndDate">
-          {{ end.endDay }} {{ end.endMonth }} {{ end.endYear }}
+          <ng-container *ngIf="end">{{ end.endDay }} {{ end.endMonth }} {{ end.endYear }}</ng-container>
         </h3>
 
         <div class="time" *ngIf="!hasEndDate">
@@ -127,7 +127,7 @@
 
         <h3 class="date" *ngIf="hasEndDate">
           <i class="far fa-clock"></i>
-          {{ end.endHours }} {{ end.endMinutes }}
+          <ng-container *ngIf="end">{{ end.endHours }} {{ end.endMinutes }}</ng-container>
         </h3>
 
       </div>

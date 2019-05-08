@@ -16,7 +16,7 @@ import { Guideline } from './../../guidelines/guideline.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { EditMealDialogComponent } from './../../shared/dialogs/edit-meal-dialog/edit-meal-dialog.component';
 import { Subject } from 'rxjs';
-import { UtilService } from 'src/app/shared/services/util.service';
+import { UtilService } from './../../shared/services/util.service';
 
 
 @Component({
