@@ -57,12 +57,8 @@
     </ul>
     <div class="btn-area" *ngIf="user.status">
       <button type="link" class="btn-primary" 
-      [class.btn-disabled]="
-      !user.basicData || !user.status.appointment || !user.specialist || !user.packageChoice ||
-      !user.status.accepted || !user.status.appointmentAccepted || !user.status.subscriptionValid"
-      [disabled]="
-      !user.basicData || !user.status.appointment || !user.specialist || !user.packageChoice ||
-      !user.status.accepted || !user.status.appointmentAccepted || !user.status.subscriptionValid"
+      [class.btn-disabled]="!user.status.accepted"
+      [disabled]="!user.status.accepted"
       routerLink="../dashboard">Go to Mirror</button>
       <br>
       <button type="link" class="text-link" routerLink="../login">Go back</button>

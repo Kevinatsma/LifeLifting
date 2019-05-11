@@ -10,6 +10,9 @@
     min-width: 40vw;
     background: #fff;
     box-shadow: $card-shadow;
+    @include respond-down($sm) {
+        padding: 0 0 0.5em;
+    }
 
     .profile-pic-bubble {
         animation: bounce-appear 0.9s;
@@ -90,6 +93,12 @@
         margin: 1em 0;
         padding: 0;
 
+        @include respond-down($sm) {
+            flex-flow: column wrap;
+            align-items: flex-start;
+            padding: 0 3em;
+        }
+
         .secondary-chip {
             margin: 0 1em;
             background: $primary-light;
@@ -101,6 +110,10 @@
             font-size: 16px;
             border-left: 3px solid $primary-color;
             border-radius: 2px 6px 6px 2px;
+
+            @include  respond-down($sm) {
+                margin: 0 0 1em;
+            }
 
             &:nth-child(2n) {
                 background: lighten($secondary-color, 52%);
@@ -119,6 +132,9 @@
         position: relative;
         margin: 3em auto 2.5em;
         width: 75%;
+        @include respond-down($sm) {
+            margin-top: 1em;
+        }
 
         &::before {
             content: '';
@@ -274,45 +290,6 @@
                             flex-flow: row nowrap;
                         }
                     }
-
-                    .location-card {
-                        box-sizing: border-box;
-                        border-radius: 10px;
-                        display: flex;
-                        justify-content: flex-start;
-                        background-color: #fff;
-                        box-shadow: $card-shadow;
-                        align-items: center;
-                        height: 130px;
-                        width: 120%;
-                        padding: 0 2em;
-                        margin: 1.5em -10% 2em;
-                
-                        img {
-                            width: 50px;
-                            height: auto;
-                            margin-top: -4px;
-                        }
-                
-                        .address {
-                            display: flex;
-                            flex-flow: column wrap;
-                            align-items: flex-start;
-                            justify-content: center;
-                            margin: 0 auto 0 2em;
-                            width: 55%;
-
-                            h4 {
-                                margin: 0;
-                            }
-                            
-                            p {
-                                font-size: 16px;
-                                font-weight: $regular;
-                                margin: 0;
-                            }
-                        }
-                    }
                 }
             }
 
@@ -333,6 +310,59 @@
                 }
             }
         }
+    }
+}
+
+.location-card {
+    box-sizing: border-box;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #fff;
+    box-shadow: $card-shadow;
+    align-items: center;
+    height: 130px;
+    width: 120%;
+    padding: 0 2em;
+    margin: 1.5em -10% 2em;
+
+    img {
+        width: 50px;
+        height: auto;
+        margin-top: -4px;
+    }
+
+    .address {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 0 auto 0 2em;
+        width: 55%;
+
+        h4 {
+            margin: 0;
+        }
+        
+        p {
+            font-size: 16px;
+            font-weight: $regular;
+            margin: 0;
+        }
+    }
+}
+
+.location-card {
+    width: 110%;
+    margin: 0 0 2em -5%;
+    padding: 0 0 0 1.5em;
+
+    .address {
+        width: 60%;
+    }
+
+    a {
+        text-align: center;
     }
 }
 

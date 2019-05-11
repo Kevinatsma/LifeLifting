@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { Specialist } from '../specialist.model';
 import { Observable } from 'rxjs';
 
@@ -9,9 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class SpecialistItemComponent implements OnInit {
   @Input() specialist: Specialist;
+  @Output() specialistToShow = new EventEmitter();
   aboutExtended = false;
   reviewsVisible = false;
 
+  // Toggles
+  showSpecialist = false;
 
   // specialist = Observable<Specialist>;
 
@@ -41,6 +44,16 @@ export class SpecialistItemComponent implements OnInit {
   closeReviews() {
     this.reviewsVisible = false;
     this.cdr.detectChanges();
+  }
+
+  // Toggles
+  toggleSpecialist(specialist) {
+    this.specialistToShow  = specialist;
+    this.showSpecialist = true;
+  }
+
+  closeSpecialist() {
+    this.showSpecialist = false;
   }
 
 }

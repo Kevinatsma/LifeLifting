@@ -18,6 +18,11 @@ section.specialist-header {
     align-items: flex-start;
     background: $light-grey;
     box-shadow: $card-shadow;
+    @include respond-down($sm) {
+        background: white;
+        box-shadow: none;
+        flex-flow: column wrap;
+    }
 
     div.profile-picture {
         width: 50%;
@@ -25,12 +30,20 @@ section.specialist-header {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        @include respond-down($sm) {
+            width: 100%;
+        }
     }
 
     div.quick-info {
         width: 50%;
         padding: 1em 2em;
         margin-top: 1em;
+
+        @include respond-down($sm) {
+            width: 100%;
+            padding: 1em 0.5em;
+        }
 
         p {
             margin-top: 0.5em;
@@ -130,5 +143,43 @@ section.btn-area {
             font-size: 12px;
             margin-left: 5px;
         }     
+    }
+}
+
+.specialist-container {
+    &.active {
+        position: fixed;
+        top: 0;
+        height: 100vh;
+        background: #fff;
+        padding: 0;
+        margin: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 500;
+    }
+
+    .hide-btn {
+        position: absolute;
+        top: 0.6em;
+        left: calc(50% - 25px);
+        font-size: 23px;
+        width: 50px;
+        height: 40px;
+        background: $light-grey;
+        box-shadow: $card-shadow;
+        border-radius: 0 0 5px 5px;
+        transform: translateY(-40px);
+        transition: transform 300ms ease-in-out;
+        z-index: 50;
+        @include respond-down($sm) {
+            top: 40px;
+            transition: none;
+        }
+
+        &:hover {
+            transform: translateY(-15px);
+        }
     }
 }

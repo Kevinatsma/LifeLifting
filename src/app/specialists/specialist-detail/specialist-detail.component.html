@@ -18,7 +18,7 @@
           <i class="fas fa-edit"></i>
         </button>
 
-        <button class="icon-button edit-button" (click)="openReviewDialog(specialist)" *ngIf="!editShow &&  user.status.accepted">
+        <button class="icon-button edit-button" (click)="openReviewDialog(specialist)" *ngIf="!editShow &&  user.status.canReview">
           <i class="fas fa-star"></i>
         </button>
       </div>

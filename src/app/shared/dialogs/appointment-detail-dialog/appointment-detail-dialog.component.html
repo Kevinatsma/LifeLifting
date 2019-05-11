@@ -85,11 +85,11 @@
           </p>
         </div>
       </div>
-      <div class="contact-container__item face-to-face" *ngIf="faceToFace && event.faceToFacePhone.phoneAreaCode || event.location">
+      <div class="contact-container__item face-to-face" *ngIf="faceToFace && event.faceToFacePhone || event.location">
         <h4>Face to Face </h4>
         <p *ngIf="client" class="phone-number">
           <i class="fas fa-phone"></i>
-          <a class="text-link" href="tel:{{event.faceToFacePhone.phoneAreaCode}}{{event.faceToFacePhone.phoneRest}}">
+          <a class="text-link" href="tel:{{event.faceToFacePhone}}">
             Call {{client.displayName}}
           </a>
         </p>

@@ -47,6 +47,7 @@ export class DashboardComponent implements OnInit {
   }
 
   redirect() {
+    console.log(this.user);
     if (!this.user.basicData) {
       this.router.navigate(['signup/step-one']);
     } else if (!this.user.packageChoice) {

@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { User } from './user.model';
 import { AuthService } from '../core/auth/auth.service';
+import { Specialist } from '../specialists/specialist.model';
 
 @Injectable({
   providedIn: 'root'

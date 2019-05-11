@@ -46,6 +46,10 @@ div.show-section {
 }
 
 app-first-step-success {
+    @include  respond-up($sm) {
+        box-shadow: $sidebar-shadow;
+    }
+    
     @include respond-down($sm) {
         animation: appear-from-top 0.5s ease-in-out;
         position: absolute;

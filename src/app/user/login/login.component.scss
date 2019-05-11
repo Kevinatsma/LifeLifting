@@ -101,6 +101,9 @@ section.login-container{
     .btn-area {
         margin: 40px auto 0;
         width: 100%;
+        @include respond-down($sm) {
+            display: block;
+        }
 
         button {
             &.text-link {

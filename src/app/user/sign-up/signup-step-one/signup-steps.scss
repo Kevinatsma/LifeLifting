@@ -12,9 +12,10 @@
     margin: 0;
     box-sizing: border-box;
 
-    @include respond-down($sm) {
-        height: auto!important;
-    }
+    // @include respond-down($sm) {
+    //     height: 50vh!important;
+    //     margin: 25vh 0;
+    // }
 
     form {
         @include respond-down($sm) {

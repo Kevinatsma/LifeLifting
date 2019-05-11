@@ -40,6 +40,10 @@
         box-sizing: border-box;
         @extend %flex-center;
 
+        @include respond-down($sm) {
+            padding: 0;
+        }
+
         .btn-icon-right {
             margin-top: 2em;
         }
@@ -63,6 +67,9 @@
     .appointments {
         margin-top: 5em;
         width: 70%;
+        @include respond-down($sm) {
+            width: 95%;
+        }
     }
 
     .specialist-container {
@@ -84,6 +91,9 @@
             transform: translateY(-40px);
             transition: transform 300ms ease-in-out;
             z-index: 50;
+            @include respond-down($sm) {
+                top: 40px;
+            }
 
             &:hover {
                 transform: translateY(-15px);

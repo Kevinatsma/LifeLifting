@@ -9,6 +9,7 @@ import { Specialist } from './../../../specialists/specialist.model';
 import { UserService } from './../../../user/user.service';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { Subject } from 'rxjs';
+import { UtilService } from '../../services/util.service';
 
 @Component({
   selector: 'app-add-appointment-dialog',
@@ -61,6 +62,7 @@ export class AddAppointmentDialogComponent implements OnInit {
                @Inject(MAT_DIALOG_DATA) public data: any,
                private bookingService: BookingService,
                private userService: UserService,
+               private utils: UtilService,
                private specialistService: SpecialistService,
                private cdr: ChangeDetectorRef
     ) {
@@ -86,10 +88,7 @@ export class AddAppointmentDialogComponent implements OnInit {
       startTime: [''],
       startHour: [''],
       startMinutes: [''],
-      faceToFacePhone: this.fb.group({
-        'phoneAreaCode': [''] || null,
-        'phoneRest': [''] || null,
-      }),
+      faceToFacePhone: [''],
       onlinePhone: this.fb.group({
         phoneAreaCode: [`${this.phoneAreaCode.value}`],
         'phoneRest': [''] || null,
@@ -215,7 +214,7 @@ export class AddAppointmentDialogComponent implements OnInit {
       members: [this.user.uid, this.specialist.uid],
       meetMethod: this.appointmentForm.get('appointmentContext').value,
       contactMethod: this.appointmentForm.get('contactMethod').value,
-      faceToFacePhone: this.appointmentForm.controls.faceToFacePhone.value || null,
+      faceToFacePhone: '+51' + this.appointmentForm.get('faceToFacePhone').value,
       location: this.appointmentForm.get('location').value || null,
       whatsappNumber: this.appointmentForm.get('wappNumber').value || null,
       skypeName: this.appointmentForm.get('skypeName').value || null,
@@ -299,7 +298,7 @@ export class AddAppointmentDialogComponent implements OnInit {
   }
 
   getEndTimeAndDate(dateObj) {
-    const date = this.dateAdd(dateObj, 'minute', 60);
+    const date = this.utils.dateAdd(dateObj, 'minute', 60);
     const endDay = date.getDate().toString();
     const endMonth = this.monthList[date.getMonth()];
     const endYear = date.getFullYear().toString();
@@ -315,27 +314,5 @@ export class AddAppointmentDialogComponent implements OnInit {
   convertMinutes(date) {
     const minutes = ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
     return minutes;
-  }
-
-  dateAdd(date, interval, units) {
-    let ret = new Date(date);
-    const checkRollover = function() {
-      if (ret.getDate() !== date.getDate()) {
-        ret.setDate(0);
-      }
-    };
-
-    switch (interval.toLowerCase()) {
-      case 'year'   :  ret.setFullYear(ret.getFullYear() + units); checkRollover();  break;
-      case 'quarter':  ret.setMonth(ret.getMonth() + 3 * units); checkRollover();  break;
-      case 'month'  :  ret.setMonth(ret.getMonth() + units); checkRollover();  break;
-      case 'week'   :  ret.setDate(ret.getDate() + 7 * units);  break;
-      case 'day'    :  ret.setDate(ret.getDate() + units);  break;
-      case 'hour'   :  ret.setTime(ret.getTime() + units * 3600000);  break;
-      case 'minute' :  ret.setTime(ret.getTime() + units * 60000);  break;
-      case 'second' :  ret.setTime(ret.getTime() + units * 1000);  break;
-      default       :  ret = undefined;  break;
-    }
-    return ret;
   }
 }

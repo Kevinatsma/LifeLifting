@@ -1,7 +1,8 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  OnInit
+  OnInit,
+  ViewChild
 } from '@angular/core';
 import {
   isSameMonth,
@@ -13,7 +14,8 @@ import {
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
   CalendarView,
-  CalendarEventTitleFormatter
+  CalendarEventTitleFormatter,
+  ɵp
 } from 'angular-calendar';
 import { BookingService } from '../booking.service';
 import { User } from '../../user/user.model';
@@ -32,6 +34,8 @@ import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointme
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UtilService } from './../../shared/services/util.service';
+import { checkAndUpdateBinding } from '@angular/core/src/view/util';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup-booking',
@@ -54,16 +58,7 @@ export class SignUpBookingComponent implements OnInit {
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
 
-  // Spinner
-  spinner = {
-    color: 'primary',
-    mode: 'indeterminate',
-    value: 70
-  };
-
-
-  // events$: Observable<Array<CalendarEvent<{ film: Film }>>>;
-  // events$: Observable<Appointment[]>;
+  appointmentForm: FormGroup;
 
   modalData: {
     action: string;
@@ -73,6 +68,33 @@ export class SignUpBookingComponent implements OnInit {
   actions: CalendarEventAction[] = [];
 
   activeDayIsOpen = true;
+  showStepTwoMobile = false;
+  isMobile: boolean;
+  startDate: any;
+
+  // Substrings to display date and time
+  start = {
+    startDay: '',
+    startMonth: '',
+    startYear: '',
+    startHours: '',
+    startMinutes: '',
+  };
+  endDate: Date;
+  end = {
+    endDay: '',
+    endMonth: '',
+    endYear: '',
+    endHours: '',
+    endMinutes: ''
+  };
+
+  // Month list
+  monthList = [
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+  ];
 
   // TODO: HOOKUP MAT DIALOG INSTEAD OF BOOTSTRAP MODAL
   constructor( private userService: UserService,
@@ -80,21 +102,27 @@ export class SignUpBookingComponent implements OnInit {
                private dialog: MatDialog,
                private bookingService: BookingService,
                private specialistService: SpecialistService,
-               private utilService: UtilService,
+               private utils: UtilService,
                private threadService: ChatThreadService,
                public location: Location,
                public router: Router,
                private route: ActivatedRoute,
+               private fb: FormBuilder,
                private afs: AngularFirestore) {
                 this.getUser();
+                this.isMobile = this.utils.checkIfMobile();
                }
 
   ngOnInit() {
     this.replaceDates();
+
+    this.appointmentForm = this.fb.group({
+      phoneNumber: ['', Validators.required],
+    });
   }
 
   replaceDates() {
-    this.utilService.replaceCalendarHeaderDates();
+    this.utils.replaceCalendarHeaderDates();
   }
 
   // Getters
@@ -156,6 +184,38 @@ export class SignUpBookingComponent implements OnInit {
     }
   }
 
+  // Mobile date display
+  getTimeAndDate() {
+    const date  = new Date(this.startDate);
+    const startDay = date.getDate().toString();
+    const startMonth = this.monthList[date.getMonth()];
+    const startYear = date.getFullYear().toString();
+    const startHours = date.getHours().toString();
+    const startMinutes = this.convertMinutes(date);
+
+    this.start = {
+      startDay, startMonth, startYear, startHours, startMinutes
+    };
+
+    this.getEndTimeAndDate(date);
+  }
+
+  getEndTimeAndDate(dateObj) {
+    const date = this.utils.dateAdd(dateObj, 'minute', 60);
+    this.end.endDay = date.getDate().toString();
+    this.end.endMonth = this.monthList[date.getMonth()];
+    this.end.endYear = date.getFullYear().toString();
+    this.end.endHours = date.getHours().toString();
+    this.end.endMinutes = this.convertMinutes(date);
+
+    this.endDate = date;
+  }
+
+  convertMinutes(date) {
+    const minutes = ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+    return minutes;
+  }
+
   // REFRESH CALENDAR FUNCTION
   eventTimesChanged({
     event,
@@ -185,13 +245,23 @@ export class SignUpBookingComponent implements OnInit {
 
 
   hourClicked(date) {
-    this.dialog.open(AddAppointmentDialogComponent, {
-      data: {
-        user: this.user,
-        specialist: this.specialist,
-        date: date
-      },
-    });
+    if (!this.isMobile) {
+      this.dialog.open(AddAppointmentDialogComponent, {
+        data: {
+          user: this.user,
+          specialist: this.specialist,
+          date: date
+        },
+      });
+    } else {
+      this.showStepTwoMobile = true;
+      this.startDate = date;
+      this.getTimeAndDate();
+    }
+  }
+
+  closeMobileAppointment() {
+    this.showStepTwoMobile = false;
   }
 
   ////////////////
@@ -243,6 +313,72 @@ export class SignUpBookingComponent implements OnInit {
         return null;
       }
     });
+  }
+
+  addMobileEvent() {
+    const specialistID = this.specialist.specialistID;
+
+    const data: Appointment = {
+      accepted: false,
+      rejected: false,
+      created: new Date(),
+      title: 'First consultation',
+      start: this.startDate.toString(),
+      // start: new Date(),
+      end: this.endDate.toString(),
+      color: {
+        primary: '#2ecc71',
+        secondary: '#5ec78a',
+      },
+      draggable: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      specialistID: specialistID,
+      clientID: this.user.uid,
+      members: [this.user.uid, this.specialist.uid],
+      meetMethod: 'faceToFace',
+      faceToFacePhone: '+51' + this.appointmentForm.get('phoneNumber').value,
+    };
+
+    // Update request amount on specialist
+    this.updateSpecialist(this.specialist);
+    this.updateUser(this.user);
+
+    // add event to db
+    this.bookingService.addEvent(data, this.user);
+  }
+
+  updateUser(user) {
+    const data = {
+      status: {
+        appointment: true,
+        appointmentAccepted: false,
+        appointmentCompleted: false,
+        accepted: false,
+        signUpCompleted: true,
+        subscriptionValid: false,
+      }
+    };
+    this.userService.updateUser(user.uid, data);
+  }
+
+
+  updateSpecialist(specialist) {
+    let amount;
+    if (specialist.stats) {
+      amount = specialist.stats.amountOfEventRequests + 1;
+    } else {
+      amount = 1;
+    }
+
+    const specialistData = {
+      stats: {
+        amountOfEventRequests: amount
+      }
+    };
+    this.specialistService.updateSpecialist(specialist.specialistID, specialistData);
   }
 
   // Chat

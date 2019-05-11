@@ -5,6 +5,75 @@
     stroke: $secondary-color;
 }
 
+.create-appointment-mobile {
+    background: #fff;
+    position: fixed;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0 2em;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+
+    .close-section {
+        margin-top: 2em;
+        
+        svg {
+            margin-right: 0.5em;
+        }
+    }
+
+    section {
+        &.intro {
+            margin: 0 0 1em;
+            width: 90%;
+        }
+
+        &.timeline {
+            margin: 1.5em 1.5em 2.5em;
+        }
+    }
+
+    .location-card {
+        width: 110%;
+        margin: 0 0 2em -5%;
+        padding: 0 0 0 1.5em;
+
+        .address {
+            width: 60%;
+        }
+
+        a {
+            text-align: center;
+        }
+    }
+
+    form {
+        align-items: center;
+        display: flex;
+        flex-flow: row nowrap;
+        width: 100%;
+
+        h5 {
+            width: 10%;
+            margin: -1px 5% 0 0;
+        }
+
+        mat-form-field {
+            width: 85%;
+        }
+    }
+
+    button {
+        margin: 1em 10% 1em 10%;
+    }
+}
+
 .calendar {
     width: 100%;
 
@@ -22,10 +91,24 @@
             .cal-event {
                 background-color: #f58f84!important;
                 border-color: #e74c3c!important;
+                @include respond-down($sm) {
+                    max-width: 75%!important;
+                }
             }
 
-            .cal-week-view .cal-event span {
-                display: none;
+            .cal-week-view {
+                @include respond-down($sm) {
+                    margin-top: 2em;
+                }
+                .cal-event span {
+                    display: none;
+                }
+            }
+        }
+
+        .action-toolbar-top {
+            .left {
+                width: 55px;
             }
         }
     }
@@ -43,7 +126,6 @@
             .hidden {
                 opacity: 0;
                 visibility: hidden;
-
             }
         }
 

@@ -82,21 +82,22 @@ export class AppointmentDetailComponent {
       this.onlineAppointment = true;
       this.faceToFace = false;
     }
-
-    if (e.whatsappNumber.wappRest === '') {
-      this.whatsApp = false;
-    } else {
-      this.whatsApp = true;
-    }
-    if (e.skypeName === null) {
-      this.skype = false;
-    } else {
-      this.skype = true;
-    }
-    if (e.onlineAppointmentPhone.phoneRest === '') {
-      this.onlinePhone = false;
-    } else {
-      this.onlinePhone = true;
+    if (!this.faceToFace) {
+      if (e.whatsappNumber.wappRest === '') {
+        this.whatsApp = false;
+      } else {
+        this.whatsApp = true;
+      }
+      if (e.skypeName === null) {
+        this.skype = false;
+      } else {
+        this.skype = true;
+      }
+      if (e.onlineAppointmentPhone.phoneRest === '') {
+        this.onlinePhone = false;
+      } else {
+        this.onlinePhone = true;
+      }
     }
   }
 

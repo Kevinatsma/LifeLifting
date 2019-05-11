@@ -1,5 +1,5 @@
 
-<mat-card class="list-item-card" *ngIf="mealplan">
+<mat-card class="list-item-card" *ngIf="mealplan && auth.user | async as user">
   <div *ngIf="client" class="card-circle" (click)="linkToChild(mealplan)">
     <i class="fas fa-weight"></i>
     <div class="nr-circle">
@@ -52,7 +52,7 @@
       </ul>
     </div>
   </section>
-  <section class="actions">
+  <section class="actions" *ngIf="user.roles.specialist || user.roles.admin">
     <button type="button" (click)="deleteMealplanDialog(mealplan)">
       <i class="fas fa-trash"></i>
     </button>

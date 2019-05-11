@@ -7,10 +7,14 @@
       <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
       <h5>{{specialist.position}}</h5>
       <p>Speciality: {{specialist.speciality}}</p>
+
+      <a class="text-link mobile" (click)="toggleSpecialist(specialist)">
+        Learn more
+      </a>
     </div>
   </section>
 
-  <section class="about">  
+  <section class="about not-mobile">  
     <h5>👩 About {{specialist.firstName}}</h5>
     <p [class.read-more]="aboutExtended">{{specialist.description}}</p>
     <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
@@ -23,7 +27,7 @@
     </button>
   </section>
 
-  <section class="middle">
+  <section class="middle not-mobile">
     <div class="practical-info">
       <h5 class="purple">📖 Practical Info</h5>
       <p>Experience: {{specialist.yearsOfExperience}} years</p>
@@ -38,7 +42,7 @@
     </div>
   </section>
 
-  <section class="reviews-opened">
+  <section class="reviews-opened not-mobile">
     <h5 class="purple">⭐ Reviews</h5>
     <div class="review-container" *ngIf="reviewsVisible">
       <mat-card class="review-item" *ngFor="let review of specialist.reviews">
@@ -48,7 +52,7 @@
     </div>
   </section>
 
-  <section class="btn-area">
+  <section class="btn-area not-mobile">
     <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
       Show reviews
       <i class="fas fa-chevron-down"></i>
@@ -60,4 +64,12 @@
   </section>
 
 </ng-container>
-  
+
+
+<section class="specialist-container" *ngIf="showSpecialist" [class.active]="showSpecialist">
+  <button class="hide-btn" (click)="closeSpecialist()" *ngIf="showSpecialist">
+    <i class="fas fa-times"></i>
+  </button>
+  <app-specialist-detail [specialist]="specialistToShow" *ngIf="showSpecialist">
+  </app-specialist-detail>
+</section>
