@@ -80,6 +80,14 @@
         flex-flow: column wrap;
         height: 100%;
         width: 100%;
+        @include respond-down($sm) {
+            box-sizing: border-box;
+            padding: 2em 16px;
+
+            h1,  p {
+                text-align: center;
+            }
+        }
 
         button {
             margin-top: 1em;

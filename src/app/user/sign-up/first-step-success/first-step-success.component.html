@@ -40,10 +40,10 @@
         <div class="placeholder" *ngIf="!user.status.appointment"></div>
         <i class="fas fa-check-square" *ngIf="user.status.appointment"></i>
 
-        <ng-container *ngIf="!isMobile"><a routerLink="step-four" *ngIf="user.specialist">Step 4: Make an appointment</a></ng-container>
-        <ng-container *ngIf="isMobile"><a routerLink="step-four" (click)="closeSection()" *ngIf="user.specialist">Step 4: Make an appointment</a></ng-container>
+        <ng-container *ngIf="!isMobile"><a routerLink="step-four" *ngIf="user.specialist">Step 4: Request appointment</a></ng-container>
+        <ng-container *ngIf="isMobile"><a routerLink="step-four" (click)="closeSection()" *ngIf="user.specialist">Step 4: Request appointment</a></ng-container>
         
-        <ng-container *ngIf="!user.specialist">Step 4: Make an appointment</ng-container>
+        <ng-container *ngIf="!user.specialist">Step 4: Request appointment</ng-container>
       </li>
       <li [class.activated]="user.status.accepted">
         <div class="placeholder" *ngIf="!user.status.accepted"></div>

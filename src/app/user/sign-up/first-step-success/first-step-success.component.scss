@@ -8,12 +8,26 @@ div.success-wrapper {
     @include  respond-down($sm) {
         width: 100vw!important;
     }
+    @include respond-down($xs) {
+        overflow-y: auto;
+    }
 
     .login-container {
         @extend %flex-column-center;
         padding: 0;
         align-items: center!important;
         position: relative;
+        @include respond-down($sm) {
+            overflow: auto;
+            height: 100%;
+            padding: 0 16px;
+        }
+
+        @include respond-down($xs) {
+            overflow: auto;
+            height: auto;
+            padding: 1em 16px;
+        }
 
         .close-section {
             position: absolute;
@@ -28,7 +42,9 @@ div.success-wrapper {
         img.logo {
             width: 60%;
             margin-top: 0;
+
             @include respond-down($sm) {
+                margin-bottom: 20px;
                 width: 40%;
             }
         }
@@ -36,6 +52,14 @@ div.success-wrapper {
         ul.checklist {
             margin: 20px auto;
             width: 70%;
+
+            @include respond-down($sm) {
+                margin: 20px 0;
+            }
+
+            @include respond-down($xs) {
+                width: 90%;
+            }
 
             li {
                 display: flex;
@@ -75,11 +99,19 @@ div.success-wrapper {
 
         p.intro-text {
             width: 80%;
+            @include  respond-down($sm) {
+                margin: 0;
+                width: 100%;
+            }
         }
 
         .btn-area {
             flex-flow: column wrap;
             width: 60%;
+            @include respond-down($sm) {
+                margin-top: 10px;
+            }
+
             .btn-disabled {
                 cursor: not-allowed;
                 background: $middle-grey;
