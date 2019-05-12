@@ -1,5 +1,5 @@
 <mat-form-field class="chat-box">
   <input matInput type="text" placeholder="Start typing.." autofocus
   [(ngModel)]="message" (keydown)="handleSubmit($event)" matTextareaAutosize autocomplete="off">
-  <mat-icon (click)="send()" matSuffix>send</mat-icon>
+  <i (click)="send()" class="far fa-paper-plane"></i>
 </mat-form-field>

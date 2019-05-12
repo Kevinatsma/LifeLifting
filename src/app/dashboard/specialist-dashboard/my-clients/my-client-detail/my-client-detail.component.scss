@@ -19,6 +19,9 @@ main.specialist-wrapper {
     overflow-x: hidden;
     overflow-y: auto;
     padding: 1.5em 2em;
+    @include respond-down($sm) {
+        padding: 1.5em 1em;
+    }
 
     .action-toolbar-top {
         position: relative;

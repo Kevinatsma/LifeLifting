@@ -10,11 +10,13 @@ import { ChatMessageService } from '../chat-message.service';
 })
 export class ChatMessageComponent implements OnInit {
   @Input() message: Message;
+  convertedMessageTimestamp: Date;
 
   incoming: boolean;
 
   constructor( private auth: AuthService,
-               private messageService: ChatMessageService) { }
+               private messageService: ChatMessageService) {
+                }
 
   ngOnInit() {
     this.checkIncoming();

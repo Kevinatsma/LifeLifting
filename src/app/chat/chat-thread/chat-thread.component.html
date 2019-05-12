@@ -2,8 +2,10 @@
   <div>
       <section class="photo-container">
         <!-- <div class="photo" [style.backgroundImage]="'url('+ thread.avatar +')'"></div> -->
-        <img class="photo" *ngIf="thread.creator.creatorPhoto === user.photoURL" matListAvatar [src]="thread.target.targetPhoto || '//:0'">
-        <img class="photo" *ngIf="thread.creator.creatorPhoto !== user.photoURL" matListAvatar [src]="thread.creator.creatorPhoto || '//:0'">
+        <img class="photo" *ngIf="thread.creator.creatorPhoto === user.photoURL" matListAvatar
+          [src]="thread.target.targetPhoto || './../../../assets/img/icons/user-no-photo.svg'">
+        <img class="photo" *ngIf="thread.creator.creatorPhoto !== user.photoURL" matListAvatar
+          [src]="thread.creator.creatorPhoto || './../../../assets/img/icons/user-no-photo.svg'">
       </section>
       <section class="thread-info">
         <h5 *ngIf="thread.creator.creatorPhoto !== user.photoURL">{{thread.creator.creatorName}}</h5>
@@ -11,10 +13,9 @@
         <p class="card-text">{{thread.lastMessage}}</p>
       </section>
       
-      <!-- <p mat-line>{{thread.lastMessage}}</p> -->
-      <!-- <button mat-icon-button (click)="delete(thread.id)">
-        <mat-icon>delete</mat-icon>
-      </button> -->
+      <span class="amount-of-messages" *ngIf="hasUnreads">
+        {{thread.unreadMessages}}
+      </span>
     
   </div>
 </div>

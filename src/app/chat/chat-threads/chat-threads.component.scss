@@ -30,6 +30,21 @@ main.thread-container {
                 z-index: 100;
             }
 
+            .close-section {
+                margin: 2em 1em 1em;
+                button {
+                    svg {
+                        margin-right: 10px;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .big-title {
+                font-size: 24px;
+                margin: 0 1em 1em;
+            }
+
             ::ng-deep app-chat-thread {
                 &.active {
                     background: $light-grey;

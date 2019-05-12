@@ -30,6 +30,7 @@ export class MealplanListItemComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUserDataByID(this.mealplan.clientID).subscribe(user => this.client = user);
+    setTimeout(() => console.log(this.mealplan), 1500);
   }
 
   deleteMealplanDialog(mealplan) {

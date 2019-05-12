@@ -16,13 +16,15 @@
         height: 100%!important;
         justify-content: flex-start;
         padding: 4em 16px 0;
-        overflow-y: hidden;
+        overflow-y: auto;
     }
 
     &.success {
         @include respond-down($sm) {
             justify-content: center;
             padding-top: 0;
+            height: 100vh;
+            overflow: hidden;
 
             p {
                 text-align: center;
@@ -54,7 +56,6 @@
             flex-flow: column nowrap;
             height: auto;
             width: 100vw;
-            overflow-y: auto;
         }
 
         .animated-container {

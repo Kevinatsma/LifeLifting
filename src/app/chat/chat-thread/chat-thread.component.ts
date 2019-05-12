@@ -17,22 +17,32 @@ export class ChatThreadComponent implements OnInit {
   isCreator: boolean;
   param: string;
   id: any;
+  hasUnreads = false;
 
   constructor( private threadService: ChatThreadService,
                public auth: AuthService,
                private userService: UserService,
                private route: ActivatedRoute) {
                 // this.checkCreator();
+                setTimeout(() => this.checkUnreads(), 300);
                }
 
   ngOnInit() {
+  }
+
+  checkUnreads() {
+    if (this.thread.lastSenderId === `${this.auth.currentUserId}` && this.thread.unreadMessages > 0) {
+      this.hasUnreads = false;
+    } else {
+      this.hasUnreads = true;
+    }
   }
 
   checkCreator() {
     const id = this.auth.currentUserId;
     this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
-      if (this.thread.creator.creatorID === this.user.uid) {
+      if (this.thread.creator.creatorUID === this.user.uid) {
         return this.isCreator = true;
       } else {
         return this.isCreator = false;

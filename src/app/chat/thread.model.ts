@@ -2,7 +2,7 @@ export class Thread {
     id: string;
     read: boolean;
     creator: {
-        creatorID: string,
+        creatorUID: string,
         creatorName: string,
         creatorPhoto: string
     };
@@ -11,6 +11,8 @@ export class Thread {
         targetPhoto: string
     };
     lastMessage: string;
-    lastUpdated: string;
-    members: Object;
+    lastUpdated: Date;
+    unreadMessages: number;
+    lastSenderId: string;
+    members: Array<string>;
 }

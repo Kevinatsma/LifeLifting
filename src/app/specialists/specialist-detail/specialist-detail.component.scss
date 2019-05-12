@@ -355,7 +355,8 @@ div.review-container {
     max-width: 80vw;
 
     @include respond-down($sm) {
-        max-width: 100vw;
+        min-width: 100vw;
+        max-width: none;
     }
 
     app-review-list-item {

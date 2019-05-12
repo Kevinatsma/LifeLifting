@@ -18,6 +18,7 @@ export class ChatThreadsComponent implements OnInit {
   threads: Observable<Thread[]>;
   thread: Observable<Thread>;
   showThreads: boolean;
+  isMobile: boolean;
 
   constructor( public route: ActivatedRoute,
                private threadService: ChatThreadService,
@@ -27,6 +28,7 @@ export class ChatThreadsComponent implements OnInit {
                ) {
                  this.threadService.showThread.subscribe(showThread => this.showThreads = showThread);
                  this.threadService.showThread.next(true);
+                 this.isMobile = this.utils.checkIfMobile();
                }
 
   ngOnInit() {
@@ -38,12 +40,13 @@ export class ChatThreadsComponent implements OnInit {
     const channelID = thread.id;
     const url = `chat/chat-detail/${channelID}`;
     this.messageService.getMessages(channelID);
+    this.threadService.getThread(channelID);
     this.router.navigate([url]);
     this.setActiveThread(channelID);
     this.threadService.getThread(channelID);
 
     const data = {
-      read: true
+      unreadMessages: 0
     };
     return this.threadService.updateThread(channelID, data);
   }
@@ -58,11 +61,17 @@ export class ChatThreadsComponent implements OnInit {
   }
 
   hideThreads() {
-    this.threadService.showThread.next(false);
+    if (this.isMobile) {
+      this.threadService.showThread.next(false);
+    }
   }
 
   showChatThreads() {
     this.threadService.showThread.next(true);
     setTimeout(() => this.chatComp.scrollToBottom(), 800);
+  }
+
+  goToDashboard() {
+    this.router.navigate(['../../../dashboard']);
   }
 }

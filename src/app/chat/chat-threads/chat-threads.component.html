@@ -1,5 +1,11 @@
 <main class="thread-container" *ngIf="threads | async as threads">
   <section class="chat-sidebar" *ngIf="showThreads">
+      <div class="close-section">
+        <button class="text-link close-btn" (click)="goToDashboard()" type="button">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+      </div>
+    <h6 class="big-title">LifeLifting Chat</h6>
     <app-chat-thread *ngFor="let thread of threads" [thread]="thread" (click)="linkToChild(thread); hideThreads()" routerLinkActive="active">
     </app-chat-thread>
   </section>

@@ -100,13 +100,15 @@ export class ChatThreadService {
       lastUpdated: new Date(),
       creator: {
         creatorName: this.user.displayName || this.user.email,
-        creatorPhoto: this.user.photoURL
+        creatorPhoto: this.user.photoURL,
+        creatorUID: creatorID
       },
       target: {
         targetPhoto: targetUser.photoURL,
         targetName: targetUser.displayName
       },
-      members: { [profileID]: true, [creatorID]: true },
+      members: [ profileID, creatorID ],
+      unreadMessages: 0,
     };
 
     const threadPath = `chats/${id}`;
@@ -116,7 +118,10 @@ export class ChatThreadService {
   }
 
   getThreads() {
-    this.threadsCollection = this.afs.collection('chats', ref => ref.where(`members.${this.auth.currentUserId}`, '==', true));
+    const uid  =  this.auth.currentUserId;
+    console.log(uid);
+    this.threadsCollection = this.afs.collection('chats', ref =>
+      ref.where('members', 'array-contains', `${uid}`));
     this.threads = this.threadsCollection.valueChanges();
     return this.threads;
   }

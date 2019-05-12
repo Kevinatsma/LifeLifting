@@ -14,6 +14,7 @@ import { rendererTypeName } from '@angular/compiler';
 })
 export class DashboardTopNavComponent implements OnInit {
   @Input() user: User;
+  replacementURL = './../../../../assets/img/icons/user-no-photo.svg';
 
   constructor( private auth: AuthService,
                public router: Router,

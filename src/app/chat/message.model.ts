@@ -4,5 +4,5 @@ export class Message {
     sender: string;
     senderId: string;
     content: string;
-    timestamp: string;
+    timestamp: Date;
 }

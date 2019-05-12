@@ -1,4 +1,4 @@
-<main class="detail-wrapper" *ngIf="!showThread">
+<main class="detail-wrapper" *ngIf="!showThread && thread">
   <mat-toolbar>
     <button mat-icon-button (click)="goBack()" class="back-btn not-mobile">
       <mat-icon>arrow_back</mat-icon>
@@ -6,6 +6,10 @@
     <button mat-icon-button (click)="showThreads()" class="back-btn mobile">
       <mat-icon>arrow_back</mat-icon>
     </button>
+
+    <h3 *ngIf="isCreator">{{thread.target.targetName}}</h3>
+    <h3 *ngIf="!isCreator">{{thread.creator.creatorName}}</h3>
+
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>

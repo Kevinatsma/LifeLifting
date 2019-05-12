@@ -8,14 +8,19 @@ main.detail-wrapper {
     position: relative;
     display: flex;
     flex-flow: column wrap;
-
+    @include  respond-down($sm) {
+        max-height: 100vh;
+        overflow: hidden;
+    }
     
     mat-toolbar {
-        background: $black;
-        height: 50px;
+        background: #fff;
+        height: 65px;
         display: flex;
         justify-content: space-between;
         box-shadow: $toolbar-shadow;
+        position: relative;
+        z-index: 100;
 
         button:nth-child(2) {
             margin-left: auto;
@@ -29,8 +34,15 @@ main.detail-wrapper {
                 margin-left: auto;
             }
         }
+
+        h3 {
+            color: $primary-color;
+            margin: 0 auto;
+            font-family: $main-font;
+        }
+
         mat-icon {
-            color: #fff;
+            color: $primary-color;
         }
     }
 
@@ -41,7 +53,7 @@ main.detail-wrapper {
             overflow-y: scroll;
             overflow: auto;
             background: $light-grey;
-            padding: 1em 2em 3em;
+            padding: 1em 2em 4em;
         }
 
         &.chat-input {

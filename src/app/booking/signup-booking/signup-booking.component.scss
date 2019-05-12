@@ -9,11 +9,13 @@
     background: #fff;
     position: fixed;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-start;
     padding: 0 2em;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
     top: 0;
     left: 0;
     right: 0;
@@ -43,13 +45,28 @@
         width: 110%;
         margin: 0 0 2em -5%;
         padding: 0 0 0 1.5em;
+        @include respond-down($sm) {
+            padding: 1em;
+        }
 
         .address {
             width: 60%;
+
+            @include respond-down($sm) {
+                h4 {
+                    font-size: 16px;
+                }
+                p {
+                    font-size: 13px;
+                }
+            }
         }
 
         a {
             text-align: center;
+            @include respond-down($sm) {
+                font-size: 14px;
+            }
         }
     }
 
@@ -70,7 +87,8 @@
     }
 
     button {
-        margin: 1em 10% 1em 10%;
+        margin: 1em auto;
+        min-height: 50px;
     }
 }
 
