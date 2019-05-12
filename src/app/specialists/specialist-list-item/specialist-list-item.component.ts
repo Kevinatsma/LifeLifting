@@ -30,6 +30,7 @@ export class SpecialistListItemComponent implements OnInit {
         firstName: specialist.firstName,
         lastName: specialist.lastName
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

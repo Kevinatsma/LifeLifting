@@ -28,6 +28,7 @@ export class PackageListItemComponent implements OnInit {
         packageID: llPackage.packageID,
         packageTitle: llPackage.packageTitle,
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

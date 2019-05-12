@@ -249,6 +249,7 @@ export class SpecialistBookingComponent implements OnInit {
         eventID: event.eventID,
         eventTitle: event.title,
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

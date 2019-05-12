@@ -1,4 +1,5 @@
 @import './_master.scss';
+@import './_animations.scss';
 
 
 ::ng-deep .mat-step-header-ripple .mat-ripple {
@@ -78,6 +79,24 @@ main.dialog-wrapper {
                     cursor: initial;
                 }
             }
+        }
+    }
+}
+
+@keyframes slide-up {
+
+}
+
+.confirm-dialog {
+    @include respond-down($sm) {
+        animation: fly-in-from-bottom 0.4s;
+        min-width: 100vw!important;
+        max-width: 100vw!important;
+        position: fixed!important;
+        bottom: 0;
+
+        .mat-dialog-container {
+            border-radius: 0;
         }
     }
 }

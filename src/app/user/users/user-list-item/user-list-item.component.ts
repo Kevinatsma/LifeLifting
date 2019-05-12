@@ -32,6 +32,7 @@ export class UserListItemComponent implements OnInit {
         uid: user.uid,
         displayName: user.displayName
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -55,6 +56,7 @@ export class UserListItemComponent implements OnInit {
       data: {
         acceptedUser: user.displayName
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

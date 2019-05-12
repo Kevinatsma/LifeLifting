@@ -3,7 +3,7 @@
     <img matListAvatar [src]="message.photoURL || './../../../assets/img/icons/user-no-photo.svg'" alt="{{message.sender}}">
     <mat-card>
         <p>{{ message.content }}</p>
-        <p><small>{{ message.timestamp | date: 'short'}}</small></p>
+        <p><small>{{ message.timestamp.toDate() | date: 'short'}}</small></p>
     </mat-card>
   </div>
 </div>

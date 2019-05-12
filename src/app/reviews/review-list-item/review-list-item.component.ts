@@ -76,6 +76,7 @@ export class ReviewListItemComponent implements OnInit {
       data: {
         reviewID: review.reviewID
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

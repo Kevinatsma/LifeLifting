@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Message } from './../message.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { ChatMessageService } from '../chat-message.service';

@@ -7,6 +7,8 @@ import { Thread } from './../thread.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtilService } from '../../shared/services/util.service';
 import { AuthService } from './../../core/auth/auth.service';
+import { MatDialog } from '@angular/material';
+import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-chat-detail',
@@ -30,7 +32,8 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
                private threadService: ChatThreadService,
                private utils: UtilService,
                private route: ActivatedRoute,
-               private router: Router) {
+               private router: Router,
+               private dialog: MatDialog) {
                  this.threadService.showThread.subscribe(thread => this.showThread = thread);
                  this.isMobile = this.utils.checkIfMobile();
                  setTimeout(() => this.scrollToBottom(), 1000);
@@ -76,13 +79,27 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
 
 
   deleteChat() {
-    const threadID = this.route.snapshot.paramMap.get('id');
-    this.threadService.deleteThread(threadID);
-    if (!this.isMobile) {
-      return this.router.navigate(['chat']);
-    } else {
-      return this.threadService.showThread.next(true);
-    }
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        thread: this.thread
+      },
+      panelClass: 'confirm-dialog'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        const threadID = this.route.snapshot.paramMap.get('id');
+        this.threadService.deleteThread(threadID);
+        if (!this.isMobile) {
+          return this.router.navigate(['chat']);
+        } else {
+          return this.threadService.showThread.next(true);
+        }
+      } else if (result === false) {
+        return null;
+      }
+    });
+
   }
 
   showThreads() {

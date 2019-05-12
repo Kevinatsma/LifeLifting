@@ -50,7 +50,10 @@
           <div class="top">
           <h2>{{user.displayName}}</h2>
           <h5 *ngIf="user.basicData">{{user.basicData.country}}</h5>
-          <p>User ID: {{user.uid}}</p>
+          <p>
+            <strong>User ID</strong><br>
+            {{user.uid}}
+          </p>
           <div class="icon-fact-container">
             <div class="fact" *ngIf="user.basicData">
               <i class="fas fa-transgender"></i>

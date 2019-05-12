@@ -5,6 +5,7 @@ import { User } from './../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { UserService } from './../../user/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-chat-thread',
@@ -31,7 +32,9 @@ export class ChatThreadComponent implements OnInit {
   }
 
   checkUnreads() {
-    if (this.thread.lastSenderId === `${this.auth.currentUserId}` && this.thread.unreadMessages > 0) {
+    if (this.thread.lastSenderId === `${this.auth.currentUserId}`) {
+      this.hasUnreads = false;
+    } else  if ( this.thread.unreadMessages === 0 ) {
       this.hasUnreads = false;
     } else {
       this.hasUnreads = true;

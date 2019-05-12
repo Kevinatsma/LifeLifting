@@ -39,6 +39,7 @@ export class MealplanListItemComponent implements OnInit {
         mID: mealplan.mID,
         mealplanName: mealplan.mealplanName,
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {
