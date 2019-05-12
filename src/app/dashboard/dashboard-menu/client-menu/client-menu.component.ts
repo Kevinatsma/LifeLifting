@@ -35,7 +35,7 @@ export class ClientMenuComponent implements OnInit {
     this.dialog.open(ChooseMealplanDialogComponent, {
       data: {
       },
-      panelClass: 'mealplan-choose'
+      panelClass: 'mealplan-choose-dialog'
     });
   }
 

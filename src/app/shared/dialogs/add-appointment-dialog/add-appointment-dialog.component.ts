@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { BookingService } from './../../../booking/booking.service';
@@ -14,7 +14,8 @@ import { UtilService } from '../../services/util.service';
 @Component({
   selector: 'app-add-appointment-dialog',
   templateUrl: './add-appointment-dialog.component.html',
-  styleUrls: ['./add-appointment-dialog.component.scss']
+  styleUrls: ['./add-appointment-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddAppointmentDialogComponent implements OnInit {
   user: User;
@@ -64,7 +65,8 @@ export class AddAppointmentDialogComponent implements OnInit {
                private userService: UserService,
                private utils: UtilService,
                private specialistService: SpecialistService,
-               private cdr: ChangeDetectorRef
+               private cdr: ChangeDetectorRef,
+               private dialog: MatDialog
     ) {
       this.user =  data.user;
       this.specialist =  data.specialist;
@@ -314,5 +316,11 @@ export class AddAppointmentDialogComponent implements OnInit {
   convertMinutes(date) {
     const minutes = ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
     return minutes;
+  }
+
+  closeDialog() {
+    if (confirm('Are you sure you want to stop adding this event?')) {
+      this.dialog.closeAll();
+    }
   }
 }

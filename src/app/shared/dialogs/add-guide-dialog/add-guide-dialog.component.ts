@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, HostListener } from '@angular/core';
+import { Component, OnInit, Inject, HostListener, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { GuidelineService } from '../../../guidelines/guideline.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
@@ -13,7 +13,8 @@ import { ExerciseService } from './../../../exercises/exercise.service';
 @Component({
   selector: 'app-add-guide-dialog',
   templateUrl: './add-guide-dialog.component.html',
-  styleUrls: ['./add-guide-dialog.component.scss']
+  styleUrls: ['./add-guide-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddGuideDialogComponent implements OnInit {
   user = User;
@@ -92,7 +93,7 @@ export class AddGuideDialogComponent implements OnInit {
                private userService: UserService,
                private exerciseService: ExerciseService,
                private guidelineService: GuidelineService,
-               public matDialog: MatDialog,
+               public dialog: MatDialog,
                private dialogRef: MatDialogRef<AddGuideDialogComponent>,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
                 this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
@@ -208,5 +209,11 @@ export class AddGuideDialogComponent implements OnInit {
       }
     };
     this.guidelineService.addGuideline(data);
+  }
+
+  closeDialog() {
+    if (confirm(`Are you sure you want to stop creating this guideline?`)) {
+      this.dialog.closeAll();
+    }
   }
 }

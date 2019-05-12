@@ -31,7 +31,9 @@ export class UsersComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(AddUserDialogComponent, {});
+    this.dialog.open(AddUserDialogComponent, {
+      panelClass: 'add-user-dialog'
+    });
   }
 
   // Filters collection based on mat menu input.

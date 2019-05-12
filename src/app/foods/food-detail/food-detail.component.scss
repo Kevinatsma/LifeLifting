@@ -33,6 +33,13 @@ main.specialist-wrapper {
             }
         }
 
+        h1 {
+            @include respond-down($sm) {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         .right {
             button {
                 @include respond-down($sm) {

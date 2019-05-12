@@ -19,7 +19,7 @@ export class PackagesComponent implements OnInit {
   openDialog() {
     // Set data for Dialog
     this.dialog.open(AddPackageDialogComponent, {
-
+      panelClass: 'add-package-dialog'
     });
   }
 

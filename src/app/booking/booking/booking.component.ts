@@ -142,6 +142,7 @@ export class BookingComponent implements OnInit {
         specialist: this.specialist,
         date: date
       },
+      panelClass: 'add-appointment-dialog'
     });
   }
 
@@ -209,6 +210,7 @@ export class BookingComponent implements OnInit {
         user: this.user,
         specialist: this.specialist
       },
+      panelClass: 'add-appointment-dialog'
     });
   }
 

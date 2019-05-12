@@ -67,7 +67,6 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
 
   checkCreator(thread) {
     let isCreator;
-    console.log(thread);
     if (thread.creator.creatorUID === `${this.auth.currentUserId}`) {
       isCreator = true;
     } else {

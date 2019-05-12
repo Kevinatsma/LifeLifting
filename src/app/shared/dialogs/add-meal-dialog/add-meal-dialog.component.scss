@@ -182,7 +182,7 @@ form {
             border-top: $light-border;
             border-bottom: $light-border;
 
-            @include  respond-down($sm) {
+            @include respond-down($sm) {
                 flex-flow: column wrap;
             }
         }

@@ -83,11 +83,7 @@ main.dialog-wrapper {
     }
 }
 
-@keyframes slide-up {
-
-}
-
-.confirm-dialog {
+.confirm-dialog, .mealplan-choose-dialog {
     @include respond-down($sm) {
         animation: fly-in-from-bottom 0.4s;
         min-width: 100vw!important;
@@ -97,6 +93,123 @@ main.dialog-wrapper {
 
         .mat-dialog-container {
             border-radius: 0;
+        }
+    }
+}
+
+.add-user-dialog, .add-package-dialog, .review-dialog, .add-food-dialog, .add-exercise-dialog, .add-guide-dialog {
+    @include respond-down($sm) {
+        min-width: 100vw!important;
+        min-height: 100vh!important;
+        overflow: hidden;
+    }
+
+    .mat-horizontal-content-container {
+        padding: 0;
+    }
+
+    .close-section {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+
+        .close-btn {
+            svg {
+                margin-right: 10px;
+            }
+        }
+
+        @include respond-down($sm) {
+            position: absolute;
+            top: 4em;
+            left: 0.5em;
+        }
+    }
+
+    .mat-dialog-container {
+        @include respond-down($sm) {
+            border-radius: 0;
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        .mat-horizontal-stepper-header-container {
+
+            @include  respond-down($sm) {
+                width: 100%;
+                margin: 0;
+            }
+
+            mat-step-header {
+                @include respond-down($sm) {
+                    display: flex;
+                    align-items: center;
+                    height: 50px;
+                    justify-content: center;
+                }
+                .mat-step-label {
+                    @include respond-down($sm) {
+                        display: none;
+                    }
+                }
+
+                .mat-step-icon {
+                    @include respond-down($sm) {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        .image-uploader-container {
+            @include respond-down($sm) {
+                max-height: calc(100vh - 120px);
+                overflow: hidden;
+            }
+
+            section {
+                &.photo-title {
+                    @include respond-down($sm) {
+                        padding: 4em 1em 2em;
+                        margin: 0;
+
+                        h3 {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+
+            .image-uploader {
+                @include respond-down($sm) {
+                    margin: 0 auto;
+                    width: 90%;
+                }
+            }
+        }
+
+        form {
+            @include respond-down($sm) {
+                padding: 0 1em;
+                margin: 4em 0 0 0;
+                height: calc(100vh - 120px - 4em);
+                overflow-y: auto;
+                flex-flow: column nowrap;
+            }
+        }
+    }
+}
+
+.review-dialog {
+    .close-section {
+        @include respond-down($sm) {
+            top: 1.5em;
+        }
+    }
+
+    form {
+        @include respond-down($sm) {
+            height: calc(100vh - 70px - 4em)!important;
         }
     }
 }

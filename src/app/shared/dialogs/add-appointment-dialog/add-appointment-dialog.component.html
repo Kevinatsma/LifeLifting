@@ -1,4 +1,10 @@
 <main class="dialog-wrapper" *ngIf="(auth.user | async) as user">
+  <div class="close-section  mobile">
+    <button class="text-link close-btn" (click)="closeDialog()" type="button">
+      <i class="mobile fas fa-arrow-left"></i> Back
+    </button>
+  </div>
+  
   <form [formGroup]="appointmentForm">
     <h3>Plan an appointment 
       <ng-container *ngIf="!user.roles.admin || !user.roles.specialist">

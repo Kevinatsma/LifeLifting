@@ -4,7 +4,7 @@
 
 // Ng Deeps
 
-::ng-deep .mat-dialog-container {
+.mat-dialog-container {
     overflow-y: auto;
     padding: 0;
 
@@ -16,7 +16,7 @@
     }
 }
 
-::ng-deep mat-form-field {
+mat-form-field {
     &.text-field {
 
         textarea {
@@ -69,13 +69,15 @@ form {
             visibility: hidden;
         }
     }
-
     .dynamic-form-field-container {
         display: flex;
         flex-flow: row nowrap;
         width: 100%;
         height: 100%;
         margin: 2em 0;
+        @include respond-down($sm) {
+            height: auto;
+        }
 
         div.number-id {
             @extend %flex-center;
@@ -97,14 +99,21 @@ form {
             display: flex;
             flex-flow: row wrap;
             box-sizing: border-box;
+            border-top: $light-border;
+            border-bottom: $light-border;
+
+            @include respond-down($sm) {
+                flex-flow: column wrap;
+            }
         }
 
         mat-form-field.mat-form-field {
             box-sizing: border-box;
             width: 50%;
-            border-top: $light-border;
-            border-bottom: $light-border;
             padding: 5px 30px 5px 20px;
+            @include respond-down($sm) {
+                width: 100%;
+            }
 
             &:nth-child(1n) {
                 margin-right: 0;
@@ -125,6 +134,10 @@ form {
             border-radius: 0;
             border: $light-border;
             transition: all 300ms ease-in-out;
+            @include respond-down($sm) {
+                margin: 0 0;
+            }
+
             svg {
                 margin: 0;
                 padding: 0;
@@ -146,6 +159,11 @@ form {
             border-bottom: $light-border;
             mat-form-field.mat-form-field {
                 border: none;
+                width: 50%;
+                @include respond-down($sm) {
+                    margin-bottom: -10px;
+                    width: 100%;
+                }
             }
 
             div.btn-area {
@@ -153,5 +171,35 @@ form {
             }
         }
 
+        .btn-area {
+            width: 100%;
+            margin: 3em auto;
+            .add-form-field {
+                width: 50%;
+                margin: 0 auto;
+                font-size: 20px;
+                @extend %flex-column-center;
+
+                .icon {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    background: #fff;
+                    box-shadow: $card-shadow;
+                    margin-bottom: 1em;
+                    transition: transform 300ms ease-in-out;
+                    @extend %flex-center;
+
+                    svg {
+                        margin: 0;
+                        font-size: 20px;
+                        color: $secondary-color;
+                    }
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
+            }
+        }
     }
 }

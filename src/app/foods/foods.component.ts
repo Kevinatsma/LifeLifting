@@ -20,7 +20,6 @@ export class FoodsComponent implements OnInit {
   ngOnInit() {
     this.foodService.getFoods().subscribe(foods => {
       this.foods = foods;
-      console.log(this.foods);
     });
   }
 
@@ -29,7 +28,8 @@ export class FoodsComponent implements OnInit {
     this.dialog.open(AddFoodDialogComponent, {
       data: {
         foods: this.foods
-      }
+      },
+      panelClass: 'add-food-dialog'
     });
   }
 

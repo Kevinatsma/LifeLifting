@@ -143,6 +143,7 @@ export class MyClientDetailComponent implements OnInit {
         displayName: this.user.displayName,
         currentWeight: this.user.basicData.currentWeight
       },
+      panelClass: 'add-guide-dialog',
       disableClose: true,
     });
   }

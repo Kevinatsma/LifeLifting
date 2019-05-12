@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, EmailValidator } from '@angular/forms';
 import { AuthService } from './../../../core/auth/auth.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-add-user-dialog',
   templateUrl: './add-user-dialog.component.html',
-  styleUrls: ['./add-user-dialog.component.scss']
+  styleUrls: ['./add-user-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
+
 export class AddUserDialogComponent implements OnInit {
   // FormGroups
   signUpForm: FormGroup;
@@ -39,7 +42,8 @@ export class AddUserDialogComponent implements OnInit {
   }
 
   constructor( private fb: FormBuilder,
-               private auth: AuthService) {}
+               private auth: AuthService,
+               private dialog: MatDialog) {}
 
   ngOnInit() {
     this.signUpForm = this.fb.group({
@@ -60,6 +64,11 @@ export class AddUserDialogComponent implements OnInit {
     });
   }
 
+  closeDialog() {
+    if (confirm('Are you sure you want to stop adding this user?')) {
+      this.dialog.closeAll();
+    }
+  }
 
   // Getters
   get email() {

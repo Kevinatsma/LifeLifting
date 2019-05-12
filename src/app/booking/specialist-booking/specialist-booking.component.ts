@@ -268,6 +268,7 @@ export class SpecialistBookingComponent implements OnInit {
         user: this.user,
         specialist: this.specialist
       },
+      panelClass: 'add-appointment-dialog'
     });
   }
 

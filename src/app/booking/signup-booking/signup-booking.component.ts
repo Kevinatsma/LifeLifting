@@ -292,6 +292,7 @@ export class SignUpBookingComponent implements OnInit {
         user: this.user,
         specialist: this.specialist
       },
+      panelClass: 'add-appointment-dialog'
     });
 
     dialogRef.afterClosed().subscribe((result) => {

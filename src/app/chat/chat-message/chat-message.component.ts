@@ -11,13 +11,14 @@ import { ChatMessageService } from '../chat-message.service';
 })
 export class ChatMessageComponent implements OnInit {
   @Input() message: Message;
-  convertedMessageTimestamp: Date;
+  convertedTimestamp: Date;
 
   incoming: boolean;
 
   constructor( private auth: AuthService,
                private messageService: ChatMessageService) {
-                }
+                setTimeout(() => this.getTimestamp(), 300);
+              }
 
   ngOnInit() {
     this.checkIncoming();
@@ -28,6 +29,10 @@ export class ChatMessageComponent implements OnInit {
     if (this.message.sender && user) {
       this.incoming = this.message.senderId !== user;
     }
+  }
+
+  getTimestamp() {
+    this.convertedTimestamp = new Date(this.message.timestamp);
   }
 
 }

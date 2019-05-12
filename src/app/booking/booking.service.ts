@@ -62,7 +62,6 @@ export class BookingService implements OnInit {
           appointmentRejected: user.status.appointmentRejected || false
         }
       };
-      console.log(userData);
       this.userService.updateUser(user.uid, userData);
     })
     .then(() => {
