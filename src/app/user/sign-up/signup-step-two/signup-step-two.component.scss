@@ -5,8 +5,14 @@ section.step-wrapper {
     padding: 2em 0 100px;
     height: auto;
     box-sizing: border-box;
+
     @include respond-down($sm) {
-        padding: 5em 0;
+        padding: 3em 0 0;
+        overflow-y: auto;
+    }
+
+    h5 {
+        text-align: center;
     }
 
     &.success {
@@ -34,11 +40,12 @@ section.step-wrapper {
 
         @include respond-down($sm) {
             flex-flow: row nowrap;
+            height: auto;
         }
 
         .right-scroll-margin {
             width: 50px;
-            height: 550px;
+            // height: 550px;
             box-sizing: border-box;
             background: transparent;
             .hide {
@@ -51,14 +58,15 @@ section.step-wrapper {
 ::ng-deep mat-radio-button, .package-item {
     flex: 0 0 auto;
     width: 40%;
-    height: 550px;
+    height: 100%;
     margin: 0 2em;
     background: #fff;
     box-shadow: $card-shadow;
     border: 10px solid transparent;
     outline: 5px solid transparent;
+
     @include respond-down($sm) {
-        width: 340px;
+        width: 80vw;
         margin: 0 1.5em 0!important;
         height: auto;
     }

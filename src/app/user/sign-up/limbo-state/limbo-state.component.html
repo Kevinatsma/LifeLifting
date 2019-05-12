@@ -8,7 +8,7 @@
       <h1>Cheers to planning that in! 🍻</h1>
       <p class="intro-text">
         Congrats on looking for a better version of yourself. Thank you for your trust in <b>LifeLifting Nutrition</b>.
-        <br>
+        <br class="not-mobile">
         <a class="text-link" (click)="toggleSpecialist()">Your specialist</a>
         will confirm your consultation as soon as possible. 
       </p>
@@ -47,23 +47,6 @@
     <section class="appointments" *ngFor="let event of events">
       <app-appointment-detail [event]="event"></app-appointment-detail>
     </section>
-<!--     
-    <ng-container *ngIf="events">
-      <section class="appointments" *ngFor="let event of events">
-        <ng-container *ngIf="event.accepted">
-            <h1> Appointment accepted! </h1>
-            <p class="subtitle" *ngIf="specialist">
-              Congrats. Your appointment has been planned in. Please contact
-              <a class="text-link" (click)="toggleSpecialist()">
-                {{specialist.firstName}} {{specialist.lastName}} 
-              </a>
-              if you have any trouble, or for any further questions.
-            </p>
-        </ng-container>
-
-        <app-appointment-detail [event]="event"></app-appointment-detail>
-      </section>
-    </ng-container> -->
   </ng-container>
 
   <ng-container *ngIf="user.status.appointmentAccepted && user.status.appointmentCompleted && !user.status.accepted">

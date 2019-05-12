@@ -62,7 +62,8 @@ app-online-appointment, app-face-to-face-appointment {
     padding: 3em 1em;
     height: auto;
     @include respond-down($sm) {
-        padding: 3em 0;
+        padding: 3em 0 1em;
+        overflow-y: auto;
     }
 
     &.success {

@@ -19,6 +19,17 @@
         overflow-y: hidden;
     }
 
+    &.success {
+        @include respond-down($sm) {
+            justify-content: center;
+            padding-top: 0;
+
+            p {
+                text-align: center;
+            }
+        }
+    }
+
     .mat-form-field {
         @include respond-down($sm) {
             width: 100%!important;
@@ -119,8 +130,28 @@
         height: auto;
         margin: 0 auto;
 
+        @include respond-down($sm) {
+            width: 95%;
+        }
+
         .btn-area {
             margin-top: 20px;
+        }
+    }
+
+    .btn-area {
+        .btn-icon-left, .btn-icon-right {
+            &.no-bg {
+                @include respond-down($sm) {
+                    background: none;
+                    border: none;
+                    box-shadow: none;
+                    
+                    &.btn-disabled {
+                        background: none;
+                    }
+                }
+            }
         }
     }
 }

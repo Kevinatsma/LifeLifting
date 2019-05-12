@@ -2,19 +2,37 @@
   <h2>{{package.packageTitle}}</h2>
   <div class="quick-facts">
     <p class="quick-fact">
-      ${{package.packagePrice}} USD
+      <i class="far fa-money-bill-alt"></i>
+      {{package.packagePrice}} USD
     </p>
     <div class="circle-divider"></div>
     <p class="quick-fact">
+      <i class="far fa-clock"></i>
       {{package.packageDuration}} 
       <span *ngIf="package.packageDuration === 1">week</span>
       <span *ngIf="package.packageDuration !== 1">weeks</span>
     </p>
   </div>
-  <p class="card-text">
+  <p class="card-text not-mobile">
     {{package.packageDescription}}
   </p>
+  <p class="card-text desc mobile" [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="user.basicData">
+    {{package.packageDescription}}
+  </p>
+
+  <div class="read-more__buttons mobile" *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
+    <button class="text-link read-more" (click)="aboutExtendedToggle()" *ngIf="!aboutExtended">
+      <i class="fas fa-plus"></i>
+      Read More
+    </button>
+    <button class="text-link read-more" (click)="aboutExtendedToggle()" *ngIf="aboutExtended">
+      <i class="fas fa-minus"></i>
+      Read Less
+    </button>
+  </div>
+
   <div class="list-container">
+    <h5>Benefits</h5>
     <ul>
       <li *ngFor="let benefit of package.packageBenefits">
         <i class="fas fa-check"></i>

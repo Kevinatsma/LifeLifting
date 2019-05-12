@@ -12,6 +12,10 @@
         p {
             color: $secondary-color;
             margin: 0;
+
+            svg {
+                margin-right: 10px;
+            }
         }
     }
 
@@ -22,7 +26,18 @@
         font-size: 15px;
         @include respond-down($sm) {
             text-align: left;
+
+            &.desc {
+                overflow: hidden;
+                width: 100%;
+                box-sizing: border-box;
+                height: 150px;
+            }
         }
+    }
+
+    .read-more__buttons {
+        margin: 1em 0 0 0;
     }
 
     .list-container {
@@ -30,6 +45,11 @@
         @include respond-down($sm) {
             margin: 1em 0;
         }
+
+        h5 {
+            margin: 0.5em 0 1em;
+        }
+
         ul {
             li {
                 font-family: $main-font;

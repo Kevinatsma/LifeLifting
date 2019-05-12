@@ -6,8 +6,14 @@ section.step-wrapper {
     height: auto;
     box-sizing: border-box;
 
+    @include respond-down($sm) {
+        overflow-y: auto;
+        padding: 2em 0 2em;
+        height: auto!important;
+    }
+
     &.success {
-        height: 100vh;
+        height: 100vh!important;
         justify-content: center;
     }
 
@@ -26,6 +32,12 @@ section.step-wrapper {
     .step-done {
         .btn-area {
             margin-top: 0;
+        }
+
+        p {
+            @include respond-down($sm) {
+                width: 100%;
+            }
         }
     }
 

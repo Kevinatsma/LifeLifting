@@ -58,10 +58,11 @@ export class SpecialistDetailComponent implements OnInit {
   getSpecialist() {
     setTimeout(() => {
       let id: string;
-
       // Check if there is specialist input
       if ( this.specialist ) {
         id = this.specialist.uid;
+        this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${this.specialist.uid}`));
+        this.reviews = this.reviewsCol.valueChanges();
       } else {
         // Otherwise get id from url parameter
         id = this.route.snapshot.paramMap.get('id');
@@ -69,9 +70,10 @@ export class SpecialistDetailComponent implements OnInit {
           this.specialist = specialist;
           this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${this.specialist.uid}`));
           this.reviews = this.reviewsCol.valueChanges();
+          console.log(this.reviews);
         });
       }
-    }, 800);
+    }, 1000);
 
   }
 
