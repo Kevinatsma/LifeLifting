@@ -699,7 +699,10 @@ mat-card {
         button {
             margin-left: 2em;
             svg {
-                font-size: 16px;
+                font-size: 20px;
+                @include respond-down($sm) {
+                    font-size: 16px;
+                }
             }
 
             &.edit-button {

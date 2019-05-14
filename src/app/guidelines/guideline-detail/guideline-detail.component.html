@@ -6,11 +6,12 @@
         <button type="button" class="icon-button" (click)="goBack()">
             <i class="fas fa-arrow-left"></i>
         </button>
-        <button type="button" class="icon-button edit-button" (click)="deleteGuidelineDialog(guideline)" 
+        <button type="button" class="icon-button edit-button not-mobile" (click)="deleteGuidelineDialog(guideline)" 
         *ngIf="!editShow && auth.adminRoles(user)">
           <i class="fas fa-trash"></i>
         </button>
       </div>
+      
       <div class="middle">
         <h1 *ngIf="client; else gID">
           Guideline for: {{client.displayName}}
@@ -19,13 +20,46 @@
             <h1>Guideline ID: {{guideline.gID}}</h1>
         </ng-template>
       </div>
-      <div class="right">
-        <button type="button" class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && auth.adminRoles(user)">
-          <i class="fas fa-edit"></i>
-        </button>
-        <button type="button" class="icon-button edit-button print" (click)="printGuideline()">
-          <i class="fas fa-print"></i>
-        </button>
+
+      <div class="right" *ngIf="user">
+        <div class="not-mobile">
+          <ng-container *ngIf="!user.roles.admin || !user.roles.specialist">
+            <button type="button" class="icon-button" (click)="printMealplan(mealplan)">
+              <i class="fas fa-print"></i>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="user.roles.admin || user.roles.specialist">
+            <button type="button" class="icon-button edit-button" (click)="toggleEdit()">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button type="button" class="icon-button edit-button print" (click)="printGuideline()">
+              <i class="fas fa-print"></i>
+            </button>
+          </ng-container>
+        </div>
+    
+        <div class="mobile">
+          <button class="icon-button edit-button" *ngIf="actionMenuOpen; else plus" (click)="toggleButtonMenu()">
+            <i class="fas fa-minus"></i>
+          </button>
+          <ng-template #plus>
+            <button class="icon-button edit-button" (click)="toggleButtonMenu()">
+              <i class="fas fa-plus"></i>
+            </button>
+          </ng-template>
+  
+          <div class="specialist-actions">
+            <button type="button" class="icon-button edit-button" (click)="toggleEdit()">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button type="button" class="icon-button action-btn" (click)="printMealplan(guideline)">
+              <i class="fas fa-print"></i>
+            </button>
+            <button type="button" class="icon-button action-btn" (click)="deleteGuidelineDialog(guideline)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
 

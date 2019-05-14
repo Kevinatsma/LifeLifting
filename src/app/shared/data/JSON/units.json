@@ -1,6 +1,7 @@
 {
     "units": [
     {"value":"Cup"},
+    {"value":"Can"},
     {"value":"Fillet"},
     {"value":"Glass"},
     {"value":"Gram"},

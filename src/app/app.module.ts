@@ -27,9 +27,6 @@ import { DialogsModule } from './shared/dialogs/dialogs.module';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
-// Hammer
-import { CustomHammerConfig } from './hammer-config';
-
 
 // Core Components
 
@@ -63,10 +60,6 @@ import { CustomHammerConfig } from './hammer-config';
     {
     provide: FirestoreSettingsToken, useValue: {}
     },
-    {
-      provide: HAMMER_GESTURE_CONFIG,
-      useClass: CustomHammerConfig
-    }
   ],
   bootstrap: [AppComponent],
 })

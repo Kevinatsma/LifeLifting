@@ -1,10 +1,6 @@
 @import './../../../assets/scss/_master.scss';
 @import './../../../assets/scss/_calendar.scss';
 
-::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
-    stroke: $secondary-color;
-}
-
 .create-appointment-mobile {
     background: #fff;
     position: fixed;
@@ -72,9 +68,11 @@
 
     form {
         align-items: center;
+        box-sizing: border-box;
         display: flex;
         flex-flow: row nowrap;
         width: 100%;
+        padding: 0;
 
         h5 {
             width: 10%;
