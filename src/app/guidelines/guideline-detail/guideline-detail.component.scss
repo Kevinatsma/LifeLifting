@@ -152,6 +152,16 @@ main.specialist-wrapper {
         h1, h5 {
             text-align: center;
         }
+
+        h5 {
+            @include respond-down($sm) {
+                position: absolute;
+                text-align: center;
+                top: 5em;
+                left: 0;
+                right: 0;
+            }
+        }
     }
 
     .package-container {
@@ -306,6 +316,7 @@ main.specialist-wrapper {
                 @include respond-down($sm) {
                     box-sizing: border-box;
                     padding: 0 1em;
+                    margin-bottom: 0;
                     width:  100%;
                 }
 
@@ -420,6 +431,9 @@ main.specialist-wrapper {
                         text-align: center;
                         margin-bottom: 1rem;
                         width: 80%;
+                        @include respond-down($sm) {
+                            margin-bottom: 0;
+                        }
                     }
 
                     &__title {
@@ -435,6 +449,17 @@ main.specialist-wrapper {
 
                         svg {
                             color: #fff;
+                        }
+                    }
+                }
+
+                &.calorie-metrics {
+                    @include respond-down($sm) {
+                        padding: 2em 16px!important;
+                    }
+                    .metric {
+                        @include respond-down($sm) {
+                            margin: 0 0 1em;
                         }
                     }
                 }

@@ -36,6 +36,11 @@ main.specialist-wrapper {
             }
         }
 
+        h1 {
+            width: 100%;
+            font-size: 25px;
+        }
+
         .right {
             button {
                 @include respond-down($sm) {

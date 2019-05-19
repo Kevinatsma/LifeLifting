@@ -44,6 +44,8 @@ export class EditFoodComponent implements OnInit, OnDestroy {
       productName: '' || this.food.productName,
       nutritionType: '' || this.food.categories.nutritionType,
       unit: '' || this.food.unit,
+      shoppingUnit: '' || this.food.shoppingUnit,
+      factor: '' || this.food.factor,
       preperations: '' || this.food.preparations,
     });
     this.url = `foods`;
@@ -70,6 +72,9 @@ export class EditFoodComponent implements OnInit, OnDestroy {
         nutritionType: this.editProductForm.get('nutritionType').value || this.food.categories.nutritionType,
         productMealTimes: this.food.categories.productMealTimes,
       },
+      unit: this.editProductForm.get('unit').value || this.food.unit,
+      shoppingUnit: this.editProductForm.get('shoppingUnit').value || this.food.shoppingUnit,
+      factor: this.editProductForm.get('factor').value || this.food.factor,
       productPhoto: this.downloadURL || this.food.productPhoto
     };
     this.foodService.updateFood(this.food.productID, data);

@@ -237,10 +237,11 @@ section.specialist-header {
 
                     @include respond-down($sm) {
                         margin-bottom: 1em;
+                        display: flex;
                         width: 100%;
 
                         svg {
-                            font-size: 18px;
+                            font-size: 20px;
                             margin-right: 2em;
                         }
                     }

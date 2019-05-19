@@ -11,7 +11,7 @@ import { User } from './../../user/user.model';
 export class EventRequestComponent implements OnInit {
   user: User;
 
-  constructor( public matDialog: MatDialog,
+  constructor( public dialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public data: any) {
                 this.user = data.user;
                }
@@ -19,4 +19,7 @@ export class EventRequestComponent implements OnInit {
   ngOnInit() {
   }
 
+  closeDialog() {
+    this.dialog.closeAll();
+  }
 }

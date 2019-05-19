@@ -1,5 +1,5 @@
 <main class="dialog-wrapper" *ngIf="(auth.user | async) as user">
-  <div class="close-section  mobile">
+  <div class="close-section mobile">
     <button class="text-link close-btn" (click)="closeDialog()" type="button">
       <i class="mobile fas fa-arrow-left"></i> Back
     </button>
@@ -175,7 +175,10 @@
           <h3>Jirón Oscar Chocano 499</h3>
           <p>Santiago de Surco, Lima</p>
         </div>
-        <a class="text-link" href="https://goo.gl/maps/3dXhLj2B94KLRWZS8" target="_blank">Open in Maps</a>
+        <a class="text-link" href="https://goo.gl/maps/3dXhLj2B94KLRWZS8" target="_blank">
+          <span class="not-mobile">Open in Maps</span>
+          <i class="mobile fas fa-external-link-alt"></i>
+        </a>
       </div>
 
       <div class="multiple-input online-phone" formGroupName="faceToFacePhone">

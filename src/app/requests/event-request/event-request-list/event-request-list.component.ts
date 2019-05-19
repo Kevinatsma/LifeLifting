@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { User } from './../../../user/user.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Appointment } from './../../../booking/appointment.model';
+import { MatDialog } from '@angular/material';
+import { Specialist } from './../../../specialists/specialist.model';
+import { SpecialistService } from './../../../specialists/specialist.service';
 
 @Component({
   selector: 'app-event-request-list',
@@ -12,17 +15,28 @@ import { Appointment } from './../../../booking/appointment.model';
 })
 export class EventRequestListComponent implements OnInit {
   @Input() user: User;
+  specialist: Specialist;
   events: Observable<Appointment[]>;
   eventLength: number;
   eventArr = true;
 
   constructor( private bookingService: BookingService,
-               private afs: AngularFirestore) { }
+               private afs: AngularFirestore,
+               private specialistService: SpecialistService,
+               private dialog: MatDialog) { }
 
   ngOnInit() {
     setTimeout(() => {
       this.getEvents(this.user);
+      this.getSpecialist(this.user);
     }, 500);
+  }
+
+  getSpecialist(user) {
+    const sID = 'specialist' + user.sID;
+    this.specialistService.getSpecialistData(sID).subscribe(specialist => {
+      this.specialist = specialist;
+    });
   }
 
   getEvents(user) {
@@ -35,10 +49,20 @@ export class EventRequestListComponent implements OnInit {
     this.events = this.bookingService.getSpecificAppointments(colRef);
     this.events.subscribe(events => {
       this.eventArr = events.length > 0;
-
-      // TODO UPDATE SPECIALIST HASEVENTREQUEST variable
       this.eventLength = events.length;
     });
+  }
+
+
+  closeDialog() {
+    console.log(this.eventLength);
+    const data = {
+      stats: {
+        amountOfEventRequests: this.eventLength
+      }
+    };
+    this.specialistService.updateSpecialist(this.specialist.specialistID, data);
+    this.dialog.closeAll();
   }
 
 }

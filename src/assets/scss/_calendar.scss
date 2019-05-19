@@ -6,10 +6,10 @@
 ::ng-deep .cal-month-view {
     .cal-open-day-events {
         @include respond-down($sm) {
-            left: 10vw;
-            width: 80vw;
-            right: 10vw;
-            box-sizing: border-box;
+            left: 5vw!important;
+            width: 90vw!important;
+            right: 5vw!important;
+            box-sizing: border-box!important;
         }
         > div {
             pointer-events: none;

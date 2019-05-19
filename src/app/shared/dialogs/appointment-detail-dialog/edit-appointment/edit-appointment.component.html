@@ -137,25 +137,31 @@
       </mat-form-field>
     </section>
 
-    <section class="appointment-type face-to-face" *ngIf="faceToFace | async">
-      <h4>Face to face</h4>
-      <mat-form-field appearance="standard" floatLabel="always">
-        <mat-label>Location of the meeting</mat-label>
-        <input type="text" matInput formControlName="location" placeholder="{{event.location}}" />
-      </mat-form-field>
+    <ng-container *ngIf="faceToFace | async">
+      <div class="location-card">
+        <img src="./../../../../assets/img/icons/maps.svg">
+        <div class="address">
+          <h3>Jirón Oscar Chocano 499</h3>
+          <p>Santiago de Surco, Lima</p>
+        </div>
+        <a class="text-link" href="https://goo.gl/maps/3dXhLj2B94KLRWZS8" target="_blank">
+          <span class="not-mobile">Open in Maps</span>
+          <i class="mobile fas fa-external-link-alt"></i>
+        </a>
+      </div>
 
-      <div class="multiple-input" formGroupName="faceToFacePhone">
+      <div class="multiple-input online-phone" formGroupName="faceToFacePhone">
         <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Code</mat-label>
-            <input type="text" disabled matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
-            <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          <mat-label>Area Code</mat-label>
+          <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
+          <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
         <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Phone Number</mat-label>
-            <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off">
+          <mat-label>Phone Number</mat-label>
+          <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off">
         </mat-form-field>
       </div>
-    </section>
+    </ng-container>
     
     <section class="appointment-type online" *ngIf="onlineAppointment | async">
       <h4>Online call</h4>

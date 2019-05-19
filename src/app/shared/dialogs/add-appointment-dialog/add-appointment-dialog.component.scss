@@ -39,10 +39,13 @@
             width: 100%;
             display: flex;
             flex-flow: row nowrap;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             margin: 1em 0;
             padding: 0;
+            @include respond-down($sm) {
+                justify-content: flex-start;
+            }
 
             .secondary-chip {
                 margin: 0 1em;
@@ -274,6 +277,7 @@ form {
         }
     }
 
+    
     .location-card {
         box-sizing: border-box;
         border-radius: 10px;
@@ -282,26 +286,45 @@ form {
         background-color: #fff;
         box-shadow: $card-shadow;
         align-items: center;
-        height: 100px;
-        width: 95%;
+        height: 130px;
+        width: 120%;
         padding: 0 2em;
-        margin: 1.5em 0 2em;
+        margin: 1.5em -10% 2em;
+
+        @include respond-down($sm) {
+            width: 100%;
+            margin: 1.5em 0 2em;
+        }
 
         img {
             width: 50px;
             height: auto;
             margin-top: -4px;
         }
-        
-        p {
-            margin: 0;
-        }
 
         .address {
             display: flex;
             flex-flow: column wrap;
             align-items: flex-start;
+            justify-content: center;
             margin: 0 auto 0 2em;
+            width: 55%;
+
+            h4 {
+                margin: 0;
+                @include respond-down($sm) {
+                    font-size: 18px;
+                }
+            }
+            
+            p {
+                font-size: 16px;
+                font-weight: $regular;
+                margin: 0;
+                @include respond-down($sm) {
+                    font-size: 12px;
+                }
+            }
         }
     }
 
@@ -389,6 +412,9 @@ form {
 }
 
 .add-appointment-dialog {
+    @include respond-up($sm) {
+        overflow:  auto;
+    }
     @include respond-down($sm) {
         min-width: 100vw!important;
         min-height: 100vh!important;

@@ -40,9 +40,9 @@ export class EventRequestListItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  acceptEvent(event) {
+  acceptEvent(event, accepted = true) {
     const data = {
-      accepted: this.eventAccepted
+      accepted: this.eventAccepted || accepted
     };
     this.bookingService.updateEvent(event.eventID, data);
 

@@ -8,7 +8,9 @@
 }
 
 ::ng-deep .mat-dialog-container {
-
+    @include respond-down($sm) {
+        border-radius: 0;
+    }
     .mat-horizontal-content-container {
         padding: 0;
     }

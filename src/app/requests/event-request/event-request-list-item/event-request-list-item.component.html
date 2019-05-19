@@ -1,6 +1,6 @@
 <ng-container *ngIf="event && user">
   <main class="list-item">
-    <section class="list-item__check-area">
+    <section class="list-item__check-area not-mobile">
       <mat-checkbox name="eventAccepted" [(ngModel)]="eventAccepted" (change)="acceptEvent(event)">
       </mat-checkbox>
     </section>
@@ -36,6 +36,9 @@
     <section class="list-item__btn-area">
       <button class="icon-button" (click)="deleteConfirm()">
         <i class="fas fa-trash"></i>
+      </button>
+      <button class="icon-button mobile" (click)="acceptEvent(event, true)">
+        <i class="fas fa-check"></i>
       </button>
     </section>
   </main>
