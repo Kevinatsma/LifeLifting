@@ -241,6 +241,9 @@
                     margin-right: 25px;
                     vertical-align: middle;
                     top: -3px;
+                    @include respond-down($sm) {
+                        margin-right: 0;
+                    }
                 }
 
                 &.skype {
@@ -322,9 +325,9 @@
     box-shadow: $card-shadow;
     align-items: center;
     height: 130px;
-    width: 120%;
-    padding: 0 2em;
-    margin: 1.5em -10% 2em;
+    width: 110%;
+    margin: 0 0 2em -5%;
+    padding: 0 0 0 1.5em;
 
     img {
         width: 50px;
@@ -338,7 +341,7 @@
         align-items: flex-start;
         justify-content: center;
         margin: 0 auto 0 2em;
-        width: 55%;
+        width: 60%;
 
         h4 {
             margin: 0;
@@ -350,19 +353,17 @@
             margin: 0;
         }
     }
-}
 
-.location-card {
-    width: 110%;
-    margin: 0 0 2em -5%;
-    padding: 0 0 0 1.5em;
-
-    .address {
-        width: 60%;
-    }
 
     a {
         text-align: center;
+        @include respond-down($sm) {
+            display: flex;
+            justify-content: flex-end;
+            svg {
+                margin-right: 0;
+            }
+        }
     }
 }
 

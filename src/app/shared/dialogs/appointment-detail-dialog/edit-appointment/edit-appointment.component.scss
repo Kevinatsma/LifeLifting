@@ -2,7 +2,7 @@
 
 // Ng  deeps
 
-::ng-deep mat-option {
+mat-option {
     svg {
         margin-right: 1em;
         font-size: 20px!important;
@@ -23,6 +23,13 @@
 }
 
 form.edit-appointment {
+
+    .intro {
+        @include respond-down($sm) {
+            z-index: 5;
+        }
+    }
+
     .phone {
         input {
             border-bottom: $light-border;
@@ -30,20 +37,33 @@ form.edit-appointment {
     }
 
 
-    ::ng-deep input {
+    input {
         font-family: $main-font;
         letter-spacing: 1.6px!important;
     }
 
-    ::ng-deep .mat-select-placeholder {
+    .mat-select-placeholder {
         text-transform: capitalize;
     }
 }
 
 section {
-
     &.chip-area {
-        ::ng-deep mat-form-field {
+        @include respond-down($sm) {
+            flex-flow: row wrap!important;
+            justify-content: flex-start!important;
+        }
+
+        .secondary-chip {
+            @include respond-down($sm) {
+                &:first-child {
+                    margin-bottom: 25px!important;
+                }
+            }
+        }
+
+        mat-form-field {
+
             .mat-form-field-wrapper {
                 padding-bottom: 0;
 
@@ -147,7 +167,7 @@ section {
 }
 
 .date-picker {
-    ::ng-deep .mat-form-field-infix {
+    .mat-form-field-infix {
         display: flex!important;
         flex-flow: row nowrap!important;
 

@@ -114,6 +114,9 @@
                 &.no-date {
                     @include respond-down($sm) {
                         flex-flow: column nowrap;
+                        mat-form-field {
+                            width: 100%;
+                        }
                     }
                 }
 
@@ -171,9 +174,18 @@
                     display: flex;
                     flex-flow: row nowrap;
                     justify-content: space-between;
+                    @include respond-down($sm) {
+                        width: 100%;
+                        justify-content: flex-start;
+                    }
 
                     mat-form-field {
                         width: 38%;
+                        @include respond-down($sm) {
+                            &:first-child {
+                                margin-right: 1em;
+                            }
+                        }
 
                         input {
                             margin-top: 0.35em;
@@ -385,7 +397,7 @@ form {
 
     .mat-dialog-container {
         @include respond-down($sm) {
-            padding: 2em 1em;
+            padding: 2em 0 0;
             border-radius: 0;
 
             .dialog-wrapper {
@@ -413,7 +425,7 @@ form {
             @include respond-down($sm) {
                 height: 100%;
                 flex-flow: column nowrap;
-                padding: 0;
+                padding: 0 1em;
                 margin: 1em 0;
             }
         }

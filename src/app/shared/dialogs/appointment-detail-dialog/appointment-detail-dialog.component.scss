@@ -275,6 +275,9 @@
                         margin-right: 25px;
                         vertical-align: middle;
                         top: -3px;
+                        @include respond-down($sm) {
+                            margin-right: 0;
+                        }
                     }
 
                     &.skype {
@@ -312,6 +315,9 @@
                             display: flex;
                             svg {
                                 color:$icon-black;
+                                @include respond-down($sm) {
+                                    margin-right: 25px;
+                                }
                             }
                              
                             a {

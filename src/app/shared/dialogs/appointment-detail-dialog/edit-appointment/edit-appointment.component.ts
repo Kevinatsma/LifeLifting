@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { Appointment } from './../../../../booking/appointment.model';
 import { User } from './../../../../user/user.model';
 import { Specialist } from './../../../../specialists/specialist.model';
@@ -12,7 +12,8 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-edit-appointment',
   templateUrl: './edit-appointment.component.html',
-  styleUrls: ['./edit-appointment.component.scss', './../appointment-detail-dialog.component.scss']
+  styleUrls: ['./edit-appointment.component.scss', './../appointment-detail-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EditAppointmentComponent implements OnInit {
   @Input() client: User;
