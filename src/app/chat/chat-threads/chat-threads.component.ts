@@ -45,6 +45,10 @@ export class ChatThreadsComponent implements OnInit {
     this.setActiveThread(channelID);
     this.threadService.getThread(channelID);
 
+    if (this.chatComp) {
+      this.chatComp.getThread();
+    }
+
     const data = {
       unreadMessages: 0
     };

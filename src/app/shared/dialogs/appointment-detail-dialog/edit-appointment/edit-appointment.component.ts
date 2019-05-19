@@ -173,10 +173,12 @@ export class EditAppointmentComponent implements OnInit {
       this.whatsApp.next(true);
       this.skype.next(false);
       this.onlinePhone.next(false);
-    } else if (this.event.skypeName.length > 0) {
-      this.whatsApp.next(false);
-      this.skype.next(true);
-      this.onlinePhone.next(false);
+    } else if (this.event.skypeName) {
+      if (this.event.skypeName.length > 0) {
+        this.whatsApp.next(false);
+        this.skype.next(true);
+        this.onlinePhone.next(false);
+      }
     } else {
       this.whatsApp.next(false);
       this.skype.next(false);

@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 import { ChatThreadService } from './../chat-thread.service';
 import { Observable } from 'rxjs';
 import { Thread } from './../thread.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UtilService } from '../../shared/services/util.service';
 import { AuthService } from './../../core/auth/auth.service';
 import { MatDialog } from '@angular/material';
@@ -45,6 +45,12 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
 
   ngOnInit() {
     this.getThread();
+    const navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        this.getThread();
+      }
+    });
   }
 
   scrollToBottom(): void {
@@ -55,13 +61,11 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
   }
 
   getThread() {
-    this.threads = this.threadService.getThreads();
-    this.threads.subscribe(thread => {
-      thread.map(data => {
-        this.threadId = data.id;
-        this.thread = data;
-        this.isCreator = this.checkCreator(this.thread);
-      });
+    const id = this.route.snapshot.paramMap.get('id');
+    this.threadService.getThread(id).subscribe(thread => {
+      this.threadId = thread.id;
+      this.thread = thread;
+      this.isCreator = this.checkCreator(thread);
     });
   }
 

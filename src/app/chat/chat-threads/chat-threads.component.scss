@@ -43,6 +43,9 @@ main.thread-container {
             .big-title {
                 font-size: 24px;
                 margin: 0 1em 1em;
+                @include respond-up($sm) {
+                    margin: 1em;
+                }
             }
 
             ::ng-deep app-chat-thread {

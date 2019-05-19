@@ -42,10 +42,6 @@ export class ChatMessagesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.messages$ = null;
-    // if (this.navigationSubscription) {
-
-    //   this.navigationSubscription.unsubscribe();
-    // }
   }
 
 
