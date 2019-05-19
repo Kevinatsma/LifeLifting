@@ -1,4 +1,10 @@
 <main class="dialog-wrapper">
+  <div class="close-section  mobile">
+    <button class="text-link close-btn" (click)="closeDialog()" type="button">
+      <i class="mobile fas fa-arrow-left"></i> Back
+    </button>
+  </div>
+
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="infoForm">
       <form [formGroup]="infoForm">

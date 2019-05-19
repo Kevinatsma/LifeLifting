@@ -14,7 +14,7 @@
       
       <div class="middle">
         <h1 *ngIf="client; else gID">
-          Guideline for: {{client.displayName}}
+          Guideline for {{client.displayName}}
         <h5>Current weight: {{client.basicData.currentWeight}}kg</h5></h1>
         <ng-template #gID>
             <h1>Guideline ID: {{guideline.gID}}</h1>
@@ -49,14 +49,14 @@
           </ng-template>
   
           <div class="specialist-actions">
-            <button type="button" class="icon-button edit-button" (click)="toggleEdit()">
-              <i class="fas fa-edit"></i>
-            </button>
             <button type="button" class="icon-button action-btn" (click)="printMealplan(guideline)">
               <i class="fas fa-print"></i>
             </button>
             <button type="button" class="icon-button action-btn" (click)="deleteGuidelineDialog(guideline)">
               <i class="fas fa-trash"></i>
+            </button>
+            <button type="button" class="icon-button action-btn" (click)="toggleEdit()">
+              <i class="fas fa-edit"></i>
             </button>
           </div>
         </div>
@@ -128,7 +128,7 @@
               <span class="metric__value">{{guideline.increaseAmount}}</span>
               <h6 class="metric__title">Kcal Increase/decrease</h6>
             </div>
-            <div class="metric">
+            <div class="metric golden">
               <div class="icon-circle">
                 <ng-container *ngIf="increaseCals">
                   <i class="fas fa-level-up-alt"></i>
@@ -158,8 +158,14 @@
             <div class="activity">
               <div class="activity__left" *ngIf="exerciseOne">
                 <app-exercise-list-item class="activity__left" [exercise]="exerciseOne"></app-exercise-list-item>
-                <app-exercise-list-item class="activity__left" [exercise]="exerciseTwo"></app-exercise-list-item>
-                <app-exercise-list-item class="activity__left" [exercise]="exerciseThree"></app-exercise-list-item>
+                <ng-container *ngIf="exerciseTwo">
+                  <app-exercise-list-item class="activity__left" [exercise]="exerciseTwo"></app-exercise-list-item>
+                </ng-container>
+
+                <ng-container *ngIf="exerciseThree">
+                  <app-exercise-list-item class="activity__left" [exercise]="exerciseThree"></app-exercise-list-item>
+                </ng-container>
+
               </div>
               <div class="activity__right">
                 <div class="container" *ngFor="let activity of guideline.activities; let i of index;">

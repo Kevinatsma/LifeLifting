@@ -305,6 +305,7 @@ export class SignUpBookingComponent implements OnInit {
             signUpCompleted: true,
             appointmentAccepted: false,
             appointmentCompleted: false,
+            subscriptionValid: this.user.status.subscriptionValid
           }
         };
         this.userService.updateUser(uid, data);

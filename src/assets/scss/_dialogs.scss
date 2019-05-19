@@ -170,7 +170,7 @@ main.dialog-wrapper {
             section {
                 &.photo-title {
                     @include respond-down($sm) {
-                        padding: 4em 1em 2em;
+                        padding: 4em 1em 2em!important;
                         margin: 0;
 
                         h3 {

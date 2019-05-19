@@ -208,7 +208,6 @@ main.specialist-wrapper {
 
                 @include respond-down($sm) {
                     flex-flow: row wrap;
-
                 }
 
                 .secondary-chip {

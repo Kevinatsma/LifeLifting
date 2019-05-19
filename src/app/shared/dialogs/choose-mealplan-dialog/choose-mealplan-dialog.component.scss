@@ -20,6 +20,9 @@ main.confirm-dialog-container {
     min-width: 35vw;
     height: auto;
     box-sizing: border-box;
+    @include respond-down($sm) {
+        width: 100%;
+    }
 }
 
 .mat-dialog-container {
@@ -42,6 +45,9 @@ form {
 p.card-text {
     margin: 5px 0 20px 0;
     padding: 0;
+    @include respond-down($sm) {
+        margin-bottom: 0;
+    }
 }
 
 .dialog-actions {

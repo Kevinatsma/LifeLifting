@@ -166,6 +166,9 @@ mat-card.list-item-card {
             width: 100%;
             display: flex;
             flex-flow: row nowrap;
+            @include respond-down($sm) {
+                margin-top: auto;
+            }
 
             button {
                 @extend %flex-center;

@@ -52,6 +52,9 @@ form {
     p.card-text {
         width: 100%;
         margin: 6px 0 0 6px!important;
+        @include respond-down($sm) {
+            margin: 6px 0 0 0!important;
+        }
         textarea {
             color: $text-black;
             white-space: normal;
@@ -61,6 +64,9 @@ form {
             letter-spacing: 1px;
             line-height: 1.6;
             overflow-x: hidden;
+            @include respond-down($sm) {
+                text-align: left;
+            }
         }
     }
 }

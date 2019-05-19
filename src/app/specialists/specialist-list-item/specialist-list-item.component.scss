@@ -12,7 +12,6 @@ mat-card.list-item-card {
 
     @include respond-down($sm) {
         flex-flow: column wrap;
-        width: 84vw;
     }
 
     &:hover, &:focus {

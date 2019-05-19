@@ -71,7 +71,7 @@
     <div class="add-date-time-container start-date">
       <h5>Start date & time</h5>
 
-      <div class="content-container">
+      <div class="content-container" [class.no-date]="!hasStartDate">
         <mat-form-field class="date-picker" appearance="standard" floatLabel="always" *ngIf="!hasStartDate">
           <mat-label>Pick a date</mat-label>
           <input matInput formControlName="startTime" [matDatepicker]="datePickerOne"
@@ -106,7 +106,7 @@
     <div class="add-date-time-container" *ngIf="user.roles.admin ||  user.roles.specialist">
       <h5>End date & time</h5>
 
-      <div class="content-container">
+      <div class="content-container" [class.no-date]="!hasEndDate">
         <mat-form-field class="date-picker" appearance="standard" floatLabel="always" *ngIf="!hasEndDate">
           <mat-label>Pick a date</mat-label>
           <input matInput formControlName="startTime" [matDatepicker]="datePickerOne"

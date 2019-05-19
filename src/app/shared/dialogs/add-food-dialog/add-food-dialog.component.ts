@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { FoodService } from './../../../foods/food.service';
 
@@ -11,7 +11,8 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 @Component({
   selector: 'app-add-food-dialog',
   templateUrl: './add-food-dialog.component.html',
-  styleUrls: ['./add-food-dialog.component.scss']
+  styleUrls: ['./add-food-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddFoodDialogComponent implements OnInit {
   hide = true;
@@ -44,7 +45,7 @@ export class AddFoodDialogComponent implements OnInit {
 
   constructor( private fb: FormBuilder,
                private foodService: FoodService,
-               public matDialog: MatDialog,
+               public dialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public foods: any) {
                  setTimeout(() => this.patchFoodNumber(this.foods.foods), 500);
                }
@@ -191,6 +192,13 @@ export class AddFoodDialogComponent implements OnInit {
       default:
         this.shoppingUnit = '';
         this.showShoppingUnit = true;
+    }
+  }
+
+
+  closeDialog() {
+    if (confirm('Are you sure you want to stop adding this product?')) {
+      this.dialog.closeAll();
     }
   }
 }

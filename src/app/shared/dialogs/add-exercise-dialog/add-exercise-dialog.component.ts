@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ExerciseService } from '../../../exercises/exercise.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-add-exercise-dialog',
   templateUrl: './add-exercise-dialog.component.html',
-  styleUrls: ['./add-exercise-dialog.component.scss']
+  styleUrls: ['./add-exercise-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddExerciseDialogComponent implements OnInit {
 
@@ -81,7 +83,8 @@ export class AddExerciseDialogComponent implements OnInit {
   ];
 
   constructor( private fb: FormBuilder,
-               private exerciseService: ExerciseService) {}
+               private exerciseService: ExerciseService,
+               private dialog: MatDialog) {}
 
   ngOnInit() {
     this.infoForm = this.fb.group({
@@ -160,5 +163,12 @@ export class AddExerciseDialogComponent implements OnInit {
       locations: this.locationForms.value,
     };
     this.exerciseService.addExercise(data);
+  }
+
+
+  closeDialog() {
+    if (confirm('Are you sure you want to stop adding this exercise?')) {
+      this.dialog.closeAll();
+    }
   }
 }

@@ -22,6 +22,13 @@ form {
 
 .middle {
     margin-left: 5.5em;
+    @include respond-down($sm) {
+        margin-left: 0;
+
+        h5 {
+            margin-top: 1.5em;
+        }
+    }
 }
 
 .subtitle {

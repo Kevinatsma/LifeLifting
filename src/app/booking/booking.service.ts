@@ -59,7 +59,8 @@ export class BookingService implements OnInit {
           appointment: true,
           appointmentAccepted: user.status.appointmentAccepted || false,
           appointmentCompleted: user.status.appointmentCompleted || false,
-          appointmentRejected: user.status.appointmentRejected || false
+          appointmentRejected: user.status.appointmentRejected || false,
+          subscriptionValid: user.status.subscriptionValid
         }
       };
       this.userService.updateUser(user.uid, userData);

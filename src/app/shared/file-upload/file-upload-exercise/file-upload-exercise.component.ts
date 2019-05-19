@@ -7,7 +7,7 @@ import { FileSizePipe } from '../../pipes/file-size.pipe';
 @Component({
   selector: 'app-file-upload-exercise',
   templateUrl: './file-upload-exercise.component.html',
-  styleUrls: ['./file-upload-exercise.component.scss'],
+  styleUrls: ['./file-upload-exercise.component.scss', './../file-upload.component.scss'],
 })
 export class FileUploadExerciseComponent implements OnInit {
 

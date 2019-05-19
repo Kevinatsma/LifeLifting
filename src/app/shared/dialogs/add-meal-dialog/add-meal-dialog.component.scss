@@ -15,13 +15,19 @@
         position: relative;
         margin: 0;
 
+        mat-horizontal-stepper {
+            @include respond-down($sm) {
+                overflow-x: hidden;
+            }
+        }
         .mat-horizontal-stepper-header-container {
             width: 95%;
             margin-right: 2.5%;
 
             @include  respond-down($sm) {
                 width: 100%;
-                margin: 0 0 0 -0.5em;
+                margin: 0!important;
+                overflow-x: auto;
             }
 
             mat-step-header {
@@ -87,9 +93,11 @@
     width: 100%;
 
     @include respond-down($sm) {
-        padding-top: 0;
+        padding: 0 1em!important;
         margin-top: 4em;
-        min-height: 69vh;
+        min-height: 72vh;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     h5 {
@@ -103,6 +111,9 @@
     p {
         width: 60%;
         margin: 0;
+        @include respond-down($sm) {
+            width: 100%;
+        }
     }
 }
 
@@ -445,7 +456,7 @@ form {
                         margin-left: 1.2em;
                         @include respond-down($sm) {
                             margin-left: 0.75em;
-                            width: 95px;
+                            width: 75px;
                         }
                     }
                 }
