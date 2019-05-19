@@ -1,0 +1,64 @@
+
+<mat-card class="list-item-card" *ngIf="mealplan && auth.user | async as user">
+  <div *ngIf="client" class="card-circle" (click)="linkToChild(mealplan)">
+    <i class="fas fa-weight"></i>
+    <div class="nr-circle">
+      <span>{{mealplan.mealplanNR}}</span>
+    </div>
+  </div>
+
+  <!-- Menu -->
+  <ng-container *ngIf="auth.user | async as $user">
+    <button class="menu-icon-btn" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu" backdropClass="context-menu-mealplan">
+      <button mat-menu-item (click)="duplicateMealplan(mealplan)" *ngIf="$user.roles.admin || $user.roles.specialist">
+        <i class="far fa-copy"></i>
+        <span>Duplicate</span>
+      </button>
+      <button mat-menu-item (click)="linkToShoppingList(mealplan)">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Shopping list</span>
+      </button>
+      <button mat-menu-item (click)="printMealplan(mealplan)">
+        <i class="fas fa-print"></i>
+        <span>Print</span>
+      </button>
+    </mat-menu>
+  </ng-container>
+
+  <p class="subtitle" *ngIf="!mealplan.lastEdited">
+    Edited: Not edited yet...
+  </p>
+  <p class="subtitle" *ngIf="mealplan.lastEdited">
+    Edited: {{mealplan.lastEdited.toDate() | date: 'short'}}
+  </p>
+  <section class="middle" (click)="linkToChild(mealplan)">
+    <div class="title">
+        <h2>{{mealplan.mealplanName}}</h2>
+    </div>
+
+    <div class="quick-info">
+      <p class="speciality-title">mID: {{mealplan.mID}}</p>
+      <p *ngIf="client" class="speciality-title">For: {{client.displayName}}</p>
+      <p class="speciality-title">Created: {{mealplan.creationDate.toDate() | date:'MM/dd/yy'}}</p>
+      <ul class="contact-menu">
+        <!-- <li>
+          <i class="fas fa-balance-scale"></i>
+          {{mealplan.portion.amount}} {{mealplan.portion.unit}}
+        </li> -->
+      </ul>
+    </div>
+  </section>
+  <section class="actions" *ngIf="user.roles.specialist || user.roles.admin">
+    <button type="button" (click)="deleteMealplanDialog(mealplan)">
+      <i class="fas fa-trash"></i>
+    </button>
+    <button (click)="editMealplan(mealplan)">
+      <i class="fas fa-edit"></i>
+    </button>
+  </section>
+
+</mat-card>

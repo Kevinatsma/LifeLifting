@@ -1,7 +1,17 @@
 export interface Roles {
-    member?: boolean;
+    client?: boolean;
     specialist?: boolean;
     admin?: boolean;
+}
+
+
+export interface Status {
+    appointment?: boolean;
+    appointmentAccepted?: boolean;
+    appointmentCompleted?: boolean;
+    accepted?: boolean;
+    signUpCompleted?: boolean;
+    subscriptionValid?: boolean;
  }
 
  export interface BasicData {
@@ -11,6 +21,7 @@ export interface Roles {
     phoneNumber?: number;
     mainGoal?: string;
     heardFromUs?: string;
+    currentWeight?: string;
  }
 
 export class User {
@@ -20,9 +31,9 @@ export class User {
     email: string;
     photoURL?: string;
     roles?: Roles;
+    status?: Status;
     basicData?: BasicData;
     packageChoice?: string;
     specialist?: string;
-    appointment?: string;
-    signupCompleted?: boolean;
+    signUpDate?: Date;
 }

@@ -1,0 +1,20 @@
+<main class="mealplan-list-wrapper">
+  <div class="wrapper">
+      <header>
+          <section class="title">
+              <h1>My Mealplans</h1>
+              <!-- <button class="icon-button" (click)="openDialog()">
+                  <i class="fas fa-plus"></i>
+              </button> -->
+          </section>
+          
+          <p class="intro-text">
+              In this section you have a quick overview of the mealplans you created. You can view and edit/delete them directly 
+              from the list. With the top right button you add a mealplan. <span class="emoji">📄</span>
+          </p>
+      </header>  
+  </div>
+  <section class="card-list" *ngIf="mealplans">
+    <app-mealplan-list-item *ngFor="let mealplan of mealplans | async; let i=index" [i]="i" [mealplan]="mealplan"></app-mealplan-list-item>
+  </section>
+</main>

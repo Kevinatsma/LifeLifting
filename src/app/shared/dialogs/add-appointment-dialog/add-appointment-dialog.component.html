@@ -1,0 +1,259 @@
+<main class="dialog-wrapper" *ngIf="(auth.user | async) as user">
+  <div class="close-section mobile">
+    <button class="text-link close-btn" (click)="closeDialog()" type="button">
+      <i class="mobile fas fa-arrow-left"></i> Back
+    </button>
+  </div>
+  
+  <form [formGroup]="appointmentForm">
+    <h3>Plan an appointment 
+      <ng-container *ngIf="!user.roles.admin || !user.roles.specialist">
+        with {{data.specialist.firstName}}
+      </ng-container>
+    </h3>
+    <p class="card-text">
+      Please provide a suitable time. Requests for times that are already taken, are not secured spots.
+    </p>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Describe the meeting. Example: 'First consultation'</mat-label>
+      <input type="text" matInput formControlName="eventTitle" placeholder="Write a title" />
+      <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
+        This is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+
+    <div class="chip-area"  *ngIf="user.roles.specialist || user.roles.admin">
+      <p class="secondary-chip">
+        <i class="fas fa-user-tie"></i>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-select matInput placeholder="Pick a user" formControlName="clientID" autocomplete="off" 
+          panelClass="dropdown-regular">
+            <mat-option *ngFor="let client of clients" [value]="client.uid">{{client.displayName}}</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+      </p>
+      <p class="secondary-chip" *ngIf="user.roles.admin">
+        <i class="fas fa-user-ninja"></i>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-select matInput placeholder="Pick a specialist"
+          formControlName="specialistID" autocomplete="off" panelClass="dropdown-regular">
+            <mat-option *ngFor="let specialist of specialists" [value]="specialist.specialistID">{{specialist.firstName}} {{specialist.lastName}}</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+      </p>
+    </div>
+
+    <div class="color-pickers" *ngIf="user.roles.specialist || user.roles.admin">
+      <mat-form-field appearance="standard" floatLabel="always" class="color-picker-field" *ngIf="standardColorPrimary">
+        <mat-label>Pick a primary color (event background)</mat-label>
+        <input
+          matInput
+          type="color"
+          formControlName="selectedColorPrimary"
+          [(value)]="standardColorPrimary"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="standard" floatLabel="always" class="color-picker-field" *ngIf="standardColorSecondary">
+        <mat-label>Pick a secondary event color (event border)</mat-label>
+        <input
+          matInput
+          type="color"
+          formControlName="selectedColorSecondary"
+          [(value)]="standardColorSecondary"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="add-date-time-container start-date">
+      <h5>Start date & time</h5>
+
+      <div class="content-container" [class.no-date]="!hasStartDate">
+        <mat-form-field class="date-picker" appearance="standard" floatLabel="always" *ngIf="!hasStartDate">
+          <mat-label>Pick a date</mat-label>
+          <input matInput formControlName="startTime" [matDatepicker]="datePickerOne"
+          placeholder="MM/DD/YYYY (eg. 26/03/2019)">
+          <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
+          <mat-datepicker #datePickerOne></mat-datepicker>
+        </mat-form-field>
+
+        <h3 class="date" *ngIf="hasStartDate">
+          <ng-container *ngIf="start">{{ start.startDay }} {{ start.startMonth }} {{ start.startYear }}</ng-container>
+        </h3>
+
+        <div class="time" *ngIf="!hasStartDate">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Hour</mat-label>
+            <input type="number" matInput formControlName="startHour" placeholder="06" />
+          </mat-form-field>
+          <span class="not-mobile">:</span>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Minutes</mat-label>
+            <input type="number" matInput formControlName="startMinutes" placeholder="30" />
+          </mat-form-field>
+        </div>
+
+        <h3 class="date" *ngIf="hasStartDate">
+          <i class="far fa-clock"></i>
+          <ng-container *ngIf="start">{{ start.startHours }} {{ start.startMinutes }}</ng-container>
+        </h3>
+      </div>
+    </div>
+
+    <div class="add-date-time-container" *ngIf="user.roles.admin ||  user.roles.specialist">
+      <h5>End date & time</h5>
+
+      <div class="content-container" [class.no-date]="!hasEndDate">
+        <mat-form-field class="date-picker" appearance="standard" floatLabel="always" *ngIf="!hasEndDate">
+          <mat-label>Pick a date</mat-label>
+          <input matInput formControlName="startTime" [matDatepicker]="datePickerOne"
+          placeholder="MM/DD/YYYY (eg. 26/03/2019)">
+          <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
+          <mat-datepicker #datePickerOne></mat-datepicker>
+        </mat-form-field>
+
+        <h3 class="date" *ngIf="hasEndDate">
+          <ng-container *ngIf="end">{{ end.endDay }} {{ end.endMonth }} {{ end.endYear }}</ng-container>
+        </h3>
+
+        <div class="time" *ngIf="!hasEndDate">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Hour</mat-label>
+            <input type="number" matInput formControlName="startHour" placeholder="06" />
+          </mat-form-field>
+          <span class="not-mobile">:</span>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Minutes</mat-label>
+            <input type="number" matInput formControlName="startMinutes" placeholder="30" />
+          </mat-form-field>
+        </div>
+
+        <h3 class="date" *ngIf="hasEndDate">
+          <i class="far fa-clock"></i>
+          <ng-container *ngIf="end">{{ end.endHours }} {{ end.endMinutes }}</ng-container>
+        </h3>
+
+      </div>
+
+    </div>
+
+    <div class="add-date-time-container" *ngIf="user.roles.client && !user.roles.specialist && !user.roles.admin ">
+      <h5>End date & time</h5>
+
+      <div class="content-container">
+
+        <h3 class="date" *ngIf="hasEndDate">
+          {{ end.endDay }} {{ end.endMonth }} {{ end.endYear }}
+        </h3>
+        <h3 class="date" *ngIf="hasEndDate">
+          <i class="far fa-clock"></i>
+          {{ end.endHours }} {{ end.endMinutes }}
+        </h3>
+      </div>
+    </div>
+
+    <div class="meeting-place-picker">
+      <h5>How is the meeting taking place?</h5>
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-select matInput placeholder="Online or in real?"
+        (selectionChange)="toggleContext()" formControlName="appointmentContext" autocomplete="off" 
+        panelClass="dropdown-regular" required>
+          <mat-option value="faceToFace">Face to face</mat-option>
+          <mat-option value="onlineAppointment">Online appointment</mat-option>
+        </mat-select>
+        <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+      </mat-form-field>
+    </div>
+
+    <ng-container *ngIf="faceToFace | async">
+      <div class="location-card">
+        <img src="./../../../../assets/img/icons/maps.svg">
+        <div class="address">
+          <h3>Jirón Oscar Chocano 499</h3>
+          <p>Santiago de Surco, Lima</p>
+        </div>
+        <a class="text-link" href="https://goo.gl/maps/3dXhLj2B94KLRWZS8" target="_blank">
+          <span class="not-mobile">Open in Maps</span>
+          <i class="mobile fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+      <div class="multiple-input online-phone" formGroupName="faceToFacePhone">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Area Code</mat-label>
+          <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
+          <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Phone Number</mat-label>
+          <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off">
+        </mat-form-field>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="onlineAppointment | async">
+      <div class="meeting-place-picker">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-select matInput placeholder="How would you like to be contacted?"
+          (selectionChange)="toggleContactMethod()" formControlName="contactMethod" autocomplete="off" 
+          panelClass="dropdown-regular" required>
+            <mat-option value="whatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</mat-option>
+            <mat-option value="skype"><i class="fab fa-skype"></i> Skype</mat-option>
+            <mat-option value="phone"><i class="fas fa-phone"></i> Phone (only Peru)</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+      </div>
+
+      <ng-container *ngIf="whatsApp | async">
+        <div class="multiple-input online-phone" formGroupName="wappNumber">
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Area Code</mat-label>
+              <input type="text" matInput formControlName="wappAreaCode" placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
+              <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Phone Number</mat-label>
+              <input type="number"formControlName="wappRest" matInput placeholder="123456789" autocomplete="off" >
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="skype | async">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Skype name</mat-label>
+          <input type="text" matInput formControlName="skypeName" placeholder="What's your skype name?" />
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngIf="onlinePhone | async">
+        <div class="multiple-input online-phone" formGroupName="onlinePhone">
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Area code</mat-label>
+              <input type="text" matInput formControlName="phoneAreaCode" [value]="'+51'" readonly
+              autofocus="off" autocomplete="off" maxlength="3">
+              <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Phone Number</mat-label>
+              <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off" >
+          </mat-form-field>
+        </div>
+      </ng-container>
+    </ng-container>
+
+  </form>
+
+  <section class="btn-area-one">
+    <button type="submit" class="dialog-button" (click)="getSpecialist()"
+    [disabled]="!appointmentForm.valid"
+    [class.disabled]="!appointmentForm.valid"
+    [mat-dialog-close]="appointmentForm.valid ? true : false"
+    >
+      Done
+    </button>
+  </section>
+</main>

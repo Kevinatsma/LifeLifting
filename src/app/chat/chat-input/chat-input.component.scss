@@ -1,0 +1,41 @@
+@import './../../../assets/scss/_master.scss';
+@import './../../../assets/scss/_forms.scss';
+
+mat-form-field.chat-box {
+    width: 96%;
+    margin: 10px 2% 0 2%;
+
+
+    ::ng-deep .mat-form-field-underline {
+        display: none;
+    }
+
+    ::ng-deep .mat-form-field-label{
+        color: $grey;
+        font-size: 16px;
+        font-weight: $semi-bold;
+        font-family: $main-font;
+        letter-spacing: 1px;
+    }
+
+    .mat-form-field-infix {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
+    input {
+        max-height: 75px;
+        line-height: 26px;
+        box-sizing: border-box;
+        margin-top: 5px;
+        width: 90%;
+    }
+
+    svg {
+        top: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        color: $primary-color;
+        width: 10%;
+    }
+}

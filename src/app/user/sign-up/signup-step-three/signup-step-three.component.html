@@ -1,37 +1,48 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
-    <section class="step-wrapper">
-      <h5>Choose a date {{user.displayName || user.email}}</h5>
-      <h1>Step 3: Plan your first appointment</h1>
+  <section class="step-wrapper not-success step-three" *ngIf="!user.specialist">
+    <h5>Pick wisely, {{user.displayName || user.email}}</h5>
+    <h1>Step 3: Choose a Specialist</h1>
 
-      <div class="choice-wrapper" *ngIf="!choiceMade && !user.appointment">
-        <button type="link" class="choice-icon-btn" (click)="onlineAppointmentOption()">
-          <i class="fas fa-globe-americas"></i>
-          <h4>Online appointment</h4>
-        </button>
-        <button type="link" class="choice-icon-btn" (click)="faceToFaceAppointmentOption()">
-          <i class="fas fa-coffee"></i>
-          <h4>Face 2 Face appointment</h4>
-        </button>
-      </div>
-
-      <div class="step-done" *ngIf="user.appointment">
-        <p class="intro-text">You already planned an appointment. Go to the next step by clicking the button below. If you want to change your appointment, you can. Chat with your nutritionist in the dashboard.</p>
-        <div class="btn-area">
-          <button class="btn-icon-right" routerLink="../step-four">
-            <span>Continue process</span>
-            <i class="fas fa-chevron-right small"></i>
-          </button>
-        </div>
-      </div>
-
-      <ng-container *ngIf="onlineAppointment">
-        <app-online-appointment [user]="user"></app-online-appointment>
-      </ng-container>
-
-      <ng-container *ngIf="faceToFaceAppointment">
-        <app-face-to-face-appointment></app-face-to-face-appointment>
-      </ng-container>
-  
+    <section class="package-container specialist-container">
+      <mat-radio-group class="package-slider" [(ngModel)]="chosenSpecialist">
+          <mat-radio-button id="specialist{{i+1}}" class="package-item specialist-item"
+          *ngFor="let specialist of specialists | async; let i=index" 
+          [value]="specialist.specialistID" labelPostition="before"
+          autofocus="none">
+            <app-specialist-item [specialist]="specialist"></app-specialist-item>
+          </mat-radio-button>
+      </mat-radio-group>
     </section>
-  </ng-container>
+
+    <div class="btn-area">
+      <button class="btn-icon-left" routerLink="../step-two">
+        <i class="fas fa-chevron-left small"></i>
+        <span class="not-mobile">Previous step</span>
+        <span class="mobile">Previous</span>
+      </button>
+      <button class="btn-icon-right" (click)="updateUser(user)" [class.btn-disabled]="chosenSpecialist === null" [disabled]="chosenSpecialist === null">
+        <span class="not-mobile">Next step</span>
+        <span class="mobile">Next</span>
+        <i class="fas fa-chevron-right small"></i>
+      </button>
+    </div>
+  </section>
+
+  <section class="step-wrapper success" *ngIf="user.specialist">
+    <h5>You've picked wisely, {{user.displayName || user.email}}</h5>
+    <h1>Step 3: Choose a Specialist</h1>
+    <div class="step-done">
+      <p class="intro-text">
+        Ooops! You already chose a specialist. Go to the next dashboard by clicking the button below. If you want to change your 
+        specialist later. That's allowed after one week of trial.
+      </p>
+      <div class="btn-area">
+        <button class="btn-icon-right" routerLink="../step-four">
+          <span>Plan the consultation</span>
+          <span class="emoji">📅</span>
+        </button>
+      </div>
+    </div>
+  </section>
+</ng-container>
   

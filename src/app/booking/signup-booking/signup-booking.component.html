@@ -1,0 +1,146 @@
+
+<main class="calendar calendar-signup" *ngIf="auth.user | async as user">
+  <ng-template #loading>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
+  <div class="mobile create-appointment-mobile" *ngIf="showStepTwoMobile">
+    <div class="close-section">
+      <button class="text-link close-btn" (click)="closeMobileAppointment()" type="button">
+        <i class="fas fa-arrow-left"></i> Back
+      </button>
+    </div>
+    <section class="intro">
+      <h1>First consultation</h1>
+    </section>
+
+    <form class="phoneNumber" [formGroup]="appointmentForm">
+      <h5>+51</h5>
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Your phone number</mat-label>
+        <input type="number" formControlName="phoneNumber" matInput placeholder="123456789" autocomplete="off">
+      </mat-form-field>
+    </form>
+    
+    <h4>Dates & times</h4>
+    <section class="timeline">
+      <div class="start">
+        <h5>From: {{start.startDay}} {{start.startMonth}} {{start.startYear}}</h5>
+        <p class="time">
+          <i class="far fa-clock"></i>
+          {{start.startHours}}{{start.startMinutes}}
+        </p>
+      </div>
+      <div class="end">
+          <h5>To: {{end.endDay}} {{end.endMonth}} {{end.endYear}}</h5>
+          <p class="time">
+            <i class="far fa-clock"></i>
+            {{end.endHours}}{{end.endMinutes}}
+          </p>
+      </div>
+    </section>
+    <div class="location-card">
+      <img src="./../../../../assets/img/icons/maps.svg">
+      <div class="address">
+        <h4>Jirón Oscar Chocano 499</h4>
+        <p>Santiago de Surco, Lima</p>
+      </div>
+      <a class="text-link" href="https://goo.gl/maps/3dXhLj2B94KLRWZS8" target="_blank">Open in Maps</a>
+    </div>
+    <button type="submit" class="btn-primary" (click)="addMobileEvent()">
+      Confirm appointment
+    </button>
+  </div>
+  <section class="action-toolbar-top calendar__toolbar">
+    <div class="left">
+      <button class="icon-button hidden">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+
+    <h1 *ngIf="specialist">{{specialist.firstName}}'s Calendar</h1>
+
+    <div class="right" *ngIf="specialist">
+      <button class="icon-button" (click)="chat(specialist.uid)" matTooltip="User hasn't completed the Signup process yet"
+      matTooltipClass="tooltip-info" [matTooltipPosition]="below">
+        <i class="fas fa-comment-alt"></i>
+      </button>
+    </div>
+  </section>
+
+  <div class="calendar-container">
+    <div class="profile-picture" *ngIf="specialist" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
+      <span *ngIf="!specialist.photoURL">No Photo Yet</span>
+    </div>
+
+    <section class="calendar__title">
+      <button
+        class="text-link"
+        mwlCalendarPreviousView
+        (click)="replaceDates()"
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="activeDayIsOpen = false"
+      >
+        <i class="fas fa-arrow-left"></i>
+        <span class="not-mobile">Previous</span>
+      </button>
+      <!-- <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+      >
+        Today
+      </div> -->
+      <h2>
+        {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}
+      </h2>
+      <button
+        class="text-link"
+        mwlCalendarNextView
+        (click)="replaceDates()"
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="getEvents(user)"
+        (viewChange)="getEvents(user)"
+      >
+      <span class="not-mobile">Next</span>
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </section>
+
+    <section class="calendar__view" [ngSwitch]="view">
+      <div *ngIf="events$ | async; else loading; let events">
+      <!-- <ng-container *ngIf="appointments"> -->
+        <mwl-calendar-month-view
+          *ngSwitchCase="CalendarView.Month"
+          [viewDate]="viewDate"
+          [events]="events"
+          [activeDayIsOpen]="activeDayIsOpen"
+          (dayClicked)="dayClicked($event.day)"
+        >
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view
+          *ngSwitchCase="CalendarView.Week"
+          [viewDate]="viewDate"
+          (hourSegmentClicked)="hourClicked($event.date)"
+          [dayStartHour]="6"
+          [dayEndHour]="19"
+          [events]="events"
+        >
+        </mwl-calendar-week-view>
+        <mwl-calendar-day-view
+          *ngSwitchCase="CalendarView.Day"
+          [viewDate]="viewDate"
+          (hourSegmentClicked)="hourClicked($event.date)"
+          [dayStartHour]="6"
+          [dayEndHour]="19"
+          [events]="events"
+        >
+        </mwl-calendar-day-view>
+      </div>
+    </section>
+  </div>
+</main>
+
+
+

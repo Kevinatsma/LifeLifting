@@ -1,15 +1,33 @@
-@import '_master';
+@import './../../../../assets/scss/_master.scss';
 
 div.success-wrapper {
     width: 30vw!important;
     height: 100vh;
     overflow: hidden;
 
+    @include  respond-down($sm) {
+        width: 100vw!important;
+    }
+    @include respond-down($xs) {
+        overflow-y: auto;
+    }
+
     .login-container {
         @extend %flex-column-center;
         padding: 0;
         align-items: center!important;
         position: relative;
+        @include respond-down($sm) {
+            overflow: auto;
+            height: 100%;
+            padding: 0 16px;
+        }
+
+        @include respond-down($xs) {
+            overflow: auto;
+            height: auto;
+            padding: 1em 16px;
+        }
 
         .close-section {
             position: absolute;
@@ -24,32 +42,86 @@ div.success-wrapper {
         img.logo {
             width: 60%;
             margin-top: 0;
+
+            @include respond-down($sm) {
+                margin-bottom: 20px;
+                width: 40%;
+            }
         }
 
         ul.checklist {
             margin: 20px auto;
-            width: 80%;
+            width: 70%;
+
+            @include respond-down($sm) {
+                margin: 20px 0;
+            }
+
+            @include respond-down($xs) {
+                width: 90%;
+            }
 
             li {
-                color: $grey;
                 display: flex;
+                color: $grey;
+                align-items: center;
                 justify-content: flex-start;
-                padding-left: 1em;
-                margin: 0.5em auto;
+                margin: 11px 0;
+
+                a {
+                    color: $grey;
+                    padding: 0.1em 0;
+                    margin: 0;
+                    text-align: left;
+                }
 
                 &.activated {
                     color: $secondary-color;
+                    a {
+                        color: $secondary-color;
+                    }
                 }
                 
                 svg {
                     color: $secondary-color;
                     margin: 0.1em 1.5em 0 0;
                 }
+
+                .placeholder {
+                    width: 12px;
+                    height: 12px;
+                    border: 1.5px solid lighten($grey, 5%);
+                    border-radius: 2px;
+                    box-shadow: none;
+                    margin-right: 1.5em;
+                }
             }
         }
 
         p.intro-text {
             width: 80%;
+            @include  respond-down($sm) {
+                margin: 0;
+                width: 100%;
+            }
+        }
+
+        .btn-area {
+            flex-flow: column wrap;
+            width: 60%;
+            @include respond-down($sm) {
+                margin-top: 10px;
+            }
+
+            .btn-disabled {
+                cursor: not-allowed;
+                background: $middle-grey;
+            }
+
+            .text-link {
+                width: 50%;
+                margin: 1.5em auto 0;
+            }
         }
     }
 }

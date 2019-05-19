@@ -12,6 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 // Navigation
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 // Layout
@@ -25,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 // Popups & Modals
@@ -53,7 +55,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatMenuModule,
     MatProgressBarModule,
     MatChipsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatSidenavModule
   ],
   exports: [
     MatCardModule,
@@ -75,7 +79,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatMenuModule,
     MatProgressBarModule,
     MatChipsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatSidenavModule
   ]
 })
 export class MaterialModule { }

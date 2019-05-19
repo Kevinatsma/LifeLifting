@@ -1,0 +1,59 @@
+
+<mat-card class="list-item-card" *ngIf="guideline">
+  <div *ngIf="client" class="card-circle" (click)="linkToChild(guideline, client)">
+    <i class="far fa-file-alt"></i>
+    <div class="nr-circle">
+      <span>{{guideline.guidelineNR}}</span>
+    </div>
+  </div>
+
+  <!-- Menu -->
+  <ng-container *ngIf="auth.user | async as $user">
+    <button class="menu-icon-btn" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" backdropClass="context-menu-guideline">
+      <button mat-menu-item (click)="duplicateGuideline(guideline)" *ngIf="$user.roles.admin || $user.roles.specialist">
+        <i class="far fa-copy"></i>
+        <span>Duplicate</span>
+      </button>
+      <button mat-menu-item (click)="printGuideline()">
+        <i class="fas fa-print"></i>
+        <span>Print</span>
+      </button>
+    </mat-menu>
+  </ng-container>
+
+  <p class="subtitle" *ngIf="!guideline.lastEdited">
+    Edited: Not edited yet...
+  </p>
+  <p class="subtitle" *ngIf="guideline.lastEdited">
+    Edited: {{guideline.lastEdited.toDate() | date: 'short'}}
+  </p>
+  <section class="middle" (click)="linkToChild(guideline)">
+    <div class="title">
+        <h2>{{guideline.guidelineName}}</h2>
+    </div>
+
+    <div class="quick-info">
+      <p class="speciality-title">gID: {{guideline.gID}}</p>
+      <p *ngIf="client" class="speciality-title">For: {{client.displayName}}</p>
+      <p class="speciality-title">Created: {{guideline.creationDate.toDate() | date:'MM/dd/yy'}}</p>
+      <ul class="contact-menu">
+        <!-- <li>
+          <i class="fas fa-balance-scale"></i>
+          {{guideline.portion.amount}} {{guideline.portion.unit}}
+        </li> -->
+      </ul>
+    </div>
+  </section>
+  <section class="actions">
+    <button type="button" (click)="deleteGuidelineDialog(guideline)">
+      <i class="fas fa-trash"></i>
+    </button>
+    <button (click)="editGuideline(guideline)">
+      <i class="fas fa-edit"></i>
+    </button>
+  </section>
+
+</mat-card>

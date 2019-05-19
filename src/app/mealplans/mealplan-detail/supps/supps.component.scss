@@ -1,0 +1,147 @@
+@import './../../../../assets/scss/_master.scss';
+
+main {
+    width: 100%;
+
+    .guideline-activities {
+        height: auto;
+        padding: 3em 3em 3em 5em;
+        @include respond-down($sm) {
+            padding: 2em 1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .section-title {
+            &__subtitle {
+                width: 75%;
+                margin: 0 0 1em 0;
+            }
+        }
+
+        .activity {
+            align-items: center;
+            display: flex;
+            flex-flow: row nowrap;
+            height: 100%;
+            padding: 1em 0;
+            justify-content: flex-start;
+            width: 100%;
+
+            @include respond-down($sm) {
+                align-items: flex-start;
+                flex-flow: column wrap;
+            }
+
+            app-exercise-list-item {
+                margin: 0 0 3em;
+                height: auto;
+                width: 30%;
+                @include respond-down($sm) {
+                    margin: 0;
+                    position: relative;
+                    width: 70%;
+                    z-index: 100;
+                }
+            }
+
+            &:last-child {
+                padding-bottom: 0;
+            }
+
+            .container {
+                box-sizing: border-box;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                width: 70%;
+                background: lighten($light-grey, 2.5%);
+                border: 1px solid lighten($border-color, 5%);
+                max-height: 455px;
+                margin: 0 0 3em;
+                overflow-y: scroll;
+                padding: 2em 0 1em 3em;
+                align-items: center;
+
+                @include respond-down($sm) {
+                    width: 100vw;
+                    margin: -50px 0 10px -16px;
+                    padding: 80px 16px 0;
+                }
+
+                    .target-block {
+                        width: 100%;
+                        margin: 1em 0;
+
+                        h6 {
+                            font-size: 22px;
+                            text-transform: capitalize;
+                        }
+                        
+                        >div {
+                            margin: 0.5em 0;
+                        }
+
+                        h4 {
+                            position: relative;
+                            margin-bottom: 5px;
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                left: -15px;
+                                height: 4px;
+                                top: calc(50% - 1px);
+                                width: 4px;
+                                border-radius: 1px;
+                                background: $border-color;
+                            }
+                        }
+
+                        .subtitle {
+                            .card-text {
+                                font-size: 16px;
+
+                                .emoji {
+                                    &:nth-child(2) {
+                                        margin-left: 0.75em;
+                                    }
+                                }
+                            }
+                        }
+
+                        &__full-width {
+                            width: 100%;
+                            ul {
+                                li {
+                                    align-items: center;
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin: 1em 0;
+
+                                    span, input {
+                                        border-right: 1px solid $border-color;
+                                        color: $text-black;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: flex-start;
+                                        font-size: 28px;
+                                        font-weight: $bold;
+                                        height: 65px;
+                                        margin-right: 1em;
+                                        text-align: center;
+                                        width: 85px;
+                                    }
+
+                                    h4 {
+                                        text-transform: capitalize;
+                                        color: $secondary-color;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+        }
+    }
+}

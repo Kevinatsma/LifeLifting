@@ -1,8 +1,14 @@
+
+export interface Stats {
+    amountOfEventRequests: number;
+}
+
 export class Specialist {
+    uid: string;
     specialistID: string;
     firstName: string;
     lastName: string;
-    profilePicture?: string;
+    photoURL: string;
     description: string;
     email: string;
     phoneNumber: string;
@@ -26,4 +32,5 @@ export class Specialist {
             reviewStars?: number;
         }
     ];
+    stats?: Stats;
 }

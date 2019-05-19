@@ -1,0 +1,47 @@
+<div class="nav-wrapper">
+  <section class="left">
+    <button class="icon-btn" (click)="toggleSideNav()">
+      <img src="./../../../assets/img/icons/menu.svg">
+    </button>
+  </section>
+  <section class="logo">
+    <img src="../../../assets/img/logo-icon.svg">
+  </section>
+  <section class="middle">
+
+  </section>
+  <section class="right">
+    <div class="chat-container">
+      <button type="link" class="chat" routerLink="../chat">
+        <div class="notification-circle">
+        </div>
+        <img src="./../../../assets/img/icons/chat.svg">
+      </button>
+
+    </div>
+    <div class="user-menu" *ngIf="user">
+      <div class="user-photo" [matMenuTriggerFor]="menu" *ngIf="user.photoURL"
+        [style.backgroundImage]="'url('+ user.photoURL +')'">
+      </div>
+      <div class="user-photo" [matMenuTriggerFor]="menu" *ngIf="!user.photoURL"
+        [style.backgroundImage]="'url('+ replacementURL +')'">
+      </div>
+      <button class="open-dropdown-menu" [matMenuTriggerFor]="menu">
+          <span class="user-name">{{user.displayName}}</span>
+          <i class="fas fa-sort-down"></i>
+      </button>
+
+      <mat-menu #menu="matMenu" class="popup-menu">
+        <button mat-menu-item class="menu-link" (click)="editUser(user)">
+          <i class="fas fa-user-edit"></i>
+          Edit profile
+        </button>
+        <button mat-menu-item class="menu-link" (click)="signOut()">
+          <i class="fas fa-sign-out-alt"></i>
+          Sign out
+        </button>
+      </mat-menu>
+      
+    </div>
+  </section>
+</div>

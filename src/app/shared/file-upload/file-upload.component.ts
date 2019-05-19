@@ -36,33 +36,10 @@ export class FileUploadComponent implements OnInit {
     this.isHovering = event;
   }
 
-  // startUpload(event: FileList) {
-  //   // The File Object
-  //   const file = event.item(0);
-
-  //   // Client side Validation
-  //   if (file.type.split('/')[0] !== 'image') {
-  //     alert('That is not an image!');
-  //   }
-
-  //   // Storage Path
-  //   const id = new Date().getTime() + file.name;
-  //   const ref = this.storage.ref(`courses/` + id);
-
-  //   // Totaly Optional meta data
-
-  //   // Main Task
-  //   this.task = ref.put(file, { customMetadata });
-
-  //   // Observables for progress and actions
-  //   this.percentage = this.task.percentageChanges();
-  //   this.snapshot = this.task.snapshotChanges();
-  // }
-
   startUpload(event: FileList) {
     const file = event.item(0);
     const id = file.name;
-    const filePath = `/specialists/${id}`;
+    const filePath = `/users/${id}`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 

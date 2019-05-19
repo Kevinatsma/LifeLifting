@@ -1,0 +1,23 @@
+<main *ngIf="eventArr; else noEvents">
+  <div class="close-section mobile">
+    <button class="text-link close-btn" (click)="closeDialog()" type="button">
+      <i class="mobile fas fa-arrow-left"></i> Back
+    </button>
+  </div>
+  <div class="list-item-container" *ngIf="events | async as events; else loading">
+    <h1>Unaccepted requests</h1>
+    <p class="card-text">
+      In here you can keep track of new users who want you to be their specialist. They will
+      send a request for a date for their first consultation. If you accept by clicking the checkbox, it will show up
+      in your calendar. Please let the users know as fast as possible, so you don't lose your clients.
+    </p>
+    <app-event-request-list-item *ngFor="let event of events" [event]="event"></app-event-request-list-item>
+  </div>
+  <ng-template #loading>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
+</main>
+
+<ng-template #noEvents>
+  <h2 class="all-good">You're all good!</h2>
+</ng-template>

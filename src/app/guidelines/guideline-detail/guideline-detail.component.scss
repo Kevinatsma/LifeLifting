@@ -1,0 +1,760 @@
+@import './../../../assets/scss/_master.scss';
+
+// General
+p {
+    white-space: normal;
+}
+
+h5 {
+    &.purple {
+        color: $secondary-color;
+    }
+}
+
+main.specialist-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1.5em 2em;
+    @include respond-down($sm) {
+        padding: 1.5em 0 0;
+    }
+
+    .action-toolbar-top {
+        @include respond-down($sm) {
+            padding: 0 1em;
+        }
+        .left {
+            button {
+                margin-right: 2em;
+            }
+        }
+
+        button.icon-button {
+            position: inherit;
+        }
+
+        h1 {
+            @include respond-down($sm) {
+                width: 100%;
+
+                h5 {
+                    position: absolute;
+                    text-align: center;
+                    top: 6.25em;
+                    left: 0;
+                    right: 0;
+                }
+            }
+        }
+
+        .mobile {
+            display: block;
+        }
+
+        .specialist-actions {
+            height: auto;
+            width: 55px;
+            position: absolute;
+            right: calc(1em + 5px);
+            top: 5em;
+            display: flex;
+            flex-direction: column;
+            z-index: 1234;
+            @include respond-down($sm) {
+                right: 13px;
+                top: 6em;
+            }
+
+            button.icon-button {
+                position: relative;
+                min-height: 55px;
+                margin: 0.65em 0;
+                right: 0;
+                opacity: 0;
+                transform: scale(0);
+                transition: opacity 0.3ms ease-in-out, transform 0.3s cubic-bezier(.17,.67,.79,1.46);
+
+                &.visible {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+
+                &:first-child {
+                    transition-delay: 0.6s;
+                    &.visible {
+                        transition-delay: 0s;
+                    }
+                }
+
+                &:nth-child(2) {
+                    transition-delay: 0.4s;
+                    &.visible {
+                        transition-delay: 0.2s;
+                    }
+                }
+
+                &:nth-child(3) {
+                    transition-delay: 0.2s;
+                    &.visible {
+                        transition-delay: 0.4s;
+                    }
+                }
+
+                &:nth-child(4) {
+                    transition-delay: 0s;
+                    &.visible {
+                        transition-delay: 0.6s;
+                    }
+                }
+            }
+        }
+    }
+
+    .target-block {
+        width: 50%;
+        margin-bottom: 2rem;
+
+        @include respond-down($sm) {
+            width: 45%;
+
+            &:nth-child(2n) {
+                width: 40%;
+            }
+        }
+
+
+        &__value, &__value input {
+            font-size: 42px;
+            font-weight: $bold;
+            font-family: $main-font;
+            text-align: center;
+            width: 85%;
+            color: $title-light-black;
+            @include respond-down($sm) {
+                font-size: 28px;
+            }
+        }
+
+        span::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+    #level {
+        text-transform: capitalize;
+    }
+
+
+    .middle {
+        h1, h5 {
+            text-align: center;
+        }
+
+        h5 {
+            @include respond-down($sm) {
+                position: absolute;
+                text-align: center;
+                top: 5em;
+                left: 0;
+                right: 0;
+            }
+        }
+    }
+
+    .package-container {
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+
+        @include respond-down($sm) {
+            align-items: center;
+            flex-flow: column wrap;
+            justify-content: flex-start;
+        }
+
+        .package-controls {
+            @extend %flex-center;
+            width: 15%;
+        }
+
+        mat-card.list-item-card {
+            width: 80%;
+            margin: 6.5em auto 3em;
+            cursor: auto;
+
+            @include respond-down($sm) {
+                width: 100vw;
+                overflow-x: hidden;
+                margin: 6.5em auto 0;
+                overflow: visible;
+
+                &:focus, &:hover {
+                    transform: scale(1);
+                }
+            }
+
+            .chip-area {
+                width: 100%;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                align-items: center;
+                margin: 1.5em 0 0.5em;
+
+                @include respond-down($sm) {
+                    flex-flow: row wrap;
+                }
+
+                .secondary-chip {
+                    margin: 0 1em;
+                    background: $primary-light;
+                    padding: 10px 1em;
+                    width: auto;
+                    height: auto;
+                    color: $primary-color;
+                    font-weight: $semi-bold;
+                    font-size: 16px;
+                    border-left: 3px solid $primary-color;
+                    border-radius: 2px 6px 6px 2px;
+
+                    @include respond-down($sm) {
+                        margin: 0 10px 10px 0;
+                    }
+
+                    &:nth-child(2n) {
+                        background: lighten($secondary-color, 52%);
+                        color: $secondary-color;
+                        border-left: 3px solid $secondary-color;
+
+                        @include respond-down($sm) {
+                            margin-right: 0;
+                        }
+                    }
+                }
+
+            }
+
+        section {
+
+            .section-title {
+                position: relative;
+
+                @include respond-down($sm) {
+                    margin-left: 2em;
+                }
+                
+                &::after {
+                    content: '';
+                    background: $primary-light;
+                    height: 3px;
+                    width: 10%;
+                    position: absolute;
+                    bottom: -10px;
+                    left: 0;
+                }
+            }
+
+            .icon-circle {
+                width: 70px;
+                height: 70px;
+                box-shadow: $card-shadow;
+                background: #fff;
+                border-radius: 50%;
+                margin-bottom: 1rem;
+                @extend %flex-center;
+
+                svg {
+                    font-size: 38px;
+                    color: $primary-color;
+                }
+            }
+
+            &.introduction {
+                position: relative;
+                padding: 0;
+                margin: 0 0 3rem;
+                height: 170px;
+                @include respond-down($sm) {
+                    width:  100%;
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 80%;
+                    left: 10%;
+                    bottom: 0;
+                    background: $border-color;
+                    height: 1px;
+                }
+
+                h2, input {
+                    font-size: 38px;
+                    font-weight: $semi-bold;
+                    margin: 1em auto 0.25em;
+                    width: 80%;
+                    text-align: center;
+                }
+
+                h5 {
+                    color: lighten($grey, 10%);
+                    font-weight: $regular;
+                    text-align: center;
+                    width: 70%;
+                    margin: 0 auto;
+                }
+            }
+
+            &.guideline-targets {
+                padding: 0 1em 0 5em;
+                margin: 0 0 2rem;
+                position: relative;
+                @include respond-down($sm) {
+                    box-sizing: border-box;
+                    padding: 0 1em;
+                    margin-bottom: 0;
+                    width:  100%;
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 80%;
+                    left: 10%;
+                    bottom: 0;
+                    background: $border-color;
+                    height: 1px;
+                }
+
+                .target-container {
+                    margin: 2rem 0;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    @include respond-down($sm) {
+                        flex-flow: column wrap;
+                        width:  100%;
+                        > div {
+                            width: 100%;
+                        }
+                    }
+
+                    &__left {
+                        width: 65%;
+                        display: flex;
+                        flex-flow: row wrap;
+                        position: relative;
+
+                        @include respond-down($sm) {
+                            justify-content: center;
+                        }
+
+                        &::after {
+                            content: '';
+                            width: 1px;
+                            background-color: $border-color;
+                            position: absolute;
+                            height: 80%;
+                            top: 10%;
+                            right: 0;
+                            @include respond-down($sm) {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    &__right {
+                        @extend %flex-center;
+                        width: 35%;
+                        flex-flow: column wrap;
+
+                        h6 {
+                            text-transform: capitalize;
+                            font-size: 20px;
+                            font-weight: $semi-bold;
+                        }
+                    }
+                }
+            }
+
+            &.calorie-metrics, &.macro-metrics {
+                position: relative;
+                padding: 3rem;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                @include respond-down($sm) {
+                    box-sizing: border-box;
+                    padding: 1em 16px!important;
+                    flex-flow: row wrap;
+                    width: 100%;
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 80%;
+                    left: 10%;
+                    bottom: 0;
+                    background: $border-color;
+                    height: 1px;
+                }
+
+                .metric {
+                    width: 30%;
+                    margin-bottom: 2rem;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: flex-start;
+                    flex-flow: column wrap;
+
+                    @include respond-down($sm) {
+                        margin-top: 1.5em;
+                        width:  45%;
+                    }
+
+                    &.golden {
+                        @include respond-down($sm) {
+                            position: relative;
+                            top: 6em;
+                        }
+                    }
+
+                    &__value {
+                        color: $primary-color;
+                        font-size: 42px;
+                        font-weight: $bold;
+                        font-family: $main-font;
+                        text-align: center;
+                        margin-bottom: 1rem;
+                        width: 80%;
+                        @include respond-down($sm) {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    &__title {
+                        text-align: center;
+                        font-weight: $regular!important;
+                    }
+
+                    .icon-circle {
+                        background: $primary-color;
+                        height: 75px;
+                        margin-top: -2rem;
+                        width: 75px;
+
+                        svg {
+                            color: #fff;
+                        }
+                    }
+                }
+
+                &.calorie-metrics {
+                    @include respond-down($sm) {
+                        padding: 2em 16px!important;
+                    }
+                    .metric {
+                        @include respond-down($sm) {
+                            margin: 0 0 1em;
+                        }
+                    }
+                }
+
+                &.macros {
+                    background: $primary-color;
+                    border: none;
+                    position: relative;
+                    padding: 4em 3em 2.5em 3em;
+                    display: flex;
+                    flex-flow: column wrap;
+                    justify-content: space-between;
+                    box-shadow: $gold-glow;
+                    box-sizing: border-box;
+                    @include respond-down($sm) {
+                        width: 100%;
+                        padding-bottom: 4em;
+                    }
+
+                    &::after {
+                        content: none;
+                        display: none;
+                    }
+                    
+                    h2 {
+                        color: #fff;
+                        text-align: center;
+
+                        @include respond-down($sm) {
+                            margin: 1em 0 0 0;
+                        }
+
+                        &::after {
+                            width: 30%;
+                            left: 35%;
+                            bottom: -1em;
+                        }
+                    }
+                    
+                    .container {
+                        display: flex;
+                        flex-flow: row nowrap;
+                        width: 100%;
+                        height: auto;
+                        align-items: center;
+                        justify-content: center;
+                        margin-top: 5em;
+
+                        @include respond-down($sm) {
+                            flex-flow: column nowrap;
+                            margin-top: 2.5em;
+                        }
+                    }
+
+                    .metric {
+                        @include respond-down($sm) {
+                            flex-flow: row nowrap;
+                            width: 100%;
+                            height: 100%;
+                        }
+                        &__value {
+                            color: #fff;
+                        }
+
+                        &__title {
+                            font-weight: $semi-bold;
+                            font-size: 24px;
+                            color: #fff;
+                            text-transform: capitalize;
+                        }
+
+                        .icon-circle {
+                            background: #fff;
+                            color: $primary-color;
+                            font-size: 18px;
+                            font-weight: $semi-bold;
+                            height: 75px;
+                            margin-top: -2rem;
+                            width: 75px;
+                            border: 2.5px solid $primary-color;
+                            box-shadow: 0 0 0 3.5px #fff;
+
+                            @include respond-down($sm) {
+                                margin: 0 2em 0 1em;
+                            }
+
+                            input {
+                                color: $primary-color;
+                                width: 35px;
+                                text-align: right;
+                                height: auto;
+                                font-size: 18px;
+                                font-family: $main-font;
+                                font-weight: $semi-bold;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.guideline-activities {
+                height: auto;
+                padding: 3em 3em 3em 5em;
+                @include respond-down($sm) {
+                    padding: 3em 0 0;
+                    width:  100%;
+                    overflow-x: auto;
+                }
+
+                .activity {
+                    align-items: flex-start;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    height: 100%;
+                    padding: 2em 0;
+                    justify-content: flex-start;
+                    width: 100%;
+                    overflow-x: hidden;
+
+                    @include  respond-down($sm) {
+                        flex-flow: column wrap;
+                        overflow-x: auto;
+                    }
+
+                    &:last-child {
+                        padding-bottom: 0;
+                    }
+
+                    &__left {
+                        box-sizing: border-box;
+                        display: flex;
+                        flex-flow: column wrap;
+                        width: 40%;
+                        justify-content: flex-start;
+
+                        @include respond-down($sm) {
+                            flex-flow: row nowrap;
+                            width: 100%;
+                            padding: 10px 10px 0;
+                        }
+
+                        app-exercise-list-item {
+                            margin: 0 0 3em;
+                            height: auto;
+                            width: 100%;
+
+                            @include respond-down($sm) {
+                                margin: 0 2em 3em 1em;
+                                min-width: 250px;
+                            }
+                        }
+                    }
+
+                    &__right {
+                        box-sizing: border-box;
+                        align-items: center;
+                        display: flex;
+                        flex-flow: column wrap;
+                        width: 60%;
+                        @include respond-down($sm) {
+                            align-items: flex-start;
+                            flex-flow: row nowrap;
+                            width: 100%;
+                            padding: 10px 10px 1em 2em;
+                        }
+
+                        .container {
+                            box-sizing: border-box;
+                            display: flex;
+                            flex-flow: row wrap;
+                            height: 385px;
+                            margin: 0 0 3em;
+                            padding: 2em 0 2em 3em;
+                            align-items: center;
+                            width: 100%;
+
+                            @include respond-down($sm) {
+                                align-items: flex-start;
+                                justify-content: space-between;
+                                padding: 0 0 1em 1em;
+                                margin-right: 3em;
+                                min-width: 240px;
+                                height: auto;
+                            }
+
+                            .target-block {
+                                h6 {
+                                    text-transform: capitalize;
+                                }
+
+                                &__full-width {
+                                    width: 100%;
+                                    ul {
+                                        li {
+                                            align-items: center;
+                                            display: flex;
+                                            flex-direction: row;
+                                            margin: 1em 0;
+
+                                            span, input {
+                                                border-right: 1px solid $border-color;
+                                                color: $text-black;
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: flex-start;
+                                                font-size: 28px;
+                                                font-weight: $bold;
+                                                height: 65px;
+                                                margin-right: 1em;
+                                                text-align: center;
+                                                width: 85px;
+                                                @include respond-down($sm) {
+                                                    font-size: 24px;
+                                                }
+                                            }
+
+                                            h4 {
+                                                text-transform: capitalize;
+                                                color: $secondary-color;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+            .quick-info {
+                p {
+                    text-align: center;
+                }
+            }
+
+            .card-circle {
+                @extend %flex-center;
+                flex-flow: column wrap;
+                width: 175px;
+                height: 175px;
+                margin: -85px auto 0;
+                box-shadow: $card-shadow;
+                background-size: cover!important;
+                background-position: center!important;
+                border-radius: 50%;
+                border: 4px solid #fff;
+
+                @include respond-down($sm) {
+                    margin: -85px calc(50% - (175px/2)) 0;
+                }
+
+                svg {
+                    font-size: 38px;
+                }
+            }
+
+            .product-photo {
+                height: 250px;
+                position: relative;
+                background-size: cover!important;
+                background-position: center!important;
+            }
+
+
+            .preperation-container {
+                ul {
+                    li {
+                        display: block;
+                        margin: 1em 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+section.btn-area {
+    padding-left: 3em;
+
+    button.text-link {
+        margin: 1em 0;
+        svg {
+            font-size: 12px;
+            margin-left: 5px;
+        }     
+    }
+}
+
+div.not-available {
+    @extend %flex-center;
+    flex-flow: column wrap;
+    width: 100%;
+    height: 100%;
+}

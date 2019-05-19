@@ -1,0 +1,30 @@
+@import './../../../../assets/scss/_master.scss';
+.close-section {
+    @include respond-down($sm) {
+        margin-bottom: 10px;
+    }
+
+    svg {
+        margin-right: 15px;
+    }
+}
+
+.list-item-container {
+    @include respond-down($sm) {
+        min-height: 100vh;
+    }
+    h1, p {
+        width: 90%;
+        margin: 0 auto 10px;
+        text-align: left;
+    }
+    
+    p {
+        margin-bottom: 2em;
+    }
+
+}
+
+h2.all-good {
+    text-align: center;
+}

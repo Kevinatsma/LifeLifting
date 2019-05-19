@@ -1,0 +1,257 @@
+@import './../../../assets/scss/_master.scss';
+@import './../../../assets/scss/_animations.scss';
+
+mat-card.list-item-card {
+    display: flex;
+    flex-flow: row nowrap;
+    box-shadow: $card-shadow;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    transition: all 300ms ease-in-out;
+
+    @include respond-down($sm) {
+        flex-flow: column wrap;
+    }
+
+    &:hover, &:focus {
+        transition: transform 300ms ease-in-out;
+        transform: scale(1.02);
+    }
+
+    section {
+        @include respond-down($sm) {
+            box-sizing: border-box;
+            width: 100%!important;
+        }
+
+        &.profile-photo {
+            width: 25%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            @include respond-down($sm) {
+                height: 200px;
+            }
+        }
+
+        &.middle {
+            width: 65%;
+            border-right: $light-border;
+            padding: 1em 2em;
+
+            .title {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: flex-start;
+                align-items: center;
+                margin-top: 0.5em;
+
+
+                @include respond-down($sm) {
+                    flex-flow: column wrap;
+                    align-items: flex-start;
+                }
+
+                h2 {
+                    margin: 0;
+                    width: auto;
+
+                    @include respond-down($sm) {
+                        width: 100%;
+                    }
+                }
+
+                .dividing-circle {
+                    width: 5px;
+                    height: 5px;
+                    border-radius: 50%;
+                    background: $primary-color;
+                    margin: 5px 15px 0 13px;
+
+                    @include respond-down($sm) {
+                        display: none;
+                    }
+                }
+
+                p.location {
+                    width: auto;
+                    color: $grey;
+                    font-size: 13px;
+                    font-weight: $semi-bold;
+                    margin: 5px 0 0 0;
+                }
+
+            }
+
+            .quick-info {
+                p {
+                    font-size: 16px;
+                    color: $text-black;
+                    margin-bottom: 0;
+
+                    &.speciality-title {
+                        width: 100%;
+                        font-size: 15px;
+                        margin-top: 5px;
+                    }
+
+                    &.description {
+                        height: 80px;
+                        overflow: hidden;
+                        position: relative;
+
+                        @include respond-down($sm) {
+                            height: 65px;
+
+                            &::after {
+                                content: '';
+                                width: 100%;
+                                height: 100%;    
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                                background: linear-gradient(transparent -30px, white);
+                            }
+                        }
+                    }
+                }
+
+                ul.contact-menu {
+
+                    @include respond-down($sm) {
+                        display: flex;
+                        align-items: center;
+                        flex-flow: row nowrap;
+                        justify-content: space-between;
+                        margin: 1.5em 0;
+                    }
+
+                    li {
+                        display: inline-block;
+                        margin: 1em 1.5em;
+
+                        @include respond-down($sm) {
+                            box-sizing: border-box;
+                            margin: 0;
+                            width: 30%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-start;
+                            width: auto;
+                        }
+
+                        &:first-child {
+                            margin-left: 0;
+                        }
+
+                        &:nth-child(2) {
+                            @include respond-down($sm) {
+                                margin: 0 1em;
+                            }
+                        }
+
+                        svg {
+                            font-size: 18px;
+                            margin-right: 0.5em;
+                            color: $secondary-color;
+
+
+                            @include respond-down($sm) {
+                                margin-right: 1em;
+                            }
+                        }
+
+                        a {
+                            font-size: 18px;
+                            font-weight: $semi-bold;
+                            color: $secondary-color;
+
+                            @include respond-down($sm) {
+                                padding-bottom: 0;
+                            }
+                        }
+                    }
+                }
+
+                .btn-container {
+                    width: fit-content;
+
+                    button.btn-icon-right__animated {
+                        padding-left: 0;
+                        font-size: 16px;
+                        font-weight: $semi-bold;
+                    }
+
+                    svg {
+                        font-size: 12px;
+                        color: $middle-grey;
+                        transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+                        width: 20px;
+                        height: auto;
+                        position: relative;
+                        top: 5px;
+                        left: 10px;
+                        animation: right-left-right 1s 2;
+                    }
+
+                    &:hover, &:focus {
+                        svg {
+                            left: 10px;
+                            top: 5px;
+                            transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+                            animation: right-left-right 1s infinite;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.actions {
+            width: 10%;
+            display: flex;
+            flex-flow: column wrap;
+
+
+            @include respond-down($sm) {
+                flex-flow: row nowrap;
+                height: 75px;
+                border-top: $light-border;
+            }
+
+            button {
+                width: 100%;
+                height: 50%;
+                @extend %flex-center;
+                @include respond-down($sm) {
+                    height: 100%;
+                    border-radius: 0;
+
+                    &:first-child() {
+                        border-right: $light-border;
+                    }
+                }
+                
+                svg {
+                    margin-top: -3px;
+                    font-size: 15px;
+                    color: $icon-black;
+                    transition: transform 200ms ease-in-out;
+                }
+
+                &:first-child {
+                    border-bottom: $light-border;
+                }
+
+                &:hover, &:focus {
+                    background: $light-grey;
+                    svg {
+                        transition: transform 200ms ease-in-out;
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+    }
+}

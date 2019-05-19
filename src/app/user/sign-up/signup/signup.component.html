@@ -2,7 +2,7 @@
   <div class="column" *ngIf="!user.uid">
     <section class="login-container">
         <img class="logo" src="./../../../../assets/img/logo-extended.svg" title="Logo" alt="Logo">
-        <h2>Hey There!</h2>
+        <h2>Hey There! 👋🏼</h2>
         <p class="intro-text">Create an account to see your schedules and goals, chat with your nutritionist and get real-time data.</p>
     
     
@@ -15,11 +15,12 @@
             <mat-error class="input-error" *ngIf="!email.valid && email.dirty">That's <strong>not</strong> a valid e-mail address!</mat-error>
           </mat-form-field>
     
-          <mat-form-field appearance="standard">
+          <mat-form-field appearance="standard" class="password">
             <input class="form-input" type="password" matInput placeholder="Choose a password.." [type]="hide ? 'password' : 'text'" 
             formControlName="password" [class.active]="!password.valid && password.touched" 
             autocomplete="new-password" required
             >
+            <mat-error class="input-error" *ngIf="capsOn | async"><strong>&#x26A0; Warning</strong> Caps lock is turned on</mat-error>
             <mat-error class="input-error" *ngIf="!password.dirty">This is <strong>required</strong></mat-error>
             <mat-error class="input-error" *ngIf="password.errors?.minlength"><strong>Not enough</strong> characters, try harder!</mat-error>
             <mat-error class="input-error" *ngIf="password.errors?.maxlength">Too <strong>much</strong> characters, slow down there.</mat-error>
@@ -29,17 +30,13 @@
           <div class="btn-area">
             <button class="btn-primary" type="submit">Create account</button>
             <br>
-            <button type="link" class="text-link" routerLink="../login">I already have an account</button>
+            <button type="button" class="text-link" routerLink="../login">I already have an account</button>
     
             <p class="light-text">- or -</p>
     
             <button type="button" class="btn-icon-left" (click)="googleLogin()">
-              <i class="fab fa-google"></i>
+              <img src="./../../../../assets/img/icons/google.svg">
               <span>Signup with Google</span>
-            </button>
-            <button type="button" class="btn-icon-left" (click)="facebookLogin()">
-              <i class="fab fa-facebook-f"></i>
-              <span>Signup with Facebook</span>
             </button>
 
             <p class="light-text">We are not afraid of mirrors!</p>
@@ -61,7 +58,9 @@
     <section class="photo-container" *ngIf="!user.uid">
       
     </section>
-    <router-outlet *ngIf="user.uid"></router-outlet>
+    <div class="router-wrapper" [@fadeAnimation]="getState(o)">
+      <router-outlet #o="outlet"></router-outlet>
+    </div>
     
   </ng-container>
   

@@ -1,10 +1,8 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-
-// import { MaterialModule } from './../../../shared/material.module';
+import { Component, OnInit, NgZone, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthService } from './../../core/auth/auth.service';
 import { Location } from '@angular/common';
 import { User } from '../user.model';
@@ -16,6 +14,7 @@ import { User } from '../user.model';
 })
 
 export class LoginComponent implements OnInit {
+  capsOn: Subject<boolean> = new Subject();
   signInForm: FormGroup;
   hide = true;
 
@@ -62,15 +61,23 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  facebookLogin() {
-    this.auth.facebookLogin()
-    .then(() => {
-      if (this.auth.user) {
-        this.router.navigate(['signup/step-one']);
-        console.log('You don\'t have all necessary data yet..');
+  // Get Capslock state
+
+  @HostListener('window:keydown', ['$event'])
+    onKeyDown(event) {
+    if (event.getModifierState && event.getModifierState('CapsLock')) {
+      this.capsOn.next(true);
       } else {
-        alert('Woops, you\'re not logged in. Try again!');
+      this.capsOn.next(false);
       }
-    });
+    }
+
+    @HostListener('window:keyup', ['$event'])
+    onKeyUp(event) {
+    if (event.getModifierState && event.getModifierState('CapsLock')) {
+      this.capsOn.next(true);
+    } else {
+      this.capsOn.next(false);
+    }
   }
 }

@@ -1,24 +1,38 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from './user.model';
 import { AuthService } from '../core/auth/auth.service';
+import { Specialist } from '../specialists/specialist.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   userCol: AngularFirestoreCollection<User>;
-  user: User;
   users: Observable<User[]>;
+  myClientsCol: AngularFirestoreCollection<User>;
+  myClients: Observable<User[]>;
   userDoc: AngularFirestoreDocument<User>;
+  user: Observable<User>;
+  specialist: User;
+  specialistID: string;
+  editShow: boolean;
+  editStateChange: Subject<boolean> = new Subject<boolean>();
 
   constructor( private afs: AngularFirestore,
                private auth: AuthService) {
     this.userCol = this.afs.collection(`users`);
     this.users = this.getUsers();
+    this.editStateChange.subscribe((value) => {
+      this.editShow = value;
+    });
+  }
+
+  toggleEdit() {
+    this.editStateChange.next(!this.editShow);
   }
 
   getUsers() {
@@ -32,35 +46,48 @@ export class UserService {
     return this.users;
   }
 
-  // getUserData(id) {
-  //   this.userDoc = this.afs.doc(`users/${id}`);
-  //   return this.userDoc.valueChanges();
-  // }
+  getMyClients() {
+    this.getUserDataByID(this.auth.currentUserId).subscribe(user => {
+      this.specialist = user;
+      this.specialistID = this.specialist.sID;
+      const specialistQuery = `specialist${this.specialistID}`;
+      this.myClientsCol = this.afs.collection('users', ref => ref.where('specialist', '==', `${specialistQuery}`));
+      this.myClients = this.myClientsCol.valueChanges();
+    });
+    return this.myClients;
 
-  getUserData() {
-    this.afs.collection(`users`).doc(`${this.auth.currentUserId}`).ref.get()
-      .then((doc) => {
-        if (doc.exists) {
-            // Write doc data to user variable
-            const user = doc.data() as User;
-            return this.user = user;
-        } else {
-            console.log('No such document!');
-        }
-      })
-      .catch(function(error) {
-          console.log('Error getting document:', error);
-      });
+  }
+
+  getUserDataByID(uid) {
+    this.userDoc = this.afs.doc<User>(`users/${uid}`);
+    this.user = this.userDoc.valueChanges();
     return this.user;
   }
 
-  updateUser(id, data) {
-    this.userDoc = this.afs.doc<User>(`users/${id}`);
-    this.userDoc.update(data);
- }
+  queryUsers(colRef) {
+    const userCol: AngularFirestoreCollection = colRef;
+    this.users = userCol.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as User;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    }));
+    return this.users;
+  }
 
-  deleteUser(user: User) {
-    this.userDoc = this.afs.doc('users/' + user.uid);
+  updateUser(uid, data) {
+    this.userDoc = this.afs.doc<User>(`users/${uid}`);
+    this.userDoc.update(data);
+  }
+
+  setUserData(uid, data) {
+    this.userDoc = this.afs.doc<User>(`users/${uid}`);
+    this.userDoc.set(data, {merge: true});
+  }
+
+  deleteUser(id) {
+    this.userDoc = this.afs.doc<User>(`users/${id}`);
     this.userDoc.delete();
   }
 }

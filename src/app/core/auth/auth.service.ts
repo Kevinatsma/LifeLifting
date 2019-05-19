@@ -14,7 +14,6 @@ import { User, Roles } from './../../user/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-
   user: Observable<User>;
   userData: User;
   authState: any = null;
@@ -39,20 +38,30 @@ export class AuthService {
 
   // Auth Process
 
+  googleSignUp() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return this.oAuthSignUp(provider);
+  }
+
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     return this.oAuthLogin(provider);
   }
 
-  facebookLogin() {
-    const provider = new firebase.auth.FacebookAuthProvider();
-    return this.oAuthLogin(provider);
+  private oAuthSignUp(provider) {
+    return this.afAuth.auth.signInWithPopup(provider)
+      .then((credential) => {
+        this.updateUserData(credential.user);
+      })
+      .then(() => {
+        this.router.navigate(['dashboard']);
+      })
+      .catch(error => console.log(error.message));
   }
 
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
-        this.updateUserData(credential.user);
       })
       .then(() => {
         this.router.navigate(['dashboard']);
@@ -69,25 +78,37 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       roles: {
-        member: true,
+        client: true,
         specialist: false,
         admin: false
       },
-      signupCompleted: false
+      status: {
+        signUpCompleted: false,
+        accepted: false,
+      }
     };
     return userRef.set(data, { merge: true });
   }
 
   updateUser(data, user) {
-    console.log(user);
-    console.log(data);
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     return userRef.update(data);
   }
 
-  setUserData(data, user) {
+  addUserData(data, user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     return userRef.set(data, {merge: true})
+    .then(() => {
+      console.log('data updated');
+    })
+    .catch(error => {
+      console.error(error.message);
+    });
+  }
+
+  setUserData(data, user) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    return userRef.update(data)
     .then(() => {
       console.log('data updated');
     })
@@ -105,6 +126,43 @@ export class AuthService {
     return this.authenticated ? this.authState.uid : null;
   }
 
+  getUser() {
+    return this.afAuth.auth;
+  }
+
+  getChatUser() {
+    return this.user.pipe(first()).toPromise();
+  }
+
+
+
+  addUser(email: string, password: string, formData: any) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    .then((credential) => {
+      const data = {
+        uid: credential.user.uid,
+        displayName: formData.displayName,
+        photoURL: formData.photoURL,
+        roles: {
+          client: true,
+          specialist: false,
+          admin: false
+        },
+        signUpCompleted: false,
+        signUpDate: new Date(),
+        email: formData.email
+      };
+      this.addUserData(data, credential.user);
+    })
+    .then(() => console.log('Welcome, your account has been created!'))
+    .then(user => {
+      this.afAuth.auth.currentUser.sendEmailVerification()
+        .then(() => console.log('We sent you an email verification'))
+        .catch(error => console.log(error.message));
+        return user;
+    });
+  }
+
   emailSignIn(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(() => console.log('You have successfully signed in'))
@@ -115,8 +173,7 @@ export class AuthService {
         this.router.navigate(['dashboard']);
       })
       .catch(error => {
-        alert(error.message);
-        console.log(error.message);
+        console.log('Async issue:' + error.message);
       });
   }
 
@@ -129,28 +186,34 @@ export class AuthService {
       .then(user => {
         this.afAuth.auth.currentUser.sendEmailVerification()
           .then(() => console.log('We sent you an email verification'))
-          .catch(error => console.log(error.message));
+          .catch(error => alert(error.message));
           return user;
       });
+  }
+
+  resetPassword(email: string) {
+    return this.afAuth.auth.sendPasswordResetEmail(email)
+      .then(() => console.log('sent Password Reset Email!'))
+      .catch((error) => console.log(error));
   }
 
   signOut() {
     this.afAuth.auth.signOut()
       .then(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['login']);
       }
     );
   }
 
   ///// Role-based Authorization //////
 
-  subscriberRoles(user: User): boolean {
-    const allowed = ['admin', 'editor', 'subscriber'];
+  clientRoles(user: User): boolean {
+    const allowed = ['admin', 'specialist', 'client'];
     return this.checkAuthorization(user, allowed);
   }
 
-  editorRoles(user: User): boolean {
-    const allowed = ['admin', 'editor'];
+  specialistRoles(user: User): boolean {
+    const allowed = ['admin', 'specialist'];
     return this.checkAuthorization(user, allowed);
   }
 

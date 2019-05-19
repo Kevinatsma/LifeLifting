@@ -1,0 +1,28 @@
+<div class="padding-layer">
+  <main class="confirm-dialog-container">
+        <div class="animated-container">
+          <h1>Choose a mealplan</h1>
+          <!-- Call method -->
+          <form [formGroup]="chooseMealplanForm" class="auth-form"  *ngIf="mealplans">
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Choose a mealplan to get your shopping list</mat-label>
+              <mat-select matInput placeholder="Pick one from the list" [(value)]="selectedMealplan" formControlName="mealplan" autocomplete="off" 
+              panelClass="dropdown-regular" required>
+                <mat-option *ngFor="let mealplan of mealplans | async; let i=index" [value]="mealplan.mID">
+                  {{mealplan.mealplanName}}
+                </mat-option>
+              </mat-select>
+              <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+            </mat-form-field>
+          </form>
+        </div>
+      <p class="" *ngIf="!mealplans">
+        Woops! You don't have any meal plans yet <span class="emoji">😔</span>
+      </p>
+
+    <section class="dialog-actions">
+      <button type="button" class="text-link" [mat-dialog-close]="true">Back</button>
+      <button class="text-link" (click)="linkToChild()" *ngIf="mealplans">Continue</button>
+    </section>
+  </main>
+</div>

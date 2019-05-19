@@ -1,0 +1,217 @@
+@import './_master.scss';
+@import './_animations.scss';
+
+
+::ng-deep .mat-step-header-ripple .mat-ripple {
+    background: transparent!important;
+    border: $light-border!important;
+}
+
+::ng-deep .mat-dialog-container {
+    @include respond-down($sm) {
+        border-radius: 0;
+    }
+    .mat-horizontal-content-container {
+        padding: 0;
+    }
+}
+
+::ng-deep .cdk-overlay-pane {
+    overflow-y: auto;
+}
+
+main.dialog-wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    mat-horizontal-stepper {
+        width: 100%;
+        height: 100%;
+        section.btn-area {
+            display: flex;
+            flex-flow: row nowrap;
+            width: 100%;
+            height: 70px;
+
+            button {
+                background: transparent;
+                border: $light-border;
+                width: 50%;
+
+                &:hover, &:focus {
+                    background: darken($light-grey, 5%);
+                }
+
+                &.disabled {
+                    cursor: standard;
+                    color: $middle-grey;
+
+                    &:hover, &:focus {
+                        background: transparent;
+                        cursor: initial;
+                    }
+                }
+            }
+        }
+    }
+    
+    section.btn-area-one {
+        display: flex;
+        flex-flow: row nowrap;
+        width: 100%;
+        height: 70px;
+
+        button {
+            background: transparent;
+            border: $light-border;
+            width: 100%;
+
+            &:hover, &:focus {
+                background: darken($light-grey, 5%);
+            }
+
+            &.disabled {
+                cursor: standard;
+                color: $middle-grey;
+
+                &:hover, &:focus {
+                    background: transparent;
+                    cursor: initial;
+                }
+            }
+        }
+    }
+}
+
+.confirm-dialog, .mealplan-choose-dialog {
+    @include respond-down($sm) {
+        animation: fly-in-from-bottom 0.4s;
+        min-width: 100vw!important;
+        max-width: 100vw!important;
+        position: fixed!important;
+        bottom: 0;
+
+        .mat-dialog-container {
+            border-radius: 0;
+        }
+    }
+}
+
+.add-user-dialog, .add-package-dialog, .review-dialog, .add-food-dialog, .add-exercise-dialog, .add-guide-dialog {
+    @include respond-down($sm) {
+        min-width: 100vw!important;
+        min-height: 100vh!important;
+        overflow: hidden;
+    }
+
+    .mat-horizontal-content-container {
+        padding: 0;
+    }
+
+    .close-section {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+
+        .close-btn {
+            svg {
+                margin-right: 10px;
+            }
+        }
+
+        @include respond-down($sm) {
+            position: absolute;
+            top: 4em;
+            left: 0.5em;
+        }
+    }
+
+    .mat-dialog-container {
+        @include respond-down($sm) {
+            border-radius: 0;
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        .mat-horizontal-stepper-header-container {
+
+            @include  respond-down($sm) {
+                width: 100%;
+                margin: 0;
+            }
+
+            mat-step-header {
+                @include respond-down($sm) {
+                    display: flex;
+                    align-items: center;
+                    height: 50px;
+                    justify-content: center;
+                }
+                .mat-step-label {
+                    @include respond-down($sm) {
+                        display: none;
+                    }
+                }
+
+                .mat-step-icon {
+                    @include respond-down($sm) {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        .image-uploader-container {
+            @include respond-down($sm) {
+                max-height: calc(100vh - 120px);
+                overflow: hidden;
+            }
+
+            section {
+                &.photo-title {
+                    @include respond-down($sm) {
+                        padding: 4em 1em 2em!important;
+                        margin: 0;
+
+                        h3 {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+
+            .image-uploader {
+                @include respond-down($sm) {
+                    margin: 0 auto;
+                    width: 90%;
+                }
+            }
+        }
+
+        form {
+            @include respond-down($sm) {
+                padding: 0 1em;
+                margin: 4em 0 0 0;
+                height: calc(100vh - 120px - 4em);
+                overflow-y: auto;
+                flex-flow: column nowrap;
+            }
+        }
+    }
+}
+
+.review-dialog {
+    .close-section {
+        @include respond-down($sm) {
+            top: 1.5em;
+        }
+    }
+
+    form {
+        @include respond-down($sm) {
+            height: calc(100vh - 70px - 4em)!important;
+        }
+    }
+}

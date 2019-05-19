@@ -1,40 +1,46 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
-    <section class="step-wrapper">
-      <h5>Pick a plan and get a free assesment</h5>
-      <h1>Step 2: Choose a plan</h1>
+    <section class="step-wrapper step-two" *ngIf="!user.packageChoice">
+      <h5>Pick a package and get a free consultation</h5>
+      <h1>Step 2: Choose a package</h1>
   
       <section class="package-container" *ngIf="!user.packageChoice">
         <mat-radio-group class="package-slider" [(ngModel)]="chosenPackage">
           <mat-radio-button class="package-item" *ngFor="let package of packages | async" [value]="package.packageID" autofocus="off" labelPostition="before">
-            <app-package-item [package]="package"></app-package-item>
+            <app-package-item [package]="package" [user]="user"></app-package-item>
           </mat-radio-button>
           <div class="right-scroll-margin">
             <p class="hide">HI</p>
           </div>
         </mat-radio-group>
+        <p class="card-text mobile swipe">Swipe <i class="fas fa-long-arrow-alt-right"></i></p>
       </section>
 
       <div class="btn-area" *ngIf="!user.packageChoice">
-        <button class="btn-icon-left" routerLink="../step-one">
+        <button class="btn-icon-left no-bg" routerLink="../step-one">
           <i class="fas fa-chevron-left small"></i>
-          <span>Previous step</span>
+          <span class="not-mobile">Previous step</span>
+          <span class="mobile">Previous</span>
         </button>
-        <button class="btn-icon-right" (click)="updateUser(user)" [class.btn-disabled]="chosenPackage === null" [disabled]="chosenPackage === null">
-          <span>Next step</span>
+        <button class="btn-icon-right no-bg" (click)="updateUser(user)" [class.btn-disabled]="chosenPackage === null" [disabled]="chosenPackage === null">
+          <span class="not-mobile">Next step</span>
+          <span class="mobile">Next</span>
           <i class="fas fa-chevron-right small"></i>
         </button>
       </div>
-
-      <div class="step-done" *ngIf="user.packageChoice">
-        <p class="intro-text">Psst, you already chose <strong>plan {{user.packageChoice}}</strong>. You can change your package choice later after signing up. Click the button to go to the next step!</p>
-        <div class="btn-area">
-          <button class="btn-icon-right" routerLink="../step-three" [disabled]="!user.packageChoice" [class.btn-disabled]="!user.packageChoice">
-            <span>Continue process</span>
-            <i class="fas fa-chevron-right small"></i>
-          </button>
-        </div>
-      </div>
   
     </section>
+
+    <section class="step-wrapper success" *ngIf="user.packageChoice">
+        <h5>You've made a wise decision</h5>
+        <h1>Step 2: Choose a Package</h1>
+        <p class="intro-text">Psst, you already chose <strong>package {{user.packageChoice}}</strong>.
+          You can change your package choice later after signing up. Click the button to go to the next step!</p>
+        <div class="btn-area">
+          <button class="btn-icon-right" routerLink="../step-three" [disabled]="!user.packageChoice" [class.btn-disabled]="!user.packageChoice">
+            <span>Choose your specialist</span>
+            <span class="emoji">🕵️</span>
+          </button>
+        </div>
+      </section>
   </ng-container>
   

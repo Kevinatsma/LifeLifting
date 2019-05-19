@@ -1,0 +1,123 @@
+<main class="supps-wrapper">
+  <section class="guideline-activities" *ngIf="exercises && supps">
+    <h2 class="section-title">Supplements</h2>
+    <p class="card-text section-title__subtitle">
+      These are the supplements that should be taken before, during or after the exercise next to it. 
+      Your specialist has added these based on the info he/she got during the introduction meeting.
+    </p>
+    <div class="activity" *ngIf="exercises.eOne">
+        <app-exercise-list-item class="activity__left" [exercise]="exercises.eOne"></app-exercise-list-item>
+        <div class="container">
+          <div class="target-block">
+            <h6>Before the training</h6>
+            <div *ngFor="let meal of supps.beforeOneArr">
+              <h4>{{meal.product.productName}}</h4>
+              <div class="subtitle">
+                <p class="card-text">
+                  <span class="emoji">⚖️</span> {{meal.amount}} {{meal.product.unit}} <span class="emoji">👨‍🍳</span> {{meal.prep.prepValue}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="target-block">
+            <h6>During the training</h6>
+            <div *ngFor="let meal of supps.beforeOneArr">
+              <h4>{{meal.product.productName}}</h4>
+              <div class="subtitle">
+                <p class="card-text">
+                  <span class="emoji">⚖️</span> {{meal.amount}} {{meal.product.unit}} <span class="emoji">👨‍🍳</span> {{meal.prep.prepValue}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="target-block">
+            <h6>After the training</h6>
+            <div *ngFor="let meal of supps.afterOneArr">
+              <h4>{{meal.product.productName}}</h4>
+              <div class="subtitle">
+                <p class="card-text">
+                  <span class="emoji">⚖️</span> {{meal.amount}} {{meal.product.unit}} <span class="emoji">👨‍🍳</span> {{meal.prep.prepValue}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="activity" *ngIf="exercises.eTwo">
+        <app-exercise-list-item class="activity__left" [exercise]="exercises.eTwo"></app-exercise-list-item>
+        <div class="container">
+          <div class="target-block">
+            <h6>Before the training</h6>
+            <div *ngFor="let meal of supps.beforeTwoArr">
+              <h4>{{meal.product.productName}}</h4>
+              <div class="subtitle">
+                <p class="card-text">
+                  <span class="emoji">⚖️</span> {{meal.amount}} {{meal.product.unit}} <span class="emoji">👨‍🍳</span> {{meal.prep.prepValue}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="target-block">
+            <h6>During the training</h6>
+            <div *ngFor="let meal of supps.duringTwoArr">
+              <h4>{{meal.product.productName}}</h4>
+              <div class="subtitle">
+                <p class="card-text">
+                  <span class="emoji">⚖️</span> {{meal.amount}} {{meal.product.unit}} <span class="emoji">👨‍🍳</span> {{meal.prep.prepValue}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="target-block">
+            <h6>After the training</h6>
+            <div *ngFor="let meal of supps.afterTwoArr">
+              <h4>{{meal.product.productName}}</h4>
+              <div class="subtitle">
+                <p class="card-text">
+                  <span class="emoji">⚖️</span> {{meal.amount}} {{meal.product.unit}} <span class="emoji">👨‍🍳</span> {{meal.prep.prepValue}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="activity" *ngIf="exercises.eThree">
+      <app-exercise-list-item class="activity__left" [exercise]="exercises.eThree"></app-exercise-list-item>
+      <div class="container">
+          <div class="target-block">
+            <h6>Before the training</h6>
+            <div *ngFor="let meal of supps.beforeThreeArr">
+              <h4>{{meal.product.productName}}</h4>
+              <div class="subtitle">
+                <p class="card-text">
+                  <span class="emoji">⚖️</span> {{meal.amount}} {{meal.product.unit}} <span class="emoji">👨‍🍳</span> {{meal.prep.prepValue}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="target-block">
+            <h6>During the training</h6>
+            <div *ngFor="let meal of supps.duringThreeArr">
+              <h4>{{meal.product.productName}}</h4>
+              <div class="subtitle">
+                <p class="card-text">
+                  <span class="emoji">⚖️</span> {{meal.amount}} {{meal.product.unit}} <span class="emoji">👨‍🍳</span> {{meal.prep.prepValue}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="target-block">
+            <h6>After the training</h6>
+            <div *ngFor="let meal of supps.afterThreeArr">
+              <h4>{{meal.product.productName}}</h4>
+              <div class="subtitle">
+                <p class="card-text">
+                  <span class="emoji">⚖️</span> {{meal.amount}} {{meal.product.unit}} <span class="emoji">👨‍🍳</span> {{meal.prep.prepValue}}
+                </p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</main>

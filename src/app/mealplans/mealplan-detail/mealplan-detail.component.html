@@ -1,0 +1,166 @@
+<main class="specialist-wrapper" *ngIf="!editShow && mealplan">
+  <section class="action-toolbar-top">
+    <div class="left" *ngIf="auth.user | async as user">
+      <button type="button" class="icon-button" (click)="goBack()">
+          <i class="fas fa-arrow-left"></i>
+      </button>
+
+      <button type="button" class="icon-button not-mobile" (click)="deleteMealplanDialog(mealplan)" 
+      *ngIf="!editShow &&  user.roles.admin || user.roles.specialist">
+        <i class="fas fa-trash"></i>
+      </button>
+    </div>
+
+    <div class="middle">
+      <h1 *ngIf="client; else gID">
+        Mealplan for {{client.displayName}}
+        <h5 class="not-mobile">
+          Current weight: {{client.basicData.currentWeight}}kg
+        </h5>
+      </h1>
+      <ng-template #gID>
+          <h1>Mealplan ID: {{mealplan.mID}}</h1>
+      </ng-template>
+    </div>
+
+    <div class="right" *ngIf="user">
+      <div class="not-mobile">
+        <ng-container *ngIf="!user.roles.admin || !user.roles.specialist">
+          <button type="button" class="icon-button" (click)="printMealplan(mealplan)">
+            <i class="fas fa-print"></i>
+          </button>
+          <button type="button" class="icon-button action-btn" (click)="linkToShoppingList(mealplan)">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="user.roles.admin || user.roles.specialist">
+          <button type="button" class="icon-button" (click)="editMealplan(mealplan)"
+          *ngIf="!editShow">
+            <i class="fas fa-edit"></i>
+          </button>
+
+          <button type="button" class="icon-button" (click)="printMealplan(mealplan)">
+            <i class="fas fa-print"></i>
+          </button>
+        </ng-container>
+      </div>
+
+      <div class="mobile">
+        <button class="icon-button edit-button" *ngIf="actionMenuOpen; else plus" (click)="toggleButtonMenu()">
+          <i class="fas fa-minus"></i>
+        </button>
+        <ng-template #plus>
+          <button class="icon-button edit-button" (click)="toggleButtonMenu()">
+            <i class="fas fa-plus"></i>
+          </button>
+        </ng-template>
+
+        <div class="specialist-actions">
+          <ng-container  *ngIf="user.roles.admin || user.roles.specialist">
+            <button type="button" class="icon-button action-btn" (click)="editMealplan(mealplan)"
+            *ngIf="!editShow">
+              <i class="fas fa-edit"></i>
+            </button>
+
+            <button type="button" class="icon-button action-btn" (click)="deleteMealplanDialog(mealplan)" 
+            *ngIf="!editShow">
+              <i class="fas fa-trash"></i>
+            </button>
+          </ng-container>
+
+          <button type="button" class="icon-button action-btn" (click)="printMealplan(mealplan)">
+            <i class="fas fa-print"></i>
+          </button>
+
+          <button type="button" class="icon-button action-btn" (click)="linkToShoppingList(mealplan)">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="package-container">
+    <mat-card class="list-item-card">
+        <section *ngIf="client" class="card-circle" (click)="linkToChild(mealplan, client)" [style.background]="'url('+ client.photoURL +')'">
+        </section>
+        <section class="chip-area">
+          <p class="secondary-chip">
+            Mealplan number: {{mealplan.mealplanNR}}
+          </p>
+          <p class="secondary-chip">
+            Created: {{mealplan.creationDate.toDate() | date: 'MM/dd/yy'}}
+          </p>
+          <p *ngIf="mealplan.lastEdited" class="secondary-chip">
+            Last edited: {{mealplan.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
+          </p>
+        </section>
+
+        <section class="introduction">
+          <h2>{{mealplan.mealplanName}}</h2>
+          <h5>
+            mID: {{mealplan.mID}}
+          </h5>
+        </section>
+
+        <section class="navigation">
+          <nav class="mealplan-nav" #mealplanNav>
+            <a class="nav-item active" id="monday" (click)="updateTabStates($event);" 
+            (mouseenter)="highlightLinks($event)" #firstNavItem
+            >
+              Mon<ng-container *ngIf="!isMobile">day</ng-container>
+            </a>
+            <a class="nav-item" id="tuesday" (click)="updateTabStates($event);" 
+            (mouseenter)="highlightLinks($event)">
+              Tue<ng-container *ngIf="!isMobile">sday</ng-container>
+            </a>
+            <a class="nav-item" id="wednesday" (click)="updateTabStates($event);" 
+            (mouseenter)="highlightLinks($event)">
+              Wed<ng-container *ngIf="!isMobile">nesday</ng-container>
+            </a>
+            <a class="nav-item" id="thursday" (click)="updateTabStates($event);" 
+            (mouseenter)="highlightLinks($event)">
+              Thu<ng-container *ngIf="!isMobile">rsday</ng-container>
+            </a>
+            <a class="nav-item" id="friday" (click)="updateTabStates($event);" 
+            (mouseenter)="highlightLinks($event)">
+              Fri<ng-container *ngIf="!isMobile">day</ng-container>
+            </a>
+            <a class="nav-item" id="supps" (click)="updateTabStates($event);" 
+            (mouseenter)="highlightLinks($event)">
+            <ng-container *ngIf="!isMobile">Supplements</ng-container>
+            <ng-container *ngIf="isMobile">Supps</ng-container>
+            </a>
+          </nav>
+        </section>
+
+        <section class="day-section monday" *ngIf="mondayTab">
+          <app-monday [monday]="mealplan.mondayMeals" [mealTimes]="mealplan.mealTimes" [preps]="mealplan.preperations"></app-monday>
+        </section>
+        <section class="day-section tuesday" *ngIf="tuesdayTab">
+          <app-tuesday [tuesday]="mealplan.tuesdayMeals" [mealTimes]="mealplan.mealTimes"></app-tuesday>
+        </section>
+        <section class="day-section wednesday" *ngIf="wednesdayTab">
+            <app-wednesday [wednesday]="mealplan.wednesdayMeals" [mealTimes]="mealplan.mealTimes"></app-wednesday>
+        </section>
+        <section class="day-section thursday" *ngIf="thursdayTab">
+          <app-thursday [thursday]="mealplan.thursdayMeals" [mealTimes]="mealplan.mealTimes"></app-thursday>
+        </section>
+        <section class="day-section friday" *ngIf="fridayTab">
+          <app-friday [friday]="mealplan.fridayMeals" [mealTimes]="mealplan.mealTimes"></app-friday>
+        </section>
+        <section class="supps" *ngIf="suppsTab">
+          <app-supps [supps]="mealplan.supplementation" [exercises]="exercises"></app-supps>
+          <!-- <app-edit-supps [supps]="mealplan.supplementation" *ngIf="!editShow"></app-edit-supps> -->
+        </section>
+
+    </mat-card>
+  </div>
+</main>
+  
+<ng-container *ngIf="!mealplan">
+  <div class="not-available">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</ng-container>

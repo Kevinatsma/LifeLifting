@@ -1,0 +1,21 @@
+<main class="guideline-list-wrapper">
+  <header>
+      <section class="title">
+          <h1>My Guidelines</h1>
+          <!-- <button class="icon-button" (click)="openDialog()">
+              <i class="fas fa-plus"></i>
+          </button> -->
+      </section>
+      
+      <p class="intro-text">
+          In this section you have a quick overview of the guidelines you created. You can view and edit/delete them directly 
+          from the list. With the top right button you add a guideline. <span class="emoji">📄</span>
+      </p>
+  </header>
+  <section class="specialist-filters">
+  </section>
+  <section class="card-list" *ngIf="guidelines">
+    <app-guideline-list-item *ngFor="let guideline of guidelines | async; let i=index" [i]="i" [guideline]="guideline"></app-guideline-list-item>
+    <div class="placeholder"></div>
+  </section>
+</main>

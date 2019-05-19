@@ -1,0 +1,219 @@
+<main class="dialog-wrapper" *ngIf="client && mealplan">
+  <div class="close-section">
+    <button mat-icon-button class="not-mobile close-btn" (click)="closeDialog()" type="button">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <button class="mobile text-link close-btn" (click)="closeDialog()" type="button">
+      <i class="mobile fas fa-arrow-left"></i> Back
+    </button>
+  </div>
+  <mat-horizontal-stepper #stepper (selectionChange)="onStepChange($event)">
+    <mat-step [stepControl]="infoForm">
+      <form [formGroup]="infoForm">
+        <ng-template matStepLabel>Info</ng-template>
+        <h3>🍔 Mealplan Info for {{client.displayName}}</h3>
+        <p class="card-text">
+          The mealplan for the client. This mealplan has to be filled out on the first meeting with the client(!).
+          This document is of huge importance, since we can calculate heaps of things based on the values you'll enter
+          here. Be precise and ask thouroughly to be as personal as possible for you client.
+        </p>
+
+        <p>
+          <strong>Mealplan ID</strong><br>
+          {{mealplan.mID}}
+        </p>
+    
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Mealplan name</mat-label>
+          <input type="text" matInput name="mealplanName" formControlName="mealplanName" placeholder="Give the mealplan a name" autofocus="none">
+          <mat-error class="input-error" *ngIf="!infoForm['controls'].mealplanName.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>This mealplan is for {{client.displayName}}</mat-label>
+            <mat-select matInput placeholder="Pick another client" formControlName="clientID" 
+            panelClass="dropdown-regular" autocomplete="off" (selectionChange)="updateClient($event)" required>
+              <mat-option *ngFor="let client of clients | async" [value]="client">{{client.displayName}}</mat-option>
+            </mat-select>
+            <mat-hint>If you choose another client, step 3 (supplements) will be overwritten!</mat-hint>
+          </mat-form-field>
+      </form>
+
+      <section class="btn-area-one">
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="mealTimeForm">
+      <form [formGroup]="mealTimeForm">
+        <ng-template matStepLabel>Meal times</ng-template>
+        <h3>⏲️ Meal Times for {{client.displayName}}</h3>
+        <p class="intro-text">
+          Define the meal times for this client. You will have to fill out meals for all the meal times you enter. 
+        </p>
+
+        <div class="add-form-field-container" formArrayName="mealTimeArr">
+          <h4>Add the Meal Times</h4>
+          <section class="dynamic-form-field-container mealtimes" *ngFor="let mealTime of mealTimeForms.controls; let i=index" [formGroupName]="i">
+            <div class="number-id">
+              <h1>{{i+1}}</h1>
+            </div>
+            <div class="form-fields">
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Which meal times suit the client best?</mat-label>
+                <mat-select matInput placeholder="Pick a Meal Time" formControlName="mealTime" 
+                panelClass="dropdown-regular" autocomplete="off" (selectionChange)="updateMealTimes()" required>
+                  <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                </mat-select>
+                <!-- <mat-error class="input-error" *ngIf="!mealTimeID.touched">This is <strong>required</strong></mat-error> -->
+              </mat-form-field>
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Mealtime name</mat-label>
+                <mat-select matInput placeholder="Attach a name to the time" formControlName="mealTimeName" 
+                panelClass="dropdown-regular" autocomplete="off" (selectionChange)="updateMealTimes()" required>
+                  <mat-option *ngFor="let name of mealTimeNames" [value]="name.value">{{name.value}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="btn-area">
+              <button type="button"mat-icon-button type="button" class="delete-btn" (click)="deleteMealTime(i); checkMealTime();">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </section>
+        </div>
+
+
+        <button type="button" *ngIf="showAddMealTime" class="add-form-field" (click)="addMealTime(); checkMealTime();">
+          <i class="fa fa-plus"></i>
+          Add a Meal Time
+        </button>
+      </form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperNext>Next</button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="">
+      <ng-template matStepLabel>Supps</ng-template>
+      <app-edit-supps-form *ngIf="mealplan.supplementation" [foods]="foods" [client]="client" [supplementation]="mealplan.supplementation">
+      </app-edit-supps-form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>
+          Back
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          Next
+        </button>
+      </section>
+  
+    </mat-step>
+
+    <mat-step [stepControl]="">
+    <ng-template matStepLabel>Monday</ng-template>
+      <app-edit-monday-form [foods]="foods" [mealTimes]="mealTimeArr" [mealplan]="mealplan" [client]="client">
+      </app-edit-monday-form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>
+          Back
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          Next
+        </button>
+      </section>
+
+    </mat-step>
+
+    <mat-step [stepControl]="">
+      <ng-template matStepLabel>Tuesday</ng-template>
+      <app-edit-tuesday-form [foods]="foods" [mealTimes]="mealTimeArr" [mealplan]="mealplan" [client]="client">
+      </app-edit-tuesday-form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>
+          Back
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          Next
+        </button>
+      </section>
+  
+    </mat-step>
+
+    <mat-step [stepControl]="">
+      <ng-template matStepLabel>Wednesday</ng-template>
+      <app-edit-wednesday-form [foods]="foods" [mealTimes]="mealTimeArr" [mealplan]="mealplan" [client]="client">
+      </app-edit-wednesday-form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>
+          Back
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          Next
+        </button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="">
+      <ng-template matStepLabel>Thursday</ng-template>
+      <app-edit-thursday-form [foods]="foods" [mealTimes]="mealTimeArr" [mealplan]="mealplan" [client]="client">
+      </app-edit-thursday-form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>
+          Back
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          Next
+        </button>
+      </section>
+  
+    </mat-step>
+
+    <mat-step [stepControl]="">
+      <ng-template matStepLabel>Friday</ng-template>
+      <app-edit-friday-form [foods]="foods" [mealTimes]="mealTimeArr" [mealplan]="mealplan" [client]="client">
+      </app-edit-friday-form>
+
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>
+          Back
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          Next
+        </button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="infoForm">
+      <div class="not-there">
+        <ng-template matStepLabel>End</ng-template>
+        <h3>😅 Finally done... (or not)</h3>
+        <p class="card-text">
+          If you're done. Thanks for going through that process. Click the done button and see the mealplan appear live
+          in the mealplan section of the client's profile!
+
+          If not, the meal button won't be clickable. Check the rest of the steps to see if you missed something!
+        </p>
+      </div>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="submit" class="dialog-button" (click)="updateMealplan()"
+          [disabled]="!infoForm.valid || !mealTimeForm.valid"
+          [class.disabled]="!infoForm.valid || !mealTimeForm.valid"
+        >
+          Done
+        </button>
+      </section>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</main>

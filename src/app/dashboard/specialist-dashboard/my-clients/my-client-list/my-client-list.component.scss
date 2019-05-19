@@ -1,0 +1,44 @@
+@import './../../../../../assets/scss/_master.scss';
+
+main.specialist-list-wrapper {
+    margin: 0;
+    padding: 0;
+    @include respond-down($sm) {
+        width: 101vw;
+        height: 100%;
+        margin: -1em 0 0 -8vw;
+        padding: 0 0 2em;
+        overflow-x: auto;
+    }
+
+    section.user-list {
+        display: flex;
+        flex-flow: column nowrap;
+
+        @include respond-down($sm) {
+            box-sizing: border-box; 
+            flex-flow: row nowrap;
+            margin: 0;
+            height: 100%;
+            padding: 1em 1.5em;
+            overflow-x: auto;
+            width: fit-content;
+        }
+
+        app-my-client-list-item {
+            margin: 2em 0;
+
+            @include respond-down($sm) {
+                margin: 2em 1.5em 0;
+                height: auto;
+                width: 330px;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+
+    }
+
+}

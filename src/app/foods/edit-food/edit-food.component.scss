@@ -1,0 +1,53 @@
+@import './../../../assets/scss/_master.scss';
+
+// Reset inputs
+input, textarea {
+    border: none!important;
+    background: transparent;
+    width: 100%;
+    font-family: $main-font;
+    text-align: left;
+    margin: 0!important;
+    padding: 0!important;
+    box-sizing: border-box;
+}
+
+mat-card {
+    &:hover {
+        transform: scale(1)!important;
+    }
+}
+
+form.food-form {
+    @extend %flex-center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+    .contact-menu {
+        flex-flow: column nowrap!important;
+        li {
+            input.half {
+                &:nth-child(2) {
+                    margin-left: 5px!important;
+                    width: 45px;
+                }
+                &:last-child{
+                    width: 60px;
+                }
+            }
+        }
+    }
+}
+
+.subtitle {
+    margin-top: 3em;
+    span {
+        position: absolute;
+    }
+
+    mat-form-field {
+        margin-top: 25px;
+    }
+}

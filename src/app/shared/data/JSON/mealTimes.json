@@ -1,0 +1,11 @@
+{
+    "mealTimes": [
+    {"value":"Breakfast"},
+    {"value":"Middle Morning Snack"},
+    {"value":"Lunch"},
+    {"value":"Middle Afternoon Snack"},
+    {"value":"Dinner"},
+    {"value":"Collation"}
+
+  ]
+}

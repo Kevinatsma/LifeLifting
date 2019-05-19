@@ -1,0 +1,37 @@
+<main class="dialog-wrapper">
+  <div class="close-section  mobile">
+    <button class="text-link close-btn" (click)="closeDialog()" type="button">
+      <i class="mobile fas fa-arrow-left"></i> Back
+    </button>
+  </div>
+      
+  <form [formGroup]="reviewForm">
+    <h3>Write a review for {{data.specialist.firstName}}</h3>
+    <p class="card-text">
+      A few minutes of your time would be great, so {{data.specialist.firstName}} will know what his/her strong and weak points are.
+    </p>
+
+    <mat-form-field appearance="standard" floatLabel="always">
+      <mat-label>Feedback text</mat-label>
+      <textarea type="text" matInput formControlName="reviewText" placeholder="Insert feedback here" 
+      matTextareaAutosize autofocus="off" autocomplete="off" #reviewTextArea>
+      </textarea>
+      <mat-error class="input-error" *ngIf="!reviewForm['controls'].reviewText.dirty && reviewForm['controls'].reviewText.touched">
+        This is <strong>required</strong>
+      </mat-error>
+      <mat-error class="input-error" *ngIf="reviewText.errors?.minlength">
+        You have to have at least <strong>200</strong> characters, you have <strong>{{reviewTextArea.value.length}}</strong> characters at the moment.
+      </mat-error>
+    </mat-form-field>
+  </form>
+
+  <section class="btn-area-one">
+    <button type="submit" class="dialog-button" (click)="addReview()"
+    [disabled]="!reviewForm.valid"
+    [class.disabled]="!reviewForm.valid"
+    mat-dialog-close
+    >
+      Done
+    </button>
+  </section>
+</main>

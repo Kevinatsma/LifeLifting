@@ -1,0 +1,81 @@
+<ng-container *ngIf="package">
+  <main class="specialist-wrapper" *ngIf="!editShow">
+
+    <section class="action-toolbar-top">
+      <div class="left">
+        <button class="icon-button" [routerLink]="['../']">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
+      <div class="middle">
+        <h1>Package: {{package.packageID}}</h1>
+      </div>
+      <div class="right">
+        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
+          <i class="fas fa-edit"></i>
+        </button>
+      </div>
+    </section>
+
+    <div class="package-container">
+
+      <section class="package-controls last-package">
+          <button class="slide-control-btn" (click)="linkToPrevious(package)" 
+          [class.disabled]="package.packageID === 1"
+          [disabled]="package.packageID === 1"
+          >
+              <i class="fas fa-chevron-left"></i>
+          </button>
+      </section>
+      <section class="package-item" *ngIf="!editShow">
+        <h2>{{package.packageTitle}}</h2>
+        <div class="quick-facts">
+          <p class="quick-fact">
+            ${{package.packagePrice}} USD
+          </p>
+          <div class="circle-divider"></div>
+          <p class="quick-fact">
+            {{package.packageDuration}} 
+            <span *ngIf="package.packageDuration === 1">week</span>
+            <span *ngIf="package.packageDuration !== 1">weeks</span>
+          </p>
+        </div>
+        <p class="card-text">
+          {{package.packageDescription}}
+        </p>
+        <div class="list-container">
+          <ul>
+            <li *ngFor="let benefit of package.packageBenefits">
+              <i class="fas fa-check"></i>
+              {{benefit.benefitValue}}
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="package-controls next-package">
+        <button class="slide-control-btn" (click)="linkToNext(package)"
+          [class.disabled]="package.packageID === 3"
+          [disabled]="package.packageID === 3"
+          >
+            <i class="fas fa-chevron-right"></i>
+        </button>
+      </section>
+
+    </div>
+  </main>
+
+  <ng-container *ngIf="editShow">
+    <app-edit-package [package]="package"></app-edit-package>
+  </ng-container>
+
+</ng-container>
+  
+<ng-container *ngIf="!package">
+  <div class="not-available">
+    <h3>😔 Woops! This package is not (yet) avaliable.</h3>
+    <p>Please go back to the available packages on the packages tab.</p>
+    <button class="btn-primary" [routerLink]="['../']">
+      Go back
+    </button>
+  </div>
+</ng-container>

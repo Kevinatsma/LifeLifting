@@ -1,9 +1,11 @@
-  <form [formGroup]="onlineAppointmentForm" (ngSubmit)="addAppointment()" class="auth-form" *ngIf="!user.appointment">
+  <form [formGroup]="onlineAppointmentForm" (ngSubmit)="addAppointment()" class="auth-form" *ngIf="!user.status.appointment">
     <div class="animated-container">
       <!-- Call method -->
       <mat-form-field appearance="standard" floatLabel="always">
         <mat-label>I prefer to call with</mat-label>
-        <mat-select matInput placeholder="Skype, Whatsapp, etc." [(value)]="selectedCallMethod" (selectionChange)="pickForm(selectedCallMethod)" formControlName="callMethod" autocomplete="off" required>
+        <mat-select matInput placeholder="Skype, Whatsapp, etc." [(value)]="selectedCallMethod" 
+        (selectionChange)="pickForm(selectedCallMethod)" formControlName="callMethod" autocomplete="off" 
+        panelClass="dropdown-regular" required>
           <mat-option *ngFor="let method of callMethods" [value]="method.value">{{method.viewValue}}</mat-option>
         </mat-select>
         <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
@@ -11,23 +13,26 @@
 
       <!-- Phone Number -->
       <ng-container *ngIf="selectedCallMethod as method">
-        <mat-form-field appearance="standard" floatLabel="always" *ngIf="selectedCallMethod === 'phonecall'" formGroupName="phoneNumber">
+        <mat-form-field appearance="standard" floatLabel="always" *ngIf="selectedCallMethod === 'phonecall'" formGroupName="onlineAppointmentPhone">
           <mat-label>Your Phone number</mat-label>
           <div class="multiple-input">
-            <input type="text" matInput placeholder="+51" [value]="'+51'" autocomplete="off" formControlName="phoneAreaCode" required>
+            <input type="number" matInput placeholder="+51" [value]="'+51'" autofocus="nope" autocomplete="off" formControlName="phoneAreaCode" required>
             <input type="number" matInput placeholder="1234567890" autocomplete="off" formControlName="phoneRest" required>
             <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
           </div>
         </mat-form-field>
         
-        <mat-form-field appearance="standard" floatLabel="always" *ngIf="selectedCallMethod === 'whatsapp'" formGroupName="whatsappNumber">
-          <mat-label>Whatsapp Number</mat-label>
-          <div class="multiple-input">
-            <input type="text" matInput placeholder="+51" formControlName="wappAreaCode" autofocus="off" autocomplete="off" maxlength="3" required>
-            <input type="number" matInput placeholder="123456789" formControlName="wappRest" autocomplete="off" required>
-            <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
-          </div>
-        </mat-form-field>
+        <div class="multiple-input" *ngIf="selectedCallMethod === 'whatsapp'" formGroupName="whatsappNumber">
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Code</mat-label>
+              <input type="text" matInput formControlName="wappAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
+              <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Whatsapp Number</mat-label>
+              <input type="number"formControlName="wappRest"  matInput placeholder="123456789" autocomplete="off" required>
+          </mat-form-field>
+        </div>
 
         <mat-form-field  appearance="standard" floatLabel="always" *ngIf="selectedCallMethod === 'skype'">
           <mat-label>Fill out your Skype Username</mat-label>
@@ -36,26 +41,37 @@
         </mat-form-field>
       </ng-container>
 
-
-      <!-- Calendar Plugin -->
-      <div class="placeholder-wrapper">
-        <i class="fas fa-calendar-alt"></i>
-        <h5 class="placeholder">Here comes the calendar</h5>
-        <!-- <app-booking-calendar></app-booking-calendar> -->
-      </div>
-
     </div>
 
-    <div class="btn-area">
+    <div class="btn-area" *ngIf="selectedCallMethod">
       <button type="button" class="btn-icon-left" routerLink="../step-two">
         <i class="fas fa-chevron-left small"></i>
         <span>Previous step</span>
       </button>
-      <button class="btn-icon-right" type="submit" 
-      [class.btn-disabled]="!onlineAppointmentForm.valid"
-      [disabled]="!onlineAppointmentForm.valid"
+
+      <!-- Three submit buttons. One for every option -->
+      <!-- Skype -->
+      <button class="btn-icon-right" type="submit" *ngIf="selectedCallMethod === 'skype'"
+      [class.btn-disabled]="!onlineAppointmentForm['controls'].skypeName.dirty"
+      [disabled]="!onlineAppointmentForm['controls'].skypeName.dirty"
       >
-        <span>Last step</span>
+        <span>Pick a date</span>
+        <i class="fas fa-chevron-right small"></i>
+      </button>
+      <!-- Whatsapp -->
+      <button class="btn-icon-right" type="submit" *ngIf="selectedCallMethod === 'whatsapp'"
+      [class.btn-disabled]="!onlineAppointmentForm['controls'].whatsappNumber.valid"
+      [disabled]="!onlineAppointmentForm['controls'].whatsappNumber.valid"
+      >
+        <span>Pick a date</span>
+        <i class="fas fa-chevron-right small"></i>
+      </button>
+      <!--  PhoneNumber -->
+      <button class="btn-icon-right" type="submit" *ngIf="selectedCallMethod === 'phonecall'"
+      [class.btn-disabled]="!onlineAppointmentForm['controls'].onlineAppointmentPhone.dirty"
+      [disabled]="!onlineAppointmentForm['controls'].onlineAppointmentPhone.dirty"
+      >
+        <span>Pick a date</span>
         <i class="fas fa-chevron-right small"></i>
       </button>
     </div>

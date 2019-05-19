@@ -1,0 +1,111 @@
+@import './../../assets/scss/_master.scss';
+
+.wrapper {
+    width: 85%;
+    margin: 0 auto;
+    padding: 2em 0;
+
+    @include respond-down($sm) {
+        padding: 2em 0 0;
+    }
+
+    header {
+        width: 100%;
+        margin: 2em auto;
+
+        @include respond-down($sm) {
+            margin: 0 auto!important;
+        }
+
+        .icon-button {
+            @include respond-down($sm) {
+                position: absolute;
+                right: 2em;
+                top: 27px;
+            }
+        }
+    }
+
+    .title {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        @include respond-down($sm) {
+            align-items: flex-start;
+            flex-flow: column wrap;
+        }
+
+        h1 {
+            @include respond-down($sm) {
+                width: 80%;
+            }
+        }
+    }
+
+    .shopping-list-wrapper {
+        box-sizing: border-box;
+        padding: 2em;
+        background: #fff;
+        box-shadow: $card-shadow;
+        height: 100%;
+        width: 80%;
+
+        @include respond-down($sm) {
+            min-height: calc(100vh - 65px);
+            height: 100%;
+            width: 100vw;
+            padding: 2em 16px;
+            margin: 2em 0 0 -9%;
+            overflow-x: hidden;
+        }
+
+        ul {
+            li {
+                margin: 1.5em 0;
+            }
+        }
+
+        .food-checkbox {
+            .mat-checkbox-layout {
+                display: flex;
+                align-items: center;
+            }
+
+
+            h4 {
+                @include respond-down($sm) {
+                    font-size: 16px;
+                }
+            }
+
+            .mat-checkbox-inner-container {
+                width: 25px;
+                height: 25px;
+                margin: 0 2em 0 0;
+
+                @include respond-down($sm) {
+                    margin-right: 1em;
+                }
+
+                .mat-checkbox-frame {
+                    border-radius: 50%;
+                }
+            }
+
+            &.mat-checkbox-checked {
+                h4 {
+                    text-decoration: line-through;
+                    color: $grey;
+                }
+
+                &.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+                    background-color: $brand-green;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}

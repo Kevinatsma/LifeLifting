@@ -1,4 +1,4 @@
-@import '_master';
+@import './_master.scss';
 
  .btn-area {
     width: 100%;
@@ -37,5 +37,16 @@
 
     .mat-placeholder-required {
         display: none!important;
+    }
+}
+
+// Mat Styles
+
+::ng-deep mat-form-field {
+    .mat-input-element {
+        font-style: $main-font;
+        font-size: 18px;
+        letter-spacing: 1px;
+        color: $text-black;
     }
 }

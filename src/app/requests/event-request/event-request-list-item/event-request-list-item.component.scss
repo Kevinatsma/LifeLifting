@@ -1,0 +1,226 @@
+@import './../../../../assets/scss/_master.scss';
+
+
+.mat-checkbox {
+    width: 30px;
+    height: 35px;
+    
+    &-background, &-frame {
+        border-radius: 50%!important;
+        width: 30px;
+        height: 30px;
+    }
+
+    &-frame {
+        border-color: $primary-color;
+    }
+
+    &-checked {
+        .mat-checkbox-background {
+            background-color: $primary-color!important;
+        }
+    }
+
+    &-inner-container {
+        width: 30px!important;
+        height: 30px!important;
+    }
+
+    &:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-ripple .mat-ripple-element {
+        background: $primary-color!important;
+    }
+}
+
+.list-item {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 220px;
+    width: 95%;
+    padding: 1em 2em;
+    background-color: #fefcfb;
+    border: 2px solid #ece6e2;
+    border-radius: 10px;
+    box-shadow: $card-shadow;
+    margin: 1em auto;
+    @include  respond-down($sm) {
+        flex-flow: row wrap;
+        height: 100%;
+        padding: 2em 22px;
+        width: 100%;
+    }
+
+    &__check-area {
+        @extend %flex-center;
+        width: 5%;
+        height: 100%;
+        margin-right: 5%;
+    }
+
+    &__data {
+        display: flex;
+        height: 100%;
+        width: 50%;
+        @include respond-down($sm) {
+            width: 100%;
+        }
+
+        .main-info {
+            display: flex;
+            flex-flow: column wrap;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+
+            h1 {
+                max-width: 100%;
+                box-sizing: border-box;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+            > h1, p {
+                margin: 0;
+                text-align: left;
+            }
+
+            .text-link {
+                margin-top: 5px;
+                padding-bottom: 0;
+            }
+
+            .contact-method {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: flex-start;
+                margin-top: 1em;
+
+                p {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 0;
+
+                    &:first-child {
+                        margin-right: 2em;
+                    }
+                }
+
+                svg {
+                    font-size: 18px;
+                    color: $secondary-color;
+                    margin-right: 0.75em;
+                }
+        
+                .fa-phone {
+                    font-size: 20px;
+                    transform: scale(-1, 1);
+                }
+        
+                .fa-whatsapp {
+                    font-size: 22px;
+                    color: $whatsapp;
+                }
+                
+                .fa-skype {
+                    font-size: 22px;
+                    color: $skype;
+                }
+            }
+        }
+    }
+
+    &__time {
+        display: flex;
+        flex-flow: column wrap;
+        height: 100%;
+        justify-content: center;
+        width: 40%;
+
+        @include respond-down($sm) {
+            flex-flow: row nowrap;
+            margin: 1.5em 0;
+            width: 100%;
+        }
+
+        h5 {
+            margin: 0;
+        }
+
+        p {
+            font-weight: $semi-bold;
+            color: $grey;
+            margin-top: 0;
+            @include rem(font-size,  8px);
+        }
+
+        .end {
+            p {
+                margin-bottom: 0;
+            }
+        }
+
+    }
+
+    &__btn-area {
+        @extend %flex-center;
+        width: 15%;
+        height: 100%;
+        @include respond-down($sm) {
+            justify-content:  space-between;
+            padding: 0 2em;
+            width: 100%;
+        }
+
+        .icon-button {
+            background: $brand-danger;
+            @include respond-down($sm) {
+                width: 55px;
+                height: 55px;
+            }
+
+            svg {
+                color: #fff;
+                font-size: 19px;
+            }
+
+            &:nth-child(2) {
+                background: $brand-green;
+            }
+        }
+    }
+}
+
+.confirmation {
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+    @include respond-down($sm) {
+        align-items: flex-start;
+        padding:  0 1em;
+    }
+
+    h4 {
+        margin-bottom: 1em;
+    }
+
+    div {
+        display: flex;
+        flex-flow: row nowrap;
+
+        button {
+            @include respond-down($sm) {
+                padding: 0;
+            }
+            &:first-child {
+                margin-right: 2em;
+                @include respond-down($sm) {
+                    margin-right: 3em;
+                }
+            }
+        }
+    }
+}

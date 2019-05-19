@@ -1,0 +1,391 @@
+@import './../../../assets/scss/_master.scss';
+@import './../../../assets/scss/_forms.scss';
+
+// Form Style Reset
+
+input, textarea {
+    background: transparent;
+    border: 0px;
+    outline: 0;
+    width: 100%;
+    font-family: $main-font;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+// General
+
+p {
+    white-space: normal;
+}
+
+h5 {
+    &.purple {
+        color: $secondary-color;
+    }
+}
+
+main.specialist-edit-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0!important;
+    margin-top: 0;
+
+    .action-toolbar-top {
+
+        button.icon-button {
+            position: inherit;
+        }
+    
+    }
+}
+
+section.specialist-header {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    margin-bottom: 3vh;
+
+    @include respond-down($sm) {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .image-uploader {
+        @extend %flex-center;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        span  {
+            font-size: 18px;
+            font-weight: $semi-bold;
+            font-family: $main-font;
+            text-align: center;
+        }
+    }
+
+    div.profile-picture {
+        width: 40%;
+        height: 380px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 5px;
+        position: relative;
+        background: darken($light-grey, 5%);
+        @include respond-down($sm) {
+            width: 100%;
+            height: 210px;
+        }
+    }
+
+    ::ng-deep mat-select {
+        width: 75%;
+
+        .mat-select-placeholder {
+            font-family: $main-font;
+            font-size: 18px;
+            letter-spacing: 1px;
+            font-weight: $semi-bold;
+            text-transform: capitalize;
+        }
+
+        .mat-select-value-text {
+            font-family: $main-font;
+            font-size: 18px;
+            letter-spacing: 1px;
+            font-weight: $semi-bold;
+            text-transform: capitalize;
+        }
+    }
+
+    div.quick-info {
+        flex-flow: column wrap;
+        width: 50%;
+        padding: 1em 2em;
+        position: relative;
+        @extend %flex-center;
+        @include respond-down($sm) {
+            padding: 1.5em 2em 1em!important;
+            width: 100%!important;
+        }
+
+        p {
+            margin-top: 0.5em;
+        }
+
+        .timezone {
+            position: absolute;
+            right: 2em;
+            top: 0.5em;
+            border: 3px solid $middle-grey;
+            border-radius: 50px;
+            width: auto;
+            height: 15px;
+            padding:  1em 2em;
+            font-size: 15px;
+            font-weight: $bold;
+            color: $text-black;
+            box-sizing: border-box;
+            @extend %flex-center;
+            @include respond-down($sm) {
+                background: #f0f1f5;
+                position: absolute;
+                top: -25px!important;
+                right: auto;
+            }
+        }
+
+        .top, .bottom {
+            display: flex;
+            height: 50%;
+            width: 100%;
+        }
+
+        .top {
+            flex-flow: column wrap;
+
+            div.display-name {
+                display: flex;
+                flex-flow: row nowrap;
+                width: 70%;
+                margin: 0;
+            }
+
+            input {
+                width: 100%;
+                &.h2 {
+                    letter-spacing: 2px;
+                    margin-bottom: 5px;
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #312E2C;
+                    text-transform: capitalize;
+                }
+
+                &.h5 {
+                    width: 80%;
+                    text-transform: capitalize;
+                }
+            }
+
+            p.speciality {
+                input {
+                    letter-spacing: 1px;
+                    line-height: 1.6;
+                    font-size: 16px;
+                }
+            }
+
+
+            div.icon-fact-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin: 1rem 0 0;
+                @include respond-down($sm) {
+                    flex-direction: column;
+                }
+
+
+                div.fact {
+                    width: 40%;
+                    border-bottom: 1px solid $border-color;
+                    padding-bottom: 1vh;
+
+                    svg {
+                        width: 10%;
+                        font-size: 24px;
+                        margin-right: 15%;
+                    }
+
+                    &:nth-child(2) {
+                        svg {
+                            font-size: 20px;
+                        }
+                    }
+
+                    @include respond-down($sm) {
+                        margin-bottom: 1em;
+                        display: flex;
+                        width: 100%;
+
+                        svg {
+                            font-size: 20px;
+                            margin-right: 2em;
+                        }
+                    }
+                }
+            }
+        }
+
+        .bottom {
+            flex-flow: row nowrap;
+            padding-top: 1.5em;
+            border-top: none!important;
+
+            p.tab {
+                flex-flow: column wrap;
+                text-align: center;
+                width: 50%;
+                @extend %flex-center;
+                @include respond-down($sm) {
+                    justify-content: flex-start;
+                }
+
+                span, input {
+                    font-family: $main-font;
+                    color: $primary-color;
+                    font-size: 48px;
+                    font-weight: $bold;
+                    text-align:center;
+                }
+
+                input {
+                    @extend %flex-center;
+                    flex-flow: row nowrap;
+                    width: 60%;
+                    margin: 6px auto 3px;
+                    padding: 0 0 0 12px;
+                    letter-spacing: 1px;
+                }
+            }
+        }
+    }
+}
+
+section.about {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 2em 0;
+    padding: 1.5em 2em;
+    background: #fff;
+    box-shadow: $card-shadow;
+
+    textarea {
+        font-size: 16px;
+        letter-spacing: 1px;
+        line-height: 1.6;
+        color: $text-black;
+        margin: 1em auto;
+        height: auto;
+        min-width: 100%;
+        max-width: 100%;
+    }
+}
+
+section.contact-language {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+
+    @include respond-down($sm) {
+        background: #fff;
+        box-shadow: $card-shadow;
+        padding: 2em;
+        flex-flow: column wrap;
+    }
+
+    >div {
+        padding-left: 2em;
+        @include respond-down($sm) {
+            padding-left: 0;
+            width: 100%!important;
+        }
+
+        h5 {
+            margin-bottom: 2vh;
+        }
+    }
+
+    div.contact-info {
+        width: 50%;
+
+        ul.contact-menu {
+            li {
+                display: flex;
+                flex-flow: row nowrap;
+                margin-bottom: 10px;
+
+                svg {
+                    @extend %flex-center;
+                    width: 20px;
+                    height: 20px;
+                    color: $grey;
+                    margin-right: 1em;
+                    margin-top: 3px;
+                }
+                input {
+                    font-size: 18px;
+                    font-weight: $regular;
+                    color: $text-black;
+                    letter-spacing: 1px;
+                    @include respond-down($sm) {
+                        width: 100%;
+                    }
+                }
+            }
+
+            input {
+                width: 50%;
+            }
+        }
+    }
+
+    div.languages {
+        width: 50%;
+
+        input {
+            margin: -1px 0 0 0.5em;
+        }
+
+        @include respond-down($sm) {
+            margin-top: 1em;
+        }
+
+        ul {
+            li {
+                &:first-child {
+                    @include respond-down($xs) {
+                        width: 60%;
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+
+section.reviews-opened {
+    padding-left: 2em;
+    width: calc(100% + 4em);
+
+    h5 {
+        padding-left: 2em;
+    }
+}
+
+section.btn-area {
+    padding-left: 3em;
+
+    button.text-link {
+        margin: 1em 0;
+        svg {
+            font-size: 12px;
+            margin-left: 5px;
+        }     
+    }
+}

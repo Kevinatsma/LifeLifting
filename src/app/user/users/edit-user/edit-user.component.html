@@ -1,0 +1,169 @@
+<ng-container *ngIf="user">
+  <main class="specialist-wrapper">
+      
+    <section class="action-toolbar-top" *ngIf="editShow">
+        <div class="left">
+          <button class="icon-button" (click)="goBack()">
+              <i class="fas fa-arrow-left"></i>
+          </button>
+        </div>
+        <div class="right">
+          <!-- <button class="icon-button" href="#">
+            <i class="fas fa-comment-alt"></i>
+          </button> -->
+  
+          <button class="icon-button" (click)="editUser()">
+            <i class="fas fa-check"></i>
+          </button>
+  
+        </div>
+      </section>
+
+      <form [formGroup]="editUserForm" *ngIf="editShow">
+        <div class="warning">
+
+        </div>
+        <section class="specialist-header">
+          <div class="profile-picture">
+            <div class="image-uploader" *ngIf="!downloadURL" [style.backgroundImage]="'url('+ user.photoURL +')'">
+              <span *ngIf="!user.photoURL">No Photo Yet</span>
+              <app-file-upload-button [url]="url" (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
+            </div>
+            <div class="image-uploader" *ngIf="downloadURL" [style.backgroundImage]="'url('+ downloadURL +')'">
+              <app-file-upload-button [url]="url" (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
+            </div>
+          </div>
+          <div class="quick-info">
+            <div class="top">
+              <div class="display-name">
+                <input class="h2" name="displayName" formControlName="displayName">
+              </div>
+            <input class="h5" placeholder="Which country?" name="country" formControlName="country">
+
+            <p class="speciality">
+              User ID: {{user.uid}}
+            </p>
+            <div class="icon-fact-container">
+              <div class="fact" *ngIf="user.basicData">
+                <i class="fas fa-transgender"></i>
+                <mat-select matInput placeholder="{{user.basicData.gender}}" [(value)]="selectedGender" formControlName="gender" 
+                panelClass="dropdown-regular" autocomplete="off" required>
+                  <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
+                </mat-select>
+              </div>
+              <div class="fact" *ngIf="specialist">
+                <i class="fas fa-user-ninja"></i>
+                <mat-select matInput placeholder="{{ specialist.firstName }} {{ specialist.lastName }}" 
+                [(value)]="selectedSpecialist" panelClass="dropdown-regular" formControlName="specialist" autocomplete="off" 
+                required name="specialist">
+                  <mat-option disabled selected>{{specialist.firstName}}</mat-option>
+                  <mat-option *ngFor="let specialist of specialists | async" 
+                  [value]="specialist.specialistID"
+                  > {{specialist.firstName}} {{specialist.lastName}}</mat-option>
+                </mat-select>
+              </div>
+            </div>
+          </div>
+
+            <div class="bottom">
+              <p class="tab">
+                <input class="stat" type="number" name="packageChoice" maxlength="2" formControlName="packageChoice"
+                placeholder="#"
+                >
+                Package Choice
+              </p>
+              <p class="tab">
+                <input class="stat" type="number" name="age" maxlength="2" formControlName="age"
+                placeholder="#"
+                >
+                Age
+              </p>
+            </div>
+          </div>
+        </section>
+  
+        <section class="about">  
+          <h5>{{user.displayName}}'s main goal</h5>
+          <textarea matInput matTextareaAutosize formControlName="mainGoal"></textarea>
+        </section>
+  
+        <section class="contact-language">
+          <div class="contact-info">
+            <h5 class="purple">Contact Info</h5>
+            <ul class="contact-menu">
+              <li>
+                <i class="far fa-envelope"></i>
+                <input type="contact-item" name="email" formControlName="email">
+              </li>
+              <li>
+                <i class="fas fa-mobile-alt"></i>
+                <input type="contact-item" name="phoneNumber" formControlName="phoneNumber">
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="switches">
+          <h1 class="section-title">User Status</h1>
+          <div class="switch-container">
+            <div>
+              <h3>General</h3>
+              <div class="switch">
+                <p class="card-text">
+                  <mat-slide-toggle formControlName="signUpCompleted" (change)="onChange($event)">
+                    <ng-container *ngIf="user.status.signUpCompleted">Signup Completed</ng-container>
+                    <ng-container *ngIf="!user.status.signUpCompleted">Signup not completed</ng-container>
+                  </mat-slide-toggle>
+                </p>
+
+                <p class="card-text">
+                  <mat-slide-toggle formControlName="accepted" (change)="onChange($event)">
+                    <ng-container *ngIf="user.status.accepted">Accepted</ng-container>
+                    <ng-container *ngIf="!user.status.accepted">Denied</ng-container>
+                  </mat-slide-toggle>
+                </p>
+
+                <p class="card-text">
+                  <mat-slide-toggle formControlName="subscriptionValid" (change)="onChange($event)">
+                    <ng-container *ngIf="!user.status.subscriptionValid">Subscription Not valid</ng-container>
+                    <ng-container *ngIf="user.status.subscriptionValid">Subscription Valid</ng-container>
+                  </mat-slide-toggle>
+                </p>
+              </div>
+            </div>
+            <div>
+              <h3 class="section-title">Appointment</h3>
+              <div class="switch">
+                <p class="card-text">
+                  <mat-slide-toggle formControlName="appointment" (change)="onChange($event)">
+                    <ng-container *ngIf="user.status.appointment">Appointment Requested</ng-container>
+                    <ng-container *ngIf="!user.status.appointment">Appointment is not requested</ng-container>
+                  </mat-slide-toggle>
+                </p>
+
+                <p class="card-text">
+                  <mat-slide-toggle formControlName="appointmentAccepted" (change)="onChange($event)">
+                    <ng-container *ngIf="user.status.appointmentAccepted">Appointment Accepted</ng-container>
+                    <ng-container *ngIf="!user.status.appointmentAccepted">Appointment Not Accepted</ng-container>
+                  </mat-slide-toggle>
+                </p>
+
+                <p class="card-text">
+                  <mat-slide-toggle formControlName="appointmentCompleted" (change)="onChange($event)">
+                    <ng-container *ngIf="user.status.appointmentCompleted">Appointment Completed</ng-container>
+                    <ng-container *ngIf="!user.status.appointmentCompleted">Appointment Not Completed</ng-container>
+                  </mat-slide-toggle>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </form>
+      </main>
+  
+  </ng-container>
+    
+  <ng-container *ngIf="!user">
+    Hello I exist
+  </ng-container>
+  

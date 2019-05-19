@@ -1,0 +1,128 @@
+$main-font:'Assistant', sans-serif;
+
+@mixin round-btn {
+    width: auto;
+    height: 50px;
+    margin: 0;
+    padding: 5px 3em;
+    border-radius: 20px;
+    font-family: $main-font;
+    font-size: 16px;
+    font-weight: $bold;
+    letter-spacing: 1px;
+    transition: all 300ms ease-in-out;
+
+    &:hover, &:focus, &:active {
+        transition: all 300ms ease-in-out;
+    }
+}
+
+//  Rem
+
+$baseFontSize: 10; // Based on HTML reset { font-size: 62.5%; }
+
+@function parseInt($n) {
+  @return $n / ($n * 0 + 1);
+}
+
+@mixin rem($property, $values) {
+    $px: ();
+    $rem: ();
+    $root: $baseFontSize;
+  
+    @each $value in $values {
+      @if $value == 0 or $value == auto {
+        $px: append($px, $value);
+        $rem: append($rem, $value);
+      } @else if type-of($value) == number {
+        $unit: unit($value);
+        $val: parseInt($value);
+  
+        @if $unit == 'px' {
+          $px: append($px, $value);
+          $rem: append($rem, ($val / $root + rem));
+        }
+  
+        @if $unit == 'rem' {
+          $px: append($px, ($val * $root + px));
+          $rem: append($rem, $value);
+        }
+      } @else {
+        $px: append($px, $value);
+        $rem: append($rem, $value);
+      }
+    }
+  
+    @if $px == $rem {
+      #{$property}: $px;
+    } @else {
+      #{$property}: $px;
+      #{$property}: $rem;
+    }
+}
+
+// Media queries
+
+@mixin respond-up($size) {
+    @if $size == xs {
+      @media only screen and (min-width: $size-xs) {
+        @content;
+      }
+    } @else if $size == sm {
+      @media only screen and (min-width: $sm) {
+        @content;
+      }
+    } @else if $size == md {
+      @media only screen and (min-width: $md) {
+        @content;
+      }
+    } @else if $size == bootlg {
+      @media only screen and (min-width: $size-boot-lg) {
+        @content;
+      }
+    } @else if $size == lg {
+      @media only screen and (min-width: $lg) {
+        @content;
+      }
+    } @else if $size == xl {
+      @media only screen and (min-width: $xl) {
+        @content;
+      }
+    } @else {
+      @media only screen and (min-width: $size) {
+        @content;
+      }
+    }
+  }
+  
+  @mixin respond-down($size) {
+    @if $size == xs {
+      @media only screen and (max-width: $size-xs) {
+        @content;
+      }
+    } @else if $size == sm {
+      @media only screen and (max-width: ($sm - 1px)) {
+        @content;
+      }
+    } @else if $size == md {
+      @media only screen and (max-width: ($md - 1px)) {
+        @content;
+      }
+    } @else if $size == bootlg {
+      @media only screen and (max-width: ($size-boot-lg - 1px)) {
+        @content;
+      }
+    } @else if $size == lg {
+      @media only screen and (max-width: ($lg - 1px)) {
+        @content;
+      }
+    } @else if $size == xl {
+      @media only screen and (max-width: ($xl - 1px)) {
+        @content;
+      }
+    } @else {
+      @media only screen and (max-width: $size) {
+        @content;
+      }
+    }
+}

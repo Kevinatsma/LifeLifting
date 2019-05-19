@@ -1,32 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Specialist } from './specialist.model';
 import { AngularFirestoreDocument, AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from './../user/user.model';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpecialistService {
-
   specialistCol: AngularFirestoreCollection<Specialist>;
   specialists: Observable<Specialist[]>;
   specialistDoc: AngularFirestoreDocument<Specialist>;
   specialist: Observable<Specialist>;
+  editShow: boolean;
+  editStateChange: Subject<boolean> = new Subject<boolean>();
 
   constructor( private afs: AngularFirestore,
+               private userService: UserService,
                public snackBar: MatSnackBar,
                private afAuth: AngularFireAuth
              ) {
     this.specialistCol = this.afs.collection<Specialist>(`specialists`);
     this.specialists = this.getSpecialists();
+    this.editStateChange.subscribe((value) => {
+      this.editShow = value;
+    });
   }
 
-  getSpecialistData(id) {
-    this.specialistDoc = this.afs.doc<Specialist>(`specialists/${id}`);
+  toggleEdit() {
+    this.editStateChange.next(!this.editShow);
+  }
+
+  getSpecialistData(sID) {
+    this.specialistDoc = this.afs.doc<Specialist>(`specialists/${sID}`);
     this.specialist = this.specialistDoc.valueChanges();
     return this.specialist;
   }
@@ -52,6 +62,9 @@ export class SpecialistService {
       this.afAuth.auth.currentUser.sendEmailVerification()
         .then(() => console.log('We sent him/her an email verification'))
         .catch(error => console.log(error.message));
+    })
+    .then((credential) => {
+      return credential;
     });
   }
 
@@ -65,26 +78,50 @@ export class SpecialistService {
       displayName: formData.firstName + ' ' + formData.lastName,
       photoURL: user.photoURL || formData.photoURL,
       roles: {
-        member: true,
+        client: true,
         specialist: true,
         admin: false
       },
-      signupCompleted: false,
+      status: {
+        accepted: false,
+        signUpCompleted: false,
+        appointment: false,
+      },
+      signUpDate: new Date(),
       packageChoice: 'NaN',
-      appointment: 'NaN',
     };
+    this.addSpecialist(formData, user);
     return userRef.set(data, { merge: true });
   }
 
-  addSpecialist(data) {
-    this.afs.collection<Specialist>(`specialists`).add(data)
+  addSpecialist(formData, user) {
+    const data = {
+      uid: user.uid,
+      specialistID: formData.specialistID,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      photoURL: formData.photoURL,
+      email: formData.email,
+      description: formData.description,
+      phoneNumber: formData.phoneNumber,
+      position: formData.position,
+      timeZone: formData.timeZone,
+      yearsOfExperience: formData.yearsOfExperience,
+      patientsTotal: formData.patientsTotal,
+      speciality: formData.speciality,
+      city: formData.city,
+      country: formData.country,
+      languages: formData.languages,
+      reviews: formData.reviews,
+    };
+    this.afs.doc<Specialist>(`specialists/${formData.specialistID}`).set(data,  {merge: true})
     .then(() => {
       // Show Snackbar
       const message = 'The Specialist was added succesfully';
       const action = 'Close';
 
       this.snackBar.open(message, action, {
-        duration: 4000,
+        duration: 3000,
         panelClass: ['success-snackbar']
       });
     })

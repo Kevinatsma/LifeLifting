@@ -1,0 +1,239 @@
+<ng-container *ngIf="guideline && auth.user | async as user">
+  <main class="specialist-wrapper" *ngIf="!editShow">
+
+    <section class="action-toolbar-top">
+      <div class="left">
+        <button type="button" class="icon-button" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <button type="button" class="icon-button edit-button not-mobile" (click)="deleteGuidelineDialog(guideline)" 
+        *ngIf="!editShow && auth.adminRoles(user)">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+      
+      <div class="middle">
+        <h1 *ngIf="client; else gID">
+          Guideline for {{client.displayName}}
+        <h5>Current weight: {{client.basicData.currentWeight}}kg</h5></h1>
+        <ng-template #gID>
+            <h1>Guideline ID: {{guideline.gID}}</h1>
+        </ng-template>
+      </div>
+
+      <div class="right" *ngIf="user">
+        <div class="not-mobile">
+          <ng-container *ngIf="!user.roles.admin || !user.roles.specialist">
+            <button type="button" class="icon-button" (click)="printMealplan(mealplan)">
+              <i class="fas fa-print"></i>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="user.roles.admin || user.roles.specialist">
+            <button type="button" class="icon-button edit-button" (click)="toggleEdit()">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button type="button" class="icon-button edit-button print" (click)="printGuideline()">
+              <i class="fas fa-print"></i>
+            </button>
+          </ng-container>
+        </div>
+    
+        <div class="mobile">
+          <button class="icon-button edit-button" *ngIf="actionMenuOpen; else plus" (click)="toggleButtonMenu()">
+            <i class="fas fa-minus"></i>
+          </button>
+          <ng-template #plus>
+            <button class="icon-button edit-button" (click)="toggleButtonMenu()">
+              <i class="fas fa-plus"></i>
+            </button>
+          </ng-template>
+  
+          <div class="specialist-actions">
+            <button type="button" class="icon-button action-btn" (click)="printMealplan(guideline)">
+              <i class="fas fa-print"></i>
+            </button>
+            <button type="button" class="icon-button action-btn" (click)="deleteGuidelineDialog(guideline)">
+              <i class="fas fa-trash"></i>
+            </button>
+            <button type="button" class="icon-button action-btn" (click)="toggleEdit()">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="package-container">
+      <mat-card class="list-item-card" *ngIf="guideline">
+          <section *ngIf="client" class="card-circle" [style.background]="'url('+ client.photoURL +')'">
+          </section>
+          <section class="chip-area">
+            <p class="secondary-chip">
+              Guideline number: {{guideline.guidelineNR}}
+            </p>
+            <p class="secondary-chip">
+              Created: {{guideline.creationDate.toDate() | date: 'MM/dd/yy'}}
+            </p>
+            <p *ngIf="guideline.lastEdited" class="secondary-chip">
+              Last edited: {{guideline.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
+            </p>
+          </section>
+
+          <section class="introduction">
+            <h2>{{guideline.guidelineName}}</h2>
+            <h5>
+              gID: {{guideline.gID}}
+            </h5>
+          </section>
+
+          <section class="guideline-targets" *ngIf="guideline">
+            <h2 class="section-title">Guideline targets</h2>
+            <div class="target-container">
+              <div class="target-container__left">
+                <div class="target-block">
+                  <h6 class="target-block__title">Ideal weight</h6>
+                  <span class="target-block__value">{{guideline.idealWeight}} kg</span>
+                </div>
+                <div class="target-block">
+                  <h6 class="target-block__title">Amount of {{guideline.target}}
+                  </h6>
+                  <span class="target-block__value">{{guideline.totalTarget}} kg</span>
+                </div>
+                <div class="target-block" *ngIf="guideline.idealKiloOfMuscle">
+                  <h6 class="target-block__title">Ideal Kg of muscle</h6>
+                  <span class="target-block__value">{{guideline.idealKiloOfMuscle}} kg</span>
+                </div>
+                <div class="target-block" *ngIf="guideline.idealKiloOfMuscle">
+                  <h6 class="target-block__title">Total duration</h6>
+                  <span class="target-block__value">{{guideline.targetDuration}} weeks</span>
+                </div>
+              </div>
+
+              <div class="target-container__right">
+                <div class="icon-circle">
+                  <ng-container *ngIf="!gainWeight">
+                    <i class="fas fa-angle-double-down"></i>
+                  </ng-container>
+                  <ng-container *ngIf="gainWeight">
+                    <i class="fas fa-angle-double-up"></i>
+                  </ng-container>
+                </div>
+                <h6>{{guideline.target}} weight</h6>
+              </div>
+            </div>
+          </section>
+
+          <section class="calorie-metrics" *ngIf="guideline">
+            <div class="metric">
+              <span class="metric__value">{{guideline.increaseAmount}}</span>
+              <h6 class="metric__title">Kcal Increase/decrease</h6>
+            </div>
+            <div class="metric golden">
+              <div class="icon-circle">
+                <ng-container *ngIf="increaseCals">
+                  <i class="fas fa-level-up-alt"></i>
+                </ng-container>
+                <ng-container *ngIf="!increaseCals">
+                  <i class="fas fa-level-down-alt"></i>
+                </ng-container>
+              </div>
+              <h6 class="metric__title">
+                <ng-container *ngIf="increaseCals">
+                  Increase
+                </ng-container>
+                <ng-container *ngIf="!increaseCals">
+                  Decrease
+                </ng-container>
+                calories from the basal metabolism
+              </h6>
+            </div>
+            <div class="metric">
+              <span class="metric__value">x{{guideline.factorCalorie}}</span>
+              <h6 class="metric__title">Factor Calorie</h6>
+            </div>
+          </section>
+          
+          <section class="guideline-activities" *ngIf="guideline && guideline.activities">
+            <h2 class="section-title">Activities</h2>
+            <div class="activity">
+              <div class="activity__left" *ngIf="exerciseOne">
+                <app-exercise-list-item class="activity__left" [exercise]="exerciseOne"></app-exercise-list-item>
+                <ng-container *ngIf="exerciseTwo">
+                  <app-exercise-list-item class="activity__left" [exercise]="exerciseTwo"></app-exercise-list-item>
+                </ng-container>
+
+                <ng-container *ngIf="exerciseThree">
+                  <app-exercise-list-item class="activity__left" [exercise]="exerciseThree"></app-exercise-list-item>
+                </ng-container>
+
+              </div>
+              <div class="activity__right">
+                <div class="container" *ngFor="let activity of guideline.activities; let i of index;">
+                  <div class="target-block" *ngIf="activity.activityPerWeek">
+                    <h6 class="target-block__title">Per week</h6>
+                    <span class="target-block__value">{{activity.activityPerWeek}}x</span>
+                  </div>
+                  <div class="target-block" *ngIf="activity.activityDuration">
+                    <h6 class="target-block__title">How long</h6>
+                    <span class="target-block__value">{{activity.activityDuration}} min</span>
+                  </div>
+                  <div class="target-block" *ngIf="activity.activityLevel">
+                    <h6 class="target-block__title">Level</h6>
+                    <span class="target-block__value" id="level">{{activity.activityLevel}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <section class="macro-metrics macros" *ngIf="guideline">
+            <h2 class="section-title">
+              Macro Distribution
+            </h2>
+            <div class="container">
+              <div class="metric">
+                <div class="icon-circle">
+                  {{guideline.macroDistribution.proteinValue}}%
+                </div>
+                <h6 class="metric__title">
+                  Protein
+                </h6>
+              </div>
+              <div class="metric">
+                <div class="icon-circle">
+                  {{guideline.macroDistribution.carbValue}}%
+                </div>
+                <h6 class="metric__title">
+                  Carbohydrates
+                </h6>
+              </div>
+              <div class="metric">
+                <div class="icon-circle">
+                  {{guideline.macroDistribution.fatValue}}%
+                </div>
+                <h6 class="metric__title">
+                  Fat
+                </h6>
+              </div>
+            </div>
+          </section>
+
+      </mat-card>
+    </div>
+  </main>
+
+  <ng-container *ngIf="editShow">
+    <app-edit-guideline [client]="client" [exercise]="exercise" [guideline]="guideline"></app-edit-guideline>
+  </ng-container>
+
+</ng-container>
+  
+<ng-container *ngIf="!guideline">
+  <div class="not-available">
+    <h3>😔 Woops! This guideline is not (yet) avaliable.</h3>
+    <p>Please go back to the available guidelines on the guidelines tab.</p>
+    <button type="button" class="btn-primary" [routerLink]="['../']">
+      Go back
+    </button>
+  </div>
+</ng-container>

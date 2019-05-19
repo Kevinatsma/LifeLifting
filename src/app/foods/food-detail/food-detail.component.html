@@ -1,0 +1,165 @@
+<ng-container *ngIf="food">
+  <main class="specialist-wrapper" *ngIf="!editShow">
+
+    <section class="action-toolbar-top">
+      <div class="left">
+        <button class="icon-button" (click)="goBack()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
+      <div class="middle">
+        <h1>Product ID: {{food.productID}}</h1>
+      </div>
+      <div class="right">
+        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && auth.adminRoles(user)">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="icon-button edit-button hidden"*ngIf="!editShow && !auth.adminRoles(user)">
+          <i class="fas fa-edit"></i>
+        </button>
+      </div>
+    </section>
+
+    <div class="package-container">
+
+      <section class="package-controls last-package not-mobile">
+          <button class="slide-control-btn" (click)="linkToPrevious(food)" 
+          [class.disabled]="food.productID === 1"
+          [disabled]="food.productID === 1"
+          >
+              <i class="fas fa-chevron-left"></i>
+          </button>
+      </section>
+
+      <mat-card class="list-item-card" *ngIf="food">
+          <section class="product-photo" [style.background]="'url('+ food.productPhoto +')'">
+              <!-- <i class="fas fa-carrot"></i>
+            <h1>{{i+1}}</h1> -->
+          </section>
+          <p class="subtitle">
+            {{food.categories.nutritionType}}
+          </p>
+          <section class="middle">
+            <div class="title">
+                <h2>{{food.productName}}</h2>
+            </div>
+        
+            <div class="quick-info">
+              <p class="speciality-title">Product ID: {{food.productID}}</p>
+              <ul class="contact-menu">
+                <li>
+                  <i class="fas fa-balance-scale"></i>
+                  {{food.unit}}
+                </li>
+                <li>
+                  <i class="fas fa-times"></i>
+                  {{food.factor}}
+                </li>
+                <li>
+                  <i class="fas fa-list-ul"></i>
+                  {{food.shoppingUnit}}
+                </li>
+              </ul>
+            </div>
+            <div class="shopping-list-container">
+              <h3><i class="fas fa-shopping-cart"></i> Shopping list info</h3>
+              <p class="card-text">Shopping list name: <strong>{{food.shoppingListName}}</strong></p>
+              <p class="card-text">Shopping list unit: <strong>{{food.shoppingUnit}}</strong></p>
+              <p class="card-text">Calculative factor: <strong>{{food.factor}}</strong></p>
+            </div>   
+            <div class="list-container">
+              <div class="preperations-container">
+                <h4>Ways of preperation</h4>
+                <ul class="contact-menu">
+                  <li *ngFor="let preperation of food.preperations">
+                    <span *ngIf="preperation.prepValue === 'None'" class="emoji">
+                      🙅
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Cooked'" class="emoji">
+                      🥘
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Cooked w/Spinach'" class="emoji">
+                      🥬
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Sauteed w/Veggies'" class="emoji">
+                      🍆
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Grated'" class="emoji">
+                      🧀
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Steamed'" class="emoji">
+                      ♨️
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Raw'" class="emoji">
+                      🍣
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Whole'" class="emoji">
+                      🍎
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Snacked'" class="emoji">
+                      🍿
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Scrambled' || 
+                                preperation.prepValue === 'Omelette' || 
+                                preperation.prepValue === 'Hard Boiled'" class="emoji">
+                      🍳
+                    </span>
+                    <span *ngIf="preperation.prepValue === 'Diced' || 
+                                preperation.prepValue === 'Chopped' || 
+                                preperation.prepValue === 'Sliced'" class="emoji">
+                      🔪
+                    </span>
+                    {{preperation.prepValue}}
+                  </li>
+                </ul>
+              </div>
+              <div class="preperations-container">
+                <h4>Mostly consumed during</h4>
+                <ul class="contact-menu">
+                  <li *ngFor="let name of food.categories.productMealTimes">
+                      <span *ngIf="name.mealTimeValue === 'Breakfast'" class="emoji">
+                        🥞
+                      </span>
+                      <span *ngIf="name.mealTimeValue === 'Lunch'" class="emoji">
+                        🥪
+                      </span>
+                      <span *ngIf="name.mealTimeValue === 'Dinner'" class="emoji">
+                        🍝
+                      </span>
+                      <span *ngIf="name.mealTimeValue === 'Snacks'" class="emoji">
+                        🍕
+                      </span>
+                    {{name.mealTimeValue}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </mat-card>
+      <section class="package-controls next-package not-mobile">
+        <button class="slide-control-btn" (click)="linkToNext(food)"
+          [class.disabled]="food.packageID === 3"
+          [disabled]="food.packageID === 3"
+          >
+            <i class="fas fa-chevron-right"></i>
+        </button>
+      </section>
+
+    </div>
+  </main>
+
+  <ng-container *ngIf="editShow">
+    <app-edit-food [food]="food"></app-edit-food>
+  </ng-container>
+
+</ng-container>
+  
+<ng-container *ngIf="!food">
+  <div class="not-available">
+    <h3>😔 Woops! This food is not (yet) avaliable.</h3>
+    <p>Please go back to the available foods on the foods tab.</p>
+    <button class="btn-primary" [routerLink]="['../']">
+      Go back
+    </button>
+  </div>
+</ng-container>

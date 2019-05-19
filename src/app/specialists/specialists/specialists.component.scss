@@ -1,17 +1,51 @@
-@import '_master';
+@import './../../../assets/scss/_master.scss';
 
 .wrapper {
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
     padding: 2em 0;
+
+    @include respond-down($sm) {
+        padding: 2em 0 0;
+    }
 
     header {
         width: 100%;
         margin: 2em auto;
+    
+        @include respond-down($sm) {
+            margin: 0 auto!important;
+        }
+
+        .icon-button {
+            @include respond-down($sm) {
+                position: absolute;
+                right: 2em;
+                top: 47px;
+            }
+        }
     }
 
-    h2 {
-        color: $secondary-color;
+    .intro-text {
+        font-size: 16px;
     }
+    
+    .title {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
 
+        @include respond-down($sm) {
+            align-items: flex-start;
+            flex-flow: column wrap;
+        }
+
+        h1 {
+            @include respond-down($sm) {
+                width: 80%;
+            }
+        }
+    }
 }

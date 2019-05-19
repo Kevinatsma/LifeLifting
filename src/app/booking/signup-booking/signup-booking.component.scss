@@ -1,0 +1,188 @@
+@import './../../../assets/scss/_master.scss';
+@import './../../../assets/scss/_calendar.scss';
+
+.create-appointment-mobile {
+    background: #fff;
+    position: fixed;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0 2em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+
+    .close-section {
+        margin-top: 2em;
+        
+        svg {
+            margin-right: 0.5em;
+        }
+    }
+
+    section {
+        &.intro {
+            margin: 0 0 1em;
+            width: 90%;
+        }
+
+        &.timeline {
+            margin: 1.5em 1.5em 2.5em;
+        }
+    }
+
+    .location-card {
+        width: 110%;
+        margin: 0 0 2em -5%;
+        padding: 0 0 0 1.5em;
+        @include respond-down($sm) {
+            padding: 1em;
+        }
+
+        .address {
+            width: 60%;
+
+            @include respond-down($sm) {
+                h4 {
+                    font-size: 16px;
+                }
+                p {
+                    font-size: 13px;
+                }
+            }
+        }
+
+        a {
+            text-align: center;
+            @include respond-down($sm) {
+                font-size: 14px;
+            }
+        }
+    }
+
+    form {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        flex-flow: row nowrap;
+        width: 100%;
+        padding: 0;
+
+        h5 {
+            width: 10%;
+            margin: -1px 5% 0 0;
+        }
+
+        mat-form-field {
+            width: 85%;
+        }
+    }
+
+    button {
+        margin: 1em auto;
+        min-height: 50px;
+    }
+}
+
+.calendar {
+    width: 100%;
+
+    &-signup {
+        ::ng-deep {
+            .cal-open-day-events {
+                left: 0!important;
+                width: 100vw!important;
+                padding: 3em 7em 2em!important;
+                @include respond-down($sm) {
+                    padding: 2em!important;
+                }
+            }
+
+            .cal-event {
+                background-color: #f58f84!important;
+                border-color: #e74c3c!important;
+                @include respond-down($sm) {
+                    max-width: 75%!important;
+                }
+            }
+
+            .cal-week-view {
+                @include respond-down($sm) {
+                    margin-top: 2em;
+                }
+                .cal-event span {
+                    display: none;
+                }
+            }
+        }
+
+        .action-toolbar-top {
+            .left {
+                width: 55px;
+            }
+        }
+    }
+
+    section {
+
+        &.loading {
+            width: 100%;
+            height: 80px;
+
+            @extend %flex-center;
+        }
+
+        &.calendar-toolbar {
+            .hidden {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+    }
+
+    .calendar-container {
+        background: #fff;
+        box-shadow: $card-shadow;
+        padding: 1em 2em;
+        margin-top: 2em;
+
+        .profile-picture {
+            background-position: center center;
+            box-shadow: $card-shadow;
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid $light-grey;
+            margin: -75px auto 25px;
+
+            &.no-pic {
+                background: $light-grey;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-flow: column wrap;
+
+                svg {
+                    color: $grey;
+                    margin-bottom: 10px;
+                    font-size: 38px;
+                }
+                .card-text {
+                    text-align: center;
+                    font-size: 14px;
+                    font-weight: $semi-bold;
+                }
+            }
+        }
+    }
+}
+

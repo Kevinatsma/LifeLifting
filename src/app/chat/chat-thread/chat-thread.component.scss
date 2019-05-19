@@ -1,0 +1,84 @@
+@import './../../../assets/scss/_master.scss';
+
+div.thread-item {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    padding: 1em 0;
+    border-top: 1px solid $light-grey;
+
+    &:hover {
+        background: $light-grey;
+        cursor: pointer;
+    }
+
+    &.active {
+        background: $middle-grey;
+    }
+
+    &.first-child {
+        border-top: none;
+    }
+
+    div {
+        height: 100px;
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        padding: 0 1em 0 0;
+        box-sizing: border-box;
+
+        section {
+            &.photo-container {
+                @extend %flex-center;
+                width: 30%;
+                height: 100px;
+
+
+                img.photo {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 10px;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+            }
+            &.thread-info {
+                display: flex;
+                flex-flow: column wrap;
+                justify-content: center;
+                box-sizing: border-box;
+                height: 100px;
+                width: 55%;
+                margin-left: 5%;
+
+                p, h5 {
+                    text-align: left;
+                    width: 100%;
+                }
+
+                p {
+                    height: 25px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    box-sizing: border-box;
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        .amount-of-messages {
+            width: 25px;
+            min-width: 25px;
+            height: 25px;
+            background-color: lighten($brand-green, 45%);
+            border-radius: 50%;
+            border: 2px solid $brand-green;
+            color: $brand-green;
+            font-weight: $semi-bold;
+            @extend %flex-center;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+@import './../../../assets/scss/_master.scss';
+@import './../../../assets/scss/_calendar.scss';
+
+::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: $secondary-color;
+}
+
+section {
+    &.loading {
+        width: 100%;
+        height: 80px;
+
+        @extend %flex-center;
+    }
+}
+

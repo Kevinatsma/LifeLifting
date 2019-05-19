@@ -1,0 +1,119 @@
+@import './../../../assets/scss/_master.scss';
+
+.wrapper {
+    width: 85%;
+    margin: 0 auto;
+    padding: 2em 0;
+
+    @include respond-down($sm) {
+        padding: 2em 0 0;
+    }
+
+    header {
+        width: 100%;
+        margin: 2em auto;
+
+        @include respond-down($sm) {
+            margin: 0 auto!important;
+        }
+
+        .icon-button {
+            @include respond-down($sm) {
+                position: absolute;
+                right: 2em;
+                top: 47px;
+            }
+        }
+    }
+
+    section {
+        &.list-header {
+            @include respond-down($sm) {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                flex-flow: row nowrap;
+            }
+        }
+    }
+
+    .title {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        @include respond-down($sm) {
+            align-items: flex-start;
+            flex-flow: column wrap;
+        }
+
+        h1 {
+            @include respond-down($sm) {
+                width: 80%;
+            }
+        }
+    }
+}
+
+.filter {
+    width: auto;
+    padding: 0 28px 6px!important;
+    border-radius: 0!important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: $semi-bold;
+    position: relative!important;
+    margin-left: auto!important;
+
+    &::after {
+        content: '';
+        background: $middle-grey;
+        height: 2px;
+        position: absolute;
+        bottom: 0;
+        width: 60%;
+        left: 19%;
+    }
+
+    .mat-button-focus-overlay {
+        border-radius: 0px!important;
+    }
+
+    &:hover {
+        .mat-button-focus-overlay {
+            background: none!important;
+        }
+    }
+
+    svg {
+        font-size: 14px;
+        margin-top: -2px;
+        margin-left: 10px;
+        vertical-align: initial!important;
+    }
+}
+
+.mat-button-ripple.mat-ripple {
+    background: none!important;
+}
+
+.mat-menu-content {
+    .mat-menu-item {
+        @include respond-down($sm) {
+            height: 75px;
+        }
+        &.active {
+            background: $middle-grey;
+        }
+
+        svg {
+            color: $secondary-color;
+            font-size:  17px;
+            margin-right: 1em;
+        }
+    }
+}

@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthService } from './../../../core/auth/auth.service';
-import { AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firestore';
 import { User } from '../../user.model';
+import { fadeAnimation } from './../../../core/animations/fade.animation';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss', './../../login/login.component.scss']
+  styleUrls: ['./signup.component.scss', './../../login/login.component.scss'],
+  animations: [ fadeAnimation ]
 })
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
@@ -18,11 +19,11 @@ export class SignupComponent implements OnInit {
   user: Observable<User>;
 
   succesVisible = true;
+  capsOn: Subject<boolean> = new Subject();
 
   constructor(
     private fb: FormBuilder,
     public auth: AuthService,
-    private afs: AngularFirestore,
     private router: Router
   ) { }
 
@@ -61,19 +62,7 @@ export class SignupComponent implements OnInit {
   }
 
   googleLogin() {
-    this.auth.googleLogin()
-    .then(() => {
-      if (this.auth.user) {
-        this.router.navigate(['signup/step-one']);
-        console.log('You don\'t have all necessary data yet..');
-      } else {
-        alert('Woops, you\'re not logged in. Try again!');
-      }
-    });
-  }
-
-  facebookLogin() {
-    this.auth.facebookLogin()
+    this.auth.googleSignUp()
     .then(() => {
       if (this.auth.user) {
         this.router.navigate(['signup/step-one']);
@@ -86,5 +75,29 @@ export class SignupComponent implements OnInit {
 
   openSuccess() {
     this.succesVisible = true;
+  }
+
+  // Misc
+
+  getState(o) {
+    return o.activatedRouteData.state;
+  }
+
+  @HostListener('window:keydown', ['$event'])
+    onKeyDown(event) {
+    if (event.getModifierState && event.getModifierState('CapsLock')) {
+      this.capsOn.next(true);
+      } else {
+      this.capsOn.next(false);
+      }
+    }
+
+    @HostListener('window:keyup', ['$event'])
+    onKeyUp(event) {
+    if (event.getModifierState && event.getModifierState('CapsLock')) {
+      this.capsOn.next(true);
+    } else {
+      this.capsOn.next(false);
+    }
   }
 }

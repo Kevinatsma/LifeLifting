@@ -1,0 +1,193 @@
+@import './../../../assets/scss/_master.scss';
+
+// Mat items
+
+.mat-menu-panel {
+    margin: 1em 0 0 -0.5em;
+    border-radius: 2px;
+    box-shadow: $card-shadow;
+    button.menu-link {
+        svg {
+            margin-right: 1em;
+        }
+    }
+}
+
+.nav-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    max-height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+
+    @include respond-down($sm) {
+        justify-content: space-between;
+    }
+
+    section {
+        height: 65px;
+    }
+
+    section.left {
+        box-sizing: border-box;
+        width: 20%;
+        margin-right: 10%;
+
+        @extend %flex-center;
+        @include respond-up($sm) {
+            display: none;
+        }
+
+        img {
+            height: auto;
+            width: 24.5px;
+            margin-top: 0.5px;
+        }
+    }
+
+    section.logo {
+        box-sizing: border-box;
+        width: 40%;
+        @extend %flex-center;
+        @include respond-up($sm) {
+            display: none;
+        }
+
+        img {
+            width: 55px;
+            height: auto;
+            margin-left: -14px;
+        }
+    }
+
+    section.middle {
+        width: 70%;
+        background: #fff;
+        border-left: $light-border;
+        border-bottom: $light-border;
+
+        @include respond-down($sm) {
+            display: none;
+        }
+    }
+    
+    section.right {
+        display: flex;
+        flex-flow: row nowrap;
+        width: 30%;
+        background: #fff;
+        border-bottom: $light-border;
+
+        @include respond-down($sm) {
+            width: 26%;
+        }
+
+        div.chat-container {
+            width: 25%;
+            height: 65px;
+            border-left: $light-border;
+            border-right: $light-border;
+            @extend %flex-center;
+            @include  respond-down($sm) {
+                display: none;
+            }
+
+            button {
+                width: 100%;
+                height: 65px;
+                position: relative;
+
+                img {
+                    width: 40%;
+                    height: auto;
+                    margin-top: 4px;
+
+                }
+
+                div.notification-circle {
+                    background: $primary-color;
+                    width: 11px;
+                    height: 11px;
+                    border-radius: 50%;
+                    position: absolute;
+                    right: 30%;
+                }
+                
+                &:hover {
+                    background: $middle-grey;
+                }
+            }
+        }
+
+        div.user-menu {
+            width: 75%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 15px;
+
+            @include respond-down($sm) {
+                justify-content: flex-end;
+            }
+
+            &:hover {
+                background: $middle-grey;
+                svg {
+                    color: $secondary-color;
+                }
+            }
+
+            div.user-photo {
+                width: 45px;
+                height: 45px;
+                border-radius: 3px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                margin: 7px 15px 7px 0;
+                background-position: center;
+
+                @include respond-down($sm) {
+                    border-radius: 50%;
+                    margin: 0;
+                    height: 35px;
+                    width: 35px;
+                }
+            }
+
+            .mat-button, button.open-dropdown-menu {
+                width: calc(100% - 45px);
+                font-size: 16px;
+                font-weight: $semi-bold;
+                letter-spacing: 1.5px;
+                display: flex;
+                color: $grey;
+                align-items: center;
+                justify-content: space-between;
+
+                @include respond-down($sm) {
+                    width: auto;
+                }
+
+                &:hover, &:focus, &:active {
+                    background: $middle-grey!important;
+                }
+            }
+
+            svg {
+                color: lighten($grey, 2%);
+                width: 14px;
+                height: 14px;
+                font-size: 10px;
+                margin: -3px 0 0 0px;
+            }
+        }
+    }
+}
+
+button.open-dropdown-menu span.user-name {
+    @include respond-down($sm) {
+        display: none!important;
+    }
+}

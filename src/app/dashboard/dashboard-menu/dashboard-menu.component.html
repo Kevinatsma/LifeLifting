@@ -1,0 +1,26 @@
+<div class="dashboard-menu-wrapper" *ngIf="auth.user | async as user">
+  <section class="logo-wrapper" routerLink="../login">
+    <img src="../../../assets/img/logo-icon.svg">
+    <h2>LifeLifting</h2>
+  </section>
+
+  <ul class="link-container">
+    <li class="mobile">
+      <a (click)="closeMenu()" class="menu-link" routerLink="../chat" routerLinkActive="active">
+        <i class="fas fa-comment-alt"></i>
+        Chat
+      </a>
+    </li>
+    <li>
+      <a (click)="closeMenu()" class="menu-link" routerLink="home" routerLinkActive="active">
+        <i class="fas fa-th-large"></i>
+        Overview
+      </a>
+    </li>
+  </ul>
+
+  <app-admin-menu *ngIf="auth.adminRoles(user)"></app-admin-menu>
+  <app-specialist-menu *ngIf="auth.specialistRoles(user)"></app-specialist-menu>
+  <app-client-menu *ngIf="auth.clientRoles(user)"></app-client-menu>
+  <app-misc-menu *ngIf="auth.adminRoles(user)"></app-misc-menu>
+</div>

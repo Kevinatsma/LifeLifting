@@ -1,4 +1,4 @@
-@import '_master';
+@import './../../../assets/scss/_master.scss';
 
 
     h2 {
@@ -12,6 +12,10 @@
         p {
             color: $secondary-color;
             margin: 0;
+
+            svg {
+                margin-right: 10px;
+            }
         }
     }
 
@@ -20,19 +24,67 @@
         white-space: normal;
         text-align: center;
         font-size: 15px;
+        @include respond-down($sm) {
+            text-align: left;
+
+            &.desc {
+                overflow: hidden;
+                width: 100%;
+                box-sizing: border-box;
+                height: 150px;
+            }
+        }
+    }
+
+    .read-more__buttons {
+        margin: 1em 0 0 0;
+
+        button {
+            @include respond-down($sm) {
+                display: flex;
+                align-items: center;
+                svg {
+                    font-size: 12px;
+                    margin-right: 10px;
+                }
+            }
+        }
     }
 
     .list-container {
         margin: 2em auto;
+        @include respond-down($sm) {
+            margin: 1em 0;
+        }
+
+        h5 {
+            margin: 0.5em 0 1em;
+        }
+
         ul {
             li {
                 font-family: $main-font;
                 font-size: 15px;
                 color: $secondary-color;
+                @include respond-down($sm) {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    align-items: center;
+                }
 
                 svg {
                     margin-right: 1em;
                     color: $secondary-color
+                }
+
+                span {
+                    margin: 0;
+                    padding: 0;
+                    @include respond-down($sm) {
+                        height: auto;
+                        word-wrap: break-word;
+                        white-space: normal;
+                    }
                 }
             }
         }

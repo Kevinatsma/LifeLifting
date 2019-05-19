@@ -1,0 +1,86 @@
+@import './../../../assets/scss/_master.scss';
+
+main.thread-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: row nowrap;
+    box-sizing: border-box;
+
+    section {
+        display: flex;
+        flex-flow: column wrap;
+        height: 100%;
+        overflow-y: auto;
+        box-sizing: border-box;
+
+        &.chat-sidebar {
+            width: 25vw;
+            background: #fff;
+            box-shadow: $sidebar-shadow;
+            z-index: 125;
+            height: 100%;
+            overflow-y: auto;
+            display: flex;
+            flex-flow: column nowrap;
+
+            @include respond-down($sm) {
+                width: 100vw;
+                position: absolute;
+                z-index: 100;
+            }
+
+            .close-section {
+                margin: 2em 1em 1em;
+                button {
+                    svg {
+                        margin-right: 10px;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .big-title {
+                font-size: 24px;
+                margin: 0 1em 1em;
+                @include respond-up($sm) {
+                    margin: 1em;
+                }
+            }
+
+            ::ng-deep app-chat-thread {
+                &.active {
+                    background: $light-grey;
+                    border: 2px solid red;
+                }
+            }
+        }
+        &.router-wrapper {
+            width: 75vw;
+            position: relative;
+            @include respond-down($sm) {
+                width: 100vw;
+            }
+
+            ::ng-deep app-chat-detail {
+                width: 100%;
+                background: $light-grey;
+                position: relative;
+                z-index: 123;
+            }
+
+            .no-chat-container {
+                @extend %flex-center;
+                flex-flow: column wrap;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                z-index: 3;
+
+                button.text-link {
+                    margin-top: 0.5em;
+                }
+            }
+        }
+    }
+}

@@ -20,7 +20,7 @@ export class EditorGuard implements CanActivate {
       map(user => user && user.roles.specialist ? true : false),
       tap(isEditor => {
         if (!isEditor) {
-          console.error('Access denied - Specialists only');
+          console.error(`⛔ Access denied - Specialists only`);
         }
       })
     );

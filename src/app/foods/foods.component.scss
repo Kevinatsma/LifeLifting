@@ -1,0 +1,32 @@
+@import './../../assets/scss/_master.scss';
+
+.wrapper {
+    width: 85%;
+    margin: 0 auto;
+    padding: 2em 0;
+
+    @include respond-down($sm) {
+        max-height: calc(100vh - 65px);
+    }
+
+    header {
+        width: 100%;
+        margin: 2em auto;
+
+        @include respond-down($sm) {
+            margin: 0 auto;
+        }
+    }
+
+    .title {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        h2 {
+            color: $secondary-color;
+        }
+    }
+}

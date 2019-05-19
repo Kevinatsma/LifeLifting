@@ -1,0 +1,245 @@
+@import './../../../../../assets/scss/_master.scss';
+
+// Ng  deeps
+
+mat-option {
+    svg {
+        margin-right: 1em;
+        font-size: 20px!important;
+
+        &.fa-phone {
+            color: $secondary-color;
+            font-size: 18px!important;
+            transform: scale(-1, 1);
+        }
+
+        &.fa-whatsapp {
+            color: #25D366;
+        }
+        &.fa-skype {
+            color: #00aff0;
+        }
+    }
+}
+
+form.edit-appointment {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+
+    @include respond-down($sm) {
+        padding: 0;
+        width: 100%;
+    }
+    .intro {
+        width: 100%!important;
+        padding: 0 0 1.2em!important;
+        margin: 0 0 2em!important;
+        z-index: 5;
+
+        button {
+            right: 1em;
+
+            &.delete {
+                right: unset;
+                left: 1em;
+            }
+        }
+    }
+
+    .pick-a-time {
+        width: 100%;
+        margin-top: 1em;
+        box-sizing: border-box;
+
+        .timeline {
+            width: 85%;
+        }
+
+        h4 {
+            width: 100%;
+            margin: 0;
+            padding: 0 2em;
+        }
+    }
+
+    .phone {
+        input {
+            border-bottom: $light-border;
+        }
+    }
+
+
+    input {
+        font-family: $main-font;
+        letter-spacing: 1.6px!important;
+    }
+
+    .mat-select-placeholder {
+        text-transform: capitalize;
+    }
+
+    .location-card {
+        @include respond-down($sm) {
+            width: 95%;
+            margin: 1.5em 2.5% 2em;
+
+            .address {
+                h3 {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+
+    .online-phone {
+        @include respond-down($sm) {
+            padding: 0 2em;
+        }
+
+        mat-form-field:first-child {
+            margin-right: 1em;
+            width: 75px;
+        }
+    }
+}
+
+section {
+    &.chip-area {
+        @include respond-down($sm) {
+            flex-flow: row wrap!important;
+            justify-content: flex-start!important;
+            padding: 0 1em!important;
+            box-sizing: border-box;
+        }
+
+        .secondary-chip {
+            @include respond-down($sm) {
+                &:first-child {
+                    margin-bottom: 25px!important;
+                }
+            }
+        }
+
+        mat-form-field {
+
+            .mat-form-field-wrapper {
+                padding-bottom: 0;
+
+                .mat-form-field-flex {
+                    padding-top: 0;
+
+                    .mat-form-field-infix {
+                        border-top: 0;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &.pick-colors {
+        box-sizing: border-box;
+        margin: 2em 0 0;
+        height: 130px;
+        width: 100%;
+        padding: 0 2em;
+
+        .color-pickers {
+            display: flex;
+            flex-flow: row nowrap;
+            margin-top: 0.5em;
+            width: 100%;
+
+            mat-form-field {
+                width: 30%;
+                margin-right: 10%;
+                @include respond-down($sm) {
+                    width: 45%;
+                }
+
+                input {
+                    height: 25px;
+                    width: 25px;
+                    border-bottom: none;
+                }
+            }
+
+            .color-picker-field {
+                input {
+                    width: 25px!important;
+                    height:  25px!important;
+                    border-bottom: none!important;
+                }
+            }
+        }
+    }
+
+    &.meeting-place-picker {
+        padding: 0 4em;
+        @include  respond-down($sm) {
+            padding: 0 2em;
+        }
+    }
+
+    &.pick-a-time {
+        .timeline {
+
+            &::before {
+                height: 91.2%!important;
+            }
+
+            .add-date-time-container {
+                flex-flow: column wrap;
+            }
+
+
+            // General
+            .time {
+                align-items: center;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                margin-top: -15px!important;
+                width: 100%;
+
+                mat-form-field {
+                    width: 45%;
+                    margin-right: 5%;
+                }
+            }
+        }
+    }
+
+    &.appointment-type {
+        width: 100%!important;
+        padding: 0 4em;
+
+        h4 {
+            margin:  0;
+        }
+
+        .multiple-input {
+            mat-form-field:first-child {
+                margin-right: 1em;
+                width: 75px;
+            }
+        }
+    }
+
+}
+
+.date-picker {
+    .mat-form-field-infix {
+        display: flex!important;
+        flex-flow: row nowrap!important;
+
+        input {
+            margin-right: 1em;
+        }
+        .mat-icon-button svg {
+            color: $secondary-color;
+        }
+    }
+}

@@ -1,0 +1,6 @@
+<main class="specialist-list-wrapper">
+  <section class="client-list" *ngIf="clients">
+    <app-client-list-item *ngFor="let client of clients | async" [client]="client"></app-client-list-item>
+  </section>
+  <p class="card-text mobile swipe">Swipe <i class="fas fa-long-arrow-alt-right"></i></p>
+</main>

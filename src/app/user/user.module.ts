@@ -8,23 +8,39 @@ import { RouterModule } from '@angular/router';
 import { SignUpModule } from './sign-up/sign-up.module';
 
 // Components
-import { UserListComponent } from './user-list/user-list.component';
-import { UserListItemComponent } from './user-list-item/user-list-item.component';
+
+import { UsersComponent } from './users/users.component';
+import { UserListComponent } from './users/user-list/user-list.component';
+import { UserListItemComponent } from './users/user-list-item/user-list-item.component';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { GuidelinesModule } from '../guidelines/guidelines.module';
+import { MealplansModule } from '../mealplans/mealplans.module';
 
 @NgModule({
+  declarations: [
+    UserListComponent,
+    UserListItemComponent,
+    UsersComponent,
+    UserDetailComponent,
+    EditUserComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
     CoreModule,
     SharedModule,
-    SignUpModule
+    SignUpModule,
+    GuidelinesModule,
+    MealplansModule
   ],
   exports: [
-    SignUpModule
-  ],
-  declarations: [
+    SignUpModule,
     UserListComponent,
-    UserListItemComponent
+    UserListItemComponent,
+    UsersComponent,
+    UserDetailComponent,
+    EditUserComponent
   ],
   providers: [
     AuthService,

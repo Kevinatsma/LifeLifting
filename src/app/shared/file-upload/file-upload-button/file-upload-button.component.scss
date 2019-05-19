@@ -1,0 +1,29 @@
+@import './../../../../assets/scss/_master.scss';
+
+mat-card.upload-image-card {
+    @extend %flex-center;
+    flex-flow: row nowrap;
+    width: 50%;
+    margin: 0 auto;
+    position: absolute;
+    bottom: -2vh;
+    left: 22%;
+
+    div.file {
+        label.file-label {
+            input {
+                position: absolute;
+                opacity: 0;
+            }
+            .file-cta {
+                svg {
+                    margin-right: 10px;
+                }
+
+                &:hover, &:focus {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
