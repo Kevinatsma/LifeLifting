@@ -17,7 +17,7 @@
       </div>
     </section>
 
-      <form class="package-container" [formGroup]="editProductForm" *ngIf="editShow">
+      <form class="package-container food-form" [formGroup]="editProductForm" *ngIf="editShow">
 
         <mat-card class="list-item-card" *ngIf="food">
             <section class="product-photo" [style.background]="'url('+ food.productPhoto +')'">
@@ -26,7 +26,7 @@
               <app-file-upload-button [url]="url" (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
             </section>
             <p class="subtitle">
-              <input type="text" class="text-field" name="nutritionType" formControlName="nutritionType">
+              <span>{{editProductForm.controls.nutritionType.value}}</span>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Nutrition type</mat-label>
                 <mat-select matInput placeholder="food.categories.nutritionType" formControlName="nutritionType" 
@@ -44,10 +44,22 @@
                 <p class="speciality-title">Product ID: {{food.productID}}</p>
                 <ul class="contact-menu">
                   <li>
-                    <i class="fas fa-balance-scale"></i>
                     <mat-form-field appearance="standard" floatLabel="always">
                       <mat-label>Unit measurement value</mat-label>
                       <mat-select matInput placeholder="Pick another unit" formControlName="unit" 
+                      panelClass="dropdown-regular" autocomplete="off" required>
+                        <mat-option *ngFor="let unit of units" [value]="unit.value">{{unit.value}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </li>
+                  <li>
+                    <mat-label>Calculative factor</mat-label>
+                    <input type="number" class="text-field" formControlName="factor" name="factor">
+                  </li>
+                  <li>
+                    <mat-form-field appearance="standard" floatLabel="always">
+                      <mat-label>Shopping list value</mat-label>
+                      <mat-select matInput placeholder="Pick another unit" formControlName="shoppingUnit" 
                       panelClass="dropdown-regular" autocomplete="off" required>
                         <mat-option *ngFor="let unit of units" [value]="unit.value">{{unit.value}}</mat-option>
                       </mat-select>

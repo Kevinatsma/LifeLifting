@@ -15,9 +15,6 @@
           </ng-template>
         </div>
         <div class="right">
-          <button type="button" class="icon-button edit-button hidden">
-            <i class="fas fa-edit"></i>
-          </button>
           <button type="submit" class="icon-button edit-button" (click)="editGuideline()" *ngIf="editShow">
             <i class="fas fa-check"></i>
           </button>
@@ -27,17 +24,6 @@
       <div class="package-container">
         <mat-card class="list-item-card" *ngIf="guideline">
             <section *ngIf="client" class="card-circle" (click)="linkToChild(guideline, client)" [style.background]="'url('+ client.photoURL +')'">
-            </section>
-            <section class="chip-area">
-              <p class="secondary-chip">
-                Guideline number: {{guideline.guidelineNR}}
-              </p>
-              <p class="secondary-chip">
-                Created: {{guideline.creationDate.toDate() | date: 'MM/dd/yy'}}
-              </p>
-              <p *ngIf="guideline.lastEdited" class="secondary-chip">
-                Last edited: {{guideline.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
-              </p>
             </section>
   
             <section class="introduction">
@@ -103,7 +89,7 @@
                   Kcal Increase/decrease
                 </h6>
               </div>
-              <div class="metric">
+              <div class="metric golden">
                 <div class="icon-circle">
                   <i class="fas fa-question"></i>
                 </div>

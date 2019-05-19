@@ -1,6 +1,7 @@
 export class Food {
-    productID: string;
+    productID: number;
     productName: string;
+    shoppingListName: string;
     productPhoto: string;
     categories: {
         nutritionType: string;
@@ -12,4 +13,6 @@ export class Food {
     };
     preparations: [];
     unit: string;
+    shoppingUnit: string;
+    factor: number;
 }

@@ -30,6 +30,7 @@ export class FoodListItemComponent implements OnInit {
         productID: food.productID,
         productName: food.productName,
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -21,8 +21,8 @@
       </p>
 
     <section class="dialog-actions">
-      <button type="button" class="text-link" [mat-dialog-close]="false">Back</button>
-      <button class="text-link" [mat-dialog-close]="true" *ngIf="mealplans">Continue</button>
+      <button type="button" class="text-link" [mat-dialog-close]="true">Back</button>
+      <button class="text-link" (click)="linkToChild()" *ngIf="mealplans">Continue</button>
     </section>
   </main>
 </div>

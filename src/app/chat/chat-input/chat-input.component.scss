@@ -18,14 +18,9 @@ mat-form-field.chat-box {
         letter-spacing: 1px;
     }
 
-    ::ng-deep .mat-form-field-suffix {
-        top: 5px;
-        cursor: pointer;
-
-        .mat-icon {
-            font-size: 140%;
-            color: $primary-color;
-        }
+    .mat-form-field-infix {
+        display: flex;
+        flex-flow: row nowrap;
     }
 
     input {
@@ -33,5 +28,14 @@ mat-form-field.chat-box {
         line-height: 26px;
         box-sizing: border-box;
         margin-top: 5px;
+        width: 90%;
+    }
+
+    svg {
+        top: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        color: $primary-color;
+        width: 10%;
     }
 }

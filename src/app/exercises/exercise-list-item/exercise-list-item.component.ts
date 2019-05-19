@@ -42,6 +42,7 @@ export class ExerciseListItemComponent implements OnInit {
         exerciseID: exercise.exerciseID,
         exerciseName: exercise.exerciseName,
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

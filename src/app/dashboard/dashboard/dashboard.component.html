@@ -1,7 +1,13 @@
-<main class="dashboard-wrapper" *ngIf="auth.user | async as user">
-  <ng-container *ngIf="user.status.signUpCompleted">
+<mat-sidenav-container [hasBackdrop]="true" (backdropClick)="close()" class="dashboard-wrapper" *ngIf="auth.user | async as user">
+  <mat-sidenav #sidenav mode="side" class="sidenav mobile" [opened]="sideNavOpened" [autoFocus]="true">
     <app-dashboard-menu></app-dashboard-menu>
-    
+  </mat-sidenav>
+
+  <ng-container *ngIf="user.status.signUpCompleted">
+    <div class="sidenav-desktop not-mobile">
+      <app-dashboard-menu></app-dashboard-menu>
+    </div>
+
     <section class="content">
       <app-dashboard-top-nav [user]="user"></app-dashboard-top-nav>
       <div class="router-wrapper" [@slideTransition]="getState(o)">
@@ -11,9 +17,9 @@
   </ng-container>
   <ng-container *ngIf="!user.status.signUpCompleted">
     <div class="not-permitted">
-      <h1>Woops! You aren't accepted yet..</h1>
+      <h1>Woops! You haven't completed the Signup process yet..</h1>
       <p class="card-text">
-        Contact your specialist and tell him to hurry up! <span class="emoji">⌛</span>
+        Complete the process or contact your specialist and tell him to hurry up! <span class="emoji">⌛</span>
       </p>
       <button class="btn-primary" (click)="goBack()">
         Go back
@@ -21,5 +27,6 @@
       <!--  TODO: SPECIALIST CARD -->
     </div>
   </ng-container>
-</main>
+</mat-sidenav-container>
+
 

@@ -7,6 +7,8 @@ import { Mealplan } from '../mealplan.model';
 import { UserService } from '../../user/user.service';
 import { User } from '../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
+import { EditMealDialogComponent } from './../../shared/dialogs/edit-meal-dialog/edit-meal-dialog.component';
+import { ChooseMealplanDialogComponent } from './../../shared/dialogs/choose-mealplan-dialog/choose-mealplan-dialog.component';
 
 @Component({
   selector: 'app-mealplan-list-item',
@@ -28,6 +30,7 @@ export class MealplanListItemComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUserDataByID(this.mealplan.clientID).subscribe(user => this.client = user);
+    setTimeout(() => console.log(this.mealplan), 1500);
   }
 
   deleteMealplanDialog(mealplan) {
@@ -36,6 +39,7 @@ export class MealplanListItemComponent implements OnInit {
         mID: mealplan.mID,
         mealplanName: mealplan.mealplanName,
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -52,20 +56,32 @@ export class MealplanListItemComponent implements OnInit {
     this.mealplanService.duplicateMealplan(mealplan);
   }
 
-  openShoppingList(mealplan) {
-    alert('TODO: OPEN SHOPPING LIST FOR THIS MEALPLAN');
+  printMealplan(mealplan) {
+    alert('TODO: EXPORT THIS MEALPLAN TO PDF');
   }
 
   editMealplan(mealplan) {
-    alert('TODO: EDIT MEALPLAN');
-    // const url = `dashboard/mealplans/${mealplan.mID}`;
-    // this.router.navigate([url]);
-    // return this.mealplanService.editShow = true;
-  }
+    const dialogRef = this.dialog.open(EditMealDialogComponent, {
+      data: {
+        mealplan: mealplan,
+        client: this.client
+      },
+      panelClass: 'mealplan-dialog',
+      disableClose: true
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      // AFter close
+    });
+  }
 
   linkToChild(mealplan) {
     const url = `dashboard/mealplans/${mealplan.mID}`;
+    this.router.navigate([url]);
+  }
+
+  linkToShoppingList(mealplan) {
+    const url = `dashboard/shopping-list/${mealplan.mID}`;
     this.router.navigate([url]);
   }
 

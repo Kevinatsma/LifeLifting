@@ -2,9 +2,9 @@
 
 .main-wrapper {
     height: 100%;   
-    overflow: hidden;  /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
-    margin: 0px;  /*removes default style*/
-    display: flex;  /*enables flex content for its children*/
+    overflow: hidden;
+    margin: 0px;
+    display: flex;
     box-sizing: border-box;
 
     section {
@@ -20,6 +20,10 @@
         // background-image: url("./../../../assets/img/bgs/home-bg-2.jpg");
         background-size: cover;
         background-repeat: no-repeat;
+    }
+
+    @include respond-down($sm) {
+        background: $light-grey;
     }
 }
 
@@ -97,6 +101,9 @@ section.login-container{
     .btn-area {
         margin: 40px auto 0;
         width: 100%;
+        @include respond-down($sm) {
+            display: block;
+        }
 
         button {
             &.text-link {
@@ -107,6 +114,11 @@ section.login-container{
                 width: 90%;
                 margin: 30px auto;
                 padding: 0!important;
+
+                img {
+                    width: 25px;
+                    margin-right: 20px;
+                }
             }
         }
 
@@ -124,7 +136,7 @@ section.login-container{
         flex-flow: column wrap;
         justify-content: flex-start;
         overflow: visible!important;
-        height: auto!important;
+        height: auto;
 
         section.photo-container {
             display: none;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { Observable } from 'rxjs';
@@ -6,11 +6,13 @@ import { DataService } from './../../../shared/data/data.service';
 import { Timezone } from './../../../shared/data/models/timezone.model';
 import languages from './../../data/JSON/languages.json';
 import { Language } from '../../data/models/language.model';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-add-specialist-dialog',
   templateUrl: './add-specialist-dialog.component.html',
-  styleUrls: ['./add-specialist-dialog.component.scss']
+  styleUrls: ['./add-specialist-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddSpecialistDialogComponent implements OnInit {
   // FormGroups
@@ -56,7 +58,8 @@ export class AddSpecialistDialogComponent implements OnInit {
 
   constructor( private fb: FormBuilder,
                private dataService: DataService,
-               private specialistService: SpecialistService) {}
+               private specialistService: SpecialistService,
+               private dialog: MatDialog) {}
 
   ngOnInit() {
     this.timezones = this.dataService.getTimezones();
@@ -104,7 +107,6 @@ export class AddSpecialistDialogComponent implements OnInit {
 
     this.extrasForm = this.fb.group({
       languageArr: this.fb.array([ this.createLanguage() ]),
-      reviews: this.fb.array([ this.createReview() ]),
     });
   }
 
@@ -125,10 +127,6 @@ export class AddSpecialistDialogComponent implements OnInit {
     return this.extrasForm.get('languageArr') as FormArray;
   }
 
-  get reviewForms() {
-    return this.extrasForm.get('reviews') as FormArray;
-  }
-
     // Create a new Language Mat Card
     createLanguage(): FormGroup {
       return this.fb.group({
@@ -144,23 +142,6 @@ export class AddSpecialistDialogComponent implements OnInit {
 
     deleteLanguage(i) {
       (this.extrasForm.get('languageArr') as FormArray).removeAt(i);
-    }
-
-    // Create a new Package benefit Mat Card
-    createReview(): FormGroup {
-      return this.fb.group({
-        reviewerName: '',
-        reviewText: '',
-      });
-    }
-
-    addReview(): void {
-      this.reviews = this.extrasForm.get('reviews') as FormArray;
-      this.reviews.push(this.createReview());
-    }
-
-    deleteReview(i) {
-      (this.extrasForm.get('reviews') as FormArray).removeAt(i);
     }
 
     specialistSignUp() {
@@ -182,7 +163,6 @@ export class AddSpecialistDialogComponent implements OnInit {
         city: this.locationForm.get('city').value,
         country: this.locationForm.get('country').value,
         languages: this.languageForms.value,
-        reviews: this.reviewForms.value,
         signUpDate: new Date(),
         signUpCompleted: false
       };
@@ -198,5 +178,11 @@ export class AddSpecialistDialogComponent implements OnInit {
         this.locationForm.reset();
         // this.addSpecialistForm.reset();
       });
+    }
+
+    closeDialog() {
+      if (confirm('Are you sure you want to stop adding this specialist?')) {
+        this.dialog.closeAll();
+      }
     }
 }

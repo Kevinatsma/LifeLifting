@@ -1,27 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
 import { AuthService } from './../../core/auth/auth.service';
 import { User } from './../../user/user.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
 import { slideTransition } from './../../core/animations/slide.animation';
+import { DashboardService } from '../dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.scss'],
-  animations: [slideTransition]
+  animations: [slideTransition],
+  encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
   user: User;
 
   constructor( public auth: AuthService,
-               public afs: AngularFirestore,
+               private afs: AngularFirestore,
                public router: Router,
-               public location: Location) { }
+               public location: Location,
+               private dashboardService: DashboardService) { }
 
   ngOnInit() {
-
     this.afs.collection(`users`).doc(`${this.auth.authState.uid}`).ref.get()
       .then((doc) => {
         if (doc.exists) {
@@ -62,6 +64,15 @@ export class DashboardComponent implements OnInit {
     } else if (!this.user.status.subscriptionValid) {
       this.router.navigate(['signup/limbo']);
     }
+  }
+
+  // Getters
+  get sideNavOpened(): boolean {
+    return this.dashboardService.sideNavOpened;
+  }
+
+  close() {
+    this.dashboardService.toggleSideNav();
   }
 
   getState(outlet) {

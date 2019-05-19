@@ -1,18 +1,22 @@
 {
     "preperations": [
     {"prepValue":"None"},
+    {"prepValue":"Baked"},
+    {"prepValue":"Chopped"},
     {"prepValue":"Cooked"},
     {"prepValue":"Cooked w/Spinach"},
-    {"prepValue":"Sauteed w/Veggies"},
-    {"prepValue":"Chopped"},
-    {"prepValue":"Sliced"},
     {"prepValue":"Diced"},
-    {"prepValue":"Raw"},
-    {"prepValue":"Snacked"},
-    {"prepValue":"Hard Boiled"},
-    {"prepValue":"Omelette"},
-    {"prepValue":"Scrambled"},
     {"prepValue":"Grated"},
+    {"prepValue":"Hard Boiled"},
+    {"prepValue":"In the oven"},
+    {"prepValue":"On the grill"},
+    {"prepValue":"Omelette"},
+    {"prepValue":"Raw"},
+    {"prepValue":"Roasted"},
+    {"prepValue":"Sauteed w/Veggies"},
+    {"prepValue":"Scrambled"},
+    {"prepValue":"Sliced"},
+    {"prepValue":"Snacked"},
     {"prepValue":"Whole"}
   ]
 }

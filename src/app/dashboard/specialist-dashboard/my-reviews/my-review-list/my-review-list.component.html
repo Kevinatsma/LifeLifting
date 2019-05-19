@@ -3,6 +3,6 @@
 
   </section>
   <section class="review-list">
-    <app-review-list-item *ngFor="let review of myReviews | async" [review]="review"></app-review-list-item>
+    <app-review-list-item *ngFor="let review of myReviews | async" [review]="review" [specialist]="specialist"></app-review-list-item>
   </section>
 </main>

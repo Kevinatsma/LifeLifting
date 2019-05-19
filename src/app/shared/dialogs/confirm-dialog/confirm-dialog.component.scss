@@ -8,13 +8,13 @@
     padding: 2em;
     box-sizing: border-box;
 }
-::ng-deep main.confirm-dialog-container {
+main.confirm-dialog-container {
     min-width: 35vw;
     height: auto;
     box-sizing: border-box;
 }
 
-::ng-deep .mat-dialog-container {
+.mat-dialog-container {
     overflow-y: auto;
     padding: 0;
     margin: 0;

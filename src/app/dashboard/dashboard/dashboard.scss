@@ -1,12 +1,26 @@
 @import './../../../assets/scss/_master.scss';
 
-main.dashboard-wrapper {
+.dashboard-wrapper {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-flow: column wrap;
     background: $light-grey;
     position: fixed;
+
+    .sidenav-desktop {
+        width: 20vw;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        z-index: 10;
+
+        app-dashboard-menu {
+            @include respond-down($sm) {
+                display: none;
+            }
+        }
+    }
 
     app-dashboard-menu {
         width: 20vw;
@@ -26,6 +40,10 @@ main.dashboard-wrapper {
         display: flex;
         flex-flow: column;
 
+        @include respond-down($sm) {
+            width: 100vw;
+        }
+
         app-dashboard-top-nav {
             width: 100%;
             height: 65px;
@@ -33,6 +51,11 @@ main.dashboard-wrapper {
             box-shadow: $toolbar-shadow;
             position: relative;
             z-index: 12;
+
+            @include respond-down($sm) {
+                position: sticky;
+                top: 0;
+            }
         }
 
         div.router-wrapper {
@@ -57,10 +80,37 @@ main.dashboard-wrapper {
         flex-flow: column wrap;
         height: 100%;
         width: 100%;
+        @include respond-down($sm) {
+            box-sizing: border-box;
+            padding: 2em 16px;
+
+            h1,  p {
+                text-align: center;
+            }
+        }
 
         button {
             margin-top: 1em;
         }
     }
+}
 
+// Sidenav
+
+mat-sidenav.sidenav {
+    width: 75%;
+}
+
+.mat-sidenav-content {
+    .content {
+        @include respond-down($sm) {
+            position: absolute;
+        }
+    }
+}
+
+.mat-drawer-content {
+    @include respond-up($sm) {
+        display: flex!important;
+    }
 }

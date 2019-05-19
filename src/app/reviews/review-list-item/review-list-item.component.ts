@@ -60,12 +60,12 @@ export class ReviewListItemComponent implements OnInit {
 
   // Open dialog
   openEditDialog(review, specialist) {
-    const sName = specialist.firstName + ' ' + specialist.lastName;
+    // const sName = specialist.firstName + ' ' + specialist.lastName;
     // Set data for Dialog
     this.dialog.open(EditDialogComponent, {
         data: {
           review: review,
-          specialistName: sName
+          // specialistName: sName
         },
         panelClass: 'review-dialog'
     });
@@ -76,6 +76,7 @@ export class ReviewListItemComponent implements OnInit {
       data: {
         reviewID: review.reviewID
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

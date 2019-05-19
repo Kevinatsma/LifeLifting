@@ -1,9 +1,9 @@
 <div class="message-container">
   <div id="message" [class.inbound]="incoming" [class.outbound]="!incoming">
-    <img matListAvatar [src]="message.photoURL || '//:0'" alt="{{message.sender}}">
+    <img matListAvatar [src]="message.photoURL || './../../../assets/img/icons/user-no-photo.svg'" alt="{{message.sender}}">
     <mat-card>
         <p>{{ message.content }}</p>
-        <p><small>{{ message.timestamp}}</small></p>
+        <p><small>{{ convertedTimestamp | date: 'short'}}</small></p>
     </mat-card>
   </div>
 </div>

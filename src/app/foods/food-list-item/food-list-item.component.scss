@@ -61,6 +61,7 @@ mat-card.list-item-card {
                 justify-content: flex-start;
                 align-items: center;
                 margin-top: 0.5em;
+                padding: 0!important;
 
                 h2, h2 input {
                     margin: 0;
@@ -108,7 +109,10 @@ mat-card.list-item-card {
                 }
 
                 ul.contact-menu {
-
+                    @include respond-down($sm) {
+                        display: flex;
+                        flex-flow: column wrap;
+                    }
                     li {
                         display: inline-block;
                         margin: 1em 1.5em;

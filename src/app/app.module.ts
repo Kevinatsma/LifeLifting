@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +25,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { ChatModule } from './chat/chat.module';
 import { DialogsModule } from './shared/dialogs/dialogs.module';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
 
 // Core Components
@@ -49,12 +50,17 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     SpecialistModule,
     ChatModule,
     DialogsModule,
+    ShoppingListModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [
     AppComponent
   ],
-  providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [
+    {
+    provide: FirestoreSettingsToken, useValue: {}
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

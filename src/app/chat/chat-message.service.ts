@@ -5,6 +5,7 @@ import { Message } from './message.model';
 import { Observable } from 'rxjs';
 import { Thread } from './thread.model';
 import { ActivatedRoute } from '@angular/router';
+import { ChatThreadService } from './chat-thread.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class ChatMessageService {
   messagesCollection: AngularFirestoreCollection<Message>;
   messageDoc: AngularFirestoreDocument<Message>;
   threadDoc: AngularFirestoreDocument<Thread>;
+  thread: Thread;
+  thread$: Observable<Thread>;
   messages: Observable<Message[]>;
 
   constructor( private auth: AuthService,
@@ -46,16 +49,27 @@ export class ChatMessageService {
     return this.afs.collection(`chats/${channelID}/messages`).add(data)
     .then(() => {
       console.log('Message sent!');
-      this.updateThread(channelID);
+      this.updateThread(channelID, senderId);
     })
     .catch(error => console.log(error.message));
   }
 
-  updateThread(channelID) {
-    const data = {
-      lastUpdated: new Date().toDateString()
-    };
-    this.threadDoc = this.afs.doc<Thread>(`chats/${channelID}`);
-    this.threadDoc.update(data);
+  updateThread(channelID, senderId) {
+    this.getThread(channelID);
+    setTimeout(()  => {
+      const data = {
+        lastUpdated: new Date(),
+        unreadMessages: this.thread.unreadMessages + 1,
+        lastSenderId: senderId
+      };
+      this.threadDoc = this.afs.doc<Thread>(`chats/${channelID}`);
+      this.threadDoc.update(data);
+    }, 500);
+  }
+
+  getThread(channelID) {
+    const threadDoc = this.afs.doc<Thread>(`chats/${channelID}`);
+    threadDoc.valueChanges().subscribe(thread => this.thread = thread);
+    return this.thread;
   }
 }

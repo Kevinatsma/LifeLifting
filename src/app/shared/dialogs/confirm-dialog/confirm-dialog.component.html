@@ -61,6 +61,12 @@
         Are you sure that you want to delete <strong>{{data.eventTitle}}</strong>?
       </p>
     </ng-container>
+    <ng-container *ngIf="data.thread">
+      <h1>Delete this Chat?</h1>
+      <p class="card-text">
+        Are you sure? The messages will be erased completely.
+      </p>
+    </ng-container>
     <ng-container *ngIf="data.acceptedUser">
       <h1>Accept this User?</h1>
       <p class="card-text">

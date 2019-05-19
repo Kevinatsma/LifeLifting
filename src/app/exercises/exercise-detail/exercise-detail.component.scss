@@ -21,6 +21,10 @@ main.specialist-wrapper {
     overflow-y: auto;
     padding: 1.5em 2em;
 
+    @include respond-down($sm) {
+        padding: 1em 0 2em;
+    }
+
     .action-toolbar-top {
 
         button.icon-button {
@@ -29,6 +33,19 @@ main.specialist-wrapper {
                 opacity: 0;
                 position: relative;
                 z-index: -5;
+            }
+        }
+
+        h1 {
+            width: 100%;
+            font-size: 25px;
+        }
+
+        .right {
+            button {
+                @include respond-down($sm) {
+                    margin-left: 0;
+                }
             }
         }
     
@@ -49,6 +66,9 @@ main.specialist-wrapper {
             width: 60%;
             margin: 1.5em;
             cursor: auto;
+            @include respond-down($sm) {
+                width: 90%;
+            }
 
             .subtitle-container {
                 width: 90%;
@@ -61,6 +81,9 @@ main.specialist-wrapper {
                 .subtitle {
                     width: auto;
                     margin: 0;
+                    @include respond-down($sm) {
+                        width: 50%;
+                    }
                 }
 
                 .met-value {

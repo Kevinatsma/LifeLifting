@@ -19,7 +19,7 @@ export class ExercisesComponent implements OnInit {
   openDialog() {
     // Set data for Dialog
     this.dialog.open(AddExerciseDialogComponent, {
-
+      panelClass: 'add-exercise-dialog'
     });
   }
 

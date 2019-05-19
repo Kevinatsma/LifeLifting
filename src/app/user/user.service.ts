@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { User } from './user.model';
 import { AuthService } from '../core/auth/auth.service';
+import { Specialist } from '../specialists/specialist.model';
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +79,11 @@ export class UserService {
   updateUser(uid, data) {
     this.userDoc = this.afs.doc<User>(`users/${uid}`);
     this.userDoc.update(data);
+  }
+
+  setUserData(uid, data) {
+    this.userDoc = this.afs.doc<User>(`users/${uid}`);
+    this.userDoc.set(data, {merge: true});
   }
 
   deleteUser(id) {

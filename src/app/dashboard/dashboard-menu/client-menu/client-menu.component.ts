@@ -3,6 +3,7 @@ import { openClose } from './../../../core/animations/open-close.animation';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { ChooseMealplanDialogComponent } from '../../../shared/dialogs/choose-mealplan-dialog/choose-mealplan-dialog.component';
+import { DashboardService } from '../../dashboard.service';
 
 @Component({
   selector: 'app-client-menu',
@@ -13,10 +14,11 @@ import { ChooseMealplanDialogComponent } from '../../../shared/dialogs/choose-me
   styleUrls: ['./../dashboard-menu.component.scss']
 })
 export class ClientMenuComponent implements OnInit {
-  linksOpened = false;
+  linksOpened = true;
 
   constructor( private dialog: MatDialog,
-               private router: Router) { }
+               private router: Router,
+               private dashboardService: DashboardService) { }
 
   ngOnInit() {
   }
@@ -25,12 +27,15 @@ export class ClientMenuComponent implements OnInit {
     this.linksOpened = !this.linksOpened;
   }
 
+  closeMenu() {
+    this.dashboardService.toggleSideNav();
+  }
 
   openMealChooseDialog() {
     this.dialog.open(ChooseMealplanDialogComponent, {
       data: {
       },
-      panelClass: 'mealplan-choose'
+      panelClass: 'mealplan-choose-dialog'
     });
   }
 

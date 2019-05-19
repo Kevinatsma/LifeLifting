@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { BookingService } from '../../booking/booking.service';
 import { Appointment } from '../../booking/appointment.model';
@@ -11,7 +11,8 @@ import { AuthService } from './../../core/auth/auth.service';
 @Component({
   selector: 'app-appointment-detail',
   templateUrl: './appointment-detail.component.html',
-  styleUrls: ['./appointment-detail.component.scss']
+  styleUrls: ['./appointment-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppointmentDetailComponent {
   @Input() event: Appointment;
@@ -81,21 +82,22 @@ export class AppointmentDetailComponent {
       this.onlineAppointment = true;
       this.faceToFace = false;
     }
-
-    if (e.whatsappNumber.wappRest === '') {
-      this.whatsApp = false;
-    } else {
-      this.whatsApp = true;
-    }
-    if (e.skypeName === null) {
-      this.skype = false;
-    } else {
-      this.skype = true;
-    }
-    if (e.onlineAppointmentPhone.phoneRest === '') {
-      this.onlinePhone = false;
-    } else {
-      this.onlinePhone = true;
+    if (!this.faceToFace) {
+      if (e.whatsappNumber.wappRest === '') {
+        this.whatsApp = false;
+      } else {
+        this.whatsApp = true;
+      }
+      if (e.skypeName === null) {
+        this.skype = false;
+      } else {
+        this.skype = true;
+      }
+      if (e.onlineAppointmentPhone.phoneRest === '') {
+        this.onlinePhone = false;
+      } else {
+        this.onlinePhone = true;
+      }
     }
   }
 

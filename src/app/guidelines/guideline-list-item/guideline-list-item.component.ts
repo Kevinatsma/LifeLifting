@@ -36,6 +36,7 @@ export class GuidelineListItemComponent implements OnInit {
         gID: guideline.gID,
         guidelineName: guideline.guidelineName,
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

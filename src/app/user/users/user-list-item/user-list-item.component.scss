@@ -10,6 +10,15 @@ mat-card.list-item-card {
     padding: 0;
     transition: all 300ms ease-in-out;
 
+    @include respond-down($sm) {
+        flex-flow: column wrap;
+        width: 84vw;
+    }
+
+    @include respond-down($xs) {
+        width: 100%;
+    }
+
     &:hover, &:focus {
         transition: transform 300ms ease-in-out;
         transform: scale(1.02);
@@ -26,6 +35,10 @@ mat-card.list-item-card {
         background: $icon-black;
         border-radius: 50%;
 
+        @include respond-down($sm) {
+            display: none;
+        }
+
         svg {
             font-size: 22px;
             color: $light-grey;
@@ -33,11 +46,21 @@ mat-card.list-item-card {
     }
 
     section {
+
+        @include respond-down($sm) {
+            box-sizing: border-box;
+            width: 100%!important;
+        }
+
         &.profile-photo {
             width: 25%;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+
+            @include respond-down($sm) {
+                height: 200px;
+            }
         }
 
         &.middle {
@@ -52,9 +75,21 @@ mat-card.list-item-card {
                 align-items: center;
                 margin-top: 0.5em;
 
+                @include respond-down($sm) {
+                    flex-flow: column wrap;
+                    align-items: flex-start;
+                }
+
                 h2 {
                     margin: 0;
                     width: auto;
+
+                    @include respond-down($sm) {
+                        width: 100%;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
                 }
 
                 .dividing-circle {
@@ -63,6 +98,10 @@ mat-card.list-item-card {
                     border-radius: 50%;
                     background: $primary-color;
                     margin: 5px 15px 0 13px;
+
+                    @include respond-down($sm) {
+                        display: none;
+                    }
                 }
 
                 p.location {
@@ -89,38 +128,93 @@ mat-card.list-item-card {
                         width: 70%;
                         font-size: 15px;
                         margin-top: 5px;
+                        
+                        @include respond-down($sm) {
+                            display: none;
+                        }
+                                                
+                        span {
+                            font-weight: $bold;
+                        }
                     }
 
                     &.description {
                         height: 80px;
                         overflow: hidden;
-                        
-                        span {
-                            font-weight: $bold;
+                        position: relative;
+
+                        @include respond-down($sm) {
+                            height: 70px;
+
+                            &::after {
+                                content: '';
+                                width: 100%;
+                                height: 100%;    
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                                background: linear-gradient(transparent 30px, white);
+                            }
                         }
                     }
                 }
 
                 ul.contact-menu {
 
+                    @include respond-down($sm) {
+                        display: flex;
+                        align-items: center;
+                        flex-flow: row nowrap;
+                        justify-content: space-between;
+                        margin: 1.5em 0;
+                    }
+
+                    @include respond-down($xs) {
+                        flex-flow: row wrap;
+                    }
+
                     li {
                         display: inline-block;
                         margin: 1em 1.5em;
+                        @include respond-down($sm) {
+                            box-sizing: border-box;
+                            margin: 0;
+                            width: 30%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-start;
+                            width: auto;
+                        }
 
                         &:first-child {
                             margin-left: 0;
+                        }
+
+                        &:nth-child(2) {
+                            @include respond-down($sm) {
+                                margin: 0 1em;
+                            }
                         }
 
                         svg {
                             font-size: 18px;
                             margin-right: 0.5em;
                             color: $secondary-color;
+
+                            @include respond-down($sm) {
+                                margin-right: 1em;
+                            }
+
                         }
 
                         a {
                             font-size: 18px;
                             font-weight: $semi-bold;
                             color: $secondary-color;
+
+                            @include respond-down($sm) {
+                                padding-bottom: 0;
+                            }
                         }
                     }
                 }
@@ -163,10 +257,24 @@ mat-card.list-item-card {
             display: flex;
             flex-flow: column wrap;
 
+            @include respond-down($sm) {
+                flex-flow: row nowrap;
+                height: 75px;
+                border-top: $light-border;
+            }
+
             button {
-                @extend %flex-center;
                 width: 100%;
                 height: 50%;
+                @extend %flex-center;
+                @include respond-down($sm) {
+                    height: 100%;
+                    border-radius: 0;
+
+                    &:first-child() {
+                        border-right: $light-border;
+                    }
+                }
 
                 svg {
                     margin-top: -3px;

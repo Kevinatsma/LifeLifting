@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { AddUserDialogComponent } from './../../shared/dialogs/add-user-dialog/add-user-dialog.component';
@@ -11,7 +11,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['./users.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UsersComponent implements OnInit {
   users: Observable<User[]>;
@@ -30,7 +31,9 @@ export class UsersComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(AddUserDialogComponent, {});
+    this.dialog.open(AddUserDialogComponent, {
+      panelClass: 'add-user-dialog'
+    });
   }
 
   // Filters collection based on mat menu input.

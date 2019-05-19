@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { openClose } from './../../../core/animations/open-close.animation';
+import { DashboardService } from '../../dashboard.service';
 
 @Component({
   selector: 'app-misc-menu',
@@ -10,14 +11,18 @@ import { openClose } from './../../../core/animations/open-close.animation';
   styleUrls: ['./../dashboard-menu.component.scss']
 })
 export class MiscMenuComponent implements OnInit {
-  linksOpened = false;
-  constructor() { }
+  linksOpened = true;
+  constructor(private dashboardService: DashboardService) { }
 
   ngOnInit() {
   }
 
   toggle() {
     this.linksOpened = !this.linksOpened;
+  }
+
+  closeMenu() {
+    this.dashboardService.toggleSideNav();
   }
 
 }

@@ -13,6 +13,10 @@
     margin: 0px 0px 20px 0;
     color: $secondary-color;
     box-sizing: border-box;
+    @include respond-down($sm) {
+        margin: 0 0 2em 0;
+        padding: 3em 2em;
+    }
 
     > svg {
         font-size: 90px;

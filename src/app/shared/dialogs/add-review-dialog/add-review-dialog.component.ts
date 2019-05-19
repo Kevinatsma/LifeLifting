@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ReviewsService } from './../../../reviews/reviews.service';
@@ -6,7 +6,8 @@ import { ReviewsService } from './../../../reviews/reviews.service';
 @Component({
   selector: 'app-add-review-dialog',
   templateUrl: './add-review-dialog.component.html',
-  styleUrls: ['./add-review-dialog.component.scss']
+  styleUrls: ['./add-review-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddReviewDialogComponent implements OnInit {
   hide = true;
@@ -16,7 +17,8 @@ export class AddReviewDialogComponent implements OnInit {
   constructor( private fb: FormBuilder,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public data: any,
-               private reviewService: ReviewsService
+               private reviewService: ReviewsService,
+               private dialog: MatDialog
     ) {
     }
 
@@ -46,5 +48,11 @@ export class AddReviewDialogComponent implements OnInit {
       reviewText: this.reviewForm.get('reviewText').value,
     };
     this.reviewService.addReview(data);
+  }
+
+  closeDialog() {
+    if (confirm(`Are you sure you want to stop creating a review for ${this.data.specialist.firstName}`)) {
+      this.dialog.closeAll();
+    }
   }
 }

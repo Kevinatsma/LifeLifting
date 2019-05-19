@@ -17,7 +17,7 @@ export class SignupStepThreeComponent implements OnInit {
   specialists: Observable<Specialist[]>;
   chosenSpecialist: string;
   backButton = false;
-
+  specialist: Specialist;
 
   constructor( public auth: AuthService,
                public specialistService: SpecialistService,

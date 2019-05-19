@@ -38,13 +38,19 @@
     justify-content: flex-start;
     align-items: flex-start;
     height: 220px;
-    width: 100%;
+    width: 95%;
     padding: 1em 2em;
     background-color: #fefcfb;
     border: 2px solid #ece6e2;
     border-radius: 10px;
     box-shadow: $card-shadow;
-    margin: 1em 0;
+    margin: 1em auto;
+    @include  respond-down($sm) {
+        flex-flow: row wrap;
+        height: 100%;
+        padding: 2em 22px;
+        width: 100%;
+    }
 
     &__check-area {
         @extend %flex-center;
@@ -56,7 +62,10 @@
     &__data {
         display: flex;
         height: 100%;
-        width: 60%;
+        width: 50%;
+        @include respond-down($sm) {
+            width: 100%;
+        }
 
         .main-info {
             display: flex;
@@ -67,7 +76,7 @@
             width: 100%;
 
             h1 {
-                max-width: 90%;
+                max-width: 100%;
                 box-sizing: border-box;
                 text-overflow: ellipsis;
                 white-space: nowrap;
@@ -131,6 +140,12 @@
         justify-content: center;
         width: 40%;
 
+        @include respond-down($sm) {
+            flex-flow: row nowrap;
+            margin: 1.5em 0;
+            width: 100%;
+        }
+
         h5 {
             margin: 0;
         }
@@ -154,13 +169,26 @@
         @extend %flex-center;
         width: 15%;
         height: 100%;
+        @include respond-down($sm) {
+            justify-content:  space-between;
+            padding: 0 2em;
+            width: 100%;
+        }
 
         .icon-button {
             background: $brand-danger;
+            @include respond-down($sm) {
+                width: 55px;
+                height: 55px;
+            }
 
             svg {
                 color: #fff;
                 font-size: 19px;
+            }
+
+            &:nth-child(2) {
+                background: $brand-green;
             }
         }
     }
@@ -170,6 +198,10 @@
     display: flex;
     align-items: center;
     flex-flow: column wrap;
+    @include respond-down($sm) {
+        align-items: flex-start;
+        padding:  0 1em;
+    }
 
     h4 {
         margin-bottom: 1em;
@@ -180,8 +212,14 @@
         flex-flow: row nowrap;
 
         button {
+            @include respond-down($sm) {
+                padding: 0;
+            }
             &:first-child {
                 margin-right: 2em;
+                @include respond-down($sm) {
+                    margin-right: 3em;
+                }
             }
         }
     }

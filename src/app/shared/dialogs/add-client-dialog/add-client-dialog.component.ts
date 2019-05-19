@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { SpecialistService } from '../../../specialists/specialist.service';
 import { AuthService } from './../../../core/auth/auth.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-add-client-dialog',
   templateUrl: './add-client-dialog.component.html',
-  styleUrls: ['./add-client-dialog.component.scss']
+  styleUrls: ['./add-client-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddClientDialogComponent implements OnInit {
   // FormGroups
@@ -40,7 +42,8 @@ export class AddClientDialogComponent implements OnInit {
   }
 
   constructor( private fb: FormBuilder,
-               private auth: AuthService) {}
+               private auth: AuthService,
+               private dialog: MatDialog) {}
 
   ngOnInit() {
     this.signUpForm = this.fb.group({
@@ -85,5 +88,11 @@ export class AddClientDialogComponent implements OnInit {
       this.signUpForm.reset();
       this.personalForm.reset();
     });
+  }
+
+  closeDialog() {
+    if (confirm('Are you sure you want to stop adding this client?')) {
+      this.dialog.closeAll();
+    }
   }
 }

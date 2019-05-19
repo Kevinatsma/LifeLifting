@@ -22,7 +22,7 @@ import { Review } from './../../reviews/review.model';
 })
 export class SpecialistDetailComponent implements OnInit {
   user: User;
-  @Input() specialist: Specialist;
+  @Input() specialist: Specialist = null;
   aboutExtended = false;
   reviewsVisible = true;
   reviews: Observable<Review[]>;
@@ -58,20 +58,22 @@ export class SpecialistDetailComponent implements OnInit {
   getSpecialist() {
     setTimeout(() => {
       let id: string;
-
       // Check if there is specialist input
       if ( this.specialist ) {
-        id =  this.specialist.uid;
+        id = this.specialist.uid;
+        this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${this.specialist.uid}`));
+        this.reviews = this.reviewsCol.valueChanges();
       } else {
         // Otherwise get id from url parameter
         id = this.route.snapshot.paramMap.get('id');
         this.specialistService.getSpecialistData(id).subscribe(specialist => {
           this.specialist = specialist;
+          this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${this.specialist.uid}`));
+          this.reviews = this.reviewsCol.valueChanges();
+          console.log(this.reviews);
         });
       }
-      this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${this.specialist.uid}`));
-      this.reviews = this.reviewsCol.valueChanges();
-    }, 400);
+    }, 1000);
 
   }
 

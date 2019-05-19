@@ -15,31 +15,31 @@
     </div>
     <ul class="link-container" [@openClose]="linksOpened ? 'open' : 'closed'">
       <li>
-        <a class="menu-link" routerLink="users" routerLinkActive="active">
+        <a (click)="closeMenu()" class="menu-link" routerLink="users" routerLinkActive="active">
           <i class="fas fa-users"></i>
           All Users
         </a>
       </li>
       <li>
-        <a class="menu-link" routerLink="specialists" routerLinkActive="active">
+        <a (click)="closeMenu()" class="menu-link" routerLink="specialists" routerLinkActive="active">
           <i class="fas fa-user-ninja"></i>
           Specialists
         </a>
       </li>
       <li>
-        <a class="menu-link" routerLink="clients" routerLinkActive="active">
+        <a (click)="closeMenu()" class="menu-link" routerLink="clients" routerLinkActive="active">
           <i class="fas fa-user-tie"></i>
           Clients
         </a>
       </li>
       <li>
-        <a class="menu-link" routerLink="packages" routerLinkActive="active">
+        <a (click)="closeMenu()" class="menu-link" routerLink="packages" routerLinkActive="active">
           <i class="fas fa-box"></i>
           Packages
         </a>
       </li>
       <li>
-        <a class="menu-link" routerLink="booking" routerLinkActive="active">
+        <a (click)="closeMenu()" class="menu-link" routerLink="booking" routerLinkActive="active">
           <i class="fas fa-calendar-alt"></i>
           Calendar
         </a>

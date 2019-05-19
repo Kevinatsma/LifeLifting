@@ -26,7 +26,7 @@
               <app-file-upload-button [url]="url" (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
             </section>
             <p class="subtitle">
-              <input type="text" class="text-field" name="categories" formControlName="categories">
+              // TODO
             </p>
             <section class="middle">
               <div class="title">
@@ -42,8 +42,9 @@
                   </li>
                 </ul>
               </div>
-              <div class="preperations-container">
+              <div class="preperations-container" *ngIf="exercise">
                 <h4>Ways of Preperation</h4>
+                <p class="card-text">// TODO</p>
                 <ul class="contact-menu">
                   <li *ngFor="let preperation of exercise.preperations">
                     <span *ngIf="preperation.prepValue === 'Cooked'" class="emoji">

@@ -27,6 +27,13 @@
     }
 }
 
+::ng-deep .shopping-unit {
+    color: $secondary-color;
+    .mat-select-value {
+        color: $secondary-color;
+    }
+}
+
     .image-uploader{
         width: 80%;
         margin: 4em auto;
@@ -62,6 +69,7 @@ form {
         p {
             font-size: 18px;
             font-weight: $semi-bold;
+            margin-bottom: 5px;
         }
     }
 

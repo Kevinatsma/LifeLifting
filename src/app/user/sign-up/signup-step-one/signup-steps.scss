@@ -12,35 +12,109 @@
     margin: 0;
     box-sizing: border-box;
 
-    form .animated-container {
-        position: relative;
-        // max-height: 20px;
-        animation: increase-height 1s;
-        overflow: hidden;
+    @include respond-down($sm) {
+        height: 100%!important;
+        justify-content: flex-start;
+        padding: 4em 16px 0;
+        overflow-y: auto;
     }
 
-    form .animated-container {
-        display: flex;
-        flex-flow: row wrap;
-        align-items: flex-start;
-        justify-content: flex-start;
-        width: 80%;
-        margin: 3em auto;
+    &.success {
+        @include respond-down($sm) {
+            justify-content: center;
+            padding-top: 0;
+            height: 100vh;
+            overflow: hidden;
 
-        .mat-form-field, .multiple-input{
-            width: 40%;
-            margin: 10px 5%;
-            input, mat-select, textarea {
-                padding-top: 0.5em!important;
-                line-height: 1.6;
+            p {
+                text-align: center;
+            }
+        }
+    }
+
+    .mat-form-field {
+        @include respond-down($sm) {
+            width: 100%!important;
+            border-bottom: 2px solid darken($middle-grey, 5%);
+            height: 70px;
+
+            &.textarea-field {
+                height: auto;
+            }
+        }
+    }
+ 
+    h1 {
+        @include respond-down($sm) {
+            text-align: center;
+        }
+    }
+
+    form {
+        @include respond-down($sm) {
+            display: flex;
+            flex-flow: column nowrap;
+            height: auto;
+            width: 100vw;
+        }
+
+        .animated-container {
+            box-sizing: border-box;
+            display: flex;
+            flex-flow: row wrap;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 80%;
+            position: relative;
+            animation: increase-height 0.6s;
+            overflow: hidden;
+
+            @include respond-down($sm) {
+                animation: none;
+                width: 100%;
+                height: auto;    
+                margin: 0;
+                padding: 0 16px 2em;
+                flex-flow: column nowrap;
+                overflow-y: auto;
+            }
+    
+            .mat-form-field, .multiple-input{
+                width: 40%;
+                margin: 10px 5%;
+
+                input, mat-select, textarea {
+                    padding-top: 0.5em!important;
+                    line-height: 1.6;
+                }
+
+                @include respond-down($sm) {
+                    width: 100%;
+                    margin: 15px 0;
+                }
+            }
+    
+            .multiple-input {
+                margin: 0 5% 0 5%;
+
+                @include respond-down($sm) {
+                    align-items: center;
+                    width: 100%;
+                    flex-flow: row nowrap;
+                    display: flex;
+                    margin: 0;
+                }
+
+                mat-form-field:first-child {
+                    margin: 0 1em 0 0;
+                    width: 75px;
+                }
             }
         }
 
-        .multiple-input {
-            margin: 0 5% 0 5%;
-            mat-form-field:first-child {
-                margin: 0 1em 0 0;
-                width: 75px;
+        .btn-area {
+            @include respond-down($sm) {
+                margin-top: 2em;
             }
         }
     }
@@ -57,8 +131,28 @@
         height: auto;
         margin: 0 auto;
 
+        @include respond-down($sm) {
+            width: 95%;
+        }
+
         .btn-area {
             margin-top: 20px;
+        }
+    }
+
+    .btn-area {
+        .btn-icon-left, .btn-icon-right {
+            &.no-bg {
+                @include respond-down($sm) {
+                    background: none;
+                    border: none;
+                    box-shadow: none;
+                    
+                    &.btn-disabled {
+                        background: none;
+                    }
+                }
+            }
         }
     }
 }
@@ -74,27 +168,5 @@
         font-size: 36px;
         color: $grey;
         margin-bottom: 15px;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .step-wrapper {
-        padding: 3em 1em;
-        height: 100vh;
-        overflow-y: auto;
-
-        .mat-form-field {
-            width: 100%!important;
-            border-bottom: 2px solid darken($middle-grey, 5%);
-            height: 70px;
-
-            &.textarea-field {
-                height: auto;
-            }
-        }
-
-        h1 {
-            text-align: center;
-        }
     }
 }

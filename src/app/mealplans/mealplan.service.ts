@@ -56,17 +56,6 @@ export class MealplanService {
     return this.mealplan;
   }
 
-  // getMealplans() {
-  //   this.mealplans = this.mealplanCol.snapshotChanges().pipe(map(actions => {
-  //     return actions.map(a => {
-  //       const data = a.payload.doc.data() as Mealplan;
-  //       const id = a.payload.doc.id;
-  //       return { id, ...data };
-  //     });
-  //   }));
-  //   return this.mealplans;
-  // }
-
   getMealplans() {
     this.mealplanCol = this.afs.collection('mealplans', ref => ref
       .orderBy('creationDate', 'asc'));
@@ -74,9 +63,14 @@ export class MealplanService {
     return this.mealplans;
   }
 
+  queryMealplans(colRef) {
+    this.mealplans = colRef.valueChanges();
+    return this.mealplans;
+  }
+
   addMealplan(data) {
     this.afs.collection<Mealplan>(`mealplans`).add(data)
-    .then((credential) => {
+    .then(credential => {
       const idData = {
         mID: credential.id
       };

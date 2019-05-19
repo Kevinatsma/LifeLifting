@@ -29,9 +29,11 @@
     </div>
 
     <div class="quick-info">
-      <p class="speciality-title">User ID: {{user.uid}}</p>
+      <p class="speciality-title"><strong>User ID</strong><br>
+        {{user.uid}}
+      </p>
       <p class="description" *ngIf="user.basicData">
-        <span>Goal</span><br>
+        <strong>Goal</strong><br>
         <ng-container *ngIf="user.basicData.mainGoal">{{user.basicData.mainGoal}}</ng-container>
         <ng-container *ngIf="!user.basicData.mainGoal">No goal yet...</ng-container>
       </p>

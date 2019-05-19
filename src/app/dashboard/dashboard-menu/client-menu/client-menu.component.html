@@ -15,37 +15,37 @@
     </div>
     <ul class="link-container" [@openClose]="linksOpened ? 'open' : 'closed'">
       <li>
-        <a class="menu-link" routerLink="home" routerLinkActive="active">
+        <a (click)="closeMenu()" class="menu-link" routerLink="home" routerLinkActive="active">
           <i class="fas fa-angle-double-up"></i>
           Workflow
         </a>
       </li>
       <li>
-        <a class="menu-link" routerLink="my-mealplans" routerLinkActive="active">
+        <a (click)="closeMenu()" class="menu-link" routerLink="my-mealplans" routerLinkActive="active">
           <i class="fas fa-weight"></i>
           Meal Plans
         </a>
       </li>
       <li>
-        <a class="menu-link" routerLinkActive="active" (click)="openMealChooseDialog()">
+        <a (click)="closeMenu()" class="menu-link" routerLinkActive="active" (click)="openMealChooseDialog()">
           <i class="fas fa-shopping-cart"></i>
           Shopping lists
         </a>
       </li>
       <li>
-        <a class="menu-link" routerLink="my-guidelines" routerLinkActive="active">
+        <a (click)="closeMenu()" class="menu-link" routerLink="my-guidelines" routerLinkActive="active">
           <i class="far fa-file-alt"></i>
           Guidelines
         </a>
       </li>
       <li>
-        <a class="menu-link" routerLink="my-calendar-client" routerLinkActive="active">
+        <a (click)="closeMenu()" class="menu-link" routerLink="my-calendar-client" routerLinkActive="active">
           <i class="far fa-calendar-alt"></i>
           Appointments
         </a>
       </li>
       <li>
-        <a class="menu-link" routerLink="my-specialist" routerLinkActive="active">
+        <a (click)="closeMenu()" class="menu-link" routerLink="my-specialist" routerLinkActive="active">
           <i class="fas fa-user-ninja"></i>
           My Specialist
         </a>

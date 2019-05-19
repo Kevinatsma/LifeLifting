@@ -5,6 +5,12 @@
 // Month view
 ::ng-deep .cal-month-view {
     .cal-open-day-events {
+        @include respond-down($sm) {
+            left: 5vw!important;
+            width: 90vw!important;
+            right: 5vw!important;
+            box-sizing: border-box!important;
+        }
         > div {
             pointer-events: none;
         }
@@ -56,7 +62,6 @@
     }
 
     .cal-day-badge {
-        @extend %flex-center;
         background: none;
         border: 1.5px solid $secondary-color;
         border-radius: 50%;
@@ -65,6 +70,12 @@
         padding: 0;
         position: absolute;
         width: 20px;
+        @extend %flex-center;
+        @include respond-down($sm) {
+            margin-top: -6px;
+            margin-left: -6px;
+            background: #fff!important;
+        }
     }
 
 }
@@ -74,6 +85,12 @@
 ::ng-deep .cal-week-view {
     .cal-header {
         padding: 0.5em 0;
+        @include respond-down($sm) {
+            .cal-header {
+                animation: bounce-appear 1s;
+            }
+        }
+
         b {
             font-family: $main-font;
             font-size: 15px;
@@ -100,6 +117,7 @@
     .cal-event {
         width: 92%!important;
         margin-left: -1%!important;
+        color: $black!important;
 
         span {
             color: $black!important;
@@ -134,15 +152,37 @@
     padding: 3em 2em;
     width: 80vw;
 
+    @include respond-down($sm) {
+        padding: 1em 0 3em;
+        width: 100vw;
+    }
+
+    &-container {
+        @include respond-down($sm) {
+            padding: 0!important;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+
     &__toolbar {
         box-sizing: border-box;
         .icon-button {
             right: 0;
+            margin-right: 0;
         }
 
         .left {
-            .icon-button:first-child {
-                margin-right: 2em;
+            @include respond-down($sm) {
+                button {
+                    margin-right: 0!important;
+                }
+            }
+            .icon-button {
+                margin-right: 0;
+                &.master {
+                    margin-right: 0;
+                }
             }
         }
 
@@ -167,24 +207,37 @@
         h2 {
             margin: 0;
             font-size: 26px;
+            @include respond-down($sm) {
+                text-align: center;
+                font-size: 22px;
+            }
         }
 
         .text-link {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
             font-size: 16px;
             font-weight: $semi-bold;
             margin: 0;
             padding: 0 0 5px;
             width: 100px;
+            @include respond-down($sm) {
+                &::after {
+                    display: none;
+                }
+            }
 
             svg {
                 margin-right: 1em;
                 font-size: 14px;
                 position: relative;
                 color: lighten($primary-color, 10%);
-                top: 0;
+                top: -0.5px;
             }
             
             &:last-child {
+                justify-content: flex-end;
                 svg {
                     margin-right: 0;
                     margin-left: 1em;
@@ -203,6 +256,10 @@
         height: 55px;
         margin: 2em auto;
         width: 35%;
+        @include respond-down($sm) {
+            margin: 2em 10%;
+            width: 80%;
+        }
 
         .btn-area {
             background: #fff;
@@ -260,5 +317,103 @@
             }
         }
 
+    }
+}
+
+// Detail 
+
+.location-card {
+    box-sizing: border-box;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #fff;
+    box-shadow: $card-shadow;
+    align-items: center;
+    height: 130px;
+    width: 120%;
+    padding: 0 2em;
+    margin: 1.5em -10% 2em;
+
+    img {
+        width: 50px;
+        height: auto;
+        margin-top: -4px;
+    }
+
+    .address {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 0 auto 0 2em;
+        width: 55%;
+
+        h4 {
+            margin: 0;
+        }
+        
+        p {
+            font-size: 16px;
+            font-weight: $regular;
+            margin: 0;
+        }
+    }
+}
+
+.timeline {
+    position: relative;
+    margin: 3em auto 2.5em;
+    width: 75%;
+
+    &::before {
+        content: '';
+        background: $primary-color;
+        width: 2px;
+        position: absolute;
+        left: 0;
+        top: 5px;
+        height: 70%;
+    }
+
+    > div {
+        padding-left: 2em;
+        position: relative;
+
+        h5 {
+            padding-top: 1.5px;
+        }
+
+        &:last-child {
+            margin-top: 2em;
+        }
+
+        &::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border: 2px solid $primary-color;
+            border-radius: 50%;
+            background: #fff;
+            left: -7.5px;
+            top: 5px;
+            position: absolute;
+        }
+    }
+
+    h5 {
+        margin: 0;
+    }
+
+    .time {
+        color: $secondary-color;
+        font-weight: $bold;
+        margin: 7px 0 0;
+        letter-spacing: 1.2px;
+
+        svg {
+            margin-right: 10px;
+            color: $secondary-color;
+        }
     }
 }

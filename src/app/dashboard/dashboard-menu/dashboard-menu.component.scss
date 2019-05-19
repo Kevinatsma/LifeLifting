@@ -17,6 +17,10 @@ div.dashboard-menu-wrapper {
         padding: 0 1.5em;
         border-bottom: $light-border;
 
+        @include respond-down($sm) {
+            display: none;
+        }
+
         img {
             width: 20%;
             height: auto;

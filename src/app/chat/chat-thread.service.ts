@@ -5,7 +5,7 @@ import {
   AngularFirestoreCollection,
   AngularFirestoreDocument
 } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Thread } from './thread.model';
 import { Message } from './message.model';
 
@@ -25,6 +25,7 @@ export class ChatThreadService {
   reverseRequestedThread: string;
   thread: Observable<Thread>;
   threads: Observable<Thread[]>;
+  showThread: Subject<boolean> = new Subject;
 
   constructor(
     private router: Router,
@@ -99,13 +100,15 @@ export class ChatThreadService {
       lastUpdated: new Date(),
       creator: {
         creatorName: this.user.displayName || this.user.email,
-        creatorPhoto: this.user.photoURL
+        creatorPhoto: this.user.photoURL,
+        creatorUID: creatorID
       },
       target: {
         targetPhoto: targetUser.photoURL,
         targetName: targetUser.displayName
       },
-      members: { [profileID]: true, [creatorID]: true },
+      members: [ profileID, creatorID ],
+      unreadMessages: 0,
     };
 
     const threadPath = `chats/${id}`;
@@ -115,7 +118,10 @@ export class ChatThreadService {
   }
 
   getThreads() {
-    this.threadsCollection = this.afs.collection('chats', ref => ref.where(`members.${this.auth.currentUserId}`, '==', true));
+    const uid  =  this.auth.currentUserId;
+    console.log(uid);
+    this.threadsCollection = this.afs.collection('chats', ref =>
+      ref.where('members', 'array-contains', `${uid}`));
     this.threads = this.threadsCollection.valueChanges();
     return this.threads;
   }

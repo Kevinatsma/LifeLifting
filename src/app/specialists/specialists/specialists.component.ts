@@ -18,7 +18,7 @@ export class SpecialistsComponent implements OnInit {
   openDialog() {
     // Set data for Dialog
     this.dialog.open(AddSpecialistDialogComponent, {
-
+      panelClass: 'add-user-dialog'
     });
   }
 

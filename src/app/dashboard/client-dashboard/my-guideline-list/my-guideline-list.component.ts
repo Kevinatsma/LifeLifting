@@ -10,7 +10,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 @Component({
   selector: 'app-my-guideline-list',
   templateUrl: './my-guideline-list.component.html',
-  styleUrls: ['./my-guideline-list.component.scss']
+  styleUrls: ['./my-guideline-list.component.scss', './../../../guidelines/guideline-list/guideline-list.component.scss']
 })
 export class MyGuidelineListComponent implements OnInit {
   guidelineCol: AngularFirestoreCollection<Guideline[]>;

@@ -1,9 +1,16 @@
 @import './../../../../assets/scss/_master.scss';
 
 main {
+    width: 100%;
+
     .guideline-activities {
         height: auto;
         padding: 3em 3em 3em 5em;
+        @include respond-down($sm) {
+            padding: 2em 1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
 
         .section-title {
             &__subtitle {
@@ -21,10 +28,21 @@ main {
             justify-content: flex-start;
             width: 100%;
 
+            @include respond-down($sm) {
+                align-items: flex-start;
+                flex-flow: column wrap;
+            }
+
             app-exercise-list-item {
                 margin: 0 0 3em;
                 height: auto;
                 width: 30%;
+                @include respond-down($sm) {
+                    margin: 0;
+                    position: relative;
+                    width: 70%;
+                    z-index: 100;
+                }
             }
 
             &:last-child {
@@ -44,6 +62,12 @@ main {
                 overflow-y: scroll;
                 padding: 2em 0 1em 3em;
                 align-items: center;
+
+                @include respond-down($sm) {
+                    width: 100vw;
+                    margin: -50px 0 10px -16px;
+                    padding: 80px 16px 0;
+                }
 
                     .target-block {
                         width: 100%;

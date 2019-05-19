@@ -1,5 +1,5 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
-  <section class="step-wrapper">
+  <section class="step-wrapper step-one" *ngIf="!user.basicData">
     <h5>Welcome, {{user.displayName || user.email}}</h5>
     <h1>Step 1: Basic personal data</h1>
 
@@ -83,9 +83,19 @@
           <!-- <mat-error class="input-error" *ngIf="!gender.valid && basicUserDataForm.touched">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
 
+        <div class="btn-area mobile">
+          <button class="btn-icon-right no-bg" 
+          [class.btn-disabled]="!basicUserDataForm.valid" 
+          [disabled]="!basicUserDataForm.valid"
+          type="submit">
+            <span>To the next step</span>
+            <i class="fas fa-chevron-right small"></i>
+          </button>
+        </div>
+
       </div>
 
-      <div class="btn-area">
+      <div class="btn-area not-mobile">
         <button class="btn-icon-right" 
         [class.btn-disabled]="!basicUserDataForm.valid" 
         [disabled]="!basicUserDataForm.valid"
@@ -97,16 +107,20 @@
     </form>
 
     <div class="step-done" *ngIf="user.basicData">
-      <p class="intro-text">Psst, you already filled out the basic data. If you made a mistake, don't worry. You can edit your whole profile after signing up. Click the button to go to the next step!</p>
-      <div class="btn-area">
-          <button class="btn-icon-right" routerLink="../step-two">
-            <span>Pick a package</span>
-            <span class="emoji">📦</span>
-          </button>
-        </div>
+
     </div>
 
-    
+  </section>
 
+  <section class="step-wrapper success" *ngIf="user.basicData">
+    <h5>Welcome, {{user.displayName || user.email}}</h5>
+    <h1>Step 1: Basic personal data</h1>
+    <p class="intro-text">Psst, you already filled out the basic data. If you made a mistake, don't worry. You can edit your whole profile after signing up. Click the button to go to the next step!</p>
+    <div class="btn-area">
+      <button class="btn-icon-right" routerLink="../step-two">
+        <span>Pick a package</span>
+        <span class="emoji">📦</span>
+      </button>
+    </div>
   </section>
 </ng-container>

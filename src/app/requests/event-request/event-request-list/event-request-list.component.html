@@ -1,4 +1,9 @@
 <main *ngIf="eventArr; else noEvents">
+  <div class="close-section mobile">
+    <button class="text-link close-btn" (click)="closeDialog()" type="button">
+      <i class="mobile fas fa-arrow-left"></i> Back
+    </button>
+  </div>
   <div class="list-item-container" *ngIf="events | async as events; else loading">
     <h1>Unaccepted requests</h1>
     <p class="card-text">
@@ -14,5 +19,5 @@
 </main>
 
 <ng-template #noEvents>
-  <h2>You're all good!</h2>
+  <h2 class="all-good">You're all good!</h2>
 </ng-template>

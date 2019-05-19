@@ -19,7 +19,7 @@ export class ClientsComponent implements OnInit {
   openDialog() {
     // Set data for Dialog
     this.dialog.open(AddClientDialogComponent, {
-
+      panelClass: 'add-user-dialog'
     });
   }
 

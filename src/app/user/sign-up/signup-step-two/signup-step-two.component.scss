@@ -6,6 +6,15 @@ section.step-wrapper {
     height: auto;
     box-sizing: border-box;
 
+    @include respond-down($sm) {
+        padding: 3em 0 0;
+        overflow-y: auto;
+    }
+
+    h5 {
+        text-align: center;
+    }
+
     &.success {
         height: 100vh;
         padding: 2em 0;
@@ -29,9 +38,14 @@ section.step-wrapper {
         overflow-x: auto;
         padding: 1em 0 1em;
 
+        @include respond-down($sm) {
+            flex-flow: row nowrap;
+            height: auto;
+        }
+
         .right-scroll-margin {
             width: 50px;
-            height: 550px;
+            // height: 550px;
             box-sizing: border-box;
             background: transparent;
             .hide {
@@ -44,12 +58,18 @@ section.step-wrapper {
 ::ng-deep mat-radio-button, .package-item {
     flex: 0 0 auto;
     width: 40%;
-    height: 550px;
+    height: 100%;
     margin: 0 2em;
     background: #fff;
     box-shadow: $card-shadow;
     border: 10px solid transparent;
     outline: 5px solid transparent;
+
+    @include respond-down($sm) {
+        width: 80vw;
+        margin: 0 1.5em 0!important;
+        height: auto;
+    }
 
     * {
         box-sizing: border-box;
@@ -60,12 +80,19 @@ section.step-wrapper {
         width: 100%;
         height: 100%;
         box-sizing: border-box;
+        @include respond-down($sm) {
+            align-items: flex-start;
+
+        }
     }
 
 
     label.mat-radio-label {
         width: 100%;
         padding: 2em;
+        @include respond-down($sm) {
+            padding: 1em;
+        }
 
         .mat-radio-container {
             display: none!important;
@@ -74,6 +101,14 @@ section.step-wrapper {
         .mat-radio-label-content {
             max-width: 100%;
             padding: 0;
+
+            h2 {
+                @include respond-down($sm) {
+                    width: 100%;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+            }
         }
 
         mat-label {
@@ -84,17 +119,5 @@ section.step-wrapper {
     &:hover, &:focus, &:active, &.mat-radio-checked {
         border: 10px solid $middle-grey;
         outline: 5px solid lighten($primary-color, 10%);
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .package-container {
-        mat-radio-group.package-slider {
-            flex-flow: column wrap;
-
-            .package-item {
-                margin: 0 0 2em 0;
-            }
-        }
     }
 }

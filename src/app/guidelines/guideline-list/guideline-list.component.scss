@@ -3,19 +3,41 @@
 main.specialist-list-wrapper {
     margin: 0;
     padding: 0;
-
-    // section.specialist-filters {
-
-    // }
+    @include respond-down($sm) {
+        width: 101vw;
+        height: 100%;
+        margin: -1em 0 0 -8vw;
+        overflow-x: auto;
+    }
 
     section.card-list {
         display: flex;
         flex-flow: row wrap;
         justify-content: flex-start;
 
+        @include respond-down($sm) {
+            box-sizing: border-box; 
+            flex-flow: row nowrap;
+            margin: 0;
+            height: 100%;
+            padding: 1em 1.5em;
+            overflow-x: auto;
+            width: fit-content;
+        }
+
         app-guideline-list-item {
             margin: 3em 2.5%;
             width: 28%;
+
+            @include respond-down($sm) {
+                margin: 2em 1.5em 0;
+                height: auto;
+                width: 70vw;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
         }
 
     }

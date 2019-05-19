@@ -22,7 +22,7 @@
 
     <div class="package-container">
 
-      <section class="package-controls last-package">
+      <section class="package-controls last-package not-mobile">
           <button class="slide-control-btn" (click)="linkToPrevious(food)" 
           [class.disabled]="food.productID === 1"
           [disabled]="food.productID === 1"
@@ -51,8 +51,22 @@
                   <i class="fas fa-balance-scale"></i>
                   {{food.unit}}
                 </li>
+                <li>
+                  <i class="fas fa-times"></i>
+                  {{food.factor}}
+                </li>
+                <li>
+                  <i class="fas fa-list-ul"></i>
+                  {{food.shoppingUnit}}
+                </li>
               </ul>
             </div>
+            <div class="shopping-list-container">
+              <h3><i class="fas fa-shopping-cart"></i> Shopping list info</h3>
+              <p class="card-text">Shopping list name: <strong>{{food.shoppingListName}}</strong></p>
+              <p class="card-text">Shopping list unit: <strong>{{food.shoppingUnit}}</strong></p>
+              <p class="card-text">Calculative factor: <strong>{{food.factor}}</strong></p>
+            </div>   
             <div class="list-container">
               <div class="preperations-container">
                 <h4>Ways of preperation</h4>
@@ -120,9 +134,9 @@
                 </ul>
               </div>
             </div>
-          </section>        
+          </section>
         </mat-card>
-      <section class="package-controls next-package">
+      <section class="package-controls next-package not-mobile">
         <button class="slide-control-btn" (click)="linkToNext(food)"
           [class.disabled]="food.packageID === 3"
           [disabled]="food.packageID === 3"

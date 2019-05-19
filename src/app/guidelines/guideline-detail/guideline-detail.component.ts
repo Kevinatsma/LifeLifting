@@ -12,7 +12,7 @@ import { ExerciseService } from './../../exercises/exercise.service';
 import { Exercise } from './../../exercises/exercise.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthService } from './../../core/auth/auth.service';
 
 
@@ -35,6 +35,9 @@ export class GuidelineDetailComponent implements OnInit {
   gainWeight: boolean;
   increaseCals: boolean;
 
+  actionMenuOpen: boolean;
+  editStateChange: Subject<boolean> = new Subject<boolean>();
+
   // specialist = Observable<Specialist>;
 
   constructor( public auth: AuthService,
@@ -48,6 +51,10 @@ export class GuidelineDetailComponent implements OnInit {
                public specialistService: SpecialistService,
                public location: Location) {
                 this.aboutExtended = false;
+
+                this.editStateChange.subscribe((value) => {
+                  this.actionMenuOpen = value;
+                });
   }
 
   ngOnInit() {
@@ -131,6 +138,14 @@ export class GuidelineDetailComponent implements OnInit {
     this.guidelineService.toggleEdit();
   }
 
+  toggleButtonMenu() {
+    const buttons = document.querySelectorAll('.action-btn');
+    buttons.forEach(button => {
+      button.classList.toggle('visible');
+    });
+    this.editStateChange.next(!this.actionMenuOpen);
+  }
+
   printGuideline() {
     alert('TODO: Print Service, Print Templates, Etc.');
   }
@@ -143,6 +158,7 @@ export class GuidelineDetailComponent implements OnInit {
         gID: guideline.gID,
         guidelineName: guideline.guidelineName,
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

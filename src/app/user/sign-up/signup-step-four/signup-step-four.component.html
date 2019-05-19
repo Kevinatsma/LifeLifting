@@ -1,6 +1,6 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
-    <section class="step-wrapper" [class.success]="user.status && user.status.appointment">
-      <h5>Choose a date {{user.displayName || user.email}}</h5>
+    <section class="step-wrapper step-four" [class.success]="user.status && user.status.appointment">
+      <h5 class="not-mobile">Choose a date {{user.displayName || user.email}}</h5>
       <h1>Step 4: Plan your first appointment</h1>
 
       <app-signup-booking *ngIf="user.status && !user.status.appointment"></app-signup-booking>

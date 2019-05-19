@@ -30,6 +30,7 @@ import { ChatThreadService } from './../../chat/chat-thread.service';
 import { AddAppointmentDialogComponent } from './../../shared/dialogs/add-appointment-dialog/add-appointment-dialog.component';
 import { AppointmentDetailDialogComponent } from './../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
+import { UtilService } from './../../shared/services/util.service';
 
 @Component({
   selector: 'app-booking-component',
@@ -47,7 +48,7 @@ import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provi
 export class BookingComponent implements OnInit {
   user: User;
   specialist: Specialist;
-  view: CalendarView = CalendarView.Month;
+  view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
@@ -76,15 +77,22 @@ export class BookingComponent implements OnInit {
                private dialog: MatDialog,
                private bookingService: BookingService,
                private specialistService: SpecialistService,
+               private utilService: UtilService,
                private threadService: ChatThreadService,
                public location: Location,
-               private afs: AngularFirestore) {}
+               private afs: AngularFirestore) {
+               }
 
 
 
   ngOnInit() {
     this.getUser();
     this.getEvents();
+    this.replaceDates();
+  }
+
+  replaceDates() {
+    this.utilService.replaceCalendarHeaderDates();
   }
 
   getUser() {
@@ -125,6 +133,17 @@ export class BookingComponent implements OnInit {
         this.activeDayIsOpen = true;
       }
     }
+  }
+
+  hourClicked(date) {
+    this.dialog.open(AddAppointmentDialogComponent, {
+      data: {
+        user: this.user,
+        specialist: this.specialist,
+        date: date
+      },
+      panelClass: 'add-appointment-dialog'
+    });
   }
 
 
@@ -172,6 +191,7 @@ export class BookingComponent implements OnInit {
         eventID: event.eventID,
         eventTitle: event.title,
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -190,6 +210,7 @@ export class BookingComponent implements OnInit {
         user: this.user,
         specialist: this.specialist
       },
+      panelClass: 'add-appointment-dialog'
     });
   }
 

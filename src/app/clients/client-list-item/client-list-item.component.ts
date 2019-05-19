@@ -29,6 +29,7 @@ export class ClientListItemComponent implements OnInit {
         clientID: client.uid,
         clientName: client.displayName
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

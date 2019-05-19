@@ -23,12 +23,15 @@ export class UserDetailComponent implements OnInit {
   user: User;
   // specialist: Specialist;
   guidelinesCol: AngularFirestoreCollection<Guideline>;
-  guidelines: Observable<Guideline[]>;
+  guidelines: Guideline[];
   mealplansCol: AngularFirestoreCollection<Mealplan>;
-  mealplans: Observable<Mealplan[]>;
+  mealplans: Mealplan[];
+  hasMealplans = false;
+  hasGuidelines = false;
   mealPlansActive = false;
   aboutExtended = false;
   reviewsVisible = true;
+  hasReadMore = false;
 
 
   specialist: Specialist;
@@ -60,6 +63,7 @@ export class UserDetailComponent implements OnInit {
         this.getSpecialist(sID);
         this.getGuidelines(uid);
         this.getMealplans(uid);
+        this.checkReadMore(user);
       }, 200);
     });
   }
@@ -70,12 +74,22 @@ export class UserDetailComponent implements OnInit {
 
   getGuidelines(uid) {
     this.guidelinesCol = this.afs.collection('guidelines', ref => ref.where('clientID', '==', `${uid}`));
-    this.guidelines = this.guidelinesCol.valueChanges();
+    this.guidelinesCol.valueChanges().subscribe(guidelines => {
+      if (guidelines.length > 0) {
+        this.hasGuidelines = true;
+      }
+      this.guidelines = guidelines;
+    });
   }
 
   getMealplans(uid) {
     this.mealplansCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${uid}`));
-    this.mealplans = this.mealplansCol.valueChanges();
+    this.mealplansCol.valueChanges().subscribe(mealplans => {
+      if (mealplans.length > 0) {
+        this.hasMealplans = true;
+      }
+      this.mealplans = mealplans;
+    });
   }
 
   // Toggles
@@ -88,6 +102,16 @@ export class UserDetailComponent implements OnInit {
   aboutExtendedClose() {
     this.aboutExtended = false;
     this.cdr.detectChanges();
+  }
+
+  // Checkers
+  checkReadMore(user) {
+    if (user.basicData.mainGoal.length > 50) {
+      console.log(user.basicData.mainGoal.length);
+      this.hasReadMore = true;
+    } else {
+      this.hasReadMore = false;
+    }
   }
 
   // Like this to avoid State Changed Error

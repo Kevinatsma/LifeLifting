@@ -1,7 +1,8 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  OnInit
+  OnInit,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   isSameMonth,
@@ -27,6 +28,7 @@ import { Location } from '@angular/common';
 import { SpecialistService } from '../../specialists/specialist.service';
 import { Specialist } from '../../specialists/specialist.model';
 import { ChatThreadService } from '../../chat/chat-thread.service';
+import { UtilService } from './../../shared/services/util.service';
 import { AddAppointmentDialogComponent } from '../../shared/dialogs/add-appointment-dialog/add-appointment-dialog.component';
 import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
@@ -49,10 +51,11 @@ import { EventRequestComponent } from './../../requests/event-request/event-requ
 export class SpecialistBookingComponent implements OnInit {
   user: User;
   specialist: Specialist;
-  view: CalendarView = CalendarView.Month;
+  view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
+  hasEventRequest: boolean;
 
   // Spinner
   spinner = {
@@ -70,42 +73,33 @@ export class SpecialistBookingComponent implements OnInit {
     event: Appointment;
   };
 
-  actions: CalendarEventAction[] = [
-    // {
-    //   label: '<i class="fa fa-fw fa-pencil"></i>',
-    //   onClick: ({ event }: { event: CalendarEvent }): void => {
-    //     this.handleEvent('Edited', event);
-    //   }
-    // },
-    // {
-    //   label: '<i class="fa fa-fw fa-times"></i>',
-    //   onClick: ({ event }: { event: CalendarEvent }): void => {
-    //     this.events = this.events.filter(iEvent => iEvent !== event);
-    //     this.handleEvent('Deleted', event);
-    //   }
-    // }
-  ];
-
+  actions: CalendarEventAction[];
   activeDayIsOpen = true;
 
   // TODO: HOOKUP MAT DIALOG INSTEAD OF BOOTSTRAP MODAL
   constructor( private userService: UserService,
                public auth: AuthService,
+               private cdr: ChangeDetectorRef,
                private dialog: MatDialog,
                private bookingService: BookingService,
                private specialistService: SpecialistService,
                private threadService: ChatThreadService,
+               private utilService: UtilService,
                public location: Location,
                public router: Router,
                private route: ActivatedRoute,
                private afs: AngularFirestore) {
-                this.getUser();
                }
 
 
 
   ngOnInit() {
+    this.getUser();
+    this.replaceDates();
+  }
 
+  replaceDates() {
+    this.utilService.replaceCalendarHeaderDates();
   }
 
   // Getters
@@ -115,7 +109,21 @@ export class SpecialistBookingComponent implements OnInit {
     this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
       // get Specialist
-      this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
+      const sID = `specialist${user.sID}`;
+      this.specialistService.getSpecialistData(sID).subscribe(specialist => {
+        this.specialist = specialist;
+        if (this.specialist.stats) {
+          if (this.specialist.stats.amountOfEventRequests > 0) {
+            this.hasEventRequest = true;
+          } else {
+            this.hasEventRequest = false;
+          }
+        } else {
+          this.hasEventRequest = false;
+        }
+        this.cdr.markForCheck();
+      });
+
       this.getEvents(this.user);
     });
   }
@@ -197,14 +205,40 @@ export class SpecialistBookingComponent implements OnInit {
     });
   }
 
+  hourClicked(date) {
+    this.dialog.open(AddAppointmentDialogComponent, {
+      data: {
+        user: this.user,
+        specialist: this.specialist,
+        date: date
+      },
+      panelClass: 'add-appointment-dialog'
+    });
+  }
+
   openUnacceptedUsers() {
-    this.dialog.open(EventRequestComponent, {
+    const dialogRef = this.dialog.open(EventRequestComponent, {
       data: {
         user: this.user,
         event: event,
       },
       panelClass: 'request-dialog'
     });
+    dialogRef.afterClosed().subscribe(result => {
+      this.updateHasRequest();
+    });
+  }
+
+  updateHasRequest() {
+    if (this.specialist.stats) {
+      if (this.specialist.stats.amountOfEventRequests > 0) {
+        this.hasEventRequest = true;
+      } else {
+        this.hasEventRequest = false;
+      }
+    } else {
+      this.hasEventRequest = false;
+    }
   }
 
   ////////////////
@@ -216,6 +250,7 @@ export class SpecialistBookingComponent implements OnInit {
         eventID: event.eventID,
         eventTitle: event.title,
       },
+      panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -234,6 +269,7 @@ export class SpecialistBookingComponent implements OnInit {
         user: this.user,
         specialist: this.specialist
       },
+      panelClass: 'add-appointment-dialog'
     });
   }
 

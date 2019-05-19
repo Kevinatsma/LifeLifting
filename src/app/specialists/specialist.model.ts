@@ -1,3 +1,8 @@
+
+export interface Stats {
+    amountOfEventRequests: number;
+}
+
 export class Specialist {
     uid: string;
     specialistID: string;
@@ -27,4 +32,5 @@ export class Specialist {
             reviewStars?: number;
         }
     ];
+    stats?: Stats;
 }

@@ -1,12 +1,17 @@
 {
     "units": [
     {"value":"Cup"},
-    {"value":"Teaspoon"},
-    {"value":"Spoon"},
+    {"value":"Can"},
+    {"value":"Fillet"},
+    {"value":"Glass"},
     {"value":"Gram"},
-    {"value":"Milligram"},
+    {"value":"Kilogram"},
     {"value":"Liter"},
+    {"value":"Milligram"},
     {"value":"Milliliter"},
+    {"value":"Slice"},
+    {"value":"Spoon"},
+    {"value":"Teaspoon"},
     {"value":"Unit"}
   ]
 }

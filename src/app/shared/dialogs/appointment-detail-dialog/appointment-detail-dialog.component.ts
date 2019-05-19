@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { BookingService } from '../../../booking/booking.service';
 import { Appointment } from '../../../booking/appointment.model';
@@ -7,12 +7,13 @@ import { User } from './../../../user/user.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { UserService } from './../../../user/user.service';
 import { AuthService } from './../../../core/auth/auth.service';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-appointment-detail-dialog',
   templateUrl: './appointment-detail-dialog.component.html',
-  styleUrls: ['./appointment-detail-dialog.component.scss']
+  styleUrls: ['./appointment-detail-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppointmentDetailDialogComponent {
   event: Appointment;
@@ -46,16 +47,17 @@ export class AppointmentDetailDialogComponent {
   ];
 
   // online call methods
-  onlineAppointment: Subject<boolean> = new Subject();
-  faceToFace: Subject<boolean> = new Subject();
-  whatsApp: Subject<boolean> = new Subject();
-  skype: Subject<boolean> = new Subject();
-  onlinePhone: Subject<boolean> = new Subject();
+  onlineAppointment = false;
+  faceToFace = false;
+  whatsApp = false;
+  skype = false;
+  onlinePhone = false;
 
   constructor( public auth: AuthService,
                private bookingService: BookingService,
                private userService: UserService,
                public matDialog: MatDialog,
+               private cdr: ChangeDetectorRef,
                @Inject(MAT_DIALOG_DATA) public data: any,
                private specialistService: SpecialistService
     ) {
@@ -85,27 +87,30 @@ export class AppointmentDetailDialogComponent {
 
   doEventCheck(e) {
     if (e.meetMethod === 'faceToFace') {
-      this.faceToFace.next(true);
-      this.onlineAppointment.next(false);
+      this.faceToFace = true;
+      this.onlineAppointment = false;
     } else {
-      this.onlineAppointment.next(true);
-      this.faceToFace.next(false);
+      this.onlineAppointment = true;
+      this.faceToFace = false;
     }
-    if (e.whatsappNumber.wappRest === '') {
-      this.whatsApp.next(false);
-    } else {
-      this.whatsApp.next(true);
+    if (!this.faceToFace) {
+      if (e.whatsappNumber.wappRest === '') {
+        this.whatsApp = false;
+      } else {
+        this.whatsApp = true;
+      }
+      if (e.skypeName === null) {
+        this.skype = false;
+      } else {
+        this.skype = true;
+      }
+      if (e.onlineAppointmentPhone.phoneRest === '') {
+        this.onlinePhone = false;
+      } else {
+        this.onlinePhone = true;
+      }
     }
-    if (e.skypeName === null) {
-      this.skype.next(false);
-    } else {
-      this.skype.next(true);
-    }
-    if (e.onlineAppointmentPhone.phoneRest === '') {
-      this.onlinePhone.next(false);
-    } else {
-      this.onlinePhone.next(true);
-    }
+    // this.cdr.detectChanges();
   }
 
   getTimeAndDate() {

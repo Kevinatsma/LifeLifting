@@ -39,7 +39,7 @@
           <h2>{{user.displayName}}</h2>
           <h5 *ngIf="user.basicData">{{user.basicData.country}}</h5>
           <h5 *ngIf="!user.basicData">No country yet</h5>
-          <p>User ID: {{user.uid}}</p>
+          <p class="uid"><span class="not-mobile">User ID:</span>{{user.uid}}</p>
           <div class="icon-fact-container">
             <div class="fact" *ngIf="user.basicData">
               <i class="fas fa-transgender"></i>
@@ -83,13 +83,13 @@
 
       <section class="about">  
         <h5>{{user.displayName}}'s main goal</h5>
-        <p [class.read-more]="aboutExtended" *ngIf="user.basicData">
+        <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="user.basicData">
           {{user.basicData.mainGoal}}
         </p>
-        <p [class.read-more]="aboutExtended" *ngIf="!user.basicData">
+        <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="!user.basicData">
           No goal yet...
         </p>
-        <ng-container *ngIf="user.basicData && user.basicData.mainGoal">
+        <ng-container *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
           <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
             <i class="fas fa-plus"></i>
             Read More
@@ -137,7 +137,7 @@
         <div class="languages">
           <h5 class="purple">Practical info</h5>
           <ul>
-            <li>Heard from us via
+            <li>Heard from us via:
               <ng-container *ngIf="user.basicData"><strong>{{user.basicData.heardFromUs}}</strong></ng-container>
               <ng-container *ngIf="!user.basicData"><strong>Not filled out</strong></ng-container>
             </li>
@@ -149,20 +149,20 @@
         </div>
       </section>
             
-      <section class="guidelines">
+      <section class="guidelines" *ngIf="hasGuidelines">
         <h1 class="section-title">Guidelines</h1>
         <div class="guidelines__container">
-          <app-guideline-list-item *ngFor="let guideline of guidelines | async" [guideline]="guideline"></app-guideline-list-item>
+          <app-guideline-list-item *ngFor="let guideline of guidelines" [guideline]="guideline"></app-guideline-list-item>
           <div class="guidelines__container__filler">
             Filler
           </div>
         </div>
       </section>
       
-      <section class="guidelines">
+      <section class="guidelines" *ngIf="hasMealplans">
         <h1 class="section-title">Mealplans</h1>
         <div class="guidelines__container">
-          <app-mealplan-list-item *ngFor="let mealplan of mealplans | async" [mealplan]="mealplan"></app-mealplan-list-item>
+          <app-mealplan-list-item *ngFor="let mealplan of mealplans" [mealplan]="mealplan"></app-mealplan-list-item>
           <div class="guidelines__container__filler">
             Filler
           </div>
@@ -222,7 +222,7 @@
               </p>
               <p class="card-text" *ngIf="!user.status.appointmentAccepted">
                 <i class="fas fa-ban"></i>
-                Appointment Not Accepted (Yet)
+                Appointment Not Accepted
               </p>
 
               <p class="card-text" *ngIf="user.status.appointmentCompleted">
@@ -231,7 +231,7 @@
               </p>
               <p class="card-text" *ngIf="!user.status.appointmentCompleted">
                 <i class="fas fa-ban"></i>
-                Appointment Not Completed (Yet)
+                Appointment Not Completed
               </p>
             </div>
           </div>

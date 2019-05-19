@@ -1,46 +1,46 @@
 export class SuppsForm {
     guideline: any;
-    beforeOne: [
+    beforeOneArr: [
         {
             product: Object;
         }
     ];
-    duringOne: [
+    duringOneArr: [
         {
             product: Object;
         }
     ];
-    afterOne: [
+    afterOneArr: [
         {
             product: Object;
         }
     ];
-    beforeTwo?: [
+    beforeTwoArr?: [
         {
             product: Object;
         }
     ];
-    duringTwo?: [
+    duringTwoArr?: [
         {
             product: Object;
         }
     ];
-    afterTwo?: [
+    afterTwoArr?: [
         {
             product: Object;
         }
     ];
-    beforeThree?: [
+    beforeThreeArr?: [
         {
             product: Object;
         }
     ];
-    duringThree?: [
+    duringThreeArr?: [
         {
             product: Object;
         }
     ];
-    afterThree?: [
+    afterThreeArr?: [
         {
             product: Object;
         }

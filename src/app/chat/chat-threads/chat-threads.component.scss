@@ -24,6 +24,30 @@ main.thread-container {
             display: flex;
             flex-flow: column nowrap;
 
+            @include respond-down($sm) {
+                width: 100vw;
+                position: absolute;
+                z-index: 100;
+            }
+
+            .close-section {
+                margin: 2em 1em 1em;
+                button {
+                    svg {
+                        margin-right: 10px;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .big-title {
+                font-size: 24px;
+                margin: 0 1em 1em;
+                @include respond-up($sm) {
+                    margin: 1em;
+                }
+            }
+
             ::ng-deep app-chat-thread {
                 &.active {
                     background: $light-grey;
@@ -34,6 +58,9 @@ main.thread-container {
         &.router-wrapper {
             width: 75vw;
             position: relative;
+            @include respond-down($sm) {
+                width: 100vw;
+            }
 
             ::ng-deep app-chat-detail {
                 width: 100%;

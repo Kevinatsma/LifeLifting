@@ -27,7 +27,6 @@ export class MyReviewListComponent implements OnInit {
       this.myReviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${user.uid}`));
       this.myReviews = this.myReviewsCol.valueChanges();
     });
-    // this.myClients = this.userService.getMyClients();
   }
 
 }

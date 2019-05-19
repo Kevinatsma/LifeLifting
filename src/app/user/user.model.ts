@@ -2,7 +2,8 @@ export interface Roles {
     client?: boolean;
     specialist?: boolean;
     admin?: boolean;
- }
+}
+
 
 export interface Status {
     appointment?: boolean;

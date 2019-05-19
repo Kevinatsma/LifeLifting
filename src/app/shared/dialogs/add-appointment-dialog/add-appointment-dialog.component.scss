@@ -4,7 +4,7 @@
 
 // Ng Deeps
 
-::ng-deep mat-option {
+ mat-option {
     svg {
         margin-right: 1em;
         font-size: 20px!important;
@@ -24,7 +24,7 @@
     }
 }
 
-::ng-deep .mat-dialog-container {
+ .mat-dialog-container {
     overflow-y: auto;
     padding: 0;
     position: relative;
@@ -39,10 +39,13 @@
             width: 100%;
             display: flex;
             flex-flow: row nowrap;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             margin: 1em 0;
             padding: 0;
+            @include respond-down($sm) {
+                justify-content: flex-start;
+            }
 
             .secondary-chip {
                 margin: 0 1em;
@@ -67,7 +70,7 @@
                 }
             }
 
-            ::ng-deep mat-form-field {
+             mat-form-field {
                 .mat-form-field-wrapper {
                     padding-bottom: 0;
     
@@ -92,67 +95,109 @@
             display: flex;
             flex-flow: row nowrap;
             margin-top: 0.5em;
+            margin-bottom: -3em;
             width: 100%;
         }
 
         .add-date-time-container {
             display: flex;
-            flex-flow: row nowrap;
+            flex-flow: column wrap;
 
-            .date-picker {
-                width: 48%;
-                margin: 0 0.5%;
+            &.start-date {
+                margin-top: 3em;
+            }
 
-                .mat-form-field-infix {
+            .content-container {
+                align-items: center;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: flex-start;
+                margin: 1em 0 3em;
+
+                &.no-date {
+                    @include respond-down($sm) {
+                        flex-flow: column nowrap;
+                        mat-form-field {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                h3 {
+                    margin-right: 1em;
                     display: flex;
-                    mat-datepicker-toggle {
-                        width: 15%;
+                    align-items: center;
+                    flex-flow: row nowrap;
+
+                    svg {
+                        margin-right: 0.5em;
+                    }
+                }
+
+                .date-picker {
+                    width: 48%;
+                    margin: 0 0.5%;
+
+                    .mat-form-field-infix {
                         display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        padding: 0;
-                        margin: 0;
+                        mat-datepicker-toggle {
+                            width: 15%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 0;
+                            margin: 0;
 
-                        .mat-icon-button {
-                            margin-left: -10px;
-                            margin-top: -2px;
-                            flex-shrink: none!important;
+                            .mat-icon-button {
+                                margin-left: -10px;
+                                margin-top: -2px;
+                                flex-shrink: none!important;
 
-                            svg {
-                                color: $secondary-color;
+                                svg {
+                                    color: $secondary-color;
+                                }
                             }
+                        }
+
+                        input {
+                            width: 75%;
+                            padding-bottom: 0.66em!important;
                         }
                     }
 
                     input {
-                        width: 75%;
-                        padding-bottom: 0.66em!important;
+                        margin-top: 0.41em;
+                        padding-bottom: 0.8em!important;
                     }
                 }
 
-                input {
-                    margin-top: 0.41em;
-                    padding-bottom: 0.8em!important;
-                }
-            }
-
-            .time {
-                width: 48%;
-                margin: 0 0.5%;
-                display: flex;
-                flex-flow: row nowrap;
-                justify-content: space-between;
-
-                mat-form-field {
-                    width: 38%;
-
-                    input {
-                        margin-top: 0.35em;
+                .time {
+                    width: 48%;
+                    margin: 13px 0.5% 0;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: space-between;
+                    @include respond-down($sm) {
+                        width: 100%;
+                        justify-content: flex-start;
                     }
-                }
 
-                .mat-form-field-appearance-standard .mat-form-field-flex {
-                    padding-top: 0;
+                    mat-form-field {
+                        width: 38%;
+                        @include respond-down($sm) {
+                            &:first-child {
+                                margin-right: 1em;
+                            }
+                        }
+
+                        input {
+                            margin-top: 0.35em;
+                        }
+                    }
+
+                    .mat-form-field-appearance-standard .mat-form-field-flex {
+                        padding-top: 0;
+                    }
                 }
             }
         }
@@ -169,7 +214,7 @@
 
 // Ng deeps
 
-::ng-deep mat-form-field {
+ mat-form-field {
     textarea {
         min-height: 50px;
         height: auto;
@@ -188,7 +233,7 @@
     }
 }
 
-::ng-deep mat-option {
+ mat-option {
     svg {
         margin-right: 1em;
         font-size: 20px!important;
@@ -229,6 +274,57 @@ form {
         p {
             font-size: 18px;
             font-weight: $semi-bold;
+        }
+    }
+
+    
+    .location-card {
+        box-sizing: border-box;
+        border-radius: 10px;
+        display: flex;
+        justify-content: flex-start;
+        background-color: #fff;
+        box-shadow: $card-shadow;
+        align-items: center;
+        height: 130px;
+        width: 120%;
+        padding: 0 2em;
+        margin: 1.5em -10% 2em;
+
+        @include respond-down($sm) {
+            width: 100%;
+            margin: 1.5em 0 2em;
+        }
+
+        img {
+            width: 50px;
+            height: auto;
+            margin-top: -4px;
+        }
+
+        .address {
+            display: flex;
+            flex-flow: column wrap;
+            align-items: flex-start;
+            justify-content: center;
+            margin: 0 auto 0 2em;
+            width: 55%;
+
+            h4 {
+                margin: 0;
+                @include respond-down($sm) {
+                    font-size: 18px;
+                }
+            }
+            
+            p {
+                font-size: 16px;
+                font-weight: $regular;
+                margin: 0;
+                @include respond-down($sm) {
+                    font-size: 12px;
+                }
+            }
         }
     }
 
@@ -311,6 +407,53 @@ form {
         mat-form-field:first-child {
             margin-right: 1em;
             width: 75px;
+        }
+    }
+}
+
+.add-appointment-dialog {
+    @include respond-up($sm) {
+        overflow:  auto;
+    }
+    @include respond-down($sm) {
+        min-width: 100vw!important;
+        min-height: 100vh!important;
+        overflow-y: auto;
+    }
+
+    .mat-dialog-container {
+        @include respond-down($sm) {
+            padding: 2em 0 0;
+            border-radius: 0;
+
+            .dialog-wrapper {
+                .chip-area {
+                    flex-flow: column nowrap;
+                    align-items: flex-start;
+
+                    .secondary-chip {
+                        margin: 0 0 1em 0;
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .close-section {
+            svg {
+                margin-right: 15px;
+            }
+        }
+
+        form {
+            @include respond-down($sm) {
+                height: 100%;
+                flex-flow: column nowrap;
+                padding: 0 1em;
+                margin: 1em 0;
+            }
         }
     }
 }

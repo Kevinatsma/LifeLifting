@@ -36,7 +36,7 @@ export class FaceToFaceAppointmentComponent implements OnInit {
       faceToFacePhone: this.faceToFaceForm.controls.faceToFacePhone.value,
       location: this.faceToFaceForm.get('location').value
     };
-    this.bookingService.addEvent(data);
+    this.bookingService.addEvent(data, null);
     this.router.navigate(['../step-five']);
   }
 

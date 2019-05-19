@@ -1,6 +1,14 @@
 @import './../../../../assets/scss/_master.scss';
 @import './../../../../assets/scss/_dialogs.scss';
 
+.mealplan-choose-dialog {
+    @include respond-down($sm) {
+        max-width: 100vw!important;
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
 .padding-layer {
     width: 100%;
     height: 100%;
@@ -8,16 +16,23 @@
     padding: 2em;
     box-sizing: border-box;
 }
-::ng-deep main.confirm-dialog-container {
+main.confirm-dialog-container {
     min-width: 35vw;
     height: auto;
     box-sizing: border-box;
+    @include respond-down($sm) {
+        width: 100%;
+    }
 }
 
-::ng-deep .mat-dialog-container {
+.mat-dialog-container {
     overflow-y: auto;
     padding: 0;
     margin: 0;
+
+    @include respond-down($sm) {
+        border-radius: 0;
+    }
 }
 
 form {
@@ -30,6 +45,9 @@ form {
 p.card-text {
     margin: 5px 0 20px 0;
     padding: 0;
+    @include respond-down($sm) {
+        margin-bottom: 0;
+    }
 }
 
 .dialog-actions {

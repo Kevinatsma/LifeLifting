@@ -50,7 +50,10 @@
           <div class="top">
           <h2>{{user.displayName}}</h2>
           <h5 *ngIf="user.basicData">{{user.basicData.country}}</h5>
-          <p>User ID: {{user.uid}}</p>
+          <p>
+            <strong>User ID</strong><br>
+            {{user.uid}}
+          </p>
           <div class="icon-fact-container">
             <div class="fact" *ngIf="user.basicData">
               <i class="fas fa-transgender"></i>
@@ -84,10 +87,23 @@
         </div>
         <div class="goal-container">
           <h3>{{user.displayName}}'s main goal</h3>
-          <p *ngIf="user.basicData">
-            <ng-container *ngIf="user.basicData.mainGoal">{{user.basicData.mainGoal}}</ng-container>
-            <ng-container *ngIf="!user.basicData.mainGoal">No goal yet...</ng-container>
+          <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="user.basicData">
+            {{user.basicData.mainGoal}}
           </p>
+          <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="!user.basicData">
+            No goal yet...
+          </p>
+
+          <ng-container *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
+            <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
+              <i class="fas fa-plus"></i>
+              Read More
+            </button>
+            <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
+              <i class="fas fa-minus"></i>
+              Read Less
+            </button>
+          </ng-container>
         </div>
       </section>
 

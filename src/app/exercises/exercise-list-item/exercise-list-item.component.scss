@@ -108,7 +108,10 @@ mat-card.list-item-card {
                 }
 
                 ul.contact-menu {
-
+                    @include respond-down($sm) {
+                        display: flex;
+                        flex-flow: column wrap;
+                    }
                     .met-value {
                         font-weight: $semi-bold;
                         text-transform: uppercase;
@@ -163,6 +166,9 @@ mat-card.list-item-card {
             width: 100%;
             display: flex;
             flex-flow: row nowrap;
+            @include respond-down($sm) {
+                margin-top: auto;
+            }
 
             button {
                 @extend %flex-center;

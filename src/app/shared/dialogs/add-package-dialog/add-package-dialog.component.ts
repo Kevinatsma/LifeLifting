@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { PackageService } from './../../../packages/package.service';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-add-package-dialog',
   templateUrl: './add-package-dialog.component.html',
-  styleUrls: ['./add-package-dialog.component.scss']
+  styleUrls: ['./add-package-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddPackageDialogComponent implements OnInit {
 
@@ -23,7 +25,8 @@ export class AddPackageDialogComponent implements OnInit {
 
 
   constructor( private fb: FormBuilder,
-               private packageService: PackageService) {}
+               private packageService: PackageService,
+               private dialog: MatDialog) {}
 
   ngOnInit() {
     this.personalForm = this.fb.group({
@@ -80,5 +83,11 @@ export class AddPackageDialogComponent implements OnInit {
         packageBenefits: this.benefitForms.value,
       };
       this.packageService.addPackage(data);
+    }
+
+    closeDialog() {
+      if (confirm('Are you sure you want to stop adding this package?')) {
+        this.dialog.closeAll();
+      }
     }
 }

@@ -1,4 +1,10 @@
 <main class="dialog-wrapper">
+    <div class="close-section  mobile">
+      <button class="text-link close-btn" (click)="closeDialog()" type="button">
+        <i class="mobile fas fa-arrow-left"></i> Back
+      </button>
+    </div>
+
     <mat-horizontal-stepper #stepper>
         <mat-step [stepControl]="signUpForm">
           <form [formGroup]="signUpForm">
@@ -71,16 +77,19 @@
 
         <mat-step class="image-uploader-container">
           <ng-template matStepLabel>Picture</ng-template>
-          <section class="photo-title">
-              <h3>📷  Profile Image</h3>
-              <p class="card-text image-subtitle">
-                Please choose a clear picture that represents the present appearance of this person.
-              </p>
-          </section>
+          <div class="image-uploader-container">
+            <section class="photo-title">
+                <h3>📷  Profile Image</h3>
+                <p class="card-text image-subtitle">
+                  Please choose a clear picture that represents the present appearance of this person.
+                </p>
+            </section>
 
-          <div class="image-uploader">
-            <app-file-upload (imageEvent)="receiveDownloadURL($event)"></app-file-upload>
+            <div class="image-uploader">
+              <app-file-upload (imageEvent)="receiveDownloadURL($event)"></app-file-upload>
+            </div>
           </div>
+
           <section class="btn-area">
             <button class="dialog-button" matStepperPrevious>Back</button>
             <button class="dialog-button" matStepperNext>Next</button>
@@ -198,14 +207,11 @@
           </p>
           <div class="add-form-field-container" formArrayName="languageArr">
             <section class="dynamic-form-field-container" *ngFor="let language of languageForms.controls; let i=index" [formGroupName]="i">
-                <div class="number-id">
-                  <h1>{{i+1}}</h1>
-                </div>
-                <!-- <mat-form-field class="language-name" appearance="standard" floatLabel="always">
-                  <mat-label>Which language</mat-label>
-                  <input type="text" matInput placeholder="Language name" formControlName="languageValue" autocomplete="off" required>
-                  <mat-error class="input-error" *ngIf="!languageValue.valid && extrasForm.touched">This is <strong>required</strong></mat-error> 
-                </mat-form-field> -->
+              <div class="number-id">
+                <h1>{{i+1}}</h1>
+              </div>
+
+              <div class="form-fields">
                 <mat-form-field appearance="standard" floatLabel="always">
                   <mat-label>Which Language?</mat-label>
                   <mat-select matInput placeholder="Pick a language" formControlName="languageValue" autocomplete="off" 
@@ -214,6 +220,7 @@
                   </mat-select>
                   <mat-error class="input-error" *ngIf="!languageValue.valid && extrasForm.touched">This is <strong>required</strong></mat-error>
                 </mat-form-field>
+
                 <mat-form-field appearance="standard" floatLabel="always">
                   <mat-label>What level?</mat-label>
                   <mat-select matInput placeholder="Profficiency" formControlName="languageLevel" autocomplete="off" 
@@ -222,11 +229,13 @@
                   </mat-select>
                   <mat-error class="input-error" *ngIf="!languageLevel.valid && extrasForm.touched">This is <strong>required</strong></mat-error>
                 </mat-form-field>
-                <div class="btn-area">
-                  <button mat-icon-button type="button" class="delete-btn" (click)="deleteLanguage(i)">
-                    <i class="fa fa-trash"></i>
-                  </button>
-                </div>
+              </div>
+              
+              <div class="btn-area">
+                <button mat-icon-button type="button" class="delete-btn" (click)="deleteLanguage(i)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
             </section>
           </div>
 
@@ -235,36 +244,6 @@
             Add Language
           </button>
 
-          <!-- Add Specialist Reviews -->
-          <h3>⭐ Reviews</h3>
-          <p class="intro-text">Add reviews so potential clients can see if he or she is fit for the job.</p>
-          <div class="add-form-field-container review-container" formArrayName="reviews">
-            <mat-card class="review-item"  *ngFor="let review of reviewForms.controls; let i=index" [formGroupName]="i">
-              <mat-form-field class="text-field" appearance="standard" floatLabel="always">
-                <mat-label>The review text</mat-label>
-                <textarea type="text" matInput formControlName="reviewText" placeholder="Specialist Review {{i+1}}" 
-                          matTextareaAutosize autofocus="off" autocomplete="off" required>
-                </textarea>
-                <mat-error class="input-error" *ngIf="!reviewText.valid && extrasForm.touched">This is <strong>required</strong></mat-error> 
-              </mat-form-field>
-              <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>The review writer</mat-label>
-                <input type="text" matInput placeholder="Who wrote Review {{i+1}}?" formControlName="reviewerName" autocomplete="off" required>
-                <mat-error class="input-error" *ngIf="!reviewerName.valid && extrasForm.touched">This is <strong>required</strong></mat-error> 
-              </mat-form-field>
-              <button mat-icon-button type="button" class="delete-btn" (click)="deleteReview(i)">
-                <i class="fa fa-trash"></i>
-              </button>
-            </mat-card>
-            <div class="right-scroll-margin">
-              <p class="hide">Oh, hello there</p>
-            </div>
-          </div>
-
-          <button type="button" class="add-form-field" (click)="addReview()">
-            <i class="fa fa-plus"></i>
-            Add review
-          </button>
           </form>
 
           <section class="btn-area">

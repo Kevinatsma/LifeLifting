@@ -40,6 +40,10 @@
         box-sizing: border-box;
         @extend %flex-center;
 
+        @include respond-down($sm) {
+            padding: 0;
+        }
+
         .btn-icon-right {
             margin-top: 2em;
         }
@@ -52,7 +56,7 @@
             height: 100vh;
             top: 5em;
             overflow:  hidden;
-            z-index: 1500;
+            z-index: 150;
 
             button {
                 margin-top: 2em;
@@ -62,6 +66,10 @@
 
     .appointments {
         margin-top: 5em;
+        width: 70%;
+        @include respond-down($sm) {
+            width: 95%;
+        }
     }
 
     .specialist-container {
@@ -83,6 +91,9 @@
             transform: translateY(-40px);
             transition: transform 300ms ease-in-out;
             z-index: 50;
+            @include respond-down($sm) {
+                top: 40px;
+            }
 
             &:hover {
                 transform: translateY(-15px);
@@ -95,6 +106,7 @@
             left: 0;
             right: 0;
             bottom: 0;
+            height: 100vh;
         }
     }
 }

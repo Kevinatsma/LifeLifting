@@ -21,34 +21,77 @@
     display: flex;
     flex-flow: row nowrap;
 
-    section.logo-wrapper {
-        width: 20%;
-        background: red;
+    @include respond-down($sm) {
+        justify-content: space-between;
+    }
+
+    section {
         height: 65px;
+    }
+
+    section.left {
+        box-sizing: border-box;
+        width: 20%;
+        margin-right: 10%;
+
+        @extend %flex-center;
+        @include respond-up($sm) {
+            display: none;
+        }
+
+        img {
+            height: auto;
+            width: 24.5px;
+            margin-top: 0.5px;
+        }
+    }
+
+    section.logo {
+        box-sizing: border-box;
+        width: 40%;
+        @extend %flex-center;
+        @include respond-up($sm) {
+            display: none;
+        }
+
+        img {
+            width: 55px;
+            height: auto;
+            margin-left: -14px;
+        }
     }
 
     section.middle {
         width: 70%;
-        height: 65px;
         background: #fff;
         border-left: $light-border;
         border-bottom: $light-border;
+
+        @include respond-down($sm) {
+            display: none;
+        }
     }
     
     section.right {
         display: flex;
         flex-flow: row nowrap;
         width: 30%;
-        height: 65px;
         background: #fff;
         border-bottom: $light-border;
 
+        @include respond-down($sm) {
+            width: 26%;
+        }
+
         div.chat-container {
-            @extend %flex-center;
             width: 25%;
             height: 65px;
             border-left: $light-border;
             border-right: $light-border;
+            @extend %flex-center;
+            @include  respond-down($sm) {
+                display: none;
+            }
 
             button {
                 width: 100%;
@@ -85,6 +128,10 @@
             align-items: center;
             padding: 0 15px;
 
+            @include respond-down($sm) {
+                justify-content: flex-end;
+            }
+
             &:hover {
                 background: $middle-grey;
                 svg {
@@ -100,9 +147,16 @@
                 background-repeat: no-repeat;
                 margin: 7px 15px 7px 0;
                 background-position: center;
+
+                @include respond-down($sm) {
+                    border-radius: 50%;
+                    margin: 0;
+                    height: 35px;
+                    width: 35px;
+                }
             }
 
-            ::ng-deep .mat-button, button.open-dropdown-menu {
+            .mat-button, button.open-dropdown-menu {
                 width: calc(100% - 45px);
                 font-size: 16px;
                 font-weight: $semi-bold;
@@ -111,6 +165,10 @@
                 color: $grey;
                 align-items: center;
                 justify-content: space-between;
+
+                @include respond-down($sm) {
+                    width: auto;
+                }
 
                 &:hover, &:focus, &:active {
                     background: $middle-grey!important;
@@ -125,5 +183,11 @@
                 margin: -3px 0 0 0px;
             }
         }
+    }
+}
+
+button.open-dropdown-menu span.user-name {
+    @include respond-down($sm) {
+        display: none!important;
     }
 }

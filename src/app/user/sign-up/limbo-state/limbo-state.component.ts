@@ -50,6 +50,7 @@ export class LimboStateComponent implements OnInit {
     this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
       // Get Specialist
+      console.log(user.specialist);
       this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
       this.getAppointments(user);
     });
@@ -94,6 +95,7 @@ export class LimboStateComponent implements OnInit {
 
   // Toggles
   toggleSpecialist() {
+    console.log(this.showSpecialist);
     this.showSpecialist = !this.showSpecialist;
   }
 }
