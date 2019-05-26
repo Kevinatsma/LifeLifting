@@ -1,0 +1,34 @@
+<main class="print-container">
+  <section class="close-section">
+    <button mat-icon-button class="not-mobile close-btn" (click)="closeDialog()" type="button">
+      <i class="fas fa-times"></i>
+    </button>
+  </section>
+
+  <section class="title-area">
+    <h1>Print preview</h1>
+  </section>
+
+  <section class="print-preview-container" #shoppingList>
+    <div class="branding">
+      <hr>
+      <img src="./../../../assets/img/logo-icon.svg" />
+      <hr>
+    </div>
+    <div class="shopping-list-wrapper"  *ngIf="mealplan && shoppingListItems">
+      <h2>Shopping list for {{mealplan.mealplanName}}</h2>
+      <ul>
+        <li *ngFor="let food of shoppingListItems; let i=index">
+          <h4>{{food.shoppingListAmount}} {{food.shoppingUnit}} of {{food.productName}} </h4>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="btn-area-one">
+    <button class="dialog-button" (click)="saveAsPDF()">
+      <i class="far fa-file-pdf"></i>
+      Save as PDF
+    </button>
+  </section>
+</main>

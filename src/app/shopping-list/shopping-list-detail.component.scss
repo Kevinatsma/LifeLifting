@@ -51,7 +51,7 @@
         background: #fff;
         box-shadow: $card-shadow;
         height: 100%;
-        width: 80%;
+        width: 100%;
 
         @include respond-down($sm) {
             min-height: calc(100vh - 65px);

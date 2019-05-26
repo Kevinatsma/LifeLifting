@@ -6,6 +6,8 @@ import { getComponentViewDefinitionFactory } from '@angular/core/src/view';
 import { AnimationTransitionInstructionType } from '@angular/animations/browser/src/render/animation_engine_instruction';
 import { Food } from '../foods/food.model';
 import { FoodService } from '../foods/food.service';
+import { MatDialog } from '@angular/material';
+import { PrintShoppingListComponent } from './print-shopping-list/print-shopping-list.component';
 
 @Component({
   selector: 'app-shopping-list-detail',
@@ -24,7 +26,8 @@ export class ShoppingListDetailComponent implements OnInit {
   constructor( private route: ActivatedRoute,
                private foodService: FoodService,
                private mealplanService: MealplanService,
-               public router: Router) { }
+               public router: Router,
+               private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getMealplan();
@@ -112,6 +115,14 @@ export class ShoppingListDetailComponent implements OnInit {
       unit = food.unit;
       shoppingUnit = food.shoppingUnit;
       shoppingListAmount = value * food.factor;
+
+      if (shoppingUnit === 'gram' &&  shoppingListAmount > 1000) {
+        shoppingUnit = 'kilogram';
+        shoppingListAmount = shoppingListAmount / 1000;
+      } else if (shoppingUnit.toLowerCase() === 'milliliter' &&  shoppingListAmount > 1000) {
+        shoppingUnit = 'liter';
+        shoppingListAmount = shoppingListAmount / 1000;
+      }
     });
 
     const shoppingListItem = {
@@ -136,6 +147,16 @@ export class ShoppingListDetailComponent implements OnInit {
     } else {
       checkboxField.classList.add('completed');
     }
+  }
+
+  openPrintDialog(shoppingListItems) {
+    const dialogRef = this.dialog.open(PrintShoppingListComponent, {
+      data: {
+        shoppingListItems: shoppingListItems,
+        mealplan: this.mealplan,
+      },
+      panelClass: 'print-dialog',
+    });
   }
 
   getMonday(mondayMeals) {
@@ -216,72 +237,58 @@ export class ShoppingListDetailComponent implements OnInit {
     // Get Monday
     const mOneMealOneArr = tuesdayMeals.mOneMealOneArr;
     mOneMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mOneMealTwoArr = tuesdayMeals.mOneMealTwoArr;
     mOneMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mTwoMealOneArr = tuesdayMeals.mTwoMealOneArr;
     mTwoMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mTwoMealTwoArr = tuesdayMeals.mTwoMealTwoArr;
     mTwoMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mThreeMealOneArr = tuesdayMeals.mThreeMealOneArr;
     mThreeMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mThreeMealTwoArr = tuesdayMeals.mThreeMealTwoArr;
     mThreeMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFourMealOneArr = tuesdayMeals.mFourMealOneArr;
     mFourMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFourMealTwoArr = tuesdayMeals.mFourMealTwoArr;
     mFourMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFiveMealOneArr = tuesdayMeals.mFiveMealOneArr;
     mFiveMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFiveMealTwoArr = tuesdayMeals.mFiveMealTwoArr;
     mFiveMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSixMealOneArr = tuesdayMeals.mSixMealOneArr;
     mSixMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSixMealTwoArr = tuesdayMeals.mSixMealTwoArr;
     mSixMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSevenMealOneArr = tuesdayMeals.mSevenMealOneArr;
     mSevenMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSevenMealTwoArr = tuesdayMeals.mSevenMealTwoArr;
     mSevenMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
   }
@@ -290,72 +297,58 @@ export class ShoppingListDetailComponent implements OnInit {
     // Get Monday
     const mOneMealOneArr = wednesdayMeals.mOneMealOneArr;
     mOneMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mOneMealTwoArr = wednesdayMeals.mOneMealTwoArr;
     mOneMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mTwoMealOneArr = wednesdayMeals.mTwoMealOneArr;
     mTwoMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mTwoMealTwoArr = wednesdayMeals.mTwoMealTwoArr;
     mTwoMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mThreeMealOneArr = wednesdayMeals.mThreeMealOneArr;
     mThreeMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mThreeMealTwoArr = wednesdayMeals.mThreeMealTwoArr;
     mThreeMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFourMealOneArr = wednesdayMeals.mFourMealOneArr;
     mFourMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFourMealTwoArr = wednesdayMeals.mFourMealTwoArr;
     mFourMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFiveMealOneArr = wednesdayMeals.mFiveMealOneArr;
     mFiveMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFiveMealTwoArr = wednesdayMeals.mFiveMealTwoArr;
     mFiveMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSixMealOneArr = wednesdayMeals.mSixMealOneArr;
     mSixMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSixMealTwoArr = wednesdayMeals.mSixMealTwoArr;
     mSixMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSevenMealOneArr = wednesdayMeals.mSevenMealOneArr;
     mSevenMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSevenMealTwoArr = wednesdayMeals.mSevenMealTwoArr;
     mSevenMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
   }
@@ -364,72 +357,58 @@ export class ShoppingListDetailComponent implements OnInit {
     // Get Monday
     const mOneMealOneArr = thursdayMeals.mOneMealOneArr;
     mOneMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mOneMealTwoArr = thursdayMeals.mOneMealTwoArr;
     mOneMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mTwoMealOneArr = thursdayMeals.mTwoMealOneArr;
     mTwoMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mTwoMealTwoArr = thursdayMeals.mTwoMealTwoArr;
     mTwoMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mThreeMealOneArr = thursdayMeals.mThreeMealOneArr;
     mThreeMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mThreeMealTwoArr = thursdayMeals.mThreeMealTwoArr;
     mThreeMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFourMealOneArr = thursdayMeals.mFourMealOneArr;
     mFourMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFourMealTwoArr = thursdayMeals.mFourMealTwoArr;
     mFourMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFiveMealOneArr = thursdayMeals.mFiveMealOneArr;
     mFiveMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFiveMealTwoArr = thursdayMeals.mFiveMealTwoArr;
     mFiveMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSixMealOneArr = thursdayMeals.mSixMealOneArr;
     mSixMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSixMealTwoArr = thursdayMeals.mSixMealTwoArr;
     mSixMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSevenMealOneArr = thursdayMeals.mSevenMealOneArr;
     mSevenMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSevenMealTwoArr = thursdayMeals.mSevenMealTwoArr;
     mSevenMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
   }
@@ -438,72 +417,58 @@ export class ShoppingListDetailComponent implements OnInit {
     // Get Monday
     const mOneMealOneArr = fridayMeals.mOneMealOneArr;
     mOneMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mOneMealTwoArr = fridayMeals.mOneMealTwoArr;
     mOneMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mTwoMealOneArr = fridayMeals.mTwoMealOneArr;
     mTwoMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mTwoMealTwoArr = fridayMeals.mTwoMealTwoArr;
     mTwoMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mThreeMealOneArr = fridayMeals.mThreeMealOneArr;
     mThreeMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mThreeMealTwoArr = fridayMeals.mThreeMealTwoArr;
     mThreeMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFourMealOneArr = fridayMeals.mFourMealOneArr;
     mFourMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFourMealTwoArr = fridayMeals.mFourMealTwoArr;
     mFourMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFiveMealOneArr = fridayMeals.mFiveMealOneArr;
     mFiveMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mFiveMealTwoArr = fridayMeals.mFiveMealTwoArr;
     mFiveMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSixMealOneArr = fridayMeals.mSixMealOneArr;
     mSixMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSixMealTwoArr = fridayMeals.mSixMealTwoArr;
     mSixMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSevenMealOneArr = fridayMeals.mSevenMealOneArr;
     mSevenMealOneArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
     const mSevenMealTwoArr = fridayMeals.mSevenMealTwoArr;
     mSevenMealTwoArr.forEach(a => {
-
       if (a.product) {this.foodArr.push(a); }
     });
   }

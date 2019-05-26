@@ -521,6 +521,8 @@ form {
     &.day-form {
         .time-container {
             min-height: 100px;
+            max-width: 90vw;
+            box-sizing: border-box;
             @include respond-down($sm) {
                 box-sizing: border-box;
                 width: 100%;

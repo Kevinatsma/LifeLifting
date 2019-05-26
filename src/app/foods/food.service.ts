@@ -20,7 +20,7 @@ export class FoodService {
   constructor( private afs: AngularFirestore,
                public snackBar: MatSnackBar
              ) {
-    this.foodCol = this.afs.collection<Food>(`foods`);
+    this.foodCol = this.afs.collection<Food>(`foods`,  ref => ref.orderBy('productName'));
     this.foods = this.getFoods();
     this.editStateChange.subscribe((value) => {
       this.editShow = value;
