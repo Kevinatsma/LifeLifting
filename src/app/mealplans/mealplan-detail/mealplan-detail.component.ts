@@ -17,6 +17,7 @@ import { AuthService } from './../../core/auth/auth.service';
 import { EditMealDialogComponent } from './../../shared/dialogs/edit-meal-dialog/edit-meal-dialog.component';
 import { Subject } from 'rxjs';
 import { UtilService } from './../../shared/services/util.service';
+import { DisplayTextDialogComponent } from './../../shared/dialogs/display-text-dialog/display-text-dialog.component';
 
 
 @Component({
@@ -160,6 +161,16 @@ export class MealplanDetailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       // AFter close
+    });
+  }
+
+  openNotesDialog(mealplan) {
+    const dialogRef = this.dialog.open(DisplayTextDialogComponent, {
+      data: {
+        title: `Extra notes for ${this.mealplan.mealplanName}`,
+        text: this.mealplan.extraNotes
+      },
+      panelClass: 'display-text-dialog'
     });
   }
 

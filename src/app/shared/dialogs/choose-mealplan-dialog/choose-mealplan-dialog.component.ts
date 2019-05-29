@@ -30,7 +30,7 @@ export class ChooseMealplanDialogComponent implements OnInit {
                private afs: AngularFirestore,
                private userService: UserService,
                public router: Router,
-               public matDialog: MatDialog,
+               public dialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public data: any) {
                 if (this.data.mealplan) {
                   this.patchDropdown(this.data.mealplan);
@@ -66,7 +66,7 @@ export class ChooseMealplanDialogComponent implements OnInit {
     const id = this.chooseMealplanForm.get('mealplan').value || this.selectedMealplan;
     const url = `dashboard/shopping-list/${id}`;
     this.router.navigate([url]);
-    this.matDialog.closeAll();
+    this.dialog.closeAll();
   }
 
 }
