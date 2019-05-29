@@ -72,6 +72,10 @@ main.specialist-wrapper {
 
         button.icon-button {
             position: inherit;
+
+            svg {
+                font-size: 16px;
+            }
         }
 
         h1 {
@@ -170,6 +174,10 @@ main.specialist-wrapper {
     .middle {
         h1, h5 {
             text-align: center;
+        }
+
+        h5 {
+            display: block;
         }
     }
 

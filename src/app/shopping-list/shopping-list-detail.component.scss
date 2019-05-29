@@ -68,7 +68,7 @@
             }
         }
 
-        .food-checkbox {
+        ::ng-deep .food-checkbox {
             .mat-checkbox-layout {
                 display: flex;
                 align-items: center;

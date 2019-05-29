@@ -21,10 +21,8 @@ form {
 }
 
 .middle {
-    margin-left: 5.5em;
+    margin: 0;
     @include respond-down($sm) {
-        margin-left: 0;
-
         h5 {
             margin-top: 1.5em;
         }

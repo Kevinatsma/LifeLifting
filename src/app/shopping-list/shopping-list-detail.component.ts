@@ -8,12 +8,12 @@ import { Food } from '../foods/food.model';
 import { FoodService } from '../foods/food.service';
 import { MatDialog } from '@angular/material';
 import { PrintShoppingListComponent } from './print-shopping-list/print-shopping-list.component';
+import { UtilService } from '../shared/services/util.service';
 
 @Component({
   selector: 'app-shopping-list-detail',
   templateUrl: './shopping-list-detail.component.html',
-  styleUrls: ['./shopping-list-detail.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./shopping-list-detail.component.scss']
 })
 export class ShoppingListDetailComponent implements OnInit {
   mealplan: Mealplan;
@@ -27,7 +27,8 @@ export class ShoppingListDetailComponent implements OnInit {
                private foodService: FoodService,
                private mealplanService: MealplanService,
                public router: Router,
-               private dialog: MatDialog) { }
+               private dialog: MatDialog,
+               private utils: UtilService) { }
 
   ngOnInit() {
     this.getMealplan();
@@ -101,6 +102,9 @@ export class ShoppingListDetailComponent implements OnInit {
       shoppingListItemArr.push(shoppingListItem);
     });
 
+    // Sort based on food category
+    shoppingListItemArr.sort(this.utils.dynamicSort('nutritionType', 1));
+
     this.shoppingListItems = shoppingListItemArr;
   }
 
@@ -110,11 +114,14 @@ export class ShoppingListDetailComponent implements OnInit {
     let shoppingUnit;
     let shoppingListAmount;
     let unit;
+    let nutritionType;
+
     foodObj.forEach(food => {
       factor = food.factor;
       unit = food.unit;
       shoppingUnit = food.shoppingUnit;
       shoppingListAmount = value * food.factor;
+      nutritionType = food.categories.nutritionType;
 
       if (shoppingUnit === 'gram' &&  shoppingListAmount > 1000) {
         shoppingUnit = 'kilogram';
@@ -131,7 +138,8 @@ export class ShoppingListDetailComponent implements OnInit {
       factor: factor,
       unit: unit,
       shoppingUnit: shoppingUnit,
-      shoppingListAmount: shoppingListAmount
+      shoppingListAmount: shoppingListAmount,
+      nutritionType: nutritionType
     };
 
     return shoppingListItem;

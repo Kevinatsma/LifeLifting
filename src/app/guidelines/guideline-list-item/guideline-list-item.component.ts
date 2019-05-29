@@ -60,10 +60,6 @@ export class GuidelineListItemComponent implements OnInit {
     this.guidelineService.duplicateGuideline(guideline);
   }
 
-  printGuideline() {
-    alert('TODO: PRINT GUIDELINE');
-  }
-
 
   linkToChild(guideline) {
     const url = `dashboard/guidelines/${guideline.gID}`;

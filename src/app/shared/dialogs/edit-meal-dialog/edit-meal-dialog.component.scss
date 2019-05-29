@@ -68,6 +68,13 @@
 ::ng-deep .mealplan-dialog {
     min-width: 100vw!important;
     min-height: 100vh!important;
+    .close-section {
+        .close-btn {
+            svg {
+                margin-right: 0!important;
+            }
+        }
+    }
 }
 
 ::ng-deep mat-form-field {
@@ -83,7 +90,8 @@
 
 // Component Css
 .not-there {
-    min-height: 73vh;
+    box-sizing: border-box;
+    min-height: calc(100vh - 142px);
     padding: 2em 3em 3em;
     width: 100%;
 
@@ -110,6 +118,24 @@
             width: 100%;
         }
     }
+
+    &.last-step {
+        form {
+            min-height: 60vh;
+            padding: 0;
+            margin: 0;
+    
+            mat-form-field {
+                box-sizing: border-box;
+                margin: 2em 0;
+                width: 70%;
+        
+                textarea {
+                    height: 50px;
+                }
+            }
+        }
+    }
 }
 
 form {
@@ -118,6 +144,9 @@ form {
     padding: 0 4em;
     display: flex;
     flex-flow: column wrap;
+    width: 100%;
+    box-sizing: border-box;
+
     @include respond-down($sm) {
         margin: 4em 0 2em;
         padding: 0 16px;

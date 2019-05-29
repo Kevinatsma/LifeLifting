@@ -80,7 +80,6 @@ export class AddMealDialogComponent implements OnInit {
                private mealplanService: MealplanService,
                public mealService: AddMealDialogService,
                public dialog: MatDialog,
-               private dialogRef: MatDialogRef<AddMealDialogComponent>,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
                 this.foodService.getFoods().subscribe(foods => this.foods = foods);
                 setTimeout(() => this.getMealplans(), 500);
@@ -91,6 +90,7 @@ export class AddMealDialogComponent implements OnInit {
     this.infoForm = this.fb.group({
       mID: ['', [Validators.required]],
       mealplanName: ['', [Validators.required]],
+      extraNotes: ['']
     });
 
     this.mealTimeForm = this.fb.group({
@@ -181,7 +181,8 @@ export class AddMealDialogComponent implements OnInit {
       wednesdayMeals: this.wednesdayMeals,
       thursdayMeals: this.thursdayMeals,
       fridayMeals: this.fridayMeals,
-      supplementation: this.supps
+      supplementation: this.supps,
+      extraNotes: this.infoForm.get('extraNotes').value
     };
     this.mealplanService.addMealplan(data);
   }

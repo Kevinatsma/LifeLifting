@@ -193,7 +193,7 @@
     </mat-step>
 
     <mat-step [stepControl]="infoForm">
-      <div class="not-there">
+      <div class="not-there last-step">
         <ng-template matStepLabel>End</ng-template>
         <h3>😅 Finally done... (or not)</h3>
         <p class="card-text">
@@ -202,6 +202,13 @@
 
           If not, the meal button won't be clickable. Check the rest of the steps to see if you missed something!
         </p>
+
+        <form [formGroup]="infoForm">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Extra notes</mat-label>
+            <textarea matInput matTextareaAutosize formControlName="extraNotes"></textarea>
+          </mat-form-field>
+        </form>
       </div>
 
       <section class="btn-area">

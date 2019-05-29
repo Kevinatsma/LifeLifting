@@ -113,4 +113,5 @@ export class Mealplan {
     thursdayMeals: DayForm;
     fridayMeals: DayForm;
     supplementation: Supplementation;
+    extraNotes: string;
 }

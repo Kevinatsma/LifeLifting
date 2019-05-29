@@ -106,7 +106,8 @@ export class EditMealDialogComponent implements OnInit {
     // Init forms
     this.infoForm = this.fb.group({
       mealplanName: [`${this.data.mealplan.mealplanName}`, [Validators.required]],
-      clientID: [`${this.data.mealplan.clientID}`]
+      clientID: [`${this.data.mealplan.clientID}`],
+      extraNotes: [`${this.data.mealplan.extraNotes}` || '']
     });
 
     this.mealTimeForm = this.fb.group({
@@ -225,7 +226,8 @@ export class EditMealDialogComponent implements OnInit {
       wednesdayMeals: this.wednesdayMeals || this.mealplan.wednesdayMeals,
       thursdayMeals: this.thursdayMeals || this.mealplan.thursdayMeals,
       fridayMeals: this.fridayMeals || this.mealplan.fridayMeals,
-      supplementation: this.supps || this.mealplan.supplementation
+      supplementation: this.supps || this.mealplan.supplementation,
+      extraNotes: this.infoForm.get('extraNotes').value
     };
     this.mealplanService.updateMealplan(mID, data);
     this.dialog.closeAll();
