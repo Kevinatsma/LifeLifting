@@ -1,0 +1,62 @@
+@import './../../../assets/scss/master';
+@import './../../../assets/scss/dialogs';
+
+main.add-measurement-wrapper {
+    mat-horizontal-stepper {
+        .mat-horizontal-stepper-header-container {
+            padding: 0 3em;
+
+            .mat-step-icon-state-number{
+                display:  none;
+            }
+        }
+
+        .mat-stepper-horizontal-line {
+            border-top-width: 0;
+            border-top-style: none;
+            flex: auto;
+            height: 0;
+            background: none;
+            position: relative;
+            margin: 0 -16px;
+            min-width: 32px;
+            border: none;
+
+            &::before {
+                position: absolute;
+                content: '';
+                height: 1px;
+                width: 60%;
+                left: 20%;
+                background: $border-color;
+            }
+        }
+
+        .mat-step-label {
+            font-size: 20px!important;
+            font-weight: 700!important;
+            letter-spacing: 0.5px;
+        }
+    }
+
+    form {
+        .form-field-container {
+            align-items: center;
+            display: flex;
+            flex-flow: row nowrap;
+
+            mat-form-field {
+                input {
+                    width: 30px;
+                }
+            }
+        }
+
+        .btn-area-one {
+            border-top: 1px solid $border-color;
+            height: auto;
+            padding: 15px;
+            width: 100%;
+        }
+    }
+}

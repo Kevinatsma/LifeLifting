@@ -1,6 +1,6 @@
 // Imports
 // @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700');
-@import url('https://fonts.googleapis.com/css?family=Assistant:400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Assistant:400,500,600,700');
 @import './_mixins.scss';
 
 // Fonts
@@ -10,8 +10,9 @@ $title-font: $main-font;
 // Font weights
 $light: 300;
 $regular: 400;
-$semi-bold: 600;
-$bold: 700;
+$semi-bold: 500;
+$bold: 600;
+$extra-bold: 700;
 
 // Colors
 $primary-color: #db9969;
@@ -32,7 +33,7 @@ $section-grey: #f9f7f6;
 
 $title-black: #312E2C;
 $title-light-black: #545454;
-$text-black: #595655;
+$text-black: lighten($black, 10%);
 $icon-black: #2C2825;
 
 // Brands

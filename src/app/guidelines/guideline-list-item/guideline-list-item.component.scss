@@ -51,7 +51,7 @@ mat-card.list-item-card {
         text-transform: capitalize;
         color: $secondary-color;
         font-size: 13px;
-        font-weight: $bold;
+        font-weight: $extra-bold;
         width: 80%;
         margin: 1rem auto 0;
         letter-spacing: 1px;
@@ -81,7 +81,7 @@ mat-card.list-item-card {
             box-shadow: $card-shadow;
             span {
                 font-family: $main-font;
-                font-weight: $bold;
+                font-weight: $extra-bold;
                 font-size: 14px;
                 margin: 0;
                 padding: 0;
@@ -110,7 +110,7 @@ mat-card.list-item-card {
                 h2, h2 input {
                     margin: 0;
                     width: auto;
-                    font-weight: $bold;
+                    font-weight: $extra-bold;
                     white-space: nowrap;
                     text-overflow: ellipsis;
                     overflow: hidden;

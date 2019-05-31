@@ -330,3 +330,10 @@ main.dialog-wrapper {
         }
     }
 }
+
+.add-measurement-dialog {
+    .mat-dialog-container {
+        margin: 0;
+        padding: 0;
+    }
+}

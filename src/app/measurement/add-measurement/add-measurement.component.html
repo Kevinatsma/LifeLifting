@@ -1,0 +1,50 @@
+<main class="add-measurement-wrapper">
+  <div class="close-section mobile">
+    <button class="text-link close-btn" (click)="closeDialog()" type="button">
+      <i class="mobile fas fa-arrow-left"></i> Back
+    </button>
+  </div>
+
+  <mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="perimeterForm">
+      <form [formGroup]="perimeterForm">
+        <ng-template matStepLabel>Perimeters</ng-template>
+        <div class="form-field-container">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Head</mat-label>
+            <input type="number" matInput placeholder="1" formControlName="head" autofocus autocomplete="off" required>
+          </mat-form-field>
+          <span>cm</span>
+        </div>
+      </form>
+
+      <section class="btn-area-one">
+        <button class="dialog-button" (click)="addMeasurements()" [disabled]="!perimeterForm.valid || !skinfoldForm.valid"
+        [class.disabled]="!perimeterForm.valid || !skinfoldForm.valid" mat-dialog-close>
+          Done
+        </button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="skinfoldForm">
+      <form [formGroup]="skinfoldForm">
+        <ng-template matStepLabel>Skinfolds</ng-template>
+        <div class="form-field-container">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Head</mat-label>
+            <input type="number" matInput placeholder="1" formControlName="triceps" autofocus autocomplete="off" required>
+          </mat-form-field>
+          <span>cm</span>
+        </div>
+      </form>    
+
+      <section class="btn-area-one">
+        <button class="dialog-button" (click)="addMeasurements()" [disabled]="!perimeterForm.valid || !skinfoldForm.valid"
+        [class.disabled]="!perimeterForm.valid || !skinfoldForm.valid" mat-dialog-close>
+          Done
+        </button>
+      </section>
+    </mat-step>
+  </mat-horizontal-stepper>
+</main>
+  

@@ -370,7 +370,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     letter-spacing: 2px;
     font-size: 30px;
-    font-weight: $bold;
+    font-weight: $extra-bold;
     color: $title-black;
 
     &.section-title {
@@ -424,7 +424,7 @@ h2, h2 input {
 h3 {
     color: $title-black;
     font-size: 22px;
-    font-weight: $bold;
+    font-weight: $extra-bold;
     margin-left: 1em;
 }
 
@@ -438,7 +438,7 @@ h4 {
 h5, .h5 {
     color: $text-black;
     font-size: 18px;
-    font-weight: $semi-bold;
+    font-weight: $bold;
     font-family: $main-font;
     letter-spacing: 1.2px;
 
@@ -738,7 +738,7 @@ form {
         }
 
         input, textarea, mat-select {
-            font-weight: $bold!important;
+            font-weight: $extra-bold!important;
             color: $black!important;
             padding: 10px 0.2em!important;
             caret-color: $primary-color!important;

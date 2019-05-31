@@ -53,6 +53,7 @@ import { MyCalendarComponent } from './specialist-dashboard/my-calendar/my-calen
 import { MyCalendarClientComponent } from './client-dashboard/my-calendar-client/my-calendar-client.component';
 import { DashboardService } from './dashboard.service';
 import { ShoppingListDetailComponent } from '../shopping-list/shopping-list-detail.component';
+import { MeasurementModule } from './../measurement/measurement.module';
 
 
 const routes: Routes = [
@@ -131,7 +132,8 @@ const routes: Routes = [
     RequestModule,
     GuidelinesModule,
     MealplansModule,
-    MaterialModule
+    MaterialModule,
+    MeasurementModule
   ],
   exports: [
     RouterModule,

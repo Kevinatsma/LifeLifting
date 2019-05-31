@@ -14,6 +14,7 @@ import { AddGuideDialogComponent } from './../../../../shared/dialogs/add-guide-
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Guideline } from './../../../../guidelines/guideline.model';
 import { Mealplan } from './../../../../mealplans/mealplan.model';
+import { AddMeasurementComponent } from './../../../../measurement/add-measurement/add-measurement.component';
 
 
 @Component({
@@ -144,6 +145,19 @@ export class MyClientDetailComponent implements OnInit {
         currentWeight: this.user.basicData.currentWeight
       },
       panelClass: 'add-guide-dialog',
+      disableClose: true,
+    });
+  }
+
+  openMeasurementDialog() {
+    // Set data for Dialog
+    this.dialog.open(AddMeasurementComponent, {
+      data: {
+        uid: this.user.uid,
+        displayName: this.user.displayName,
+        currentWeight: this.user.basicData.currentWeight
+      },
+      panelClass: 'add-measurement-dialog',
       disableClose: true,
     });
   }
