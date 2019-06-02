@@ -5,11 +5,15 @@ import { AddMeasurementComponent } from './add-measurement/add-measurement.compo
 import { MaterialModule } from '../shared/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { MeasurementService } from './measurement.service';
+import { MeasurementListItemComponent } from './measurement-list-item/measurement-list-item.component';
+import { EditMeasurementComponent } from './edit-measurement/edit-measurement.component';
 
 @NgModule({
   declarations: [
     MeasurementDetailComponent,
-    AddMeasurementComponent
+    AddMeasurementComponent,
+    MeasurementListItemComponent,
+    EditMeasurementComponent
   ],
   imports: [
     CommonModule,
@@ -18,11 +22,14 @@ import { MeasurementService } from './measurement.service';
   ],
   exports: [
     MeasurementDetailComponent,
-    AddMeasurementComponent
+    AddMeasurementComponent,
+    MeasurementListItemComponent,
+    EditMeasurementComponent
   ],
   entryComponents: [
     MeasurementDetailComponent,
-    AddMeasurementComponent
+    AddMeasurementComponent,
+    EditMeasurementComponent
   ],
   providers: [
     MeasurementService

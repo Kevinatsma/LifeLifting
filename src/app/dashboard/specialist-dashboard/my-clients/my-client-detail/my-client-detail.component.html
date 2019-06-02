@@ -146,6 +146,15 @@
         </div>
       </section>
       
+      <section class="measurements" *ngIf="measurements">
+        <h1 class="section-title">Measurements</h1>
+        <div class="measurement__container">
+          <app-measurement-list-item *ngFor="let measurement of measurements; let i=index"
+          [client]="user" [measurement]="measurement" [i]="i">
+          </app-measurement-list-item>
+        </div>
+      </section>
+
       <section class="guidelines" *ngIf="guidelines">
         <h1 class="section-title">Guidelines</h1>
         <div class="guidelines__container">
@@ -159,7 +168,7 @@
       <section class="guidelines" *ngIf="mealplans">
         <h1 class="section-title">Mealplans</h1>
         <div class="guidelines__container">
-          <app-mealplan-list-item *ngFor="let mealplan of mealplans | async" [mealplan]="mealplan"></app-mealplan-list-item>
+          <app-mealplan-list-item *ngFor="let mealplan of mealplans" [mealplan]="mealplan"></app-mealplan-list-item>
           <div class="guidelines__container__filler">
             Filler
           </div>

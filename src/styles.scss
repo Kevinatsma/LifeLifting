@@ -142,6 +142,8 @@ a.menu-link, button.menu-link {
         background: $primary-light; 
         border-left: 3px solid $primary-color;
         color: $primary-color;
+        font-weight: 600;
+    
         svg {
             color: $primary-color;
         }
@@ -149,7 +151,7 @@ a.menu-link, button.menu-link {
 
     svg {
         font-size: 16px;
-        width: 20px;
+        width: 20px!important;
         color: darken($middle-grey, 10%);
         margin: 0 2em;
         @include respond-down($sm) {
@@ -399,7 +401,7 @@ h2, h2 input {
     letter-spacing: 2px;
     margin-bottom: 5px;
     font-size: 24px;
-    font-weight: $semi-bold;
+    font-weight: $bold;
     color: $title-black;
 
     &.card-title {
@@ -431,7 +433,7 @@ h3 {
 h4 {
     color: $title-black;
     font-size: 20px;
-    font-weight: $semi-bold;
+    font-weight: $bold;
     font-family: $main-font;
 }
 
@@ -945,6 +947,26 @@ mat-select.ng-dirty{
                     display: block;
                 }
             }
+        }
+    }
+
+    section.measurements {
+        background-color: #fff;
+        box-sizing: border-box;
+        box-shadow: $card-shadow;
+        margin: 2em 0 0 0;
+        padding: 1em 2em;
+        width: 100%;
+    
+        .section-title {
+            text-align: left;
+            margin-bottom: 1.5em;
+        }
+    
+        .measurement__container {
+            display: flex;
+            flex-flow: column nowrap;
+            height: 100%;
         }
     }
 }

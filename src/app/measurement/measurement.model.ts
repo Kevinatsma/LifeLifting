@@ -1,4 +1,9 @@
 export class Measurement {
+    id?: string;
+    clientID: string;
+    specialistID: string;
+    created: Date;
+    edited?: Date;
     head?: number;
     neck?: number;
     armRelaxed?: number;
@@ -19,4 +24,5 @@ export class Measurement {
     supraespinal?: number;
     abdominal?: number;
     frontalThigh?: number;
+    skinfoldCalf?: number;
 }

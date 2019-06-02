@@ -42,7 +42,7 @@ main.specialist-list-wrapper {
             @include respond-down($sm) {
                 margin: 2em 1em 0;
                 height: auto;
-                width: 80vw;
+                width: 75vw;
 
                 &:first-child {
                     margin-left: 0;

@@ -87,7 +87,7 @@ app-specialist-item {
         margin: 0 2.5em 0 2.5em;
         height: 100%;
         @include respond-down($sm) {
-            width: 80vw;
+            width: 75vw;
             padding: 0;
             margin: 0 3vw!important;
         }

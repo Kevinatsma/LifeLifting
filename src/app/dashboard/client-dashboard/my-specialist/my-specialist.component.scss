@@ -352,7 +352,7 @@ div.review-container {
     flex-wrap: nowrap;
     box-sizing: border-box;
     overflow-x: scroll;
-    max-width: 80vw;
+    max-width: 75vw;
 
     @include respond-down($sm) {
         min-width: 100vw;

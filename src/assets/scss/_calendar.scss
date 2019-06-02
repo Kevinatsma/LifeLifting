@@ -150,7 +150,7 @@
     height: auto;
     overflow-y: scroll;
     padding: 3em 2em;
-    width: 80vw;
+    width: 75vw;
 
     @include respond-down($sm) {
         padding: 1em 0 3em;

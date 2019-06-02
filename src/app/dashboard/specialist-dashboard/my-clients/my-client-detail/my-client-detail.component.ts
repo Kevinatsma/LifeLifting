@@ -9,12 +9,13 @@ import { SpecialistService } from '../../../../specialists/specialist.service';
 import { ChatThreadService } from '../../../../chat/chat-thread.service';
 import { Subject, Observable } from 'rxjs';
 import { MatDialog } from '@angular/material';
-import { AddMealDialogComponent } from './../../../../shared/dialogs/add-meal-dialog/add-meal-dialog.component';
-import { AddGuideDialogComponent } from './../../../../shared/dialogs/add-guide-dialog/add-guide-dialog.component';
+import { AddMealDialogComponent } from '../../../../shared/dialogs/add-meal-dialog/add-meal-dialog.component';
+import { AddGuideDialogComponent } from '../../../../shared/dialogs/add-guide-dialog/add-guide-dialog.component';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Guideline } from './../../../../guidelines/guideline.model';
-import { Mealplan } from './../../../../mealplans/mealplan.model';
-import { AddMeasurementComponent } from './../../../../measurement/add-measurement/add-measurement.component';
+import { Guideline } from '../../../../guidelines/guideline.model';
+import { Mealplan } from '../../../../mealplans/mealplan.model';
+import { AddMeasurementComponent } from '../../../../measurement/add-measurement/add-measurement.component';
+import { Measurement } from '../../../../measurement/measurement.model';
 
 
 @Component({
@@ -25,10 +26,13 @@ import { AddMeasurementComponent } from './../../../../measurement/add-measureme
 export class MyClientDetailComponent implements OnInit {
   user: User;
   specialist: Specialist;
+  measurementCol: AngularFirestoreCollection<Measurement>;
+  measurements: Measurement[];
   guidelinesCol: AngularFirestoreCollection<Guideline>;
   guidelines: Observable<Guideline[]>;
   mealplansCol: AngularFirestoreCollection<Mealplan>;
-  mealplans: Observable<Mealplan[]>;
+  mealplans$: Observable<Mealplan[]>;
+  mealplans: Mealplan[];
   reviewsVisible = true;
   actionMenuOpen: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
@@ -65,6 +69,7 @@ export class MyClientDetailComponent implements OnInit {
       this.getSpecialist(sID);
       this.getGuidelines(user.uid);
       this.getMealplans(user.uid);
+      this.getMeasurements(user.uid);
       this.checkReadMore(user);
     });
   }
@@ -80,9 +85,16 @@ export class MyClientDetailComponent implements OnInit {
 
   getMealplans(uid) {
     this.mealplansCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${uid}`));
-    this.mealplans = this.mealplansCol.valueChanges();
+    this.mealplans$ = this.mealplansCol.valueChanges();
+    this.mealplans$.subscribe(mealplans => this.mealplans = mealplans);
   }
 
+  getMeasurements(uid) {
+    this.measurementCol = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`).orderBy('created', 'asc'));
+    this.measurementCol.valueChanges().subscribe(measurements => {
+      this.measurements = measurements;
+    });
+  }
 
   // Checkers
   checkReadMore(user) {
@@ -153,12 +165,12 @@ export class MyClientDetailComponent implements OnInit {
     // Set data for Dialog
     this.dialog.open(AddMeasurementComponent, {
       data: {
+        client: this.user,
         uid: this.user.uid,
         displayName: this.user.displayName,
         currentWeight: this.user.basicData.currentWeight
       },
-      panelClass: 'add-measurement-dialog',
-      disableClose: true,
+      panelClass: 'add-measurement-dialog'
     });
   }
 

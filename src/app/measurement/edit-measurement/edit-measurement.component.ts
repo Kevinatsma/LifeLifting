@@ -1,17 +1,16 @@
 import { Component, OnInit, ViewEncapsulation, HostListener, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { User } from './../../user/user.model';
 import { MeasurementService } from '../measurement.service';
-import { AuthService } from './../../core/auth/auth.service';
+import { User } from './../../user/user.model';
 
 @Component({
-  selector: 'app-add-measurement',
-  templateUrl: './add-measurement.component.html',
-  styleUrls: ['./add-measurement.component.scss'],
+  selector: 'app-edit-measurement',
+  templateUrl: './edit-measurement.component.html',
+  styleUrls: ['./edit-measurement.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AddMeasurementComponent implements OnInit {
+export class EditMeasurementComponent implements OnInit {
   perimeterForm: FormGroup;
   skinfoldForm: FormGroup;
 
@@ -30,9 +29,8 @@ export class AddMeasurementComponent implements OnInit {
   }
 
   constructor( private dialog: MatDialog,
-               private dialogRef: MatDialogRef<AddMeasurementComponent>,
+               private dialogRef: MatDialogRef<EditMeasurementComponent>,
                private fb: FormBuilder,
-               private auth: AuthService,
                private measurementService: MeasurementService,
                @Inject(MAT_DIALOG_DATA) public data: any
                ) {
@@ -71,7 +69,6 @@ export class AddMeasurementComponent implements OnInit {
   addMeasurements() {
     const data = {
       clientID: this.client.uid,
-      specialistID: this.auth.currentUserId,
       created: new Date(),
       perimeters: this.perimeterForm.value,
       skinfolds: this.skinfoldForm.value

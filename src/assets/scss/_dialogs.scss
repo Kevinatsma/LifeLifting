@@ -101,6 +101,8 @@ main.dialog-wrapper {
 }
 
 .add-user-dialog, .add-package-dialog, .review-dialog, .add-food-dialog, .add-exercise-dialog, .add-guide-dialog {
+    overflow-y: auto;
+    
     @include respond-down($sm) {
         min-width: 100vw!important;
         min-height: 100vh!important;
@@ -151,12 +153,14 @@ main.dialog-wrapper {
                     justify-content: center;
                 }
                 .mat-step-label {
+                    font-weight: $bold;
                     @include respond-down($sm) {
                         display: none;
                     }
                 }
 
                 .mat-step-icon {
+                    margin-right: 13px;
                     @include respond-down($sm) {
                         margin-right: 0;
                     }
@@ -332,6 +336,9 @@ main.dialog-wrapper {
 }
 
 .add-measurement-dialog {
+    height: 80vh;
+    width: 75vw;
+
     .mat-dialog-container {
         margin: 0;
         padding: 0;
