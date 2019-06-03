@@ -13,6 +13,7 @@ import { ClientListItemComponent } from './client-list-item/client-list-item.com
 import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
 import { MealplansModule } from '../mealplans/mealplans.module';
+import { MeasurementModule } from '../measurement/measurement.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MealplansModule } from '../mealplans/mealplans.module';
     SharedModule,
     GuidelinesModule,
     MealplansModule,
-    MaterialModule
+    MaterialModule,
+    MeasurementModule
   ],
   exports: [
     ClientsComponent

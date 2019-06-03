@@ -12,6 +12,7 @@ import { Guideline } from './../../../guidelines/guideline.model';
 import { Observable } from 'rxjs';
 import { Mealplan } from './../../../mealplans/mealplan.model';
 import { AuthService } from './../../../core/auth/auth.service';
+import { Measurement } from './../../../measurement/measurement.model';
 
 
 @Component({
@@ -26,6 +27,8 @@ export class UserDetailComponent implements OnInit {
   guidelines: Guideline[];
   mealplansCol: AngularFirestoreCollection<Mealplan>;
   mealplans: Mealplan[];
+  measurementCol: AngularFirestoreCollection<Measurement>;
+  measurements: Measurement[];
   hasMealplans = false;
   hasGuidelines = false;
   mealPlansActive = false;
@@ -63,6 +66,7 @@ export class UserDetailComponent implements OnInit {
         this.getSpecialist(sID);
         this.getGuidelines(uid);
         this.getMealplans(uid);
+        this.getMeasurements(uid);
         this.checkReadMore(user);
       }, 200);
     });
@@ -89,6 +93,13 @@ export class UserDetailComponent implements OnInit {
         this.hasMealplans = true;
       }
       this.mealplans = mealplans;
+    });
+  }
+
+  getMeasurements(uid) {
+    this.measurementCol = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`).orderBy('created', 'asc'));
+    this.measurementCol.valueChanges().subscribe(measurements => {
+      this.measurements = measurements;
     });
   }
 

@@ -11,6 +11,7 @@ main.add-measurement-wrapper {
 
         .mat-horizontal-stepper-header {
             justify-content: center;
+            height: 75px;
             width: 40%;
 
             &:hover {
@@ -52,8 +53,11 @@ main.add-measurement-wrapper {
             font-size: 20px!important;
             font-weight: $bold!important;
             letter-spacing: 0.5px;
+            color: $grey!important;
 
             &-selected {
+                color: $primary-color!important;
+
                 &::after {
                     content: '';
                     height: 3px;
@@ -78,6 +82,16 @@ main.add-measurement-wrapper {
         padding: 3em 4em 1em;
         width: 100%;
 
+        &.weight-form {
+            padding: 0;
+
+            .form-wrapper {
+                position: absolute;
+                left: -30px;
+                top: 35px;
+                z-index: 14;
+            }
+        }
 
         .body-img {
             animation: 0.6s bounce-appear;

@@ -16,6 +16,7 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { GuidelinesModule } from '../guidelines/guidelines.module';
 import { MealplansModule } from '../mealplans/mealplans.module';
+import { MeasurementModule } from '../measurement/measurement.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MealplansModule } from '../mealplans/mealplans.module';
     SharedModule,
     SignUpModule,
     GuidelinesModule,
-    MealplansModule
+    MealplansModule,
+    MeasurementModule
   ],
   exports: [
     SignUpModule,

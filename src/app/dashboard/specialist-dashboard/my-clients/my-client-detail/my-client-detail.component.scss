@@ -411,6 +411,11 @@ section.middle {
                     margin-right: 1em;
                     margin-top: 3px;
                 }
+
+                button {
+                    padding: 0;
+                }
+
                 a {
                     font-size: 18px;
                     font-weight: $regular;
@@ -462,10 +467,7 @@ section.reviews-opened {
     flex-flow: column wrap;
     overflow: hidden;
     padding: 0;
-    margin: 2em 0 2em -2em;
-    @include respond-down($sm) {
-        margin: 0 0 0 -2em;
-    }
+    margin: 0 0 0 -2em;
 
     h1 {
         margin: 0.5em 0 0 3em;
@@ -479,7 +481,7 @@ section.reviews-opened {
         display: flex;
         flex-flow: row nowrap;
         overflow-x: auto;
-        padding: 4em 4em;
+        padding: 4em 4em 1em;
         margin: 0 0 2em;
         width: auto;
         @include respond-down($sm) {

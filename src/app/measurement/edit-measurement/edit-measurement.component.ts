@@ -3,18 +3,20 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MeasurementService } from '../measurement.service';
 import { User } from './../../user/user.model';
+import { Measurement } from '../measurement.model';
 
 @Component({
   selector: 'app-edit-measurement',
   templateUrl: './edit-measurement.component.html',
-  styleUrls: ['./edit-measurement.component.scss'],
+  styleUrls: ['./edit-measurement.component.scss', './../add-measurement/add-measurement.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class EditMeasurementComponent implements OnInit {
+  weightForm: FormGroup;
   perimeterForm: FormGroup;
   skinfoldForm: FormGroup;
 
-  client:  User;
+  measurement: Measurement;
 
   // Disable popup from closing
   @HostListener('window:keyup.esc') onKeyUp() {
@@ -34,48 +36,55 @@ export class EditMeasurementComponent implements OnInit {
                private measurementService: MeasurementService,
                @Inject(MAT_DIALOG_DATA) public data: any
                ) {
-                 this.client = this.data.client;
                }
 
   ngOnInit() {
+    this.measurement = this.data.measurement;
+
+    this.weightForm = this.fb.group({
+      weight: [this.measurement.weight || '']
+    });
+
     this.perimeterForm = this.fb.group({
-      head: [''],
-      neck: [''],
-      armRelaxed: [''],
-      armFlexed: [''],
-      forearm: [''],
-      wrist: [''],
-      thorax: [''],
-      waist: [''],
-      hip: [''],
-      thighMid: [''],
-      thighMax: [''],
-      calf: [''],
-      ankle: ['']
+      head: [this.measurement.perimeters.head || ''],
+      neck: [this.measurement.perimeters.neck || ''],
+      armRelaxed: [this.measurement.perimeters.armRelaxed || ''],
+      armFlexed: [this.measurement.perimeters.armFlexed || ''],
+      forearm: [this.measurement.perimeters.forearm || ''],
+      wrist: [this.measurement.perimeters.wrist || ''],
+      thorax: [this.measurement.perimeters.thorax || ''],
+      waist: [this.measurement.perimeters.waist || ''],
+      hip: [this.measurement.perimeters.hip || ''],
+      thighMid: [this.measurement.perimeters.thighMid || ''],
+      thighMax: [this.measurement.perimeters.thighMax || ''],
+      calf: [this.measurement.perimeters.calf || ''],
+      ankle: [this.measurement.perimeters.ankle || '']
     });
 
     this.skinfoldForm = this.fb.group({
-      triceps: [''],
-      biceps: [''],
-      subescapular: [''],
-      crestaIliaca: [''],
-      supraespinal: [''],
-      abdominal: [''],
-      frontalThigh: [''],
-      skinfoldCalf:  ['']
+      triceps: [this.measurement.skinfolds.triceps || ''],
+      biceps: [this.measurement.skinfolds.biceps || ''],
+      subescapular: [this.measurement.skinfolds.subescapular || ''],
+      crestaIliaca: [this.measurement.skinfolds.crestaIliaca || ''],
+      supraespinal: [this.measurement.skinfolds.supraespinal || ''],
+      abdominal: [this.measurement.skinfolds.abdominal || ''],
+      frontalThigh: [this.measurement.skinfolds.frontalThigh || ''],
+      skinfoldCalf:  [this.measurement.skinfolds.skinfoldCalf || '']
     });
   }
 
   addMeasurements() {
     const data = {
-      clientID: this.client.uid,
-      created: new Date(),
+      clientID: this.measurement.clientID,
+      created: this.measurement.created,
+      edited: new Date(),
+      weight: this.weightForm.get('weight').value,
       perimeters: this.perimeterForm.value,
       skinfolds: this.skinfoldForm.value
     };
 
     console.log(data);
-    this.measurementService.addMeasurement(data);
+    this.measurementService.updateMeasurement(this.measurement.measurementID, data);
   }
 
   closeDialog() {

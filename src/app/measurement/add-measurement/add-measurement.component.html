@@ -7,6 +7,18 @@
 
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="perimeterForm">
+      <form [formGroup]="weightForm" class="weight-form">
+        <div class="form-wrapper">
+          <div class="form-field-container weight">
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Weight</mat-label>
+              <input type="number" min="0" matInput placeholder="1" formControlName="weight" autofocus autocomplete="off" >
+              <span class="input-unit">kg</span>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+
       <form [formGroup]="perimeterForm">
         <ng-template matStepLabel>Perimeters</ng-template>
 

@@ -12,6 +12,7 @@ import { AuthService } from './../../core/auth/auth.service';
   encapsulation: ViewEncapsulation.None
 })
 export class AddMeasurementComponent implements OnInit {
+  weightForm: FormGroup;
   perimeterForm: FormGroup;
   skinfoldForm: FormGroup;
 
@@ -40,6 +41,10 @@ export class AddMeasurementComponent implements OnInit {
                }
 
   ngOnInit() {
+    this.weightForm = this.fb.group({
+      weight: [''],
+    });
+
     this.perimeterForm = this.fb.group({
       head: [''],
       neck: [''],
@@ -73,11 +78,10 @@ export class AddMeasurementComponent implements OnInit {
       clientID: this.client.uid,
       specialistID: this.auth.currentUserId,
       created: new Date(),
+      weight: this.weightForm.get('weight').value,
       perimeters: this.perimeterForm.value,
       skinfolds: this.skinfoldForm.value
     };
-
-    console.log(data);
     this.measurementService.addMeasurement(data);
   }
 

@@ -314,10 +314,7 @@ section.reviews-opened {
     flex-flow: column wrap;
     overflow: hidden;
     padding: 0;
-    margin: 2em 0 2em -2em;
-    @include respond-down($sm) {
-        margin: 0 0 0 -2em;
-    }
+    margin: 0 0 0 -2em;
 
     h1 {
         margin: 0.5em 0 0 3em;

@@ -146,14 +146,7 @@
         </div>
       </section>
       
-      <section class="measurements" *ngIf="measurements">
-        <h1 class="section-title">Measurements</h1>
-        <div class="measurement__container">
-          <app-measurement-list-item *ngFor="let measurement of measurements; let i=index"
-          [client]="user" [measurement]="measurement" [i]="i">
-          </app-measurement-list-item>
-        </div>
-      </section>
+      <app-measurement-list [client]="user" [measurements]="measurements" *ngIf="measurements"></app-measurement-list>
 
       <section class="guidelines" *ngIf="guidelines">
         <h1 class="section-title">Guidelines</h1>

@@ -1,15 +1,19 @@
 <ng-container  *ngIf="auth.user | async as user">
-  <div class="measurement-item-container" *ngIf="measurement && client && i">
-    <h1>{{i}}</h1>
-    <div class="created">
-      <i class="far fa-clock"></i>
+  <div class="measurement-item-container" *ngIf="measurement && client && i && specialist">
+    <h2>{{i}}.</h2>
+    <div class="info-container" (click)="openMeasurementDetail(measurement)">
       <h3>{{measurement.created.toDate() | date: 'short'}}</h3>
+      <h3 *ngIf="measurement.edited" class="not-mobile">{{measurement.edited.toDate() | date: 'short'}}</h3>
+      <h3 *ngIf="!measurement.edited" class="not-mobile">Not edited yet</h3>
+      <h3>{{specialist.displayName}}</h3>
+      <h3 *ngIf="measurement.weight" class="weight">{{measurement.weight}}kg</h3>
+      <h3 *ngIf="!measurement.weight" class="weight">-</h3>
     </div>
     <button class="edit-btn" *ngIf="user.roles.admin || user.roles.specialist" 
-    (click)="toggleEdit()">
+    (click)="editMeasurement(measurement)">
       <i class="far fa-edit"></i>
     </button>
-    <button class="edit-btn" *ngIf="user.roles.admin || user.roles.specialist" 
+    <button class="delete-btn" *ngIf="user.roles.admin || user.roles.specialist" 
     (click)="deleteMeasurement(measurement)">
       <i class="far fa-trash-alt"></i>
     </button>

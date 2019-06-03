@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material';
 import { UserService } from './../../user/user.service';
 import { MeasurementService } from './../measurement.service';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
+import { EditMeasurementComponent } from '../edit-measurement/edit-measurement.component';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class MeasurementListItemComponent implements OnInit {
   @Input() measurement: Measurement;
   @Input() client: User;
   @Input() i;
+  specialist: User;
   detailOpen = false;
 
   constructor( public auth: AuthService,
@@ -28,15 +30,10 @@ export class MeasurementListItemComponent implements OnInit {
                private measurementService: MeasurementService) { }
 
   ngOnInit() {
-    setTimeout(() => {
-      console.log(this.measurement);
-      console.log(this.client);
-      console.log(this.i);
-    });
-    // this.userService.getUserDataByID(this.measurement.clientID).subscribe(user => this.client = user);
+    this.userService.getUserDataByID(this.measurement.specialistID).subscribe(user => this.specialist = user);
   }
 
-  deleteMeasurementDialog(measurement) {
+  deleteMeasurement(measurement) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         measurementID: measurement.measurementID,
@@ -56,16 +53,17 @@ export class MeasurementListItemComponent implements OnInit {
     });
   }
 
-  // editMeasurement(measurement) {
-  //   const url = `dashboard/measurements/${measurement.measurementID}`;
-  //   this.router.navigate([url]);
-  //   return this.measurementService.editShow = true;
-  // }
+  editMeasurement(measurement) {
+    const dialogRef = this.dialog.open(EditMeasurementComponent, {
+      data: {
+        measurement: measurement
+      },
+      panelClass: 'add-measurement-dialog'
+    });
+  }
 
-
-  linkToChild(measurement) {
-    const url = `dashboard/measurements/${measurement.measurementID}`;
-    this.router.navigate([url]);
+  openMeasurementDetail(measurement) {
+    alert('TODO: MEASUREMENT DETAIL DIALOG');
   }
 
 }

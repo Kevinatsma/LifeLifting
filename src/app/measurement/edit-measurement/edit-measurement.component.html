@@ -7,6 +7,19 @@
 
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="perimeterForm">
+
+        <form  [formGroup]="weightForm" class="weight-form">
+          <div class="form-wrapper">
+            <div class="form-field-container weight">
+              <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Weight</mat-label>
+                <input type="number" min="0" matInput formControlName="weight" autofocus autocomplete="off" >
+                <span class="input-unit">kg</span>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+
       <form [formGroup]="perimeterForm">
         <ng-template matStepLabel>Perimeters</ng-template>
 
@@ -16,7 +29,7 @@
           <div class="form-field-container head">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Head</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="head" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="head" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>          
@@ -24,7 +37,7 @@
           <div class="form-field-container arms-relaxed">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Arm relaxed</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="armRelaxed" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="armRelaxed" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -32,7 +45,7 @@
           <div class="form-field-container thorax">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Thorax</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="thorax" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="thorax" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -40,7 +53,7 @@
           <div class="form-field-container hip">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Hip</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="hip" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="hip" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -48,7 +61,7 @@
           <div class="form-field-container wrist">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Wrist</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="wrist" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="wrist" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -56,7 +69,7 @@
           <div class="form-field-container thigh-mid">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Thigh Mid</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="thighMid" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="thighMid" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -64,7 +77,7 @@
           <div class="form-field-container ankle">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Ankle</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="ankle" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="ankle" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -79,7 +92,7 @@
           <div class="form-field-container neck">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Neck</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="neck" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="neck" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -87,7 +100,7 @@
           <div class="form-field-container arms-flexed">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Arm flexed</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="armFlexed" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="armFlexed" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -95,7 +108,7 @@
           <div class="form-field-container waist">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Waist</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="waist" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="waist" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -103,7 +116,7 @@
           <div class="form-field-container forearm">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Forearm</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="forearm" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="forearm" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -111,7 +124,7 @@
           <div class="form-field-container thigh-max">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Thigh Max</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="thighMax" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="thighMax" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -119,7 +132,7 @@
           <div class="form-field-container calf">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Calf</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="calf" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="calf" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -146,7 +159,7 @@
           <div class="form-field-container supraespinal">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Supraespinal</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="supraespinal" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="supraespinal" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -154,7 +167,7 @@
           <div class="form-field-container triceps">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Triceps</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="triceps" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="triceps" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>          
@@ -162,7 +175,7 @@
           <div class="form-field-container abdominal">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Abdominal</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="abdominal" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="abdominal" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -170,7 +183,7 @@
           <div class="form-field-container frontal-thigh">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Frontal thigh</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="frontalThigh" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="frontalThigh" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -184,7 +197,7 @@
           <div class="form-field-container subescapular">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Subescapular</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="subescapular" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="subescapular" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -192,7 +205,7 @@
           <div class="form-field-container biceps">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Biceps</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="biceps" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="biceps" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -200,7 +213,7 @@
           <div class="form-field-container cresta-iliaca">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Cresta Iliaca </mat-label>
-              <input type="number" matInput placeholder="1" formControlName="crestaIliaca" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="crestaIliaca" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
@@ -209,7 +222,7 @@
           <div class="form-field-container skinfold-calf">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Calf</mat-label>
-              <input type="number" matInput placeholder="1" formControlName="skinfoldCalf" autofocus autocomplete="off" >
+              <input type="number" matInput formControlName="skinfoldCalf" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>

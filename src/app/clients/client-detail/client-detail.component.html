@@ -123,9 +123,7 @@
         </div>
       </section>
 
-      <section class="measurements" *ngIf="hasMeasurements">
-        <h1 class="section-title">Measurement moments</h1>
-      </section>
+      <app-measurement-list [client]="user" [measurements]="measurements" *ngIf="measurements"></app-measurement-list>
 
       <section class="guidelines" *ngIf="hasGuidelines">
         <h1 class="section-title">Guidelines</h1>

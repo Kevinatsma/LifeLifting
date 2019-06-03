@@ -1,0 +1,18 @@
+<section class="measurements" *ngIf="measurements &&  client">
+  <h1 class="section-title">Measurements</h1>
+  <div class="measurement__container">
+    <div class="measurement__container-header">
+      <h3>#</h3>
+      <h3>Created</h3>
+      <h3 class="not-mobile">Edited</h3>
+      <h3>Specialist</h3>
+      <h3>Weight</h3>
+    </div>
+    <app-measurement-list-item *ngFor="let measurement of measurements; let i=index"
+    [client]="client" [measurement]="measurement" [i]="i">
+    </app-measurement-list-item>
+    <p class="card-text" *ngIf="!measurements.length">
+      No measurements yet
+    </p>
+  </div>
+</section>
