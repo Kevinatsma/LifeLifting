@@ -147,9 +147,7 @@ export class ShoppingListDetailComponent implements OnInit {
 
   updateListItem(e) {
     const id = e.source._uniqueId;
-    console.log(id);
     const checkboxField = document.getElementById(`${id}`);
-    console.log(checkboxField);
     if (checkboxField.classList.contains('completed')) {
       checkboxField.classList.remove('completed');
     } else {

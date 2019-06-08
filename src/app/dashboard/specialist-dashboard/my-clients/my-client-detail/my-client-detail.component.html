@@ -22,14 +22,25 @@
         </ng-template>
 
         <div class="specialist-actions">
-          <button class="icon-button action-btn" (click)="openMealDialog()">
+          <button class="icon-button action-btn" (click)="openMealDialog()" matTooltip="Create a mealplan"
+          matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition">
             <i class="fas fa-weight"></i>
           </button>
-          <button class="icon-button action-btn" (click)="openGuideDialog()">
+          <button class="icon-button action-btn" (click)="openGuideDialog()" matTooltip="Create a guideline"
+          matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition">
             <i class="far fa-file-alt"></i>
           </button>
-          <button class="icon-button action-btn" (click)="openMeasurementDialog()">
+          <button class="icon-button action-btn" (click)="openMeasurementDialog()" matTooltip="Create a measurement"
+          matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition">
             <i class="fas fa-ruler-combined"></i>
+          </button>
+          <button class="icon-button action-btn" (click)="openGuideDialog()" matTooltip="Create a first consultation"
+          matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition">
+            <i class="far fa-clipboard"></i>
+          </button>
+          <button class="icon-button action-btn" (click)="openMeasurementDialog()" matTooltip="Create a follow-up consultation"
+          matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition">
+            <i class="fas fa-file-import"></i>
           </button>
         </div>
 

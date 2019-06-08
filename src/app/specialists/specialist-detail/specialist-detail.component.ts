@@ -70,7 +70,6 @@ export class SpecialistDetailComponent implements OnInit {
           this.specialist = specialist;
           this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${this.specialist.uid}`));
           this.reviews = this.reviewsCol.valueChanges();
-          console.log(this.reviews);
         });
       }
     }, 1000);

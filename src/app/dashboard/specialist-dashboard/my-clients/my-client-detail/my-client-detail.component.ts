@@ -33,6 +33,10 @@ export class MyClientDetailComponent implements OnInit {
   mealplansCol: AngularFirestoreCollection<Mealplan>;
   mealplans$: Observable<Mealplan[]>;
   mealplans: Mealplan[];
+
+  tooltipPosition = 'left';
+
+  // Booleans
   reviewsVisible = true;
   actionMenuOpen: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();

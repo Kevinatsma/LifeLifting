@@ -203,7 +203,6 @@ export class MealplanDetailComponent implements OnInit {
   // }
 
   updateTabStates(e) {
-    console.log(e);
     if (!this.isMobile) {
       const highlighter: NodeListOf<Element> = document.querySelectorAll('.highlight');
       highlighter.forEach(el => {
@@ -218,7 +217,6 @@ export class MealplanDetailComponent implements OnInit {
     // Redirect click behavior
     const link = e.target.getAttribute('id');
     const activeLink = document.getElementById(link);
-    console.log(activeLink);
     activeLink.classList.add('active');
 
     // show/hide containers

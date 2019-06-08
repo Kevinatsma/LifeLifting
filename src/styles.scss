@@ -863,13 +863,18 @@ mat-select.ng-dirty{
 // Mat Tooltip
 
 .tooltip {
-    font-size: 14px;
-    text-align: center;
+    &-warning, &-info {
+        font-size: 14px;
+        font-family: $main-font;
+        letter-spacing: 0.5px;
+        text-align: center;
+    }
+
     &-warning {
-        background: $brand-danger;
+        background-color: $brand-danger;
     }
     &-info {
-        background: $primary-light;
+        background-color: $primary-color;
     }
 }
 

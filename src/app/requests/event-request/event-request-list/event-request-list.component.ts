@@ -55,7 +55,6 @@ export class EventRequestListComponent implements OnInit {
 
 
   closeDialog() {
-    console.log(this.eventLength);
     const data = {
       stats: {
         amountOfEventRequests: this.eventLength

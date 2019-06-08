@@ -78,7 +78,6 @@ export class AddFoodDialogComponent implements OnInit {
   }
 
   patchFoodNumber(foods) {
-    console.log(foods.length);
     const foodNumber =  foods.length + 1;
     this.infoForm.get('productNumber').patchValue(`${foodNumber}`);
   }
@@ -139,14 +138,12 @@ export class AddFoodDialogComponent implements OnInit {
       factor: this.unitForm.get('factor').value,
       preperations: this.prepForms.value,
     };
-    console.log(data);
     this.foodService.addFood(data);
   }
 
   // Update on unit change
   updateUnit() {
     const unit = this.unitForm.get('unit').value;
-    console.log(unit);
     switch (unit) {
       case 'Unit':
         this.shoppingUnit = 'unit';

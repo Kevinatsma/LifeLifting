@@ -83,7 +83,6 @@ export class EditMeasurementComponent implements OnInit {
       skinfolds: this.skinfoldForm.value
     };
 
-    console.log(data);
     this.measurementService.updateMeasurement(this.measurement.measurementID, data);
   }
 

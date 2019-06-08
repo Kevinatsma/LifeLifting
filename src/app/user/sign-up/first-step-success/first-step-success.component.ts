@@ -35,7 +35,6 @@ export class FirstStepSuccessComponent implements OnInit {
   }
 
   closeSection() {
-    console.log('hey');
     this.close.emit(null);
   }
 }
