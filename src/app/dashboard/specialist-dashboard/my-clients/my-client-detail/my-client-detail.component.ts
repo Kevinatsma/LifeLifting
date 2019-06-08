@@ -16,6 +16,8 @@ import { Guideline } from '../../../../guidelines/guideline.model';
 import { Mealplan } from '../../../../mealplans/mealplan.model';
 import { AddMeasurementComponent } from '../../../../measurement/add-measurement/add-measurement.component';
 import { Measurement } from '../../../../measurement/measurement.model';
+import { AddFollowUpComponent } from 'src/app/follow-up-consultation/add-follow-up/add-follow-up.component';
+import { AddFirstConsultationComponent } from 'src/app/first-consultation/add-first-consultation/add-first-consultation.component';
 
 
 @Component({
@@ -153,7 +155,6 @@ export class MyClientDetailComponent implements OnInit {
   }
 
   openGuideDialog() {
-    // Set data for Dialog
     this.dialog.open(AddGuideDialogComponent, {
       data: {
         uid: this.user.uid,
@@ -166,7 +167,6 @@ export class MyClientDetailComponent implements OnInit {
   }
 
   openMeasurementDialog() {
-    // Set data for Dialog
     this.dialog.open(AddMeasurementComponent, {
       data: {
         client: this.user,
@@ -175,6 +175,24 @@ export class MyClientDetailComponent implements OnInit {
         currentWeight: this.user.basicData.currentWeight
       },
       panelClass: 'add-measurement-dialog'
+    });
+  }
+
+  openFirstConsultationDialog() {
+    this.dialog.open(AddFirstConsultationComponent, {
+      data: {
+        client: this.user
+      },
+      panelClass: 'first-consultation-dialog'
+    });
+  }
+
+  openFollowUpDialog() {
+    this.dialog.open(AddFollowUpComponent, {
+      data: {
+        client: this.user
+      },
+      panelClass: 'follow-up-dialog'
     });
   }
 

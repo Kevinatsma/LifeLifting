@@ -54,6 +54,8 @@ import { MyCalendarClientComponent } from './client-dashboard/my-calendar-client
 import { DashboardService } from './dashboard.service';
 import { ShoppingListDetailComponent } from '../shopping-list/shopping-list-detail.component';
 import { MeasurementModule } from './../measurement/measurement.module';
+import { FirstConsultationModule } from '../first-consultation/first-consultation.module';
+import { FollowUpConsultationModule } from '../follow-up-consultation/follow-up-consultation.module';
 
 
 const routes: Routes = [
@@ -133,7 +135,9 @@ const routes: Routes = [
     GuidelinesModule,
     MealplansModule,
     MaterialModule,
-    MeasurementModule
+    MeasurementModule,
+    FirstConsultationModule,
+    FollowUpConsultationModule
   ],
   exports: [
     RouterModule,
