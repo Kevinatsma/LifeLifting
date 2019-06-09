@@ -8,6 +8,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 // Navigation
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -57,7 +59,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatChipsModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSliderModule
   ],
   exports: [
     MatCardModule,
@@ -81,7 +84,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatChipsModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSliderModule
   ]
 })
 export class MaterialModule { }

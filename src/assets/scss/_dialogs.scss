@@ -100,7 +100,8 @@ main.dialog-wrapper {
     }
 }
 
-.add-user-dialog, .add-package-dialog, .review-dialog, .add-food-dialog, .add-exercise-dialog, .add-guide-dialog {
+.add-user-dialog, .add-package-dialog, .review-dialog, .add-food-dialog, .add-exercise-dialog, .add-guide-dialog, 
+::ng-deep .follow-up-dialog {
     overflow-y: auto;
     
     @include respond-down($sm) {
