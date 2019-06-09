@@ -40,7 +40,7 @@ main.specialist-list-wrapper {
             }
 
             @include respond-down($xs) {
-                width: 84vw;
+                width: 100%;
             }
         }
 

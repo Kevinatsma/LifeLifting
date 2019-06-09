@@ -94,7 +94,7 @@
     </mat-step>
 
     <mat-step [stepControl]="followUpForm">
-      <ng-template matStepLabel>Review</ng-template>
+      <ng-template matStepLabel>Routine</ng-template>
 
       <div class="title-area">
         <h3>🚴 Routine</h3>
@@ -175,7 +175,7 @@
     </mat-step>
 
     <mat-step [stepControl]="followUpForm">
-      <ng-template matStepLabel>Review</ng-template>
+      <ng-template matStepLabel>Meals & habits</ng-template>
       
       <div class="title-area">
         <h3>🍜 Meals and habits</h3>
@@ -255,7 +255,7 @@
     </mat-step>
 
     <mat-step [stepControl]="followUpForm">
-      <ng-template matStepLabel>Review</ng-template>
+      <ng-template matStepLabel>Comments</ng-template>
       
       <div class="title-area">
         <h3>👀 Personal comments</h3>
@@ -297,7 +297,7 @@
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
         <button type="submit" class="dialog-button" (click)="addFollowUpConsultation()"
-          [class.disabled]="!followUpForm.valid" [disabled]="!followUpForm.valid"
+          [class.disabled]="!followUpForm.valid" [disabled]="!followUpForm.valid" mat-dialog-close
           >
           Done
         </button>

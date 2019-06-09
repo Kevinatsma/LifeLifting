@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FollowUpConsultationService } from '../follow-up-consultation.service';
 import { Mealplan } from '../../mealplans/mealplan.model';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
-import { FollowUpConsultation } from '../follow-up-consultation';
+import { FollowUpConsultation } from '../follow-up-consultation.model';
 
 @Component({
   selector: 'app-edit-follow-up',
@@ -46,6 +46,7 @@ export class EditFollowUpComponent implements OnInit {
      this.client = data.client;
      this.followUp = data.followUp;
      this.getMealplans(data.client);
+     this.dietFollowPercentage = data.followUp.dietFollowPercentage;
   }
 
   ngOnInit() {
@@ -93,7 +94,7 @@ export class EditFollowUpComponent implements OnInit {
       clientID: this.client.uid,
       specialistID: this.client.specialist,
       mealplanID: this.followUpForm.get('mealplanID').value,
-      creationDate: new Date(),
+      edited: new Date(),
       dietFollowPercentage: this.dietFollowPercentage,
       likeMost: this.followUpForm.get('likeMost').value,
       likeLeast: this.followUpForm.get('likeLeast').value,

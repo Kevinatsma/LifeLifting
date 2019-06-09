@@ -17,6 +17,7 @@
         padding: 0;
 
         .close-section {
+            z-index: 150;
             @include respond-down($sm) {
                 position: relative;
                 top: 4.5em;
@@ -108,14 +109,15 @@
                         textarea {
                             border: 1.5px solid $middle-grey !important;
                             caret-color: $primary-color !important;
-                            padding: 1em!important;
+                            line-height: 29px;
                             margin-top: 0.75em;
+                            padding: 0.75em 1em 2em!important;
                             background: $light-grey;
 
                             @include respond-down($sm) {
                                 width: 100%;
                                 box-sizing: border-box;
-                                height: 80px !important;
+                                min-height: 100px !important;
                             }
 
                             &::placeholder {
@@ -224,6 +226,10 @@
                         }
 
                         mat-form-field {
+                            @include respond-down($sm) {
+                                margin-right: 0!important;
+                            }
+
                             &:nth-child(1n) {
                                 margin-right: 10%;
                             }

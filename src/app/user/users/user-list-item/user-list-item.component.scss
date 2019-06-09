@@ -12,7 +12,7 @@ mat-card.list-item-card {
 
     @include respond-down($sm) {
         flex-flow: column wrap;
-        width: 84vw;
+        width: 100%;
     }
 
     @include respond-down($xs) {

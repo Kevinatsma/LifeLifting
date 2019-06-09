@@ -159,6 +159,8 @@
       
       <app-measurement-list [client]="user" [measurements]="measurements" *ngIf="measurements"></app-measurement-list>
 
+      <app-follow-up-list [client]="user" [followUps]="followUps" *ngIf="followUps"></app-follow-up-list>
+
       <section class="guidelines" *ngIf="guidelines">
         <h1 class="section-title">Guidelines</h1>
         <div class="guidelines__container">

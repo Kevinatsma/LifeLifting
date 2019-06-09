@@ -100,109 +100,112 @@ main.dialog-wrapper {
     }
 }
 
-.add-user-dialog, .add-package-dialog, .review-dialog, .add-food-dialog, .add-exercise-dialog, .add-guide-dialog, 
-::ng-deep .follow-up-dialog {
-    overflow-y: auto;
-    
-    @include respond-down($sm) {
-        min-width: 100vw!important;
-        min-height: 100vh!important;
-        overflow: hidden;
-    }
-
-    .mat-horizontal-content-container {
-        padding: 0;
-    }
-
-    .close-section {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-
-        .close-btn {
-            svg {
-                margin-right: 10px;
-            }
+::ng-deep {
+    .add-user-dialog, .add-package-dialog, .review-dialog, .add-food-dialog, .add-exercise-dialog, .add-guide-dialog, .follow-up-dialog {
+        overflow-y: auto;
+        
+        @include respond-down($sm) {
+            min-width: 100vw!important;
+            max-width: 100vw!important;
+            min-height: 100vh!important;
+            max-height: 100vh!important;
+            overflow: hidden;
         }
 
-        @include respond-down($sm) {
-            position: absolute;
-            top: 4em;
-            left: 0.5em;
-        }
-    }
-
-    .mat-dialog-container {
-        @include respond-down($sm) {
-            border-radius: 0;
-            overflow-y: auto;
+        .mat-horizontal-content-container {
             padding: 0;
         }
 
-        .mat-horizontal-stepper-header-container {
+        .close-section {
+            position: absolute;
+            right: 10px;
+            top: 10px;
 
-            @include  respond-down($sm) {
-                width: 100%;
-                margin: 0;
+            .close-btn {
+                svg {
+                    margin-right: 10px;
+                }
             }
 
-            mat-step-header {
-                @include respond-down($sm) {
-                    display: flex;
-                    align-items: center;
-                    height: 50px;
-                    justify-content: center;
-                }
-                .mat-step-label {
-                    font-weight: $bold;
-                    @include respond-down($sm) {
-                        display: none;
-                    }
-                }
-
-                .mat-step-icon {
-                    margin-right: 13px;
-                    @include respond-down($sm) {
-                        margin-right: 0;
-                    }
-                }
+            @include respond-down($sm) {
+                position: absolute;
+                top: 4em;
+                left: 0.5em;
             }
         }
 
-        .image-uploader-container {
+        .mat-dialog-container {
             @include respond-down($sm) {
-                max-height: calc(100vh - 120px);
-                overflow: hidden;
+                border-radius: 0;
+                overflow-y: auto;
+                padding: 0;
             }
 
-            section {
-                &.photo-title {
-                    @include respond-down($sm) {
-                        padding: 4em 1em 2em!important;
-                        margin: 0;
+            .mat-horizontal-stepper-header-container {
 
-                        h3 {
-                            margin: 0;
+                @include  respond-down($sm) {
+                    width: 100%;
+                    margin: 0;
+                }
+
+                mat-step-header {
+                    @include respond-down($sm) {
+                        display: flex;
+                        align-items: center;
+                        height: 50px;
+                        justify-content: center;
+                    }
+                    .mat-step-label {
+                        font-weight: $bold;
+                        @include respond-down($sm) {
+                            display: none;
+                        }
+                    }
+
+                    .mat-step-icon {
+                        margin-right: 13px;
+                        @include respond-down($sm) {
+                            margin-right: 0;
                         }
                     }
                 }
             }
 
-            .image-uploader {
+            .image-uploader-container {
                 @include respond-down($sm) {
-                    margin: 0 auto;
-                    width: 90%;
+                    max-height: calc(100vh - 120px);
+                    overflow: hidden;
+                }
+
+                section {
+                    &.photo-title {
+                        @include respond-down($sm) {
+                            padding: 4em 1em 2em!important;
+                            margin: 0;
+
+                            h3 {
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+
+                .image-uploader {
+                    @include respond-down($sm) {
+                        margin: 0 auto;
+                        width: 90%;
+                    }
                 }
             }
-        }
 
-        form {
-            @include respond-down($sm) {
-                padding: 0 1em;
-                margin: 4em 0 0 0;
-                height: calc(100vh - 120px - 4em);
-                overflow-y: auto;
-                flex-flow: column nowrap;
+            form {
+                @include respond-down($sm) {
+                    padding: 0 1em;
+                    margin: 4em 0 0 0;
+                    height: calc(100vh - 120px - 4em);
+                    overflow-y: auto;
+                    flex-flow: column nowrap;
+                }
             }
         }
     }

@@ -1,0 +1,41 @@
+<ng-container *ngIf="auth.user | async as user">
+  <div class="follow-up-item-container">
+    <h2>{{i + 1}}.</h2>
+    <div class="info-container" (click)="openFollowUpDetail(followUp)">
+      <h3 class="not-mobile">{{followUp.creationDate.toDate() | date: 'short'}}</h3>
+      <h3 class="mobile mobile-date">{{followUp.creationDate.toDate() | date: 'shortDate'}}</h3>
+      <h3 *ngIf="followUp.edited" class="not-mobile">{{followUp.edited.toDate() | date: 'short'}}</h3>
+      <h3 *ngIf="!followUp.edited" class="not-mobile">Not edited yet</h3>
+      <h3 *ngIf="specialist">{{specialist.firstName}} {{specialist.lastName}}</h3>
+      <h3 class="mealplan-link" *ngIf="followUp.mealplanID"><a routerLink="../../mealplans/{{followUp.mealplanID}}">See Meal plan</a></h3>
+    </div>
+
+    <div class="not-mobile">
+      <button class="edit-btn" *ngIf="user.roles.admin || user.roles.specialist" 
+      (click)="editFollowUp(followUp)">
+        <i class="far fa-edit"></i>
+      </button>
+      <button class="delete-btn" *ngIf="user.roles.admin || user.roles.specialist" 
+      (click)="deleteFollowUp(followUp)">
+        <i class="far fa-trash-alt"></i>
+      </button>
+    </div>
+    <div class="mobile mat-menu" *ngIf="user.roles.specialist || user.roles.admin">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button class="edit-btn"
+        (click)="editFollowUp(followUp)">
+          <i class="far fa-edit"></i>
+          Edit
+        </button>
+        <button class="delete-btn"
+        (click)="deleteFollowUp(followUp)">
+          <i class="far fa-trash-alt"></i>
+          Delete
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</ng-container>

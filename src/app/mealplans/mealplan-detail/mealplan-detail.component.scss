@@ -22,25 +22,25 @@ h5 {
 
     @media only screen and (min-width: 1024px) {
         &.left {
-            left: -29.2vw !important;
+            left: -19.5vw !important;
         }
     }
 
     @media only screen and (min-width: 1200px) {
         &.left {
-            left: -24.2vw!important;
+            left: -29.3vw !important;
         }
     }
 
     @media only screen and (min-width: 1440px) {
         &.left {
-            left: -23.8vw!important;
+            left: -28.6vw!important;
         }
     }
 
     @media only screen and (max-width: 1024px) {
         &.left {
-            left: -25vw!important;
+            left: -30vw!important;
         }
     }
 
@@ -475,6 +475,7 @@ main.specialist-wrapper {
                 width: 175px;
                 height: 175px;
                 margin: -85px auto 0;
+                background-color: $middle-grey !important;
                 box-shadow: $card-shadow;
                 background-size: cover!important;
                 background-position: center!important;
@@ -483,6 +484,12 @@ main.specialist-wrapper {
 
                 @include respond-down($sm) {
                     margin: -85px calc(50% - (175px/2)) 0;
+                }
+
+                .no-photo  {
+                    @extend %flex-center;
+                    flex-flow: column nowrap;
+                    background: transparent;
                 }
 
                 svg {

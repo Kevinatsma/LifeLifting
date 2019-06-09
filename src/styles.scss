@@ -380,6 +380,10 @@ h1 {
         width: 100%;
         padding-bottom: 20px;
         margin: 0 auto 15px auto;
+
+        @include  respond-down($sm) {
+            margin: 0;
+        }
     }
 
     &.border-bottom {
@@ -629,6 +633,19 @@ ul {
     background: $secondary-color;
     border-radius: 50%;
     margin: 0 1em;
+}
+
+// Mat overlays
+
+::ng-deep {
+    .mat-drawer-transition .mat-drawer-backdrop {
+            display: none;
+    }
+
+    .mat-drawer-backdrop.mat-drawer-shown {
+            visibility: hidden;
+            background-color: transparent;
+    }
 }
 
 // Mat Cards
@@ -955,7 +972,7 @@ mat-select.ng-dirty{
         }
     }
 
-    section.measurements {
+    section.list-display{
         background-color: #fff;
         box-sizing: border-box;
         box-shadow: $card-shadow;
@@ -963,13 +980,17 @@ mat-select.ng-dirty{
         padding: 1em 2em 2em;
         height: auto;
         width: 100%;
+
+        @include respond-down($sm) {
+            padding: 1em 1.5em 2em;
+        }
     
         .section-title {
             text-align: left;
             margin: 0.5em 0 0 0.5em;
         }
     
-        .measurement__container {
+        .list-display__container {
             box-sizing: border-box;
             display: flex;
             flex-flow: column nowrap;
@@ -987,16 +1008,37 @@ mat-select.ng-dirty{
                 padding: 0 15px;
                 width: 100%;
 
+                @include respond-down($sm) {
+                    padding: 0;
+                }
+
                 h3 {
-                    margin: 0;
                     font-size: 16px;
+                    margin: 0;
                     width: 170px;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+
+                    @include respond-down($sm) {
+                        min-width: 90px;
+                        width: 90px;
+                    }
 
                     &:first-child {
                         width: 65px;
                     }
                 }
+
+                .number {
+                    @include respond-down($sm) {
+                        min-width: 30px!important;
+                        width: 30px!important;
+                    }
+                }
             }
+
+
         }
     }
 }

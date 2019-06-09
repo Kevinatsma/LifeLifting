@@ -67,8 +67,16 @@
         Are you sure? The messages will be erased completely.
       </p>
     </ng-container>
+
     <ng-container *ngIf="data.measurementID">
       <h1>Delete this Measurement?</h1>
+      <p class="card-text">
+        Are you sure? The data will be erased completely.
+      </p>
+    </ng-container>
+
+    <ng-container *ngIf="data.fucID">
+      <h1>Delete this Follow-up Consultation?</h1>
       <p class="card-text">
         Are you sure? The data will be erased completely.
       </p>

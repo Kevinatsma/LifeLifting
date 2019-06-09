@@ -1,12 +1,9 @@
-import { Exercise } from '../exercises/exercise.model';
-import { Mealplan } from '../mealplans/mealplan.model';
-
 export class FollowUpConsultation {
     fucID: string;
     clientID: string;
     specialistID: string;
     mealplanID: string;
-    creationDate: Date;
+    creationDate?: Date;
     edited?: Date;
     dietFollowPercentage: number;
     likeMost: string;
