@@ -3,17 +3,31 @@
 @import './../../../assets/scss/dialogs';
 
 ::ng-deep .measurement-detail-dialog {
+    @include respond-down($sm) {
+        max-width: 100vw !important;
+    }
     .mat-dialog-container {
         background-color: #fff;
         min-height: 75vh;
         max-height: 75vh;
         min-width: 80vw;
         padding: 0;
+
+        @include respond-down($sm) {
+            min-width: 100vw;
+            max-width: 100vw;
+            min-height: 100vh;
+            max-height: 100vh;
+        }
     }
 
     main.measurement-detail-wrapper {
         height: 75vh;
         overflow: hidden;
+
+        @include respond-down($sm) {
+            height: 100vh;
+        }
         
         mat-horizontal-stepper {
             padding: 0 0 75px;

@@ -179,7 +179,7 @@ export class AddAppointmentDialogComponent implements OnInit {
     let start;
     let end;
 
-    if (!this.hasStartDate) {
+    if (this.auth.clientRoles(this.auth.authState)) {
       start = startNoTime
         .replace('00:00:00',
         `${this.appointmentForm.get('startHour').value}` + ':' + `${this.appointmentForm.get('startMinutes').value}` + ':00');

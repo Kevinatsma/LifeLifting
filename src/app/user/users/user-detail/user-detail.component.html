@@ -150,9 +150,8 @@
       </section>
 
       <app-measurement-list [client]="user" [measurements]="measurements" *ngIf="measurements"></app-measurement-list>
-            
+      <h1 class="section-title guideline-title">Guidelines</h1>      
       <section class="guidelines" *ngIf="hasGuidelines">
-        <h1 class="section-title">Guidelines</h1>
         <div class="guidelines__container">
           <app-guideline-list-item *ngFor="let guideline of guidelines" [guideline]="guideline"></app-guideline-list-item>
           <div class="guidelines__container__filler">
@@ -161,8 +160,8 @@
         </div>
       </section>
       
+      <h1 class="section-title guideline-title">Mealplans</h1>
       <section class="guidelines" *ngIf="hasMealplans">
-        <h1 class="section-title">Mealplans</h1>
         <div class="guidelines__container">
           <app-mealplan-list-item *ngFor="let mealplan of mealplans" [mealplan]="mealplan"></app-mealplan-list-item>
           <div class="guidelines__container__filler">

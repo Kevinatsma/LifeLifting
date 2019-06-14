@@ -338,7 +338,7 @@ section.reviews-opened {
     width: calc(100% + 4em);
     display: flex;
     flex-flow: column wrap;
-    overflow: hidden;
+    overflow-x: auto;
     padding: 0;
     margin: 2em 0 2em -2em;
     @include respond-down($sm) {
@@ -351,6 +351,10 @@ section.reviews-opened {
         @include respond-down($sm) {
             margin-left: 2em;
         }
+    }
+
+    .guideline-title {
+        margin: 60px auto 15px 1.5em;
     }
 
     &__container {
