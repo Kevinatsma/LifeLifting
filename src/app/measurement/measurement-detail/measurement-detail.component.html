@@ -1,3 +1,156 @@
-<p>
-  measurement-detail works!
-</p>
+<main class="measurement-detail-wrapper">
+  <div class="close-section mobile">
+    <button class="text-link close-btn" (click)="closeDialog()" type="button">
+      <i class="mobile fas fa-arrow-left"></i> Back
+    </button>
+  </div>
+
+  <mat-horizontal-stepper #stepper *ngIf="measurement">
+    <mat-step class="perimeter-step">
+      <div class="weight">
+        <div class="field-container weight">
+          <p class="card-text">Weight</p>
+          <h4>{{measurement.weight}} KG</h4>
+        </div>
+      </div>
+
+      <section class="perimeters">
+        <ng-template matStepLabel>Perimeters</ng-template>
+
+        <!--  Left side -->
+        <div class="wrapper left">
+          <div class="field-container head">
+            <p class="card-text">Head</p>
+            <h4>{{ measurement.perimeters.head }} cm </h4>
+          </div>          
+
+          <div class="field-container arms-relaxed">
+            <p class="card-text">Arm relaxed</p>
+            <h4>{{ measurement.perimeters.armRelaxed }} cm </h4>
+          </div>
+
+          <div class="field-container thorax">
+            <p class="card-text">Thorax</p>
+            <h4>{{ measurement.perimeters.thorax }} cm </h4>
+          </div>
+
+          <div class="field-container hip">
+            <p class="card-text">Hip</p>
+            <h4>{{ measurement.perimeters.hip }} cm </h4>
+          </div>
+
+          <div class="field-container wrist">
+            <p class="card-text">Wrist</p>
+            <h4>{{ measurement.perimeters.wrist }} cm </h4>
+          </div>
+
+          <div class="field-container thigh-mid">
+            <p class="card-text">Thigh Mid</p>
+            <h4>{{ measurement.perimeters.thighMid }} cm </h4>
+          </div>
+
+          <div class="field-container ankle">
+            <p class="card-text">Ankle</p>
+            <h4>{{ measurement.perimeters.ankle }} cm </h4>
+          </div>
+        </div>
+
+        <!-- Body Image -->
+        <img src="./../../../assets/img/body-muscle-front.png" class="body-img">
+
+        <!-- Right side -->
+        <div class="wrapper right">
+    
+          <div class="field-container neck">
+            <p class="card-text">Neck</p>
+            <h4>{{ measurement.perimeters.neck }} cm </h4>
+          </div>
+
+          <div class="field-container arms-flexed">
+            <p class="card-text">Arm flexed</p>
+            <h4>{{ measurement.perimeters.armFlexed }} cm </h4>
+          </div>
+
+          <div class="field-container waist">
+            <p class="card-text">Waist</p>
+            <h4>{{ measurement.perimeters.waist }} cm </h4>
+          </div>
+
+          <div class="field-container forearm">
+            <p class="card-text">Forearm</p>
+            <h4>{{ measurement.perimeters.forearm }} cm </h4>
+          </div>
+
+          <div class="field-container thigh-max">
+            <p class="card-text">Thigh Max</p>
+            <h4>{{ measurement.perimeters.thighMax }} cm </h4>
+          </div>
+    
+          <div class="field-container calf">
+            <p class="card-text">Calf</p>
+            <h4>{{ measurement.perimeters.calf }} cm </h4>
+          </div>
+        </div>
+      </section>
+    </mat-step>
+
+    <mat-step class="skinfold-step">
+      <section class='skinfolds'>
+        <ng-template matStepLabel>Skinfolds</ng-template>
+
+        <!--  Left side -->
+        <div class="wrapper left">
+          <div class="field-container supraespinal">
+            <p class="card-text">Supraespinal</p>
+            <h4>{{ measurement.skinfolds.supraespinal }} cm </h4>
+          </div>
+
+          <div class="field-container triceps">
+            <p class="card-text">Triceps</p>
+            <h4>{{ measurement.skinfolds.triceps }} cm </h4>
+          </div>          
+
+          <div class="field-container abdominal">
+            <p class="card-text">Abdominal</p>
+            <h4>{{ measurement.skinfolds.abdominal }} cm </h4>
+          </div>
+
+          <div class="field-container frontal-thigh">
+            <p class="card-text">Frontal thigh</p>
+            <h4>{{ measurement.skinfolds.frontalThigh }} cm </h4>
+          </div>
+        </div>
+
+        <img src="./../../../assets/img/body-muscle-front.png" class="body-img">
+
+        <!--  right -->
+        <div class="wrapper right">
+
+          <div class="field-container subescapular">
+            <p class="card-text">Subescapular</p>
+            <h4>{{ measurement.skinfolds.subescapular }} cm </h4>
+          </div>
+
+          <div class="field-container biceps">
+            <p class="card-text">Biceps</p>
+            <h4>{{ measurement.skinfolds.biceps }} cm </h4>
+          </div>
+
+          <div class="field-container cresta-iliaca">
+            <p class="card-text">Cresta Iliaca </p>
+            <h4>{{ measurement.skinfolds.crestaIliaca }} cm </h4>
+          </div>
+
+
+          <div class="field-container skinfold-calf">
+            <p class="card-text">Calf</p>
+            <h4>{{ measurement.skinfolds.skinfoldCalf }} cm </h4>
+          </div>
+        </div>
+      </section>    
+    </mat-step>
+
+  </mat-horizontal-stepper>
+
+</main>
+    

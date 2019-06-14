@@ -7,7 +7,7 @@
     border-bottom: 1px solid $border-color;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 60px;
     padding: 1em;
     width: 100%;
@@ -32,6 +32,7 @@
     }
 
     .mat-menu {
+        margin-left: auto;
         position: relative;
         right: -1.5em;
     }
@@ -40,9 +41,13 @@
         align-items: center;
         display: flex;
         flex-flow: row nowrap;
-        margin: 0;
+        margin: 0 auto 0 0;
         width: auto;
         max-width: 80%;
+
+        &:hover {
+            cursor: pointer;
+        }
         
         h3 {
             font-weight: $bold;
@@ -69,6 +74,7 @@
             }
 
             &.mealplan-link {
+                color: $primary-color !important;
                 min-width: 140px;
                 width: 140px;
 

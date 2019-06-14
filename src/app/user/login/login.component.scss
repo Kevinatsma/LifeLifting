@@ -102,8 +102,10 @@ section.login-container{
     }
 
     .btn-area {
+        flex-flow: column nowrap;
         margin: 40px auto 0;
         width: 100%;
+
         @include respond-down($sm) {
             display: block;
         }

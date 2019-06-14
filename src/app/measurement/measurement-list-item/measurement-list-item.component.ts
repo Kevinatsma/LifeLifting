@@ -8,6 +8,7 @@ import { UserService } from './../../user/user.service';
 import { MeasurementService } from './../measurement.service';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { EditMeasurementComponent } from '../edit-measurement/edit-measurement.component';
+import { MeasurementDetailComponent } from '../measurement-detail/measurement-detail.component';
 
 
 @Component({
@@ -63,7 +64,12 @@ export class MeasurementListItemComponent implements OnInit {
   }
 
   openMeasurementDetail(measurement) {
-    alert('TODO: MEASUREMENT DETAIL DIALOG');
+    const dialogRef = this.dialog.open(MeasurementDetailComponent, {
+      data: {
+        measurement: measurement
+      },
+      panelClass: 'measurement-detail-dialog'
+    });
   }
 
 }

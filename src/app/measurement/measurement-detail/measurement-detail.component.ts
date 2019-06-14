@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { Measurement } from '../measurement.model';
 
 @Component({
   selector: 'app-measurement-detail',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./measurement-detail.component.scss']
 })
 export class MeasurementDetailComponent implements OnInit {
+  measurement: Measurement;
 
-  constructor() { }
+  constructor( public dialog: MatDialog,
+               @Inject(MAT_DIALOG_DATA) public data: any) {
+                 this.measurement = data.measurement;
+                }
 
   ngOnInit() {
   }
 
+  closeDialog() {
+    this.dialog.closeAll();
+  }
 }

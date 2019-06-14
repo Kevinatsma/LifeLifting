@@ -84,10 +84,11 @@ main.add-measurement-wrapper {
 
         &.weight-form {
             padding: 0;
+            width: 180px;
 
             .form-wrapper {
                 position: absolute;
-                left: -30px;
+                left: 70;
                 top: 35px;
                 z-index: 14;
             }
