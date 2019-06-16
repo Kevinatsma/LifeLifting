@@ -12,6 +12,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { Mealplan } from './../../mealplans/mealplan.model';
 import { Measurement } from './../../measurement/measurement.model';
+import { FollowUpConsultation } from './../../follow-up-consultation/follow-up-consultation.model';
 
 
 @Component({
@@ -28,6 +29,8 @@ export class ClientDetailComponent implements OnInit {
   mealplans: Mealplan[];
   measurementCol: AngularFirestoreCollection<Measurement>;
   measurements: Measurement[];
+  followUpCol: AngularFirestoreCollection<FollowUpConsultation>;
+  followUps: FollowUpConsultation[];
   aboutExtended = false;
   reviewsVisible = true;
   hasReadMore = false;
@@ -85,6 +88,13 @@ export class ClientDetailComponent implements OnInit {
     });
   }
 
+  getFollowUps(uid) {
+    console.log(uid);
+    this.followUpCol = this.afs.collection('follow-ups', ref => ref.where('clientID', '==', `${uid}`).orderBy('creationDate', 'asc'));
+    this.followUpCol.valueChanges().subscribe(followUps => {
+      this.followUps = followUps;
+    });
+  }
 
   getMeasurements(uid) {
     this.measurementCol = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`).orderBy('created', 'asc'));
@@ -95,7 +105,7 @@ export class ClientDetailComponent implements OnInit {
 
   // Checkers
   checkReadMore(user) {
-    if (user.basicData.mainGoal.length > 50) {
+    if (user.basicData.mainGoal.length > 100) {
       this.hasReadMore = true;
     } else {
       this.hasReadMore = false;

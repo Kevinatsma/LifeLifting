@@ -9,6 +9,7 @@ import { FollowUpListComponent } from './follow-up-list/follow-up-list.component
 import { FollowUpListItemComponent } from './follow-up-list-item/follow-up-list-item.component';
 import { RouterModule } from '@angular/router';
 import { FollowUpDetailComponent } from './follow-up-detail/follow-up-detail.component';
+import { MealplansModule } from '../mealplans/mealplans.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FollowUpDetailComponent } from './follow-up-detail/follow-up-detail.com
     CommonModule,
     RouterModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    MealplansModule
   ],
   exports: [
     AddFollowUpComponent,

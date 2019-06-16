@@ -1,3 +1,248 @@
-<p>
-  follow-up-detail works!
-</p>
+<main class="dialog-wrapper follow-up-detail" *ngIf="followUp && client">
+  <div class="close-section">
+    <button mat-icon-button class="not-mobile close-btn" (click)="closeDialog()" type="button">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <button class="mobile text-link close-btn" (click)="closeDialog()" type="button">
+      <i class="mobile fas fa-arrow-left"></i> Back
+    </button>
+  </div>
+
+  <div class="dialog-title-area">
+    <h1>Follow-up Consultation</h1>
+    <h6>
+      Created: {{followUp.creationDate.toDate() | date: 'short'}} - 
+      <ng-container *ngIf="followUp.edited">Edited: {{followUp.edited.toDate() | date: 'short'}}</ng-container>
+    </h6>
+  </div>
+
+  <mat-vertical-stepper #stepper>
+    <mat-step>
+      <ng-template matStepLabel><h3>🧠 A quick recap</h3></ng-template>
+
+      <div class="title-area">
+        <p class="card-text">
+          A quick recap at the thoughts on the last mealplan.
+        </p>
+      </div>
+
+      <section class="field-wrapper">
+        <div class="mealplans" *ngIf="mealplan">
+          <h5>The mealplan for this follow-up</h5>
+          <app-mealplan-list-item [mealplan]="mealplan"></app-mealplan-list-item>
+        </div>
+
+        <div class="follow-percentage">
+          <span class="label">Diet following percentage</span>
+          <div class="percentage-circle">
+            {{followUp.dietFollowPercentage}}
+            <ng-container *ngIf="!followUp.dietFollowPercentage">0</ng-container>
+            <span>%</span>
+          </div>
+        </div>
+
+        <div class="field-container">
+          <h5>What did you like most?</h5>
+          <p class="card-text" placeholder="Write a short summary">
+            {{followUp.likeMost}}
+          </p>
+        </div>
+
+        <div class="field-container">
+          <h5>What did you like least?</h5>
+          <p class="card-text" placeholder="Write a short summary">
+            {{followUp.likeLeast}}
+          </p>
+        </div>
+
+        <div class="field-container">
+          <h5>What do you want to change and never see again?</h5>
+          <p class="card-text" placeholder="Write a short summary">
+            {{followUp.neverSeeAgain}}
+          </p>
+        </div>
+
+        <div class="field-container">
+          <h5>What would you like to see on your meal plans?</h5>
+          <p class="card-text">
+            {{followUp.mealplanPreferences}}
+          </p>
+        </div>
+      </section>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel><h3>🚴 Routine</h3></ng-template>
+
+      <div class="title-area">
+        <p class="card-text">
+          Please get as much information from the client as you can, in order to make a better and more
+          personal meal plan the next time.
+        </p>
+      </div>
+
+      <section class="field-wrapper">
+        <div class="field-container">
+          <h5>How is your bowel Movement Frequency?</h5>
+          <p class="card-text">
+            {{followUp.bowelMovementFrequency}}
+          </p>
+        </div>
+
+        <div class="field-container">
+          <h5>How are you sleeping?</h5>
+          <p class="card-text">
+            {{followUp.sleepingHabits}}
+          </p>
+        </div>
+
+        <div class="field-container">
+          <h5>How is your water intake going?</h5>
+          <p class="card-text">
+            {{followUp.waterIntake}}
+          </p>
+        </div>
+
+        <h3 class="section-title">The Activities</h3>
+        <section class="activities">
+          <div class="field-container">
+            <h5>What did you think about the frequency of the activity?</h5>
+            <p class="card-text">
+              {{followUp.activities.frequency}}
+            </p>
+          </div>
+
+          <div class="field-container">
+            <h5>What did you think about the activity itself?</h5>
+            <p class="card-text">
+              {{followUp.activities.activityType}}
+            </p>
+          </div>
+
+          <div class="field-container">
+            <h5>Would you like to change something?</h5>
+            <p class="card-text">
+              {{followUp.activities.changes}}
+            </p>
+          </div>
+
+          <div class="field-container">
+            <h5>What did you think about the supplementation proposed?</h5>
+            <p class="card-text">
+              {{followUp.activities.supplementation}}
+            </p>
+          </div>
+
+        </section>
+
+      </section>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel><h3>🍜 Meals and habits</h3></ng-template>
+
+      <div class="title-area">
+        <p class="card-text">
+          Please get as much information from the client as you can, in order to make a better and more
+          personal meal plan the next time.
+        </p>
+      </div>
+
+      <section class="field-wrapper">
+        <div class="field-container">
+          <h5>Are the portion sizes ok?</h5>
+          <p class="card-text">
+            {{followUp.portionSizes}}
+          </p>
+        </div>
+
+        <div class="field-container">
+          <h5>Were you feeling hungry? </h5>
+          <p class="card-text">
+            {{followUp.hungry}}
+          </p>
+        </div>
+
+        <div class="field-container">
+          <h5>Are you having trouble with any of the preparations? </h5>
+          <p class="card-text">
+            {{followUp.preperationTrouble}}
+          </p>
+        </div>
+
+        <h3 class="section-title">During the weekend</h3>
+        <section class="weekend-diet">
+          <div class="field-container">
+            <h5>What was your sleeping schedule?</h5>
+            <p class="card-text">
+              {{followUp.duringTheWeekend.sleepingSchedule}}
+            </p>
+          </div>
+
+          <div class="field-container">
+            <h5>Did you eat outside?</h5>
+            <p class="card-text">
+              {{followUp.duringTheWeekend.eatingOutside}}
+            </p>
+          </div>
+
+          <div class="field-container">
+            <h5>What about cheat meals?</h5>
+            <p class="card-text">
+              {{followUp.duringTheWeekend.cheatMeals}}
+            </p>
+          </div>
+
+          <div class="field-container">
+            <h5>The amount of meals you ate per day</h5>
+            <p class="card-text">
+              {{followUp.duringTheWeekend.mealsPerDay}}
+            </p>
+          </div>
+        </section>
+
+      </section>
+
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel><h3>👀 Personal comments</h3></ng-template>
+
+      <div class="title-area">
+        <p class="card-text">
+          Please get as much information from the client as you can, in order to make a better and more
+          personal meal plan the next time.
+        </p>
+      </div>
+
+      <section class="field-wrapper">
+        <div class="field-container">
+          <h5>Subjectively, how are you feeling?</h5>
+          <p class="card-text">
+            {{followUp.howYouFeeling}}
+          </p>
+        </div>
+
+        <div class="field-container">
+          <h5>Do you have any questions?</h5>
+          <p class="card-text">
+            {{followUp.questions}}
+          </p>
+        </div>
+
+        <h3 class="section-title">Observations Specialist</h3>
+        <section class="specialist-notes">
+          <div class="field-container">
+            <h5>Extra notes taken by specialist</h5>
+            <p class="card-text">
+              {{followUp.specialistNotes}}
+            </p>
+          </div>
+        </section>
+
+      </section>
+    </mat-step>
+
+  </mat-vertical-stepper>
+</main>

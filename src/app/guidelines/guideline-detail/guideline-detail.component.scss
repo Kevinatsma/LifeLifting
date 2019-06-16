@@ -32,6 +32,20 @@ main.specialist-wrapper {
             }
         }
 
+        .right {
+            min-width: calc(55px + 2em);
+
+            .not-mobile {
+                .hidden {
+                    display: flex;
+                    position: relative;
+                    opacity: 0;
+                    width: 55px;
+                    z-index: -1;
+                }
+            }
+        }
+
         button.icon-button {
             position: inherit;
         }
@@ -186,15 +200,15 @@ main.specialist-wrapper {
             margin: 6.5em auto 3em;
             cursor: auto;
 
+            &:focus, &:hover {
+                transform: scale(1);
+            }
+
             @include respond-down($sm) {
                 width: 100vw;
                 overflow-x: hidden;
                 margin: 6.5em auto 0;
                 overflow: visible;
-
-                &:focus, &:hover {
-                    transform: scale(1);
-                }
             }
 
             .chip-area {

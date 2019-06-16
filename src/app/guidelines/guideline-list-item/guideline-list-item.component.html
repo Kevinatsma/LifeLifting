@@ -1,5 +1,5 @@
 
-<mat-card class="list-item-card" *ngIf="guideline">
+<mat-card class="list-item-card" *ngIf="guideline && auth.user | async as user">
   <div *ngIf="client" class="card-circle" (click)="linkToChild(guideline, client)">
     <i class="far fa-file-alt"></i>
     <div class="nr-circle">
@@ -9,15 +9,17 @@
 
   <!-- Menu -->
   <ng-container *ngIf="auth.user | async as $user">
-    <button class="menu-icon-btn" mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu" backdropClass="context-menu-guideline">
-      <button mat-menu-item (click)="duplicateGuideline(guideline)" *ngIf="$user.roles.admin || $user.roles.specialist">
-        <i class="far fa-copy"></i>
-        <span>Duplicate</span>
+    <ng-container *ngIf="$user.roles.admin || $user.roles.specialist">
+      <button class="menu-icon-btn" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
       </button>
-    </mat-menu>
+      <mat-menu #menu="matMenu" backdropClass="context-menu-guideline">
+        <button mat-menu-item (click)="duplicateGuideline(guideline)">
+          <i class="far fa-copy"></i>
+          <span>Duplicate</span>
+        </button>
+      </mat-menu>
+    </ng-container>
   </ng-container>
 
   <p class="subtitle" *ngIf="!guideline.lastEdited">
@@ -43,7 +45,7 @@
       </ul>
     </div>
   </section>
-  <section class="actions">
+  <section class="actions" *ngIf="user.roles.admin || user.roles.specialist">
     <button type="button" (click)="deleteGuidelineDialog(guideline)">
       <i class="fas fa-trash"></i>
     </button>

@@ -144,6 +144,8 @@
           </div>
         </div>
       </section>
+
+      <app-follow-up-list [client]="user" [followUps]="followUps" *ngIf="followUps"></app-follow-up-list>
     </ng-container>
 
   </main>

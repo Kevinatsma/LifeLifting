@@ -14,6 +14,7 @@ import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
 import { MealplansModule } from '../mealplans/mealplans.module';
 import { MeasurementModule } from '../measurement/measurement.module';
+import { FollowUpConsultationModule } from '../follow-up-consultation/follow-up-consultation.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MeasurementModule } from '../measurement/measurement.module';
     GuidelinesModule,
     MealplansModule,
     MaterialModule,
-    MeasurementModule
+    MeasurementModule,
+    FollowUpConsultationModule
   ],
   exports: [
     ClientsComponent

@@ -7,7 +7,9 @@
       <h3 *ngIf="followUp.edited" class="not-mobile">{{followUp.edited.toDate() | date: 'short'}}</h3>
       <h3 *ngIf="!followUp.edited" class="not-mobile">Not edited yet</h3>
       <h3 *ngIf="specialist">{{specialist.firstName}} {{specialist.lastName}}</h3>
-      <h3 class="mealplan-link" *ngIf="followUp.mealplanID"><a routerLink="../../mealplans/{{followUp.mealplanID}}">See Meal plan</a></h3>
+      <h3 class="mealplan-link" *ngIf="followUp.mealplanID">
+        <a routerLink="../../mealplans/{{followUp.mealplanID}}" class="text-link">See Meal plan</a>
+      </h3>
     </div>
 
     <div class="not-mobile">

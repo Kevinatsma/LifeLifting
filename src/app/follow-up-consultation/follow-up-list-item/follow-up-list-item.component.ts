@@ -68,7 +68,7 @@ export class FollowUpListItemComponent implements OnInit {
         followUp: followUp,
         client: this.client
       },
-      panelClass: 'follow-up-dialog'
+      panelClass: 'follow-up-detail-dialog'
     });
   }
 
