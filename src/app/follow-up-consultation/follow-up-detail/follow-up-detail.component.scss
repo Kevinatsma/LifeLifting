@@ -49,7 +49,7 @@
                 padding: 10px 25px;
 
                 @include respond-down($sm) {
-                    padding: 10px 25px 10px 0;
+                    padding: 10px 0;
                     width: 90%;
                 }
             }

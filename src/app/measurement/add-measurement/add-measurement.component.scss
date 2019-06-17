@@ -73,7 +73,7 @@ main.add-measurement-wrapper {
 
         .mat-horizontal-content-container {
             padding: 0;
-            margin: 75px 0 0;
+            margin: 0;
         }
 
         .mat-step-label {
@@ -117,11 +117,14 @@ main.add-measurement-wrapper {
         &.weight-form {
             padding: 90px 16px 1em;
             width: 180px;
+            position: absolute;
 
             @include respond-down($sm) {
                 padding: 0 16px;
-                width: 100%;
+                position: relative;
+                margin: 60px 0 0;
                 justify-content: flex-start;
+                width: 100%;
             }
 
             .form-wrapper {
