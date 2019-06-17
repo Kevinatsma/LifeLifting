@@ -10,7 +10,7 @@
 
     .mat-dialog-container {
         min-width: 75vw;
-        padding: 2em 16px;
+        padding: 1.5em 16px;
     }
 
     .dialog-wrapper.follow-up-detail {
@@ -18,6 +18,16 @@
             .not-mobile {
                 position: fixed;
                 right: calc(12.5vw);
+            }
+
+            @include respond-down($sm) {
+                margin-bottom: 20px;
+
+                button {
+                    svg {
+                        margin: 0 10px 0 0;
+                    }
+                }
             }
         }
 
@@ -37,6 +47,11 @@
                 margin-bottom: 10px;
                 z-index: 500;
                 padding: 10px 25px;
+
+                @include respond-down($sm) {
+                    padding: 10px 25px 10px 0;
+                    width: 90%;
+                }
             }
 
             .mat-step-icon {
@@ -55,10 +70,18 @@
                 }
             }
 
+            .mat-vertical-content-container {
+                margin-left: 11px;
+            }
+
             .title-area {
                 p {
                     margin: 0 auto 30px 0;
                     width: 60%;
+
+                    @include respond-down($sm) {
+                        width: 100%;
+                    }
                 }
             }
 
@@ -71,10 +94,20 @@
                     margin: 0 5% 40px 0;
                     width: 45%;
 
+                    @include  respond-down($sm) {
+                        margin: 0;
+                        width: 100%;
+                    }
+
                     app-mealplan-list-item {
                         display: flex;
                         margin-top: 70px;
                         width: 260px;
+
+                        @include respond-down($sm) {
+                            margin: 20px 0 0;
+                            width: 270px;
+                        }
                     }
                 }
 
@@ -89,6 +122,10 @@
                     margin: 25px 0 0;
                     width: 270px;
 
+                    @include respond-down($sm) {
+                        margin: 0 0 20px;
+                    }
+
                     span.label {
                         font-weight: $semi-bold;
                         color: $text-black;
@@ -98,6 +135,10 @@
                         position: relative;
                         width: 75%;
 
+                        @include respond-down($sm) {
+                            margin: 0 auto 70px;
+                        }
+
                         &::after {
                             background-color: $middle-grey;
                             bottom: -15px;
@@ -106,6 +147,10 @@
                             height: 2px;
                             position: absolute;
                             width: 80%;
+
+                            @include respond-down($sm) {
+                                bottom: -30px;
+                            }
                         }
                     }
                         
@@ -136,6 +181,10 @@
                             left: -10px;
                             top: -11px;
                             z-index: 5;
+
+                            @include respond-down($sm) {
+                                left: -11px;
+                            }
                         }
 
                         span {
@@ -155,6 +204,10 @@
                     width: 45%;
                     margin: 0 5% 30px 0;
 
+                    @include  respond-down($sm) {
+                        width: 100%;
+                    }
+
                     h5 {
                         font-size: 14px;
                         color: $grey;
@@ -169,6 +222,10 @@
                         font-weight: $bold;
                         font-size: 16px;
                         color: $black;
+
+                        @include respond-down($sm) {
+                            padding: 20px 20px 30px;
+                        }
                     }
                 }
 
@@ -193,6 +250,18 @@
         .mat-vertical-stepper-content {
             margin-top: -10px;
             padding-left: 22px;
+
+            .vertical-content {
+                @include respond-down($sm) {
+                    padding: 0 0 24px;
+                }
+            }
+
+            .vertical-content-container {
+                @include respond-down($sm) {
+                    margin-left: 10px;
+                }
+            }
         }
     }
 }
