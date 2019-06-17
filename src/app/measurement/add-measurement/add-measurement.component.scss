@@ -3,6 +3,24 @@
 @import './../../../assets/scss/animations';
 
 main.add-measurement-wrapper {
+    position: relative;
+
+    .close-section {
+        &.mobile {
+            position: absolute;
+            left: 20px;
+            top: 100px;
+            z-index: 13;
+
+            .close-btn {
+                svg {
+                    margin-right: 10px;
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+
     mat-horizontal-stepper {
         padding: 0 0 75px;
         position: relative;
@@ -38,6 +56,10 @@ main.add-measurement-wrapper {
             z-index: 15;
             box-shadow: $toolbar-shadow;
 
+            @include respond-down($sm) {
+                padding: 0;
+            }
+
             .mat-step-icon {
                 display:  none;
             }
@@ -47,6 +69,11 @@ main.add-measurement-wrapper {
             border-top-width: 0;
             border-top-style: none;
             border: none;
+        }
+
+        .mat-horizontal-content-container {
+            padding: 0;
+            margin: 75px 0 0;
         }
 
         .mat-step-label {
@@ -82,15 +109,35 @@ main.add-measurement-wrapper {
         padding: 3em 4em 1em;
         width: 100%;
 
+        @include respond-down($sm) {
+            flex-flow: row nowrap;
+            padding: 0 16px 30px;
+        }
+
         &.weight-form {
-            padding: 0;
+            padding: 90px 16px 1em;
             width: 180px;
+
+            @include respond-down($sm) {
+                padding: 0 16px;
+                width: 100%;
+                justify-content: flex-start;
+            }
 
             .form-wrapper {
                 position: absolute;
                 left: 160px;
                 top: 35px;
                 z-index: 14;
+
+                @include  respond-down($sm) {
+                    position: unset;
+                    width: 75%;
+
+                    input {
+                        width: 69% !important;
+                    }
+                }
             }
         }
 
@@ -101,12 +148,20 @@ main.add-measurement-wrapper {
             width: 590px;
             top: 25px;
             pointer-events: none;
+
+            @include respond-down($sm) {
+                display: none;
+            }
         }
 
         .form-wrapper {
             display: flex;
             flex-flow: column nowrap;
             width: calc((100%/2) - 100px);
+
+            @include respond-down($sm) {
+                width: 45%;
+            }
 
             &:last-child {
                 align-items: center;
@@ -118,9 +173,26 @@ main.add-measurement-wrapper {
                 flex-flow: row nowrap;
                 margin-bottom: -15px;
 
+
+                @include respond-down($sm) {
+                    width: 100%;
+                }
+
                 mat-form-field {
+                    @include respond-down($sm) {
+                        right: unset !important;
+                        left: unset !important;
+                        top: unset !important;
+                        width: 100%;
+                    }
+
                     input {
                         width: 40px;
+
+                        @include respond-down($sm) {
+                            width: 50px;
+                            margin-top: 10px;
+                        }
                     }
                     
                     span.input-unit {
@@ -237,6 +309,10 @@ main.add-measurement-wrapper {
 
         &.skinfold-form {
             min-height: 620px;
+
+            @include respond-down($sm) {
+                min-height: 515px;
+            }
 
             .form-wrapper {
                 &.left {

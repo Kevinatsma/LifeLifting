@@ -15,11 +15,20 @@
     &:hover {
         background: $light-grey;
     }
+
+    @include respond-down($sm) {
+        justify-content: flex-start;
+        padding: 1em 5px;
+    }
     
     h2 {
         font-size: 18px;
         margin: 0;
         width: 65px;
+
+        @include respond-down($sm) {
+            width: 40px;
+        }
     }
 
     .info-container {
@@ -29,6 +38,10 @@
         margin: 0;
         width: auto;
         max-width: 80%;
+
+        @include respond-down($sm) {
+            margin: 0 auto 0 0;
+        }
 
         &:hover {
             cursor: pointer;
@@ -44,6 +57,10 @@
                 width: 50px;
             }
         }
+    }
+
+    .mobile.mat-menu {
+        margin: 0;
     }
 
     .edit-btn {

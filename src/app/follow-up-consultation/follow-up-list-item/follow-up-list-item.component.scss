@@ -14,7 +14,7 @@
 
     @include respond-down($sm) {
         justify-content: flex-start;
-        padding: 1em 0;
+        padding: 1em 0 1em 5px;
     }
     
     &:hover {
@@ -27,7 +27,8 @@
         width: 65px;
 
         @include respond-down($sm) {
-            width: 35px;
+            min-width: 33px;
+            width: 33px;
         }
     }
 
@@ -35,6 +36,11 @@
         margin-left: auto;
         position: relative;
         right: -1.5em;
+
+        @include respond-down($sm) {
+            right: -1em;
+            top: -1px;
+        }
     }
 
     .info-container {
@@ -60,17 +66,25 @@
             overflow: hidden;
 
             @include respond-down($sm) {
-                min-width: 90px;
-                width: 90px;
+                min-width: 100px;
+                width: 100px;
             }
 
-            &.weight {
-                width: 50px;
+            &.specialist {
+                @include respond-down($sm) {
+                    min-width: 80px;
+                    margin-right: 20px;
+                }
             }
 
             &.mobile-date {
-                min-width:  70px;
-                width: 70px;
+                min-width: 100px;
+                width: 100px;
+
+                @include respond-down($sm) {
+                    min-width: 80px;
+                    width: 80px;
+                }
             }
 
             &.mealplan-link {

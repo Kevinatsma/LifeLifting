@@ -1,12 +1,11 @@
 <main class="add-measurement-wrapper">
-  <div class="close-section mobile">
-    <button class="text-link close-btn" (click)="closeDialog()" type="button">
-      <i class="mobile fas fa-arrow-left"></i> Back
-    </button>
-  </div>
-
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="perimeterForm">
+      <div class="close-section mobile">
+        <button class="text-link close-btn" (click)="closeDialog()" type="button">
+          <i class="mobile fas fa-arrow-left"></i> Back
+        </button>
+      </div>
       <form [formGroup]="weightForm" class="weight-form">
         <div class="form-wrapper">
           <div class="form-field-container weight">
@@ -83,7 +82,7 @@
 
         </div>
 
-        <img src="./../../../assets/img/body-muscle-front.png" class="body-img">
+        <img src="./../../../assets/img/body-muscle-front.png" class="body-img not-mobile">
 
         <!-- Right side -->
         <div class="form-wrapper right">
@@ -149,6 +148,12 @@
     </mat-step>
 
     <mat-step [stepControl]="skinfoldForm">
+      <div class="close-section mobile">
+        <button class="text-link close-btn" (click)="closeDialog()" type="button">
+          <i class="mobile fas fa-arrow-left"></i> Back
+        </button>
+      </div>
+
       <form [formGroup]="skinfoldForm" class='skinfold-form'>
         <ng-template matStepLabel>Skinfolds</ng-template>
 
@@ -188,7 +193,7 @@
           </div>
         </div>
 
-        <img src="./../../../assets/img/body-muscle-front.png" class="body-img">
+        <img src="./../../../assets/img/body-muscle-front.png" class="body-img not-mobile">
 
         <!--  right -->
         <div class="form-wrapper right">

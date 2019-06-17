@@ -150,6 +150,7 @@
       </section>
 
       <app-measurement-list [client]="user" [measurements]="measurements" *ngIf="measurements"></app-measurement-list>
+
       <h1 class="section-title guideline-title">Guidelines</h1>      
       <section class="guidelines" *ngIf="hasGuidelines">
         <div class="guidelines__container">
@@ -169,6 +170,8 @@
           </div>
         </div>
       </section>
+
+      <app-follow-up-list [client]="user" [followUps]="followUps" *ngIf="followUps"></app-follow-up-list>
 
       <ng-container *ngIf="auth.user | async as user$">
       <section class="switches" *ngIf="user$.roles.admin">

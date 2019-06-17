@@ -9,7 +9,6 @@ import { SpecialistService } from './../../specialists/specialist.service';
 import { ChatThreadService } from './../../chat/chat-thread.service';
 import { Guideline } from './../../guidelines/guideline.model';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
 import { Mealplan } from './../../mealplans/mealplan.model';
 import { Measurement } from './../../measurement/measurement.model';
 import { FollowUpConsultation } from './../../follow-up-consultation/follow-up-consultation.model';
@@ -60,6 +59,7 @@ export class ClientDetailComponent implements OnInit {
       this.getGuidelines(user.uid);
       this.getMealplans(user.uid);
       this.getMeasurements(user.uid);
+      this.getFollowUps(user.uid);
       this.checkReadMore(user);
     });
   }

@@ -5,17 +5,41 @@
       <h3>{{measurement.created.toDate() | date: 'short'}}</h3>
       <h3 *ngIf="measurement.edited" class="not-mobile">{{measurement.edited.toDate() | date: 'short'}}</h3>
       <h3 *ngIf="!measurement.edited" class="not-mobile">Not edited yet</h3>
-      <h3>{{specialist.displayName}}</h3>
+      <h3 class="not-mobile">{{specialist.displayName}}</h3>
       <h3 *ngIf="measurement.weight" class="weight">{{measurement.weight}}kg</h3>
       <h3 *ngIf="!measurement.weight" class="weight">-</h3>
     </div>
-    <button class="edit-btn" *ngIf="user.roles.admin || user.roles.specialist" 
-    (click)="editMeasurement(measurement)">
-      <i class="far fa-edit"></i>
-    </button>
-    <button class="delete-btn" *ngIf="user.roles.admin || user.roles.specialist" 
-    (click)="deleteMeasurement(measurement)">
-      <i class="far fa-trash-alt"></i>
-    </button>
+
+    <div class="not-mobile">
+      <button class="edit-btn" *ngIf="user.roles.admin || user.roles.specialist" 
+      (click)="editMeasurement(measurement)">
+        <i class="far fa-edit"></i>
+      </button>
+      <button class="delete-btn" *ngIf="user.roles.admin || user.roles.specialist" 
+      (click)="deleteMeasurement(measurement)">
+        <i class="far fa-trash-alt"></i>
+      </button>
+    </div>
+
+    <div class="mobile mat-menu" *ngIf="user.roles.specialist || user.roles.admin">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      
+      <mat-menu #menu="matMenu">
+        <div class="list-item-menu">
+          <button class="edit-btn mat-menu-btn"
+          (click)="editMeasurement(measurement)">
+            <i class="far fa-edit"></i>
+            Edit
+          </button>
+          <button class="delete-btn mat-menu-btn"
+          (click)="deleteMeasurement(measurement)">
+            <i class="far fa-trash-alt"></i>
+            Delete
+          </button>
+        </div>
+      </mat-menu>
+    </div>
   </div>
 </ng-container>
