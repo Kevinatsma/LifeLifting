@@ -220,48 +220,48 @@ main.add-measurement-wrapper {
 
                 .head {
                     mat-form-field {
-                        right: -110px;
+                        right: -105px;
                     }
                 }
 
                 .arms-relaxed {
                     mat-form-field {
-                        right: -90px;
+                        right: -85px;
                         top: -10px;
                     }
                 }
 
                 .thorax {
                     mat-form-field {
-                        right: -60px;
+                        right: -55px;
                         top: -20px;
                     }
                 }
 
                 .hip {
                     mat-form-field {
-                        right: -30px;
+                        right: -25px;
                         top: -42px;
                     }
                 }
 
                 .wrist {
                     mat-form-field {
-                        right: -65px;
+                        right: -60px;
                         top: -50px;
                     }
                 }
 
                 .thigh-mid {
                     mat-form-field {
-                        right: -90px;
+                        right: -85px;
                         top: -60px;
                     }
                 }
 
                 .ankle {
                     mat-form-field {
-                        right: -110px;
+                        right: -105px;
                         top: -60px;
                     }
                 }
@@ -321,66 +321,59 @@ main.add-measurement-wrapper {
                 &.left {
                     .triceps {
                         mat-form-field {
-                            right: -90px;
-                            top: 10px;
-                        }
-                    }
-                    .supraespinal {
-                        mat-form-field  {
-                            right: -100px;
-                            top: 40px;
+                            right: -105px;
+                            top: 20px;
                         }
                     }
                     
-                    .supraespinal {
+                    .subescapular {
                         mat-form-field  {
-                            right: -110px;
-                            top: 25px;
+                            right: -80px;
+                            top: 15px;
                         }
                     }
 
-                    .abdominal {
+                    .biceps {
                         mat-form-field  {
-                            right: -70px;
+                            right: -60px;
                             top: 10px;
                         }
                     }
                     
-                    .frontal-thigh {
+                    .cresta-iliaca {
                         mat-form-field  {
-                            right: -50px;
+                            right: -40px;
                             top: 5px;
                         }
                     }
                 }
 
                 &.right {
-
-                    .subescapular {
+                    .supraespinal {
                         mat-form-field {
                             top: 20px;
                             left: -70px;
                         }
                     }
 
-                    .biceps {
+                    .abdominal {
                         mat-form-field {
-                            top: 10px;
+                            top: 60px;
                             left: -50px;
                         }
                     }
 
-                    .cresta-iliaca {
+                    .frontal-thigh {
                         mat-form-field {
-                            left: -20px;
-                            top: 30px;
+                            left: -40px;
+                            top: 90px;
                         }
                     }
                 
                     .skinfold-calf {
                         mat-form-field {
-                            top: 130px;
-                            left: -50px;
+                            top: 140px;
+                            left: -90px;
                         }
                     }
                 }

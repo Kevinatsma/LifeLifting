@@ -87,6 +87,10 @@
                 height: 75px;
                 z-index: 15;
                 box-shadow: $toolbar-shadow;
+
+                @include respond-down($sm) {
+                    padding: 0;
+                }
     
                 .mat-step-icon {
                     display:  none;
@@ -139,7 +143,7 @@
             z-index: 14;
 
             @include respond-down($sm) {
-                top: 12%;
+                top: 100px;
                 left: calc(50% - 51px);
                 width: 100px;
 
@@ -181,7 +185,9 @@
             pointer-events: none;
 
             @include respond-down($sm) {
+                left: calc(50% - 245px);
                 top: 85px;
+                width: 490px;
             }
         }
 
@@ -219,15 +225,16 @@
 
             &.left {
                 @include respond-down($sm) {
-                    left: -50px;
-                    top: 10px;
+                    left: -45px;
+                    top: 0px;
                 }
+
                 .field-container {
                     justify-content: flex-end;
                 }
 
                 .head {
-                    right: -25px;
+                    right: -15px;
                     top: 0px;
                 }
 
@@ -259,6 +266,10 @@
                 .ankle {
                     right: 10px;
                     top: 165px;
+
+                    @include respond-down($sm) {
+                        top: 95px;
+                    }
                 }
             }
 
@@ -266,8 +277,8 @@
                 align-items: flex-start;
 
                 @include respond-down($sm) {
-                    top: -10px;
-                    right: -70px;
+                    top: -40px;
+                    right: -55px;
                 }
 
                 .field-container {
@@ -277,31 +288,55 @@
                 .neck {
                     left: -15px;
                     top: 30px;
+
+                    @include respond-down($sm) {
+                        top: 40px;
+                    }
                 }
                 
                 .arms-flexed {
                     left: 10px;
                     top: 50px;
+
+                    @include respond-down($sm) {
+                        top: 55px;
+                    }
                 }
                 
                 .waist {
                     left: 30px;
                     top: 75px;
+
+                    @include respond-down($sm) {
+                        top: 65px;
+                    }
                 }
 
                 .forearm {
                     top: 100px;
                     left: 35px;
+
+                    @include respond-down($sm) {
+                        top: 75px;
+                    }
                 }
 
                 .thigh-max {
                     top: 145px;
                     left: 5px;
+
+                    @include respond-down($sm) {
+                        top: 115px;
+                    }
                 }
                 
                 .calf {
                     left: 0;
                     top: 190px;
+
+                    @include respond-down($sm) {
+                        top: 135px;
+                    }
                 }
             }
         }
@@ -310,25 +345,26 @@
             .wrapper {
                 &.left {         
                     @include respond-down($sm) {
-                        left: -57px
+                        left: -35px;
+                        top: -45px;
                     }           
-                    .supraespinal {
-                        right: 30px;
-                        top: 50px;
+                    .triceps {
+                        right: 20px;
+                        top: 60px;
                     }
 
-                    .triceps {
+                    .subescapular {
                         right: 30px;
                         top: 80px;
                     }
 
-                    .abdominal {
+                    .biceps {
                         right: 40px;
-                        top: 110px;
+                        top: 100px;
                     }
                     
-                    .frontal-thigh {
-                        right: 10px;
+                    .cresta-iliaca {
+                        right: 30px;
                         top: 140px;
 
                         @include respond-down($sm) {
@@ -339,26 +375,39 @@
 
                 &.right {
                     @include respond-down($sm) {
-                        right: -57px;
+                        right: -42px;
                     }
-                    .subescapular {
-                        top: 50px;
+
+                    .supraespinal {
+                        top: 70px;
+                        left: 20px;
+                    }
+
+                    .abdominal {
+                        top: 130px;
                         left: 30px;
                     }
 
-                    .biceps {
-                        top: 80px;
-                        left: 35px;
-                    }
-
-                    .cresta-iliaca {
+                    .frontal-thigh {
                         left: 30px;
-                        top: 110px;
+                        top: 195px;
+
+                        @include respond-down($sm) {
+                            left: 35px;
+
+                            p {
+                                width: 70px;
+                            }
+                        }
                     }
                 
                     .skinfold-calf {
                         top: 290px;
-                        left: 10px;
+                        left: 0;
+
+                        @include respond-down($sm) {
+                            top: 230px;
+                        }
                     }
                 }
             }

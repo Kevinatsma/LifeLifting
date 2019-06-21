@@ -159,45 +159,14 @@
 
         <!--  Left side -->
         <div class="form-wrapper left">
-
-          <div class="form-field-container supraespinal">
-            <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Supraespinal</mat-label>
-              <input type="number" min="0" matInput placeholder="1" formControlName="supraespinal" autofocus autocomplete="off" >
-              <span class="input-unit">cm</span>
-            </mat-form-field>
-          </div>
-
           <div class="form-field-container triceps">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Triceps</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="triceps" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
-          </div>          
-
-          <div class="form-field-container abdominal">
-            <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Abdominal</mat-label>
-              <input type="number" min="0" matInput placeholder="1" formControlName="abdominal" autofocus autocomplete="off" >
-              <span class="input-unit">cm</span>
-            </mat-form-field>
           </div>
-
-          <div class="form-field-container frontal-thigh">
-            <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Frontal thigh</mat-label>
-              <input type="number" min="0" matInput placeholder="1" formControlName="frontalThigh" autofocus autocomplete="off" >
-              <span class="input-unit">cm</span>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <img src="./../../../assets/img/body-muscle-front.png" class="body-img not-mobile">
-
-        <!--  right -->
-        <div class="form-wrapper right">
-
+          
           <div class="form-field-container subescapular">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Subescapular</mat-label>
@@ -221,7 +190,35 @@
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
+        </div>
 
+        <img src="./../../../assets/img/body-muscle-front.png" class="body-img not-mobile">
+
+        <!--  right -->
+        <div class="form-wrapper right">
+          <div class="form-field-container supraespinal">
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Supraespinal</mat-label>
+              <input type="number" min="0" matInput placeholder="1" formControlName="supraespinal" autofocus autocomplete="off" >
+              <span class="input-unit">cm</span>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-container abdominal">
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Abdominal</mat-label>
+              <input type="number" min="0" matInput placeholder="1" formControlName="abdominal" autofocus autocomplete="off" >
+              <span class="input-unit">cm</span>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-container frontal-thigh">
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Frontal thigh</mat-label>
+              <input type="number" min="0" matInput placeholder="1" formControlName="frontalThigh" autofocus autocomplete="off" >
+              <span class="input-unit">cm</span>
+            </mat-form-field>
+          </div>
 
           <div class="form-field-container skinfold-calf">
             <mat-form-field appearance="standard" floatLabel="always">

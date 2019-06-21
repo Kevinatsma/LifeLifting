@@ -155,7 +155,43 @@
 
         <!--  Left side -->
         <div class="form-wrapper left">
+          <div class="form-field-container triceps">
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Triceps</mat-label>
+              <input type="number" matInput formControlName="triceps" autofocus autocomplete="off" >
+              <span class="input-unit">cm</span>
+            </mat-form-field>
+          </div>   
 
+          <div class="form-field-container subescapular">
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Subescapular</mat-label>
+              <input type="number" matInput formControlName="subescapular" autofocus autocomplete="off" >
+              <span class="input-unit">cm</span>
+            </mat-form-field>
+          </div>
+          
+          <div class="form-field-container biceps">
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Biceps</mat-label>
+              <input type="number" matInput formControlName="biceps" autofocus autocomplete="off" >
+              <span class="input-unit">cm</span>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field-container cresta-iliaca">
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>Cresta Iliaca </mat-label>
+              <input type="number" matInput formControlName="crestaIliaca" autofocus autocomplete="off" >
+              <span class="input-unit">cm</span>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <img src="./../../../assets/img/body-muscle-front.png" class="body-img not-mobile">
+
+        <!--  right -->
+        <div class="form-wrapper right">
           <div class="form-field-container supraespinal">
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Supraespinal</mat-label>
@@ -163,14 +199,6 @@
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
-
-          <div class="form-field-container triceps">
-            <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Triceps</mat-label>
-              <input type="number" matInput formControlName="triceps" autofocus autocomplete="off" >
-              <span class="input-unit">cm</span>
-            </mat-form-field>
-          </div>          
 
           <div class="form-field-container abdominal">
             <mat-form-field appearance="standard" floatLabel="always">
@@ -187,37 +215,6 @@
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
-        </div>
-
-        <img src="./../../../assets/img/body-muscle-front.png" class="body-img not-mobile">
-
-        <!--  right -->
-        <div class="form-wrapper right">
-
-          <div class="form-field-container subescapular">
-            <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Subescapular</mat-label>
-              <input type="number" matInput formControlName="subescapular" autofocus autocomplete="off" >
-              <span class="input-unit">cm</span>
-            </mat-form-field>
-          </div>
-
-          <div class="form-field-container biceps">
-            <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Biceps</mat-label>
-              <input type="number" matInput formControlName="biceps" autofocus autocomplete="off" >
-              <span class="input-unit">cm</span>
-            </mat-form-field>
-          </div>
-
-          <div class="form-field-container cresta-iliaca">
-            <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Cresta Iliaca </mat-label>
-              <input type="number" matInput formControlName="crestaIliaca" autofocus autocomplete="off" >
-              <span class="input-unit">cm</span>
-            </mat-form-field>
-          </div>
-
 
           <div class="form-field-container skinfold-calf">
             <mat-form-field appearance="standard" floatLabel="always">
@@ -226,6 +223,7 @@
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
+
         </div>
   
       </form>    
