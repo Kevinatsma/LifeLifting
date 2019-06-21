@@ -108,7 +108,6 @@ export class UserDetailComponent implements OnInit {
   }
 
   getFollowUps(uid) {
-    console.log(uid);
     this.followUpCol = this.afs.collection('follow-ups', ref => ref.where('clientID', '==', `${uid}`).orderBy('creationDate', 'asc'));
     this.followUpCol.valueChanges().subscribe(followUps => {
       this.followUps = followUps;
@@ -130,7 +129,6 @@ export class UserDetailComponent implements OnInit {
   // Checkers
   checkReadMore(user) {
     if (user.basicData.mainGoal.length > 50) {
-      console.log(user.basicData.mainGoal.length);
       this.hasReadMore = true;
     } else {
       this.hasReadMore = false;

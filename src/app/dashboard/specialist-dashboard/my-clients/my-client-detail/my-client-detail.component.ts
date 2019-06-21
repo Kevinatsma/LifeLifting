@@ -107,7 +107,6 @@ export class MyClientDetailComponent implements OnInit {
   }
 
   getFollowUps(uid) {
-    console.log(uid);
     this.followUpCol = this.afs.collection('follow-ups', ref => ref.where('clientID', '==', `${uid}`).orderBy('creationDate', 'asc'));
     this.followUpCol.valueChanges().subscribe(followUps => {
       this.followUps = followUps;

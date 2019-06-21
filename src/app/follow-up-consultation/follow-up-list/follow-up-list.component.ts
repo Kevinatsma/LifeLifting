@@ -8,15 +8,8 @@ import { User } from '../../user/user.model';
   styleUrls: ['./follow-up-list.component.scss']
 })
 
-export class FollowUpListComponent implements OnInit {
+export class FollowUpListComponent {
   @Input() public followUps: FollowUpConsultation[];
   @Input() public client: User;
-
-  constructor() {
-    setTimeout(() => console.log(this.followUps));
-  }
-
-  ngOnInit() {
-  }
 
 }
