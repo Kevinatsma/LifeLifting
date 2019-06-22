@@ -1,0 +1,252 @@
+@import './../../../assets/scss/master';
+@import './../../../assets/scss/dialogs';
+
+::ng-deep {
+    .mat-slider-thumb, .mat-slider-thumb-label, .mat-slider-track-fill {
+        background-color: $primary-color !important;
+    }
+}
+
+::ng-deep .follow-up-dialog {
+    height: 100vh;
+    max-height: 100vh;
+    min-width: 100vw;
+    width: 100vw;
+
+    .mat-dialog-container {
+        padding: 0;
+
+        .close-section {
+            z-index: 150;
+            @include respond-down($sm) {
+                position: relative;
+                top: 4.5em;
+            }
+            .close-btn {
+                &.not-mobile {
+                    svg {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        .mat-stepper-horizontal {
+            @include respond-down($sm) {
+                margin-top: -1.5em;
+            }
+
+            .mat-horizontal-stepper-header-container {
+                width: 94%;
+                margin: 0 auto 0 0;
+            }
+
+            .mat-horizontal-content-container {
+                position: relative;
+
+                .title-area {
+                    padding: 0 4em 1em;
+                    margin: 2em 0 1em;
+
+                    @include respond-down($sm) {
+                        padding: 0 1em 1em;
+                        margin: 4em 0 1em;
+                    }
+
+                    h3 {
+                        margin: 0;
+                    }
+                }
+
+                form {
+                    align-items: flex-start;
+                    box-sizing: border-box;
+                    display: flex;
+                    flex-flow: row wrap;
+                    justify-content: flex-start;
+                    padding: 0em 4em 2em;
+                    margin-bottom: 70px;
+                    min-height: calc(100vh - 210px);
+                    width: 100%;
+
+                    @include respond-down($sm) {
+                        flex-flow: column nowrap;
+                        padding: 0 1em;
+                        margin: 1em 0 5em;
+                        height: auto;
+                    }
+
+                    &.personal-form {
+                        min-height: calc(100vh - 257px);
+                    }
+    
+                    mat-form-field, .mat-form-field {
+                        margin-top: 1em;
+                        height: 100%;
+                        width: 40%;
+
+                        @include respond-down($sm) {
+                            width: 100%;
+                            margin-bottom: 0px;
+                            height: auto;
+                        }
+    
+                        &:nth-child(1n) {
+                            margin-right: 10%;
+                        }
+
+                        &:first-child, &:nth-child(2) {
+                            margin-top:  0;
+                        }
+
+                        &.number {
+                            input {
+                                margin-top: 10px;
+                                width: 35px;
+                            }
+                        }
+
+                        textarea {
+                            border: 1.5px solid $middle-grey !important;
+                            caret-color: $primary-color !important;
+                            line-height: 29px;
+                            margin-top: 0.75em;
+                            padding: 0.75em 1em 2em!important;
+                            background: $light-grey;
+
+                            @include respond-down($sm) {
+                                width: 100%;
+                                box-sizing: border-box;
+                                min-height: 100px !important;
+                            }
+
+                            &::placeholder {
+                                color: $grey;
+                            }
+                        }
+                    }
+
+                    .mat-form-field {
+                        .label {
+                            color: $primary-color;
+                            font-family: $main-font;
+                            font-size: 14px;
+                            font-weight: 500;
+                            letter-spacing: 0.5px;
+                        }
+
+                        &.form-slider {
+                            margin-top: 12px;
+                        }
+
+                        .slider {
+                            display: flex;
+                            flex-flow: row nowrap;
+                            justify-content: space-between;
+                            margin-top: 19px;
+                            width: 100%;
+
+                            @include respond-down($sm) {
+                                width: 87%;
+                            }
+
+                            mat-slider {
+                                position: relative;
+                                min-width: 70%;
+
+                                &::before, &::after {
+                                    font-size: 14px;
+                                    font-family: $main-font;
+                                    font-weight: $bold;
+                                    height: 15px;
+                                    letter-spacing: 1px;
+                                    position: absolute;
+                                    top: 3em;
+                                    width: 15px;
+                                }
+
+                                &::before {
+                                    content: '0%';
+                                    left: 0;
+                                }
+
+                                &::after {
+                                    content: '100%';
+                                    right: 0;
+                                }
+                            }
+
+                            .percentage-circle {
+                                background-color: $primary-color;
+                                border-radius: 50%;
+                                border: 2px solid #fff;
+                                box-sizing: border-box;
+                                color: #fff;
+                                font-size: 17px;
+                                font-weight: $bold;
+                                height: 63px;
+                                letter-spacing: 0.5px;
+                                margin-top: -30px;
+                                position: relative;
+                                right: -25px;
+                                width: 63px;
+                                z-index: 10;
+
+                                @extend %flex-center;
+
+                                &::before {
+                                    border-radius: 50%;
+                                    border: 2px solid $primary-color;
+                                    content: '';
+                                    position: absolute;
+                                    width: 65px;
+                                    height: 65px;
+                                    left: -5px;
+                                    top: -5px;
+                                    z-index: 5;
+                                }
+
+                                span {
+                                    margin-left: 0;
+                                    font-weight: $extra-bold;
+                                }
+                            }
+                        }
+                    }
+
+                    section {
+                        box-sizing: border-box;
+                        display: flex;
+                        flex-flow: row wrap;
+                        width: 100%;
+
+                        h3 {
+                            margin: 1em 0;
+                            width: 100%;
+                        }
+
+                        mat-form-field {
+                            @include respond-down($sm) {
+                                margin-right: 0!important;
+                            }
+
+                            &:nth-child(1n) {
+                                margin-right: 10%;
+                            }
+
+                            &:nth-child(3) {
+                                margin-top: 0;
+                            }
+                        }
+                    }
+                }
+
+                .btn-area, .btn-area-one {
+                    background-color: #fff;
+                    bottom: 0;
+                    position: absolute;
+                }
+            }
+        }
+    }
+}

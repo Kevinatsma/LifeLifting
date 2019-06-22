@@ -1,0 +1,267 @@
+@import './../../../assets/scss/master';
+@import './../../../assets/scss/dialogs';
+@import './../../../assets/scss/animations';
+
+::ng-deep .follow-up-detail-dialog {
+    @include respond-down($sm) {
+        min-width: 100vw;
+        min-height: 100vh;
+    }
+
+    .mat-dialog-container {
+        min-width: 75vw;
+        padding: 1.5em 16px;
+    }
+
+    .dialog-wrapper.follow-up-detail {
+        .close-section {
+            .not-mobile {
+                position: fixed;
+                right: calc(12.5vw);
+            }
+
+            @include respond-down($sm) {
+                margin-bottom: 20px;
+
+                button {
+                    svg {
+                        margin: 0 10px 0 0;
+                    }
+                }
+            }
+        }
+
+        .dialog-title-area {
+            padding: 0 20px;
+            margin: 0 0 30px;
+
+            h6 {
+                margin: 5px 1px;
+            }
+        }
+
+        .mat-step {
+            .mat-step-header {
+                width: 45%;
+                height: 25px;
+                margin-bottom: 10px;
+                z-index: 500;
+                padding: 10px 25px;
+
+                @include respond-down($sm) {
+                    padding: 10px 0;
+                    width: 90%;
+                }
+            }
+
+            .mat-step-icon {
+                background-color: $middle-grey !important;
+                border: 1.5px solid $primary-color;
+                border-radius: 50%!important;
+                height: 20px;
+                width: 20px;
+
+                .mat-step-icon-content {
+                    display: none;
+                }
+
+                .mat-step-icon-state-edit {
+                    background-color: $middle-grey !important;
+                }
+            }
+
+            .mat-vertical-content-container {
+                margin-left: 11px;
+            }
+
+            .title-area {
+                p {
+                    margin: 0 auto 30px 0;
+                    width: 60%;
+
+                    @include respond-down($sm) {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .field-wrapper {
+                display: flex;
+                flex-flow: row wrap;
+                width: 100%;
+
+                .mealplans {
+                    margin: 0 5% 40px 0;
+                    width: 45%;
+
+                    @include  respond-down($sm) {
+                        margin: 0;
+                        width: 100%;
+                    }
+
+                    app-mealplan-list-item {
+                        display: flex;
+                        margin-top: 70px;
+                        width: 260px;
+
+                        @include respond-down($sm) {
+                            margin: 20px 0 0;
+                            width: 270px;
+                        }
+                    }
+                }
+
+                .follow-percentage {
+                    align-items: center;
+                    border: 1.5px solid $middle-grey;
+                    border-radius: 5px;
+                    display: flex;
+                    flex-flow: column nowrap;
+                    justify-content: center;
+                    height: 350px;
+                    margin: 25px 0 0;
+                    width: 270px;
+
+                    @include respond-down($sm) {
+                        margin: 0 0 20px;
+                    }
+
+                    span.label {
+                        font-weight: $semi-bold;
+                        color: $text-black;
+                        font-size: 22px;
+                        text-align: center;
+                        margin: 0 auto 50px;
+                        position: relative;
+                        width: 75%;
+
+                        @include respond-down($sm) {
+                            margin: 0 auto 70px;
+                        }
+
+                        &::after {
+                            background-color: $middle-grey;
+                            bottom: -15px;
+                            content: '';
+                            left: 10%;
+                            height: 2px;
+                            position: absolute;
+                            width: 80%;
+
+                            @include respond-down($sm) {
+                                bottom: -30px;
+                            }
+                        }
+                    }
+                        
+                    .percentage-circle {
+                        border-radius: 50%;
+                        border: 2.5px solid $border-color;
+                        box-sizing: border-box;
+                        color: $black;
+                        font-size: 42px;
+                        font-weight: $regular;
+                        height: 125px;
+                        letter-spacing: 0.5px;
+                        position: relative;
+                        width: 125px;
+                        z-index: 10;
+
+                        @extend %flex-center;
+
+
+                        &::before {
+                            animation: 1s signal infinite;
+                            border-radius: 50%;
+                            border: 1.5px solid $border-color;
+                            content: '';
+                            position: absolute;
+                            width: 138px;
+                            height: 138px;
+                            left: -10px;
+                            top: -11px;
+                            z-index: 5;
+
+                            @include respond-down($sm) {
+                                left: -11px;
+                            }
+                        }
+
+                        span {
+                            margin: -3px 0 0 2px;
+                            font-weight: $regular;
+                            font-size: 28px;
+                            color: $text-black;
+                        }
+                    }
+                }
+
+                .field-container,
+                .activities .field-container,
+                .weekend-diet .field-container,
+                .specialist-notes .field-container {
+                    height: 100%;
+                    width: 45%;
+                    margin: 0 5% 30px 0;
+
+                    @include  respond-down($sm) {
+                        width: 100%;
+                    }
+
+                    h5 {
+                        font-size: 14px;
+                        color: $grey;
+                    }
+
+                    p {
+                        padding: 20px 30px 30px;
+                        background: transparent;
+                        border: 1.5px solid $middle-grey;
+                        margin-top: 15px;
+                        cursor: initial;
+                        font-weight: $bold;
+                        font-size: 16px;
+                        color: $black;
+
+                        @include respond-down($sm) {
+                            padding: 20px 20px 30px;
+                        }
+                    }
+                }
+
+                h3 {
+                    &.section-title {
+                        display: flex;
+                        margin: 1em 0;
+                        width: 100%;
+                    }
+                }
+
+                .activities, .weekend-diet, .specialist-notes {
+                    display: flex;
+                    flex-flow: row wrap;
+                    height: 100%;
+                    width: 100%;
+                }
+
+            }
+        }
+
+        .mat-vertical-stepper-content {
+            margin-top: -10px;
+            padding-left: 22px;
+
+            .vertical-content {
+                @include respond-down($sm) {
+                    padding: 0 0 24px;
+                }
+            }
+
+            .vertical-content-container {
+                @include respond-down($sm) {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}

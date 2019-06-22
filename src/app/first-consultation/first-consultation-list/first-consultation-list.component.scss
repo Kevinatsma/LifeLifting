@@ -1,0 +1,25 @@
+@import './../../../assets/scss/master';
+
+.nothing-here {
+    margin: 2.5em auto 2em;
+}
+
+.follow-up {
+    h3 {
+        @include respond-down($sm) {
+            width: 100px !important;
+        }
+    
+        &.created {
+            @include respond-down($sm) {
+                width: 80px !important;
+            }
+        }
+
+        &.specialist {
+            @include respond-down($sm) {
+                margin-right: 10px;
+            }
+        }
+    }
+}
