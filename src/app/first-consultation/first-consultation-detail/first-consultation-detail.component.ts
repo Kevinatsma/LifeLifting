@@ -11,16 +11,16 @@ import { Mealplan } from '../../mealplans/mealplan.model';
   styleUrls: ['./first-consultation-detail.component.scss']
 })
 export class FirstConsultationDetailComponent implements OnInit {
-  followUp: FirstConsultation;
+  firstConsultation: FirstConsultation;
   client: User;
   mealplan: Mealplan;
 
   constructor( public dialog: MatDialog,
                private mealService: MealplanService,
                @Inject(MAT_DIALOG_DATA) public data: any) {
-                  this.followUp = data.followUp;
+                  this.firstConsultation = data.firstConsultation;
                   this.client = data.client;
-                  this.getMealplan(data.followUp.mealplanID);
+                  this.getMealplan(data.firstConsultation.mealplanID);
               }
 
   ngOnInit() {

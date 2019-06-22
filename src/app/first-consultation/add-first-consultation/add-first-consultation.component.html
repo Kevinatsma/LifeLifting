@@ -10,7 +10,7 @@
   </div>
 
   <mat-horizontal-stepper #stepper>
-    <mat-step [stepControl]="followUpForm">
+    <mat-step [stepControl]="firstConsultationForm">
       <ng-template matStepLabel>Recap</ng-template>
       
       <div class="title-area">
@@ -21,7 +21,7 @@
         </p>
       </div>
 
-      <form [formGroup]="followUpForm">
+      <form [formGroup]="firstConsultationForm">
         <h6 *ngIf="!hasMealplans">
           There is no mealplan for {{ client.displayName}} yet.
         </h6>
@@ -60,7 +60,7 @@
           <textarea type="text" matInput formControlName="likeMost" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].likeMost.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].likeMost.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="standard" floatLabel="always">
@@ -68,7 +68,7 @@
           <textarea type="text" matInput formControlName="likeLeast" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].likeLeast.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].likeLeast.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
@@ -76,7 +76,7 @@
           <textarea type="text" matInput formControlName="neverSeeAgain" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].neverSeeAgain.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].neverSeeAgain.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
@@ -84,7 +84,7 @@
           <textarea type="text" matInput formControlName="mealplanPreferences" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].mealplanPreferences.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].mealplanPreferences.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
       </form>
 
@@ -93,7 +93,7 @@
       </section>
     </mat-step>
 
-    <mat-step [stepControl]="followUpForm">
+    <mat-step [stepControl]="firstConsultationForm">
       <ng-template matStepLabel>Routine</ng-template>
 
       <div class="title-area">
@@ -104,13 +104,13 @@
         </p>
       </div>
 
-      <form [formGroup]="followUpForm">
+      <form [formGroup]="firstConsultationForm">
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>How is your bowel Movement Frequency?</mat-label>
           <textarea type="text" matInput formControlName="bowelMovementFrequency" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].bowelMovementFrequency.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].bowelMovementFrequency.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
@@ -118,7 +118,7 @@
           <textarea type="text" matInput formControlName="sleepingHabits" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].sleepingHabits.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].sleepingHabits.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
@@ -126,7 +126,7 @@
           <textarea type="text" matInput formControlName="waterIntake" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].waterIntake.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].waterIntake.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
 
         <section class="activities">
@@ -137,7 +137,7 @@
             <textarea type="text" matInput formControlName="frequency" placeholder="Write a short summary" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].frequency.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].frequency.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
           
           <mat-form-field appearance="standard" floatLabel="always">
@@ -145,7 +145,7 @@
             <textarea type="text" matInput formControlName="activityType" placeholder="Write a short summary" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].activityType.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].activityType.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
         
           <mat-form-field appearance="standard" floatLabel="always">
@@ -153,7 +153,7 @@
             <textarea type="text" matInput formControlName="changes" placeholder="Write a short summary" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].changes.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].changes.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
           
           <mat-form-field appearance="standard" floatLabel="always">
@@ -161,7 +161,7 @@
             <textarea type="text" matInput formControlName="supplementation" placeholder="Write a short summary" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].supplementation.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].supplementation.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
         </section>
@@ -174,7 +174,7 @@
       </section>
     </mat-step>
 
-    <mat-step [stepControl]="followUpForm">
+    <mat-step [stepControl]="firstConsultationForm">
       <ng-template matStepLabel>Meals & habits</ng-template>
       
       <div class="title-area">
@@ -185,14 +185,14 @@
         </p>
       </div>  
 
-      <form [formGroup]="followUpForm">
+      <form [formGroup]="firstConsultationForm">
                 
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Are the portion sizes ok?</mat-label>
           <textarea type="text" matInput formControlName="portionSizes" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].portionSizes.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].portionSizes.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
@@ -200,7 +200,7 @@
           <textarea type="text" matInput formControlName="hungry" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].hungry.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].hungry.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
@@ -208,7 +208,7 @@
           <textarea type="text" matInput formControlName="preperationTrouble" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].preperationTrouble.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].preperationTrouble.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
 
         <section class="weekend-diet">
@@ -219,7 +219,7 @@
             <textarea type="text" matInput formControlName="sleepingSchedule" placeholder="Write a short summary" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].sleepingSchedule.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].sleepingSchedule.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
           
           <mat-form-field appearance="standard" floatLabel="always">
@@ -227,7 +227,7 @@
             <textarea type="text" matInput formControlName="eatingOutside" placeholder="Write a short summary" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].eatingOutside.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].eatingOutside.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
           
           <mat-form-field appearance="standard" floatLabel="always">
@@ -235,13 +235,13 @@
             <textarea type="text" matInput formControlName="cheatMeals" placeholder="Write a short summary" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].cheatMeals.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].cheatMeals.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always" class="number">
             <mat-label>The amount of meals you ate per day</mat-label>
             <input type="number" matInput name="mealsPerDay" formControlName="mealsPerDay" placeholder="5" autofocus="none" required>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].mealsPerDay.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].mealsPerDay.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
         </section>
 
@@ -254,7 +254,7 @@
 
     </mat-step>
 
-    <mat-step [stepControl]="followUpForm">
+    <mat-step [stepControl]="firstConsultationForm">
       <ng-template matStepLabel>Comments</ng-template>
       
       <div class="title-area">
@@ -265,13 +265,13 @@
         </p>
       </div>
 
-      <form [formGroup]="followUpForm" class="personal-form">
+      <form [formGroup]="firstConsultationForm" class="personal-form">
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Subjectively, how are you feeling?</mat-label>
           <textarea type="text" matInput formControlName="howYouFeeling" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].howYouFeeling.valid && followUpForm['controls'].howYouFeeling.touched">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].howYouFeeling.valid && firstConsultationForm['controls'].howYouFeeling.touched">This is <strong>required</strong></mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
@@ -279,7 +279,7 @@
           <textarea type="text" matInput formControlName="questions" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].questions.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].questions.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
 
         <section class="specialist-notes">
@@ -296,8 +296,8 @@
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="submit" class="dialog-button" (click)="addFollowUpConsultation()"
-          [class.disabled]="!followUpForm.valid" [disabled]="!followUpForm.valid" mat-dialog-close
+        <button type="submit" class="dialog-button" (click)="addFirstConsultation()"
+          [class.disabled]="!firstConsultationForm.valid" [disabled]="!firstConsultationForm.valid" mat-dialog-close
           >
           Done
         </button>

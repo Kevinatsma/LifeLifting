@@ -1,24 +1,24 @@
 <ng-container *ngIf="auth.user | async as user">
-  <div class="follow-up-item-container">
+  <div class="first-consultation-item-container">
     <h2>{{i + 1}}.</h2>
-    <div class="info-container" (click)="openFollowUpDetail(followUp)">
-      <h3 class="not-mobile">{{followUp.creationDate.toDate() | date: 'short'}}</h3>
-      <h3 class="mobile mobile-date">{{followUp.creationDate.toDate() | date: 'shortDate'}}</h3>
-      <h3 *ngIf="followUp.edited" class="not-mobile">{{followUp.edited.toDate() | date: 'short'}}</h3>
-      <h3 *ngIf="!followUp.edited" class="not-mobile">Not edited yet</h3>
+    <div class="info-container" (click)="openFirstConsultationDetail(firstConsultation)">
+      <h3 class="not-mobile">{{firstConsultation.creationDate.toDate() | date: 'short'}}</h3>
+      <h3 class="mobile mobile-date">{{firstConsultation.creationDate.toDate() | date: 'shortDate'}}</h3>
+      <h3 *ngIf="firstConsultation.edited" class="not-mobile">{{firstConsultation.edited.toDate() | date: 'short'}}</h3>
+      <h3 *ngIf="!firstConsultation.edited" class="not-mobile">Not edited yet</h3>
       <h3 *ngIf="specialist" class="specialist">{{specialist.firstName}} {{specialist.lastName}}</h3>
-      <h3 class="mealplan-link" *ngIf="followUp.mealplanID">
-        <a routerLink="../../mealplans/{{followUp.mealplanID}}" class="text-link">See Meal plan</a>
+      <h3 class="mealplan-link" *ngIf="firstConsultation.mealplanID">
+        <a routerLink="../../mealplans/{{firstConsultation.mealplanID}}" class="text-link">See Meal plan</a>
       </h3>
     </div>
 
     <div class="not-mobile">
       <button class="edit-btn" *ngIf="user.roles.admin || user.roles.specialist" 
-      (click)="editFollowUp(followUp)">
+      (click)="editFirstConsultation(firstConsultation)">
         <i class="far fa-edit"></i>
       </button>
       <button class="delete-btn" *ngIf="user.roles.admin || user.roles.specialist" 
-      (click)="deleteFollowUp(followUp)">
+      (click)="deleteFirstConsultation(firstConsultation)">
         <i class="far fa-trash-alt"></i>
       </button>
     </div>
@@ -29,12 +29,12 @@
       <mat-menu #menu="matMenu">
         <div class="list-item-menu">
           <button class="edit-btn"
-          (click)="editFollowUp(followUp)">
+          (click)="editFirstConsultation(firstConsultation)">
             <i class="far fa-edit"></i>
             Edit
           </button>
           <button class="delete-btn"
-          (click)="deleteFollowUp(followUp)">
+          (click)="deleteFirstConsultation(firstConsultation)">
             <i class="far fa-trash-alt"></i>
             Delete
           </button>

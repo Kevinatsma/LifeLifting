@@ -20,7 +20,7 @@ import { FirstConsultationDetailComponent } from '../first-consultation-detail/f
   encapsulation: ViewEncapsulation.None
 })
 export class FirstConsultationListItemComponent implements OnInit {
-  @Input() followUp: FirstConsultation;
+  @Input() firstConsultation: FirstConsultation;
   @Input() client: User;
   @Input() i;
   specialist: Specialist;
@@ -30,7 +30,7 @@ export class FirstConsultationListItemComponent implements OnInit {
                public router: Router,
                public dialog: MatDialog,
                private specialistService: SpecialistService,
-               private followUpService: FirstConsultationService) {
+               private firstConsultationService: FirstConsultationService) {
                  setTimeout(() => this.getSpecialist(this.client.specialist));
                 }
 
@@ -43,18 +43,18 @@ export class FirstConsultationListItemComponent implements OnInit {
   }
 
   // Data modifiers
-  deleteFirstConsultation(followUp) {
+  deleteFirstConsultation(firstConsultation) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        fucID: followUp.fucID,
+        fucID: firstConsultation.fucID,
       },
       panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        const id = followUp.fucID;
-        this.followUpService.deleteFirstConsultation(id);
+        const id = firstConsultation.fucID;
+        this.firstConsultationService.deleteFirstConsultation(id);
         console.log('deleted first-consultation consultation');
       } else if (result === false) {
         return null;
@@ -62,20 +62,20 @@ export class FirstConsultationListItemComponent implements OnInit {
     });
   }
 
-  openFirstConsultationDetail(followUp) {
+  openFirstConsultationDetail(firstConsultation) {
     const dialogRef = this.dialog.open(FirstConsultationDetailComponent, {
       data: {
-        followUp: followUp,
+        firstConsultation: firstConsultation,
         client: this.client
       },
       panelClass: 'first-consultation-detail-dialog'
     });
   }
 
-  editFirstConsultation(followUp) {
+  editFirstConsultation(firstConsultation) {
     const dialogRef = this.dialog.open(EditFirstConsultationComponent, {
       data: {
-        followUp: followUp,
+        firstConsultation: firstConsultation,
         client: this.client
       },
       panelClass: 'first-consultation-dialog'

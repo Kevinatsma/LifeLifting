@@ -8,7 +8,7 @@ import { FirstConsultation } from './first-consultation.model';
 })
 export class FirstConsultationService {
 
-  followUpDoc: AngularFirestoreDocument<FirstConsultation>;
+  firstConsultationDoc: AngularFirestoreDocument<FirstConsultation>;
 
   constructor( private afs: AngularFirestore,
                public dialog: MatDialog,
@@ -17,7 +17,7 @@ export class FirstConsultationService {
 
 
   addFirstConsultation(data) {
-    this.afs.collection<FirstConsultation>(`follow-ups`).add(data)
+    this.afs.collection<FirstConsultation>(`first-consultations`).add(data)
     .then(credential => {
       const idData = {
         fucID: credential.id
@@ -42,8 +42,8 @@ export class FirstConsultationService {
   }
 
   updateFirstConsultation(id, data) {
-    this.followUpDoc = this.afs.doc<FirstConsultation>(`follow-ups/${id}`);
-    this.followUpDoc.update(data)
+    this.firstConsultationDoc = this.afs.doc<FirstConsultation>(`first-consultations/${id}`);
+    this.firstConsultationDoc.update(data)
     .then(() => {
       // Show Snackbar
       const message = `Follow-up Consultation was edited succesfully`;
@@ -62,7 +62,7 @@ export class FirstConsultationService {
   }
 
   deleteFirstConsultation(id) {
-    this.followUpDoc = this.afs.doc<FirstConsultation>(`follow-ups/${id}`);
-    this.followUpDoc.delete();
+    this.firstConsultationDoc = this.afs.doc<FirstConsultation>(`first-consultations/${id}`);
+    this.firstConsultationDoc.delete();
   }
 }

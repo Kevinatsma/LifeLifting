@@ -1,4 +1,4 @@
-<main class="dialog-wrapper follow-up-detail" *ngIf="followUp && client">
+<main class="dialog-wrapper first-consultation-detail" *ngIf="firstConsultation && client">
   <div class="close-section">
     <button mat-icon-button class="not-mobile close-btn" (click)="closeDialog()" type="button">
       <i class="fas fa-times"></i>
@@ -12,8 +12,8 @@
   <div class="dialog-title-area">
     <h1>Follow-up Consultation</h1>
     <h6>
-      Created: {{followUp.creationDate.toDate() | date: 'short'}} - 
-      <ng-container *ngIf="followUp.edited">Edited: {{followUp.edited.toDate() | date: 'short'}}</ng-container>
+      Created: {{firstConsultation.creationDate.toDate() | date: 'short'}} - 
+      <ng-container *ngIf="firstConsultation.edited">Edited: {{firstConsultation.edited.toDate() | date: 'short'}}</ng-container>
     </h6>
   </div>
 
@@ -29,15 +29,15 @@
 
       <section class="field-wrapper">
         <div class="mealplans" *ngIf="mealplan">
-          <h5>The mealplan for this follow-up</h5>
+          <h5>The mealplan for this first-consultation</h5>
           <app-mealplan-list-item [mealplan]="mealplan"></app-mealplan-list-item>
         </div>
 
         <div class="follow-percentage">
           <span class="label">Diet following percentage</span>
           <div class="percentage-circle">
-            {{followUp.dietFollowPercentage}}
-            <ng-container *ngIf="!followUp.dietFollowPercentage">0</ng-container>
+            {{firstConsultation.dietFollowPercentage}}
+            <ng-container *ngIf="!firstConsultation.dietFollowPercentage">0</ng-container>
             <span>%</span>
           </div>
         </div>
@@ -45,28 +45,28 @@
         <div class="field-container">
           <h5>What did you like most?</h5>
           <p class="card-text" placeholder="Write a short summary">
-            {{followUp.likeMost}}
+            {{firstConsultation.likeMost}}
           </p>
         </div>
 
         <div class="field-container">
           <h5>What did you like least?</h5>
           <p class="card-text" placeholder="Write a short summary">
-            {{followUp.likeLeast}}
+            {{firstConsultation.likeLeast}}
           </p>
         </div>
 
         <div class="field-container">
           <h5>What do you want to change and never see again?</h5>
           <p class="card-text" placeholder="Write a short summary">
-            {{followUp.neverSeeAgain}}
+            {{firstConsultation.neverSeeAgain}}
           </p>
         </div>
 
         <div class="field-container">
           <h5>What would you like to see on your meal plans?</h5>
           <p class="card-text">
-            {{followUp.mealplanPreferences}}
+            {{firstConsultation.mealplanPreferences}}
           </p>
         </div>
       </section>
@@ -86,21 +86,21 @@
         <div class="field-container">
           <h5>How is your bowel Movement Frequency?</h5>
           <p class="card-text">
-            {{followUp.bowelMovementFrequency}}
+            {{firstConsultation.bowelMovementFrequency}}
           </p>
         </div>
 
         <div class="field-container">
           <h5>How are you sleeping?</h5>
           <p class="card-text">
-            {{followUp.sleepingHabits}}
+            {{firstConsultation.sleepingHabits}}
           </p>
         </div>
 
         <div class="field-container">
           <h5>How is your water intake going?</h5>
           <p class="card-text">
-            {{followUp.waterIntake}}
+            {{firstConsultation.waterIntake}}
           </p>
         </div>
 
@@ -109,28 +109,28 @@
           <div class="field-container">
             <h5>What did you think about the frequency of the activity?</h5>
             <p class="card-text">
-              {{followUp.activities.frequency}}
+              {{firstConsultation.activities.frequency}}
             </p>
           </div>
 
           <div class="field-container">
             <h5>What did you think about the activity itself?</h5>
             <p class="card-text">
-              {{followUp.activities.activityType}}
+              {{firstConsultation.activities.activityType}}
             </p>
           </div>
 
           <div class="field-container">
             <h5>Would you like to change something?</h5>
             <p class="card-text">
-              {{followUp.activities.changes}}
+              {{firstConsultation.activities.changes}}
             </p>
           </div>
 
           <div class="field-container">
             <h5>What did you think about the supplementation proposed?</h5>
             <p class="card-text">
-              {{followUp.activities.supplementation}}
+              {{firstConsultation.activities.supplementation}}
             </p>
           </div>
 
@@ -153,21 +153,21 @@
         <div class="field-container">
           <h5>Are the portion sizes ok?</h5>
           <p class="card-text">
-            {{followUp.portionSizes}}
+            {{firstConsultation.portionSizes}}
           </p>
         </div>
 
         <div class="field-container">
           <h5>Were you feeling hungry? </h5>
           <p class="card-text">
-            {{followUp.hungry}}
+            {{firstConsultation.hungry}}
           </p>
         </div>
 
         <div class="field-container">
           <h5>Are you having trouble with any of the preparations? </h5>
           <p class="card-text">
-            {{followUp.preperationTrouble}}
+            {{firstConsultation.preperationTrouble}}
           </p>
         </div>
 
@@ -176,28 +176,28 @@
           <div class="field-container">
             <h5>What was your sleeping schedule?</h5>
             <p class="card-text">
-              {{followUp.duringTheWeekend.sleepingSchedule}}
+              {{firstConsultation.duringTheWeekend.sleepingSchedule}}
             </p>
           </div>
 
           <div class="field-container">
             <h5>Did you eat outside?</h5>
             <p class="card-text">
-              {{followUp.duringTheWeekend.eatingOutside}}
+              {{firstConsultation.duringTheWeekend.eatingOutside}}
             </p>
           </div>
 
           <div class="field-container">
             <h5>What about cheat meals?</h5>
             <p class="card-text">
-              {{followUp.duringTheWeekend.cheatMeals}}
+              {{firstConsultation.duringTheWeekend.cheatMeals}}
             </p>
           </div>
 
           <div class="field-container">
             <h5>The amount of meals you ate per day</h5>
             <p class="card-text">
-              {{followUp.duringTheWeekend.mealsPerDay}}
+              {{firstConsultation.duringTheWeekend.mealsPerDay}}
             </p>
           </div>
         </section>
@@ -220,14 +220,14 @@
         <div class="field-container">
           <h5>Subjectively, how are you feeling?</h5>
           <p class="card-text">
-            {{followUp.howYouFeeling}}
+            {{firstConsultation.howYouFeeling}}
           </p>
         </div>
 
         <div class="field-container">
           <h5>Do you have any questions?</h5>
           <p class="card-text">
-            {{followUp.questions}}
+            {{firstConsultation.questions}}
           </p>
         </div>
 
@@ -236,7 +236,7 @@
           <div class="field-container">
             <h5>Extra notes taken by specialist</h5>
             <p class="card-text">
-              {{followUp.specialistNotes}}
+              {{firstConsultation.specialistNotes}}
             </p>
           </div>
         </section>

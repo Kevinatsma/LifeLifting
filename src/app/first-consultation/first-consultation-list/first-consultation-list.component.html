@@ -1,4 +1,4 @@
-<section class="list-display follow-up" *ngIf="followUps && client">
+<section class="list-display first-consultation" *ngIf="firstConsultations && client">
   <h1 class="section-title">Follow-up Consultations</h1>
   <div class="list-display__container">
     <div class="list-display__container-header">
@@ -8,10 +8,10 @@
       <h3 class="specialist">Specialist</h3>
       <h3>Meal plan</h3>
     </div>
-    <app-follow-up-list-item *ngFor="let followUp of followUps; let i=index"
-    [client]="client" [followUp]="followUp" [i]="i">
-    </app-follow-up-list-item>
-    <p class="card-text nothing-here" *ngIf="!followUps.length">
+    <app-first-consultation-list-item *ngFor="let firstConsultation of firstConsultations; let i=index"
+    [client]="client" [firstConsultation]="firstConsultation" [i]="i">
+    </app-first-consultation-list-item>
+    <p class="card-text nothing-here" *ngIf="!firstConsultations.length">
       No Follow-up Consultations yet
     </p>
   </div>

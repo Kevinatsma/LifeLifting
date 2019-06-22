@@ -17,7 +17,7 @@ export class AddFirstConsultationComponent implements OnInit {
   mealplansCol: AngularFirestoreCollection<Mealplan>;
 
   // Form
-  followUpForm: FormGroup;
+  firstConsultationForm: FormGroup;
   dietFollowPercentage: number;
 
   // Booleans
@@ -37,7 +37,7 @@ export class AddFirstConsultationComponent implements OnInit {
 
   constructor( private afs: AngularFirestore,
                private fb: FormBuilder,
-               private followUpService: FirstConsultationService,
+               private firstConsultationService: FirstConsultationService,
                public dialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public data: any) {
      this.client = data.client;
@@ -45,7 +45,7 @@ export class AddFirstConsultationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.followUpForm = this.fb.group({
+    this.firstConsultationForm = this.fb.group({
       mealplanID: ['', Validators.required],
       likeMost: ['', Validators.required],
       likeLeast: ['', Validators.required],
@@ -86,37 +86,37 @@ export class AddFirstConsultationComponent implements OnInit {
     const data = {
       clientID: this.client.uid,
       specialistID: this.client.specialist,
-      mealplanID: this.followUpForm.get('mealplanID').value,
+      mealplanID: this.firstConsultationForm.get('mealplanID').value,
       creationDate: new Date(),
       dietFollowPercentage: this.dietFollowPercentage,
-      likeMost: this.followUpForm.get('likeMost').value,
-      likeLeast: this.followUpForm.get('likeLeast').value,
-      neverSeeAgain: this.followUpForm.get('neverSeeAgain').value,
-      mealplanPreferences: this.followUpForm.get('mealplanPreferences').value,
-      bowelMovementFrequency: this.followUpForm.get('bowelMovementFrequency').value,
-      sleepingHabits: this.followUpForm.get('sleepingHabits').value,
-      waterIntake: this.followUpForm.get('waterIntake').value,
+      likeMost: this.firstConsultationForm.get('likeMost').value,
+      likeLeast: this.firstConsultationForm.get('likeLeast').value,
+      neverSeeAgain: this.firstConsultationForm.get('neverSeeAgain').value,
+      mealplanPreferences: this.firstConsultationForm.get('mealplanPreferences').value,
+      bowelMovementFrequency: this.firstConsultationForm.get('bowelMovementFrequency').value,
+      sleepingHabits: this.firstConsultationForm.get('sleepingHabits').value,
+      waterIntake: this.firstConsultationForm.get('waterIntake').value,
       activities: {
-        frequency: this.followUpForm.get('frequency').value,
-        activityType: this.followUpForm.get('activityType').value,
-        changes: this.followUpForm.get('changes').value,
-        supplementation: this.followUpForm.get('supplementation').value,
+        frequency: this.firstConsultationForm.get('frequency').value,
+        activityType: this.firstConsultationForm.get('activityType').value,
+        changes: this.firstConsultationForm.get('changes').value,
+        supplementation: this.firstConsultationForm.get('supplementation').value,
       },
       duringTheWeekend: {
-          mealsPerDay: this.followUpForm.get('mealsPerDay').value,
-          sleepingSchedule: this.followUpForm.get('sleepingSchedule').value,
-          eatingOutside: this.followUpForm.get('eatingOutside').value,
-          cheatMeals: this.followUpForm.get('cheatMeals').value,
+          mealsPerDay: this.firstConsultationForm.get('mealsPerDay').value,
+          sleepingSchedule: this.firstConsultationForm.get('sleepingSchedule').value,
+          eatingOutside: this.firstConsultationForm.get('eatingOutside').value,
+          cheatMeals: this.firstConsultationForm.get('cheatMeals').value,
       },
-      portionSizes: this.followUpForm.get('portionSizes').value,
-      hungry: this.followUpForm.get('hungry').value,
-      preperationTrouble: this.followUpForm.get('preperationTrouble').value,
-      howYouFeeling: this.followUpForm.get('howYouFeeling').value,
-      questions: this.followUpForm.get('questions').value,
-      specialistNotes: this.followUpForm.get('specialistNotes').value
+      portionSizes: this.firstConsultationForm.get('portionSizes').value,
+      hungry: this.firstConsultationForm.get('hungry').value,
+      preperationTrouble: this.firstConsultationForm.get('preperationTrouble').value,
+      howYouFeeling: this.firstConsultationForm.get('howYouFeeling').value,
+      questions: this.firstConsultationForm.get('questions').value,
+      specialistNotes: this.firstConsultationForm.get('specialistNotes').value
     };
 
-    this.followUpService.addFirstConsultation(data);
+    this.firstConsultationService.addFirstConsultation(data);
   }
 
   closeDialog() {

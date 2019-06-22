@@ -1,25 +1,25 @@
-import { Component, OnInit, Inject, HostListener } from 'node_modules/@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from 'node_modules/@angular/material';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { User } from '../../user/user.model';
-import { FormBuilder, FormGroup, Validators } from 'node_modules/@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirstConsultationService } from '../first-consultation.service';
 import { Mealplan } from '../../mealplans/mealplan.model';
-import { AngularFirestoreCollection, AngularFirestore } from 'node_modules/angularfire2/firestore';
+import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { FirstConsultation } from '../first-consultation.model';
 
 @Component({
-  selector: 'app-edit-follow-up',
-  templateUrl: './edit-follow-up.component.html',
-  styleUrls: ['./edit-follow-up.component.scss', './../add-follow-up/add-follow-up.component.scss']
+  selector: 'app-edit-first-consultation',
+  templateUrl: './edit-first-consultation.component.html',
+  styleUrls: ['./edit-first-consultation.component.scss', './../add-first-consultation/add-first-consultation.component.scss']
 })
 export class EditFirstConsultationComponent implements OnInit {
   client: User;
-  followUp: FirstConsultation;
+  firstConsultation: FirstConsultation;
   mealplans: Mealplan[];
   mealplansCol: AngularFirestoreCollection<Mealplan>;
 
   // Form
-  followUpForm: FormGroup;
+  firstConsultationForm: FormGroup;
   dietFollowPercentage: number;
 
   // Booleans
@@ -29,7 +29,7 @@ export class EditFirstConsultationComponent implements OnInit {
   // Disable popup from closing
   @HostListener('window:keyup.esc') onKeyUp() {
     event.preventDefault();
-    if (confirm('Are you sure you want to quit editing this follow-up consultation? Your progress will be lost.')) {
+    if (confirm('Are you sure you want to quit editing this first-consultation consultation? Your progress will be lost.')) {
       this.dialog.closeAll();
     }
   }
@@ -40,39 +40,39 @@ export class EditFirstConsultationComponent implements OnInit {
 
   constructor( private afs: AngularFirestore,
                private fb: FormBuilder,
-               private followUpService: FirstConsultationService,
+               private firstConsultationService: FirstConsultationService,
                public dialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public data: any) {
      this.client = data.client;
-     this.followUp = data.followUp;
+     this.firstConsultation = data.firstConsultation;
      this.getMealplans(data.client);
-     this.dietFollowPercentage = data.followUp.dietFollowPercentage;
+     this.dietFollowPercentage = data.firstConsultation.dietFollowPercentage;
   }
 
   ngOnInit() {
-    this.followUpForm = this.fb.group({
-      mealplanID: [this.followUp.mealplanID, Validators.required],
-      likeMost: [this.followUp.likeMost, Validators.required],
-      likeLeast: [this.followUp.likeLeast, Validators.required],
-      neverSeeAgain: [this.followUp.neverSeeAgain, Validators.required],
-      mealplanPreferences: [this.followUp.mealplanPreferences, Validators.required],
-      bowelMovementFrequency: [this.followUp.bowelMovementFrequency, Validators.required],
-      sleepingHabits: [this.followUp.sleepingHabits, Validators.required],
-      waterIntake: [this.followUp.waterIntake, Validators.required],
-      frequency: [this.followUp.activities.frequency, Validators.required],
-      activityType: [this.followUp.activities.activityType, Validators.required],
-      changes: [this.followUp.activities.changes, Validators.required],
-      supplementation: [this.followUp.activities.supplementation, Validators.required],
-      mealsPerDay: [this.followUp.duringTheWeekend.mealsPerDay, Validators.required],
-      sleepingSchedule: [this.followUp.duringTheWeekend.sleepingSchedule, Validators.required],
-      eatingOutside: [this.followUp.duringTheWeekend.eatingOutside, Validators.required],
-      cheatMeals: [this.followUp.duringTheWeekend.cheatMeals, Validators.required],
-      portionSizes: [this.followUp.portionSizes, Validators.required],
-      hungry: [this.followUp.hungry, Validators.required],
-      preperationTrouble: [this.followUp.preperationTrouble, Validators.required],
-      howYouFeeling: [this.followUp.howYouFeeling, Validators.required],
-      questions: [this.followUp.questions, Validators.required],
-      specialistNotes: [this.followUp.specialistNotes]
+    this.firstConsultationForm = this.fb.group({
+      mealplanID: [this.firstConsultation.mealplanID, Validators.required],
+      likeMost: [this.firstConsultation.likeMost, Validators.required],
+      likeLeast: [this.firstConsultation.likeLeast, Validators.required],
+      neverSeeAgain: [this.firstConsultation.neverSeeAgain, Validators.required],
+      mealplanPreferences: [this.firstConsultation.mealplanPreferences, Validators.required],
+      bowelMovementFrequency: [this.firstConsultation.bowelMovementFrequency, Validators.required],
+      sleepingHabits: [this.firstConsultation.sleepingHabits, Validators.required],
+      waterIntake: [this.firstConsultation.waterIntake, Validators.required],
+      frequency: [this.firstConsultation.activities.frequency, Validators.required],
+      activityType: [this.firstConsultation.activities.activityType, Validators.required],
+      changes: [this.firstConsultation.activities.changes, Validators.required],
+      supplementation: [this.firstConsultation.activities.supplementation, Validators.required],
+      mealsPerDay: [this.firstConsultation.duringTheWeekend.mealsPerDay, Validators.required],
+      sleepingSchedule: [this.firstConsultation.duringTheWeekend.sleepingSchedule, Validators.required],
+      eatingOutside: [this.firstConsultation.duringTheWeekend.eatingOutside, Validators.required],
+      cheatMeals: [this.firstConsultation.duringTheWeekend.cheatMeals, Validators.required],
+      portionSizes: [this.firstConsultation.portionSizes, Validators.required],
+      hungry: [this.firstConsultation.hungry, Validators.required],
+      preperationTrouble: [this.firstConsultation.preperationTrouble, Validators.required],
+      howYouFeeling: [this.firstConsultation.howYouFeeling, Validators.required],
+      questions: [this.firstConsultation.questions, Validators.required],
+      specialistNotes: [this.firstConsultation.specialistNotes]
     });
   }
 
@@ -88,46 +88,46 @@ export class EditFirstConsultationComponent implements OnInit {
   }
 
   editFirstConsultation() {
-    const id = this.followUp.fucID;
+    const id = this.firstConsultation.fucID;
 
     const data = {
       clientID: this.client.uid,
       specialistID: this.client.specialist,
-      mealplanID: this.followUpForm.get('mealplanID').value,
+      mealplanID: this.firstConsultationForm.get('mealplanID').value,
       edited: new Date(),
       dietFollowPercentage: this.dietFollowPercentage,
-      likeMost: this.followUpForm.get('likeMost').value,
-      likeLeast: this.followUpForm.get('likeLeast').value,
-      neverSeeAgain: this.followUpForm.get('neverSeeAgain').value,
-      mealplanPreferences: this.followUpForm.get('mealplanPreferences').value,
-      bowelMovementFrequency: this.followUpForm.get('bowelMovementFrequency').value,
-      sleepingHabits: this.followUpForm.get('sleepingHabits').value,
-      waterIntake: this.followUpForm.get('waterIntake').value,
+      likeMost: this.firstConsultationForm.get('likeMost').value,
+      likeLeast: this.firstConsultationForm.get('likeLeast').value,
+      neverSeeAgain: this.firstConsultationForm.get('neverSeeAgain').value,
+      mealplanPreferences: this.firstConsultationForm.get('mealplanPreferences').value,
+      bowelMovementFrequency: this.firstConsultationForm.get('bowelMovementFrequency').value,
+      sleepingHabits: this.firstConsultationForm.get('sleepingHabits').value,
+      waterIntake: this.firstConsultationForm.get('waterIntake').value,
       activities: {
-        frequency: this.followUpForm.get('frequency').value,
-        activityType: this.followUpForm.get('activityType').value,
-        changes: this.followUpForm.get('changes').value,
-        supplementation: this.followUpForm.get('supplementation').value,
+        frequency: this.firstConsultationForm.get('frequency').value,
+        activityType: this.firstConsultationForm.get('activityType').value,
+        changes: this.firstConsultationForm.get('changes').value,
+        supplementation: this.firstConsultationForm.get('supplementation').value,
       },
       duringTheWeekend: {
-          mealsPerDay: this.followUpForm.get('mealsPerDay').value,
-          sleepingSchedule: this.followUpForm.get('sleepingSchedule').value,
-          eatingOutside: this.followUpForm.get('eatingOutside').value,
-          cheatMeals: this.followUpForm.get('cheatMeals').value,
+          mealsPerDay: this.firstConsultationForm.get('mealsPerDay').value,
+          sleepingSchedule: this.firstConsultationForm.get('sleepingSchedule').value,
+          eatingOutside: this.firstConsultationForm.get('eatingOutside').value,
+          cheatMeals: this.firstConsultationForm.get('cheatMeals').value,
       },
-      portionSizes: this.followUpForm.get('portionSizes').value,
-      hungry: this.followUpForm.get('hungry').value,
-      preperationTrouble: this.followUpForm.get('preperationTrouble').value,
-      howYouFeeling: this.followUpForm.get('howYouFeeling').value,
-      questions: this.followUpForm.get('questions').value,
-      specialistNotes: this.followUpForm.get('specialistNotes').value
+      portionSizes: this.firstConsultationForm.get('portionSizes').value,
+      hungry: this.firstConsultationForm.get('hungry').value,
+      preperationTrouble: this.firstConsultationForm.get('preperationTrouble').value,
+      howYouFeeling: this.firstConsultationForm.get('howYouFeeling').value,
+      questions: this.firstConsultationForm.get('questions').value,
+      specialistNotes: this.firstConsultationForm.get('specialistNotes').value
     };
 
-    this.followUpService.updateFirstConsultation(id, data);
+    this.firstConsultationService.updateFirstConsultation(id, data);
   }
 
   closeDialog() {
-    if (confirm('Are you sure you want to stop editing this follow-up consultation?')) {
+    if (confirm('Are you sure you want to stop editing this first-consultation consultation?')) {
       this.dialog.closeAll();
     }
   }

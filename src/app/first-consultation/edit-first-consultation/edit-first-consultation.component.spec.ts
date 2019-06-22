@@ -1,4 +1,5 @@
-import { async, ComponentFixture, TestBed } from 'node_modules/@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { EditFirstConsultationComponent } from './edit-first-consultation.component';
 
 describe('EditFirstConsultationComponent', () => {
