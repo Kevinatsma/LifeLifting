@@ -50,3 +50,14 @@
         color: $text-black;
     }
 }
+
+::ng-deep .radio-form-field {
+    display: flex;
+    flex-flow: column nowrap;
+    height: auto;
+    
+    mat-radio-group {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+}

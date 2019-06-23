@@ -1,5 +1,6 @@
 @import './../../../assets/scss/master';
 @import './../../../assets/scss/dialogs';
+@import './../../../assets/scss/forms';
 
 ::ng-deep {
     .mat-slider-thumb, .mat-slider-thumb-label, .mat-slider-track-fill {
@@ -18,12 +19,18 @@
 
         .close-section {
             z-index: 150;
+
             @include respond-down($sm) {
                 position: relative;
                 top: 4.5em;
             }
+
             .close-btn {
                 &.not-mobile {
+                    position: absolute;
+                    right: 15px;
+                    top: 15px;
+
                     svg {
                         margin-right: 0;
                     }
@@ -102,7 +109,7 @@
                         &.number {
                             input {
                                 margin-top: 10px;
-                                width: 35px;
+                                width: 45px;
                             }
                         }
 
@@ -166,12 +173,12 @@
                                 }
 
                                 &::before {
-                                    content: '0%';
+                                    content: '0';
                                     left: 0;
                                 }
 
                                 &::after {
-                                    content: '100%';
+                                    content: '10';
                                     right: 0;
                                 }
                             }

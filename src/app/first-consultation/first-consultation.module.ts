@@ -4,7 +4,6 @@ import { AddFirstConsultationComponent } from './add-first-consultation/add-firs
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../shared/material.module';
 import { FirstConsultationService } from './first-consultation.service';
-import { EditFirstConsultationComponent } from './edit-first-consultation/edit-first-consultation.component';
 import { FirstConsultationListComponent } from './first-consultation-list/first-consultation-list.component';
 import { FirstConsultationListItemComponent } from './first-consultation-list-item/first-consultation-list-item.component';
 import { RouterModule } from '@angular/router';
@@ -14,7 +13,6 @@ import { MealplansModule } from '../mealplans/mealplans.module';
 @NgModule({
   declarations: [
     AddFirstConsultationComponent,
-    EditFirstConsultationComponent,
     FirstConsultationListComponent,
     FirstConsultationListItemComponent,
     FirstConsultationDetailComponent
@@ -28,7 +26,6 @@ import { MealplansModule } from '../mealplans/mealplans.module';
   ],
   exports: [
     AddFirstConsultationComponent,
-    EditFirstConsultationComponent,
     FirstConsultationListComponent,
     FirstConsultationListItemComponent,
     FirstConsultationDetailComponent
@@ -38,7 +35,6 @@ import { MealplansModule } from '../mealplans/mealplans.module';
   ],
   entryComponents: [
     AddFirstConsultationComponent,
-    EditFirstConsultationComponent,
     FirstConsultationDetailComponent
   ]
 })

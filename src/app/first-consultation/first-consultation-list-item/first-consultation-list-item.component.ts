@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material';
 import { UserService } from '../../user/user.service';
 import { FirstConsultationService } from '../first-consultation.service';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
-import { EditFirstConsultationComponent } from '../edit-first-consultation/edit-first-consultation.component';
+// import { EditFirstConsultationComponent } from '../edit-first-consultation/edit-first-consultation.component';
 import { SpecialistService } from '../../specialists/specialist.service';
 import { Specialist } from '../../specialists/specialist.model';
 import { FirstConsultationDetailComponent } from '../first-consultation-detail/first-consultation-detail.component';
@@ -72,14 +72,14 @@ export class FirstConsultationListItemComponent implements OnInit {
     });
   }
 
-  editFirstConsultation(firstConsultation) {
-    const dialogRef = this.dialog.open(EditFirstConsultationComponent, {
-      data: {
-        firstConsultation: firstConsultation,
-        client: this.client
-      },
-      panelClass: 'first-consultation-dialog'
-    });
-  }
+  // editFirstConsultation(firstConsultation) {
+  //   const dialogRef = this.dialog.open(EditFirstConsultationComponent, {
+  //     data: {
+  //       firstConsultation: firstConsultation,
+  //       client: this.client
+  //     },
+  //     panelClass: 'first-consultation-dialog'
+  //   });
+  // }
 
 }

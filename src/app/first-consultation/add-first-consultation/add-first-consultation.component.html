@@ -10,39 +10,18 @@
   </div>
 
   <mat-horizontal-stepper #stepper>
-    <mat-step [stepControl]="firstConsultationForm">
-      <ng-template matStepLabel>Recap</ng-template>
+    <mat-step [stepControl]="basicDataForm">
+      <ng-template matStepLabel>General 1/2</ng-template>
       
       <div class="title-area">
-        <h3>🧠 A quick recap</h3>
+        <h3>📝 General Info 1/2</h3>
         <p class="card-text">
-          Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          Please get as much information from the client as you can, in order to provide the best service.
         </p>
       </div>
 
-      <form [formGroup]="firstConsultationForm">
-        <h6 *ngIf="!hasMealplans">
-          There is no mealplan for {{ client.displayName}} yet.
-        </h6>
-
-        <mat-form-field class="mealplans" appearance="standard" floatLabel="always" *ngIf="hasMealplans">
-          <mat-label>Import a mealplan you created for {{ client.displayName}}</mat-label>
-          <mat-select matInput class="f-input select" placeholder="Pick a Meal plan" required
-          panelClass="dropdown-regular" autocomplete="off" formControlName="mealplanID">
-            <mat-option *ngFor="let mealplan of mealplans" [value]="mealplan.mID">
-              {{mealplan.mealplanName}} - 
-              <ng-container *ngIf="mealplan.lastEdited">
-                Last edited: {{mealplan.lastEdited.toDate() | date: 'short'}}
-              </ng-container>
-              <ng-container *ngIf="!mealplan.lastEdited">
-                Created: {{mealplan.creationDate.toDate() | date: 'short'}}
-              </ng-container>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <div class="mat-form-field form-slider">
+      <form [formGroup]="basicDataForm">
+        <!-- <div class="mat-form-field form-slider">
           <span class="label">Diet following percentage</span>
           <div class="slider">
             <mat-slider class="form-slider" [(value)]="dietFollowPercentage" thumbLabel min="0" max="100">
@@ -53,38 +32,64 @@
               <span>%</span>
             </div>
           </div>
+        </div> -->
+
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>What is your main goal with this meal plan?</mat-label>
+          <textarea type="text" matInput formControlName="mealplanMainGoal" placeholder="Write a short summary" 
+          matTextareaAutosize autofocus="off" autocomplete="off" required>
+          </textarea>
+          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].mealplanMainGoal.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Gender</mat-label>
+          <mat-select matInput placeholder="Pick an appropriate option" formControlName="sex"
+          autocomplete="off" panelClass="dropdown-regular" required>
+            <mat-option [value]="Masculine">Masculine</mat-option>
+            <mat-option [value]="Feminine">Feminine</mat-option>
+            <mat-option [value]="Other">Other</mat-option>
+          </mat-select>
+          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].sex.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="date-picker" appearance="standard" floatLabel="always">
+          <mat-label>Birth date</mat-label>
+          <input matInput formControlName="birthDate" [matDatepicker]="datePickerOne"
+          placeholder="MM/DD/YYYY (eg. 26/03/1992)">
+          <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
+          <mat-datepicker #datePickerOne></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always" class="number">
+          <mat-label>Age in years</mat-label>
+          <input type="number"formControlName="age" matInput placeholder="26" autocomplete="off" required>
+          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].age.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always" class="number">
+          <mat-label>Height in numbers</mat-label>
+          <input type="number"formControlName="height" matInput placeholder="1.85" autocomplete="off" required> m
+          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].height.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
+        <div class="phone-number">
+          <mat-form-field appearance="standard" floatLabel="always" class="number">
+            <mat-label>Area code</mat-label>
+            <input type="number"formControlName="phoneAreaCode" matInput placeholder="+51" autocomplete="off" required>
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Phone number</mat-label>
+            <input type="number"formControlName="phoneNumber" matInput placeholder="12341234" autocomplete="off" required>
+          </mat-form-field>
         </div>
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>What did you like most?</mat-label>
-          <textarea type="text" matInput formControlName="likeMost" placeholder="Write a short summary" 
+          <mat-label>What's the address?</mat-label>
+          <textarea type="text" matInput formControlName="address" placeholder="Street + Number, City, Country" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].likeMost.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>What did you like least?</mat-label>
-          <textarea type="text" matInput formControlName="likeLeast" placeholder="Write a short summary" 
-          matTextareaAutosize autofocus="off" autocomplete="off" required>
-          </textarea>
-          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].likeLeast.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-        
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>What do you want to change and never see again?</mat-label>
-          <textarea type="text" matInput formControlName="neverSeeAgain" placeholder="Write a short summary" 
-          matTextareaAutosize autofocus="off" autocomplete="off" required>
-          </textarea>
-          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].neverSeeAgain.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-        
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>What would you like to see on your meal plans?</mat-label>
-          <textarea type="text" matInput formControlName="mealplanPreferences" placeholder="Write a short summary" 
-          matTextareaAutosize autofocus="off" autocomplete="off" required>
-          </textarea>
-          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].mealplanPreferences.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].address.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
       </form>
 
@@ -94,79 +99,146 @@
     </mat-step>
 
     <mat-step [stepControl]="firstConsultationForm">
-      <ng-template matStepLabel>Routine</ng-template>
+      <ng-template matStepLabel>Habits</ng-template>
 
       <div class="title-area">
-        <h3>🚴 Routine</h3>
+        <h3>🚴 Habits</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
           personal meal plan the next time.
         </p>
       </div>
 
-      <form [formGroup]="firstConsultationForm">
-        <mat-form-field appearance="standard" floatLabel="always">
+      <form [formGroup]="habitForm">
+        <!-- <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>How is your bowel Movement Frequency?</mat-label>
           <textarea type="text" matInput formControlName="bowelMovementFrequency" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
           <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].bowelMovementFrequency.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field> -->
+
+        <div class="radio-form-field">
+          <label class="radio-form-label">Do you drink alcohol?</label>
+          <mat-radio-group
+            class="radio-button-group"
+            formControlName="alcohol">
+            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <mat-form-field appearance="standard" floatLabel="always" class="number">
+          <mat-label>How many cups a day?</mat-label>
+          <input type="number"formControlName="alcoholNote" matInput placeholder="5" autocomplete="off" required>
+          <!-- <mat-error class="input-error" *ngIf="!habitForm['controls'].alcoholNote.valid">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
         
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>How are you sleeping?</mat-label>
-          <textarea type="text" matInput formControlName="sleepingHabits" placeholder="Write a short summary" 
-          matTextareaAutosize autofocus="off" autocomplete="off" required>
-          </textarea>
-          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].sleepingHabits.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-        
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>How is your water intake going?</mat-label>
-          <textarea type="text" matInput formControlName="waterIntake" placeholder="Write a short summary" 
-          matTextareaAutosize autofocus="off" autocomplete="off" required>
-          </textarea>
-          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].waterIntake.valid">This is <strong>required</strong></mat-error>
+        <div class="radio-form-field">
+          <label class="radio-form-label">Do you smoke cigarettes?</label>
+          <mat-radio-group
+            class="radio-button-group"
+            formControlName="smoke">
+            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <mat-form-field appearance="standard" floatLabel="always" class="number">
+          <mat-label>How many packs a week?</mat-label>
+          <input type="number"formControlName="smokeNote" matInput placeholder="4" autocomplete="off" required>
+          <!-- <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
 
-        <section class="activities">
-          <h3>The Activities</h3>
-        
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>What did you think about the frequency of the activity?</mat-label>
-            <textarea type="text" matInput formControlName="frequency" placeholder="Write a short summary" 
-            matTextareaAutosize autofocus="off" autocomplete="off" required>
-            </textarea>
-            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].frequency.valid">This is <strong>required</strong></mat-error>
-          </mat-form-field>
-          
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>What did you think about the activity itself?</mat-label>
-            <textarea type="text" matInput formControlName="activityType" placeholder="Write a short summary" 
-            matTextareaAutosize autofocus="off" autocomplete="off" required>
-            </textarea>
-            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].activityType.valid">This is <strong>required</strong></mat-error>
-          </mat-form-field>
-        
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Would you like to change something?</mat-label>
-            <textarea type="text" matInput formControlName="changes" placeholder="Write a short summary" 
-            matTextareaAutosize autofocus="off" autocomplete="off" required>
-            </textarea>
-            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].changes.valid">This is <strong>required</strong></mat-error>
-          </mat-form-field>
-          
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>What did you think about the supplementation proposed?</mat-label>
-            <textarea type="text" matInput formControlName="supplementation" placeholder="Write a short summary" 
-            matTextareaAutosize autofocus="off" autocomplete="off" required>
-            </textarea>
-            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].supplementation.valid">This is <strong>required</strong></mat-error>
-          </mat-form-field>
+        <div class="radio-form-field">
+          <label class="radio-form-label">Do you take drugs?</label>
+          <mat-radio-group
+            class="radio-button-group"
+            formControlName="drugs">
+            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div class="radio-form-field">
+          <label class="radio-form-label">Do you drink coffee?</label>
+          <mat-radio-group
+            class="radio-button-group"
+            formControlName="coffee">
+            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <mat-form-field appearance="standard" floatLabel="always" class="number">
+          <mat-label>How many cups a day?</mat-label>
+          <input type="number"formControlName="coffeeNote" matInput placeholder="4" autocomplete="off" required>
+          <!-- <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+
+        <div class="radio-form-field">
+          <label class="radio-form-label">Do you drink tea?</label>
+          <mat-radio-group
+            class="radio-button-group"
+            formControlName="tea">
+            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <mat-form-field appearance="standard" floatLabel="always" class="number">
+          <mat-label>How many cups a day?</mat-label>
+          <input type="number"formControlName="teaNote" matInput placeholder="4" autocomplete="off" required>
+          <!-- <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+
+        <div class="radio-form-field">
+          <label class="radio-form-label">Goes out at night to have a social life</label>
+          <mat-radio-group
+            class="radio-button-group"
+            formControlName="socialLife">
+            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <mat-form-field appearance="standard" floatLabel="always" class="number">
+          <mat-label>How many days a week?</mat-label>
+          <input type="number"formControlName="socialLifeNote" matInput placeholder="2" autocomplete="off" required>
+          <!-- <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+
+        <div class="radio-form-field">
+          <label class="radio-form-label">Stays up until late</label>
+          <mat-radio-group
+            class="radio-button-group"
+            formControlName="stayUpLate">
+            <mat-radio-button class="radio-button" [value]="other">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <mat-form-field appearance="standard" floatLabel="always" class="number">
+          <mat-label>How many days a week?</mat-label>
+          <input type="number"formControlName="stayUpLateNote" matInput placeholder="4" autocomplete="off" required>
+          <!-- <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+
+        <section class="sleeping-habits">
+          <h3>Sleeping habits</h3>
 
         </section>
 
-      </form>
+        <section class="eating-habits">
+          <h3>Eating habits</h3>
+        </section>
+
+        <section class="work">
+          <h3>Work</h3>
+        </section>
+        
+       </form>
 
       <section class="btn-area">
         <button class="dialog-button" matStepperPrevious>Back</button>
@@ -174,77 +246,93 @@
       </section>
     </mat-step>
 
-    <mat-step [stepControl]="firstConsultationForm">
-      <ng-template matStepLabel>Meals & habits</ng-template>
+    <mat-step [stepControl]="bodyFunctionsForm">
+      <ng-template matStepLabel>Body functions</ng-template>
       
       <div class="title-area">
-        <h3>🍜 Meals and habits</h3>
+        <h3>🧘 Body functions</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
           personal meal plan the next time.
         </p>
       </div>  
 
-      <form [formGroup]="firstConsultationForm">
+      <form [formGroup]="bodyFunctionsForm">
+        <section class="diuresis">
+          <h3>Diuresis</h3>
+          
+          <mat-form-field appearance="standard" floatLabel="always" class="number">
+            <mat-label>How many times do you urinate each day?</mat-label>
+            <input type="number"formControlName="urinateAmount" matInput placeholder="6" autocomplete="off" required>
+            <!-- <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+          <div class="radio-form-field">
+            <label class="radio-form-label">Do you wake up to urinate in the middle of the night?</label>
+            <mat-radio-group
+              class="radio-button-group"
+              formControlName="middleNightUrinate">
+              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </section>
+
+        <section class="bowel-movements">
+          <h3>Bowel movements</h3>
+        
+          <div class="radio-form-field">
+            <label class="radio-form-label">Do you have them every day</label>
+            <mat-radio-group
+              class="radio-button-group"
+              formControlName="everyDay">
+              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <mat-form-field appearance="standard" floatLabel="always" class="number">
+            <mat-label>How many times a week do you do bowel movements?</mat-label>
+            <input type="number"formControlName="timesPerDay" matInput placeholder="6" autocomplete="off" required>
+            <!-- <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">This is <strong>required</strong></mat-error> -->
+          </mat-form-field>
+
+          <div class="radio-form-field">
+            <label class="radio-form-label">Do you always go at the same moments?</label>
+            <mat-radio-group
+              class="radio-button-group"
+              formControlName="everyDay">
+              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+        </section>
+
+        <section class="appetite">
+          <h3>Appetite</h3>
+        
+          <div class="mat-form-field form-slider">
+            <span class="label">From 1 to 10, 10 being “I’m always hungry”, where would you categorize your appetite in general</span>
+            <div class="slider">
+              <mat-slider class="form-slider" [(value)]="hungryScale" thumbLabel min="0" max="10">
+              </mat-slider>
+              <div class="percentage-circle">
+                {{hungryScale}}
+                <ng-container *ngIf="!hungryScale">0</ng-container>
+              </div>
+            </div>
+          </div>
+
+        </section>
                 
-        <mat-form-field appearance="standard" floatLabel="always">
+        <!-- <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Are the portion sizes ok?</mat-label>
           <textarea type="text" matInput formControlName="portionSizes" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
           <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].portionSizes.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
         
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Were you feeling hungry? </mat-label>
-          <textarea type="text" matInput formControlName="hungry" placeholder="Write a short summary" 
-          matTextareaAutosize autofocus="off" autocomplete="off" required>
-          </textarea>
-          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].hungry.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-        
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Are you having trouble with any of the preparations? </mat-label>
-          <textarea type="text" matInput formControlName="preperationTrouble" placeholder="Write a short summary" 
-          matTextareaAutosize autofocus="off" autocomplete="off" required>
-          </textarea>
-          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].preperationTrouble.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-
-        <section class="weekend-diet">
-          <h3>During the weekend</h3>
-          
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>What was your sleeping schedule?</mat-label>
-            <textarea type="text" matInput formControlName="sleepingSchedule" placeholder="Write a short summary" 
-            matTextareaAutosize autofocus="off" autocomplete="off" required>
-            </textarea>
-            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].sleepingSchedule.valid">This is <strong>required</strong></mat-error>
-          </mat-form-field>
-          
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Did you eat outside?</mat-label>
-            <textarea type="text" matInput formControlName="eatingOutside" placeholder="Write a short summary" 
-            matTextareaAutosize autofocus="off" autocomplete="off" required>
-            </textarea>
-            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].eatingOutside.valid">This is <strong>required</strong></mat-error>
-          </mat-form-field>
-          
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>What about cheat meals?</mat-label>
-            <textarea type="text" matInput formControlName="cheatMeals" placeholder="Write a short summary" 
-            matTextareaAutosize autofocus="off" autocomplete="off" required>
-            </textarea>
-            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].cheatMeals.valid">This is <strong>required</strong></mat-error>
-          </mat-form-field>
-
-          <mat-form-field appearance="standard" floatLabel="always" class="number">
-            <mat-label>The amount of meals you ate per day</mat-label>
-            <input type="number" matInput name="mealsPerDay" formControlName="mealsPerDay" placeholder="5" autofocus="none" required>
-            <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].mealsPerDay.valid">This is <strong>required</strong></mat-error>
-          </mat-form-field>
-        </section>
-
       </form>
 
       <section class="btn-area">
@@ -254,51 +342,57 @@
 
     </mat-step>
 
-    <mat-step [stepControl]="firstConsultationForm">
-      <ng-template matStepLabel>Comments</ng-template>
+    <mat-step [stepControl]="generalDataForm">
+      <ng-template matStepLabel>General 2/2</ng-template>
       
       <div class="title-area">
-        <h3>👀 Personal comments</h3>
+        <h3>📝 General Info 2/2</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
           personal meal plan the next time.
         </p>
       </div>
 
-      <form [formGroup]="firstConsultationForm" class="personal-form">
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Subjectively, how are you feeling?</mat-label>
-          <textarea type="text" matInput formControlName="howYouFeeling" placeholder="Write a short summary" 
+      <form [formGroup]="generalDataForm" class="personal-form">
+        <!-- <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Are the portion sizes ok?</mat-label>
+          <textarea type="text" matInput formControlName="portionSizes" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].howYouFeeling.valid && firstConsultationForm['controls'].howYouFeeling.touched">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-        
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Do you have any questions?</mat-label>
-          <textarea type="text" matInput formControlName="questions" placeholder="Write a short summary" 
-          matTextareaAutosize autofocus="off" autocomplete="off" required>
-          </textarea>
-          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].questions.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-
-        <section class="specialist-notes">
-          <h3>Observations Specialist</h3>
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Extra notes taken by specialist</mat-label>
-            <textarea type="text" matInput formControlName="specialistNotes" placeholder="Anything you noticed or is worth writing down.." 
-            matTextareaAutosize autofocus="off" autocomplete="off">
-            </textarea>
-          </mat-form-field>
-        </section>
-
+          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].portionSizes.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field> -->
       </form>
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="submit" class="dialog-button" (click)="addFirstConsultation()"
-          [class.disabled]="!firstConsultationForm.valid" [disabled]="!firstConsultationForm.valid" mat-dialog-close
-          >
+        <button type="submit" class="dialog-button" (click)="addFirstConsultation()">
+          Done
+        </button>
+      </section>
+    </mat-step>
+
+    <mat-step [stepControl]="noteForm">
+      <ng-template matStepLabel>Notes</ng-template>
+      
+      <div class="title-area">
+        <h3>📝 Extra notes</h3>
+        <p class="card-text">
+          Write down important things here
+        </p>
+      </div>
+
+      <form [formGroup]="noteForm" class="personal-form">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Did you notice/remember anything?</mat-label>
+          <textarea type="text" matInput formControlName="specialistNotes" placeholder="Write it down" 
+          matTextareaAutosize autofocus="off" autocomplete="off" required>
+          </textarea>
+        </mat-form-field>
+      </form>
+
+      <section class="btn-area">
+        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="submit" class="dialog-button" (click)="addFirstConsultation()">
           Done
         </button>
       </section>

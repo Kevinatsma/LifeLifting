@@ -8,8 +8,8 @@
     }
     .mat-dialog-container {
         background-color: #fff;
-        min-height: 75vh;
-        max-height: 75vh;
+        min-height: 85vh;
+        max-height: 85vh;
         min-width: 80vw;
         padding: 0;
 
@@ -23,7 +23,7 @@
     }
 
     main.measurement-detail-wrapper {
-        height: 75vh;
+        height: 85vh;
         overflow: hidden;
 
         @include respond-down($sm) {

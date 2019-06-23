@@ -42,6 +42,7 @@ div.success-wrapper {
         img.logo {
             width: 60%;
             margin-top: 0;
+            max-width: 210px;
 
             @include respond-down($sm) {
                 margin-bottom: 20px;
