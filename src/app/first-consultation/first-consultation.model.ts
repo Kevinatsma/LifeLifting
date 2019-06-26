@@ -46,6 +46,8 @@ export class Habits {
         whoCooks: string;
         breakfastAtHome: string;
         breakfastAtHomeNote: string;
+        timeForBreakfast: string;
+        timeForBreakfastNote: string;
     };
     work: {
         description: string;
@@ -56,7 +58,7 @@ export class Habits {
         workToHome: number;
         transportationMethod: string;
         eatDuringJob: string;
-        practicalSnackDuringJob: string;
+        practicalSnackDuringJob?: string;
         snacksPreference: string;
         kitchenGadgetsAtWork: string;
     };

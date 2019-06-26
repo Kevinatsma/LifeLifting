@@ -61,3 +61,7 @@
         flex-flow: column nowrap;
     }
 }
+
+::ng-deep .cdk-overlay-pane, .cdk-overlay-pane {
+    box-shadow: $card-shadow;
+}

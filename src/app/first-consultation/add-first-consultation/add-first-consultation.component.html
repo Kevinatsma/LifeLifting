@@ -46,9 +46,9 @@
           <mat-label>Gender</mat-label>
           <mat-select matInput placeholder="Pick an appropriate option" formControlName="sex"
           autocomplete="off" panelClass="dropdown-regular" required>
-            <mat-option [value]="Masculine">Masculine</mat-option>
-            <mat-option [value]="Feminine">Feminine</mat-option>
-            <mat-option [value]="Other">Other</mat-option>
+            <mat-option value="Masculine">Masculine</mat-option>
+            <mat-option value="Feminine">Feminine</mat-option>
+            <mat-option value="Other">Other</mat-option>
           </mat-select>
           <mat-error class="input-error" *ngIf="!basicDataForm['controls'].sex.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
@@ -123,8 +123,8 @@
           <mat-radio-group
             class="radio-button-group"
             formControlName="alcohol">
-            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
-            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+            <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
           </mat-radio-group>
         </div>
 
@@ -139,8 +139,8 @@
           <mat-radio-group
             class="radio-button-group"
             formControlName="smoke">
-            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
-            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+            <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
           </mat-radio-group>
         </div>
 
@@ -155,8 +155,8 @@
           <mat-radio-group
             class="radio-button-group"
             formControlName="drugs">
-            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
-            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+            <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
           </mat-radio-group>
         </div>
 
@@ -165,8 +165,8 @@
           <mat-radio-group
             class="radio-button-group"
             formControlName="coffee">
-            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
-            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+            <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
           </mat-radio-group>
         </div>
 
@@ -181,8 +181,8 @@
           <mat-radio-group
             class="radio-button-group"
             formControlName="tea">
-            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
-            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+            <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
           </mat-radio-group>
         </div>
 
@@ -197,8 +197,8 @@
           <mat-radio-group
             class="radio-button-group"
             formControlName="socialLife">
-            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
-            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+            <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
           </mat-radio-group>
         </div>
 
@@ -213,9 +213,9 @@
           <mat-radio-group
             class="radio-button-group"
             formControlName="stayUpLate">
-            <mat-radio-button class="radio-button" [value]="other">Yes</mat-radio-button>
-            <mat-radio-button class="radio-button" [value]="yes">Yes</mat-radio-button>
-            <mat-radio-button class="radio-button" [value]="no">No</mat-radio-button>
+            <mat-radio-button class="radio-button" value="other">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
           </mat-radio-group>
         </div>
 
@@ -227,17 +227,232 @@
 
         <section class="sleeping-habits">
           <h3>Sleeping habits</h3>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>At what time do you wake up?</mat-label>
+            <mat-select matInput placeholder="Pick a time" formControlName="wakeUpTime" 
+            panelClass="dropdown-regular" autocomplete="off" required>
+              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+            </mat-select>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].wakeUpTime.touched">This is <strong>required</strong></mat-error>
+          </mat-form-field>
 
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>At what time do go to sleep?</mat-label>
+            <mat-select matInput placeholder="Pick a time" formControlName="sleepTime" 
+            panelClass="dropdown-regular" autocomplete="off" required>
+              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+            </mat-select>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].sleepTime.touched">This is <strong>required</strong></mat-error>
+          </mat-form-field>
         </section>
 
         <section class="eating-habits">
           <h3>Eating habits</h3>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>At what time do you have breakfast?</mat-label>
+            <mat-select matInput placeholder="Pick a time" formControlName="breakfastTime" 
+            panelClass="dropdown-regular" autocomplete="off" required>
+              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+            </mat-select>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].breakfastTime.touched">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>What's the time you lunch?</mat-label>
+            <mat-select matInput placeholder="Pick a time" formControlName="lunchTime" 
+            panelClass="dropdown-regular" autocomplete="off" required>
+              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+            </mat-select>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].lunchTime.touched">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>At what time do you have dinner?</mat-label>
+            <mat-select matInput placeholder="Pick a time" formControlName="dinnerTime" 
+            panelClass="dropdown-regular" autocomplete="off" required>
+              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+            </mat-select>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].dinnerTime.touched">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Who cooks at home?</mat-label>
+            <mat-select matInput placeholder="Pick one" formControlName="whoCooks" 
+            panelClass="dropdown-regular" autocomplete="off" required>
+              <mat-option value="patient">Patient</mat-option>
+              <mat-option value="relative">Relative</mat-option>
+              <mat-option value="maid">Maid</mat-option>
+            </mat-select>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].whoCooks.touched">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          <div class="radio-form-field">
+            <label class="radio-form-label">Do you have breakfast at home?</label>
+            <mat-radio-group
+              class="radio-button-group"
+              formControlName="breakfastAtHome">
+              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Where?</mat-label>
+            <textarea type="text" matInput formControlName="breakfastAtHomeNote" placeholder="Write it down" 
+            matTextareaAutosize autofocus="off" autocomplete="off" required>
+            </textarea>
+          </mat-form-field>
+
+          <div class="radio-form-field">
+            <label class="radio-form-label">Do you have plenty of time for breakfast?</label>
+            <mat-radio-group
+              class="radio-button-group"
+              formControlName="timeForBreakfast">
+              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Why not?</mat-label>
+            <textarea type="text" matInput formControlName="timeForBreakfastNote" placeholder="Write it down" 
+            matTextareaAutosize autofocus="off" autocomplete="off" required>
+            </textarea>
+          </mat-form-field>
         </section>
 
         <section class="work">
           <h3>Work</h3>
+
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>What do you work in?</mat-label>
+            <textarea type="text" matInput formControlName="workDescription" placeholder="Write a short summary" 
+            matTextareaAutosize autofocus="off" autocomplete="off" required>
+            </textarea>
+          </mat-form-field>
+
+          <div class="time-range">
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>What's your work schedule?</mat-label>
+              <mat-select matInput placeholder="From" formControlName="workScheduleFrom" 
+              panelClass="dropdown-regular" autocomplete="off" required>
+                <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              </mat-select>
+              <mat-error class="input-error" *ngIf="!habitForm['controls'].workScheduleFrom.touched">This is <strong>required</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-select matInput placeholder="To" formControlName="workScheduleTo" 
+              panelClass="dropdown-regular" autocomplete="off" required>
+                <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              </mat-select>
+              <mat-error class="input-error" *ngIf="!habitForm['controls'].workScheduleTo.touched">This is <strong>required</strong></mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="radio-form-field">
+            <label class="radio-form-label">Do you work on the weekends?</label>
+            <mat-radio-group
+              class="radio-button-group"
+              formControlName="workOnWeekends">
+              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div class="time-range">
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-label>What's your schedule?</mat-label>
+              <mat-select matInput placeholder="From" formControlName="workOnWeekendsFrom" 
+              panelClass="dropdown-regular" autocomplete="off" required>
+                <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              </mat-select>
+              <mat-error class="input-error" *ngIf="!habitForm['controls'].workOnWeekendsFrom.touched">This is <strong>required</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard" floatLabel="always">
+              <mat-select matInput placeholder="To" formControlName="workOnWeekendsTo" 
+              panelClass="dropdown-regular" autocomplete="off" required>
+                <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              </mat-select>
+              <mat-error class="input-error" *ngIf="!habitForm['controls'].workOnWeekendsTo.touched">This is <strong>required</strong></mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="mat-form-field form-slider">
+            <span class="label">How long does it take you from home to work? (in minutes)</span>
+            <div class="slider">
+              <mat-slider class="form-slider home-work" [(value)]="homeToWorkScale" thumbLabel min="0" max="180">
+              </mat-slider>
+              <div class="percentage-circle">
+                {{homeToWorkScale}}
+                <ng-container *ngIf="!homeToWorkScale">0</ng-container>
+              </div>
+            </div>
+          </div>
+
+          <div class="mat-form-field form-slider">
+            <span class="label">And from work to home? (in minutes)</span>
+            <div class="slider">
+              <mat-slider class="form-slider home-work" [(value)]="workToHomeScale" thumbLabel min="0" max="180">
+              </mat-slider>
+              <div class="percentage-circle">
+                {{workToHomeScale}}
+                <ng-container *ngIf="!workToHomeScale">0</ng-container>
+              </div>
+            </div>
+          </div>
+
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Method of transportation</mat-label>
+            <mat-select matInput placeholder="Pick a method" formControlName="transportationMethod" 
+            panelClass="dropdown-regular" autocomplete="off" required>
+              <mat-option value="car">🚗 Car</mat-option>
+              <mat-option value="public">🚉 Public Transportation</mat-option>
+              <mat-option value="bike">🚴‍♂️ Bike</mat-option>
+              <mat-option value="walk">🚶‍♀️ Walking</mat-option>
+            </mat-select>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].transportationMethod.touched">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          <div class="radio-form-field">
+            <label class="radio-form-label">Can you eat during work?</label>
+            <mat-radio-group
+              class="radio-button-group"
+              formControlName="eatDuringJob">
+              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div class="radio-form-field">
+            <label class="radio-form-label">Can you have a very simple and practical snack while you work?</label>
+            <mat-radio-group
+              class="radio-button-group"
+              formControlName="practicalSnackDuringJob">
+              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Do you prefer your snacks to be elaborate or simple?</mat-label>
+            <mat-select matInput placeholder="Pick one" formControlName="snacksPreference" 
+            panelClass="dropdown-regular" autocomplete="off" required>
+              <mat-option value="elaborate">Elaborate</mat-option>
+              <mat-option value="simple">Simple</mat-option>
+            </mat-select>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].snacksPreference.touched">This is <strong>required</strong></mat-error>
+          </mat-form-field>
         </section>
-        
+   
+        <div class="radio-form-field">
+          <label class="radio-form-label">Do you have kitchen gadgets at work?</label>
+          <mat-radio-group
+            class="radio-button-group"
+            formControlName="kitchenGadgetsAtWork">
+            <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+            <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+          </mat-radio-group>
+        </div>     
        </form>
 
       <section class="btn-area">
@@ -314,7 +529,7 @@
           <div class="mat-form-field form-slider">
             <span class="label">From 1 to 10, 10 being “I’m always hungry”, where would you categorize your appetite in general</span>
             <div class="slider">
-              <mat-slider class="form-slider" [(value)]="hungryScale" thumbLabel min="0" max="10">
+              <mat-slider class="form-slider hungry" [(value)]="hungryScale" thumbLabel min="0" max="10">
               </mat-slider>
               <div class="percentage-circle">
                 {{hungryScale}}
@@ -324,14 +539,6 @@
           </div>
 
         </section>
-                
-        <!-- <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Are the portion sizes ok?</mat-label>
-          <textarea type="text" matInput formControlName="portionSizes" placeholder="Write a short summary" 
-          matTextareaAutosize autofocus="off" autocomplete="off" required>
-          </textarea>
-          <mat-error class="input-error" *ngIf="!firstConsultationForm['controls'].portionSizes.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field> -->
         
       </form>
 

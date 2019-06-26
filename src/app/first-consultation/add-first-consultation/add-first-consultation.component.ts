@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { FirstConsultationService } from '../first-consultation.service';
 import { Mealplan } from '../../mealplans/mealplan.model';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { Time } from 'src/app/shared/data/models/time.model';
+import times from './../../shared/data/JSON/times.json';
 
 @Component({
   selector: 'app-add-first-consultation',
@@ -12,9 +14,11 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
   styleUrls: ['./add-first-consultation.component.scss']
 })
 export class AddFirstConsultationComponent implements OnInit {
+  // Data
   client: User;
   mealplans: Mealplan[];
   mealplansCol: AngularFirestoreCollection<Mealplan>;
+  times: Time[] = times.times;
 
   // Form
   basicDataForm: FormGroup;
@@ -30,6 +34,8 @@ export class AddFirstConsultationComponent implements OnInit {
   shoppingLocationArr: FormArray;
   activityArr: FormArray;
   hungryScale: string;
+  homeToWorkScale: string;
+  workToHomeScale: string;
 
   // Disable popup from closing
   @HostListener('window:keyup.esc') onKeyUp() {
@@ -82,14 +88,16 @@ export class AddFirstConsultationComponent implements OnInit {
       lunchTime: ['', Validators.required],
       dinnerTime: ['', Validators.required],
       whoCooks: ['', Validators.required],
-      breakfastAtHome: ['', Validators.required],
+      breakfastAtHome: [''],
       breakfastAtHomeNote: ['', Validators.required],
-      description: ['', Validators.required],
-      schedule: ['', Validators.required],
+      timeForBreakfast: ['', Validators.required],
+      timeForBreakfastNote: [''],
+      workDescription: ['', Validators.required],
+      workScheduleFrom: ['', Validators.required],
+      workScheduleTo: ['', Validators.required],
       workOnWeekends: ['', Validators.required],
-      workOnWeekendsNote: [''],
-      homeToWork: ['', Validators.required],
-      workToHome: ['', Validators.required],
+      workOnWeekendsFrom: [''],
+      workOnWeekendsTo: [''],
       transportationMethod: ['', Validators.required],
       eatDuringJob: ['', Validators.required],
       practicalSnackDuringJob: ['', Validators.required],
@@ -104,7 +112,6 @@ export class AddFirstConsultationComponent implements OnInit {
       everyDayAmount: [''],
       timesPerDay: ['', Validators.required],
       sameSchedule: ['', Validators.required],
-      hungryScale: ['', Validators.required],
       mostHungryMoment: ['', Validators.required],
       sleepingStatus: ['', Validators.required],
       averageHours: ['', Validators.required],
@@ -257,17 +264,19 @@ export class AddFirstConsultationComponent implements OnInit {
         whoCooks: this.habitForm.get('whoCooks').value,
         breakfastAtHome: this.habitForm.get('breakfastAtHome').value,
         breakfastAtHomeNote: this.habitForm.get('breakfastAtHomeNote').value,
+        timeForBreakfast: this.habitForm.get('timeForBreakfast').value,
+        timeForBreakfastNote: this.habitForm.get('timeForBreakfastNote').value
       },
       work: {
         description: this.habitForm.get('workDescription').value,
-        schedules: this.habitForm.get('schedules').value,
+        schedules: this.habitForm.get('workScheduleFrom').value + ' - ' + this.habitForm.get('workScheduleTo').value,
         workOnWeekends: this.habitForm.get('workOnWeekends').value,
-        workOnWeekendsNote: this.habitForm.get('workOnWeekendsNote').value || null,
-        homeToWork: this.habitForm.get('homeToWork').value,
-        workToHome: this.habitForm.get('workToHome').value,
+        workOnWeekendsNote: this.habitForm.get('workOnWeekendsFrom').value + ' - ' + this.habitForm.get('workOnWeekendsTo').value || null,
+        homeToWork: this.homeToWorkScale,
+        workToHome: this.workToHomeScale,
         transportationMethod: this.habitForm.get('transportationMethod').value,
         eatDuringJob: this.habitForm.get('eatDuringJob').value,
-        practicalSnackDuringJob: this.habitForm.get('practicalSnackDuringJob').value,
+        practicalSnackDuringJob: this.habitForm.get('practicalSnackDuringJob').value || null,
         snacksPreference: this.habitForm.get('snacksPreference').value,
         kitchenGadgetsAtWork: this.habitForm.get('kitchenGadgetsAtWork').value,
       }

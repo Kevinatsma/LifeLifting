@@ -136,14 +136,20 @@
                     .mat-form-field {
                         .label {
                             color: $primary-color;
+                            display: flex;
                             font-family: $main-font;
                             font-size: 14px;
                             font-weight: 500;
                             letter-spacing: 0.5px;
+                            max-width: 80%;
                         }
 
                         &.form-slider {
-                            margin-top: 12px;
+                            margin: 12px;
+                            padding: 2em 4em;
+                            width: 39%;
+                            background: #fff;
+                            box-shadow: $card-shadow;
                         }
 
                         .slider {
@@ -172,14 +178,28 @@
                                     width: 15px;
                                 }
 
-                                &::before {
-                                    content: '0';
-                                    left: 0;
+                                &.hungry {
+                                    &::before {
+                                        content: '0';
+                                        left: 0;
+                                    }
+    
+                                    &::after {
+                                        content: '10';
+                                        right: 0;
+                                    }
                                 }
 
-                                &::after {
-                                    content: '10';
-                                    right: 0;
+                                &.home-work {
+                                    &::before {
+                                        content: '0';
+                                        left: 0;
+                                    }
+    
+                                    &::after {
+                                        content: '180';
+                                        right: 0;
+                                    }
                                 }
                             }
 
