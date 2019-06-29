@@ -539,7 +539,7 @@
             <label class="radio-form-label">Do you always go at the same moments?</label>
             <mat-radio-group
               class="radio-button-group"
-              formControlName="everyDay">
+              formControlName="sameSchedule">
               <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
               <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
             </mat-radio-group>
@@ -592,7 +592,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always" class="number">
-            <mat-label></mat-label>
+            <mat-label>Average hours of sleep</mat-label>
             <input type="number"formControlName="averageHours" matInput placeholder="18" max="24" autocomplete="off" required>
             <!-- <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
