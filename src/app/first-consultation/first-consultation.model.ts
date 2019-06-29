@@ -71,7 +71,7 @@ export class BodyFunctions {
     };
     bowelMovements: {
         everyDay: string;
-        everyDayAmount?: number;
+        timesPerWeek?: number;
         timesPerDay: number;
         sameSchedule: string;
     };

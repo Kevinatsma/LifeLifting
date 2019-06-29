@@ -118,8 +118,7 @@ export class AddFirstConsultationComponent implements OnInit {
       urinateAmount: ['', Validators.required],
       middleNightUrinate: ['', Validators.required],
       everyDay: ['', Validators.required],
-      mealplanID: ['', Validators.required],
-      everyDayAmount: [''],
+      timesPerWeek: [''],
       timesPerDay: ['', Validators.required],
       sameSchedule: ['', Validators.required],
       mostHungryMoment: ['', Validators.required],
@@ -315,7 +314,7 @@ export class AddFirstConsultationComponent implements OnInit {
       },
       bowelMovements: {
         everyDay: this.bodyFunctionsForm.get('everyDay').value,
-        everyDayAmount: this.bodyFunctionsForm.get('everyDayAmount').value || null,
+        timesPerWeek: this.bodyFunctionsForm.get('timesPerWeek').value || null,
         timesPerDay: this.bodyFunctionsForm.get('timesPerDay').value,
         sameSchedule: this.bodyFunctionsForm.get('sameSchedule').value,
       },

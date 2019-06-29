@@ -312,8 +312,7 @@
 
           <ng-container *ngIf="habitForm['controls'].breakfastAtHome.value === 'no'">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Where?</mat-label>
-              <textarea type="text" matInput formControlName="breakfastAtHomeNote" placeholder="Write it down" 
+              <textarea type="text" matInput formControlName="breakfastAtHomeNote" placeholder="Where?" 
               matTextareaAutosize autofocus="off" autocomplete="off" required>
               </textarea>
             </mat-form-field>
@@ -330,28 +329,7 @@
 
             <ng-container *ngIf="habitForm['controls'].timeForBreakfast.value === 'no'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>Why not?</mat-label>
-                <textarea type="text" matInput formControlName="timeForBreakfastNote" placeholder="Write it down" 
-                matTextareaAutosize autofocus="off" autocomplete="off" required>
-                </textarea>
-              </mat-form-field>
-            </ng-container>
-          </div>
-
-
-          <div class="radio-form-field">
-            <label class="radio-form-label">Do you have plenty of time for breakfast?</label>
-            <mat-radio-group
-              class="radio-button-group"
-              formControlName="timeForBreakfast">
-              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
-            </mat-radio-group>
-
-            <ng-container *ngIf="habitForm['controls'].timeForBreakfast.value === 'no'">
-              <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>Why not?</mat-label>
-                <textarea type="text" matInput formControlName="timeForBreakfastNote" placeholder="Write it down" 
+                <textarea type="text" matInput formControlName="timeForBreakfastNote" placeholder="Why not?" 
                 matTextareaAutosize autofocus="off" autocomplete="off" required>
                 </textarea>
               </mat-form-field>
@@ -543,8 +521,16 @@
             </mat-radio-group>
           </div>
 
+          <ng-container *ngIf="bodyFunctionsForm['controls'].everyDay.value === 'no'">
+            <mat-form-field appearance="standard" floatLabel="always" class="number">
+              <mat-label>How many times a day do you have them per week?</mat-label>
+              <input type="number"formControlName="timesPerWeek" matInput placeholder="4" autocomplete="off" required>
+              <!-- <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">This is <strong>required</strong></mat-error> -->
+            </mat-form-field>
+          </ng-container>
+
           <mat-form-field appearance="standard" floatLabel="always" class="number">
-            <mat-label>How many times a week do you do bowel movements?</mat-label>
+            <mat-label>How many times a day do you have bowel movements?</mat-label>
             <input type="number"formControlName="timesPerDay" matInput placeholder="6" autocomplete="off" required>
             <!-- <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
@@ -798,8 +784,7 @@
 
             <ng-container *ngIf="generalDataForm['controls'].eatAfterDinner.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>Like what?</mat-label>
-                <textarea type="text" matInput formControlName="eatAfterDinnerNote" placeholder="Write a short summary" 
+                <textarea type="text" matInput formControlName="eatAfterDinnerNote" placeholder="Like what?" 
                 matTextareaAutosize autofocus="off" autocomplete="off" required>
                 </textarea>
               </mat-form-field>
@@ -869,8 +854,7 @@
 
             <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'no'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>Why not?</mat-label>
-                <textarea type="text" matInput formControlName="physicalActivitiesWhy" placeholder="Write a short summary" 
+                <textarea type="text" matInput formControlName="physicalActivitiesWhy" placeholder="Why not?" 
                 matTextareaAutosize autofocus="off" autocomplete="off" required>
                 </textarea>
               </mat-form-field>
@@ -958,7 +942,7 @@
           <h1 class="big-category__title">Weekends</h1>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>At what time do you wake up?</mat-label>
-            <mat-select matInput placeholder="From" formControlName="wakeUpTime" 
+            <mat-select matInput placeholder="06.00" formControlName="wakeUpTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
               <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
             </mat-select>
@@ -977,8 +961,7 @@
 
             <ng-container *ngIf="generalDataForm['controls'].orderFood.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>Like what?</mat-label>
-                <textarea type="text" matInput formControlName="orderFoodNote" placeholder="Write a short summary" 
+                <textarea type="text" matInput formControlName="orderFoodNote" placeholder="Like what?" 
                 matTextareaAutosize autofocus="off" autocomplete="off" required>
                 </textarea>
               </mat-form-field>
@@ -1000,8 +983,7 @@
 
             <ng-container *ngIf="generalDataForm['controls'].supplements.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>What are you taking?</mat-label>
-                <textarea type="text" matInput formControlName="supplementNote" placeholder="Write a short summary" 
+                <textarea type="text" matInput formControlName="supplementNote" placeholder="What are you taking?" 
                 matTextareaAutosize autofocus="off" autocomplete="off" required>
                 </textarea>
               </mat-form-field>
