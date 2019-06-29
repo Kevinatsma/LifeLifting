@@ -1,12 +1,14 @@
 import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { User } from '../../user/user.model';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { FirstConsultationService } from '../first-consultation.service';
 import { Mealplan } from '../../mealplans/mealplan.model';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
-import { Time } from 'src/app/shared/data/models/time.model';
+import { Time } from './../../shared/data/models/time.model';
 import times from './../../shared/data/JSON/times.json';
+import { Exercise } from './../../exercises/exercise.model';
+import { ExerciseService } from 'src/app/exercises/exercise.service';
 
 @Component({
   selector: 'app-add-first-consultation',
@@ -19,6 +21,7 @@ export class AddFirstConsultationComponent implements OnInit {
   mealplans: Mealplan[];
   mealplansCol: AngularFirestoreCollection<Mealplan>;
   times: Time[] = times.times;
+  activities: Exercise[];
 
   // Form
   basicDataForm: FormGroup;
@@ -29,10 +32,16 @@ export class AddFirstConsultationComponent implements OnInit {
 
   // Form Arrays
   healthConditionsArr: FormArray;
+  healthCondition = new FormControl('', [Validators.required]);
   pastTwoWeeksArr: FormArray;
+  pastTwoWeeksValue = new FormControl('', [Validators.required]);
   dontEatArr: FormArray;
+  dontEatItem = new FormControl('', [Validators.required]);
   shoppingLocationArr: FormArray;
+  shoppingLocation = new FormControl('', [Validators.required]);
   activityArr: FormArray;
+  physicalActivity = new FormControl('', [Validators.required]);
+
   hungryScale: string;
   homeToWorkScale: string;
   workToHomeScale: string;
@@ -52,6 +61,7 @@ export class AddFirstConsultationComponent implements OnInit {
   constructor( private afs: AngularFirestore,
                private fb: FormBuilder,
                private firstConsultationService: FirstConsultationService,
+               private exerciseService: ExerciseService,
                public dialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public data: any) {
      this.client = data.client;
@@ -116,24 +126,27 @@ export class AddFirstConsultationComponent implements OnInit {
       sleepingStatus: ['', Validators.required],
       averageHours: ['', Validators.required],
       troubleFallingAsleep: ['', Validators.required],
+      troubleFallingAsleepNote: [''],
       wakeUpEnergized: ['', Validators.required],
     });
     this.generalDataForm = this.fb.group({
-      healthConditions: this.fb.array([ this.createHealthCondition() ]),
+      healthConditionsArr: this.fb.array([ this.createHealthCondition() ]),
       gastritis: ['', Validators.required],
       medication: ['', Validators.required],
-      pastTwoWeeks: this.fb.array([ this.createPastTwoWeeks() ]),
-      dontEat: this.fb.array([ this.createDontEatItem() ]),
+      pastTwoWeeksArr: this.fb.array([ this.createPastTwoWeeks() ]),
+      dontEatArr: this.fb.array([ this.createDontEatItem() ]),
       portion: ['', Validators.required],
       preparedBy: ['', Validators.required],
       eatAfterDinner: ['', Validators.required],
-      shoppingLocation: this.fb.array([ this.createShoppingLocation() ]),
+      eatAfterDinnerNote: [''],
+      shoppingLocationArr: this.fb.array([ this.createShoppingLocation() ]),
       whoBuys: ['', Validators.required],
       orderOnline: ['', Validators.required],
       physicalActivitiesConfirmation: ['', Validators.required],
-      physicalActivities: this.fb.array([ this.createActivity() ]),
+      activityArr: this.fb.array([ this.createActivity() ]),
       physicalActivitiesWhy: [''],
-      workoutSchedule: ['', Validators.required],
+      workoutScheduleFrom: ['', Validators.required],
+      workoutScheduleTo: ['', Validators.required],
       trainingLocation: ['', Validators.required],
       travelTime: ['', Validators.required],
       trainingIntensity: ['', Validators.required],
@@ -148,23 +161,26 @@ export class AddFirstConsultationComponent implements OnInit {
     this.noteForm = this.fb.group({
       specialistNotes: [''],
     });
+
+    this.exerciseService.getExercises().subscribe(exercises => this.activities = exercises);
   }
 
   // Getters
+
   get healthConditionsArray() {
-    return this.generalDataForm.get('healthConditions') as FormArray;
+    return this.generalDataForm.get('healthConditionsArr') as FormArray;
   }
   get pastTwoWeeksArray() {
-    return this.generalDataForm.get('pastTwoWeeks') as FormArray;
+    return this.generalDataForm.get('pastTwoWeeksArr') as FormArray;
   }
   get dontEatArray() {
-    return this.generalDataForm.get('dontEat') as FormArray;
+    return this.generalDataForm.get('dontEatArr') as FormArray;
   }
   get shoppingLocationArray() {
-    return this.generalDataForm.get('shoppingLocation') as FormArray;
+    return this.generalDataForm.get('shoppingLocationArr') as FormArray;
   }
   get activityArray() {
-    return this.generalDataForm.get('physicalActivities') as FormArray;
+    return this.generalDataForm.get('activityArr') as FormArray;
   }
 
   // Create, add, delete form array items
@@ -176,55 +192,66 @@ export class AddFirstConsultationComponent implements OnInit {
 
   createPastTwoWeeks(): FormGroup {
     return this.fb.group({
-      pastTwoWeeks: ''
+      pastTwoWeeksValue: ''
     });
   }
 
   createDontEatItem(): FormGroup {
     return this.fb.group({
-      dontEat: ''
+      dontEatItem: ''
     });
   }
 
   createShoppingLocation(): FormGroup {
     return this.fb.group({
-      shopppingLocation: ''
+      shoppingLocation: ''
     });
   }
 
   createActivity(): FormGroup {
     return this.fb.group({
-      activity: ''
+      physicalActivity: ''
     });
   }
 
   addHealthCondition(): void {
-    this.healthConditionsArr = this.generalDataForm.get('healthConditions') as FormArray;
-    this.healthConditionsArr.push(this.createHealthCondition());
+    this.healthConditionsArray.push(this.createHealthCondition());
   }
 
   addPastTwoWeeks(): void {
-    this.pastTwoWeeksArr = this.generalDataForm.get('healthConditions') as FormArray;
-    this.pastTwoWeeksArr.push(this.createHealthCondition());
+    this.pastTwoWeeksArray.push(this.createPastTwoWeeks());
   }
 
   addDontEatItem(): void {
-    this.dontEatArr = this.generalDataForm.get('healthConditions') as FormArray;
-    this.dontEatArr.push(this.createHealthCondition());
+    this.dontEatArray.push(this.createDontEatItem());
   }
 
   addShoppingLocation(): void {
-    this.shoppingLocationArr = this.generalDataForm.get('healthConditions') as FormArray;
-    this.shoppingLocationArr.push(this.createHealthCondition());
+    this.shoppingLocationArray.push(this.createShoppingLocation());
   }
 
   addActivity(): void {
-    this.activityArr = this.generalDataForm.get('healthConditions') as FormArray;
-    this.activityArr.push(this.createHealthCondition());
+    this.activityArray.push(this.createActivity());
   }
 
   deleteHealthCondition(i) {
-    (this.generalDataForm.get('healthConditionsArray') as FormArray).removeAt(i);
+    (this.generalDataForm.get('healthConditionsArr') as FormArray).removeAt(i);
+  }
+
+  deletePastTwoWeeks(i) {
+    (this.generalDataForm.get('pastTwoWeeksArr') as FormArray).removeAt(i);
+  }
+
+  deleteDontEatItem(i) {
+    (this.generalDataForm.get('dontEatArr') as FormArray).removeAt(i);
+  }
+
+  deleteShoppingLocation(i) {
+    (this.generalDataForm.get('shoppingLocationArr') as FormArray).removeAt(i);
+  }
+
+  deleteActivity(i) {
+    (this.generalDataForm.get('activityArr') as FormArray).removeAt(i);
   }
 
 
@@ -300,6 +327,7 @@ export class AddFirstConsultationComponent implements OnInit {
         sleepingStatus: this.bodyFunctionsForm.get('sleepingStatus').value,
         averageHours: this.bodyFunctionsForm.get('averageHours').value,
         troubleFallingAsleep: this.bodyFunctionsForm.get('troubleFallingAsleep').value,
+        troubleFallingAsleepNote: this.bodyFunctionsForm.get('troubleFallingAsleepNote').value,
         wakeUpEnergized: this.bodyFunctionsForm.get('wakeUpEnergized').value,
       }
     };
@@ -315,7 +343,8 @@ export class AddFirstConsultationComponent implements OnInit {
         portion: this.generalDataForm.get('portion').value,
         preparedBy: this.generalDataForm.get('preparedBy').value,
         eatAfterDinner: this.generalDataForm.get('eatAfterDinner').value,
-        shoppingLocation: this.shoppingLocationArray.value,
+        eatAfterDinnerNote: this.generalDataForm.get('eatAfterDinnerNote').value,
+        shoppingLocations: this.shoppingLocationArray.value,
         whoBuys: this.generalDataForm.get('whoBuys').value,
         orderOnline: this.generalDataForm.get('orderOnline').value,
       },
@@ -323,7 +352,8 @@ export class AddFirstConsultationComponent implements OnInit {
         physicalActivitiesConfirmation: this.generalDataForm.get('physicalActivitiesConfirmation').value,
         physicalActivities: this.activityArray.value || null,
         physicalActivitiesWhy: this.generalDataForm.get('physicalActivitiesWhy').value || null,
-        workoutSchedule: this.generalDataForm.get('workoutSchedule').value,
+        workoutSchedule: this.generalDataForm.get('workoutScheduleFrom').value + ' - '
+          + this.generalDataForm.get('workoutScheduleTo').value || null,
         trainingLocation: this.generalDataForm.get('trainingLocation').value,
         travelTime: this.generalDataForm.get('travelTime').value,
         trainingIntensity: this.generalDataForm.get('trainingIntensity').value,

@@ -83,6 +83,7 @@ export class BodyFunctions {
         sleepingStatus: string;
         averageHours: number;
         troubleFallingAsleep: string;
+        troubleFallingAsleepNote?: string;
         wakeUpEnergized: string;
     };
 }
@@ -99,7 +100,8 @@ export class GeneralData {
         portion: string;
         preparedBy: string;
         eatAfterDinner: string
-        shoppingLocation: [];
+        eatAfterDinnerNote?: string
+        shoppingLocations: [];
         whoBuys: string;
         orderOnline: string;
     };

@@ -86,6 +86,105 @@
                     &.personal-form {
                         min-height: calc(100vh - 257px);
                     }
+
+                    .radio-form-field {
+                        display: flex;
+                        flex-flow: row wrap;
+                        margin: 20px 5% 20px 0;
+                        width: 45%;
+
+                        &.activity-confirmations {
+                            width: 100%;
+                        }
+
+                        &.gastritis {
+                            margin: auto 1em;
+                        }
+
+                        .radio-form-label {
+                            margin-bottom: 10px;
+                            color: $primary-color;
+                            font-family: $main-font;
+                            font-weight: $regular;
+                            font-size: 14px;
+                            letter-spacing: .25px;
+                            width: 100%;
+                        }
+
+                        mat-radio-group {
+                            width: 30%;
+
+                            mat-radio-button {
+                                margin: 10px 0;
+
+                                .mat-radio-label-content {
+                                    font-size: 15px;
+                                    margin: 1px 0 0 10px;
+                                }
+                            }
+                        }
+
+                        mat-form-field {
+                            width: 60%;
+                        }
+                    }
+
+                    .big-category {
+                        border-top: 1px solid $border-color;
+                        border-bottom: 1px solid $border-color;
+                        display: flex;
+                        flex-flow: row wrap;     
+                        height: 100%;
+                        padding: 2em 0;
+                        width: 100%;
+
+                        &__title {
+                            width: 100%;
+                        }
+
+                        &.dinner {
+                            border-bottom: none;
+                        }
+
+                        .time-range {
+                            width: 45%;
+                            margin-right: 5%;
+                        }
+                    }
+
+                    .add-form-field-container {
+                        margin: 0 0 1em;
+                        width: 100%;
+
+                        h3 {
+                            width: 100%;
+                        }
+
+                        .dynamic-form-field-container {
+                            margin: 1em 5% 1em 0;
+                            width: 45%;
+
+                            .number-id {
+                                height: 110px;
+                            }
+
+                            mat-form-field {
+                                margin: 0;
+                                width: 100%;
+                            }
+
+                            .btn-area {
+                                height: 100%;
+                                min-height: 110px;
+                                position: relative;
+                                width: 80px;
+                            }
+                        }
+
+                        .add-form-field {
+                            width: 70%;
+                        }
+                    }
     
                     mat-form-field, .mat-form-field {
                         margin-top: 1em;
@@ -109,7 +208,12 @@
                         &.number {
                             input {
                                 margin-top: 10px;
-                                width: 45px;
+                                width: 55px;
+                            }
+
+                            .specifier {
+                                position: relative;
+                                top: -9px;
                             }
                         }
 
@@ -129,6 +233,14 @@
 
                             &::placeholder {
                                 color: $grey;
+                            }
+                        }
+
+
+                        &.date-picker {
+                            input {
+                                margin-right: 20px;
+                                width: 60%;
                             }
                         }
                     }
@@ -271,7 +383,9 @@
                 .btn-area, .btn-area-one {
                     background-color: #fff;
                     bottom: 0;
+                    left: 0;
                     position: absolute;
+                    right: 0;
                 }
             }
         }
