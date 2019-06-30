@@ -20,7 +20,7 @@ export class FirstConsultationService {
     this.afs.collection<FirstConsultation>(`first-consultations`).add(data)
     .then(credential => {
       const idData = {
-        fucID: credential.id
+        ficID: credential.id
       };
       this.updateFirstConsultation(credential.id, idData);
     })
@@ -46,7 +46,7 @@ export class FirstConsultationService {
     this.firstConsultationDoc.update(data)
     .then(() => {
       // Show Snackbar
-      const message = `Follow-up Consultation was edited succesfully`;
+      const message = `First Consultation was updated succesfully`;
       const action = 'Close';
 
       this.snackBar.open(message, action, {

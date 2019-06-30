@@ -33,6 +33,8 @@ export class MyClientDetailComponent implements OnInit {
   measurements: Measurement[];
   followUpCol: AngularFirestoreCollection<FollowUpConsultation>;
   followUps: FollowUpConsultation[];
+  firstConsultationsCol: AngularFirestoreCollection<FollowUpConsultation>;
+  firstConsultations: FollowUpConsultation[];
   guidelinesCol: AngularFirestoreCollection<Guideline>;
   guidelines: Observable<Guideline[]>;
   mealplansCol: AngularFirestoreCollection<Mealplan>;
@@ -79,6 +81,7 @@ export class MyClientDetailComponent implements OnInit {
       this.getGuidelines(user.uid);
       this.getMealplans(user.uid);
       this.getMeasurements(user.uid);
+      this.getFirstConsultations(user.uid);
       this.getFollowUps(user.uid);
       this.checkReadMore(user);
     });
@@ -103,6 +106,14 @@ export class MyClientDetailComponent implements OnInit {
     this.measurementCol = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`).orderBy('created', 'asc'));
     this.measurementCol.valueChanges().subscribe(measurements => {
       this.measurements = measurements;
+    });
+  }
+
+  getFirstConsultations(uid) {
+    this.firstConsultationsCol = this.afs.collection('first-consultations', ref => ref.where('clientID', '==', `${uid}`)
+      .orderBy('creationDate', 'asc'));
+    this.firstConsultationsCol.valueChanges().subscribe(firstConsultations => {
+      this.firstConsultations = firstConsultations;
     });
   }
 

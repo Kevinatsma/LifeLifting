@@ -17,6 +17,10 @@
     .mat-dialog-container {
         padding: 0;
 
+        @include respond-down($sm) {
+            border-radius: 0;
+        }
+
         .close-section {
             z-index: 150;
 
@@ -35,6 +39,15 @@
                         margin-right: 0;
                     }
                 }
+
+                &.mobile {
+                    top: 10px;
+                    left: 20px;
+
+                    svg {
+                        margin-right: 10px;
+                    }
+                }
             }
         }
 
@@ -48,6 +61,12 @@
                 margin: 0 auto 0 0;
             }
 
+            .mat-step-label {
+                @include respond-down($sm) {
+                    display: none;
+                }
+            }
+
             .mat-horizontal-content-container {
                 position: relative;
 
@@ -56,7 +75,7 @@
                     margin: 2em 0 1em;
 
                     @include respond-down($sm) {
-                        padding: 0 1em 1em;
+                        padding: 0;
                         margin: 4em 0 1em;
                     }
 
@@ -78,7 +97,7 @@
 
                     @include respond-down($sm) {
                         flex-flow: column nowrap;
-                        padding: 0 1em;
+                        padding: 0;
                         margin: 1em 0 5em;
                         height: auto;
                     }
@@ -87,11 +106,49 @@
                         min-height: calc(100vh - 257px);
                     }
 
+                    .time-range {
+                        display: flex;
+                        flex-flow: column nowrap;
+                        margin-right: 5%;
+                        width: 45%;
+
+                        @include respond-down($sm) {
+                            margin: 0;
+                            width: 100%;
+                        }
+
+                        label {
+                            color: $primary-color;
+                            font-family: $main-font;
+                            font-size: 14px;
+                            position: relative;
+                            top: 15px;
+                            width: 100%;
+                        }
+
+                        .time-form-container {
+                            display: flex;
+                            flex-flow: row nowrap;
+                            margin-top: -9px;
+                            width: 100%;
+
+                            mat-form-field {
+                                margin-right: 10% !important;
+                                width: 40%;
+                            }
+                        }
+                    }
+
                     .radio-form-field {
                         display: flex;
                         flex-flow: row wrap;
                         margin: 20px 5% 20px 0;
                         width: 45%;
+                        
+                        @include respond-down($sm) {
+                            margin: 20px 0;
+                            width: 100%;
+                        }
 
                         &.activity-confirmations {
                             width: 100%;
@@ -134,10 +191,135 @@
                         mat-form-field {
                             width: 60%;
                         }
+                    }
 
-                        .time-range {
-                            display: flex;
+                    .slider-container {
+                        display: flex;
+                        flex-flow: row nowrap;
+                        width: 100%;
+
+                        @include respond-down($sm) {
+                            flex-flow: column nowrap;
+                        }
+                    }
+
+                    .form-slider-field {
+                        background: #fff;
+                        box-shadow: $card-shadow;
+                        margin: 12px 12px 30px 0;
+                        padding: 2em 3em;
+                        height: auto !important;
+                        width: 39%;
+
+                        @include respond-down($sm) {
+                            box-sizing: border-box;
+                            margin: 0 0 30px !important;
+                            padding: 1.5em 2em 2em 2em;
                             width: 100%;
+                        }
+
+                        .label {
+                            max-width: 70%;
+
+                            @include respond-down($sm) {
+                                max-width: 70%;
+                            }
+                        }
+
+                        &:first-child {
+                            margin-right: 2em;
+                        }
+                    }
+
+                    .slider {
+                        display: flex;
+                        flex-flow: row nowrap;
+                        justify-content: space-between;
+                        margin-top: 19px;
+                        width: 100%;
+
+                        @include respond-down($sm) {
+                            width: 87%;
+                        }
+
+                        mat-slider {
+                            position: relative;
+                            min-width: 70%;
+
+                            &::before, &::after {
+                                font-size: 14px;
+                                font-family: $main-font;
+                                font-weight: $bold;
+                                height: 15px;
+                                letter-spacing: 1px;
+                                position: absolute;
+                                top: 3em;
+                                width: 15px;
+                            }
+
+                            &.hungry {
+                                &::before {
+                                    content: '0';
+                                    left: 0;
+                                }
+
+                                &::after {
+                                    content: '10';
+                                    right: 0;
+                                }
+                            }
+
+                            &.home-work {
+                                &::before {
+                                    content: '0';
+                                    left: 0;
+                                }
+
+                                &::after {
+                                    content: '180';
+                                    right: 0;
+                                }
+                            }
+                        }
+
+                        .percentage-circle {
+                            background-color: $primary-color;
+                            border-radius: 50%;
+                            border: 2px solid #fff;
+                            box-sizing: border-box;
+                            color: #fff;
+                            font-size: 17px;
+                            font-weight: $bold;
+                            height: 63px;
+                            letter-spacing: 0.5px;
+                            margin-top: -30px;
+                            position: relative;
+                            right: -5px;
+                            width: 63px;
+                            z-index: 10;
+
+                            @extend %flex-center;
+                            @include respond-down($sm) {
+                                right: -35px;
+                                top: 10px;
+                            }
+
+                            &::before {
+                                border-radius: 50%;
+                                border: 2px solid $primary-color;
+                                content: '';
+                                position: absolute;
+                                width: 65px;
+                                height: 65px;
+                                left: -5px;
+                                top: -5px;
+                                z-index: 5;
+                            }
+
+                            span {
+                                margin-left: 0;
+                                font-weight: $extra-bold;
+                            }
                         }
                     }
 
@@ -158,9 +340,19 @@
                             border-bottom: none;
                         }
 
+                        &.weekends {
+                            border-bottom: none;
+                            border-top: none;
+                        }
+
                         .time-range {
                             width: 45%;
                             margin-right: 5%;
+
+                            @include respond-down($sm) {
+                                margin: 0;
+                                width: 100%;
+                            }
                         }
                     }
 
@@ -173,11 +365,21 @@
                         }
 
                         .dynamic-form-field-container {
-                            margin: 1em 5% 1em 0;
+                            margin: 20px 5% 20px 0;
                             width: 45%;
+
+                            @include respond-down($sm) {
+                                margin: 20px 0;
+                                height: 110px;
+                                width: 100%;
+                            }
 
                             .number-id {
                                 height: 110px;
+
+                                @include respond-down($sm) {
+                                    height: 108px;
+                                }
                             }
 
                             mat-form-field {
@@ -190,11 +392,19 @@
                                 min-height: 110px;
                                 position: relative;
                                 width: 80px;
+
+                                @include respond-down($sm) {
+                                    min-height: 108px;
+                                }
                             }
                         }
 
                         .add-form-field {
                             width: 70%;
+
+                            @include respond-down($sm) {
+                                margin: 0.5em 0 0 1em;
+                            }
                         }
                     }
     
@@ -221,6 +431,10 @@
                             input {
                                 margin-top: 10px;
                                 width: 55px;
+
+                                @include respond-down($sm) {
+                                    margin-top: 0;
+                                }
                             }
 
                             .specifier {
@@ -251,8 +465,12 @@
 
                         &.date-picker {
                             input {
-                                margin-right: 20px;
+                                margin: 12px 20px 0 0;
                                 width: 60%;
+
+                                @include respond-down($sm) {
+                                    width: 80%;
+                                }
                             }
                         }
                     }
@@ -266,100 +484,34 @@
                             font-weight: 500;
                             letter-spacing: 0.5px;
                             max-width: 80%;
-                        }
-
-                        &.form-slider {
-                            margin: 12px 12px 30px 0;
-                            padding: 2em 4em;
-                            width: 39%;
-                            background: #fff;
-                            box-shadow: $card-shadow;
-                        }
-
-                        .slider {
-                            display: flex;
-                            flex-flow: row nowrap;
-                            justify-content: space-between;
-                            margin-top: 19px;
-                            width: 100%;
 
                             @include respond-down($sm) {
-                                width: 87%;
+                                max-width: 100%;
                             }
+                        }
+                    }
 
-                            mat-slider {
-                                position: relative;
-                                min-width: 70%;
+                    .phone-number {
+                        @include respond-down($sm) {
+                            display: flex;
+                            flex-flow: row nowrap;
+                            width: 100%;
 
-                                &::before, &::after {
-                                    font-size: 14px;
-                                    font-family: $main-font;
-                                    font-weight: $bold;
-                                    height: 15px;
-                                    letter-spacing: 1px;
-                                    position: absolute;
-                                    top: 3em;
-                                    width: 15px;
-                                }
+                            mat-form-field {
 
-                                &.hungry {
-                                    &::before {
-                                        content: '0';
-                                        left: 0;
-                                    }
-    
-                                    &::after {
-                                        content: '10';
-                                        right: 0;
+                                &:first-child {
+                                    margin-right: 0;
+                                    width: 30%;
+
+                                    input {
+                                        margin-top: 0;
                                     }
                                 }
 
-                                &.home-work {
-                                    &::before {
-                                        content: '0';
-                                        left: 0;
-                                    }
-    
-                                    &::after {
-                                        content: '180';
-                                        right: 0;
-                                    }
-                                }
-                            }
-
-                            .percentage-circle {
-                                background-color: $primary-color;
-                                border-radius: 50%;
-                                border: 2px solid #fff;
-                                box-sizing: border-box;
-                                color: #fff;
-                                font-size: 17px;
-                                font-weight: $bold;
-                                height: 63px;
-                                letter-spacing: 0.5px;
-                                margin-top: -30px;
-                                position: relative;
-                                right: -25px;
-                                width: 63px;
-                                z-index: 10;
-
-                                @extend %flex-center;
-
-                                &::before {
-                                    border-radius: 50%;
-                                    border: 2px solid $primary-color;
-                                    content: '';
-                                    position: absolute;
-                                    width: 65px;
-                                    height: 65px;
-                                    left: -5px;
-                                    top: -5px;
-                                    z-index: 5;
-                                }
-
-                                span {
-                                    margin-left: 0;
-                                    font-weight: $extra-bold;
+                                &:last-child {
+                                    margin-left: 10%;
+                                    margin-right: 0;
+                                    width: 60%;
                                 }
                             }
                         }

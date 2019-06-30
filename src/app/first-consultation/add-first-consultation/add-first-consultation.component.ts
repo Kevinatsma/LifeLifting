@@ -98,8 +98,8 @@ export class AddFirstConsultationComponent implements OnInit {
       lunchTime: ['', Validators.required],
       dinnerTime: ['', Validators.required],
       whoCooks: ['', Validators.required],
-      breakfastAtHome: [''],
-      breakfastAtHomeNote: ['', Validators.required],
+      breakfastAtHome: ['', Validators.required],
+      breakfastAtHomeNote: [''],
       timeForBreakfast: ['', Validators.required],
       timeForBreakfastNote: [''],
       workDescription: ['', Validators.required],
@@ -119,7 +119,7 @@ export class AddFirstConsultationComponent implements OnInit {
       middleNightUrinate: ['', Validators.required],
       everyDay: ['', Validators.required],
       timesPerWeek: [''],
-      timesPerDay: ['', Validators.required],
+      timesPerDay: [''],
       sameSchedule: ['', Validators.required],
       mostHungryMoment: ['', Validators.required],
       sleepingStatus: ['', Validators.required],
@@ -289,9 +289,9 @@ export class AddFirstConsultationComponent implements OnInit {
         dinnerTime: this.habitForm.get('dinnerTime').value,
         whoCooks: this.habitForm.get('whoCooks').value,
         breakfastAtHome: this.habitForm.get('breakfastAtHome').value,
-        breakfastAtHomeNote: this.habitForm.get('breakfastAtHomeNote').value,
+        breakfastAtHomeNote: this.habitForm.get('breakfastAtHomeNote').value || null,
         timeForBreakfast: this.habitForm.get('timeForBreakfast').value,
-        timeForBreakfastNote: this.habitForm.get('timeForBreakfastNote').value
+        timeForBreakfastNote: this.habitForm.get('timeForBreakfastNote').value || null
       },
       work: {
         description: this.habitForm.get('workDescription').value,
@@ -380,7 +380,7 @@ export class AddFirstConsultationComponent implements OnInit {
       specialistNotes: this.noteForm.get('specialistNotes').value
     };
     console.log(data);
-    // this.firstConsultationService.addFirstConsultation(data);
+    this.firstConsultationService.addFirstConsultation(data);
   }
 
   closeDialog() {
