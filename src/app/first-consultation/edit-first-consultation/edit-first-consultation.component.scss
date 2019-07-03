@@ -1,0 +1,11 @@
+@import './../../../assets/scss/master';
+
+mat-horizontal-content-container {
+    @include respond-down($sm) {
+        padding: 0 1em;
+    }
+}
+
+.personal-form {
+    min-height: calc(100vh -  277px) !important;
+}

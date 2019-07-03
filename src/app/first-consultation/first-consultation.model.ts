@@ -17,7 +17,10 @@ export class BasicData {
     birthDate: string;
     age: number;
     height: number;
-    phoneNumber: string;
+    phoneNumber: {
+        areaCode: string;
+        number: number;
+    };
     address: string;
 }
 
@@ -51,9 +54,15 @@ export class Habits {
     };
     work: {
         description: string;
-        schedules: string;
+        schedules: {
+            from: string;
+            to: string;
+        };
         workOnWeekends: string;
-        workOnWeekendsNote?: string;
+        workOnWeekendsNote?: {
+            from: string;
+            to: string;
+        };
         homeToWork: number;
         workToHome: number;
         transportationMethod: string;
@@ -109,7 +118,10 @@ export class GeneralData {
         physicalActivitiesConfirmation: string;
         physicalActivities?: [];
         physicalActivitiesWhy?: string;
-        workoutSchedule: string;
+        workoutSchedule?: {
+           from: string;
+           to: string;
+        };
         trainingLocation: string;
         travelTime: string;
         trainingIntensity: string;

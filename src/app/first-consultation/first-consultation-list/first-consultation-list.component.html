@@ -1,12 +1,11 @@
 <section class="list-display first-consultation" *ngIf="firstConsultations && client">
-  <h1 class="section-title">Follow-up Consultations</h1>
+  <h1 class="section-title">First Consultations</h1>
   <div class="list-display__container">
     <div class="list-display__container-header">
       <h3 class="number">#</h3>
       <h3 class="created">Created</h3>
       <h3 class="not-mobile">Edited</h3>
       <h3 class="specialist">Specialist</h3>
-      <h3>Meal plan</h3>
     </div>
     <app-first-consultation-list-item *ngFor="let firstConsultation of firstConsultations; let i=index"
     [client]="client" [firstConsultation]="firstConsultation" [i]="i">

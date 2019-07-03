@@ -7,9 +7,6 @@
       <h3 *ngIf="firstConsultation.edited" class="not-mobile">{{firstConsultation.edited.toDate() | date: 'short'}}</h3>
       <h3 *ngIf="!firstConsultation.edited" class="not-mobile">Not edited yet</h3>
       <h3 *ngIf="specialist" class="specialist">{{specialist.firstName}} {{specialist.lastName}}</h3>
-      <h3 class="mealplan-link" *ngIf="firstConsultation.mealplanID">
-        <a routerLink="../../mealplans/{{firstConsultation.mealplanID}}" class="text-link">See Meal plan</a>
-      </h3>
     </div>
 
     <div class="not-mobile">

@@ -1,4 +1,4 @@
-<main class="dialog-wrapper" *ngIf="client">
+<main class="dialog-wrapper" *ngIf="client && firstConsultation">
   <div class="close-section">
     <button mat-icon-button class="not-mobile close-btn" (click)="closeDialog()" type="button">
       <i class="fas fa-times"></i>
@@ -42,7 +42,7 @@
         <mat-form-field class="date-picker" appearance="standard" floatLabel="always">
           <mat-label>Birth date</mat-label>
           <input matInput formControlName="birthDate" [matDatepicker]="datePickerOne"
-          placeholder="mm/dd/yyyy (eg. 26/03/1992)">
+          placeholder="{{firstConsultation.basicData.birthDate.toDate() | date: 'dd/MM/yyyy'}}">
           <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
           <mat-datepicker #datePickerOne></mat-datepicker>
         </mat-form-field>
@@ -574,7 +574,7 @@
           <h3>Sleep</h3>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>How are you currently sleeping?</mat-label>
-            <mat-select matInput placeholder="Pick one" formControlName="sleepingStatus" 
+            <mat-select matInput placeholder="{{firstConsultation.bodyFunctions.sleep.sleepingStatus}}" formControlName="sleepingStatus" 
             panelClass="dropdown-regular" autocomplete="off" required>
               <mat-option value="good">Good</mat-option>
               <mat-option value="regular">Regular</mat-option>
@@ -647,8 +647,8 @@
               </div>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Do you have any health conditions?</mat-label>
-                <mat-select matInput placeholder="Pick a condition" formControlName="healthCondition" 
-                panelClass="dropdown-regular" autocomplete="off" required>
+                <mat-select matInput formControlName="healthCondition" panelClass="dropdown-regular" autocomplete="off" required
+                  [placeholder]="condition.value.healthCondition.healthCondition ? condition.value.healthCondition.healthCondition : 'Pick one'">
                   <mat-option value="condition-1">condition 1</mat-option>
                   <mat-option value="condition-2">condition 2</mat-option>
                   <mat-option value="etc">etc</mat-option>
@@ -669,13 +669,14 @@
 
         <section class="add-form-field-container" formArrayName="pastTwoWeeksArr">
           <h3>The past 2 weeks</h3>
-            <div class="dynamic-form-field-container" *ngFor="let condition of pastTwoWeeksArray.controls; let i=index" [formGroupName]="i">
+            <div class="dynamic-form-field-container" *ngFor="let item of pastTwoWeeksArray.controls; let i=index" [formGroupName]="i">
               <div class="number-id">
                 <h1>{{i+1}}</h1>
               </div>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>During the past two weeks I had:</mat-label>
-                <mat-select matInput placeholder="Pick an option" formControlName="pastTwoWeeksValue" 
+                <mat-select matInput placeholder="Pick an option" formControlName="pastTwoWeeksValue"
+                [placeholder]="item.value.pastTwoWeeksValue.pastTwoWeeksValue ? item.value.pastTwoWeeksValue.pastTwoWeeksValue : 'Pick an option'"
                 panelClass="dropdown-regular" autocomplete="off" required>
                   <mat-option value="diarrhea">Diarrhea</mat-option>
                   <mat-option value="gastritis">Gastritis</mat-option>
@@ -725,7 +726,8 @@
               </div>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>I can't consume</mat-label>
-                <input type="text" formControlName="dontEatItem" matInput placeholder="Describe the product" autocomplete="off" required>
+                <input type="text" formControlName="dontEatItem" matInput placeholder="Describe the product" autocomplete="off" required
+                [placeholder]="item.value.dontEatItem.dontEatItem ? item.value.dontEatItem.dontEatItem : 'Describe the product'">
                 <mat-error class="input-errors" *ngIf="!dontEatItem.valid && dontEatItem.touched">This is <strong>required</strong></mat-error>
               </mat-form-field>
               <div class="btn-area">
@@ -785,14 +787,15 @@
 
           <section class="add-form-field-container" formArrayName="shoppingLocationArr">
             <h3>Where do you go shopping?</h3>
-              <div class="dynamic-form-field-container" *ngFor="let item of shoppingLocationArray.controls; let i=index" [formGroupName]="i">
+              <div class="dynamic-form-field-container" *ngFor="let control of shoppingLocationArray.controls; let i=index" [formGroupName]="i">
                 <div class="number-id">
                   <h1>{{i+1}}</h1>
                 </div>
                 <mat-form-field appearance="standard" floatLabel="always">
                   <mat-label>Shopping location</mat-label>
-                  <input type="text" formControlName="shoppingLocation" matInput placeholder="Store name" 
-                    autocomplete="off" required>
+                  <input type="text" formControlName="shoppingLocation" matInput
+                    autocomplete="off" required
+                    [placeholder]="control.value.shoppingLocation ? control.value.shoppingLocation : 'Store name'">
                   <mat-error class="input-errors" *ngIf="!shoppingLocation.valid && shoppingLocation.touched">
                     This is <strong>required</strong>
                   </mat-error>
@@ -855,13 +858,14 @@
             <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'yes'">
               <section class="add-form-field-container" formArrayName="activityArr">
                 <h3>Define your activities</h3>
-                  <div class="dynamic-form-field-container" *ngFor="let item of activityArray.controls; let i=index" [formGroupName]="i">
+                  <div class="dynamic-form-field-container" *ngFor="let control of activityArray.controls; let i=index" [formGroupName]="i">
                     <div class="number-id">
                       <h1>{{i+1}}</h1>
                     </div>
                     <mat-form-field appearance="standard" floatLabel="always">
                       <mat-label>Which activities?</mat-label>
-                      <mat-select matInput placeholder="Pick one" formControlName="physicalActivity" 
+                      <mat-select matInput formControlName="physicalActivity"
+                      [placeholder]="control.value.physicalActivity.exerciseName ? control.value.physicalActivity.exerciseName : 'Pick an activity'"
                       panelClass="dropdown-regular" autocomplete="off" required>
                         <mat-option *ngFor="let activity of activities" [(value)]="activity">{{activity.exerciseName}}</mat-option>
                       </mat-select>
@@ -886,14 +890,14 @@
             <label>Usual schedule of workouts</label>
             <div class="time-form-container">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-select matInput placeholder="From" formControlName="workoutScheduleFrom" 
+                <mat-select matInput placeholder="{{firstConsultation.generalData.physicalActivity.workoutSchedule.from}}" formControlName="workoutScheduleFrom" 
                 panelClass="dropdown-regular" autocomplete="off" required>
                   <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
                 </mat-select>
                 <mat-error class="input-error" *ngIf="!generalDataForm['controls'].workoutScheduleFrom.touched">This is <strong>required</strong></mat-error>
               </mat-form-field>
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-select matInput placeholder="To" formControlName="workoutScheduleTo" 
+                <mat-select matInput placeholder="{{firstConsultation.generalData.physicalActivity.workoutSchedule.to}}" formControlName="workoutScheduleTo" 
                 panelClass="dropdown-regular" autocomplete="off" required>
                   <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
                 </mat-select>
@@ -1031,9 +1035,7 @@
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="submit" class="dialog-button" (click)="addFirstConsultation()" 
-        [disabled]="!basicDataForm.valid || !bodyFunctionsForm.valid || !habitForm.valid || !generalDataForm.valid"
-        [class.disabled]="!basicDataForm.valid || !bodyFunctionsForm.valid || !habitForm.valid || !generalDataForm.valid">
+        <button type="submit" class="dialog-button" (click)="EditFirstConsultation()">
           Done
         </button>
       </section>

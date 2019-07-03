@@ -18,6 +18,7 @@
             .not-mobile {
                 position: fixed;
                 right: calc(12.5vw);
+                z-index: 1500;
             }
 
             @include respond-down($sm) {

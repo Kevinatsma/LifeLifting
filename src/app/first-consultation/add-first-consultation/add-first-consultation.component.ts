@@ -8,7 +8,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { Time } from './../../shared/data/models/time.model';
 import times from './../../shared/data/JSON/times.json';
 import { Exercise } from './../../exercises/exercise.model';
-import { ExerciseService } from 'src/app/exercises/exercise.service';
+import { ExerciseService } from './../../exercises/exercise.service';
 
 @Component({
   selector: 'app-add-first-consultation',
@@ -262,7 +262,10 @@ export class AddFirstConsultationComponent implements OnInit {
       birthDate: this.basicDataForm.get('birthDate').value,
       age: this.basicDataForm.get('age').value,
       height: this.basicDataForm.get('height').value,
-      phoneNumber: this.basicDataForm.get('phoneAreaCode').value + this.basicDataForm.get('phoneNumber').value,
+      phoneNumber: {
+        areaCode: this.basicDataForm.get('phoneAreaCode').value,
+        number: this.basicDataForm.get('phoneNumber').value
+      },
       address: this.basicDataForm.get('address').value,
     };
     const habits = {
@@ -295,9 +298,15 @@ export class AddFirstConsultationComponent implements OnInit {
       },
       work: {
         description: this.habitForm.get('workDescription').value,
-        schedules: this.habitForm.get('workScheduleFrom').value + ' - ' + this.habitForm.get('workScheduleTo').value,
+        schedules: {
+          from: this.habitForm.get('workScheduleFrom').value,
+          to: this.habitForm.get('workScheduleTo').value
+        },
         workOnWeekends: this.habitForm.get('workOnWeekends').value,
-        workOnWeekendsNote: this.habitForm.get('workOnWeekendsFrom').value + ' - ' + this.habitForm.get('workOnWeekendsTo').value || null,
+        workOnWeekendsNote: {
+          from: this.habitForm.get('workOnWeekendsFrom').value || null,
+          to: this.habitForm.get('workOnWeekendsTo').value || null
+        },
         homeToWork: this.homeToWorkScale,
         workToHome: this.workToHomeScale,
         transportationMethod: this.habitForm.get('transportationMethod').value,
@@ -326,7 +335,7 @@ export class AddFirstConsultationComponent implements OnInit {
         sleepingStatus: this.bodyFunctionsForm.get('sleepingStatus').value,
         averageHours: this.bodyFunctionsForm.get('averageHours').value,
         troubleFallingAsleep: this.bodyFunctionsForm.get('troubleFallingAsleep').value,
-        troubleFallingAsleepNote: this.bodyFunctionsForm.get('troubleFallingAsleepNote').value,
+        troubleFallingAsleepNote: this.bodyFunctionsForm.get('troubleFallingAsleepNote').value || null,
         wakeUpEnergized: this.bodyFunctionsForm.get('wakeUpEnergized').value,
       }
     };
@@ -342,7 +351,7 @@ export class AddFirstConsultationComponent implements OnInit {
         portion: this.generalDataForm.get('portion').value,
         preparedBy: this.generalDataForm.get('preparedBy').value,
         eatAfterDinner: this.generalDataForm.get('eatAfterDinner').value,
-        eatAfterDinnerNote: this.generalDataForm.get('eatAfterDinnerNote').value,
+        eatAfterDinnerNote: this.generalDataForm.get('eatAfterDinnerNote').value || null,
         shoppingLocations: this.shoppingLocationArray.value,
         whoBuys: this.generalDataForm.get('whoBuys').value,
         orderOnline: this.generalDataForm.get('orderOnline').value,
@@ -351,8 +360,10 @@ export class AddFirstConsultationComponent implements OnInit {
         physicalActivitiesConfirmation: this.generalDataForm.get('physicalActivitiesConfirmation').value,
         physicalActivities: this.activityArray.value || null,
         physicalActivitiesWhy: this.generalDataForm.get('physicalActivitiesWhy').value || null,
-        workoutSchedule: this.generalDataForm.get('workoutScheduleFrom').value + ' - '
-          + this.generalDataForm.get('workoutScheduleTo').value || null,
+        workoutSchedule: {
+          from: this.generalDataForm.get('workoutScheduleFrom').value || null,
+          to: this.generalDataForm.get('workoutScheduleTo').value || null
+        },
         trainingLocation: this.generalDataForm.get('trainingLocation').value,
         travelTime: this.generalDataForm.get('travelTime').value,
         trainingIntensity: this.generalDataForm.get('trainingIntensity').value,
@@ -360,11 +371,11 @@ export class AddFirstConsultationComponent implements OnInit {
       weekends: {
         wakeUpTime: this.generalDataForm.get('wakeUpTime').value,
         orderFood: this.generalDataForm.get('orderFood').value,
-        orderFoodNote: this.generalDataForm.get('orderFoodNote').value,
+        orderFoodNote: this.generalDataForm.get('orderFoodNote').value || null,
       },
       supplements: {
         supplements: this.generalDataForm.get('supplements').value,
-        supplementNote: this.generalDataForm.get('supplementNote').value,
+        supplementNote: this.generalDataForm.get('supplementNote').value || null,
         willingToUseSupps: this.generalDataForm.get('willingToUseSupps').value,
         eatingRecordatory: this.generalDataForm.get('eatingRecordatory').value,
       }
@@ -377,9 +388,9 @@ export class AddFirstConsultationComponent implements OnInit {
       habits: habits,
       bodyFunctions: bodyFunctions,
       generalData: generalData,
-      specialistNotes: this.noteForm.get('specialistNotes').value
+      specialistNotes: this.noteForm.get('specialistNotes').value || null
     };
-    console.log(data);
+
     this.firstConsultationService.addFirstConsultation(data);
   }
 

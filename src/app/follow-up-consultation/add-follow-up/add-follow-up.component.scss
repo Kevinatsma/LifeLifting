@@ -24,6 +24,7 @@
             }
             .close-btn {
                 &.not-mobile {
+                    z-index: 1500;
                     svg {
                         margin-right: 0;
                     }

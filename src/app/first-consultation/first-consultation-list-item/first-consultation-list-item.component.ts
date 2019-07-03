@@ -11,6 +11,7 @@ import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/conf
 import { SpecialistService } from '../../specialists/specialist.service';
 import { Specialist } from '../../specialists/specialist.model';
 import { FirstConsultationDetailComponent } from '../first-consultation-detail/first-consultation-detail.component';
+import { EditFirstConsultationComponent } from '../edit-first-consultation/edit-first-consultation.component';
 
 
 @Component({
@@ -46,16 +47,16 @@ export class FirstConsultationListItemComponent implements OnInit {
   deleteFirstConsultation(firstConsultation) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        fucID: firstConsultation.fucID,
+        ficID: firstConsultation.ficID,
       },
       panelClass: 'confirm-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        const id = firstConsultation.fucID;
+        const id = firstConsultation.ficID;
         this.firstConsultationService.deleteFirstConsultation(id);
-        console.log('deleted first-consultation consultation');
+        console.log('Succesfully deleted first consultation');
       } else if (result === false) {
         return null;
       }
@@ -72,14 +73,14 @@ export class FirstConsultationListItemComponent implements OnInit {
     });
   }
 
-  // editFirstConsultation(firstConsultation) {
-  //   const dialogRef = this.dialog.open(EditFirstConsultationComponent, {
-  //     data: {
-  //       firstConsultation: firstConsultation,
-  //       client: this.client
-  //     },
-  //     panelClass: 'first-consultation-dialog'
-  //   });
-  // }
+  editFirstConsultation(firstConsultation) {
+    const dialogRef = this.dialog.open(EditFirstConsultationComponent, {
+      data: {
+        firstConsultation: firstConsultation,
+        client: this.client
+      },
+      panelClass: 'first-consultation-dialog'
+    });
+  }
 
 }

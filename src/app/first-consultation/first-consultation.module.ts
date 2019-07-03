@@ -9,10 +9,12 @@ import { FirstConsultationListItemComponent } from './first-consultation-list-it
 import { RouterModule } from '@angular/router';
 import { FirstConsultationDetailComponent } from './first-consultation-detail/first-consultation-detail.component';
 import { MealplansModule } from '../mealplans/mealplans.module';
+import { EditFirstConsultationComponent } from './edit-first-consultation/edit-first-consultation.component';
 
 @NgModule({
   declarations: [
     AddFirstConsultationComponent,
+    EditFirstConsultationComponent,
     FirstConsultationListComponent,
     FirstConsultationListItemComponent,
     FirstConsultationDetailComponent
@@ -26,6 +28,7 @@ import { MealplansModule } from '../mealplans/mealplans.module';
   ],
   exports: [
     AddFirstConsultationComponent,
+    EditFirstConsultationComponent,
     FirstConsultationListComponent,
     FirstConsultationListItemComponent,
     FirstConsultationDetailComponent
@@ -35,6 +38,7 @@ import { MealplansModule } from '../mealplans/mealplans.module';
   ],
   entryComponents: [
     AddFirstConsultationComponent,
+    EditFirstConsultationComponent,
     FirstConsultationDetailComponent
   ]
 })

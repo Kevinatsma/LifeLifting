@@ -124,6 +124,16 @@
     }
 }
 
-::ng-deep .cdk-overlay-pane, .cdk-overlay-pane {
-    box-shadow: $card-shadow;
+// ::ng-deep .cdk-overlay-pane, .cdk-overlay-pane {
+//     box-shadow: $card-shadow;
+// }
+
+::ng-deep .mat-radio-checked  {
+    .mat-radio-outer-circle {
+        border-color: $secondary-color !important;
+    };
+
+    .mat-radio-inner-circle {
+        background-color: $secondary-color !important;
+    };
 }
