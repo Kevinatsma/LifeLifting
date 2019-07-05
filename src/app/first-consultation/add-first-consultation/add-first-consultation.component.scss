@@ -493,9 +493,11 @@
                     }
 
                     .phone-number {
+                        display: flex;
+                        flex-flow: row nowrap;
+                        margin: 15px 25% 0 0;
+                        width: 25%;
                         @include respond-down($sm) {
-                            display: flex;
-                            flex-flow: row nowrap;
                             width: 100%;
 
                             mat-form-field {
@@ -510,8 +512,7 @@
                                 }
 
                                 &:last-child {
-                                    margin-left: 10%;
-                                    margin-right: 0;
+                                    margin: 10px 0 0 10%;
                                     width: 60%;
                                 }
                             }

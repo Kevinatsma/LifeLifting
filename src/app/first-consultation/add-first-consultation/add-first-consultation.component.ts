@@ -9,6 +9,7 @@ import { Time } from './../../shared/data/models/time.model';
 import times from './../../shared/data/JSON/times.json';
 import { Exercise } from './../../exercises/exercise.model';
 import { ExerciseService } from './../../exercises/exercise.service';
+import { UtilService } from './../../shared/services/util.service';
 
 @Component({
   selector: 'app-add-first-consultation',
@@ -45,6 +46,7 @@ export class AddFirstConsultationComponent implements OnInit {
   hungryScale: string;
   homeToWorkScale: string;
   workToHomeScale: string;
+  age: number;
 
   // Disable popup from closing
   @HostListener('window:keyup.esc') onKeyUp() {
@@ -62,6 +64,7 @@ export class AddFirstConsultationComponent implements OnInit {
                private fb: FormBuilder,
                private firstConsultationService: FirstConsultationService,
                private exerciseService: ExerciseService,
+               private utilService: UtilService,
                public dialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public data: any) {
      this.client = data.client;
@@ -72,7 +75,6 @@ export class AddFirstConsultationComponent implements OnInit {
       mealplanMainGoal: ['', Validators.required],
       sex: ['', Validators.required],
       birthDate: ['', Validators.required],
-      age: ['', Validators.required],
       height: ['', Validators.required],
       phoneAreaCode: ['', Validators.required],
       phoneNumber: ['', Validators.required],
@@ -122,6 +124,13 @@ export class AddFirstConsultationComponent implements OnInit {
       timesPerDay: [''],
       sameSchedule: ['', Validators.required],
       mostHungryMoment: ['', Validators.required],
+      firstMenstrualPeriod: [''],
+      regularCycle: [''],
+      birthControlPills: [''],
+      birthControlPillsNote: [''],
+      pregnancies: [''],
+      periodXDays: [''],
+      bleedingXDays: [''],
       sleepingStatus: ['', Validators.required],
       averageHours: ['', Validators.required],
       troubleFallingAsleep: ['', Validators.required],
@@ -162,6 +171,7 @@ export class AddFirstConsultationComponent implements OnInit {
     });
 
     this.exerciseService.getExercises().subscribe(exercises => this.activities = exercises);
+    this.getBirthday();
   }
 
   // Getters
@@ -180,6 +190,13 @@ export class AddFirstConsultationComponent implements OnInit {
   }
   get activityArray() {
     return this.generalDataForm.get('activityArr') as FormArray;
+  }
+
+  getBirthday() {
+    this.basicDataForm.get('birthDate').valueChanges.subscribe(val => {
+      this.age = this.utilService.getAge(val);
+      console.log(val, this.age);
+    });
   }
 
   // Create, add, delete form array items
@@ -260,7 +277,6 @@ export class AddFirstConsultationComponent implements OnInit {
       mealplanMainGoal: this.basicDataForm.get('mealplanMainGoal').value,
       sex: this.basicDataForm.get('sex').value,
       birthDate: this.basicDataForm.get('birthDate').value,
-      age: this.basicDataForm.get('age').value,
       height: this.basicDataForm.get('height').value,
       phoneNumber: {
         areaCode: this.basicDataForm.get('phoneAreaCode').value,
@@ -330,6 +346,15 @@ export class AddFirstConsultationComponent implements OnInit {
       appetite: {
         hungryScale: this.hungryScale,
         mostHungryMoment: this.bodyFunctionsForm.get('mostHungryMoment').value,
+      },
+      female: {
+        firstMenstrualPeriod: this.bodyFunctionsForm.get('firstMenstrualPeriod').value || null,
+        regularCycle: this.bodyFunctionsForm.get('regularCycle').value || null,
+        birthControlPills: this.bodyFunctionsForm.get('birthControlPills').value || null,
+        birthControlPillsNote: this.bodyFunctionsForm.get('birthControlPillsNote').value || null,
+        periodXDays: this.bodyFunctionsForm.get('periodXDays').value || null,
+        bleedingXDays: this.bodyFunctionsForm.get('bleedingXDays').value || null,
+        pregnancies: this.bodyFunctionsForm.get('pregnancies').value || null
       },
       sleep: {
         sleepingStatus: this.bodyFunctionsForm.get('sleepingStatus').value,

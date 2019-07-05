@@ -42,15 +42,17 @@
         <mat-form-field class="date-picker" appearance="standard" floatLabel="always">
           <mat-label>Birth date</mat-label>
           <input matInput formControlName="birthDate" [matDatepicker]="datePickerOne"
-          placeholder="mm/dd/yyyy (eg. 26/03/1992)">
+          placeholder="mm/dd/yyyy (eg. 26/03/1992)" onformchange="getBirthday()">
           <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
           <mat-datepicker #datePickerOne></mat-datepicker>
-        </mat-form-field>
-
-        <mat-form-field appearance="standard" floatLabel="always" class="number">
-          <mat-label>Age in years</mat-label>
-          <input type="number"formControlName="age" matInput placeholder="26" autocomplete="off" required>
-          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].age.valid">This is <strong>required</strong></mat-error>
+          <mat-hint *ngIf="basicDataForm['controls'].birthDate.dirty">
+            <ng-container *ngIf="age < 0">
+              You will be born in the future 🔮
+            </ng-container>
+            <ng-container *ngIf="age >= 0">
+              You are <strong>{{age}}</strong> years old
+            </ng-container>
+          </mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="standard" floatLabel="always" class="number">
@@ -568,6 +570,63 @@
             <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].mostHungryMoment.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
+        </section>
+
+        <section class="female" *ngIf="basicDataForm['controls'].sex.value === 'Feminine'">
+          <h3>Female</h3>
+          
+          <mat-form-field appearance="standard" floatLabel="always" class="number">
+            <mat-label>How old were you at your first menstrual period?</mat-label>
+            <input type="number"formControlName="firstMenstrualPeriod" matInput placeholder="12" autocomplete="off" required>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].firstMenstrualPeriod.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+        
+          <div class="radio-form-field">
+            <label class="radio-form-label">Do you have a regular menstrual cycle right now?</label>
+            <mat-radio-group
+              class="radio-button-group"
+              formControlName="regularCycle">
+              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div class="radio-form-field">
+            <label class="radio-form-label">Do you take any birth control pills?</label>
+            <mat-radio-group
+              class="radio-button-group"
+              formControlName="birthControlPills">
+              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+            </mat-radio-group>
+
+            <ng-container *ngIf="bodyFunctionsForm['controls'].birthControlPills.value === 'yes'">
+              <mat-form-field appearance="standard" floatLabel="always">
+                <input type="text" matInput formControlName="birthControlPillsNote" placeholder="Which one?" autofocus="off" autocomplete="off" >
+              </mat-form-field>
+            </ng-container>
+          </div>
+
+          <mat-form-field appearance="standard" floatLabel="always" class="number">
+            <mat-label>I have my period every X days. Fill in X.</mat-label>
+            <input type="number"formControlName="periodXDays" matInput autocomplete="off" 
+              placeholder="x">
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].periodXDays.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="standard" floatLabel="always" class="number">
+            <mat-label>I bleed for X days. Fill in X</mat-label>
+            <input type="number"formControlName="bleedingXDays" matInput autocomplete="off" 
+              placeholder="x">
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].bleedingXDays.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="standard" floatLabel="always" class="number">
+            <mat-label>How many times were you pregnant?</mat-label>
+            <input type="number"formControlName="pregnancies" matInput autocomplete="off" 
+              placeholder="1">
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].pregnancies.valid">This is <strong>required</strong></mat-error>
+          </mat-form-field>
         </section>
         
         <section class="sleep">

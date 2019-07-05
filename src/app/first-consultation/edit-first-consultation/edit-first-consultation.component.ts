@@ -10,6 +10,7 @@ import times from '../../shared/data/JSON/times.json';
 import { Exercise } from '../../exercises/exercise.model';
 import { ExerciseService } from './../../exercises/exercise.service';
 import { FirstConsultation } from '../first-consultation.model';
+import { UtilService } from './../../shared/services/util.service';
 
 @Component({
   selector: 'app-edit-first-consultation',
@@ -24,7 +25,6 @@ export class EditFirstConsultationComponent implements OnInit {
   mealplansCol: AngularFirestoreCollection<Mealplan>;
   times: Time[] = times.times;
   activities: Exercise[];
-
 
   // Form
   basicDataForm: FormGroup;
@@ -48,6 +48,7 @@ export class EditFirstConsultationComponent implements OnInit {
   hungryScale: string;
   homeToWorkScale: string;
   workToHomeScale: string;
+  age: number;
 
   // Disable popup from closing
   @HostListener('window:keyup.esc') onKeyUp() {
@@ -65,6 +66,7 @@ export class EditFirstConsultationComponent implements OnInit {
                private fb: FormBuilder,
                private firstConsultationService: FirstConsultationService,
                private exerciseService: ExerciseService,
+               private utilService: UtilService,
                public dialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public data: any) {
      this.client = data.client;
@@ -76,7 +78,6 @@ export class EditFirstConsultationComponent implements OnInit {
       mealplanMainGoal: [this.firstConsultation.basicData.mealplanMainGoal, Validators.required],
       sex: [this.firstConsultation.basicData.sex, Validators.required],
       birthDate: [this.firstConsultation.basicData.birthDate, Validators.required],
-      age: [this.firstConsultation.basicData.age, Validators.required],
       height: [this.firstConsultation.basicData.height, Validators.required],
       phoneAreaCode: [this.firstConsultation.basicData.phoneNumber.areaCode, Validators.required],
       phoneNumber: [this.firstConsultation.basicData.phoneNumber.number, Validators.required],
@@ -126,6 +127,13 @@ export class EditFirstConsultationComponent implements OnInit {
       timesPerDay: [this.firstConsultation.bodyFunctions.bowelMovements.timesPerDay || ''],
       sameSchedule: [this.firstConsultation.bodyFunctions.bowelMovements.sameSchedule, Validators.required],
       mostHungryMoment: [this.firstConsultation.bodyFunctions.appetite.mostHungryMoment, Validators.required],
+      firstMenstrualPeriod: [this.firstConsultation.bodyFunctions.female.firstMenstrualPeriod || ''],
+      regularCycle: [this.firstConsultation.bodyFunctions.female.regularCycle || ''],
+      birthControlPills: [this.firstConsultation.bodyFunctions.female.birthControlPills || ''],
+      birthControlPillsNote: [this.firstConsultation.bodyFunctions.female.birthControlPillsNote || ''],
+      periodXDays: [this.firstConsultation.bodyFunctions.female.periodXDays || ''],
+      bleedingXDays: [this.firstConsultation.bodyFunctions.female.bleedingXDays || ''],
+      pregnancies: [this.firstConsultation.bodyFunctions.female.pregnancies || ''],
       sleepingStatus: [this.firstConsultation.bodyFunctions.appetite.mostHungryMoment, Validators.required],
       averageHours: [this.firstConsultation.bodyFunctions.sleep.averageHours, Validators.required],
       troubleFallingAsleep: [this.firstConsultation.bodyFunctions.sleep.troubleFallingAsleep, Validators.required],
@@ -168,6 +176,7 @@ export class EditFirstConsultationComponent implements OnInit {
 
     this.exerciseService.getExercises().subscribe(exercises => this.activities = exercises);
     this.loadForm(this.firstConsultation);
+    this.getBirthday();
   }
 
   // Getters
@@ -186,6 +195,13 @@ export class EditFirstConsultationComponent implements OnInit {
   }
   get activityArray() {
     return this.generalDataForm.get('activityArr') as FormArray;
+  }
+
+  getBirthday() {
+    this.basicDataForm.get('birthDate').valueChanges.subscribe(val => {
+      this.age = this.utilService.getAge(val);
+      console.log(val, this.age);
+    });
   }
 
   loadForm(data: FirstConsultation) {
@@ -319,7 +335,6 @@ export class EditFirstConsultationComponent implements OnInit {
       mealplanMainGoal: this.basicDataForm.get('mealplanMainGoal').value || this.firstConsultation.basicData.mealplanMainGoal,
       sex: this.basicDataForm.get('sex').value || this.firstConsultation.basicData.sex,
       birthDate: this.basicDataForm.get('birthDate').value || this.firstConsultation.basicData.birthDate,
-      age: this.basicDataForm.get('age').value || this.firstConsultation.basicData.age,
       height: this.basicDataForm.get('height').value || this.firstConsultation.basicData.height,
       phoneNumber: this.basicDataForm.get('phoneAreaCode').value + this.basicDataForm.get('phoneNumber').value
         || this.firstConsultation.basicData.phoneNumber,
@@ -391,6 +406,22 @@ export class EditFirstConsultationComponent implements OnInit {
         hungryScale: this.hungryScale || this.firstConsultation.bodyFunctions.appetite.hungryScale,
         mostHungryMoment: this.bodyFunctionsForm.get('mostHungryMoment').value
           || this.firstConsultation.bodyFunctions.appetite.mostHungryMoment,
+      },
+      female: {
+        firstMenstrualPeriod: this.bodyFunctionsForm.get('firstMenstrualPeriod').value ||
+          this.firstConsultation.bodyFunctions.female.firstMenstrualPeriod || null,
+        regularCycle: this.bodyFunctionsForm.get('regularCycle').value ||
+          this.firstConsultation.bodyFunctions.female.regularCycle || null,
+        birthControlPills: this.bodyFunctionsForm.get('birthControlPills').value ||
+          this.firstConsultation.bodyFunctions.female.birthControlPills || null,
+        birthControlPillsNote: this.bodyFunctionsForm.get('birthControlPillsNote').value ||
+          this.firstConsultation.bodyFunctions.female.birthControlPillsNote || null,
+        periodXDays: this.bodyFunctionsForm.get('periodXDays').value ||
+          this.firstConsultation.bodyFunctions.female.periodXDays || null,
+        bleedingXDays: this.bodyFunctionsForm.get('bleedingXDays').value ||
+          this.firstConsultation.bodyFunctions.female.bleedingXDays || null,
+        pregnancies: this.bodyFunctionsForm.get('pregnancies').value ||
+          this.firstConsultation.bodyFunctions.female.pregnancies || null,
       },
       sleep: {
         sleepingStatus: this.bodyFunctionsForm.get('sleepingStatus').value || this.firstConsultation.bodyFunctions.sleep.sleepingStatus,

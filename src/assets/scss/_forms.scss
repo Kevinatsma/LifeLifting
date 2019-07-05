@@ -136,4 +136,10 @@
     .mat-radio-inner-circle {
         background-color: $secondary-color !important;
     };
+    .mat-ripple-element {
+        background-color: $secondary-color !important;
+    }
+    .mat-radio-persistent-ripple {
+        background-color: $secondary-color !important;
+    }
 }

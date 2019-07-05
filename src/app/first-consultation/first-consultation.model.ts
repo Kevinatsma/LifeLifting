@@ -15,7 +15,6 @@ export class BasicData {
     mealplanMainGoal: string;
     sex: string;
     birthDate: string;
-    age: number;
     height: number;
     phoneNumber: {
         areaCode: string;
@@ -87,6 +86,15 @@ export class BodyFunctions {
     appetite: {
         hungryScale: number;
         mostHungryMoment: string;
+    };
+    female?: {
+        firstMenstrualPeriod: number;
+        regularCycle: string;
+        birthControlPills: string;
+        birthControlPillsNote: string;
+        periodXDays: number;
+        bleedingXDays: number;
+        pregnancies: number;
     };
     sleep: {
         sleepingStatus: string;
