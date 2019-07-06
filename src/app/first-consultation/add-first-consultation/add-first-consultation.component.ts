@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, HostListener } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, Inject, HostListener, ViewChild } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
 import { User } from '../../user/user.model';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { FirstConsultationService } from '../first-consultation.service';
@@ -17,6 +17,9 @@ import { UtilService } from './../../shared/services/util.service';
   styleUrls: ['./add-first-consultation.component.scss']
 })
 export class AddFirstConsultationComponent implements OnInit {
+  // Elements
+  @ViewChild('stepper') stepper: MatStepper;
+
   // Data
   client: User;
   mealplans: Mealplan[];
@@ -195,7 +198,6 @@ export class AddFirstConsultationComponent implements OnInit {
   getBirthday() {
     this.basicDataForm.get('birthDate').valueChanges.subscribe(val => {
       this.age = this.utilService.getAge(val);
-      console.log(val, this.age);
     });
   }
 
@@ -268,6 +270,70 @@ export class AddFirstConsultationComponent implements OnInit {
 
   deleteActivity(i) {
     (this.generalDataForm.get('activityArr') as FormArray).removeAt(i);
+  }
+
+  // Navigation
+
+  handleNavClick(e) {
+    const scrollTarget = e.target.getAttribute('data-scroll-target');
+    this.handleStepNavigation(scrollTarget);
+  }
+
+  handleStepNavigation(step) {
+    let stepTarget: number;
+    step = step.toLowerCase();
+
+    if (step.includes('-')) {
+      const section = step.split('-')[0];
+      stepTarget = this.checkStep(section);
+      this.goToStep(stepTarget);
+
+      setTimeout(() => {
+        // Scroll to anchor
+        const stepAnchor = step.split('-')[1];
+        const scrollAnchor = document.getElementById(`${stepAnchor}`);
+        scrollAnchor.scrollIntoView();
+      }, 100);
+
+    } else {
+      step = step.split('-')[0];
+      stepTarget = this.checkStep(step);
+      this.goToStep(stepTarget);
+
+      setTimeout(() => {
+        const scrollAnchor = document.getElementById(`${step}`);
+        scrollAnchor.scrollIntoView();
+      }, 100);
+
+    }
+  }
+
+  checkStep(step) {
+    let stepTarget;
+    switch (step) {
+      case 'generalone':
+        stepTarget = 0;
+        break;
+      case 'habits':
+        stepTarget = 1;
+        break;
+      case 'bodyfunctions':
+        stepTarget = 2;
+        break;
+      case 'generaltwo':
+        stepTarget = 3;
+        break;
+      case 'notes':
+        stepTarget = 4;
+        break;
+      default:
+        alert('Unknown category...');
+    }
+    return stepTarget;
+  }
+
+  goToStep(step: number) {
+    return this.stepper.selectedIndex = step;
   }
 
 

@@ -31,7 +31,7 @@
 
             .close-btn {
                 &.not-mobile {
-                    position: absolute;
+                    position: fixed;
                     right: 15px;
                     top: 15px;
                     z-index: 1500;
@@ -52,7 +52,49 @@
             }
         }
 
+        main.dialog-wrapper {
+            display: flex;
+            flex-flow: row nowrap;
+            position: relative;
+        }
+
+        .navigation {
+            display: flex;
+            flex-flow: column nowrap;
+            height: 100%;
+            width: 25%;
+            padding-left: 60px;
+
+
+            &__sticky-container {
+                position: fixed;
+                top: 60px;
+            }
+
+            &__link-container {
+                display: flex;
+                flex-flow: column nowrap;
+                height: auto;
+                margin-bottom: 1.5em;
+                width: 100%;
+
+                ul {
+                    li {
+                        margin: 15px 0 0 10px;
+                        color: lighten($text-black, 5%);
+                    }
+                }
+
+                h4 {
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
         .mat-stepper-horizontal {
+            width: 75%;
             @include respond-down($sm) {
                 margin-top: -1.5em;
             }
@@ -60,6 +102,10 @@
             .mat-horizontal-stepper-header-container {
                 width: 94%;
                 margin: 0 auto 0 0;
+
+                @include respond-up($md) {
+                    display: none;
+                }
             }
 
             .mat-step-label {
@@ -70,10 +116,12 @@
 
             .mat-horizontal-content-container {
                 position: relative;
+                border-left: 1px solid $border-color;
+                min-height: 98vh;
 
                 .title-area {
-                    padding: 0 4em 1em;
-                    margin: 2em 0 1em;
+                    padding: 4em 4em 1em;
+                    margin: 0 0 1em;
 
                     @include respond-down($sm) {
                         padding: 0;
@@ -202,6 +250,10 @@
                         @include respond-down($sm) {
                             flex-flow: column nowrap;
                         }
+
+                        .mat-form-field {
+                            margin-right: 5%;
+                        }
                     }
 
                     .form-slider-field {
@@ -210,7 +262,7 @@
                         margin: 12px 12px 30px 0;
                         padding: 2em 3em;
                         height: auto !important;
-                        width: 39%;
+                        width: 48%;
 
                         @include respond-down($sm) {
                             box-sizing: border-box;
@@ -497,6 +549,20 @@
                         flex-flow: row nowrap;
                         margin: 15px 25% 0 0;
                         width: 25%;
+                        
+                        mat-form-field {
+                            &:first-child {
+                                width: 40%;
+                            }
+
+                            &:last-child {
+                                width: 60%;
+
+                                input {
+                                    margin-top: 10px;
+                                }
+                            }
+                        }
                         @include respond-down($sm) {
                             width: 100%;
 

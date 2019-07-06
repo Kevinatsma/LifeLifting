@@ -9,11 +9,127 @@
     </button>
   </div>
 
+  <section class="navigation">
+    <div class="navigation__sticky-container">
+      <div class="navigation__link-container">
+        <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="generalone">
+          General info 1/2
+          <ng-container *ngIf="basicDataForm.valid">
+            <i class="far fa-check-circle"></i>
+          </ng-container>
+        </h4>
+      </div>
+      <div class="navigation__link-container">
+        <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="habits">
+          Habits
+          <ng-container *ngIf="habitForm.valid">
+            <i class="far fa-check-circle"></i>
+          </ng-container>
+        </h4>
+        <ul>
+          <li>
+            <a (click)="handleNavClick($event)" data-scroll-target="habits-sleeping">
+              Sleeping
+            </a>
+          </li>
+          <li>
+            <a (click)="handleNavClick($event)" data-scroll-target="habits-eating">
+              Eating
+            </a>
+          </li>
+          <li>
+            <a (click)="handleNavClick($event)" data-scroll-target="habits-work">
+              Work
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="navigation__link-container">
+        <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="bodyfunctions">
+          Body functions
+          <ng-container *ngIf="bodyFunctionsForm.valid">
+            <i class="far fa-check-circle"></i>
+          </ng-container>
+        </h4>
+        <ul>
+          <li>
+            <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-diuresis">
+              Diuresis
+            </a>
+          </li>
+          <li>
+            <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-bowel">
+              Bowel movements
+            </a>
+          </li>
+          <li>
+            <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-appetite">
+              Appetite
+            </a>
+          </li>
+          <li>
+            <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-sleep">
+              Sleep
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="navigation__link-container">
+        <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="generaltwo">
+          General data 2/2
+
+          <ng-container *ngIf="generalDataForm.valid; else false">
+            <i class="far fa-check-circle"></i>
+          </ng-container>
+          <ng-template #false>
+            <i class="far fa-times-circle"></i>
+          </ng-template>
+        </h4>
+        <ul>
+          <li>
+            <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-conditions">
+              Conditions
+            </a>
+          </li>
+          <li>
+            <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-dinner">
+              Dinner
+            </a>
+          </li>
+          <li>
+            <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-activities">
+              Activities
+            </a>
+          </li>
+          <li *ngIf="basicDataForm['controls'].sex.value === 'Feminine'">
+            <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-female"> 
+              Female
+            </a>
+          </li>
+          <li>
+            <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-weekends">
+              Weekends
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="navigation__link-container">
+        <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="notes">
+          Notes
+
+          <ng-container *ngIf="noteForm.valid">
+            <i class="far fa-check-circle"></i>
+          </ng-container>
+        </h4>
+      </div>
+    </div>
+  </section>
+
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="basicDataForm">
       <ng-template matStepLabel>General 1/2</ng-template>
       
-      <div class="title-area">
+      <div class="title-area" id="generalone">
         <h3>📝 General Info 1/2</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to provide the best service.
@@ -25,7 +141,7 @@
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>What is your main goal for a meal plan?</mat-label>
           <textarea type="text" matInput formControlName="mealplanMainGoal" placeholder="Write a short summary" 
-          matTextareaAutosize autofocus="off" autocomplete="off" required>
+          matTextareaAutosize autofocus="on" autocomplete="off" required>
           </textarea>
           <mat-error class="input-error" *ngIf="!basicDataForm['controls'].mealplanMainGoal.valid">
             This is <strong>required</strong></mat-error>
@@ -89,10 +205,10 @@
       </section>
     </mat-step>
 
-    <mat-step [stepControl]="firstConsultationForm">
+    <mat-step [stepControl]="habitForm">
       <ng-template matStepLabel>Habits</ng-template>
 
-      <div class="title-area">
+      <div class="title-area" id="habits">
         <h3>🚴 Habits</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
@@ -220,7 +336,7 @@
           </ng-container>
         </div>
 
-        <section class="sleeping-habits">
+        <section class="sleeping-habits" id="sleeping">
           <h3>Sleeping habits</h3>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>At what time do you wake up?</mat-label>
@@ -241,7 +357,7 @@
           </mat-form-field>
         </section>
 
-        <section class="eating-habits">
+        <section class="eating-habits" id="eating">
           <h3>Eating habits</h3>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>At what time do you have breakfast?</mat-label>
@@ -319,7 +435,7 @@
           </div>
         </section>
 
-        <section class="work">
+        <section class="work" id="work">
           <h3>Work</h3>
 
           <mat-form-field appearance="standard" floatLabel="always">
@@ -358,8 +474,6 @@
               <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
               <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
             </mat-radio-group>
-
-
 
             <div class="time-range" *ngIf="habitForm['controls'].workOnWeekends.value === 'yes'">
               <label>What's your schedule?</label>
@@ -471,7 +585,7 @@
     <mat-step [stepControl]="bodyFunctionsForm">
       <ng-template matStepLabel>Body functions</ng-template>
       
-      <div class="title-area">
+      <div class="title-area" id="bodyfunctions">
         <h3>🧘 Body functions</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
@@ -479,8 +593,8 @@
         </p>
       </div>  
 
-      <form [formGroup]="bodyFunctionsForm">
-        <section class="diuresis">
+      <form [formGroup]="bodyFunctionsForm" >
+        <section class="diuresis"  id="diuresis">
           <h3>Diuresis</h3>
           
           <mat-form-field appearance="standard" floatLabel="always" class="number">
@@ -499,7 +613,7 @@
           </div>
         </section>
 
-        <section class="bowel-movements">
+        <section class="bowel-movements" id="bowel">
           <h3>Bowel movements</h3>
         
           <div class="radio-form-field">
@@ -541,7 +655,7 @@
 
         </section>
 
-        <section class="appetite">
+        <section class="appetite" id="appetite">
           <h3>Appetite</h3>
         
           <div class="mat-form-field form-slider-field single-slider">
@@ -572,7 +686,7 @@
 
         </section>
 
-        <section class="female" *ngIf="basicDataForm['controls'].sex.value === 'Feminine'">
+        <section class="female" *ngIf="basicDataForm['controls'].sex.value === 'Feminine'" id="female">
           <h3>Female</h3>
           
           <mat-form-field appearance="standard" floatLabel="always" class="number">
@@ -629,7 +743,7 @@
           </mat-form-field>
         </section>
         
-        <section class="sleep">
+        <section class="sleep" id="sleep">
           <h3>Sleep</h3>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>How are you currently sleeping?</mat-label>
@@ -688,7 +802,7 @@
     <mat-step [stepControl]="generalDataForm">
       <ng-template matStepLabel>General 2/2</ng-template>
       
-      <div class="title-area">
+      <div class="title-area" id="generaltwo">
         <h3>📝 General Info 2/2</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
@@ -698,6 +812,7 @@
 
       <form [formGroup]="generalDataForm" class="personal-form">
 
+        <div class="conditions" id="conditions">
         <section class="add-form-field-container" formArrayName="healthConditionsArr">
           <h3>Health conditions</h3>
             <div class="dynamic-form-field-container" *ngFor="let condition of healthConditionsArray.controls; let i=index" [formGroupName]="i">
@@ -799,7 +914,9 @@
           </button>
         </section>
 
-        <section class="big-category dinner">
+        </div>
+
+        <section class="big-category dinner" id="dinner">
           <h1 class="big-category__title">Dinner</h1>
 
           <div class="radio-form-field">
@@ -891,7 +1008,7 @@
           </div>
         </section>
 
-        <section class="big-category physical-activities">
+        <section class="big-category physical-activities" id="activities">
           <h1 class="big-category__title">Physical Activities</h1>
 
           <div class="radio-form-field activity-confirmations">
@@ -991,7 +1108,7 @@
 
         </section>
 
-        <section class="big-category weekends">
+        <section class="big-category weekends" id="weekends">
           <h1 class="big-category__title">Weekends</h1>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>At what time do you wake up?</mat-label>
@@ -1079,14 +1196,16 @@
         </p>
       </div>
 
-      <form [formGroup]="noteForm" class="personal-form">
-        <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Did you notice/remember anything?</mat-label>
-          <textarea type="text" matInput formControlName="specialistNotes" placeholder="Write it down here" 
-          matTextareaAutosize autofocus="off" autocomplete="off">
-          </textarea>
-        </mat-form-field>
-      </form>
+      <section id="notes">
+        <form [formGroup]="noteForm" class="personal-form">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Did you notice/remember anything?</mat-label>
+            <textarea type="text" matInput formControlName="specialistNotes" placeholder="Write it down here" 
+            matTextareaAutosize autofocus="off" autocomplete="off">
+            </textarea>
+          </mat-form-field>
+        </form>
+      </section>
 
       <section class="btn-area">
         <button type="button" class="dialog-button" matStepperPrevious>Back</button>
