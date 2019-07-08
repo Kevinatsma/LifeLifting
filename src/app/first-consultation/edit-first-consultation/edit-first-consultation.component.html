@@ -9,11 +9,117 @@
     </button>
   </div>
 
+  <section class="navigation">
+    <div class="navigation__link-container">
+      <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="generalone"
+        [class.valid]="basicDataForm.valid">
+        General info 1/2
+        <i class="far fa-check-circle"></i>
+      </h4>
+    </div>
+    <div class="navigation__link-container">
+      <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="habits"
+        [class.valid]="habitForm.valid">
+        Habits
+        <i class="far fa-check-circle"></i>
+      </h4>
+      <ul>
+        <li>
+          <a (click)="handleNavClick($event)" data-scroll-target="habits-sleeping">
+            Sleeping
+          </a>
+        </li>
+        <li>
+          <a (click)="handleNavClick($event)" data-scroll-target="habits-eating">
+            Eating
+          </a>
+        </li>
+        <li>
+          <a (click)="handleNavClick($event)" data-scroll-target="habits-work">
+            Work
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="navigation__link-container">
+      <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="bodyfunctions"
+        [class.valid]="bodyFunctionsForm.valid">
+        Body functions
+        <i class="far fa-check-circle"></i>
+      </h4>
+      <ul>
+        <li>
+          <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-diuresis">
+            Diuresis
+          </a>
+        </li>
+        <li>
+          <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-bowel">
+            Bowel movements
+          </a>
+        </li>
+        <li>
+          <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-appetite">
+            Appetite
+          </a>
+        </li>
+        <li *ngIf="basicDataForm['controls'].sex.value === 'Feminine'">
+          <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-female"> 
+            Female
+          </a>
+        </li>
+        <li>
+          <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-sleep">
+            Sleep
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="navigation__link-container">
+      <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="generaltwo"
+        [class.valid]="generalDataForm.valid">
+        General data 2/2
+        <i class="far fa-check-circle"></i>
+      </h4>
+      <ul>
+        <li>
+          <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-conditions">
+            Conditions
+          </a>
+        </li>
+        <li>
+          <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-dinner">
+            Dinner
+          </a>
+        </li>
+        <li>
+          <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-activities">
+            Activities
+          </a>
+        </li>
+        <li>
+          <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-weekends">
+            Weekends
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="navigation__link-container">
+      <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="notes">
+        Notes
+
+        <ng-container *ngIf="noteForm['controls'].specialistNotes.dirty">
+          <i class="far fa-check-circle"></i>
+        </ng-container>
+      </h4>
+    </div>
+  </section>
+
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="basicDataForm">
       <ng-template matStepLabel>General 1/2</ng-template>
       
-      <div class="title-area">
+      <div class="title-area" id="generalone">
         <h3>📝 General Info 1/2</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to provide the best service.
@@ -56,12 +162,6 @@
         </mat-form-field>
 
         <mat-form-field appearance="standard" floatLabel="always" class="number">
-          <mat-label>Age in years</mat-label>
-          <input type="number"formControlName="age" matInput placeholder="26" autocomplete="off" required>
-          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].age.valid">This is <strong>required</strong></mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="standard" floatLabel="always" class="number">
           <mat-label>Height in numbers</mat-label>
           <input type="number"formControlName="height" matInput placeholder="1.85" autocomplete="off" required> <span class="specifier">meter</span>
           <mat-error class="input-error" *ngIf="!basicDataForm['controls'].height.valid">This is <strong>required</strong></mat-error>
@@ -70,11 +170,13 @@
         <div class="phone-number">
           <mat-form-field appearance="standard" floatLabel="always" class="number">
             <mat-label>Area code</mat-label>
-            <input type="number"formControlName="phoneAreaCode" matInput placeholder="+51" autocomplete="off" required>
+            <input type="number"formControlName="phoneAreaCode" matInput placeholder="{{firstConsultation.basicData.phoneNumber.areaCode}}" 
+              autocomplete="off" required>
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>Phone number</mat-label>
-            <input type="number"formControlName="phoneNumber" matInput placeholder="12341234" autocomplete="off" required>
+            <input type="number"formControlName="phoneNumber" matInput placeholder="{{firstConsultation.basicData.phoneNumber.number}}" 
+              autocomplete="off" required>
           </mat-form-field>
         </div>
 
@@ -98,7 +200,7 @@
     <mat-step [stepControl]="firstConsultationForm">
       <ng-template matStepLabel>Habits</ng-template>
 
-      <div class="title-area">
+      <div class="title-area" id="habits">
         <h3>🚴 Habits</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
@@ -226,7 +328,7 @@
           </ng-container>
         </div>
 
-        <section class="sleeping-habits">
+        <section class="sleeping-habits" id="sleeping">
           <h3>Sleeping habits</h3>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>At what time do you wake up?</mat-label>
@@ -247,7 +349,7 @@
           </mat-form-field>
         </section>
 
-        <section class="eating-habits">
+        <section class="eating-habits" id="eating">
           <h3>Eating habits</h3>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>At what time do you have breakfast?</mat-label>
@@ -325,7 +427,7 @@
           </div>
         </section>
 
-        <section class="work">
+        <section class="work" id="work">
           <h3>Work</h3>
 
           <mat-form-field appearance="standard" floatLabel="always">
@@ -371,14 +473,14 @@
               <label>What's your schedule?</label>
               <div class="time-form-container">
                 <mat-form-field appearance="standard" floatLabel="always">
-                  <mat-select matInput placeholder="From" formControlName="workOnWeekendsFrom" 
+                  <mat-select matInput placeholder="{{firstConsultation.habits.work.workOnWeekendsNote.from}}" formControlName="workOnWeekendsFrom" 
                   panelClass="dropdown-regular" autocomplete="off" required>
                     <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
                   </mat-select>
                   <mat-error class="input-error" *ngIf="!habitForm['controls'].workOnWeekendsFrom.touched">This is <strong>required</strong></mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="standard" floatLabel="always">
-                  <mat-select matInput placeholder="To" formControlName="workOnWeekendsTo" 
+                  <mat-select matInput placeholder="{{firstConsultation.habits.work.workOnWeekendsNote.to}}" formControlName="workOnWeekendsTo" 
                   panelClass="dropdown-regular" autocomplete="off" required>
                     <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
                   </mat-select>
@@ -477,7 +579,7 @@
     <mat-step [stepControl]="bodyFunctionsForm">
       <ng-template matStepLabel>Body functions</ng-template>
       
-      <div class="title-area">
+      <div class="title-area" id="bodyfunctions">
         <h3>🧘 Body functions</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
@@ -486,7 +588,7 @@
       </div>  
 
       <form [formGroup]="bodyFunctionsForm">
-        <section class="diuresis">
+        <section class="diuresis" id="diuresis">
           <h3>Diuresis</h3>
           
           <mat-form-field appearance="standard" floatLabel="always" class="number">
@@ -505,7 +607,7 @@
           </div>
         </section>
 
-        <section class="bowel-movements">
+        <section class="bowel-movements" id="bowel">
           <h3>Bowel movements</h3>
         
           <div class="radio-form-field">
@@ -547,7 +649,7 @@
 
         </section>
 
-        <section class="appetite">
+        <section class="appetite" id="appetite">
           <h3>Appetite</h3>
         
           <div class="mat-form-field form-slider-field single-slider">
@@ -578,7 +680,8 @@
 
         </section>
 
-        <section class="female" *ngIf="basicDataForm['controls'].sex.value === 'Feminine' || firstConsultation.basicData.sex === 'Feminine'">
+        <section class="female" id="female"
+          *ngIf="basicDataForm['controls'].sex.value === 'Feminine' || firstConsultation.basicData.sex === 'Feminine'">
           <h3>Female</h3>
           
           <mat-form-field appearance="standard" floatLabel="always" class="number">
@@ -634,11 +737,9 @@
               placeholder="{{firstConsultation.bodyFunctions.female.pregnancies}}">
             <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].pregnancies.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
-
-
         </section>
         
-        <section class="sleep">
+        <section class="sleep" id="sleep">
           <h3>Sleep</h3>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>How are you currently sleeping?</mat-label>
@@ -697,7 +798,7 @@
     <mat-step [stepControl]="generalDataForm">
       <ng-template matStepLabel>General 2/2</ng-template>
       
-      <div class="title-area">
+      <div class="title-area" id="generaltwo">
         <h3>📝 General Info 2/2</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
@@ -707,7 +808,7 @@
 
       <form [formGroup]="generalDataForm" class="personal-form">
 
-        <section class="add-form-field-container" formArrayName="healthConditionsArr">
+        <section class="add-form-field-container" formArrayName="healthConditionsArr" id="conditions">
           <h3>Health conditions</h3>
             <div class="dynamic-form-field-container" *ngFor="let condition of healthConditionsArray.controls; let i=index" [formGroupName]="i">
               <div class="number-id">
@@ -810,7 +911,7 @@
           </button>
         </section>
 
-        <section class="big-category dinner">
+        <section class="big-category dinner" id="dinner">
           <h1 class="big-category__title">Dinner</h1>
 
           <div class="radio-form-field">
@@ -903,7 +1004,7 @@
           </div>
         </section>
 
-        <section class="big-category physical-activities">
+        <section class="big-category physical-activities" id="activities">
           <h1 class="big-category__title">Physical Activities</h1>
 
           <div class="radio-form-field activity-confirmations">
@@ -917,7 +1018,7 @@
 
             <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'no'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <textarea type="text" matInput formControlName="physicalActivitiesWhy" placeholder="Why not?" 
+                <textarea type="text" matInput formControlName="physicalActivitiesWhy" placeholder="{{firstConsultation.generalData.physicalActivity.physicalActivitiesWhy}}" 
                 matTextareaAutosize autofocus="off" autocomplete="off" required>
                 </textarea>
               </mat-form-field>
@@ -926,25 +1027,81 @@
             <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'yes'">
               <section class="add-form-field-container" formArrayName="activityArr">
                 <h3>Define your activities</h3>
-                  <div class="dynamic-form-field-container" *ngFor="let control of activityArray.controls; let i=index" [formGroupName]="i">
-                    <div class="number-id">
-                      <h1>{{i+1}}</h1>
-                    </div>
+                <div class="dynamic-form-field-container multiple-fields" *ngFor="let item of activityArray.controls; let i=index" 
+                  [formGroupName]="i">
+                  <div class="number-id">
+                    <h1>{{i+1}}</h1>
+                  </div>
+
+                  <div class="form-fields">
                     <mat-form-field appearance="standard" floatLabel="always">
                       <mat-label>Which activities?</mat-label>
-                      <mat-select matInput formControlName="physicalActivity"
-                      [placeholder]="control.value.physicalActivity.exerciseName ? control.value.physicalActivity.exerciseName : 'Pick an activity'"
-                      panelClass="dropdown-regular" autocomplete="off" required>
+                      <mat-select matInput [placeholder]="getChosenActivity(i).controls['physicalActivity'].value.exerciseName" 
+                        formControlName="physicalActivity" panelClass="dropdown-regular" autocomplete="off" required>
                         <mat-option *ngFor="let activity of activities" [(value)]="activity">{{activity.exerciseName}}</mat-option>
+                        <mat-option value="other">Other</mat-option>
                       </mat-select>
                       <mat-error class="input-error" *ngIf="!physicalActivity.touched">This is <strong>required</strong></mat-error>
                     </mat-form-field>
-                    <div class="btn-area">
-                      <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteActivity(i)">
-                        <i class="fa fa-trash"></i>
-                      </button>
+
+                    <div class="time-range">
+                      <label>Usual schedule of workouts</label>
+                      <div class="time-form-container">
+                        <mat-form-field appearance="standard" floatLabel="always">
+                          <mat-select matInput placeholder="getChosenActivity(i).controls['workoutScheduleFrom'].value" formControlName="workoutScheduleFrom" 
+                          panelClass="dropdown-regular" autocomplete="off" required>
+                            <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="standard" floatLabel="always">
+                          <mat-select matInput placeholder="getChosenActivity(i).controls['workoutScheduleTo'].value" formControlName="workoutScheduleTo" 
+                          panelClass="dropdown-regular" autocomplete="off" required>
+                            <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
                     </div>
+
+                    <ng-container *ngIf="getChosenActivity(i).controls['physicalActivity'].value === 'other'">
+                      <mat-form-field appearance="standard" floatLabel="always">
+                        <mat-label>Specify your physical activity</mat-label>
+                        <input type="text" formControlName="activitySpecification" matInput autocomplete="off" required
+                          placeholder="getChosenActivity(i).controls['activitySpecification'].value || 'Describe the activity'">
+                      </mat-form-field>
+                    </ng-container>
+            
+                    <mat-form-field appearance="standard" floatLabel="always">
+                      <mat-label>Training location</mat-label>
+                      <input type="text" formControlName="trainingLocation" matInput autocomplete="off" required
+                        placeholder="getChosenActivity(i).controls['trainingLocation'].value">
+                    </mat-form-field>
+        
+                    <mat-form-field appearance="standard" floatLabel="always" class="number">
+                      <mat-label>How long does it take you to get there?</mat-label>
+                      <input type="number"formControlName="travelTime" matInput autocomplete="off" required
+                        placeholder="getChosenActivity(i).controls['travelTime'].value">
+                    </mat-form-field>
+            
+                    <mat-form-field appearance="standard" floatLabel="always">
+                      <mat-label>Intensity of training</mat-label>
+                      <mat-select matInput placeholder="getChosenActivity(i).controls['trainingIntensity'].value" 
+                        formControlName="trainingIntensity" panelClass="dropdown-regular" autocomplete="off" required>
+                        <mat-option value="very-intense">Very intense</mat-option>
+                        <mat-option value="intense">Intense</mat-option>
+                        <mat-option value="regular">Regular</mat-option>
+                        <mat-option value="mild">Mild</mat-option>
+                        <mat-option value="very-mild">Very mild</mat-option>
+                      </mat-select>
+                    </mat-form-field>
                   </div>
+
+                  <div class="btn-area">
+                    <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteActivity(i)">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+
                 <button type="button" class="add-form-field" (click)="addActivity()">
                   <i class="fa fa-plus"></i>
                   Add an activity
@@ -953,57 +1110,9 @@
             </ng-container>
           </div>
 
-          <div class="time-range">
-            <label>Usual schedule of workouts</label>
-            <div class="time-form-container">
-              <mat-form-field appearance="standard" floatLabel="always">
-                <mat-select matInput placeholder="{{firstConsultation.generalData.physicalActivity.workoutSchedule.from}}" formControlName="workoutScheduleFrom" 
-                panelClass="dropdown-regular" autocomplete="off" required>
-                  <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
-                </mat-select>
-                <mat-error class="input-error" *ngIf="!generalDataForm['controls'].workoutScheduleFrom.touched">This is <strong>required</strong></mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="standard" floatLabel="always">
-                <mat-select matInput placeholder="{{firstConsultation.generalData.physicalActivity.workoutSchedule.to}}" formControlName="workoutScheduleTo" 
-                panelClass="dropdown-regular" autocomplete="off" required>
-                  <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
-                </mat-select>
-                <mat-error class="input-error" *ngIf="!generalDataForm['controls'].workoutScheduleTo.touched">This is <strong>required</strong></mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Training location</mat-label>
-            <input type="text" formControlName="trainingLocation" matInput placeholder="Location description" 
-              autocomplete="off" required>
-            <mat-error class="input-errors" *ngIf="!generalDataForm['controls'].trainingLocation.valid && generalDataForm['controls'].trainingLocation.touched">
-              This is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field appearance="standard" floatLabel="always" class="number">
-            <mat-label>How long does it take you to get there?</mat-label>
-            <input type="number"formControlName="travelTime" matInput placeholder="6" autocomplete="off" required>
-            <mat-error class="input-error" *ngIf="!generalDataForm['controls'].travelTime.valid">This is <strong>required</strong></mat-error>
-          </mat-form-field>
-
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Intensity of training</mat-label>
-            <mat-select matInput placeholder="Pick a level" formControlName="trainingIntensity" 
-            panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option value="very-intense">Very intense</mat-option>
-              <mat-option value="intense">Intense</mat-option>
-              <mat-option value="regular">Regular</mat-option>
-              <mat-option value="mild">Mild</mat-option>
-              <mat-option value="very-mild">Very mild</mat-option>
-            </mat-select>
-            <mat-error class="input-error" *ngIf="!generalDataForm['controls'].trainingIntensity.touched">This is <strong>required</strong></mat-error>
-          </mat-form-field>
-
         </section>
 
-        <section class="big-category weekends">
+        <section class="big-category weekends" id="weekends">
           <h1 class="big-category__title">Weekends</h1>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>At what time do you wake up?</mat-label>
@@ -1034,7 +1143,7 @@
           </div>
         </section>
 
-        <section class="big-category supplements">
+        <section class="big-category supplements" id="supplements">
           <h1 class="big-category__title">Supplements</h1>
 
           <div class="radio-form-field">
@@ -1084,7 +1193,7 @@
     <mat-step [stepControl]="noteForm">
       <ng-template matStepLabel>Notes</ng-template>
       
-      <div class="title-area">
+      <div class="title-area" id="notes">
         <h3>📝 Extra notes</h3>
         <p class="card-text">
           Write down important things here

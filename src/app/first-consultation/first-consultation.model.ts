@@ -1,3 +1,5 @@
+import { Exercise } from '../exercises/exercise.model';
+
 export class FirstConsultation {
     ficID?: string;
     clientID: string;
@@ -124,15 +126,17 @@ export class GeneralData {
     };
     physicalActivity: {
         physicalActivitiesConfirmation: string;
-        physicalActivities?: [];
+        physicalActivities?: [
+            {
+                physicalActivity: Exercise | string,
+                workoutScheduleFrom: string,
+                workoutScheduleTo: string,
+                trainingLocation: string,
+                travelTime: number,
+                trainingIntensity: string,
+            }
+        ];
         physicalActivitiesWhy?: string;
-        workoutSchedule?: {
-           from: string;
-           to: string;
-        };
-        trainingLocation: string;
-        travelTime: string;
-        trainingIntensity: string;
     };
     weekends: {
         wakeUpTime: string;

@@ -42,6 +42,7 @@
                 }
 
                 &.mobile {
+                    position: relative;
                     top: 10px;
                     left: 20px;
 
@@ -56,19 +57,28 @@
             display: flex;
             flex-flow: row nowrap;
             position: relative;
+            max-height: 100vh;
+            overflow: hidden;
+
+            @include respond-down($sm) {
+                display: block;
+                max-height: none;
+                overflow: auto;
+            }
         }
 
         .navigation {
+            border-right: 1px solid $border-color;
             display: flex;
             flex-flow: column nowrap;
-            height: 100%;
+            height: auto;
             width: 25%;
-            padding-left: 60px;
+            padding: 40px 0 calc(40px - 1.5em) 40px;
+            overflow-y: auto;
+            position: relative;
 
-
-            &__sticky-container {
-                position: fixed;
-                top: 60px;
+            @include respond-down($sm) {
+                display: none;
             }
 
             &__link-container {
@@ -80,28 +90,51 @@
 
                 ul {
                     li {
-                        margin: 15px 0 0 10px;
+                        margin: 10px 0 0 7px;
                         color: lighten($text-black, 5%);
+                        font-size: 14px;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
                     }
                 }
 
                 h4 {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    align-items: center;
+                    font-size: 16px;
+
                     &:hover {
                         cursor: pointer;
+                        text-decoration: underline;
+                    }
+
+                    svg {
+                        display: none;
+                    }
+
+                    &.valid {
+                        svg {
+                            display: block;
+                            color: $primary-color;
+                            font-size: 18px;
+                            margin-left: .75em;
+                        }
                     }
                 }
             }
         }
 
         .mat-stepper-horizontal {
+            height: 100%;
+            overflow-y: auto;
             width: 75%;
-            @include respond-down($sm) {
-                margin-top: -1.5em;
-            }
 
             .mat-horizontal-stepper-header-container {
-                width: 94%;
                 margin: 0 auto 0 0;
+                width: 94%;
 
                 @include respond-up($md) {
                     display: none;
@@ -116,8 +149,11 @@
 
             .mat-horizontal-content-container {
                 position: relative;
-                border-left: 1px solid $border-color;
                 min-height: 98vh;
+
+                @include respond-down($sm) {
+                    border: none;
+                }
 
                 .title-area {
                     padding: 4em 4em 1em;
@@ -200,6 +236,7 @@
                         }
 
                         &.activity-confirmations {
+                            margin: 20px 0;
                             width: 100%;
                         }
 
@@ -417,6 +454,30 @@
                             width: 100%;
                         }
 
+                        .number-id {
+                            height: 110px;
+
+                            @include respond-down($sm) {
+                                height: 108px;
+                            }
+                        }
+
+                        mat-form-field {
+                            margin: 0 !important;
+                            width: 100%;
+                        }
+
+                        .btn-area {
+                            height: 100%;
+                            min-height: 110px;
+                            position: relative;
+                            width: 80px;
+
+                            @include respond-down($sm) {
+                                min-height: 108px;
+                            }
+                        }
+
                         .dynamic-form-field-container {
                             margin: 20px 5% 20px 0;
                             width: 45%;
@@ -427,27 +488,81 @@
                                 width: 100%;
                             }
 
-                            .number-id {
-                                height: 110px;
-
-                                @include respond-down($sm) {
-                                    height: 108px;
-                                }
-                            }
-
-                            mat-form-field {
-                                margin: 0;
+                            &.multiple-fields {
+                                display: flex;
+                                height: auto;
+                                margin: 20px 0;
                                 width: 100%;
-                            }
-
-                            .btn-area {
-                                height: 100%;
-                                min-height: 110px;
-                                position: relative;
-                                width: 80px;
 
                                 @include respond-down($sm) {
-                                    min-height: 108px;
+                                    flex-flow: column nowrap;
+                                }
+
+                                .number-id, .btn-area {
+                                    height: 421px;
+                                    min-height: 421px;
+
+                                    @include respond-down($sm) {
+                                        height: 60px;
+                                        min-height: 60px;
+                                        width: 100%;
+                                    }
+                                }
+
+                                .form-fields {
+                                    align-items: flex-start;
+                                    border: solid $light-border-color;
+                                    border-width: 1px 0 1px 0;
+                                    display: flex;
+                                    flex-flow: row wrap;
+                                    height: 420px;
+                                    justify-content: flex-start;
+                                    width: 100%;
+
+                                    @include respond-down($sm) {
+                                        border-width: 0 1px;
+                                        flex-flow: column nowrap;
+                                        height: 100%;
+                                    }
+
+                                    .time-form-container {
+                                        @include respond-down($sm) {
+                                            mat-form-field {
+                                                width: 45%;
+                                            }
+                                        }
+                                    }
+    
+                                    mat-form-field, .time-range {
+                                        box-sizing: border-box;
+                                        border: none;
+                                        height: 100px;
+                                        margin: 0 10px 0 0;
+                                        width: 45%;
+
+                                        @include respond-down($sm) {
+                                            width: 100%;
+                                        }
+                                    }
+
+                                    mat-form-field {
+                                        &.number {
+                                            input {
+                                                margin-top: 0;
+                                            }
+                                        }
+                                    }
+
+                                    .time-range {
+                                        label {
+                                            left: 20px;
+                                            top: 19px;
+                                        }
+
+                                        .time-form-container {
+                                            margin-top: -18px;
+                                        }
+                                    }
                                 }
                             }
                         }

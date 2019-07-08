@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, HostListener, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
 import { User } from '../../user/user.model';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
@@ -63,7 +63,7 @@ export class AddFirstConsultationComponent implements OnInit {
       event.returnValue = false;
   }
 
-  constructor( private afs: AngularFirestore,
+  constructor( private cdr: ChangeDetectorRef,
                private fb: FormBuilder,
                private firstConsultationService: FirstConsultationService,
                private exerciseService: ExerciseService,
@@ -156,11 +156,6 @@ export class AddFirstConsultationComponent implements OnInit {
       physicalActivitiesConfirmation: ['', Validators.required],
       activityArr: this.fb.array([ this.createActivity() ]),
       physicalActivitiesWhy: [''],
-      workoutScheduleFrom: ['', Validators.required],
-      workoutScheduleTo: ['', Validators.required],
-      trainingLocation: ['', Validators.required],
-      travelTime: ['', Validators.required],
-      trainingIntensity: ['', Validators.required],
       wakeUpTime: ['', Validators.required],
       orderFood: ['', Validators.required],
       orderFoodNote: [''],
@@ -193,6 +188,12 @@ export class AddFirstConsultationComponent implements OnInit {
   }
   get activityArray() {
     return this.generalDataForm.get('activityArr') as FormArray;
+  }
+
+  getChosenActivity(index): FormGroup {
+    const activityArr = this.generalDataForm.get('activityArr') as FormArray;
+    const formGroup = activityArr.controls[index] as FormGroup;
+    return formGroup;
   }
 
   getBirthday() {
@@ -228,7 +229,13 @@ export class AddFirstConsultationComponent implements OnInit {
 
   createActivity(): FormGroup {
     return this.fb.group({
-      physicalActivity: ''
+      physicalActivity: '',
+      activitySpecification: '',
+      workoutScheduleFrom: '',
+      workoutScheduleTo: '',
+      trainingLocation: '',
+      travelTime: '',
+      trainingIntensity: '',
     });
   }
 
@@ -451,13 +458,6 @@ export class AddFirstConsultationComponent implements OnInit {
         physicalActivitiesConfirmation: this.generalDataForm.get('physicalActivitiesConfirmation').value,
         physicalActivities: this.activityArray.value || null,
         physicalActivitiesWhy: this.generalDataForm.get('physicalActivitiesWhy').value || null,
-        workoutSchedule: {
-          from: this.generalDataForm.get('workoutScheduleFrom').value || null,
-          to: this.generalDataForm.get('workoutScheduleTo').value || null
-        },
-        trainingLocation: this.generalDataForm.get('trainingLocation').value,
-        travelTime: this.generalDataForm.get('travelTime').value,
-        trainingIntensity: this.generalDataForm.get('trainingIntensity').value,
       },
       weekends: {
         wakeUpTime: this.generalDataForm.get('wakeUpTime').value,

@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, HostListener, Input } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, Inject, HostListener, Input, ViewChild } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
 import { User } from '../../user/user.model';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { FirstConsultationService } from '../first-consultation.service';
@@ -8,9 +8,9 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { Time } from '../../shared/data/models/time.model';
 import times from '../../shared/data/JSON/times.json';
 import { Exercise } from '../../exercises/exercise.model';
-import { ExerciseService } from './../../exercises/exercise.service';
+import { ExerciseService } from '../../exercises/exercise.service';
 import { FirstConsultation } from '../first-consultation.model';
-import { UtilService } from './../../shared/services/util.service';
+import { UtilService } from '../../shared/services/util.service';
 
 @Component({
   selector: 'app-edit-first-consultation',
@@ -18,7 +18,10 @@ import { UtilService } from './../../shared/services/util.service';
   styleUrls: ['./../add-first-consultation/add-first-consultation.component.scss', './edit-first-consultation.component.scss']
 })
 export class EditFirstConsultationComponent implements OnInit {
-  // Datas
+  // Elements
+  @ViewChild('stepper') stepper: MatStepper;
+
+  // Data
   firstConsultation: FirstConsultation;
   client: User;
   mealplans: Mealplan[];
@@ -45,9 +48,9 @@ export class EditFirstConsultationComponent implements OnInit {
   activityArr: FormArray;
   physicalActivity = new FormControl('', [Validators.required]);
 
-  hungryScale: string;
-  homeToWorkScale: string;
-  workToHomeScale: string;
+  hungryScale: number;
+  homeToWorkScale: number;
+  workToHomeScale: number;
   age: number;
 
   // Disable popup from closing
@@ -77,7 +80,7 @@ export class EditFirstConsultationComponent implements OnInit {
     this.basicDataForm = this.fb.group({
       mealplanMainGoal: [this.firstConsultation.basicData.mealplanMainGoal, Validators.required],
       sex: [this.firstConsultation.basicData.sex, Validators.required],
-      birthDate: [this.firstConsultation.basicData.birthDate, Validators.required],
+      birthDate: [new Date(this.firstConsultation.basicData.birthDate), Validators.required],
       height: [this.firstConsultation.basicData.height, Validators.required],
       phoneAreaCode: [this.firstConsultation.basicData.phoneNumber.areaCode, Validators.required],
       phoneNumber: [this.firstConsultation.basicData.phoneNumber.number, Validators.required],
@@ -157,11 +160,6 @@ export class EditFirstConsultationComponent implements OnInit {
         [this.firstConsultation.generalData.physicalActivity.physicalActivitiesConfirmation, Validators.required],
       activityArr: this.fb.array([]),
       physicalActivitiesWhy: [this.firstConsultation.generalData.physicalActivity.physicalActivitiesWhy || ''],
-      workoutScheduleFrom: [this.firstConsultation.generalData.physicalActivity.workoutSchedule.from, Validators.required],
-      workoutScheduleTo: [this.firstConsultation.generalData.physicalActivity.workoutSchedule.to, Validators.required],
-      trainingLocation: [this.firstConsultation.generalData.physicalActivity.trainingLocation, Validators.required],
-      travelTime: [this.firstConsultation.generalData.physicalActivity.travelTime, Validators.required],
-      trainingIntensity: [this.firstConsultation.generalData.physicalActivity.trainingIntensity, Validators.required],
       wakeUpTime: [this.firstConsultation.generalData.weekends.wakeUpTime, Validators.required],
       orderFood: [this.firstConsultation.generalData.weekends.orderFood, Validators.required],
       orderFoodNote: [this.firstConsultation.generalData.weekends.orderFoodNote || ''],
@@ -197,10 +195,15 @@ export class EditFirstConsultationComponent implements OnInit {
     return this.generalDataForm.get('activityArr') as FormArray;
   }
 
+  getChosenActivity(index): FormGroup {
+    const activityArr = this.generalDataForm.get('activityArr') as FormArray;
+    const formGroup = activityArr.controls[index] as FormGroup;
+    return formGroup;
+  }
+
   getBirthday() {
     this.basicDataForm.get('birthDate').valueChanges.subscribe(val => {
       this.age = this.utilService.getAge(val);
-      console.log(val, this.age);
     });
   }
 
@@ -210,6 +213,9 @@ export class EditFirstConsultationComponent implements OnInit {
     const dontEat = data.generalData.general.dontEat;
     const shoppingLocations = data.generalData.dinner.shoppingLocations;
     const activities = data.generalData.physicalActivity.physicalActivities;
+    this.hungryScale = data.bodyFunctions.appetite.hungryScale;
+    this.homeToWorkScale = data.habits.work.homeToWork;
+    this.workToHomeScale = data.habits.work.workToHome;
 
     healthConditions.forEach((condition) => {
       this.healthConditionsArray.push(this.createNewHealthCondition(condition));
@@ -279,12 +285,23 @@ export class EditFirstConsultationComponent implements OnInit {
 
   createActivity(): FormGroup {
     return this.fb.group({
-      physicalActivity: ''
+      physicalActivity: '',
+      workoutScheduleFrom: '',
+      workoutScheduleTo: '',
+      trainingLocation: '',
+      travelTime: '',
+      trainingIntensity: ''
     });
   }
   createNewActivity(activity): FormGroup {
     return this.fb.group({
-      physicalActivity: activity.physicalActivity
+      physicalActivity: activity.physicalActivity,
+      activitySpecification: activity.activitySpecification || '',
+      workoutScheduleFrom: activity.workoutScheduleFrom,
+      workoutScheduleTo: activity.workoutScheduleTo,
+      trainingLocation: activity.trainingLocation,
+      travelTime: activity.travelTime,
+      trainingIntensity: activity.trainingIntensity,
     });
   }
 
@@ -329,6 +346,70 @@ export class EditFirstConsultationComponent implements OnInit {
   }
 
 
+  // Navigation
+
+  handleNavClick(e) {
+    const scrollTarget = e.target.getAttribute('data-scroll-target');
+    this.handleStepNavigation(scrollTarget);
+  }
+
+  handleStepNavigation(step) {
+    let stepTarget: number;
+    step = step.toLowerCase();
+
+    if (step.includes('-')) {
+      const section = step.split('-')[0];
+      stepTarget = this.checkStep(section);
+      this.goToStep(stepTarget);
+
+      setTimeout(() => {
+        // Scroll to anchor
+        const stepAnchor = step.split('-')[1];
+        const scrollAnchor = document.getElementById(`${stepAnchor}`);
+        scrollAnchor.scrollIntoView();
+      }, 100);
+
+    } else {
+      step = step.split('-')[0];
+      stepTarget = this.checkStep(step);
+      this.goToStep(stepTarget);
+
+      setTimeout(() => {
+        const scrollAnchor = document.getElementById(`${step}`);
+        scrollAnchor.scrollIntoView();
+      }, 100);
+
+    }
+  }
+
+  checkStep(step) {
+    let stepTarget;
+    switch (step) {
+      case 'generalone':
+        stepTarget = 0;
+        break;
+      case 'habits':
+        stepTarget = 1;
+        break;
+      case 'bodyfunctions':
+        stepTarget = 2;
+        break;
+      case 'generaltwo':
+        stepTarget = 3;
+        break;
+      case 'notes':
+        stepTarget = 4;
+        break;
+      default:
+        alert('Unknown category...');
+    }
+    return stepTarget;
+  }
+
+  goToStep(step: number) {
+    return this.stepper.selectedIndex = step;
+  }
+
   // Upload results
   EditFirstConsultation() {
     const basicData = {
@@ -336,8 +417,10 @@ export class EditFirstConsultationComponent implements OnInit {
       sex: this.basicDataForm.get('sex').value || this.firstConsultation.basicData.sex,
       birthDate: this.basicDataForm.get('birthDate').value || this.firstConsultation.basicData.birthDate,
       height: this.basicDataForm.get('height').value || this.firstConsultation.basicData.height,
-      phoneNumber: this.basicDataForm.get('phoneAreaCode').value + this.basicDataForm.get('phoneNumber').value
-        || this.firstConsultation.basicData.phoneNumber,
+      phoneNumber: {
+        areaCode: this.basicDataForm.get('phoneAreaCode').value || this.firstConsultation.basicData.phoneNumber.areaCode,
+        number: this.basicDataForm.get('phoneNumber').value || this.firstConsultation.basicData.phoneNumber.number
+      },
       address: this.basicDataForm.get('address').value || this.firstConsultation.basicData.address,
     };
     const habits = {
@@ -377,8 +460,10 @@ export class EditFirstConsultationComponent implements OnInit {
           to: this.habitForm.get('workScheduleTo').value || this.firstConsultation.habits.work.schedules.to
         },
         workOnWeekends: this.habitForm.get('workOnWeekends').value || this.firstConsultation.habits.work.workOnWeekends,
-        workOnWeekendsNote: this.habitForm.get('workOnWeekendsFrom').value + ' - ' + this.habitForm.get('workOnWeekendsTo').value
-          || this.firstConsultation.habits.work.workOnWeekendsNote || null,
+        workOnWeekendsNote: {
+          from: this.habitForm.get('workOnWeekendsFrom').value || this.firstConsultation.habits.work.workOnWeekendsNote.from || null,
+          to: this.habitForm.get('workOnWeekendsTo').value || this.firstConsultation.habits.work.workOnWeekendsNote.to || null
+        },
         homeToWork: this.homeToWorkScale || this.firstConsultation.habits.work.homeToWork,
         workToHome: this.workToHomeScale || this.firstConsultation.habits.work.workToHome,
         transportationMethod: this.habitForm.get('transportationMethod').value || this.firstConsultation.habits.work.transportationMethod,
@@ -458,18 +543,6 @@ export class EditFirstConsultationComponent implements OnInit {
           || this.firstConsultation.generalData.physicalActivity.physicalActivities || null,
         physicalActivitiesWhy: this.generalDataForm.get('physicalActivitiesWhy').value
           || this.firstConsultation.generalData.physicalActivity.physicalActivitiesWhy || null,
-        workoutSchedule: {
-          from: this.generalDataForm.get('workoutScheduleFrom').value ||
-            this.firstConsultation.generalData.physicalActivity.workoutSchedule.from || null,
-          to: this.generalDataForm.get('workoutScheduleTo').value ||
-            this.firstConsultation.generalData.physicalActivity.workoutSchedule.to || null
-        },
-        trainingLocation: this.generalDataForm.get('trainingLocation').value
-          || this.firstConsultation.generalData.physicalActivity.trainingLocation,
-        travelTime: this.generalDataForm.get('travelTime').value
-          || this.firstConsultation.generalData.physicalActivity.travelTime,
-        trainingIntensity: this.generalDataForm.get('trainingIntensity').value
-          || this.firstConsultation.generalData.physicalActivity.trainingIntensity,
       },
       weekends: {
         wakeUpTime: this.generalDataForm.get('wakeUpTime').value
@@ -489,8 +562,7 @@ export class EditFirstConsultationComponent implements OnInit {
           || this.firstConsultation.generalData.supplements.eatingRecordatory,
       }
     };
-    console.log(this.firstConsultation.generalData.physicalActivity.workoutSchedule.from);
-    console.log(this.generalDataForm.get('workoutScheduleFrom').value);
+
     const data = {
       edited: new Date(),
       basicData: basicData,
