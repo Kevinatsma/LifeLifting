@@ -9,7 +9,7 @@ import { User } from '../../user.model';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  @Input() users: Observable<User[]>;
+  @Input() users: User[];
 
   constructor( private userService: UserService) { }
 

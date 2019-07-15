@@ -14,6 +14,7 @@ import { Mealplan } from './../../../mealplans/mealplan.model';
 import { AuthService } from './../../../core/auth/auth.service';
 import { Measurement } from './../../../measurement/measurement.model';
 import { FollowUpConsultation } from './../../../follow-up-consultation/follow-up-consultation.model';
+import { FirstConsultation } from './../../../first-consultation/first-consultation.model';
 
 
 @Component({
@@ -32,6 +33,8 @@ export class UserDetailComponent implements OnInit {
   measurements: Measurement[];
   followUpCol: AngularFirestoreCollection<FollowUpConsultation>;
   followUps: FollowUpConsultation[];
+  firstConsultationsCol: AngularFirestoreCollection<FirstConsultation>;
+  firstConsultations: FirstConsultation[];
   hasMealplans = false;
   hasGuidelines = false;
   mealPlansActive = false;
@@ -70,6 +73,7 @@ export class UserDetailComponent implements OnInit {
         this.getGuidelines(uid);
         this.getMealplans(uid);
         this.getMeasurements(uid);
+        this.getFirstConsultations(uid);
         this.getFollowUps(uid);
         this.checkReadMore(user);
       }, 200);
@@ -111,6 +115,14 @@ export class UserDetailComponent implements OnInit {
     this.followUpCol = this.afs.collection('follow-ups', ref => ref.where('clientID', '==', `${uid}`).orderBy('creationDate', 'asc'));
     this.followUpCol.valueChanges().subscribe(followUps => {
       this.followUps = followUps;
+    });
+  }
+
+  getFirstConsultations(uid) {
+    this.firstConsultationsCol = this.afs.collection('first-consultations', ref => ref.where('clientID', '==', `${uid}`)
+      .orderBy('creationDate', 'asc'));
+    this.firstConsultationsCol.valueChanges().subscribe(firstConsultations => {
+      this.firstConsultations = firstConsultations;
     });
   }
 

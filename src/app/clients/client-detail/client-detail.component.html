@@ -123,6 +123,9 @@
         </div>
       </section>
 
+      <app-first-consultation-list [client]="user" [firstConsultations]="firstConsultations" *ngIf="firstConsultations">
+      </app-first-consultation-list>
+      
       <app-measurement-list [client]="user" [measurements]="measurements" *ngIf="measurements"></app-measurement-list>
 
       <section class="guidelines" *ngIf="hasGuidelines">

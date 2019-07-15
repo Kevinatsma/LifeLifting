@@ -1,4 +1,5 @@
 @import './../../../assets/scss/_master.scss';
+@import './../../../assets/scss/_animations';
 
 main.specialist-list-wrapper {
     margin: 0;
@@ -28,12 +29,15 @@ main.specialist-list-wrapper {
         }
 
         app-food-list-item {
+            animation: slide-up-appear .25s ease-in;
+            animation-delay: 0.10s;
             margin: 1.5em 2.5%;
             width: 28%;
 
             @include respond-down($sm) {
                 margin: 2em 1.5em 0;
                 height: auto;
+                max-width: 70vw;
                 width: 330px;
 
                 &:first-child {

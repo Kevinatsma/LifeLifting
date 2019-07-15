@@ -635,6 +635,59 @@ ul {
     margin: 0 1em;
 }
 
+
+//////////////////
+// Search bars
+//
+
+.overview-search-bar {
+    align-items: center;
+    height: 40px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin-left: auto;
+    width: 150px;
+
+    &__input {
+        background: none;
+        border: solid $border-color;
+        border-width: 0 0 1px 0;
+        color: $text-black;
+        font-size: 14px;
+        font-weight: $regular;
+        font-family: $main-font;
+        height: 100%;
+        letter-spacing: 1px;
+        width: 80%;
+
+        &:hover, &:focus {
+            outline: 0;
+            border-bottom: 2px solid $border-color;
+        }
+    }
+
+    svg {
+        font-size: 16px;
+        color: $icon-black;
+        margin-left: -10px;
+    }
+}
+
+.no-search-result {
+    text-align: center;
+    width: 80%;
+
+    a.text-link {
+        font-size: 12px;
+        display: flex;
+        margin: 1em auto;
+        text-align: center;
+        justify-content: center;
+        width: 70px;
+    }
+}
+
 // Mat overlays
 
 ::ng-deep {

@@ -2,6 +2,6 @@
   <section class="specialist-filters">
   </section>
   <section class="card-list" *ngIf="exercises">
-    <app-exercise-list-item *ngFor="let exercise of exercises | async; let i=index" [i]="i" [exercise]="exercise"></app-exercise-list-item>
+    <app-exercise-list-item *ngFor="let exercise of exercises; let i=index" [i]="i" [exercise]="exercise"></app-exercise-list-item>
   </section>
 </main>

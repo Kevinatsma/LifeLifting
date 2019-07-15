@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { AddFoodDialogComponent } from '../shared/dialogs/add-food-dialog/add-food-dialog.component';
@@ -12,10 +12,13 @@ import { FoodService } from './food.service';
 })
 export class FoodsComponent implements OnInit {
   foods: Food[];
+  searchFoods: Food[];
+  searchActive = false;
 
   constructor( public location: Location,
                private foodService: FoodService,
-               public dialog: MatDialog) { }
+               public dialog: MatDialog,
+               public cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.foodService.getFoods().subscribe(foods => {
@@ -30,6 +33,24 @@ export class FoodsComponent implements OnInit {
         foods: this.foods
       },
       panelClass: 'add-food-dialog'
+    });
+  }
+
+  onChangeSearch(e) {
+    const searchInput = e.target.value.toLowerCase();
+
+    // Show correct user list
+    this.searchActive = e.target.value !== '';
+    this.cdr.detectChanges();
+
+    // Reset search array
+    this.searchFoods = [];
+
+    // Filter objects on display name and push matches to search array
+    this.foods.forEach(obj => {
+      if (obj.productName.toLowerCase().includes(`${searchInput}`)) {
+        this.searchFoods.push(<Food>obj);
+      }
     });
   }
 

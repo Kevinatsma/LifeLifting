@@ -18,6 +18,7 @@ import { GuidelinesModule } from '../guidelines/guidelines.module';
 import { MealplansModule } from '../mealplans/mealplans.module';
 import { MeasurementModule } from '../measurement/measurement.module';
 import { FollowUpConsultationModule } from '../follow-up-consultation/follow-up-consultation.module';
+import { FirstConsultationModule } from '../first-consultation/first-consultation.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FollowUpConsultationModule } from '../follow-up-consultation/follow-up-
     SignUpModule,
     GuidelinesModule,
     MealplansModule,
+    FirstConsultationModule,
     MeasurementModule,
     FollowUpConsultationModule
   ],

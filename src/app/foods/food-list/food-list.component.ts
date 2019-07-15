@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FoodService } from '../food.service';
 import { Food } from '../food.model';
@@ -9,12 +9,11 @@ import { Food } from '../food.model';
   styleUrls: ['./food-list.component.scss']
 })
 export class FoodListComponent implements OnInit {
-  foods: Observable<Food[]>;
+  @Input() foods: Food[];
 
   constructor( private foodService: FoodService) { }
 
   ngOnInit() {
-    this.foods = this.foodService.getFoods();
   }
 
 }

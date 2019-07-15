@@ -1,6 +1,6 @@
 <main class="specialist-list-wrapper">
   <section class="user-list" *ngIf="users">
-    <app-user-list-item *ngFor="let user of users | async" [user]="user"></app-user-list-item>
+    <app-user-list-item *ngFor="let user of users" [user]="user"></app-user-list-item>
   </section>
-  <p class="card-text mobile swipe">Swipe <i class="fas fa-long-arrow-alt-right"></i></p>
+  <!-- <p class="card-text mobile swipe">Swipe <i class="fas fa-long-arrow-alt-right"></i></p> -->
 </main>

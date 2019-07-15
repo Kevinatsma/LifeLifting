@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ExerciseService } from '../exercise.service';
 import { Exercise } from '../exercise.model';
@@ -9,12 +9,11 @@ import { Exercise } from '../exercise.model';
   styleUrls: ['./exercise-list.component.scss']
 })
 export class ExerciseListComponent implements OnInit {
-  exercises: Observable<Exercise[]>;
+  @Input() exercises: Exercise[];
 
-  constructor( private exerciseService: ExerciseService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.exercises = this.exerciseService.getExercises();
   }
 
 }

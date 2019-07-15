@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { AddExerciseDialogComponent } from '../shared/dialogs/add-exercise-dialog/add-exercise-dialog.component';
+import { Exercise } from './exercise.model';
+import { ExerciseService } from './exercise.service';
 
 @Component({
   selector: 'app-exercises',
@@ -9,17 +11,41 @@ import { AddExerciseDialogComponent } from '../shared/dialogs/add-exercise-dialo
   styleUrls: ['./exercises.component.scss']
 })
 export class ExercisesComponent implements OnInit {
+  exercises: Exercise[];
+  searchExercises: Exercise[];
+  searchActive = false;
 
   constructor( public location: Location,
+               public cdr: ChangeDetectorRef,
+               private exerciseService: ExerciseService,
                public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
   }
 
   openDialog() {
     // Set data for Dialog
     this.dialog.open(AddExerciseDialogComponent, {
       panelClass: 'add-exercise-dialog'
+    });
+  }
+
+  onChangeSearch(e) {
+    const searchInput = e.target.value.toLowerCase();
+
+    // Show correct user list
+    this.searchActive = e.target.value !== '';
+    this.cdr.detectChanges();
+
+    // Reset search array
+    this.searchExercises = [];
+
+    // Filter objects on display name and push matches to search array
+    this.exercises.forEach(obj => {
+      if (obj.exerciseName.toLowerCase().includes(`${searchInput}`)) {
+        this.searchExercises.push(<Exercise>obj);
+      }
     });
   }
 

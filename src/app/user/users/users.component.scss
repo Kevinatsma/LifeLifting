@@ -58,23 +58,25 @@
 }
 
 .filter {
+    color: $text-black;
     width: auto;
-    padding: 0 28px 6px!important;
-    border-radius: 0!important;
+    padding: 0 28px 6px !important;
+    border-radius: 0 !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    font-weight: $semi-bold;
-    position: relative!important;
-    margin-left: auto!important;
+    font-size: 14px;
+    font-family: $main-font;
+    font-weight: $regular;
+    letter-spacing: 1px;
+    position: relative !important;
 
     &::after {
         content: '';
-        background: $middle-grey;
-        height: 2px;
+        background: $border-color;
+        height: 1px;
         position: absolute;
-        bottom: 0;
+        bottom: -1px;
         width: 60%;
         left: 19%;
     }
