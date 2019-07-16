@@ -38,8 +38,7 @@ import { EditFirstConsultationComponent } from './edit-first-consultation/edit-f
   ],
   entryComponents: [
     AddFirstConsultationComponent,
-    EditFirstConsultationComponent,
-    FirstConsultationDetailComponent
+    EditFirstConsultationComponent
   ]
 })
 export class FirstConsultationModule { }

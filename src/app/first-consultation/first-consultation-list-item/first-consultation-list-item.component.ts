@@ -63,14 +63,9 @@ export class FirstConsultationListItemComponent implements OnInit {
     });
   }
 
-  openFirstConsultationDetail(firstConsultation) {
-    const dialogRef = this.dialog.open(FirstConsultationDetailComponent, {
-      data: {
-        firstConsultation: firstConsultation,
-        client: this.client
-      },
-      panelClass: 'first-consultation-detail-dialog'
-    });
+  linkToChild(firstConsultation) {
+    const url = `dashboard/first-consultations/${firstConsultation.ficID}`;
+    this.router.navigate([url]);
   }
 
   editFirstConsultation(firstConsultation) {

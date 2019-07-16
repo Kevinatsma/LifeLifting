@@ -1,268 +1,539 @@
-@import './../../../assets/scss/master';
-@import './../../../assets/scss/dialogs';
-@import './../../../assets/scss/animations';
+@import './../../../assets/scss/_master.scss';
 
-::ng-deep .first-consultation-detail-dialog {
+// General
+p {
+    white-space: normal;
+}
+
+h5 {
+    &.purple {
+        color: $secondary-color;
+    }
+}
+
+::ng-deep .highlight {
+    bottom: 0;
+    border-bottom: 2px solid $secondary-color;
+    left: 5vw;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+    position: absolute;
+    z-index: 5;
+
+    @media only screen and (min-width: 1024px) {
+        &.left {
+            left: -19.5vw !important;
+        }
+    }
+
+    @media only screen and (min-width: 1200px) {
+        &.left {
+            left: -29.3vw !important;
+        }
+    }
+
+    @media only screen and (min-width: 1440px) {
+        &.left {
+            left: -28.6vw!important;
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+        &.left {
+            left: -30vw!important;
+        }
+    }
+
+}
+
+
+
+main.specialist-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1.5em 2em;
+
     @include respond-down($sm) {
-        min-width: 100vw;
-        min-height: 100vh;
+        padding: 1.5em 0 0;
     }
 
-    .mat-dialog-container {
-        min-width: 75vw;
-        padding: 1.5em 16px;
-    }
-
-    .dialog-wrapper.first-consultation-detail {
-        .close-section {
-            .not-mobile {
-                position: fixed;
-                right: calc(12.5vw);
-                z-index: 1500;
+    .action-toolbar-top {
+        @include respond-down($sm) {
+            padding: 0 16px;
+        }
+        .left {
+            button {
+                margin-right: 2em;
             }
+        }
+
+        button.icon-button {
+            position: inherit;
+
+            svg {
+                font-size: 16px;
+            }
+        }
+
+        h1 {
+            @include respond-down($sm) {
+                width: 100%;
+            }
+        }
+
+        .mobile {
+            display: block;
+        }
+
+        .specialist-actions {
+            height: auto;
+            width: 55px;
+            position: absolute;
+            right: calc(1em + 5px);
+            top: 5em;
+            display: flex;
+            flex-direction: column;
+            z-index: 1234;
+            @include respond-down($sm) {
+                right: 13px;
+                top: 6em;
+            }
+
+            button.icon-button {
+                position: relative;
+                min-height: 55px;
+                margin: 0.65em 0;
+                right: 0;
+                opacity: 0;
+                transform: scale(0);
+                transition: opacity 0.3ms ease-in-out, transform 0.3s cubic-bezier(.17,.67,.79,1.46);
+
+                &.visible {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+
+                &:first-child {
+                    transition-delay: 0.6s;
+                    &.visible {
+                        transition-delay: 0s;
+                    }
+                }
+
+                &:nth-child(2) {
+                    transition-delay: 0.4s;
+                    &.visible {
+                        transition-delay: 0.2s;
+                    }
+                }
+
+                &:nth-child(3) {
+                    transition-delay: 0.2s;
+                    &.visible {
+                        transition-delay: 0.4s;
+                    }
+                }
+
+                &:nth-child(4) {
+                    transition-delay: 0s;
+                    &.visible {
+                        transition-delay: 0.6s;
+                    }
+                }
+            }
+        }
+    
+    }
+
+    .target-block {
+        width: 50%;
+        margin-bottom: 2rem;
+
+        &__value, &__value input {
+            font-size: 42px;
+            font-weight: $extra-bold;
+            font-family: $main-font;
+            text-align: center;
+            width: 85%;
+            color: $title-light-black;
+        }
+
+        span::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+    #level {
+        text-transform: capitalize;
+    }
+
+
+    .middle {
+        h1, h5 {
+            text-align: center;
+        }
+
+        h5 {
+            display: block;
+        }
+    }
+
+    .package-container {
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+
+        .package-controls {
+            @extend %flex-center;
+            width: 15%;
+        }
+
+        mat-card.list-item-card {
+            width: 95%;
+            margin: 6.5em auto 3em;
+            cursor: auto;
 
             @include respond-down($sm) {
-                margin-bottom: 20px;
-
-                button {
-                    svg {
-                        margin: 0 10px 0 0;
-                    }
-                }
+                width: 100%;
+                margin:  6.5em 0 0;
             }
-        }
 
-        .dialog-title-area {
-            padding: 0 20px;
-            margin: 0 0 30px;
-
-            h6 {
-                margin: 5px 1px;
+            &:hover {
+                transform: scale(1);
             }
-        }
 
-        .mat-step {
-            .mat-step-header {
-                width: 45%;
-                height: 25px;
-                margin-bottom: 10px;
-                z-index: 500;
-                padding: 10px 25px;
+            .chip-area {
+                width: 100%;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                align-items: center;
+                margin: 1.5em 0 0.5em;
 
                 @include respond-down($sm) {
-                    padding: 10px 0;
-                    width: 90%;
-                }
-            }
-
-            .mat-step-icon {
-                background-color: $middle-grey !important;
-                border: 1.5px solid $primary-color;
-                border-radius: 50%!important;
-                height: 20px;
-                width: 20px;
-
-                .mat-step-icon-content {
-                    display: none;
-                }
-
-                .mat-step-icon-state-edit {
-                    background-color: $middle-grey !important;
-                }
-            }
-
-            .mat-vertical-content-container {
-                margin-left: 11px;
-            }
-
-            .title-area {
-                p {
-                    margin: 0 auto 30px 0;
-                    width: 60%;
-
-                    @include respond-down($sm) {
-                        width: 100%;
-                    }
-                }
-            }
-
-            .field-wrapper {
-                display: flex;
-                flex-flow: row wrap;
-                width: 100%;
-
-                .mealplans {
-                    margin: 0 5% 40px 0;
-                    width: 45%;
-
-                    @include  respond-down($sm) {
-                        margin: 0;
-                        width: 100%;
-                    }
-
-                    app-mealplan-list-item {
-                        display: flex;
-                        margin-top: 70px;
-                        width: 260px;
-
-                        @include respond-down($sm) {
-                            margin: 20px 0 0;
-                            width: 270px;
-                        }
-                    }
-                }
-
-                .follow-percentage {
-                    align-items: center;
-                    border: 1.5px solid $middle-grey;
-                    border-radius: 5px;
-                    display: flex;
-                    flex-flow: column nowrap;
-                    justify-content: center;
-                    height: 350px;
-                    margin: 25px 0 0;
-                    width: 270px;
-
-                    @include respond-down($sm) {
-                        margin: 0 0 20px;
-                    }
-
-                    span.label {
-                        font-weight: $semi-bold;
-                        color: $text-black;
-                        font-size: 22px;
-                        text-align: center;
-                        margin: 0 auto 50px;
-                        position: relative;
-                        width: 75%;
-
-                        @include respond-down($sm) {
-                            margin: 0 auto 70px;
-                        }
-
-                        &::after {
-                            background-color: $middle-grey;
-                            bottom: -15px;
-                            content: '';
-                            left: 10%;
-                            height: 2px;
-                            position: absolute;
-                            width: 80%;
-
-                            @include respond-down($sm) {
-                                bottom: -30px;
-                            }
-                        }
-                    }
-                        
-                    .percentage-circle {
-                        border-radius: 50%;
-                        border: 2.5px solid $border-color;
-                        box-sizing: border-box;
-                        color: $black;
-                        font-size: 42px;
-                        font-weight: $regular;
-                        height: 125px;
-                        letter-spacing: 0.5px;
-                        position: relative;
-                        width: 125px;
-                        z-index: 10;
-
-                        @extend %flex-center;
-
-
-                        &::before {
-                            animation: 1s signal infinite;
-                            border-radius: 50%;
-                            border: 1.5px solid $border-color;
-                            content: '';
-                            position: absolute;
-                            width: 138px;
-                            height: 138px;
-                            left: -10px;
-                            top: -11px;
-                            z-index: 5;
-
-                            @include respond-down($sm) {
-                                left: -11px;
-                            }
-                        }
-
-                        span {
-                            margin: -3px 0 0 2px;
-                            font-weight: $regular;
-                            font-size: 28px;
-                            color: $text-black;
-                        }
-                    }
-                }
-
-                .field-container,
-                .activities .field-container,
-                .weekend-diet .field-container,
-                .specialist-notes .field-container {
-                    height: 100%;
-                    width: 45%;
-                    margin: 0 5% 30px 0;
-
-                    @include  respond-down($sm) {
-                        width: 100%;
-                    }
-
-                    h5 {
-                        font-size: 14px;
-                        color: $grey;
-                    }
-
-                    p {
-                        padding: 20px 30px 30px;
-                        background: transparent;
-                        border: 1.5px solid $middle-grey;
-                        margin-top: 15px;
-                        cursor: initial;
-                        font-weight: $bold;
-                        font-size: 16px;
-                        color: $black;
-
-                        @include respond-down($sm) {
-                            padding: 20px 20px 30px;
-                        }
-                    }
-                }
-
-                h3 {
-                    &.section-title {
-                        display: flex;
-                        margin: 1em 0;
-                        width: 100%;
-                    }
-                }
-
-                .activities, .weekend-diet, .specialist-notes {
-                    display: flex;
                     flex-flow: row wrap;
-                    height: 100%;
+                }
+
+                .secondary-chip {
+                    margin: 0 1em;
+                    background: $primary-light;
+                    padding: 10px 1em;
+                    width: auto;
+                    height: auto;
+                    color: $primary-color;
+                    font-weight: $semi-bold;
+                    font-size: 16px;
+                    border-left: 3px solid $primary-color;
+                    border-radius: 2px 6px 6px 2px;
+
+                    @include respond-down($sm) {
+                        margin: 0 10px 10px 0;
+                    }
+
+                    &:nth-child(2n) {
+                        background: lighten($secondary-color, 52%);
+                        color: $secondary-color;
+                        border-left: 3px solid $secondary-color;
+
+                        @include respond-down($sm) {
+                            margin-right: 0;
+                        }
+                    }
+                }
+
+            }
+
+        section {
+
+            .section-title {
+                position: relative;
+                &::after {
+                    content: '';
+                    background: $primary-light;
+                    height: 3px;
+                    width: 10%;
+                    position: absolute;
+                    bottom: -10px;
+                    left: 0;
+                }
+            }
+
+            .icon-circle {
+                width: 70px;
+                height: 70px;
+                box-shadow: $card-shadow;
+                background: #fff;
+                border-radius: 50%;
+                margin-bottom: 1rem;
+                @extend %flex-center;
+
+                svg {
+                    font-size: 38px;
+                    color: $primary-color;
+                }
+            }
+
+            &.introduction {
+                align-items: center;
+                display: flex;
+                flex-flow: column nowrap;
+                position: relative;
+                padding: 0;
+                margin: 0;
+                height: 140px;
+
+                @include respond-down($sm) {
                     width: 100%;
                 }
 
+                h2, input {
+                    font-size: 38px;
+                    font-weight: $semi-bold;
+                    margin: 1em auto 0.25em;
+                    width: 80%;
+                    text-align: center;
+                }
+
+                h5 {
+                    color: lighten($grey, 10%);
+                    font-weight: $regular;
+                    text-align: center;
+                    width: 70%;
+                    margin: 0 auto;
+                }
+
+                .text-link {
+                    margin: 1em 0;
+                    text-align: center;
+                }
             }
-        }
+            &.navigation {
+                .mealplan-nav {
+                    display: flex;
+                    width: 100%;
+                    height: 100px;
+                    margin: 1em 0 1em;
+                    flex-flow: row nowrap;
+                    justify-content: space-evenly;
+                    position: relative;
+                    align-items: center;
+                    z-index: 1000;
 
-        .mat-vertical-stepper-content {
-            margin-top: -10px;
-            padding-left: 22px;
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        height: 2px;
+                        background: $border-color;
+                        width: 90%;
+                        left: 5%;
+                    }
 
-            .vertical-content {
-                @include respond-down($sm) {
-                    padding: 0 0 24px;
+                    a.nav-item {
+                        color: $secondary-color;
+                        font-family: $main-font;
+                        font-weight: $regular;
+                        font-size: 18px;
+                        letter-spacing: 1px;
+                        padding-bottom: 15px;
+                        position: relative;
+                        border-bottom: 2px solid transparent;
+
+                        &.active {
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                bottom: -32px;
+                                height: 2px; 
+                                background: $secondary-color;
+                                width: 100%;
+                                left: 1%;
+                                z-index: 12341234;
+                            }
+                        }
+                    }
                 }
             }
 
-            .vertical-content-container {
+            &.day-section {
+                width: 100%;
+                margin: 2em auto;
                 @include respond-down($sm) {
-                    margin-left: 10px;
+                    margin: 2em 0;
+                }
+
+                app-monday, app-tuesday, app-wednesday, app-thursday, app-friday {
+                    width: 100%;
+                    position: relative;
+                }
+            }
+
+            &.mealplan-activities {
+                height: auto;
+                padding: 3em 3em 3em 5em;
+
+                .activity {
+                    align-items: flex-start;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    height: 100%;
+                    padding: 2em 0;
+                    justify-content: flex-start;
+                    width: 100%;
+
+                    &:last-child {
+                        padding-bottom: 0;
+                    }
+
+                    &__left {
+                        box-sizing: border-box;
+                        display: flex;
+                        flex-flow: column wrap;
+                        width: 40%;
+                        justify-content: flex-start;
+
+                        app-exercise-list-item {
+                            margin: 0 0 3em;
+                            height: auto;
+                            width: 100%;
+                        }
+                    }
+
+                    &__right {
+                        box-sizing: border-box;
+                        align-items: center;
+                        display: flex;
+                        flex-flow: column wrap;
+                        width: 60%;
+
+                        .container {
+                            box-sizing: border-box;
+                            display: flex;
+                            flex-flow: row wrap;
+                            height: 385px;
+                            margin: 0 0 3em;
+                            padding: 2em 0 2em 3em;
+                            align-items: center;
+                            width: 100%;
+
+                            .target-block {
+                                h6 {
+                                    text-transform: capitalize;
+                                }
+
+                                &__full-width {
+                                    width: 100%;
+                                    ul {
+                                        li {
+                                            align-items: center;
+                                            display: flex;
+                                            flex-direction: row;
+                                            margin: 1em 0;
+
+                                            span, input {
+                                                border-right: 1px solid $border-color;
+                                                color: $text-black;
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: flex-start;
+                                                font-size: 28px;
+                                                font-weight: $extra-bold;
+                                                height: 65px;
+                                                margin-right: 1em;
+                                                text-align: center;
+                                                width: 85px;
+                                            }
+
+                                            h4 {
+                                                text-transform: capitalize;
+                                                color: $secondary-color;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+            .quick-info {
+                p {
+                    text-align: center;
+                }
+            }
+
+            .card-circle {
+                @extend %flex-center;
+                flex-flow: column wrap;
+                width: 175px;
+                height: 175px;
+                margin: -85px auto 0;
+                background-color: $middle-grey !important;
+                box-shadow: $card-shadow;
+                background-size: cover!important;
+                background-position: center!important;
+                border-radius: 50%;
+                border: 4px solid #fff;
+
+                @include respond-down($sm) {
+                    margin: -85px calc(50% - (175px/2)) 0;
+                }
+
+                .no-photo  {
+                    @extend %flex-center;
+                    flex-flow: column nowrap;
+                    background: transparent;
+                }
+
+                svg {
+                    font-size: 38px;
+                }
+            }
+
+            .product-photo {
+                height: 250px;
+                position: relative;
+                background-size: cover!important;
+                background-position: center!important;
+            }
+
+
+            .preperation-container {
+                ul {
+                    li {
+                        display: block;
+                        margin: 1em 0;
+                    }
                 }
             }
         }
     }
+}
+
+
+
+section.btn-area {
+    padding-left: 3em;
+
+    button.text-link {
+        margin: 1em 0;
+        svg {
+            font-size: 12px;
+            margin-left: 5px;
+        }     
+    }
+}
+
+div.not-available {
+    @extend %flex-center;
+    flex-flow: column wrap;
+    width: 100%;
+    height: 100%;
 }

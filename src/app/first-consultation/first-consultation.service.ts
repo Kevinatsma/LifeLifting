@@ -16,6 +16,12 @@ export class FirstConsultationService {
                ) { }
 
 
+  getFirstConsultationDataById(id) {
+    const firstConsultationDoc = this.afs.doc<FirstConsultation>(`first-consultations/${id}`);
+    const firstConsultation = firstConsultationDoc.valueChanges();
+    return firstConsultation;
+  }
+
   addFirstConsultation(data) {
     this.afs.collection<FirstConsultation>(`first-consultations`).add(data)
     .then(credential => {
