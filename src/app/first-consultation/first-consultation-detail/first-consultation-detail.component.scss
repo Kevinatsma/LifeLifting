@@ -1,4 +1,5 @@
 @import './../../../assets/scss/_master.scss';
+@import './../../../assets/scss/_dialogs.scss';
 
 // General
 p {
@@ -312,7 +313,7 @@ main.specialist-wrapper {
                 }
             }
             &.navigation {
-                .mealplan-nav {
+                .first-consultation-nav {
                     display: flex;
                     width: 100%;
                     height: 100px;
@@ -355,6 +356,11 @@ main.specialist-wrapper {
                                 z-index: 12341234;
                             }
                         }
+
+                        svg {
+                            pointer-events: none;
+                            touch-action: none;
+                        }
                     }
                 }
             }
@@ -372,7 +378,7 @@ main.specialist-wrapper {
                 }
             }
 
-            &.mealplan-activities {
+            &.first-consultation-activities {
                 height: auto;
                 padding: 3em 3em 3em 5em;
 

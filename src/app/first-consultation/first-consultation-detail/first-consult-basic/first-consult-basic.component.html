@@ -1,0 +1,35 @@
+<main class="fic-detail-container basic-data" *ngIf="basicData">
+  <section class="fic-detail-container__basic-data">
+    <div class="form-field">
+      <span class="label">Main goal for meal plan</span>
+      <div class="text-field">
+        <p class="card-text">{{basicData.mealplanMainGoal}}</p>
+      </div>
+    </div>
+
+    <div class="quick-info">
+      <ul>
+        <li>
+          <i class="fas fa-venus-mars"></i>
+          <p class="card-text">{{basicData.sex}}</p>
+        </li>
+        <li>
+          <i class="fas fa-birthday-cake"></i>
+          <p class="card-text">{{basicData.birthDate.toDate() | date:'medium'}}</p>
+        </li>
+        <li>
+          <i class="fas fa-ruler-vertical"></i>
+          <p class="card-text">{{basicData.height}} meters</p>
+        </li>
+        <li>
+          <i class="fas fa-phone"></i>
+          <p class="card-text">{{basicData.phoneNumber.areaCode}} {{basicData.phoneNumber.number}}</p>
+        </li>
+        <li>
+          <i class="fas fa-map-marker-alt"></i>
+          <p class="card-text">{{basicData.address}}</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>

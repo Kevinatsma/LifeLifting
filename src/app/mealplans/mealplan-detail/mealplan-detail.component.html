@@ -6,7 +6,7 @@
       </button>
 
       <button type="button" class="icon-button not-mobile" (click)="deleteMealplanDialog(mealplan)" 
-      *ngIf="!editShow &&  user.roles.admin || user.roles.specialist">
+      *ngIf="!editShow && user.roles.admin || user.roles.specialist">
         <i class="fas fa-trash"></i>
       </button>
     </div>

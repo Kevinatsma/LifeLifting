@@ -93,11 +93,11 @@ export class AddAppointmentDialogComponent implements OnInit {
       faceToFacePhone: [''],
       onlinePhone: this.fb.group({
         phoneAreaCode: [`${this.phoneAreaCode.value}`],
-        'phoneRest': [''] || null,
+        phoneRest: [''] || null,
       }),
       wappNumber: this.fb.group({
-        'wappAreaCode': [''] || null,
-        'wappRest': [''] || null,
+        wappAreaCode: [''] || null,
+        wappRest: [''] || null,
       }),
       appointmentContext: [''],
       contactMethod: [''],
@@ -179,6 +179,7 @@ export class AddAppointmentDialogComponent implements OnInit {
     let start;
     let end;
 
+    console.log(this.auth.user);
     if (this.auth.clientRoles(this.auth.authState)) {
       start = startNoTime
         .replace('00:00:00',

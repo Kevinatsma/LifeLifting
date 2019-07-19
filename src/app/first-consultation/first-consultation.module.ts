@@ -10,6 +10,10 @@ import { RouterModule } from '@angular/router';
 import { FirstConsultationDetailComponent } from './first-consultation-detail/first-consultation-detail.component';
 import { MealplansModule } from '../mealplans/mealplans.module';
 import { EditFirstConsultationComponent } from './edit-first-consultation/edit-first-consultation.component';
+import { FirstConsultBasicComponent } from './first-consultation-detail/first-consult-basic/first-consult-basic.component';
+import { FirstConsultHabitsComponent } from './first-consultation-detail/first-consult-habits/first-consult-habits.component';
+import { FirstConsultBodyComponent } from './first-consultation-detail/first-consult-body/first-consult-body.component';
+import { FirstConsultGeneralComponent } from './first-consultation-detail/first-consult-general/first-consult-general.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { EditFirstConsultationComponent } from './edit-first-consultation/edit-f
     EditFirstConsultationComponent,
     FirstConsultationListComponent,
     FirstConsultationListItemComponent,
-    FirstConsultationDetailComponent
+    FirstConsultationDetailComponent,
+    FirstConsultBasicComponent,
+    FirstConsultHabitsComponent,
+    FirstConsultBodyComponent,
+    FirstConsultGeneralComponent
   ],
   imports: [
     CommonModule,

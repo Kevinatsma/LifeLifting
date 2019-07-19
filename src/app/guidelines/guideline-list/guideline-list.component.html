@@ -1,5 +1,8 @@
 <main class="specialist-list-wrapper">
   <section class="card-list" *ngIf="guidelines">
     <app-guideline-list-item *ngFor="let guideline of guidelines | async; let i=index" [i]="i" [guideline]="guideline"></app-guideline-list-item>
+    <p class="card-text nothing-here" *ngIf="!guidelines.length">
+      No guidelines yet
+    </p>
   </section>
 </main>

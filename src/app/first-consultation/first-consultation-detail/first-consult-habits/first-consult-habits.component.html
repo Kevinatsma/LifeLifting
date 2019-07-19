@@ -1,0 +1,183 @@
+<main class="fic-detail-container habits" *ngIf="habits">
+    <section class="fic-detail-container__general">
+      <h3>General</h3>
+  
+      <div class="form-field info-card">
+        <div class="info-card__icon">
+          <i class="fas fa-cocktail"></i>
+        </div>
+        <div class="info-card__content">
+          <span class="label small">Consumes alcohol</span>
+          <p class="value big">{{habits.alcohol}}</p>
+          <p class="value" *ngIf="habits.alcoholNote">{{habits.alcoholNote}} cups/day</p>
+        </div>
+      </div>
+
+      <div class="form-field info-card">
+        <div class="info-card__icon">
+          <i class="fas fa-smoking"></i>
+        </div>
+        <div class="info-card__content">
+          <span class="label small">Smokes</span>
+          <p class="value big">{{habits.smoke}}</p>
+          <p class="value" *ngIf="habits.smokeNote">{{habits.smokeNote}} packs/week</p>
+        </div>
+      </div>
+
+      <div class="form-field info-card">
+        <div class="info-card__icon">
+          <i class="fas fa-coffee"></i>
+        </div>
+        <div class="info-card__content">
+          <span class="label small">Consumes coffee</span>
+          <p class="value big">{{habits.coffee}}</p>
+          <p class="value" *ngIf="habits.coffeeNote">{{habits.coffeeNote}} cups/day</p>
+        </div>
+      </div>
+
+      <div class="form-field info-card">
+        <div class="info-card__icon">
+          <i class="fas fa-mug-hot"></i>
+        </div>
+        <div class="info-card__content">
+          <span class="label small">Consumes tea</span>
+          <p class="value big">{{habits.tea}}</p>
+          <p class="value" *ngIf="habits.teaNote">{{habits.teaNote}}</p>
+        </div>
+      </div>
+
+      <div class="form-field info-card">
+        <div class="info-card__icon">
+          <i class="fas fa-compact-disc"></i>
+        </div>
+        <div class="info-card__content">
+          <span class="label small">Goes out at night to have a social life</span>
+          <p class="value big">{{habits.socialLife}}</p>
+          <p class="value" *ngIf="habits.socialLifeNote">{{habits.socialLifeNote}}x per week</p>
+        </div>
+      </div>
+
+      <div class="form-field info-card">
+        <div class="info-card__icon">
+          <i class="far fa-clock"></i>
+        </div>
+        <div class="info-card__content">
+          <span class="label small">Stays up late</span>
+          <p class="value big">{{habits.stayUpLate}}</p>
+          <p class="value" *ngIf="habits.stayUpLateNote">{{habits.stayUpLateNote}}x per week</p>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <span class="label small">Consumes drugs</span>
+        <p class="value big">{{habits.drugs}}</p>
+      </div>
+    </section>
+  
+    <section class="fic-detail-container__sleeping-habits">
+      <h3>Sleeping habits</h3>
+  
+      <div class="form-field">
+        <span class="label small">Wake up time</span>
+        <p class="value big">{{habits.sleepingHabits.wakeUpTime}}</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">Go to bed time</span>
+        <p class="value big">{{habits.sleepingHabits.sleepTime}}</p>
+      </div>
+    </section>
+  
+    <section class="fic-detail-container__appetite">
+      <h3>Eating habits</h3>
+  
+      <div class="form-field">
+        <span class="label small">Breakfast time</span>
+        <p class="value big">{{habits.eatingHabits.breakfastTime}}</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">Lunch time</span>
+        <p class="value big">{{habits.eatingHabits.lunchTime}}</p>
+      </div>
+  
+      <div class="form-field">
+        <span class="label small">Dinner time</span>
+        <p class="value big">{{habits.eatingHabits.dinnerTime}}</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">The one that cooks at home</span>
+        <p class="value big">{{habits.eatingHabits.whoCooks}}</p>
+      </div>
+  
+      <div class="form-field">
+        <span class="label small">Has breakfast at home</span>
+        <p class="value big">{{habits.eatingHabits.breakfastAtHome}}</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">Breakfast location</span>
+        <p class="value big">{{habits.eatingHabits.breakfastAtHomeNote}}</p>
+      </div>
+  
+      <div class="form-field">
+        <span class="label small">Has plenty of time for breakfast</span>
+        <p class="value big">{{habits.eatingHabits.timeForBreakfast}}</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">No time for breakfast because</span>
+        <p class="value big">{{habits.eatingHabits.timeForBreakfastNote}}</p>
+      </div>
+    </section>
+  
+    <section class="fic-detail-container__female">
+      <h3>Work</h3>
+  
+      <div class="form-field">
+        <span class="label small">Work description</span>
+        <p class="value big">{{habits.work.description}}</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">Work schedule</span>
+        <p class="value big">From {{habits.work.schedules.from}} to {{habits.work.schedules.to}}</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">Works on weekends</span>
+        <p class="value big">{{habits.work.workOnWeekends}}</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">Weekend job schedule</span>
+        <p class="value big">From {{habits.work.workOnWeekendsNote.from}} to {{habits.work.workOnWeekendsNote.to}}</p>
+      </div>
+
+      <div class="form-field">
+        <span class="label small">Time to travel from home to work</span>
+        <p class="value big">{{habits.work.homeToWork}} min</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">Time to travel from work to home</span>
+        <p class="value big">{{habits.work.workToHome}} min</p>
+      </div>
+
+      <div class="form-field">
+        <span class="label small">Method of transportation</span>
+        <p class="value big">{{habits.work.transportationMethod}}</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">Can eat during work time</span>
+        <p class="value big">{{habits.work.eatDuringJob}}</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">Can have simple snack during work time</span>
+        <p class="value big">{{habits.work.practicalSnackDuringJob}}</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">Snacks preference</span>
+        <p class="value big">{{habits.work.snacksPreference}}</p>
+      </div>
+      <div class="form-field">
+        <span class="label small">Has kitchen gadgets at work</span>
+        <p class="value big">{{habits.work.kitchenGadgetsAtWork}}</p>
+      </div>
+  
+    </section>
+    
+  </main>
+  

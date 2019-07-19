@@ -1,0 +1,129 @@
+<main class="fic-detail-container general-data" *ngIf="generalData">
+  <section class="fic-detail-container__general">
+    <h3>General</h3>
+
+    <div class="form-field">
+      <span class="label small">Health conditions</span>
+      <ul>
+        <li *ngFor="let condition of generalData.general.healthConditions" class="list-item">{{condition.healthCondition}}</li>
+      </ul>
+    </div>
+
+    <div class="form-field">
+      <span class="label small">Has gastritis</span>
+      <p class="value big">{{generalData.general.gastritis}}</p>
+    </div>
+    <div class="form-field">
+      <span class="label small">List of medication</span>
+      <p class="value big">{{generalData.general.medication}}x</p>
+    </div>
+    
+    <div class="form-field">
+      <span class="label small">The past to weeks he/she had</span>
+      <ul>
+        <li *ngFor="let item of generalData.general.pastTwoWeeks" class="list-item">{{item.pastTwoWeeksValue}}</li>       
+      </ul>
+    </div>
+    
+    <div class="form-field">
+      <span class="label small">Can't eat</span>
+      <ul>
+        <li *ngFor="let item of generalData.general.dontEat" class="list-item">{{item.dontEatItem}}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="fic-detail-container__dinner">
+    <h3>Dinner</h3>
+
+    <div class="form-field">
+      <span class="label small">Portion size</span>
+      <p class="value big">{{generalData.dinner.portion}}</p>
+    </div>
+    <div class="form-field">
+      <span class="label small">Prepared by</span>
+      <p class="value big">{{generalData.dinner.preparedBy}}</p>
+    </div>
+    <div class="form-field">
+      <span class="label small">Eats after dinner</span>
+      <p class="value big">{{generalData.dinner.eatAfterDinner}}</p>
+    </div>
+    <div class="form-field">
+      <span class="label small">What he/she eats after dinner</span>
+      <p class="value big">{{generalData.dinner.eatAfterDinnerNote}}</p>
+    </div>
+
+    <ul>
+      <span class="label small">Shopping locations</span>
+      <li *ngFor="let location of generalData.dinner.shoppingLocations" class="list-item">{{location.shoppingLocation}}</li>
+    </ul>
+    <div class="form-field">
+      <span class="label small">Orders food online</span>
+      <p class="value big">{{generalData.dinner.orderOnline}}</p>
+    </div>
+    <div class="form-field">
+      <span class="label small">Who does the shopping at home</span>
+      <p class="value big">{{generalData.dinner.whoBuys}}</p>
+    </div>
+  </section>
+
+  <section class="fic-detail-container__activities">
+    <h3>Physical activities</h3>
+
+    <div class="form-field">
+      <span class="label small">Does physical activities</span>
+      <p class="value big">{{generalData.physicalActivity.physicalActivitiesConfirmation}}</p>
+    </div>
+    <div class="form-field">
+      <span class="label small">Why not</span>
+      <p class="value big">{{generalData.physicalActivity.physicalActivitiesWhy}}</p>
+    </div>
+
+    <div class="activity-container" *ngFor="let activity of generalData.physicalActivity.physicalActivities">
+      <h5>Activities</h5>
+      <app-exercise-list-item *ngIf="!activity.physicalActivity === 'other'"
+        [exercise]="activity.physicalActivity">
+      </app-exercise-list-item>
+    </div>
+  </section>
+
+  <section class="fic-detail-container__weekends">
+    <h3>Weekends</h3>
+
+    <div class="form-field">
+      <span class="label small">Wake up time</span>
+      <p class="value big">{{generalData.weekends.wakeUpTime}}</p>
+    </div>
+    <div class="form-field">
+      <span class="label small">Orders food or eats out</span>
+      <p class="value big">{{generalData.weekends.orderFood}}</p>
+    </div>
+    <div class="form-field">
+      <span class="label small">Food being ordered or eaten outside</span>
+      <p class="value big">{{generalData.weekends.orderFoodNote}}</p>
+    </div>
+  </section>
+
+  <section class="fic-detail-container__supps">
+    <h3>Supplements</h3>
+
+    <div class="form-field">
+      <span class="label small">Takes supplements</span>
+      <p class="value big">{{generalData.supplements.supplements}}</p>
+    </div>
+    <div class="form-field">
+      <span class="label small">Supplements being taken</span>
+      <p class="value big">{{generalData.supplements.supplementNote}}</p>
+    </div>
+    <div class="form-field">
+      <span class="label small">Is willing to use a supplement</span>
+      <p class="value big">{{generalData.supplements.willingToUseSupps}}</p>
+    </div>
+    <div class="form-field">
+      <span class="label small">Eating recordatory</span>
+      <p class="value big">{{generalData.supplements.eatingRecordatory}}</p>
+    </div>
+  </section>
+
+</main>
+  

@@ -1,0 +1,138 @@
+@import './../../../assets/scss/_master';
+@import './../../../assets/scss/_mixins';
+
+.fic-detail-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    padding: 2em;
+    width: 100%;
+
+    section {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        width: 100%;
+
+        h3 {
+            flex: 0 0 100%;
+            padding-left: 1em;
+            position: relative;
+
+            &::after {
+                background-color: $border-color;
+                bottom: -10px;
+                content: '';
+                height: 1px;
+                left: 0;
+                position: absolute;
+            }
+        }
+    }
+
+    .form-field {
+        box-sizing: border-box;
+        display: flex;
+        flex-flow: column nowrap;
+        margin: 1em auto;
+        width: 30%;
+
+        .label {
+            color: $grey;
+            font-weight: $bold;
+            margin: 2px 10px 0;
+            width: 70%;
+        }
+
+        &.long-text {
+            .text-field {
+                background-color: $light-grey;
+                border: 1.5px solid $middle-grey;
+                box-sizing: border-box;
+                padding: 1em;
+                width: 80%;
+            }
+        }
+
+        p {
+            &.value {
+                color: $text-black;
+                font-size: 16px;
+                font-weight: $semi-bold;
+                margin: 0;
+                padding: 0 20px;
+            }
+
+            &.big {
+                font-size: 42px;
+                font-weight: $extra-bold;
+                margin-top: -10px;
+            }
+        }
+
+        ul {
+            li {
+                font-size: 16px;
+                font-weight: $semi-bold;
+                position: relative;
+
+
+                &::before {
+                    background-color: $border-color;
+                    border-radius: 50%;
+                    content: '';
+                    height: 10px;
+                    left: -10px;
+                    position: absolute;
+                    width: 10px;
+                }
+            }
+        }
+    }
+
+    .info-card {
+        background-color: #fff;
+        box-shadow: $card-shadow;
+        display: flex;
+        flex-flow: row nowrap;
+        padding: 1em;
+        position: relative;
+
+        &__icon {
+            background-color: #fff;
+            border-radius: 50%;
+            border: 1.5px solid #db996a;
+            height: 55px;
+            left: -27px;
+            position: absolute;
+            top: -25px;
+            width: 55px;
+
+            @extend %flex-center;
+
+            svg {
+                color: $icon-black;
+                font-size: 18px;
+            }
+        }
+
+        &__content {
+            display: flex;
+            flex-flow: column nowrap;
+            height: auto;
+            width: 60%;
+
+            p {
+                &.value {
+
+                }
+
+                &.big {
+
+                }
+            }
+
+        }
+    }
+}

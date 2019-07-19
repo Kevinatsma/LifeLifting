@@ -1,0 +1,63 @@
+@import './../../../../assets/scss/master';
+@import './../../../../assets/scss/mixins';
+
+.fic-detail-container {
+    &__basic-data {
+        box-sizing: border-box;
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+
+        .form-field {
+            box-sizing: border-box;
+            display: flex;
+            flex-flow: column nowrap;
+            margin: .75em auto;
+            width: 50%;
+
+            .label {
+                font-weight: $bold;
+                margin: 2px 10px 10px;
+                width: 70%;
+            }
+
+            .text-field {
+                background-color: $light-grey;
+                border: 1.5px solid $middle-grey;
+                box-sizing: border-box;
+                padding: 1em;
+                width: 80%;
+            }
+        }
+
+        .quick-info {
+            margin-top: 1.75em;
+            width: 40%;
+
+            ul {
+                width: 100%;
+
+                li {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: flex-start;
+                    margin: 5px 0;
+
+                    svg {
+                        color: $secondary-color;
+                        font-size: 20px;
+                        margin: 2px 1.5em 0 0;
+                        width: 20px;
+                    }
+
+                    .card-text {
+                        font-size: 18px;
+                        text-align: left;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+}

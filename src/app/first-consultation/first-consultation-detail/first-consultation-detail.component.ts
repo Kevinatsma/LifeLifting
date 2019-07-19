@@ -14,7 +14,7 @@ import { MatDialog } from '@angular/material';
 import { GuidelineService } from '../../guidelines/guideline.service';
 import { Guideline } from '../../guidelines/guideline.model';
 import { AuthService } from '../../core/auth/auth.service';
-import { EditMealDialogComponent } from '../../shared/dialogs/edit-meal-dialog/edit-meal-dialog.component';
+import { EditFirstConsultationComponent } from './../edit-first-consultation/edit-first-consultation.component';
 import { Subject } from 'rxjs';
 import { UtilService } from '../../shared/services/util.service';
 import { DisplayTextDialogComponent } from '../../shared/dialogs/display-text-dialog/display-text-dialog.component';
@@ -136,13 +136,13 @@ export class FirstConsultationDetailComponent implements OnInit {
   // Like this to avoid State Changed Error
   // Open/closers
 
-  editMealplan(firstConsultation) {
-    const dialogRef = this.dialog.open(EditMealDialogComponent, {
+  editFirstConsultation(firstConsultation) {
+    const dialogRef = this.dialog.open(EditFirstConsultationComponent, {
       data: {
         firstConsultation: firstConsultation,
         client: this.client
       },
-      panelClass: 'firstConsultation-dialog',
+      panelClass: 'first-consultation-dialog',
       disableClose: true
     });
 
@@ -275,10 +275,10 @@ export class FirstConsultationDetailComponent implements OnInit {
 
   // Delete firstConsultation
 
-  deleteMealplanDialog(firstConsultation) {
+  deleteFirstConsultationDialog(firstConsultation) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        mID: firstConsultation.mID,
+        ficID: firstConsultation.ficID,
         firstConsultationName: firstConsultation.firstConsultationName,
       },
       panelClass: 'confirm-dialog'

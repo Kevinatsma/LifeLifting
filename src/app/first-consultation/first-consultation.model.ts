@@ -82,7 +82,7 @@ export class BodyFunctions {
     bowelMovements: {
         everyDay: string;
         timesPerWeek?: number;
-        timesPerDay: number;
+        timesPerDay?: number;
         sameSchedule: string;
     };
     appetite: {
