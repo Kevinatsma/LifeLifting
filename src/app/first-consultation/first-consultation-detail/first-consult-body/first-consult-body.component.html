@@ -7,7 +7,7 @@
       <p class="value big">{{bodyFunctions.diuresis.urinateAmount}}x</p>
     </div>
     <div class="form-field">
-      <span class="label small">Wake up to urinate</span>
+      <span class="label small">Wakes up to urinate</span>
       <p class="value big">{{bodyFunctions.diuresis.middleNightUrinate}}</p>
     </div>
   </section>
@@ -61,12 +61,12 @@
       <span class="label small">Trouble falling asleep</span>
       <p class="value big">{{bodyFunctions.sleep.troubleFallingAsleep}}</p>
     </div>
-    <div class="form-field">
+    <div class="form-field" *ngIf="bodyFunctions.sleep.troubleFallingAsleepNote">
       <span class="label small">Time to fall asleep</span>
       <p class="value big">{{bodyFunctions.sleep.troubleFallingAsleepNote}} min</p>
     </div>
     <div class="form-field">
-      <span class="label small">Wake up energized</span>
+      <span class="label small">Wakes up energized</span>
       <p class="value big">{{bodyFunctions.sleep.wakeUpEnergized}}</p>
     </div>
 
@@ -87,7 +87,7 @@
       <span class="label small">Taking birth control pills</span>
       <p class="value big">{{bodyFunctions.female.birthControlPills}}</p>
     </div>
-    <div class="form-field">
+    <div class="form-field" *ngIf="bodyFunctions.female.birthControlPillsNote">
       <span class="label small">Which birth control pill</span>
       <p class="value big">{{bodyFunctions.female.birthControlPillsNote}}</p>
     </div>

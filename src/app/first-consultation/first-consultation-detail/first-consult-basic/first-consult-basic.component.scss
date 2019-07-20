@@ -8,12 +8,16 @@
         flex-flow: row wrap;
         width: 100%;
 
+        h3 {
+            margin: 0 0 1.5em;
+        }
+
         .form-field {
             box-sizing: border-box;
             display: flex;
             flex-flow: column nowrap;
-            margin: .75em auto;
-            width: 50%;
+            margin: .5em auto !important;
+            width: 60%;
 
             .label {
                 font-weight: $bold;

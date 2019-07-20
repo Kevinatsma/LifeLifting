@@ -1,0 +1,25 @@
+
+
+.activity-container {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+
+    app-exercise-list-item {
+        margin-right: 10%;
+        max-width: 30%;
+    }
+
+    &__content {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        width: 60%;
+
+        .form-field {
+            margin: 1em calc(10% / 2) 2em 0 !important;
+            width: 40%;
+        }
+    }
+
+}

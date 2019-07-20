@@ -9,7 +9,7 @@
         <div class="info-card__content">
           <span class="label small">Consumes alcohol</span>
           <p class="value big">{{habits.alcohol}}</p>
-          <p class="value" *ngIf="habits.alcoholNote">{{habits.alcoholNote}} cups/day</p>
+          <p class="value sub-value" *ngIf="habits.alcoholNote">{{habits.alcoholNote}} cups/day</p>
         </div>
       </div>
 
@@ -20,7 +20,7 @@
         <div class="info-card__content">
           <span class="label small">Smokes</span>
           <p class="value big">{{habits.smoke}}</p>
-          <p class="value" *ngIf="habits.smokeNote">{{habits.smokeNote}} packs/week</p>
+          <p class="value sub-value" *ngIf="habits.smokeNote">{{habits.smokeNote}} packs/week</p>
         </div>
       </div>
 
@@ -31,29 +31,18 @@
         <div class="info-card__content">
           <span class="label small">Consumes coffee</span>
           <p class="value big">{{habits.coffee}}</p>
-          <p class="value" *ngIf="habits.coffeeNote">{{habits.coffeeNote}} cups/day</p>
+          <p class="value sub-value" *ngIf="habits.coffeeNote">{{habits.coffeeNote}} cups/day</p>
         </div>
       </div>
 
       <div class="form-field info-card">
         <div class="info-card__icon">
-          <i class="fas fa-mug-hot"></i>
+          <i class="fas fa-leaf"></i>
         </div>
         <div class="info-card__content">
           <span class="label small">Consumes tea</span>
           <p class="value big">{{habits.tea}}</p>
-          <p class="value" *ngIf="habits.teaNote">{{habits.teaNote}}</p>
-        </div>
-      </div>
-
-      <div class="form-field info-card">
-        <div class="info-card__icon">
-          <i class="fas fa-compact-disc"></i>
-        </div>
-        <div class="info-card__content">
-          <span class="label small">Goes out at night to have a social life</span>
-          <p class="value big">{{habits.socialLife}}</p>
-          <p class="value" *ngIf="habits.socialLifeNote">{{habits.socialLifeNote}}x per week</p>
+          <p class="value sub-value" *ngIf="habits.teaNote">{{habits.teaNote}}</p>
         </div>
       </div>
 
@@ -64,13 +53,29 @@
         <div class="info-card__content">
           <span class="label small">Stays up late</span>
           <p class="value big">{{habits.stayUpLate}}</p>
-          <p class="value" *ngIf="habits.stayUpLateNote">{{habits.stayUpLateNote}}x per week</p>
+          <p class="value sub-value" *ngIf="habits.stayUpLateNote">{{habits.stayUpLateNote}}x per week</p>
         </div>
       </div>
 
-      <div class="form-field">
-        <span class="label small">Consumes drugs</span>
-        <p class="value big">{{habits.drugs}}</p>
+      <div class="form-field info-card">
+        <div class="info-card__icon">
+          <i class="fas fa-capsules"></i>
+        </div>
+        <div class="info-card__content">
+          <span class="label small">Consumes drugs</span>
+          <p class="value big">{{habits.drugs}}</p>
+        </div>
+      </div>
+
+      <div class="form-field info-card">
+        <div class="info-card__icon">
+          <i class="fas fa-compact-disc"></i>
+        </div>
+        <div class="info-card__content">
+          <span class="label small">Goes out at night to have a social life</span>
+          <p class="value big">{{habits.socialLife}}</p>
+          <p class="value sub-value" *ngIf="habits.socialLifeNote">{{habits.socialLifeNote}}x per week</p>
+        </div>
       </div>
     </section>
   
@@ -112,7 +117,7 @@
         <span class="label small">Has breakfast at home</span>
         <p class="value big">{{habits.eatingHabits.breakfastAtHome}}</p>
       </div>
-      <div class="form-field">
+      <div class="form-field" *ngIf="habits.eatingHabits.breakfastAtHomeNote">
         <span class="label small">Breakfast location</span>
         <p class="value big">{{habits.eatingHabits.breakfastAtHomeNote}}</p>
       </div>
@@ -121,30 +126,38 @@
         <span class="label small">Has plenty of time for breakfast</span>
         <p class="value big">{{habits.eatingHabits.timeForBreakfast}}</p>
       </div>
-      <div class="form-field">
+      <div class="form-field" *ngIf="habits.eatingHabits.timeForBreakfastNote">
         <span class="label small">No time for breakfast because</span>
         <p class="value big">{{habits.eatingHabits.timeForBreakfastNote}}</p>
       </div>
     </section>
   
-    <section class="fic-detail-container__female">
+    <section class="fic-detail-container__work">
       <h3>Work</h3>
   
-      <div class="form-field">
+      <div class="form-field long-text">
         <span class="label small">Work description</span>
-        <p class="value big">{{habits.work.description}}</p>
+        <div class="text-field">
+          <p class="card-text">{{habits.work.description}}</p>
+        </div>
       </div>
       <div class="form-field">
         <span class="label small">Work schedule</span>
-        <p class="value big">From {{habits.work.schedules.from}} to {{habits.work.schedules.to}}</p>
+        <p class="value big schedule">
+          <span>From:</span> {{habits.work.schedules.from}}<br>
+          <span>To:</span> {{habits.work.schedules.to}}
+        </p>
       </div>
       <div class="form-field">
         <span class="label small">Works on weekends</span>
         <p class="value big">{{habits.work.workOnWeekends}}</p>
       </div>
-      <div class="form-field">
+      <div class="form-field" *ngIf="habits.work.workOnWeekendsNote.from">
         <span class="label small">Weekend job schedule</span>
-        <p class="value big">From {{habits.work.workOnWeekendsNote.from}} to {{habits.work.workOnWeekendsNote.to}}</p>
+        <p class="value big schedule">
+          <span>From:</span> {{habits.work.workOnWeekendsNote.from}} <br> 
+          <span>To:</span> {{habits.work.workOnWeekendsNote.to}}
+        </p>
       </div>
 
       <div class="form-field">

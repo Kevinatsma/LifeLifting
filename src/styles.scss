@@ -142,7 +142,7 @@ a.menu-link, button.menu-link {
         background: $primary-light; 
         border-left: 3px solid $primary-color;
         color: $primary-color;
-        font-weight: 600;
+        font-weight: $bold;
     
         svg {
             color: $primary-color;
@@ -332,7 +332,7 @@ a.menu-link, button.menu-link {
 
 .close-btn {
     @extend %flex-center;
-    font-weight: 600;
+    font-weight: $bold;
     span {
         margin: 0;
     }

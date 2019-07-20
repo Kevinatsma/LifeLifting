@@ -4,7 +4,7 @@ import { FirstConsultation, BasicData } from '../../first-consultation.model';
 @Component({
   selector: 'app-first-consult-basic',
   templateUrl: './first-consult-basic.component.html',
-  styleUrls: ['./first-consult-basic.component.scss', './../consultation-subviews.scss']
+  styleUrls: ['./../consultation-subviews.scss', './first-consult-basic.component.scss']
 })
 export class FirstConsultBasicComponent implements OnInit {
   @Input() firstConsultation: FirstConsultation;
