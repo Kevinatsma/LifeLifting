@@ -4,10 +4,7 @@
       <button type="button" class="icon-button" (click)="goBack()">
           <i class="fas fa-arrow-left"></i>
       </button>
-
-      <button type="button" class="icon-button not-mobile" (click)="deleteFirstConsultationDialog(firstConsultation)" 
-      *ngIf="!editShow && user.roles.admin || user.roles.specialist">
-        <i class="fas fa-trash"></i>
+      <button type="button" class="icon-button hidden" *ngIf="!editShow">
       </button>
     </div>
 
@@ -26,7 +23,9 @@
     <div class="right" *ngIf="user">
       <div class="not-mobile">
         <ng-container *ngIf="user.roles.admin || user.roles.specialist">
-          <button type="button" class="icon-button hidden" *ngIf="!editShow">
+          <button type="button" class="icon-button not-mobile" (click)="deleteFirstConsultationDialog(firstConsultation)" 
+          *ngIf="!editShow && user.roles.admin || user.roles.specialist">
+            <i class="fas fa-trash"></i>
           </button>
           <button type="button" class="icon-button" (click)="editFirstConsultation(firstConsultation)"
           *ngIf="!editShow">
@@ -65,7 +64,7 @@
 
   <div class="package-container">
     <mat-card class="list-item-card">
-        <section *ngIf="client" class="card-circle" (click)="linkToChild(firstConsultation, client)"
+        <section *ngIf="client" class="card-circle"
           [style.background]="'url('+ client.photoURL +')'">
           <div class="no-photo" *ngIf="!client.photoURL">
             <i class="fas fa-sad-tear"></i>
@@ -117,16 +116,16 @@
           </nav>
         </section>
 
-        <section class="day-section monday" *ngIf="mondayTab">
+        <section class="day-section basic-data" *ngIf="mondayTab">
           <app-first-consult-basic [firstConsultation]="firstConsultation"></app-first-consult-basic>
         </section>
-        <section class="day-section tuesday" *ngIf="tuesdayTab">
+        <section class="day-section habits" *ngIf="tuesdayTab">
           <app-first-consult-habits [firstConsultation]="firstConsultation"></app-first-consult-habits>
         </section>
-        <section class="day-section wednesday" *ngIf="wednesdayTab">
+        <section class="day-section body-functions" *ngIf="wednesdayTab">
           <app-first-consult-body [firstConsultation]="firstConsultation"></app-first-consult-body>
         </section>
-        <section class="day-section thursday" *ngIf="thursdayTab">
+        <section class="day-section general-info" *ngIf="thursdayTab">
           <app-first-consult-general [firstConsultation]="firstConsultation"></app-first-consult-general>
         </section>
 

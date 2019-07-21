@@ -4,7 +4,6 @@ export interface Roles {
     admin?: boolean;
 }
 
-
 export interface Status {
     appointment?: boolean;
     appointmentAccepted?: boolean;
@@ -24,6 +23,14 @@ export interface Status {
     currentWeight?: string;
  }
 
+ export interface Formulas {
+    height?: number;
+    birthDate?: string;
+    gender?: string;
+    factorCalorie?: string;
+    weight?: number;
+ }
+
 export class User {
     uid: string;
     sID?: string;
@@ -36,4 +43,5 @@ export class User {
     packageChoice?: string;
     specialist?: string;
     signUpDate?: Date;
+    formulas?: Formulas;
 }

@@ -6,6 +6,7 @@ import { FirstConsultationService } from '../first-consultation.service';
 import { Mealplan } from '../../mealplans/mealplan.model';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { Time } from '../../shared/data/models/time.model';
+import healthConditions from '../../shared/data/JSON/healthConditions.json';
 import times from '../../shared/data/JSON/times.json';
 import { Exercise } from '../../exercises/exercise.model';
 import { ExerciseService } from '../../exercises/exercise.service';
@@ -26,6 +27,7 @@ export class EditFirstConsultationComponent implements OnInit {
   client: User;
   mealplans: Mealplan[];
   mealplansCol: AngularFirestoreCollection<Mealplan>;
+  healthConditions = healthConditions.conditions;
   times: Time[] = times.times;
   activities: Exercise[];
 
@@ -203,12 +205,13 @@ export class EditFirstConsultationComponent implements OnInit {
 
   getBirthday() {
     this.basicDataForm.get('birthDate').valueChanges.subscribe(val => {
+      console.log(val);
       this.age = this.utilService.getAge(val);
     });
   }
 
   loadForm(data: FirstConsultation) {
-    const healthConditions = data.generalData.general.healthConditions;
+    const healthConditionsArr = data.generalData.general.healthConditions;
     const pastTwoWeeks = data.generalData.general.pastTwoWeeks;
     const dontEat = data.generalData.general.dontEat;
     const shoppingLocations = data.generalData.dinner.shoppingLocations;
@@ -217,7 +220,7 @@ export class EditFirstConsultationComponent implements OnInit {
     this.homeToWorkScale = data.habits.work.homeToWork;
     this.workToHomeScale = data.habits.work.workToHome;
 
-    healthConditions.forEach((condition) => {
+    healthConditionsArr.forEach((condition) => {
       this.healthConditionsArray.push(this.createNewHealthCondition(condition));
     });
 
@@ -564,6 +567,7 @@ export class EditFirstConsultationComponent implements OnInit {
     };
 
     const data = {
+      clientID: this.firstConsultation.clientID,
       edited: new Date(),
       basicData: basicData,
       habits: habits,

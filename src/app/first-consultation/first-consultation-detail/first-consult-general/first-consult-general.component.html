@@ -53,10 +53,13 @@
       <p class="value big">{{generalData.dinner.eatAfterDinnerNote}}</p>
     </div>
 
-    <ul>
+    <div class="form-field">
       <span class="label small">Shopping locations</span>
-      <li *ngFor="let location of generalData.dinner.shoppingLocations" class="list-item">{{location.shoppingLocation}}</li>
-    </ul>
+      <ul>
+        <li *ngFor="let location of generalData.dinner.shoppingLocations" class="list-item">{{location.shoppingLocation}}</li>
+      </ul>
+    </div>
+
     <div class="form-field">
       <span class="label small">Orders food online</span>
       <p class="value big">{{generalData.dinner.orderOnline}}</p>

@@ -7,7 +7,7 @@ export class Measurement {
     edited?: Date;
     perimeters?: Perimeters;
     skinfolds?: Skinfolds;
-    weight?: number;
+    weight: number;
 }
 
 export class Perimeters {

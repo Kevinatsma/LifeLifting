@@ -42,7 +42,7 @@ export class AddMeasurementComponent implements OnInit {
 
   ngOnInit() {
     this.weightForm = this.fb.group({
-      weight: [''],
+      weight: ['', Validators.required],
     });
 
     this.perimeterForm = this.fb.group({

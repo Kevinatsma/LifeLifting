@@ -160,6 +160,7 @@
             </ng-container>
           </mat-hint>
         </mat-form-field>
+        {{firstConsultation.basicData.birthDate}}
 
         <mat-form-field appearance="standard" floatLabel="always" class="number">
           <mat-label>Height in numbers</mat-label>
@@ -818,9 +819,7 @@
                 <mat-label>Do you have any health conditions?</mat-label>
                 <mat-select matInput formControlName="healthCondition" panelClass="dropdown-regular" autocomplete="off" required
                   [placeholder]="condition.value.healthCondition.healthCondition ? condition.value.healthCondition.healthCondition : 'Pick one'">
-                  <mat-option value="condition-1">condition 1</mat-option>
-                  <mat-option value="condition-2">condition 2</mat-option>
-                  <mat-option value="etc">etc</mat-option>
+                  <mat-option *ngFor="let condition of healthConditions" value="{{condition.value}}">{{condition.viewValue}}</mat-option>
                 </mat-select>
                 <mat-error class="input-errors" *ngIf="!healthCondition.valid && healthCondition.touched">This is <strong>required</strong></mat-error>
               </mat-form-field>

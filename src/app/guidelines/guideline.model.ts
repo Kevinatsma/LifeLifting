@@ -27,4 +27,10 @@ export class Guideline {
         carbValue: number;
         fatValue: number;
     };
+    formulaData: {
+        maxCalories: number,
+        fatPercentageRegular?: number,
+        fatPercentageAthlete?: number,
+        bmi: number,
+    };
 }

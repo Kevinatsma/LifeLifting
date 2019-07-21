@@ -91,4 +91,80 @@ export class UtilService {
         }
     };
   }
+
+  // Formulas
+
+  calculateMaxCalories( weightInKg: number, heightInMeters: number, ageInYears: number, gender: string) {
+    let result: number;
+    const w = weightInKg;
+    const h  = heightInMeters * 100;
+    const a = ageInYears;
+
+    if (gender.toLowerCase() === 'feminine') {
+      result = 655.0955 + (9.5634 * w) + (1.8449 * h) - (4.6756 * a);
+    } else {
+      result = 66.4730 + (13.7516 * w) + (5.0033 * h) - (6.7550 * a);
+    }
+
+    return result;
+  }
+
+  calculateFatPercentageRegular(data) {
+    let c;
+    let m;
+
+    if ( data.age < 19 ) {
+        c = data.gender === 'Feminine' ? 1.549 : 1.1620;
+        m = data.gender === 'Feminine' ? 1.549 : 1.1620;
+    } else if (19 < data.age && data.age < 29) {
+        c = data.gender === 'Feminine' ? 1.1599 : 1.1631;
+        m = data.gender === 'Feminine' ? 1.1599 : 1.1631;
+    } else if (29 < data.age && data.age < 39) {
+        c = data.gender === 'Feminine' ? 1.1423 : 1.1422;
+        m = data.gender === 'Feminine' ? 0.0632 : 0.0544;
+    } else if (39 < data.age && data.age < 49) {
+        c = data.gender === 'Feminine' ? 1.1333 : 1.1620;
+        m = data.gender === 'Feminine' ? 0.0612 : 0.0700;
+    } else if (data.age > 50) {
+        c = data.gender === 'Feminine' ? 1.1339 : 1.1715;
+        m = data.gender === 'Feminine' ? 0.0645 : 0.0779;
+    }
+
+    const B = data.biceps;
+    const T = data.triceps;
+    const S = data.subescapular;
+    const SP = data.crestaIliaca;
+
+    const logX =  B + T + S + SP;
+
+    const D = c - (m * Math.log(logX));
+    const fatPercentage = ((4.95 / D) - 4.50) * 100;
+
+    return fatPercentage;
+  }
+
+  calculateFatPercentageAthlete(data) {
+    const c = data.gender === 'Feminine' ? 0.1548 : 0.1051;
+    const m = data.gender === 'Feminine' ? 3.580 : 2.2585;
+    const T = data.triceps;
+    const S = data.subescapular;
+    const CI = data.crestaIliaca;
+    const A = data.abdominal;
+    const FT = data.frontalThigh;
+    const C = data.calf;
+
+    const sum =  T + S + CI + A + FT + C;
+    const fatPercentage = c * sum * m;
+
+    return fatPercentage;
+  }
+
+  calculateBMI(weightInKg: number, heightInMeters: number) {
+    const w = weightInKg;
+    const h = heightInMeters;
+
+    const result = w / (h * h);
+
+    return result;
+  }
 }

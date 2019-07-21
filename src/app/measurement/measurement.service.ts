@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Measurement } from './measurement.model';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { MatSnackBar } from '@angular/material';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,15 @@ export class MeasurementService {
 
   constructor( private afs: AngularFirestore,
                private snackBar: MatSnackBar,
+               private userService: UserService
                ) { }
 
+
+  getMeasurements(colRef) {
+    colRef.valueChanges().subscribe(measurements => {
+      return measurements;
+    });
+  }
 
   addMeasurement(data) {
     this.afs.collection<Measurement>(`measurements`).add(data)
@@ -22,6 +30,14 @@ export class MeasurementService {
         measurementID: docRef.id
       };
       this.updateMeasurement(docRef.id, measurementData);
+    })
+    .then(() => {
+      const weightData = {
+        currentWeight: data.weight
+      };
+      const uid = data.clientID;
+
+      this.userService.updateUser(weightData, uid);
     })
     .then(() => {
       // Show Snackbar

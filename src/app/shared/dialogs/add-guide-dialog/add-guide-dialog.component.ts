@@ -9,6 +9,12 @@ import { UserService } from './../../../user/user.service';
 import { Exercise } from './../../../exercises/exercise.model';
 import { Observable } from 'rxjs';
 import { ExerciseService } from './../../../exercises/exercise.service';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { FirstConsultation } from 'src/app/first-consultation/first-consultation.model';
+import { UtilService } from '../../services/util.service';
+import { Measurement } from './../../../measurement/measurement.model';
+import { MeasurementService } from './../../../measurement/measurement.service';
+import { FirstConsultationService } from './../../../first-consultation/first-consultation.service';
 
 @Component({
   selector: 'app-add-guide-dialog',
@@ -17,7 +23,7 @@ import { ExerciseService } from './../../../exercises/exercise.service';
   encapsulation: ViewEncapsulation.None
 })
 export class AddGuideDialogComponent implements OnInit {
-  user = User;
+  user: User;
   specialistID;
   hide = true;
   exercises: Exercise[];
@@ -53,10 +59,10 @@ export class AddGuideDialogComponent implements OnInit {
 
   activityForm: FormGroup;
   activityArr: FormArray;
-  activityID = new FormControl('', [Validators.required]);
-  activityDuration = new FormControl('', [Validators.required]);
-  activityPerWeek = new FormControl('', [Validators.required]);
-  activityLevel = new FormControl('', [Validators.required]);
+  activityID = new FormControl('', Validators.required);
+  activityDuration = new FormControl('', Validators.required);
+  activityPerWeek = new FormControl('', Validators.required);
+  activityLevel = new FormControl('', Validators.required);
   showAddActivity = true;
   activityLevels = [
     {
@@ -75,6 +81,30 @@ export class AddGuideDialogComponent implements OnInit {
 
   macroForm: FormGroup;
 
+  // formulas
+  formulaValues = {
+    height: null,
+    age: null,
+    gender: null,
+    weight: null,
+    factorCalorie: null,
+    triceps: null,
+    biceps: null,
+    abdominal: null,
+    subescapular: null,
+    crestaIliaca: null,
+    supraespinal: null,
+    isAthlete: false,
+    calf: null,
+    frontalThigh: null
+  };
+  measurements: any[];
+  fics: any[];
+  maxCaloriesResult: number;
+  fatPercentageRegResult: number;
+  fatPercentageAthResult: number;
+  bmiResult: number;
+
 
   // Disable popup from closing
   @HostListener('window:keyup.esc') onKeyUp() {
@@ -91,12 +121,18 @@ export class AddGuideDialogComponent implements OnInit {
   constructor( private fb: FormBuilder,
                private auth: AuthService,
                private userService: UserService,
+               private utils: UtilService,
                private exerciseService: ExerciseService,
                private guidelineService: GuidelineService,
+               private measurementService: MeasurementService,
+               private ficService: FirstConsultationService,
                public dialog: MatDialog,
                private dialogRef: MatDialogRef<AddGuideDialogComponent>,
+               private afs: AngularFirestore,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
                 this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
+                this.user = userData.user;
+                this.getExtraDocs(userData.uid);
                }
 
   ngOnInit() {
@@ -109,22 +145,24 @@ export class AddGuideDialogComponent implements OnInit {
 
     // Init forms
     this.infoForm = this.fb.group({
-      gID: ['', [Validators.required]],
-      guidelineName: ['', [Validators.required]],
+      gID: ['', Validators.required],
+      guidelineName: ['', Validators.required],
+      measurement: ['', Validators.required],
+      firstConsultation: ['', Validators.required],
     });
 
     this.targetForm = this.fb.group({
-      idealWeight: ['', [Validators.required]],
+      idealWeight: ['', Validators.required],
       idealKiloOfMuscle: [''],
-      target: ['', [Validators.required]],
-      totalTarget: ['', [Validators.required]],
-      targetDuration: ['', [Validators.required]],
+      target: ['', Validators.required],
+      totalTarget: ['', Validators.required],
+      targetDuration: ['', Validators.required],
     });
 
     this.calcForm = this.fb.group({
-      increaseCalories: ['', [Validators.required]],
-      increaseAmount: ['', [Validators.required]],
-      factorCalorie: ['', [Validators.required]],
+      increaseCalories: ['', Validators.required],
+      increaseAmount: ['', Validators.required],
+      factorCalorie: ['', Validators.required],
     });
 
     this.activityForm = this.fb.group({
@@ -132,16 +170,32 @@ export class AddGuideDialogComponent implements OnInit {
     });
 
     this.macroForm = this.fb.group({
-      proteinValue: ['', [Validators.required]],
-      carbValue: ['', [Validators.required]],
-      fatValue: ['', [Validators.required]],
+      proteinValue: ['', Validators.required],
+      carbValue: ['', Validators.required],
+      fatValue: ['', Validators.required],
     });
 
     this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
     });
 
-    // this.userService.getUserDataByID(this.guideline.clientID).subscribe(user => this.client = user);
+    this.userService.getUserDataByID(this.userData.uid).subscribe(user => {
+      this.user = user;
+    });
+  }
+
+  // Getters
+
+  getExtraDocs(uid) {
+    const measurementRef = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`)).valueChanges();
+    measurementRef.subscribe(measurements => {
+      this.measurements = measurements;
+    });
+
+    const ficRef = this.afs.collection('first-consultations', ref => ref.where('clientID', '==', `${uid}`)).valueChanges();
+    ficRef.subscribe(firstConsultations => {
+      this.fics = firstConsultations;
+    });
   }
 
   calculateCalories() {
@@ -187,28 +241,38 @@ export class AddGuideDialogComponent implements OnInit {
 
   // Collect the data and send to service
   addGuideline() {
-    const data = {
-      clientID: this.userData.uid,
-      specialistID: this.specialistID,
-      creationDate: new Date(),
-      guidelineNR: this.infoForm.get('gID').value,
-      guidelineName: this.infoForm.get('guidelineName').value,
-      idealWeight: this.targetForm.get('idealWeight').value,
-      idealKiloOfMuscle: this.targetForm.get('idealKiloOfMuscle').value,
-      target: this.targetForm.get('target').value,
-      totalTarget: this.targetForm.get('totalTarget').value,
-      targetDuration: this.targetForm.get('targetDuration').value,
-      increaseCalories: this.calcForm.get('increaseCalories').value,
-      increaseAmount: this.calcForm.get('increaseAmount').value,
-      factorCalorie: this.calcForm.get('factorCalorie').value,
-      activities: this.activityForms.value,
-      macroDistribution: {
-        proteinValue: this.macroForm.get('proteinValue').value,
-        carbValue: this.macroForm.get('carbValue').value,
-        fatValue: this.macroForm.get('fatValue').value
-      }
-    };
-    this.guidelineService.addGuideline(data);
+    this.runFormulas();
+
+    setTimeout(() => {
+      const data = {
+        clientID: this.userData.uid,
+        specialistID: this.specialistID,
+        creationDate: new Date(),
+        guidelineNR: this.infoForm.get('gID').value,
+        guidelineName: this.infoForm.get('guidelineName').value,
+        idealWeight: this.targetForm.get('idealWeight').value,
+        idealKiloOfMuscle: this.targetForm.get('idealKiloOfMuscle').value,
+        target: this.targetForm.get('target').value,
+        totalTarget: this.targetForm.get('totalTarget').value,
+        targetDuration: this.targetForm.get('targetDuration').value,
+        increaseCalories: this.calcForm.get('increaseCalories').value,
+        increaseAmount: this.calcForm.get('increaseAmount').value,
+        factorCalorie: this.calcForm.get('factorCalorie').value,
+        activities: this.activityForms.value,
+        macroDistribution: {
+          proteinValue: this.macroForm.get('proteinValue').value,
+          carbValue: this.macroForm.get('carbValue').value,
+          fatValue: this.macroForm.get('fatValue').value
+        },
+        formulaData: {
+          maxCalories: this.maxCaloriesResult,
+          fatPercentageRegular: this.fatPercentageRegResult || null,
+          fatPercentageAthlete: this.fatPercentageAthResult || null,
+          bmi: this.bmiResult,
+        }
+      };
+      this.guidelineService.addGuideline(data);
+    }, 1200);
   }
 
   closeDialog() {
@@ -216,4 +280,58 @@ export class AddGuideDialogComponent implements OnInit {
       this.dialog.closeAll();
     }
   }
+
+
+  // Formulas to calculate bmi and such
+
+  runFormulas() {
+    this.getFormulaValues();
+
+    setTimeout(() => {
+      const data = this.formulaValues;
+
+      this.maxCaloriesResult = this.utils.calculateMaxCalories(data.weight, data.height, data.age, data.gender);
+
+      if (!data.isAthlete) {
+        this.fatPercentageRegResult = this.utils.calculateFatPercentageRegular(data);
+      } else {
+        this.fatPercentageAthResult = this.utils.calculateFatPercentageAthlete(data);
+      }
+
+      this.bmiResult = this.utils.calculateBMI(data.weight, data.height);
+      console.log(this.maxCaloriesResult);
+      console.log(this.fatPercentageRegResult);
+      console.log(this.fatPercentageAthResult);
+      console.log(this.bmiResult);
+    }, 1000);
+  }
+
+  getFormulaValues() {
+    const measurementDoc = this.afs.doc<Measurement>(`measurements/${this.infoForm.get('measurement').value.measurementID}`);
+    const ficDoc = this.afs.doc<FirstConsultation>(`first-consultations/${this.infoForm.get('firstConsultation').value.ficID}`);
+    this.formulaValues.factorCalorie = this.calcForm.get('factorCalorie').value;
+
+    measurementDoc.valueChanges().subscribe(measurement => {
+      if (measurement.weight) {
+        this.formulaValues.weight = measurement.weight;
+        this.formulaValues.triceps = measurement.skinfolds.triceps;
+        this.formulaValues.biceps = measurement.skinfolds.biceps;
+        this.formulaValues.subescapular = measurement.skinfolds.subescapular;
+        this.formulaValues.crestaIliaca = measurement.skinfolds.crestaIliaca;
+        if (measurement.skinfolds.skinfoldCalf && measurement.skinfolds.frontalThigh) {
+          this.formulaValues.isAthlete = true;
+        }
+        this.formulaValues.calf = measurement.skinfolds.skinfoldCalf;
+        this.formulaValues.frontalThigh = measurement.skinfolds.frontalThigh;
+        this.formulaValues.abdominal = measurement.skinfolds.abdominal;
+        this.formulaValues.supraespinal = measurement.skinfolds.supraespinal;
+      }
+    });
+    ficDoc.valueChanges().subscribe(doc => {
+      this.formulaValues.height = doc.basicData.height;
+      this.formulaValues.age = this.utils.getAge(doc.basicData.birthDate.toDate());
+      this.formulaValues.gender = doc.basicData.sex;
+    });
+  }
+
 }

@@ -256,6 +256,7 @@ main.specialist-wrapper {
 
             .section-title {
                 position: relative;
+                width: 100%;
 
                 @include respond-down($sm) {
                     margin-left: 2em;
@@ -475,6 +476,13 @@ main.specialist-wrapper {
                         @include respond-down($sm) {
                             margin: 0 0 1em;
                         }
+                    }
+                }
+
+                &.formulas {
+                    flex-flow: row wrap;
+                    h3 {
+                        width: 100%;
                     }
                 }
 

@@ -27,6 +27,32 @@
           <input type="text" matInput name="guidelineName" formControlName="guidelineName" placeholder="Give the guideline a name" autofocus="none">
           <mat-error class="input-error" *ngIf="!infoForm['controls'].guidelineName.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always" *ngIf="measurements">
+          <mat-label>Link a measurement to this guideline</mat-label>
+          <mat-select matInput placeholder="Pick one from the list" formControlName="measurement" autocomplete="off" 
+          panelClass="dropdown-regular" required>
+            <mat-option *ngFor="let measurement of measurements; let i=index" [value]="measurement">
+              created: <strong>{{measurement.created.toDate() | date:'short'}}</strong>,
+              <ng-container *ngIf="measurement.edited">
+                edited: <strong>{{ measurement.edited.toDate() | date:'short'}}</strong>,
+              </ng-container>
+                weight: <strong>{{measurement.weight}}kg</strong>
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always" *ngIf="fics">
+          <mat-label>Link a First consultation to this guideline</mat-label>
+          <mat-select matInput placeholder="Pick one from the list" formControlName="firstConsultation" autocomplete="off" 
+          panelClass="dropdown-regular" required>
+            <mat-option *ngFor="let fic of fics; let i=index" [value]="fic">
+              created at <strong>{{fic.creationDate.toDate() | date:'short'}}</strong>
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
       </form>
 
       <section class="btn-area-one">

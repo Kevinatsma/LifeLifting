@@ -82,6 +82,7 @@ export class EditMeasurementComponent implements OnInit {
       perimeters: this.perimeterForm.value,
       skinfolds: this.skinfoldForm.value
     };
+    console.log(data.clientID);
 
     this.measurementService.updateMeasurement(this.measurement.measurementID, data);
   }

@@ -7,6 +7,7 @@ import { Mealplan } from '../../mealplans/mealplan.model';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { Time } from './../../shared/data/models/time.model';
 import times from './../../shared/data/JSON/times.json';
+import healthConditions from './../../shared/data/JSON/healthConditions.json';
 import { Exercise } from './../../exercises/exercise.model';
 import { ExerciseService } from './../../exercises/exercise.service';
 import { UtilService } from './../../shared/services/util.service';
@@ -24,6 +25,7 @@ export class AddFirstConsultationComponent implements OnInit {
   client: User;
   mealplans: Mealplan[];
   mealplansCol: AngularFirestoreCollection<Mealplan>;
+  healthConditions = healthConditions.conditions;
   times: Time[] = times.times;
   activities: Exercise[];
 

@@ -4,11 +4,11 @@ export const openClose =
 
     trigger('openClose', [
         state('open', style({
-            height: '100%',
+            'max-height': '1500px',
             opacity: 1,
         })),
         state('closed', style({
-            height: '0px',
+            'max-height': '0px',
             opacity: 0,
             display: 'none',
         })),
@@ -16,6 +16,6 @@ export const openClose =
             animate('0.2s'),
         ]),
         transition('closed => open', [
-            animate('0.3s')
+            animate('0.2s')
         ]),
     ]);

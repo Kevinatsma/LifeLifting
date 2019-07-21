@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { FirstConsultation } from './first-consultation.model';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class FirstConsultationService {
 
   constructor( private afs: AngularFirestore,
                public dialog: MatDialog,
-               private snackBar: MatSnackBar
+               private snackBar: MatSnackBar,
+               private userService: UserService
                ) { }
 
 
@@ -22,6 +24,12 @@ export class FirstConsultationService {
     return firstConsultation;
   }
 
+  getFirstConsultations(colRef) {
+    colRef.valueChanges().subscribe(consultations => {
+      return consultations;
+    });
+  }
+
   addFirstConsultation(data) {
     this.afs.collection<FirstConsultation>(`first-consultations`).add(data)
     .then(credential => {
@@ -29,6 +37,18 @@ export class FirstConsultationService {
         ficID: credential.id
       };
       this.updateFirstConsultation(credential.id, idData);
+    })
+    .then(() => {
+      const formulaData = {
+        formulas: {
+          height: data.basicData.height,
+          birthDate: data.basicData.birthDate,
+          sex: data.basicData.sex
+        }
+      };
+      const uid = data.clientID;
+
+      this.userService.updateUser(formulaData, uid);
     })
     .then(() => {
       // Show Snackbar

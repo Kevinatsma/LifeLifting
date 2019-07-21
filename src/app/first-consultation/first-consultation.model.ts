@@ -16,7 +16,7 @@ export class FirstConsultation {
 export class BasicData {
     mealplanMainGoal: string;
     sex: string;
-    birthDate: string;
+    birthDate: any;
     height: number;
     phoneNumber: {
         areaCode: string;

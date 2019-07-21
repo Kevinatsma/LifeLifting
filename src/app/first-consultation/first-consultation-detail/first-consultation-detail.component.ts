@@ -171,18 +171,20 @@ export class FirstConsultationDetailComponent implements OnInit {
   */
 
   createHighlight(nav) {
-    if (!this.isMobile) {
-      // Create Element
-      this.highlight = document.createElement('span');
-      this.highlight.classList.add('highlight');
-      nav.append(this.highlight);
+    setTimeout(() => {
+      if (!this.isMobile) {
+        // Create Element
+        this.highlight = document.createElement('span');
+        this.highlight.classList.add('highlight');
+        nav.append(this.highlight);
 
-      // Set initial value
-      const firstItem = document.getElementById('monday');
-      const firstItemCoords = (firstItem as any).getBoundingClientRect();
-      this.highlight.style.width = '5vw';
-      this.highlight.style.left = `translateX(${firstItemCoords.left}px)`;
-    }
+        // Set initial value
+        const firstItem = document.getElementById('monday');
+        const firstItemCoords = (firstItem as any).getBoundingClientRect();
+        this.highlight.style.width = '5vw';
+        this.highlight.style.left = `translateX(${firstItemCoords.left}px)`;
+      }
+    });
   }
 
   // initiateHighlight() {

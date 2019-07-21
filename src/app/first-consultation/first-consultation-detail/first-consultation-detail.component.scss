@@ -366,15 +366,24 @@ main.specialist-wrapper {
             }
 
             &.day-section {
-                width: 100%;
                 margin: 2em auto;
+                min-height: 80vh;
+                width: 100%;
+
                 @include respond-down($sm) {
                     margin: 2em 0;
                 }
 
-                app-monday, app-tuesday, app-wednesday, app-thursday, app-friday {
+                app-first-consult-basic,
+                app-first-consult-habits,
+                app-first-consult-body,
+                app-first-consult-general {
                     width: 100%;
                     position: relative;
+                }
+
+                &.basic-data {
+                    min-height: 30vh;
                 }
             }
 
