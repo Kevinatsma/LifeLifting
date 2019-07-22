@@ -6,6 +6,8 @@ import { MatSnackBar } from '@angular/material';
 import { UserService } from '../user/user.service';
 import { AuthService } from '../core/auth/auth.service';
 import { User } from '../user/user.model';
+import { Measurement } from '../measurement/measurement.model';
+import { FirstConsultation } from '../first-consultation/first-consultation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +27,10 @@ export class GuidelineService {
 
   editShow: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
+  measurements: Measurement[];
+  measurementChange: Subject<Measurement[]> = new Subject<Measurement[]>();
+  fics: FirstConsultation[];
+  ficChange: Subject<FirstConsultation[]> = new Subject<FirstConsultation[]>();
   gainWeight: boolean;
   increaseCals: boolean;
 
@@ -41,6 +47,12 @@ export class GuidelineService {
     this.editStateChange.subscribe((value) => {
       this.editShow = value;
     });
+    this.measurementChange.subscribe((value) => {
+      this.measurements = value;
+    });
+    this.ficChange.subscribe((value) => {
+      this.fics = value;
+    });
 
   }
 
@@ -48,22 +60,18 @@ export class GuidelineService {
     this.editStateChange.next(!this.editShow);
   }
 
+  updateMeasurements(measurements) {
+    this.measurementChange.next(measurements);
+  }
+  updateFics(fics) {
+    this.ficChange.next(fics);
+  }
+
   getGuidelineDataById(id) {
     this.guidelineDoc = this.afs.doc<Guideline>(`guidelines/${id}`);
     this.guideline = this.guidelineDoc.valueChanges();
     return this.guideline;
   }
-
-  // getGuidelines() {
-  //   this.guidelines = this.guidelineCol.snapshotChanges().pipe(map(actions => {
-  //     return actions.map(a => {
-  //       const data = a.payload.doc.data() as Guideline;
-  //       const id = a.payload.doc.id;
-  //       return { id, ...data };
-  //     });
-  //   }));
-  //   return this.guidelines;
-  // }
 
   getGuidelines() {
     this.guidelineCol = this.afs.collection('guidelines', ref => ref

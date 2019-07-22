@@ -15,9 +15,11 @@
       <div class="middle">
         <h1 *ngIf="client; else gID">
           Guideline for {{client.displayName}}
-        <h5>Current weight: {{client.basicData.currentWeight}}kg</h5></h1>
+          <h5 *ngIf="guideline.formulaData.weight">Current weight: {{guideline.formulaData.weight}}kg</h5>
+          <h5 *ngIf="!guideline.formulaData.weight">Weight was not measured</h5>
+        </h1>
         <ng-template #gID>
-            <h1>Guideline ID: {{guideline.gID}}</h1>
+          <h1>Guideline ID: {{guideline.gID}}</h1>
         </ng-template>
       </div>
 
@@ -75,6 +77,15 @@
             <h5>
               gID: {{guideline.gID}}
             </h5>
+
+            <div class="link-container">
+              <a class="text-link" (click)="linkToMeasurement()">
+                Linked Measurement
+              </a>
+              <a class="text-link" (click)="linkToFic(guideline.ficID)">
+                Linked First Consultation
+              </a>
+            </div>
           </section>
 
           <section class="guideline-targets" *ngIf="guideline">
@@ -147,20 +158,24 @@
           <section class="calorie-metrics formulas" *ngIf="guideline">
             <h2 class="section-title">Calculated values</h2>
             <div class="metric">
-              <span class="metric__value">{{guideline.formulaData.maxCalories | number: '1.2-2'}}</span>
+              <span class="metric__value">{{guideline.formulaData.maxCalories | number: '1.0-0'}}</span>
               <h6 class="metric__title">Max amount of kcal</h6>
             </div>
             <div class="metric">
-              <span class="metric__value">{{guideline.formulaData.bmi | number: '1.2-2'}}</span>
+              <span class="metric__value">{{guideline.formulaData.bmi | number: '1.0-0'}}</span>
               <h6 class="metric__title">Body Mass Index</h6>
             </div>
             <div class="metric" *ngIf="guideline.formulaData.fatPercentageAthlete">
-              <span class="metric__value">{{guideline.formulaData.fatPercentageAthlete | number: '1.2-2'}}%</span>
-              <h6 class="metric__title">Fat percentage</h6>
+              <span class="metric__value">{{guideline.formulaData.fatPercentageAthlete | number: '1.1-1'}}%</span>
+              <h6 class="metric__title">Fat percentage (athlete)</h6>
             </div>
-            <div class="metric" *ngIf="!guideline.formulaData.fatPercentageAthlete">
-              <span class="metric__value">{{guideline.formulaData.fatPercentageRegular | number: '1.2-2'}}%</span>
-              <h6 class="metric__title">Fat percentage</h6>
+            <div class="metric" *ngIf="guideline.formulaData.fatPercentageRegular">
+              <span class="metric__value">{{guideline.formulaData.fatPercentageRegular | number: '1.1-1'}}%</span>
+              <h6 class="metric__title">Fat percentage (regular)</h6>
+            </div>
+            <div class="metric" *ngIf="!guideline.formulaData.fatPercentageRegular && !guideline.formulaData.fatPercentageAthlete">
+              <span class="metric__value">0</span>
+              <h6 class="metric__title">Linked measurement is incomplete</h6>
             </div>
           </section>
           

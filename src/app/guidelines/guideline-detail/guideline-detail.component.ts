@@ -14,6 +14,11 @@ import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/co
 import { MatDialog } from '@angular/material';
 import { Observable, Subject } from 'rxjs';
 import { AuthService } from './../../core/auth/auth.service';
+import { Measurement } from './../../measurement/measurement.model';
+import { FirstConsultation } from 'src/app/first-consultation/first-consultation.model';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { MeasurementDetailComponent } from './../../measurement/measurement-detail/measurement-detail.component';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -38,9 +43,12 @@ export class GuidelineDetailComponent implements OnInit {
   actionMenuOpen: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
 
-  // specialist = Observable<Specialist>;
+  measurements: Measurement[];
+  measurement: Measurement;
+  fics: FirstConsultation[];
 
   constructor( public auth: AuthService,
+               private afs: AngularFirestore,
                private cdr: ChangeDetectorRef,
                public dialog: MatDialog,
                public router: Router,
@@ -61,17 +69,38 @@ export class GuidelineDetailComponent implements OnInit {
     this.getGuideline();
   }
 
+  // Getters
   getGuideline() {
     this.gainWeight = this.guidelineService.gainWeight;
     const id = this.route.snapshot.paramMap.get('id');
     this.guidelineService.getGuidelineDataById(id)
       .subscribe(guideline => {
         this.guideline = guideline;
-        this.userService.getUserDataByID(guideline.clientID).subscribe(user => this.client = user);
+        this.userService.getUserDataByID(guideline.clientID).subscribe(user => {
+            this.client = user;
+            this.getExtraDocs(user.uid);
+        });
         this.setTarget(guideline);
         this.setIncreaseCals(guideline);
         this.getExercises(guideline);
       });
+  }
+
+  getExtraDocs(uid) {
+    const measurementRef = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`)).valueChanges();
+    measurementRef.pipe(take(1)).subscribe(measurements => {
+      this.measurements = <Measurement[]>measurements;
+      this.measurement = this.measurements.find(m => {
+        return m.measurementID === `${this.guideline.measurementID}`;
+      });
+      this.guidelineService.updateMeasurements(measurements);
+    });
+
+    const ficRef = this.afs.collection('first-consultations', ref => ref.where('clientID', '==', `${uid}`)).valueChanges();
+    ficRef.pipe(take(1)).subscribe(fics => {
+      this.fics = <FirstConsultation[]>fics;
+      this.guidelineService.updateFics(fics);
+    });
   }
 
   // Set values
@@ -170,6 +199,21 @@ export class GuidelineDetailComponent implements OnInit {
         return null;
       }
     });
+  }
+
+  // Links
+  linkToMeasurement() {
+    const dialogRef = this.dialog.open(MeasurementDetailComponent, {
+      data: {
+        measurement: this.measurement
+      },
+      panelClass: 'measurement-detail-dialog'
+    });
+  }
+
+  linkToFic(ficID) {
+    const url = `dashboard/first-consultations/${ficID}`;
+    this.router.navigate([url]);
   }
 
   goBack() {

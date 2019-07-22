@@ -10,7 +10,7 @@
 
     <section class="content">
       <app-dashboard-top-nav [user]="user"></app-dashboard-top-nav>
-      <div class="router-wrapper" [@routerTransition]="getState(o)">
+      <div class="router-wrapper" [@routeTransition]="getState(o)">
         <router-outlet #o="outlet"></router-outlet>
       </div>
     </section>

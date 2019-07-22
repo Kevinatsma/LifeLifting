@@ -5,13 +5,13 @@ import { User } from './../../user/user.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
 import { DashboardService } from '../dashboard.service';
-import { routerTransition } from 'src/app/core/animations/router.animations';
+import { routeTransition } from 'src/app/core/animations/route-transition';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.scss'],
-  animations: [routerTransition],
+  animations: [routeTransition],
   encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {

@@ -19,6 +19,7 @@ import { Measurement } from '../../../../measurement/measurement.model';
 import { AddFollowUpComponent } from './../../../../follow-up-consultation/add-follow-up/add-follow-up.component';
 import { AddFirstConsultationComponent } from './../../../../first-consultation/add-first-consultation/add-first-consultation.component';
 import { FollowUpConsultation } from '../../../../follow-up-consultation/follow-up-consultation.model';
+import { GuidelineService } from 'src/app/guidelines/guideline.service';
 
 
 @Component({
@@ -60,6 +61,7 @@ export class MyClientDetailComponent implements OnInit {
                public route: ActivatedRoute,
                public userService: UserService,
                public specialistService: SpecialistService,
+               public guidelineService: GuidelineService,
                public threadService: ChatThreadService,
                public location: Location,
                public dialog: MatDialog) {
@@ -106,6 +108,7 @@ export class MyClientDetailComponent implements OnInit {
     this.measurementCol = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`).orderBy('created', 'asc'));
     this.measurementCol.valueChanges().subscribe(measurements => {
       this.measurements = measurements;
+      this.guidelineService.updateMeasurements(measurements);
     });
   }
 
@@ -114,6 +117,7 @@ export class MyClientDetailComponent implements OnInit {
       .orderBy('creationDate', 'asc'));
     this.firstConsultationsCol.valueChanges().subscribe(firstConsultations => {
       this.firstConsultations = firstConsultations;
+      this.guidelineService.updateFics(firstConsultations);
     });
   }
 

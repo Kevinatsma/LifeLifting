@@ -6,6 +6,8 @@ export class Guideline {
     gID: string;
     guidelineNR: number;
     guidelineName: string;
+    ficID: string;
+    measurementID: string;
     idealWeight: number;
     idealKiloOfMuscle: number;
     target: string;
@@ -32,5 +34,23 @@ export class Guideline {
         fatPercentageRegular?: number,
         fatPercentageAthlete?: number,
         bmi: number,
+        weight: string
     };
+}
+
+export class FormulaValues {
+    height?: number;
+    age?: number;
+    gender?: string;
+    weight?: number;
+    factorCalorie?: number;
+    triceps?: number;
+    biceps?: number;
+    abdominal?: number;
+    subescapular?: number;
+    crestaIliaca?: number;
+    supraespinal?: number;
+    isAthlete?: boolean;
+    calf?: number;
+    frontalThigh?: number;
 }

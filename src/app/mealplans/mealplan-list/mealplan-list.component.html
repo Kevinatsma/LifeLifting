@@ -3,7 +3,7 @@
   </section>
   <section class="card-list" *ngIf="mealplans; else loading">
     <app-mealplan-list-item *ngFor="let mealplan of mealplans | async; let i=index" [i]="i" [mealplan]="mealplan"></app-mealplan-list-item>
-    <p class="card-text nothing-here" *ngIf="!mealplans.length">
+    <p class="card-text nothing-here" *ngIf="mealplans.length == 0">
       No meal plans yet
     </p>
   </section>

@@ -292,7 +292,8 @@ main.specialist-wrapper {
                 position: relative;
                 padding: 0;
                 margin: 0 0 3rem;
-                height: 170px;
+                height: auto;
+
                 @include respond-down($sm) {
                     width:  100%;
                 }
@@ -321,6 +322,21 @@ main.specialist-wrapper {
                     text-align: center;
                     width: 70%;
                     margin: 0 auto;
+                }
+
+                .link-container {
+                    align-items: center;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: center;
+                    margin: 1.5em 0 2em;
+                    width: 100%;
+        
+                    .text-link {
+                        &:first-child {
+                            margin-right: 3em;
+                        }
+                    }
                 }
             }
 
@@ -481,7 +497,9 @@ main.specialist-wrapper {
 
                 &.formulas {
                     flex-flow: row wrap;
-                    h3 {
+
+                    .section-title {
+                        margin: 0 1em 2em;
                         width: 100%;
                     }
                 }

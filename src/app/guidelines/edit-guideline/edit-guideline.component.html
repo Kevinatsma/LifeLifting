@@ -3,13 +3,13 @@
     <form class="package-container" [formGroup]="editGuidelineForm" *ngIf="editShow">
       <section class="action-toolbar-top">
         <div class="left">
-          <button type="button" class="icon-button" [routerLink]="['../']">
-              <i class="fas fa-arrow-left"></i>
+          <button type="button" class="icon-button" (click)="toggleEdit()">
+            <i class="fas fa-ban"></i>
           </button>
         </div>
         <div class="middle">
           <h1 *ngIf="client; else gID">Guideline for: {{client.displayName}}</h1>
-          <h5 *ngIf="client">Current weight: {{client.basicData.currentWeight}}kg</h5>
+          <h5 *ngIf="client">Current weight: {{guideline.formulaData.weight}}kg</h5>
           <ng-template #gID>
             <h1>Guideline ID: {{guideline.gID}}</h1>
           </ng-template>
@@ -23,7 +23,7 @@
   
       <div class="package-container">
         <mat-card class="list-item-card" *ngIf="guideline">
-            <section *ngIf="client" class="card-circle" (click)="linkToChild(guideline, client)" [style.background]="'url('+ client.photoURL +')'">
+            <section *ngIf="client" class="card-circle" [style.background]="'url('+ client.photoURL +')'">
             </section>
   
             <section class="introduction">
@@ -33,6 +33,32 @@
               <h5>
                 gID: {{guideline.gID}}
               </h5>
+
+              <div class="link-form">
+                <div class="link-form__field" *ngIf="measurements">
+                  <mat-label>Link a measurement to this guideline</mat-label>
+                  <mat-select matInput placeholder="Pick one from the list" formControlName="measurement" autocomplete="off" 
+                  panelClass="dropdown-regular doc-picker" required>
+                    <mat-option *ngFor="let measurement of measurements; let i=index" [value]="measurement">
+                      created: <strong>{{measurement.created.toDate() | date:'short'}}</strong>,
+                      <ng-container *ngIf="measurement.edited">
+                        edited: <strong>{{ measurement.edited.toDate() | date:'short'}}</strong>,
+                      </ng-container>
+                        weight: <strong>{{measurement.weight}}kg</strong>
+                    </mat-option>
+                  </mat-select>
+                </div>
+        
+                <div class="link-form__field" *ngIf="fics">
+                  <mat-label>Link a First consultation to this guideline</mat-label>
+                  <mat-select matInput placeholder="Pick one from the list" formControlName="firstConsultation" autocomplete="off" 
+                  panelClass="dropdown-regular doc-picker" required>
+                    <mat-option *ngFor="let fic of fics; let i=index" [value]="fic">
+                      created at <strong>{{fic.creationDate.toDate() | date:'short'}}</strong>
+                    </mat-option>
+                  </mat-select>
+                </div>
+              </div>
             </section>
   
             <section class="guideline-targets" *ngIf="guideline">

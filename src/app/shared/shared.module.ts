@@ -14,6 +14,7 @@ import { ReviewsModule } from '../reviews/reviews.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { UtilService } from './services/util.service';
+import { RoundNumberPipe } from './pipes/round-number.pipe';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { UtilService } from './services/util.service';
     FileUploadButtonComponent,
     ExerciseListItemComponent,
     LoadingSpinnerComponent,
+    RoundNumberPipe,
   ],
   exports: [
     MaterialModule,

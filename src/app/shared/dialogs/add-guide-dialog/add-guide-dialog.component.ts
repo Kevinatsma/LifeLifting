@@ -15,6 +15,7 @@ import { UtilService } from '../../services/util.service';
 import { Measurement } from './../../../measurement/measurement.model';
 import { MeasurementService } from './../../../measurement/measurement.service';
 import { FirstConsultationService } from './../../../first-consultation/first-consultation.service';
+import { FormulaValues } from 'src/app/guidelines/guideline.model';
 
 @Component({
   selector: 'app-add-guide-dialog',
@@ -82,22 +83,7 @@ export class AddGuideDialogComponent implements OnInit {
   macroForm: FormGroup;
 
   // formulas
-  formulaValues = {
-    height: null,
-    age: null,
-    gender: null,
-    weight: null,
-    factorCalorie: null,
-    triceps: null,
-    biceps: null,
-    abdominal: null,
-    subescapular: null,
-    crestaIliaca: null,
-    supraespinal: null,
-    isAthlete: false,
-    calf: null,
-    frontalThigh: null
-  };
+  formulaValues: FormulaValues;
   measurements: any[];
   fics: any[];
   maxCaloriesResult: number;
@@ -250,6 +236,8 @@ export class AddGuideDialogComponent implements OnInit {
         creationDate: new Date(),
         guidelineNR: this.infoForm.get('gID').value,
         guidelineName: this.infoForm.get('guidelineName').value,
+        ficID: this.infoForm.get('firstConsultation').value,
+        measurementID: this.infoForm.get('measurement').value,
         idealWeight: this.targetForm.get('idealWeight').value,
         idealKiloOfMuscle: this.targetForm.get('idealKiloOfMuscle').value,
         target: this.targetForm.get('target').value,
@@ -269,6 +257,7 @@ export class AddGuideDialogComponent implements OnInit {
           fatPercentageRegular: this.fatPercentageRegResult || null,
           fatPercentageAthlete: this.fatPercentageAthResult || null,
           bmi: this.bmiResult,
+          weight: this.formulaValues.weight
         }
       };
       this.guidelineService.addGuideline(data);
