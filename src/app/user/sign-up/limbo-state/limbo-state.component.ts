@@ -59,7 +59,9 @@ export class LimboStateComponent implements OnInit {
 
   getAppointments(user) {
     const colRef: AngularFirestoreCollection =
-      this.afs.collection('appointments', ref => ref.where('members', 'array-contains', `${user.uid}`).limit(1).orderBy('created', 'desc'));
+      this.afs.collection('appointments', ref => ref.where('members', 'array-contains', `${user.uid}`)
+        .limit(1)
+        .orderBy('created', 'desc'));
     this.bookingService.getSpecificAppointments(colRef).subscribe(events => {
       this.events = events;
     });

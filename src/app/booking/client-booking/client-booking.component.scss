@@ -16,6 +16,10 @@ button.has-messages {
     min-width: 75vw;
     width: 100%;
 
+    @include respond-down($sm) {
+        min-width: 100vw;
+    }
+
     section {
 
         &.loading {

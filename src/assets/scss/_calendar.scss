@@ -155,6 +155,7 @@
 
     @include respond-down($sm) {
         padding: 1em 0 3em;
+        min-width: 100vw;
         width: 100vw;
     }
 

@@ -94,18 +94,21 @@ export class MyClientDetailComponent implements OnInit {
   }
 
   getGuidelines(uid) {
-    this.guidelinesCol = this.afs.collection('guidelines', ref => ref.where('clientID', '==', `${uid}`));
+    this.guidelinesCol = this.afs.collection('guidelines', ref => ref.where('clientID', '==', `${uid}`)
+      .orderBy('creationDate', 'desc'));
     this.guidelines = this.guidelinesCol.valueChanges();
   }
 
   getMealplans(uid) {
-    this.mealplansCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${uid}`));
+    this.mealplansCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${uid}`)
+      .orderBy('creationDate', 'desc'));
     this.mealplans$ = this.mealplansCol.valueChanges();
     this.mealplans$.subscribe(mealplans => this.mealplans = mealplans);
   }
 
   getMeasurements(uid) {
-    this.measurementCol = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`).orderBy('created', 'asc'));
+    this.measurementCol = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`)
+      .orderBy('created', 'desc'));
     this.measurementCol.valueChanges().subscribe(measurements => {
       this.measurements = measurements;
       this.guidelineService.updateMeasurements(measurements);
@@ -114,7 +117,7 @@ export class MyClientDetailComponent implements OnInit {
 
   getFirstConsultations(uid) {
     this.firstConsultationsCol = this.afs.collection('first-consultations', ref => ref.where('clientID', '==', `${uid}`)
-      .orderBy('creationDate', 'asc'));
+      .orderBy('creationDate', 'desc'));
     this.firstConsultationsCol.valueChanges().subscribe(firstConsultations => {
       this.firstConsultations = firstConsultations;
       this.guidelineService.updateFics(firstConsultations);
@@ -122,7 +125,8 @@ export class MyClientDetailComponent implements OnInit {
   }
 
   getFollowUps(uid) {
-    this.followUpCol = this.afs.collection('follow-ups', ref => ref.where('clientID', '==', `${uid}`).orderBy('creationDate', 'asc'));
+    this.followUpCol = this.afs.collection('follow-ups', ref => ref.where('clientID', '==', `${uid}`)
+      .orderBy('creationDate', 'desc'));
     this.followUpCol.valueChanges().subscribe(followUps => {
       this.followUps = followUps;
     });

@@ -76,18 +76,23 @@ export class GuidelineDetailComponent implements OnInit {
     this.guidelineService.getGuidelineDataById(id)
       .subscribe(guideline => {
         this.guideline = guideline;
-        this.userService.getUserDataByID(guideline.clientID).subscribe(user => {
-            this.client = user;
-            this.getExtraDocs(user.uid);
-        });
-        this.setTarget(guideline);
-        this.setIncreaseCals(guideline);
-        this.getExercises(guideline);
+        if (guideline) {
+          this.userService.getUserDataByID(guideline.clientID).subscribe(user => {
+              this.client = user;
+              this.getExtraDocs(user.uid);
+          });
+          this.setTarget(guideline);
+          this.setIncreaseCals(guideline);
+          this.getExercises(guideline);
+        }
       });
   }
 
   getExtraDocs(uid) {
-    const measurementRef = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`)).valueChanges();
+    const measurementRef = this.afs.collection('measurements', ref =>
+      ref.where('clientID', '==', `${uid}`)
+      .orderBy('created', 'desc'))
+      .valueChanges();
     measurementRef.pipe(take(1)).subscribe(measurements => {
       this.measurements = <Measurement[]>measurements;
       this.measurement = this.measurements.find(m => {
@@ -96,7 +101,10 @@ export class GuidelineDetailComponent implements OnInit {
       this.guidelineService.updateMeasurements(measurements);
     });
 
-    const ficRef = this.afs.collection('first-consultations', ref => ref.where('clientID', '==', `${uid}`)).valueChanges();
+    const ficRef = this.afs.collection('first-consultations', ref =>
+      ref.where('clientID', '==', `${uid}`)
+      .orderBy('creationDate', 'desc'))
+      .valueChanges();
     ficRef.pipe(take(1)).subscribe(fics => {
       this.fics = <FirstConsultation[]>fics;
       this.guidelineService.updateFics(fics);

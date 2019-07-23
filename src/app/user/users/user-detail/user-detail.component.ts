@@ -105,14 +105,14 @@ export class UserDetailComponent implements OnInit {
   }
 
   getMeasurements(uid) {
-    this.measurementCol = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`).orderBy('created', 'asc'));
+    this.measurementCol = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`).orderBy('created', 'desc'));
     this.measurementCol.valueChanges().subscribe(measurements => {
       this.measurements = measurements;
     });
   }
 
   getFollowUps(uid) {
-    this.followUpCol = this.afs.collection('follow-ups', ref => ref.where('clientID', '==', `${uid}`).orderBy('creationDate', 'asc'));
+    this.followUpCol = this.afs.collection('follow-ups', ref => ref.where('clientID', '==', `${uid}`).orderBy('creationDate', 'desc'));
     this.followUpCol.valueChanges().subscribe(followUps => {
       this.followUps = followUps;
     });
@@ -120,7 +120,7 @@ export class UserDetailComponent implements OnInit {
 
   getFirstConsultations(uid) {
     this.firstConsultationsCol = this.afs.collection('first-consultations', ref => ref.where('clientID', '==', `${uid}`)
-      .orderBy('creationDate', 'asc'));
+      .orderBy('creationDate', 'desc'));
     this.firstConsultationsCol.valueChanges().subscribe(firstConsultations => {
       this.firstConsultations = firstConsultations;
     });

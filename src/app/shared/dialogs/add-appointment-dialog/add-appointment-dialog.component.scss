@@ -277,6 +277,32 @@ form {
         }
     }
 
+    .multiple-input {
+        display: flex;
+        flex-flow: row nowrap;
+
+        .form-field {
+            display: flex;
+            flex-flow: column nowrap;
+
+            &:first-child {
+                margin-right: 2em;
+            }
+
+            .label {
+                font-size: 13px;
+                font-weight: $semi-bold;
+                margin-top: 10px;
+                color: $primary-color;
+                position: relative;
+                top: 2px;
+            }
+
+            p {
+                margin-top: 9px;
+            }
+        }
+    }
     
     .location-card {
         box-sizing: border-box;
@@ -287,14 +313,9 @@ form {
         box-shadow: $card-shadow;
         align-items: center;
         height: 130px;
-        width: 120%;
         padding: 0 2em;
-        margin: 1.5em -10% 2em;
-
-        @include respond-down($sm) {
-            width: 100%;
-            margin: 1.5em 0 2em;
-        }
+        width: 100%;
+        margin: 1.5em 0 2em;
 
         img {
             width: 50px;

@@ -61,10 +61,7 @@ export class EditAppointmentComponent implements OnInit {
       specialistID: [''],
       colorPrimary: [''],
       colorSecondary: [''],
-      faceToFacePhone: this.fb.group({
-        'phoneAreaCode': [''],
-        'phoneRest': [''],
-      }),
+      faceToFacePhone: [''],
       onlinePhone: this.fb.group({
         phoneAreaCode: [`${this.phoneAreaCode.value}`],
         'phoneRest': [''],

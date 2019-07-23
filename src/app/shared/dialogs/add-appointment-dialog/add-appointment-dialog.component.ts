@@ -10,6 +10,7 @@ import { UserService } from './../../../user/user.service';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { Subject } from 'rxjs';
 import { UtilService } from '../../services/util.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-appointment-dialog',
@@ -68,7 +69,7 @@ export class AddAppointmentDialogComponent implements OnInit {
                private cdr: ChangeDetectorRef,
                private dialog: MatDialog
     ) {
-      this.user =  data.user;
+      this.user = data.user;
       this.specialist =  data.specialist;
       this.setStandardColors(data.user);
       this.setAppointmentAccepted(data.user);
@@ -91,10 +92,8 @@ export class AddAppointmentDialogComponent implements OnInit {
       startHour: [''],
       startMinutes: [''],
       faceToFacePhone: [''],
-      onlinePhone: this.fb.group({
-        phoneAreaCode: [`${this.phoneAreaCode.value}`],
-        phoneRest: [''] || null,
-      }),
+      phoneAreaCode: [`${this.phoneAreaCode.value}`],
+      phoneRest: [''] || null,
       wappNumber: this.fb.group({
         wappAreaCode: [''] || null,
         wappRest: [''] || null,
@@ -160,7 +159,7 @@ export class AddAppointmentDialogComponent implements OnInit {
       sID = this.user.specialist;
     }
     this.specialistID = sID;
-    this.specialistService.getSpecialistData(sID).subscribe(specialist => {
+    this.specialistService.getSpecialistData(sID).pipe(take(1)).subscribe(specialist => {
       this.specialist = specialist;
     });
     setTimeout(() => {
@@ -179,8 +178,7 @@ export class AddAppointmentDialogComponent implements OnInit {
     let start;
     let end;
 
-    console.log(this.auth.user);
-    if (this.auth.clientRoles(this.auth.authState)) {
+    if (this.user.roles.client) {
       start = startNoTime
         .replace('00:00:00',
         `${this.appointmentForm.get('startHour').value}` + ':' + `${this.appointmentForm.get('startMinutes').value}` + ':00');
@@ -217,11 +215,11 @@ export class AddAppointmentDialogComponent implements OnInit {
       members: [this.user.uid, this.specialist.uid],
       meetMethod: this.appointmentForm.get('appointmentContext').value,
       contactMethod: this.appointmentForm.get('contactMethod').value,
-      faceToFacePhone: '+51' + this.appointmentForm.get('faceToFacePhone').value,
+      faceToFacePhone: this.appointmentForm.get('faceToFacePhone').value,
       location: this.appointmentForm.get('location').value || null,
       whatsappNumber: this.appointmentForm.get('wappNumber').value || null,
       skypeName: this.appointmentForm.get('skypeName').value || null,
-      onlineAppointmentPhone: this.appointmentForm.controls.onlinePhone.value || null
+      onlineAppointmentPhone: this.appointmentForm.get('phoneAreaCode').value + this.appointmentForm.get('phoneRest').value || null
     };
 
     // Update request amount on specialist

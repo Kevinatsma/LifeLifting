@@ -67,6 +67,11 @@
             transition: all 100ms ease-in-out;
             z-index: 1;
 
+
+            @include respond-down($sm) {
+                min-width: 100vw;
+            }
+
             ::ng-deep router-outlet + * {
                 position: absolute;
                 height: 100%;

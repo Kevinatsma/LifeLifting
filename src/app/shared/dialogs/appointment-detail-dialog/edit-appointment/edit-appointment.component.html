@@ -83,7 +83,7 @@
               </mat-form-field>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Minutes</mat-label>
-                <input type="number" matInput formControlName="endHour" placeholder="{{start.startMinutes}}" />
+                <input type="number" matInput formControlName="startMinutes" placeholder="{{start.startMinutes}}" />
                 <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
                   This is <strong>required</strong>
                 </mat-error> -->
@@ -150,15 +150,15 @@
         </a>
       </div>
 
-      <div class="multiple-input online-phone" formGroupName="faceToFacePhone">
+      <div class="multiple-input online-phone">
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Area Code</mat-label>
-          <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
+          <p>+51</p>
           <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Phone Number</mat-label>
-          <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off">
+          <input type="number"formControlName="faceToFacePhone" matInput placeholder="123456789" autocomplete="off">
         </mat-form-field>
       </div>
     </ng-container>

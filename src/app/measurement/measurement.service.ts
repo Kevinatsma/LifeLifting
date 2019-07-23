@@ -37,7 +37,7 @@ export class MeasurementService {
       };
       const uid = data.clientID;
 
-      this.userService.updateUser(weightData, uid);
+      this.userService.updateUser(uid, weightData);
     })
     .then(() => {
       // Show Snackbar

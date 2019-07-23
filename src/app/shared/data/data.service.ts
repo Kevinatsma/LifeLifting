@@ -22,7 +22,7 @@ export class DataService {
   }
 
   public getTimezones() {
-    this.timezonesCol = this.afs.collection(`assets/timezones/GMT`, ref => ref.orderBy('city', 'asc'));
+    this.timezonesCol = this.afs.collection(`assets/timezones/GMT`, ref => ref.orderBy('city', 'desc'));
     this.timezones = this.timezonesCol.snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Timezone;

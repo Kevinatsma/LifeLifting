@@ -173,12 +173,18 @@ export class AddGuideDialogComponent implements OnInit {
   // Getters
 
   getExtraDocs(uid) {
-    const measurementRef = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`)).valueChanges();
+    const measurementRef = this.afs.collection<Measurement>('measurements', ref =>
+      ref.where('clientID', '==', `${uid}`)
+      .orderBy('created', 'desc'))
+      .valueChanges();
     measurementRef.subscribe(measurements => {
       this.measurements = measurements;
     });
 
-    const ficRef = this.afs.collection('first-consultations', ref => ref.where('clientID', '==', `${uid}`)).valueChanges();
+    const ficRef = this.afs.collection<FirstConsultation>('first-consultations', ref =>
+      ref.where('clientID', '==', `${uid}`)
+      .orderBy('creationDate', 'desc'))
+      .valueChanges();
     ficRef.subscribe(firstConsultations => {
       this.fics = firstConsultations;
     });
@@ -236,8 +242,8 @@ export class AddGuideDialogComponent implements OnInit {
         creationDate: new Date(),
         guidelineNR: this.infoForm.get('gID').value,
         guidelineName: this.infoForm.get('guidelineName').value,
-        ficID: this.infoForm.get('firstConsultation').value,
-        measurementID: this.infoForm.get('measurement').value,
+        ficID: this.infoForm.get('firstConsultation').value.ficID,
+        measurementID: this.infoForm.get('measurement').value.measurementID,
         idealWeight: this.targetForm.get('idealWeight').value,
         idealKiloOfMuscle: this.targetForm.get('idealKiloOfMuscle').value,
         target: this.targetForm.get('target').value,

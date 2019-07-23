@@ -24,6 +24,6 @@ export class Appointment {
     onlineAppointmentPhone?: string;
     whatsappNumber?: string;
     skypeName?: string;
-    faceToFacePhone?: string;
+    faceToFacePhone?: number;
     location?: string;
 }

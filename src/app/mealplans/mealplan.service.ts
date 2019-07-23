@@ -58,7 +58,7 @@ export class MealplanService {
 
   getMealplans() {
     this.mealplanCol = this.afs.collection('mealplans', ref => ref
-      .orderBy('creationDate', 'asc'));
+      .orderBy('creationDate', 'desc'));
     this.mealplans = this.clientGuideCol.valueChanges();
     return this.mealplans;
   }

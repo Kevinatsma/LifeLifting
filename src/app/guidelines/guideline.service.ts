@@ -75,7 +75,7 @@ export class GuidelineService {
 
   getGuidelines() {
     this.guidelineCol = this.afs.collection('guidelines', ref => ref
-      .orderBy('creationDate', 'asc'));
+      .orderBy('creationDate', 'desc'));
     this.guidelines = this.guidelineCol.valueChanges();
     return this.guidelines;
   }

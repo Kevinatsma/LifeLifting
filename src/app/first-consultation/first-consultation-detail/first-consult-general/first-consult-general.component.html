@@ -5,7 +5,7 @@
     <div class="form-field">
       <span class="label small">Health conditions</span>
       <ul>
-        <li *ngFor="let condition of generalData.general.healthConditions" class="list-item">{{condition.healthCondition}}</li>
+        <li *ngFor="let condition of generalData.general.healthConditions" class="list-item">{{condition.healthCondition.viewValue}}</li>
       </ul>
     </div>
 

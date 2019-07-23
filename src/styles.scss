@@ -1007,6 +1007,16 @@ mat-select.ng-dirty{
 // Detail view
 
 .specialist-wrapper {
+    min-height: calc(100vh - 66px);
+    min-width: 75vw;
+    max-width: 75vw;
+    height: 100%;
+
+    @include respond-down($sm) {
+        min-width: 100vw;
+        max-width: 100vw;
+    }
+
     .specialist-header {
         background: #fff;
         box-shadow: $card-shadow;

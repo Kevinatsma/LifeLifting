@@ -342,7 +342,7 @@ export class SignUpBookingComponent implements OnInit {
       clientID: this.user.uid,
       members: [this.user.uid, this.specialist.uid],
       meetMethod: 'faceToFace',
-      faceToFacePhone: '+51' + this.appointmentForm.get('phoneNumber').value,
+      faceToFacePhone: this.appointmentForm.get('phoneNumber').value,
     };
 
     // Update request amount on specialist
