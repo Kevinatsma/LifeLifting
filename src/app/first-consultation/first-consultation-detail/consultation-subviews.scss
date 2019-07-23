@@ -10,6 +10,10 @@
     padding: 0 4em;
     width: 100%;
 
+    @include respond-down($sm) {
+        padding: 0 1em;
+    }
+
     section {
         display: flex;
         flex-flow: row wrap;
@@ -17,6 +21,12 @@
         margin: 0 0 3em;
         padding: 0 2em;
         width: 100%;
+
+        @include respond-down($sm) {
+            box-sizing: border-box;
+            flex-flow: column nowrap;
+            padding: 0 1.5em;
+        }
 
         h3 {
             flex: 0 0 100%;
@@ -46,6 +56,11 @@
             margin: 1em 0 2em;
         }
 
+        @include respond-down($sm) {
+            margin: 1.5em 0;
+            width: 100%;
+        }
+
         .label {
             color: $grey;
             font-weight: $bold;
@@ -56,12 +71,21 @@
         &.long-text {
             width: 60%;
 
+            @include respond-down($sm) {
+                width: 100%;
+            }
+
             .text-field {
                 background-color: $light-grey;
                 border: 1.5px solid $middle-grey;
                 box-sizing: border-box;
                 padding: 1em;
                 width: 90%;
+
+                @include respond-down($sm) {
+                    margin-top: 1em;
+                    width: 100%;
+                }
             }
         }
 
@@ -147,7 +171,7 @@
             @extend %flex-center;
 
             svg {
-                color: $icon-black;
+                color: $icon-grey;
                 font-size: 18px;
             }
         }

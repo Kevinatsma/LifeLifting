@@ -11,7 +11,9 @@ export class FirstConsultGeneralComponent implements OnInit {
   generalData: GeneralData;
 
   constructor() {
-    setTimeout(() => this.generalData = this.firstConsultation.generalData);
+    setTimeout(() => {
+      this.generalData = this.firstConsultation.generalData;
+    });
   }
 
   ngOnInit() {

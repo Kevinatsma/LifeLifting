@@ -819,7 +819,7 @@
                 <mat-label>Do you have any health conditions?</mat-label>
                 <mat-select matInput formControlName="healthCondition" panelClass="dropdown-regular" autocomplete="off" required
                   [placeholder]="condition.value.healthCondition.healthCondition ? condition.value.healthCondition.healthCondition : 'Pick one'">
-                  <mat-option *ngFor="let condition of healthConditions" value="{{condition}}">{{condition.viewValue}}</mat-option>
+                  <mat-option *ngFor="let condition of healthConditions" value="{{condition.viewValue}}">{{condition.viewValue}}</mat-option>
                 </mat-select>
                 <mat-error class="input-errors" *ngIf="!healthCondition.valid && healthCondition.touched">This is <strong>required</strong></mat-error>
               </mat-form-field>

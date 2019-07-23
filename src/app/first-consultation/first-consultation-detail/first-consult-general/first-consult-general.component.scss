@@ -1,13 +1,42 @@
+@import './../../../../assets/scss/master';
+@import './../../../../assets/scss/mixins';
 
+.fic-detail-container {
+    &__activities {
+        h5 {
+            margin-bottom: 1.5em;
+            width: 100%;
+        }
+
+        .schedule {
+            font-size: 28px !important;
+            margin-top: 5px !important;
+        }
+    }
+}
 
 .activity-container {
     display: flex;
     flex-flow: row nowrap;
+    margin-bottom: 2em;
     width: 100%;
+
+    @include respond-down($sm) {
+        box-sizing: border-box;
+        flex-flow: column nowrap;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
 
     app-exercise-list-item {
         margin-right: 10%;
         max-width: 30%;
+
+        @include respond-down($sm) {
+            max-width: 80%;
+        }
     }
 
     &__content {
@@ -17,8 +46,14 @@
         width: 60%;
 
         .form-field {
-            margin: 1em calc(10% / 2) 2em 0 !important;
-            width: 40%;
+            margin: 1em 2.5% 2em 0 !important;
+            width: 45% !important;
+
+            ul {
+                li {
+                    text-transform: capitalize;
+                }
+            }
         }
     }
 

@@ -2,72 +2,124 @@
   <section class="fic-detail-container__diuresis">
     <h3>Diuresis</h3>
 
-    <div class="form-field">
-      <span class="label small">How many times he/she is urinating per day</span>
-      <p class="value big">{{bodyFunctions.diuresis.urinateAmount}}x</p>
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-water"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">How many times he/she is urinating per day</span>
+        <p class="value big">{{bodyFunctions.diuresis.urinateAmount}}x</p>
+      </div>
     </div>
-    <div class="form-field">
-      <span class="label small">Wakes up to urinate</span>
-      <p class="value big">{{bodyFunctions.diuresis.middleNightUrinate}}</p>
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-cloud-moon-rain"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Wakes up to urinate</span>
+        <p class="value big">{{bodyFunctions.diuresis.middleNightUrinate}}</p>
+      </div>
     </div>
   </section>
 
   <section class="fic-detail-container__bowel-movements">
     <h3>Bowel movements</h3>
 
-    <div class="form-field">
-      <span class="label small">Bowel movements every day</span>
-      <p class="value big">{{bodyFunctions.bowelMovements.everyDay}}</p>
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-toilet-paper"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Bowel movements every day</span>
+        <p class="value big">{{bodyFunctions.bowelMovements.everyDay}}</p>
+        <p class="value sub-title" *ngIf="!bodyFunctions.bowelMovements.timesPerDay && bodyFunctions.bowelMovements.timesPerWeek">
+          {{bodyFunctions.bowelMovements.timesPerWeek}}x per week
+        </p>
+        <p class="value sub-title" *ngIf="bodyFunctions.bowelMovements.timesPerDay">
+          {{bodyFunctions.bowelMovements.timesPerDay}}x per day
+        </p>
+      </div>
     </div>
-    <div class="form-field" *ngIf="!bodyFunctions.bowelMovements.timesPerWeek !== null">
-      <span class="label small">Bowel movements per week</span>
-      <p class="value big">{{bodyFunctions.bowelMovements.timesPerWeek}}</p>
-    </div>
-    <div class="form-field" *ngIf="bodyFunctions.bowelMovements.timesPerDay !== null">
-      <span class="label small">Bowel movements per day</span>
-      <p class="value big">{{bodyFunctions.bowelMovements.timesPerDay}}</p>
-    </div>
-    <div class="form-field">
-      <span class="label small">Always same schedule</span>
-      <p class="value big">{{bodyFunctions.bowelMovements.sameSchedule}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-calendar-check"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Always same schedule</span>
+        <p class="value big">{{bodyFunctions.bowelMovements.sameSchedule}}</p>
+      </div>
     </div>
   </section>
 
   <section class="fic-detail-container__appetite">
     <h3>Appetite</h3>
 
-    <div class="form-field">
-      <span class="label small">Most hungry moment</span>
-      <p class="value big">{{bodyFunctions.appetite.mostHungryMoment}}</p>
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-cookie-bite"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Most hungry moment</span>
+        <p class="value big">{{bodyFunctions.appetite.mostHungryMoment}}</p>
+      </div>
     </div>
-    <div class="form-field">
-      <span class="label small">Appetite on a scale from 1-10</span>
-      <p class="value big">{{bodyFunctions.appetite.hungryScale}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-utensils"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Appetite on a scale from 1-10</span>
+        <p class="value big">{{bodyFunctions.appetite.hungryScale}}</p>
+      </div>
     </div>
   </section>
 
   <section class="fic-detail-container__female">
     <h3>Sleep</h3>
 
-    <div class="form-field">
-      <span class="label small">Current sleep status</span>
-      <p class="value big">{{bodyFunctions.sleep.sleepingStatus}}</p>
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-bed"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Current sleep status</span>
+        <p class="value big">{{bodyFunctions.sleep.sleepingStatus}}</p>
+      </div>
     </div>
-    <div class="form-field">
-      <span class="label small">Average hours of sleep</span>
-      <p class="value big">{{bodyFunctions.sleep.averageHours}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-stopwatch"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Average hours of sleep</span>
+        <p class="value big">{{bodyFunctions.sleep.averageHours}}</p>
+      </div>
     </div>
-    <div class="form-field">
-      <span class="label small">Trouble falling asleep</span>
-      <p class="value big">{{bodyFunctions.sleep.troubleFallingAsleep}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-ban"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Trouble falling asleep</span>
+        <p class="value big">{{bodyFunctions.sleep.troubleFallingAsleep}}</p>
+        <p class="value sub-title" *ngIf="bodyFunctions.sleep.troubleFallingAsleepNote">
+          {{bodyFunctions.sleep.troubleFallingAsleepNote}} min
+        </p>
+      </div>
     </div>
-    <div class="form-field" *ngIf="bodyFunctions.sleep.troubleFallingAsleepNote">
-      <span class="label small">Time to fall asleep</span>
-      <p class="value big">{{bodyFunctions.sleep.troubleFallingAsleepNote}} min</p>
-    </div>
-    <div class="form-field">
-      <span class="label small">Wakes up energized</span>
-      <p class="value big">{{bodyFunctions.sleep.wakeUpEnergized}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-battery-full"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Wakes up energized</span>
+        <p class="value big">{{bodyFunctions.sleep.wakeUpEnergized}}</p>
+      </div>
     </div>
 
   </section>
@@ -75,33 +127,65 @@
   <section class="fic-detail-container__female" *ngIf="bodyFunctions.female">
     <h3>Female</h3>
 
-    <div class="form-field">
-      <span class="label small">First menstrual period</span>
-      <p class="value big">{{bodyFunctions.female.firstMenstrualPeriod}} y/old</p>
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-fist-raised"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">First menstrual period</span>
+        <p class="value big">{{bodyFunctions.female.firstMenstrualPeriod}} y/old</p>
+      </div>
     </div>
-    <div class="form-field">
-      <span class="label small">Regular menstrual cycle</span>
-      <p class="value big">{{bodyFunctions.female.regularCycle}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-infinity"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Regular menstrual cycle</span>
+        <p class="value big">{{bodyFunctions.female.regularCycle}}</p>
+      </div>
     </div>
-    <div class="form-field">
-      <span class="label small">Taking birth control pills</span>
-      <p class="value big">{{bodyFunctions.female.birthControlPills}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-capsules"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Taking birth control pills</span>
+        <p class="value big">{{bodyFunctions.female.birthControlPills}}</p>
+        <p class="value sub-title" *ngIf="bodyFunctions.female.birthControlPillsNote">{{bodyFunctions.female.birthControlPillsNote}}</p>
+      </div>
     </div>
-    <div class="form-field" *ngIf="bodyFunctions.female.birthControlPillsNote">
-      <span class="label small">Which birth control pill</span>
-      <p class="value big">{{bodyFunctions.female.birthControlPillsNote}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="far fa-calendar-check"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Every x days</span>
+        <p class="value big">{{bodyFunctions.female.periodXDays}}</p>
+      </div>
     </div>
-    <div class="form-field">
-      <span class="label small">Every x days</span>
-      <p class="value big">{{bodyFunctions.female.periodXDays}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-band-aid"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Per x days of bleeding</span>
+        <p class="value big">{{bodyFunctions.female.bleedingXDays}}</p>
+      </div>
     </div>
-    <div class="form-field">
-      <span class="label small">Per x days of bleeding</span>
-      <p class="value big">{{bodyFunctions.female.bleedingXDays}}</p>
-    </div>
-    <div class="form-field">
-      <span class="label small">Number of pregnancies</span>
-      <p class="value big">{{bodyFunctions.female.pregnancies}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-child"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Number of pregnancies</span>
+        <p class="value big">{{bodyFunctions.female.pregnancies}}</p>
+      </div>
     </div>
   </section>
   

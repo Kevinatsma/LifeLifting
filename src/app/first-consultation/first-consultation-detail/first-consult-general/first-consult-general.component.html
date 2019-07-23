@@ -5,19 +5,10 @@
     <div class="form-field">
       <span class="label small">Health conditions</span>
       <ul>
-        <li *ngFor="let condition of generalData.general.healthConditions" class="list-item">{{condition.healthCondition.viewValue}}</li>
+        <li *ngFor="let condition of generalData.general.healthConditions" class="list-item">{{condition.healthCondition}}</li>
       </ul>
     </div>
 
-    <div class="form-field">
-      <span class="label small">Has gastritis</span>
-      <p class="value big">{{generalData.general.gastritis}}</p>
-    </div>
-    <div class="form-field">
-      <span class="label small">List of medication</span>
-      <p class="value big">{{generalData.general.medication}}x</p>
-    </div>
-    
     <div class="form-field">
       <span class="label small">Conditions in the past 2 weeks</span>
       <ul>
@@ -31,26 +22,77 @@
         <li *ngFor="let item of generalData.general.dontEat" class="list-item">{{item.dontEatItem}}</li>
       </ul>
     </div>
+
+    <div class="form-field long-text">
+      <span class="label small">List of medication</span>
+      <div class="text-field">
+        <p class="value big">{{generalData.general.medication}}x</p>
+      </div>
+    </div>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-stethoscope"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Has gastritis</span>
+        <p class="value big">{{generalData.general.gastritis}}</p>
+      </div>
+    </div>
   </section>
 
   <section class="fic-detail-container__dinner">
     <h3>Dinner</h3>
 
-    <div class="form-field">
-      <span class="label small">Portion size</span>
-      <p class="value big">{{generalData.dinner.portion}}</p>
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-balance-scale"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Portion size</span>
+        <p class="value big">{{generalData.dinner.portion}}</p>
+      </div>
     </div>
-    <div class="form-field">
-      <span class="label small">Prepared by</span>
-      <p class="value big">{{generalData.dinner.preparedBy}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-user-tag"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Prepared by</span>
+        <p class="value big">{{generalData.dinner.preparedBy}}</p>
+      </div>
     </div>
-    <div class="form-field">
-      <span class="label small">Eats after dinner</span>
-      <p class="value big">{{generalData.dinner.eatAfterDinner}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-motorcycle"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Orders food online</span>
+        <p class="value big">{{generalData.dinner.orderOnline}}</p>
+      </div>
     </div>
-    <div class="form-field" *ngIf="generalData.dinner.eatAfterDinnerNote">
-      <span class="label small">What he/she eats after dinner</span>
-      <p class="value big">{{generalData.dinner.eatAfterDinnerNote}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-hotdog"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Eats after dinner</span>
+        <p class="value big">{{generalData.dinner.eatAfterDinner}}</p>
+        <p class="value sub-title" *ngIf="generalData.dinner.eatAfterDinnerNote">{{generalData.dinner.eatAfterDinnerNote}}</p>
+      </div>
+    </div>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-home"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Who does the shopping at home</span>
+        <p class="value big">{{generalData.dinner.whoBuys}}</p>
+      </div>
     </div>
 
     <div class="form-field">
@@ -59,27 +101,20 @@
         <li *ngFor="let location of generalData.dinner.shoppingLocations" class="list-item">{{location.shoppingLocation}}</li>
       </ul>
     </div>
-
-    <div class="form-field">
-      <span class="label small">Orders food online</span>
-      <p class="value big">{{generalData.dinner.orderOnline}}</p>
-    </div>
-    <div class="form-field">
-      <span class="label small">Who does the shopping at home</span>
-      <p class="value big">{{generalData.dinner.whoBuys}}</p>
-    </div>
   </section>
 
   <section class="fic-detail-container__activities">
     <h3>Physical activities</h3>
 
-    <div class="form-field">
-      <span class="label small">Does physical activities</span>
-      <p class="value big">{{generalData.physicalActivity.physicalActivitiesConfirmation}}</p>
-    </div>
-    <div class="form-field" *ngIf="generalData.physicalActivity.physicalActivitiesWhy">
-      <span class="label small">Why not</span>
-      <p class="value big">{{generalData.physicalActivity.physicalActivitiesWhy}}</p>
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-running"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Does physical activities</span>
+        <p class="value big">{{generalData.physicalActivity.physicalActivitiesConfirmation}}</p>
+        <p class="value sub-title" *ngIf="generalData.physicalActivity.physicalActivitiesWhy">{{generalData.physicalActivity.physicalActivitiesWhy}}</p>
+      </div>
     </div>
 
     <h5>Activities</h5>
@@ -89,11 +124,11 @@
       </app-exercise-list-item>
       
       <div class="activity-container__content">
+
         <div class="form-field">
           <span class="label small">Usual workout schedule</span>
           <p class="value big schedule">
-            <span>From:</span> {{activity.workoutScheduleFrom}}<br>
-            <span>To:</span> {{activity.workoutScheduleTo}}
+            {{activity.workoutScheduleFrom}} - {{activity.workoutScheduleTo}}
           </p>
         </div>
 
@@ -118,40 +153,61 @@
   <section class="fic-detail-container__weekends">
     <h3>Weekends</h3>
 
-    <div class="form-field">
-      <span class="label small">Wake up time</span>
-      <p class="value big">{{generalData.weekends.wakeUpTime}}</p>
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-sun"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Wake up time</span>
+        <p class="value big">{{generalData.weekends.wakeUpTime}}</p>
+      </div>
     </div>
-    <div class="form-field">
-      <span class="label small">Orders food or eats out</span>
-      <p class="value big">{{generalData.weekends.orderFood}}</p>
-    </div>
-    <div class="form-field" *ngIf="generalData.weekends.orderFoodNote">
-      <span class="label small">Food being ordered or eaten outside</span>
-      <p class="value big">{{generalData.weekends.orderFoodNote}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-utensils"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Orders food or eats out</span>
+        <p class="value big">{{generalData.weekends.orderFood}}</p>
+        <p class="value sub-title" *ngIf="generalData.weekends.orderFoodNote">{{generalData.weekends.orderFoodNote}}</p>
+      </div>
     </div>
   </section>
 
   <section class="fic-detail-container__supps">
     <h3>Supplements</h3>
 
-    <div class="form-field">
-      <span class="label small">Takes supplements</span>
-      <p class="value big">{{generalData.supplements.supplements}}</p>
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-tablets"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Takes supplements</span>
+        <p class="value big">{{generalData.supplements.supplements}}</p>
+        <p class="value sub-title" *ngIf="generalData.supplements.supplementNote">{{generalData.supplements.supplementNote}}</p>
+      </div>
     </div>
-    <div class="form-field" *ngIf="generalData.supplements.supplementNote">
-      <span class="label small">Supplements being taken</span>
-      <p class="value big">{{generalData.supplements.supplementNote}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-question-circle"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Is willing to use a supplement</span>
+        <p class="value big">{{generalData.supplements.willingToUseSupps}}</p>
+      </div>
     </div>
-    <div class="form-field">
-      <span class="label small">Is willing to use a supplement</span>
-      <p class="value big">{{generalData.supplements.willingToUseSupps}}</p>
-    </div>
-    <div class="form-field">
-      <span class="label small">Eating recordatory</span>
-      <p class="value big">{{generalData.supplements.eatingRecordatory}}</p>
+
+    <div class="form-field info-card">
+      <div class="info-card__icon">
+        <i class="fas fa-history"></i>
+      </div>
+      <div class="info-card__content">
+        <span class="label small">Eating recordatory</span>
+        <p class="value big">{{generalData.supplements.eatingRecordatory}}</p>
+      </div>
     </div>
   </section>
-
 </main>
   

@@ -1,8 +1,35 @@
+@import './../../../../assets/scss/mixins';
+@import './../../../../assets/scss/master';
 
 .fic-detail-container {
     &__general {
         h3 {
             margin: 0 0 1.5em;
+        }
+    }
+
+    &__work {
+        .long-text {
+            margin-bottom: 3em !important;
+            width: 80% !important;
+        }
+
+        .info-card {
+            margin: 1em 5% 2em 0 !important;
+            width: 28% !important;
+
+            &:nth-child(3n + 1) {
+                margin: 1em 5% 2em 0 !important;
+                width: 28% !important;
+
+                @include respond-down($sm) {
+                    width: 100% !important;
+                }
+            }
+
+            @include respond-down($sm) {
+                width: 100% !important;
+            }
         }
     }
 }

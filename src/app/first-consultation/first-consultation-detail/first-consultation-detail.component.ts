@@ -15,7 +15,7 @@ import { GuidelineService } from '../../guidelines/guideline.service';
 import { Guideline } from '../../guidelines/guideline.model';
 import { AuthService } from '../../core/auth/auth.service';
 import { EditFirstConsultationComponent } from './../edit-first-consultation/edit-first-consultation.component';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { UtilService } from '../../shared/services/util.service';
 import { DisplayTextDialogComponent } from '../../shared/dialogs/display-text-dialog/display-text-dialog.component';
 
@@ -34,6 +34,7 @@ export class FirstConsultationDetailComponent implements OnInit {
   @ViewChild('firstConsultationNav') set content(content: ElementRef) {
     this.firstConsultationNav = content;
   }
+ firstConsultation$: Observable<FirstConsultation>;
  firstConsultation: FirstConsultation;
 
  isMobile: boolean;
@@ -103,7 +104,8 @@ export class FirstConsultationDetailComponent implements OnInit {
   getFirstConsultation() {
     setTimeout(() => {
       const id = this.route.snapshot.paramMap.get('id');
-      this.firstConsultationService.getFirstConsultationDataById(id).subscribe(firstConsultation => {
+      this.firstConsultation$ = this.firstConsultationService.getFirstConsultationDataById(id);
+      this.firstConsultation$.subscribe(firstConsultation => {
         this.firstConsultation = firstConsultation;
         this.userService.getUserDataByID(firstConsultation.clientID).subscribe(user => this.client = user);
         });
