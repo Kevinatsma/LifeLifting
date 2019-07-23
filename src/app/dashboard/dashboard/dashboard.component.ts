@@ -5,7 +5,7 @@ import { User } from './../../user/user.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
 import { DashboardService } from '../dashboard.service';
-import { routeTransition } from 'src/app/core/animations/route-transition';
+import { routeTransition } from './../../core/animations/route-transition';
 
 @Component({
   selector: 'app-dashboard',

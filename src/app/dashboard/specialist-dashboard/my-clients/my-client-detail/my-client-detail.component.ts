@@ -19,7 +19,7 @@ import { Measurement } from '../../../../measurement/measurement.model';
 import { AddFollowUpComponent } from './../../../../follow-up-consultation/add-follow-up/add-follow-up.component';
 import { AddFirstConsultationComponent } from './../../../../first-consultation/add-first-consultation/add-first-consultation.component';
 import { FollowUpConsultation } from '../../../../follow-up-consultation/follow-up-consultation.model';
-import { GuidelineService } from 'src/app/guidelines/guideline.service';
+import { GuidelineService } from './../../../../guidelines/guideline.service';
 
 
 @Component({

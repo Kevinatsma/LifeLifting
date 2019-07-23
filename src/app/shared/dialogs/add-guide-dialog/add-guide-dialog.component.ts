@@ -10,12 +10,12 @@ import { Exercise } from './../../../exercises/exercise.model';
 import { Observable } from 'rxjs';
 import { ExerciseService } from './../../../exercises/exercise.service';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { FirstConsultation } from 'src/app/first-consultation/first-consultation.model';
+import { FirstConsultation } from './../../../first-consultation/first-consultation.model';
 import { UtilService } from '../../services/util.service';
 import { Measurement } from './../../../measurement/measurement.model';
 import { MeasurementService } from './../../../measurement/measurement.service';
 import { FirstConsultationService } from './../../../first-consultation/first-consultation.service';
-import { FormulaValues } from 'src/app/guidelines/guideline.model';
+import { FormulaValues } from './../../../guidelines/guideline.model';
 
 @Component({
   selector: 'app-add-guide-dialog',
@@ -83,7 +83,7 @@ export class AddGuideDialogComponent implements OnInit {
   macroForm: FormGroup;
 
   // formulas
-  formulaValues: FormulaValues;
+  formulaValues: FormulaValues = {};
   measurements: any[];
   fics: any[];
   maxCaloriesResult: number;
