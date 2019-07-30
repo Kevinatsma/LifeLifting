@@ -18,6 +18,7 @@ import { EditMealDialogComponent } from './../../shared/dialogs/edit-meal-dialog
 import { Subject } from 'rxjs';
 import { UtilService } from './../../shared/services/util.service';
 import { DisplayTextDialogComponent } from './../../shared/dialogs/display-text-dialog/display-text-dialog.component';
+import { PrintMealplanComponent } from './../print-mealplan/print-mealplan.component';
 
 
 @Component({
@@ -288,7 +289,13 @@ export class MealplanDetailComponent implements OnInit {
 
   // Print mealplan
   printMealplan(mealplan: Mealplan) {
-    alert(`${mealplan}`);
+    const dialogRef = this.dialog.open(PrintMealplanComponent, {
+      data: {
+        mealplan: this.mealplan,
+        client: this.client,
+      },
+      panelClass: 'print-dialog',
+    });
   }
 
   // Delete mealplan

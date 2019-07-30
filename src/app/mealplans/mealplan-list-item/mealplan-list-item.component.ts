@@ -9,6 +9,7 @@ import { User } from '../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { EditMealDialogComponent } from './../../shared/dialogs/edit-meal-dialog/edit-meal-dialog.component';
 import { ChooseMealplanDialogComponent } from './../../shared/dialogs/choose-mealplan-dialog/choose-mealplan-dialog.component';
+import { PrintMealplanComponent } from '../print-mealplan/print-mealplan.component';
 
 @Component({
   selector: 'app-mealplan-list-item',
@@ -55,8 +56,15 @@ export class MealplanListItemComponent implements OnInit {
     this.mealplanService.duplicateMealplan(mealplan);
   }
 
-  printMealplan(mealplan) {
-    alert('TODO: EXPORT THIS MEALPLAN TO PDF');
+  // Print mealplan
+  printMealplan(mealplan: Mealplan) {
+    const dialogRef = this.dialog.open(PrintMealplanComponent, {
+      data: {
+        mealplan: this.mealplan,
+        client: this.client,
+      },
+      panelClass: 'print-dialog',
+    });
   }
 
   editMealplan(mealplan) {

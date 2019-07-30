@@ -1,0 +1,144 @@
+<main *ngIf="thursdayMeals">
+  <section class="meals-row">
+    <div class="column" *ngIf="thursdayMeals.mOneMealOneArr[0] && thursdayMeals.mOneMealOneArr[0].amount > 0">
+      <div class="column__meal">
+        <span class="column__meal-title">{{thursdayMeals.mOneMealOneTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mOneMealOneArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="column__meal" *ngIf="thursdayMeals.mOneMealTwoArr[0] && thursdayMeals.mOneMealTwoArr[0].amount > 0">
+        <span class="column__meal-title">{{thursdayMeals.mOneMealTwoTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mOneMealTwoArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="column" *ngIf="thursdayMeals.mTwoMealOneArr[0] && thursdayMeals.mTwoMealOneArr[0].amount > 0">
+      <div class="column__meal">
+        <span class="column__meal-title">{{thursdayMeals.mTwoMealOneTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mTwoMealOneArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="column__meal" *ngIf="thursdayMeals.mTwoMealTwoArr[0] && thursdayMeals.mTwoMealTwoArr[0].amount > 0">
+        <span class="column__meal-title">{{thursdayMeals.mTwoMealTwoTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mTwoMealTwoArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="column" *ngIf="thursdayMeals.mThreeMealOneArr[0] && thursdayMeals.mThreeMealOneArr[0].amount > 0">
+      <div class="column__meal">
+        <span class="column__meal-title">{{thursdayMeals.mThreeMealOneTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mThreeMealOneArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="column__meal" *ngIf="thursdayMeals.mThreeMealTwoArr[0] && thursdayMeals.mThreeMealTwoArr[0].amount > 0">
+        <span class="column__meal-title">{{thursdayMeals.mThreeMealTwoTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mThreeMealTwoArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="column" *ngIf="thursdayMeals.mFourMealOneArr[0] && thursdayMeals.mFourMealOneArr[0].amount > 0">
+      <div class="column__meal">
+        <span class="column__meal-title">{{thursdayMeals.mFourMealOneTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mFourMealOneArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="column__meal" *ngIf="thursdayMeals.mFourMealTwoArr[0] && thursdayMeals.mFourMealTwoArr[0].amount > 0">
+        <span class="column__meal-title">{{thursdayMeals.mFourMealTwoTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mFourMealTwoArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="column" *ngIf="thursdayMeals.mFiveMealOneArr[0] && thursdayMeals.mFiveMealOneArr[0].amount > 0">
+      <div class="column__meal">
+        <span class="column__meal-title">{{thursdayMeals.mFiveMealOneTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mFiveMealOneArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="column__meal" *ngIf="thursdayMeals.mFiveMealTwoArr[0] && thursdayMeals.mFiveMealTwoArr[0] && thursdayMeals.mFiveMealTwoArr[0].amount > 0">
+        <span class="column__meal-title">{{thursdayMeals.mFiveMealTwoTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mFiveMealTwoArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="column" *ngIf="thursdayMeals.mSixMealOneArr[0] && thursdayMeals.mSixMealOneArr[0].amount > 0">
+      <div class="column__meal">
+        <span class="column__meal-title">{{thursdayMeals.mSixMealOneTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mSixMealOneArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="column__meal" *ngIf="thursdayMeals.mSixMealTwoArr[0] && thursdayMeals.mSixMealTwoArr[0].amount > 0">
+        <span class="column__meal-title">{{thursdayMeals.mSixMealTwoTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mSixMealTwoArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="column" *ngIf="thursdayMeals.mSevenMealOneArr[0] && thursdayMeals.mSevenMealOneArr[0].amount > 0">
+      <div class="column__meal">
+        <span class="column__meal-title">{{thursdayMeals.mSevenMealOneTitle}}</span>
+        <ul>
+          <li class="column__meal-item" *ngFor="let item of thursdayMeals.mSevenMealOneArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="column__meal" *ngIf="thursdayMeals.mSevenMealTwoArr[0] && thursdayMeals.mSevenMealTwoArr[0].amount > 0">
+        <span class="column__meal-title">{{thursdayMeals.mSevenMealTwoTitle}}</span>
+        <ul>
+          <li class="column__meal-item"  *ngFor="let item of thursdayMeals.mSevenMealTwoArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+</main>

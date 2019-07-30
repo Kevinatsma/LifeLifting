@@ -1,0 +1,74 @@
+@import './../../../assets/scss/master';
+
+.meals-row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    width: 100%;
+
+    p {
+        font-size: 5px;
+    }
+
+    span, p {
+        letter-spacing: initial;
+    }
+
+    .column {
+        display: flex;
+        flex: 1;
+        width: auto;
+
+        &__meal {
+            display: flex;
+            flex-flow: column nowrap;
+            padding: 4px 0 0 0;
+            margin-right: 10px;
+            position: relative;
+            width: 100%;
+
+            &::after {
+                content: '';
+                width: 1px;
+                position: absolute;
+                background: $border-color;
+                right: -5px;
+                height: 60%;
+                top: calc(20% + 4px);
+            }
+
+            &-title {
+                color: darken($grey, 10%);
+                font-size: 4px;
+                font-weight: $bold;
+                text-transform: capitalize;
+            }
+
+            ul {
+                display: flex;
+                flex-flow: column wrap;
+                width: 100%;
+            }
+
+            &-item {
+                font-size: 3pt;
+                font-weight: $bold;
+                margin: 2px 0 0 2px;
+                padding: 0 0 0 2px;
+                letter-spacing: initial;
+                position: relative;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: -1.5px;
+                    width: 1px;
+                    height: 1px;
+                    border-radius: 50%;
+                    background-color: $primary-color;
+                    top: 2.25px;
+                }
+            }
+        }
+    }
+}

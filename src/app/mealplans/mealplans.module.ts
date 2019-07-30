@@ -16,6 +16,12 @@ import { WednesdayComponent } from './mealplan-detail/wednesday/wednesday.compon
 import { ThursdayComponent } from './mealplan-detail/thursday/thursday.component';
 import { FridayComponent } from './mealplan-detail/friday/friday.component';
 import { SuppsComponent } from './mealplan-detail/supps/supps.component';
+import { PrintMealplanComponent } from './print-mealplan/print-mealplan.component';
+import { PrintMealMondayComponent } from './print-mealplan/print-meal-monday/print-meal-monday.component';
+import { PrintMealTuesdayComponent } from './print-mealplan/print-meal-tuesday/print-meal-tuesday.component';
+import { PrintMealWednesdayComponent } from './print-mealplan/print-meal-wednesday/print-meal-wednesday.component';
+import { PrintMealThursdayComponent } from './print-mealplan/print-meal-thursday/print-meal-thursday.component';
+import { PrintMealFridayComponent } from './print-mealplan/print-meal-friday/print-meal-friday.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +35,12 @@ import { SuppsComponent } from './mealplan-detail/supps/supps.component';
     FridayComponent,
     MealplanDetailComponent,
     SuppsComponent,
+    PrintMealplanComponent,
+    PrintMealMondayComponent,
+    PrintMealTuesdayComponent,
+    PrintMealWednesdayComponent,
+    PrintMealThursdayComponent,
+    PrintMealFridayComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +53,16 @@ import { SuppsComponent } from './mealplan-detail/supps/supps.component';
     MealplanListItemComponent,
     MealplanListComponent,
     MealplansComponent,
-    MealplanDetailComponent
+    MealplanDetailComponent,
+    PrintMealplanComponent,
+    PrintMealMondayComponent,
+    PrintMealTuesdayComponent,
+    PrintMealWednesdayComponent,
+    PrintMealThursdayComponent,
+    PrintMealFridayComponent,
+  ],
+  entryComponents: [
+    PrintMealplanComponent
   ],
   providers: [
     MealplanService
