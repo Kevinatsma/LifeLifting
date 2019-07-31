@@ -64,6 +64,7 @@ export class EditMealDialogComponent implements OnInit {
   thursdayMeals: Observable<DayForm>;
   fridayMeals: Observable<DayForm>;
   supps: Observable<SuppsForm>;
+  exercises: Observable<{}>;
 
   // Select value loops - retreive from json/firestore
   mealTimeNames = mealTimes.mealTimes;
@@ -211,6 +212,7 @@ export class EditMealDialogComponent implements OnInit {
 
   // Collect the data and send to service
   updateMealplan() {
+    console.log(this.exercises);
     const mID: string = this.data.mealplan.mID;
     const data = {
       clientID: this.client.uid || this.infoForm.get('clientID').value || this.data.mealplan.clientID,
@@ -226,7 +228,7 @@ export class EditMealDialogComponent implements OnInit {
       wednesdayMeals: this.wednesdayMeals || this.mealplan.wednesdayMeals,
       thursdayMeals: this.thursdayMeals || this.mealplan.thursdayMeals,
       fridayMeals: this.fridayMeals || this.mealplan.fridayMeals,
-      supplementation: this.supps || this.mealplan.supplementation,
+      supplementation: this.supps,
       extraNotes: this.infoForm.get('extraNotes').value
     };
     this.mealplanService.updateMealplan(mID, data);

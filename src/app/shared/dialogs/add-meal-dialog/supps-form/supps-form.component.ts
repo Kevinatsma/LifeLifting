@@ -69,7 +69,15 @@ export class SuppsFormComponent implements OnInit {
                 controlButtons.forEach(input => {
                    // Update the form object in the service
                   input.addEventListener('click', ((e) => {
-                    const suppsForm = this.suppsForm.value;
+                    const suppsForm = {
+                      guideline: this.guideline.gID,
+                      supps: this.suppsForm.value,
+                      exercises: {
+                        exerciseOne: this.exerciseOne || null,
+                        exerciseTwo: this.exerciseTwo || null,
+                        exerciseThree: this.exerciseThree || null
+                      },
+                  };
                     return this.mealService.suppsFormChange.next(suppsForm);
                   }) as EventListener);
                });

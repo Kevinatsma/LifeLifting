@@ -1,0 +1,14 @@
+<main *ngIf="supps">
+  <section class="activity activity__one">
+    <div class="activity__meal-one">
+      <div class="activity__time-section" *ngIf="supps.beforeOneArr[0].amount > 0">
+        <h1>Before the training</h1>
+        <ul>
+          <li *ngFor="let item of supps.beforeOneArr">
+            {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>

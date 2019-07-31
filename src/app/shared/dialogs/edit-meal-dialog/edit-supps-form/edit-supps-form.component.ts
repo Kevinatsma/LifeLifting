@@ -86,7 +86,15 @@ export class EditSuppsFormComponent implements OnInit {
 
   // Update data when mat stepper changes steps
   updateData() {
-    const data = this.suppsForm.value;
+    const data = {
+      guideline: this.guideline.gID,
+      supps: this.suppsForm.value,
+      exercises: {
+        exerciseOne: this.exerciseOne || null,
+        exerciseTwo: this.exerciseTwo || null,
+        exerciseThree: this.exerciseThree || null
+      }
+    };
     return this.editMealService.suppsFormChange.next(data);
   }
 
@@ -228,55 +236,55 @@ export class EditSuppsFormComponent implements OnInit {
   // Fill the form with data
   loadForm(data) {
     const beforeOneArr = this.beforeOneForms;
-    const amountOfBeforeOne = this.supplementation.beforeOneArr;
+    const amountOfBeforeOne = this.supplementation.supps.beforeOneArr;
     amountOfBeforeOne.forEach(obj => {
       beforeOneArr.push(this.createProduct(obj));
     });
 
     const duringOneArr = this.duringOneForms;
-    const amountOfDuringOne = this.supplementation.duringOneArr;
+    const amountOfDuringOne = this.supplementation.supps.duringOneArr;
     amountOfDuringOne.forEach(obj => {
       duringOneArr.push(this.createProduct(obj));
     });
 
     const afterOneArr = this.afterOneForms;
-    const amountOfAfterOne = this.supplementation.afterOneArr;
+    const amountOfAfterOne = this.supplementation.supps.afterOneArr;
     amountOfAfterOne.forEach(obj => {
       afterOneArr.push(this.createProduct(obj));
     });
 
     const beforeTwoArr = this.beforeTwoForms;
-    const amountOfBeforeTwo = this.supplementation.beforeTwoArr;
+    const amountOfBeforeTwo = this.supplementation.supps.beforeTwoArr;
     amountOfBeforeTwo.forEach(obj => {
       beforeTwoArr.push(this.createProduct(obj));
     });
 
     const duringTwoArr = this.duringTwoForms;
-    const amountOfDuringTwo = this.supplementation.duringTwoArr;
+    const amountOfDuringTwo = this.supplementation.supps.duringTwoArr;
     amountOfDuringTwo.forEach(obj => {
       duringTwoArr.push(this.createProduct(obj));
     });
 
     const afterTwoArr = this.afterTwoForms;
-    const amountOfAfterTwo = this.supplementation.afterTwoArr;
+    const amountOfAfterTwo = this.supplementation.supps.afterTwoArr;
     amountOfAfterTwo.forEach(obj => {
       afterTwoArr.push(this.createProduct(obj));
     });
 
     const beforeThreeArr = this.beforeThreeForms;
-    const amountOfBeforeThree = this.supplementation.beforeThreeArr;
+    const amountOfBeforeThree = this.supplementation.supps.beforeThreeArr;
     amountOfBeforeThree.forEach(obj => {
       beforeThreeArr.push(this.createProduct(obj));
     });
 
     const duringThreeArr = this.duringThreeForms;
-    const amountOfDuringThree = this.supplementation.duringThreeArr;
+    const amountOfDuringThree = this.supplementation.supps.duringThreeArr;
     amountOfDuringThree.forEach(obj => {
       duringThreeArr.push(this.createProduct(obj));
     });
 
     const afterThreeArr = this.afterThreeForms;
-    const amountOfAfterThree = this.supplementation.afterThreeArr;
+    const amountOfAfterThree = this.supplementation.supps.afterThreeArr;
     amountOfAfterThree.forEach(obj => {
       afterThreeArr.push(this.createProduct(obj));
     });

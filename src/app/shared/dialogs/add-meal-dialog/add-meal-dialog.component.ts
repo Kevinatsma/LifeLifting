@@ -49,6 +49,7 @@ export class AddMealDialogComponent implements OnInit {
   thursdayMeals: Observable<DayForm>;
   fridayMeals: Observable<DayForm>;
   supps: Observable<SuppsForm>;
+  exercises: Observable<{}>;
 
   // Select value loops - retreive from json/firestore
   mealTimeNames = mealTimes.mealTimes;

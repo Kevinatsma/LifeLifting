@@ -24,6 +24,9 @@ export class PrintMealplanComponent implements OnInit {
     { dayValue: 'Thursday' },
     { dayValue: 'Friday' }
   ];
+
+  pageOneActive = true;
+  pageTwoActive = false;
   canvas: any;
   pdf: any;
   docWidth: any;
@@ -61,6 +64,11 @@ export class PrintMealplanComponent implements OnInit {
     const height = this.pdf.internal.pageSize.getHeight();
     this.pdf.addImage(this.canvas.toDataURL('imgData'), 'JPEG', 0, 0, this.docWidth, height);
     this.pdf.save(filename);
+  }
+
+  togglePage() {
+    this.pageOneActive = !this.pageOneActive;
+    this.pageTwoActive = !this.pageTwoActive;
   }
 
   closeDialog() {

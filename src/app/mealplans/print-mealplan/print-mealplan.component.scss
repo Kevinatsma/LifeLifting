@@ -5,9 +5,42 @@
     background: rgba(0, 0, 0, 0.67);
 }
 
+.controls {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(50% - 40px);
+    height: auto;
+    width: 100%;
+
+    &__button {
+        position: absolute;
+
+        &.back {
+            left: 13em;
+        }
+
+        &.next {
+            right: 13em;
+        }
+        
+        svg {
+            color: #fff;
+            font-size: 50px;
+        }
+    }
+}
+
 .print-preview-container.print-mealplan {
+    padding: 6px 1em !important;
+
     .branding {
         margin-bottom: 5px !important;
+
+        img {
+            height: 25px !important;
+            width: auto !important;
+        }
     }
 
     .header-subline {
@@ -135,5 +168,19 @@
                 }
             }
         }
+    }
+}
+
+.page-number {
+    position: absolute;
+    bottom: 14.5%;
+    right: 33vw;
+
+    p {
+        color: #fff;
+        font-size: 14px;
+        font-weight: $extra-bold;
+        margin: 0;
+        text-align: right;
     }
 }

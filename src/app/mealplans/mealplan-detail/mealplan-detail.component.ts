@@ -47,15 +47,6 @@ export class MealplanDetailComponent implements OnInit {
 
   // Exercises
   guideline: Guideline;
-  guideExercises: Object;
-  exercises: {
-    eOne: any;
-    eTwo: any;
-    eThree: any;
-  };
-  exerciseOne: Exercise;
-  exerciseTwo: Exercise;
-  exerciseThree: Exercise;
 
   specialist: Specialist;
   aboutExtended = false;
@@ -116,31 +107,7 @@ export class MealplanDetailComponent implements OnInit {
     this.guidelineService.getGuidelineDataById(id)
       .subscribe(guideline => {
         this.guideline = guideline;
-        this.getExercises(this.guideline);
       });
-  }
-
-  getExercises(guideline) {
-    this.exerciseService.getMultipleExercises(guideline);
-    this.exerciseService.guideExercises.eOne.subscribe(exercise => {
-      this.exercises.eOne = exercise;
-    });
-    if (this.exerciseService.guideExercises.eTwo) {
-      this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
-        this.exercises.eTwo = exercise;
-      });
-    }
-    if (this.exerciseService.guideExercises.eThree) {
-      this.exerciseService.guideExercises.eThree.subscribe(exercise => {
-        this.exercises.eThree = exercise;
-      });
-    }
-    this.exercises = {
-      eOne: this.exerciseOne,
-      eTwo: this.exerciseTwo,
-      eThree: this.exerciseThree
-    };
-
   }
 
   // Like this to avoid State Changed Error

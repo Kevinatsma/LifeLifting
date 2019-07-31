@@ -11,14 +11,19 @@ import { Exercise } from './../../../exercises/exercise.model';
 })
 export class SuppsComponent implements OnInit {
   @Input() supps;
-  @Input() exercises;
 
   exerciseOne: Exercise;
   exerciseTwo: Exercise;
   exerciseThree: Exercise;
 
   constructor( private exerciseService: ExerciseService,
-               private guidelineService: GuidelineService) { }
+               private guidelineService: GuidelineService) {
+                setTimeout(() => {
+                  this.exerciseOne = this.supps.exercises.exerciseOne;
+                  this.exerciseTwo = this.supps.exercises.exerciseTwo;
+                  this.exerciseThree = this.supps.exercises.exerciseThree;
+                });
+              }
 
   ngOnInit() {
 

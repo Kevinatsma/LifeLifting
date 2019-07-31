@@ -22,6 +22,7 @@ import { PrintMealTuesdayComponent } from './print-mealplan/print-meal-tuesday/p
 import { PrintMealWednesdayComponent } from './print-mealplan/print-meal-wednesday/print-meal-wednesday.component';
 import { PrintMealThursdayComponent } from './print-mealplan/print-meal-thursday/print-meal-thursday.component';
 import { PrintMealFridayComponent } from './print-mealplan/print-meal-friday/print-meal-friday.component';
+import { PrintSuppsComponent } from './print-mealplan/print-supps/print-supps.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { PrintMealFridayComponent } from './print-mealplan/print-meal-friday/pri
     PrintMealWednesdayComponent,
     PrintMealThursdayComponent,
     PrintMealFridayComponent,
+    PrintSuppsComponent,
   ],
   imports: [
     CommonModule,

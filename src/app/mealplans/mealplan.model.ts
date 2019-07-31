@@ -1,3 +1,5 @@
+import { Exercise } from '../exercises/exercise.model';
+
 export class DayForm {
     mealTimeOne: {
         meals: [
@@ -86,20 +88,28 @@ export class DayForm {
 }
 
 export interface Supplementation {
-    beforeOne: string;
-    duringOne: string;
-    afterOne: string;
-    beforeTwo: string;
-    duringTwo: string;
-    afterTwo: string;
-    beforeThree: string;
-    duringThree: string;
-    afterThree: string;
+    supps: {
+        beforeOne: string;
+        duringOne: string;
+        afterOne: string;
+        beforeTwo: string;
+        duringTwo: string;
+        afterTwo: string;
+        beforeThree: string;
+        duringThree: string;
+        afterThree: string;
+    };
+    exercises: {
+        exerciseOne?: Exercise;
+        exerciseTwo?: Exercise;
+        exerciseThree?: Exercise;
+    };
 }
 
 export class Mealplan {
     clientID: string;
     specialistID: string;
+    specialistName: string;
     creationDate: Date;
     lastEdited?: Date;
     mID: string;
