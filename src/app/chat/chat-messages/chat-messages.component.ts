@@ -14,7 +14,7 @@ import { Thread } from '../thread.model';
 })
 export class ChatMessagesComponent implements OnInit, OnDestroy {
   navigationSubscription;
-  messages$: Observable<Message[]>;
+  messages: Observable<Message[]>;
   channelId: Observable<string>;
   thread: Thread;
 
@@ -37,11 +37,13 @@ export class ChatMessagesComponent implements OnInit, OnDestroy {
 
   getMessages() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.messages$ = this.messageService.messages;
+    if (id) {
+      this.messages = this.messageService.getMessages(id);
+    }
   }
 
   ngOnDestroy() {
-    this.messages$ = null;
+    this.messages = null;
   }
 
 

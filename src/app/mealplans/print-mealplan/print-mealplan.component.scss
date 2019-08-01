@@ -32,7 +32,12 @@
 }
 
 .print-preview-container.print-mealplan {
-    padding: 6px 1em !important;
+    &.hidden {
+        opacity: 0;
+        position: absolute;
+        visibility: hidden;
+        z-index: -5;
+    }
 
     .branding {
         margin-bottom: 5px !important;

@@ -27,7 +27,7 @@ export class ChatMessageService {
   getMessages(channelID) {
     this.messagesCollection = this.afs.collection(
       `chats/${channelID}/messages`,
-      ref => ref.orderBy('timestamp', 'desc')
+      ref => ref.orderBy('timestamp', 'asc')
     );
     return this.messages = this.messagesCollection.valueChanges();
   }

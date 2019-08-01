@@ -18,7 +18,7 @@
     <h1>Print preview</h1>
   </section>
 
-  <section class="print-preview-container print-mealplan" *ngIf="pageOneActive" #pageOne>
+  <section class="print-preview-container print-mealplan" [class.hidden]="!pageOneActive" #pageOne>
     <div class="branding">
       <hr>
       <img src="./../../../assets/img/logo-icon.svg" />
@@ -126,8 +126,8 @@
     </div>
   </section>
 
-  <section class="print-preview-container print-mealplan" *ngIf="pageTwoActive" #pageTwo>
-    <app-print-supps class="mealplan__supps" [supps]="mealplan.supplementation"></app-print-supps>
+  <section class="print-preview-container print-mealplan" [class.hidden]="!pageTwoActive" #pageTwo>
+    <app-print-supps class="mealplan__supps" [supplementation]="mealplan.supplementation"></app-print-supps>
   </section>
 
   <div class="page-number">

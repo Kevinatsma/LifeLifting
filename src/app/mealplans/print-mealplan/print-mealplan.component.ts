@@ -12,7 +12,8 @@ const jsPDF = require('jspdf');
   encapsulation: ViewEncapsulation.None
 })
 export class PrintMealplanComponent implements OnInit {
-  @ViewChild('mealplanEl') mealplanEl: ElementRef;
+  @ViewChild('pageOne') pageOne: ElementRef;
+  @ViewChild('pageTwo') pageTwo: ElementRef;
   mealplan: Mealplan;
   client: User;
 
@@ -29,6 +30,8 @@ export class PrintMealplanComponent implements OnInit {
   pageTwoActive = false;
   canvas: any;
   pdf: any;
+  canvasTwo: any;
+  pdfTwo: any;
   docWidth: any;
 
   constructor( public dialog: MatDialog,
@@ -45,24 +48,42 @@ export class PrintMealplanComponent implements OnInit {
   drawCanvas() {
     const quality = 3;
 
-    html2canvas(this.mealplanEl.nativeElement, {
+    html2canvas(this.pageOne.nativeElement, {
       letterRendering: true,
       scale: quality
     })
     .then(canvas => {
       this.canvas = canvas;
+      console.log(this.canvas);
       this.pdf = new jsPDF('p', 'px', 'a4');
       this.docWidth = this.pdf.internal.pageSize.getWidth();
     })
     .then(() => {
-      this.mealplanEl.nativeElement.style.width = `${this.docWidth}px`;
+      this.pageOne.nativeElement.style.width = `${this.docWidth}px`;
+    });
+
+    html2canvas(this.pageTwo.nativeElement, {
+      letterRendering: true,
+      scale: quality
+    })
+    .then(canvas => {
+      this.canvasTwo = canvas;
+      this.pdfTwo = new jsPDF('p', 'px', 'a4');
+    })
+    .then(() => {
+      this.pageTwo.nativeElement.style.width = `${this.docWidth}px`;
+      console.log(this.pageOne);
+      console.log(this.pageTwo);
     });
   }
 
   saveAsPDF() {
     const filename  = `Mealplan ${this.mealplan.mealplanName}.pdf`;
     const height = this.pdf.internal.pageSize.getHeight();
+    const heightTwo = this.pdfTwo.internal.pageSize.getHeight();
     this.pdf.addImage(this.canvas.toDataURL('imgData'), 'JPEG', 0, 0, this.docWidth, height);
+    this.pdf.addPage(this.docWidth, heightTwo);
+    this.pdf.addImage(this.canvas.toDataURL('imgData'), 'JPEG', 0, 0, this.docWidth, heightTwo);
     this.pdf.save(filename);
   }
 
