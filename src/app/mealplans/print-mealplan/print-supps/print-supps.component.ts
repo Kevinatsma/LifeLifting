@@ -8,6 +8,7 @@ import { Supplementation } from '../../mealplan.model';
 })
 export class PrintSuppsComponent implements OnInit {
   @Input() supplementation: Supplementation;
+  @Input() notes: string;
 
   constructor() { }
 

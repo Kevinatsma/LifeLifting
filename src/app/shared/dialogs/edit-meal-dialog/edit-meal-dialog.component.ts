@@ -212,7 +212,6 @@ export class EditMealDialogComponent implements OnInit {
 
   // Collect the data and send to service
   updateMealplan() {
-    console.log(this.exercises);
     const mID: string = this.data.mealplan.mID;
     const data = {
       clientID: this.client.uid || this.infoForm.get('clientID').value || this.data.mealplan.clientID,

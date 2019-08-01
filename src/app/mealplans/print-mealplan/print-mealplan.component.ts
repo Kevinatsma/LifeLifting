@@ -14,6 +14,9 @@ const jsPDF = require('jspdf');
 export class PrintMealplanComponent implements OnInit {
   @ViewChild('pageOne') pageOne: ElementRef;
   @ViewChild('pageTwo') pageTwo: ElementRef;
+  @ViewChild('back') back: ElementRef;
+  @ViewChild('next') next: ElementRef;
+  @ViewChild('canvasDisplayTwo') canvasDisplayTwo: ElementRef;
   mealplan: Mealplan;
   client: User;
 
@@ -27,12 +30,12 @@ export class PrintMealplanComponent implements OnInit {
   ];
 
   pageOneActive = true;
-  pageTwoActive = false;
+  pageTwoActive = true;
   canvas: any;
   pdf: any;
   canvasTwo: any;
   pdfTwo: any;
-  docWidth: any;
+  docWidth = '445';
 
   constructor( public dialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -54,9 +57,7 @@ export class PrintMealplanComponent implements OnInit {
     })
     .then(canvas => {
       this.canvas = canvas;
-      console.log(this.canvas);
       this.pdf = new jsPDF('p', 'px', 'a4');
-      this.docWidth = this.pdf.internal.pageSize.getWidth();
     })
     .then(() => {
       this.pageOne.nativeElement.style.width = `${this.docWidth}px`;
@@ -72,8 +73,6 @@ export class PrintMealplanComponent implements OnInit {
     })
     .then(() => {
       this.pageTwo.nativeElement.style.width = `${this.docWidth}px`;
-      console.log(this.pageOne);
-      console.log(this.pageTwo);
     });
   }
 
@@ -81,15 +80,27 @@ export class PrintMealplanComponent implements OnInit {
     const filename  = `Mealplan ${this.mealplan.mealplanName}.pdf`;
     const height = this.pdf.internal.pageSize.getHeight();
     const heightTwo = this.pdfTwo.internal.pageSize.getHeight();
-    this.pdf.addImage(this.canvas.toDataURL('imgData'), 'JPEG', 0, 0, this.docWidth, height);
-    this.pdf.addPage(this.docWidth, heightTwo);
-    this.pdf.addImage(this.canvas.toDataURL('imgData'), 'JPEG', 0, 0, this.docWidth, heightTwo);
+    this.pdf.addImage(this.canvas.toDataURL('imgData'), 'JPEG', 0, 0, 445, height);
+    this.pdf.addPage('445px', heightTwo);
+    this.pdf.addImage(this.canvasTwo.toDataURL('imgData'), 'JPEG', 0, 0, 445, heightTwo);
     this.pdf.save(filename);
   }
 
   togglePage() {
     this.pageOneActive = !this.pageOneActive;
     this.pageTwoActive = !this.pageTwoActive;
+
+    if (this.pageOneActive) {
+      this.back.nativeElement.style.opacity = 0;
+      this.next.nativeElement.style.opacity = 1;
+      this.pageOne.nativeElement.style.zIndex = 10;
+      this.pageTwo.nativeElement.style.zIndex = 9;
+    } else {
+      this.back.nativeElement.style.opacity = 1;
+      this.next.nativeElement.style.opacity = 0;
+      this.pageOne.nativeElement.style.zIndex = 9;
+      this.pageTwo.nativeElement.style.zIndex = 10;
+    }
   }
 
   closeDialog() {

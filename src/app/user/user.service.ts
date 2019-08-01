@@ -77,8 +77,6 @@ export class UserService {
   }
 
   updateUser(uid, data) {
-    console.log(uid);
-    console.log(data);
     this.userDoc = this.afs.doc<User>(`users/${uid}`);
     this.userDoc.update(data);
   }

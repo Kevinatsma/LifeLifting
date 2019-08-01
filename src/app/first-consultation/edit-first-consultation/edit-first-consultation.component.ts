@@ -205,7 +205,6 @@ export class EditFirstConsultationComponent implements OnInit {
 
   getBirthday() {
     this.basicDataForm.get('birthDate').valueChanges.subscribe(val => {
-      console.log(val);
       this.age = this.utilService.getAge(val);
     });
   }

@@ -1,5 +1,19 @@
+<div class="branding">
+  <hr>
+  <img src="./../../../assets/img/logo-icon.svg" />
+  <hr>
+</div>
+
 <main *ngIf="supplementation">
-  <section class="activity activity__one" *ngIf="supplementation.supps.beforeOneArr">
+  <section class="notes-container" *ngIf="notes">
+    <span class="label">Specialist's notes/recommendations</span>
+    <div class="notes">
+      <p class="notes__text">
+        {{notes}}
+      </p>
+    </div>
+  </section>
+  <section class="activity activity__one" *ngIf="supplementation.supps.beforeOneArr && supplementation.supps.beforeOneArr.length > 0">
     <div class="exercise-container" *ngIf="supplementation.exercises.exerciseOne as exerciseOne">
       <h1>{{exerciseOne.exerciseName}}</h1>
     </div>
@@ -33,7 +47,7 @@
     </div>
   </section>
 
-  <section class="activity activity__two" *ngIf="supplementation.supps.beforeTwoArr">
+  <section class="activity activity__two" *ngIf="supplementation.supps.beforeTwoArr && supplementation.supps.beforeTwoArr.length > 0">
     <div class="exercise-container" *ngIf="supplementation.exercises.exerciseTwo as exerciseTwo">
       <h1>{{exerciseTwo.exerciseName}}</h1>
     </div>
@@ -42,7 +56,7 @@
         <div class="activity__time-section" *ngIf="supplementation.supps.beforeTwoArr[0]">
           <h1>Before the training</h1>
           <ul>
-            <li *ngFor="let item of supplementation.supps.beforetwoArr">
+            <li *ngFor="let item of supplementation.supps.beforeTwoArr">
               {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
             </li>
           </ul>
@@ -67,9 +81,7 @@
     </div>
   </section>
 
-  <section class="activity activity__three" *ngIf="supplementation.supps.beforeThreeArr">
-
-    {{supplementation.supps.beforeThreeArr.length}}
+  <section class="activity activity__three" *ngIf="supplementation.supps.beforeThreeArr && supplementation.supps.beforeThreeArr.length > 0">
     <div class="exercise-container" *ngIf="supplementation.exercises.exerciseThree as exerciseThree">
       <h1>{{exerciseThree.exerciseName}}</h1>
     </div>

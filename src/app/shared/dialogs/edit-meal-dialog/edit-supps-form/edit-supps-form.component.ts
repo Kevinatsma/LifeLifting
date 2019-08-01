@@ -99,16 +99,24 @@ export class EditSuppsFormComponent implements OnInit {
   }
 
   // Guidelines
-
   getGuidelines(clientUID) {
     this.guidelineService.getGuidelinesByClient(clientUID).subscribe(guidelines => {
       this.guidelines = guidelines;
+      this.getGuideline(guidelines);
 
       if (this.guidelines.length < 1) {
         this.guidelines = null;
       }
     });
     return this.guidelines;
+  }
+
+  getGuideline(guidelines) {
+    const supp = this.supplementation;
+    const guideline = guidelines.filter(obj => {
+      return obj.gID === `${supp.guideline}`;
+    });
+    this.guideline = guideline;
   }
 
   guidelineHandler() {

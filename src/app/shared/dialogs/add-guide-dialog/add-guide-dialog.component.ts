@@ -294,10 +294,6 @@ export class AddGuideDialogComponent implements OnInit {
       }
 
       this.bmiResult = this.utils.calculateBMI(data.weight, data.height);
-      console.log(this.maxCaloriesResult);
-      console.log(this.fatPercentageRegResult);
-      console.log(this.fatPercentageAthResult);
-      console.log(this.bmiResult);
     }, 1000);
   }
 
