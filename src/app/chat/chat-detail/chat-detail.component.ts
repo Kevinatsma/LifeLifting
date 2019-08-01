@@ -62,11 +62,13 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
 
   getThread() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.threadService.getThread(id).subscribe(thread => {
-      this.threadId = thread.id;
-      this.thread = thread;
-      this.isCreator = this.checkCreator(thread);
-    });
+    if (id) {
+      this.threadService.getThread(id).subscribe(thread => {
+        this.threadId = thread.id;
+        this.thread = thread;
+        this.isCreator = this.checkCreator(thread);
+      });
+    }
   }
 
   checkCreator(thread) {
