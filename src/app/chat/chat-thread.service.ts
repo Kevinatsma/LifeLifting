@@ -120,7 +120,8 @@ export class ChatThreadService {
   getThreads() {
     const uid  =  this.auth.currentUserId;
     this.threadsCollection = this.afs.collection('chats', ref =>
-      ref.where('members', 'array-contains', `${uid}`));
+      ref.where('members', 'array-contains', `${uid}`)
+      .orderBy('lastUpdated', 'desc'));
     this.threads = this.threadsCollection.valueChanges();
     return this.threads;
   }

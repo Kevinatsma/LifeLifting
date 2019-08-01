@@ -7,7 +7,7 @@
   </button>
 </div>
 
-<main class="print-container">
+<main class="print-container" *ngIf="mealplan">
   <section class="close-section">
     <button mat-icon-button class="not-mobile close-btn" (click)="closeDialog()" type="button">
       <i class="fas fa-times"></i>
@@ -30,7 +30,7 @@
         <p>
           For: {{client.displayName}} - 
           By: {{mealplan.specialistName}} - 
-          Created: {{mealplan.creationDate.toDate() | date:'medium'}}
+          Created: {{mealplan.creationDate.toDate() | date:'short'}}
         </p>
       </div>
     </div>

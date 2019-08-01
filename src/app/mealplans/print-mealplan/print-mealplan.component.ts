@@ -18,6 +18,7 @@ export class PrintMealplanComponent implements OnInit {
   @ViewChild('next') next: ElementRef;
   @ViewChild('canvasDisplayTwo') canvasDisplayTwo: ElementRef;
   mealplan: Mealplan;
+  creationDate: Date;
   client: User;
 
   mealTimes = [];
@@ -42,6 +43,7 @@ export class PrintMealplanComponent implements OnInit {
                 this.mealplan = data.mealplan;
                 this.client = data.client;
                 this.mealTimes = data.mealplan.mealTimes;
+                this.creationDate = data.mealplan.creationDate.toString();
                 setTimeout(() => this.drawCanvas());
               }
 
@@ -49,7 +51,7 @@ export class PrintMealplanComponent implements OnInit {
   }
 
   drawCanvas() {
-    const quality = 3;
+    const quality = 4;
 
     html2canvas(this.pageOne.nativeElement, {
       letterRendering: true,

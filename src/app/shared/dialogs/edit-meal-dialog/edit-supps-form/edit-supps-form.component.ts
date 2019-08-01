@@ -87,7 +87,7 @@ export class EditSuppsFormComponent implements OnInit {
   // Update data when mat stepper changes steps
   updateData() {
     const data = {
-      guideline: this.guideline.gID,
+      guideline: this.guideline.gID || this.supplementation.guideline,
       supps: this.suppsForm.value,
       exercises: {
         exerciseOne: this.exerciseOne || null,
