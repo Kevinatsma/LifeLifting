@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Appointment } from './../../../../booking/appointment.model';
 import { User } from './../../../../user/user.model';
 import { Specialist } from './../../../../specialists/specialist.model';
@@ -8,14 +8,14 @@ import { MatDialog } from '@angular/material';
 import { UserService } from './../../../../user/user.service';
 import { SpecialistService } from './../../../../specialists/specialist.service';
 import { AuthService } from './../../../../core/auth/auth.service';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 @Component({
   selector: 'app-edit-appointment',
   templateUrl: './edit-appointment.component.html',
   styleUrls: ['./edit-appointment.component.scss', './../appointment-detail-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class EditAppointmentComponent implements OnInit {
+export class EditAppointmentComponent implements OnInit, OnDestroy {
   @Input() client: User;
   @Input() specialist: Specialist;
   @Input() event: Appointment;
@@ -23,7 +23,9 @@ export class EditAppointmentComponent implements OnInit {
   @Input() end: Object;
 
   clients: User[];
+  clients$: Subscription;
   specialists: Specialist[];
+  specialists$: Subscription;
 
   editAppointmentForm: FormGroup;
   phoneAreaCode = new FormControl({value: '+51', disabled: true});
@@ -62,10 +64,8 @@ export class EditAppointmentComponent implements OnInit {
       colorPrimary: [''],
       colorSecondary: [''],
       faceToFacePhone: [''],
-      onlinePhone: this.fb.group({
-        phoneAreaCode: [`${this.phoneAreaCode.value}`],
-        'phoneRest': [''],
-      }),
+      phoneAreaCode: [`${this.phoneAreaCode.value}`],
+      phoneRest: [''],
       wappNumber: this.fb.group({
         'wappAreaCode': [''] || null,
         'wappRest': [''] || null,
@@ -75,8 +75,6 @@ export class EditAppointmentComponent implements OnInit {
       location: [''],
       skypeName: ['']
     });
-
-    // this.editAppointmentForm.controls.onlinePhone.get('phoneAreaCode').disable();
 
     this.getClients();
     this.getSpecialists();
@@ -120,7 +118,10 @@ export class EditAppointmentComponent implements OnInit {
       contactMethod: this.editAppointmentForm.get('contactMethod').value || this.event.contactMethod || null,
       faceToFacePhone: this.editAppointmentForm.controls.faceToFacePhone.value || this.event.faceToFacePhone,
       location: this.editAppointmentForm.get('location').value || this.event.location || null,
-      onlineAppointmentPhone: this.editAppointmentForm.controls.onlinePhone.value || this.event.onlineAppointmentPhone || null,
+      onlineAppointmentPhone: {
+        phoneAreaCode: '+51',
+        phoneRest: this.editAppointmentForm.get('phoneRest').value || this.event.onlineAppointmentPhone.phoneRest || null
+      },
       whatsappNumber: this.editAppointmentForm.get('wappNumber').value || this.event.whatsappNumber || null,
       skypeName: this.editAppointmentForm.get('skypeName').value || this.event.skypeName || null,
     };
@@ -136,6 +137,11 @@ export class EditAppointmentComponent implements OnInit {
     }, 500);
   }
 
+  ngOnDestroy() {
+    this.specialists$.unsubscribe();
+    this.clients$.unsubscribe();
+  }
+
   // Getters
 
   get editShow(): boolean {
@@ -143,11 +149,11 @@ export class EditAppointmentComponent implements OnInit {
   }
 
   getClients() {
-    this.userService.getUsers().subscribe(users => this.clients = users);
+    this.clients$ = this.userService.getUsers().subscribe(users => this.clients = users);
   }
 
   getSpecialists() {
-    this.specialistService.getSpecialists().subscribe(specialists => this.specialists = specialists);
+    this.specialists$ = this.specialistService.getSpecialists().subscribe(specialists => this.specialists = specialists);
   }
 
   // Controls

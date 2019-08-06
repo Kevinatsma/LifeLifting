@@ -1,16 +1,16 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Appointment } from './appointment.model';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { MatSnackBar } from '@angular/material';
 import { map } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { CalendarEvent } from 'angular-calendar';
 import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BookingService implements OnInit {
+export class BookingService implements OnDestroy {
   booked = false;
   eventDoc: AngularFirestoreDocument;
   appointmentsCol: AngularFirestoreCollection;
@@ -19,16 +19,18 @@ export class BookingService implements OnInit {
   // Edit state
   editShow: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
+  stateChange$: Subscription;
 
   constructor( private afs: AngularFirestore,
                private userService: UserService,
                public snackbar: MatSnackBar) {
-                this.editStateChange.subscribe((value) => {
+                this.stateChange$ = this.editStateChange.subscribe((value) => {
                   this.editShow = value;
                 });
                }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.stateChange$.unsubscribe();
   }
 
   addOnlineAppointment(data, path, user) {

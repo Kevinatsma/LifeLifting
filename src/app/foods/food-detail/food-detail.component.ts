@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FoodService } from '../food.service';
@@ -9,6 +9,7 @@ import { Food } from '../food.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { UserService } from './../../user/user.service';
 import { User } from './../../user/user.model';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -16,15 +17,16 @@ import { User } from './../../user/user.model';
   templateUrl: './food-detail.component.html',
   styleUrls: ['./food-detail.component.scss', './../food-list-item/food-list-item.component.scss']
 })
-export class FoodDetailComponent implements OnInit {
+export class FoodDetailComponent implements OnInit, OnDestroy {
   user: User;
+  user$: Subscription;
   food: Food;
+  food$: Subscription;
+  prevFood$: Subscription;
+  nextFood$: Subscription;
   specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
-
-
-  // specialist = Observable<Specialist>;
 
   constructor( public auth: AuthService,
                private userService: UserService,
@@ -42,16 +44,23 @@ export class FoodDetailComponent implements OnInit {
     this.getUser();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.food$.unsubscribe();
+    this.prevFood$.unsubscribe();
+    this.nextFood$.unsubscribe();
+  }
+
   getUser() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
     });
   }
 
   getFood() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.foodService.getFoodData(id).subscribe(food => (this.food = food));
+    this.food$ = this.foodService.getFoodData(id).subscribe(food => (this.food = food));
   }
 
   aboutExtendedOpen() {
@@ -76,19 +85,18 @@ export class FoodDetailComponent implements OnInit {
   }
 
   // Control buttons
-
   linkToPrevious(food) {
     const productID = food.productID - 1;
     const url = `dashboard/foods/${productID}`;
     this.router.navigate([url]);
-    this.foodService.getFoodData(productID).subscribe(a => (this.food = a));
+    this.prevFood$ = this.foodService.getFoodData(productID).subscribe(a => (this.food = a));
   }
 
   linkToNext(food) {
     const productID = food.productID + 1;
     const url = `dashboard/foods/${productID}`;
     this.router.navigate([url]);
-    this.foodService.getFoodData(productID).subscribe(a => (this.food = a));
+    this.nextFood$ = this.foodService.getFoodData(productID).subscribe(a => (this.food = a));
   }
 
   goBack() {

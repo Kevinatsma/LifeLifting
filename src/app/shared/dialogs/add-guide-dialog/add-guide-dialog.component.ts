@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, HostListener, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Inject, HostListener, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { GuidelineService } from '../../../guidelines/guideline.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
@@ -7,7 +7,7 @@ import { User } from './../../../user/user.model';
 import { AuthService } from './../../../core/auth/auth.service';
 import { UserService } from './../../../user/user.service';
 import { Exercise } from './../../../exercises/exercise.model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ExerciseService } from './../../../exercises/exercise.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { FirstConsultation } from './../../../first-consultation/first-consultation.model';
@@ -23,11 +23,13 @@ import { FormulaValues } from './../../../guidelines/guideline.model';
   styleUrls: ['./add-guide-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AddGuideDialogComponent implements OnInit {
+export class AddGuideDialogComponent implements OnInit, OnDestroy {
   user: User;
+  user$: Subscription;
   specialistID;
   hide = true;
   exercises: Exercise[];
+  exercises$: Subscription;
 
   // FormGroups
   addGuidelineForm: FormGroup;
@@ -85,11 +87,17 @@ export class AddGuideDialogComponent implements OnInit {
   // formulas
   formulaValues: FormulaValues = {};
   measurements: any[];
+  measurement$: Subscription;
+  measurements$: Subscription;
   fics: any[];
+  fic$: Subscription;
+  fics$: Subscription;
   maxCaloriesResult: number;
   fatPercentageRegResult: number;
   fatPercentageAthResult: number;
   bmiResult: number;
+  specialist$: Subscription;
+  backdropClick$: Subscription;
 
 
   // Disable popup from closing
@@ -116,13 +124,13 @@ export class AddGuideDialogComponent implements OnInit {
                private dialogRef: MatDialogRef<AddGuideDialogComponent>,
                private afs: AngularFirestore,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
-                this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
+                this.exercises$ = this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
                 this.user = userData.user;
                 this.getExtraDocs(userData.uid);
                }
 
   ngOnInit() {
-    this.dialogRef.backdropClick().subscribe(_ => {
+    this.backdropClick$ = this.dialogRef.backdropClick().subscribe(() => {
       const cn = confirm('Are you sure you want to quit creating this guideline? Your progress will be lost.');
       if (cn) {
         this.dialogRef.close();
@@ -161,23 +169,33 @@ export class AddGuideDialogComponent implements OnInit {
       fatValue: ['', Validators.required],
     });
 
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
+    this.specialist$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
     });
 
-    this.userService.getUserDataByID(this.userData.uid).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(this.userData.uid).subscribe(user => {
       this.user = user;
     });
   }
 
-  // Getters
+  ngOnDestroy() {
+    if (this.measurement$ !== undefined) { this.measurement$.unsubscribe(); }
+    this.measurements$.unsubscribe();
+    if (this.fic$ !== undefined) { this.fic$.unsubscribe(); }
+    this.fics$.unsubscribe();
+    this.specialist$.unsubscribe();
+    this.backdropClick$.unsubscribe();
+    this.user$.unsubscribe();
+    this.exercises$.unsubscribe();
+  }
 
+  // Getters
   getExtraDocs(uid) {
     const measurementRef = this.afs.collection<Measurement>('measurements', ref =>
       ref.where('clientID', '==', `${uid}`)
       .orderBy('created', 'desc'))
       .valueChanges();
-    measurementRef.subscribe(measurements => {
+    this.measurements$ = measurementRef.subscribe(measurements => {
       this.measurements = measurements;
     });
 
@@ -185,7 +203,7 @@ export class AddGuideDialogComponent implements OnInit {
       ref.where('clientID', '==', `${uid}`)
       .orderBy('creationDate', 'desc'))
       .valueChanges();
-    ficRef.subscribe(firstConsultations => {
+    this.fics$ = ficRef.subscribe(firstConsultations => {
       this.fics = firstConsultations;
     });
   }
@@ -302,7 +320,7 @@ export class AddGuideDialogComponent implements OnInit {
     const ficDoc = this.afs.doc<FirstConsultation>(`first-consultations/${this.infoForm.get('firstConsultation').value.ficID}`);
     this.formulaValues.factorCalorie = this.calcForm.get('factorCalorie').value;
 
-    measurementDoc.valueChanges().subscribe(measurement => {
+    this.measurement$ = measurementDoc.valueChanges().subscribe(measurement => {
       if (measurement.weight) {
         this.formulaValues.weight = measurement.weight;
         this.formulaValues.triceps = measurement.skinfolds.triceps;
@@ -318,7 +336,7 @@ export class AddGuideDialogComponent implements OnInit {
         this.formulaValues.supraespinal = measurement.skinfolds.supraespinal;
       }
     });
-    ficDoc.valueChanges().subscribe(doc => {
+    this.fic$ = ficDoc.valueChanges().subscribe(doc => {
       this.formulaValues.height = doc.basicData.height;
       this.formulaValues.age = this.utils.getAge(doc.basicData.birthDate.toDate());
       this.formulaValues.gender = doc.basicData.sex;

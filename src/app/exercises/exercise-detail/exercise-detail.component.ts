@@ -1,14 +1,13 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExerciseService } from '../exercise.service';
-import { Specialist } from '../../specialists/specialist.model';
-import { SpecialistService } from '../../specialists/specialist.service';
 import { Exercise } from '../exercise.model';
 import { User } from './../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { UserService } from './../../user/user.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -16,15 +15,15 @@ import { UserService } from './../../user/user.service';
   templateUrl: './exercise-detail.component.html',
   styleUrls: ['./exercise-detail.component.scss', './../exercise-list-item/exercise-list-item.component.scss']
 })
-export class ExerciseDetailComponent implements OnInit {
+export class ExerciseDetailComponent implements OnInit, OnDestroy {
   user: User;
+  user$: Subscription;
   exercise: Exercise;
-  specialist: Specialist;
+  exercise$: Subscription;
+  prevExercise$: Subscription;
+  nextExercise$: Subscription;
   aboutExtended = false;
   reviewsVisible = true;
-
-
-  // specialist = Observable<Specialist>;
 
   constructor( public auth: AuthService,
                private cdr: ChangeDetectorRef,
@@ -32,7 +31,6 @@ export class ExerciseDetailComponent implements OnInit {
                public route: ActivatedRoute,
                private userService: UserService,
                public exerciseService: ExerciseService,
-               public specialistService: SpecialistService,
                public location: Location) {
     this.aboutExtended = false;
   }
@@ -42,16 +40,23 @@ export class ExerciseDetailComponent implements OnInit {
     this.getUser();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.exercise$.unsubscribe();
+    this.prevExercise$.unsubscribe();
+    this.nextExercise$.unsubscribe();
+  }
+
   getUser() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
     });
   }
 
   getExercise() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.exerciseService.getExerciseData(id).subscribe(exercise => (this.exercise = exercise));
+    this.exercise$ = this.exerciseService.getExerciseData(id).subscribe(exercise => (this.exercise = exercise));
   }
 
   aboutExtendedOpen() {
@@ -85,13 +90,13 @@ export class ExerciseDetailComponent implements OnInit {
     const exerciseID = exercise.exerciseID - 1;
     const url = `dashboard/exercises/${exerciseID}`;
     this.router.navigate([url]);
-    this.exerciseService.getExerciseData(exerciseID).subscribe(a => (this.exercise = a));
+    this.prevExercise$ = this.exerciseService.getExerciseData(exerciseID).subscribe(a => (this.exercise = a));
   }
 
   linkToNext(exercise) {
     const exerciseID = exercise.exerciseID + 1;
     const url = `dashboard/exercises/${exerciseID}`;
     this.router.navigate([url]);
-    this.exerciseService.getExerciseData(exerciseID).subscribe(a => (this.exercise = a));
+    this.nextExercise$ = this.exerciseService.getExerciseData(exerciseID).subscribe(a => (this.exercise = a));
   }
 }

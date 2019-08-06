@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { User } from '../../user/user.model';
 import { ActivatedRoute } from '@angular/router';
@@ -13,6 +13,7 @@ import { Mealplan } from './../../mealplans/mealplan.model';
 import { Measurement } from './../../measurement/measurement.model';
 import { FollowUpConsultation } from './../../follow-up-consultation/follow-up-consultation.model';
 import { FirstConsultation } from './../../first-consultation/first-consultation.model';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -20,19 +21,26 @@ import { FirstConsultation } from './../../first-consultation/first-consultation
   templateUrl: './client-detail.component.html',
   styleUrls: ['./client-detail.component.scss', './../../dashboard/specialist-dashboard/my-clients/my-clients.component.scss']
 })
-export class ClientDetailComponent implements OnInit {
+export class ClientDetailComponent implements OnInit, OnDestroy {
   user: User;
+  user$: Subscription;
   specialist: Specialist;
+  specialist$: Subscription;
   guidelinesCol: AngularFirestoreCollection<Guideline>;
   guidelines: Guideline[];
+  guidelines$: Subscription;
   mealplansCol: AngularFirestoreCollection<Mealplan>;
   mealplans: Mealplan[];
+  mealplans$: Subscription;
   measurementCol: AngularFirestoreCollection<Measurement>;
   measurements: Measurement[];
+  measurements$: Subscription;
   followUpCol: AngularFirestoreCollection<FollowUpConsultation>;
   followUps: FollowUpConsultation[];
+  followUps$: Subscription;
   firstConsultationsCol: AngularFirestoreCollection<FirstConsultation>;
   firstConsultations: FirstConsultation[];
+  firstConsultations$: Subscription;
   aboutExtended = false;
   reviewsVisible = true;
   hasReadMore = false;
@@ -53,9 +61,19 @@ export class ClientDetailComponent implements OnInit {
     this.getUser();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.specialist$.unsubscribe();
+    this.guidelines$.unsubscribe();
+    this.measurements$.unsubscribe();
+    this.mealplans$.unsubscribe();
+    this.followUps$.unsubscribe();
+    this.firstConsultations$.unsubscribe();
+  }
+
   getUser() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.clientService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.clientService.getUserDataByID(id).subscribe(user => {
       this.user = user;
       const sID  = this.user.specialist;
       this.getSpecialist(sID);
@@ -69,13 +87,13 @@ export class ClientDetailComponent implements OnInit {
   }
 
   getSpecialist(sID: string) {
-    this.specialistService.getSpecialistData(sID).subscribe(specialist => this.specialist =  specialist);
+    this.specialist$ = this.specialistService.getSpecialistData(sID).subscribe(specialist => this.specialist =  specialist);
   }
 
   getGuidelines(uid) {
     this.guidelinesCol = this.afs.collection('guidelines', ref => ref.where('clientID', '==', `${uid}`)
       .orderBy('creationDate', 'desc'));
-    this.guidelinesCol.valueChanges().subscribe(guidelines => {
+    this.guidelines$ = this.guidelinesCol.valueChanges().subscribe(guidelines => {
       if (guidelines.length > 0) {
         this.hasGuidelines = true;
       }
@@ -86,7 +104,7 @@ export class ClientDetailComponent implements OnInit {
   getMealplans(uid) {
     this.mealplansCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${uid}`)
       .orderBy('creationDate', 'desc'));
-    this.mealplansCol.valueChanges().subscribe(mealplans => {
+    this.mealplans$ = this.mealplansCol.valueChanges().subscribe(mealplans => {
       if (mealplans.length > 0) {
         this.hasMealplans = true;
       }
@@ -97,7 +115,7 @@ export class ClientDetailComponent implements OnInit {
   getFollowUps(uid) {
     this.followUpCol = this.afs.collection('follow-ups', ref => ref.where('clientID', '==', `${uid}`)
       .orderBy('creationDate', 'desc'));
-    this.followUpCol.valueChanges().subscribe(followUps => {
+    this.followUps$ = this.followUpCol.valueChanges().subscribe(followUps => {
       this.followUps = followUps;
     });
   }
@@ -105,7 +123,7 @@ export class ClientDetailComponent implements OnInit {
   getFirstConsultations(uid) {
     this.firstConsultationsCol = this.afs.collection('first-consultations', ref => ref.where('clientID', '==', `${uid}`)
       .orderBy('creationDate', 'desc'));
-    this.firstConsultationsCol.valueChanges().subscribe(firstConsultations => {
+    this.firstConsultations$ = this.firstConsultationsCol.valueChanges().subscribe(firstConsultations => {
       this.firstConsultations = firstConsultations;
     });
   }
@@ -113,7 +131,7 @@ export class ClientDetailComponent implements OnInit {
   getMeasurements(uid) {
     this.measurementCol = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`)
       .orderBy('created', 'desc'));
-    this.measurementCol.valueChanges().subscribe(measurements => {
+    this.measurements$ = this.measurementCol.valueChanges().subscribe(measurements => {
       this.measurements = measurements;
     });
   }

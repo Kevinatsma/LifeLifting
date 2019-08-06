@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { User } from '../../../../user/user.model';
 import { ActivatedRoute } from '@angular/router';
@@ -7,7 +7,7 @@ import { UserService } from '../../../../user/user.service';
 import { Specialist } from '../../../../specialists/specialist.model';
 import { SpecialistService } from '../../../../specialists/specialist.service';
 import { ChatThreadService } from '../../../../chat/chat-thread.service';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { AddMealDialogComponent } from '../../../../shared/dialogs/add-meal-dialog/add-meal-dialog.component';
 import { AddGuideDialogComponent } from '../../../../shared/dialogs/add-guide-dialog/add-guide-dialog.component';
@@ -27,19 +27,24 @@ import { GuidelineService } from './../../../../guidelines/guideline.service';
   templateUrl: './my-client-detail.component.html',
   styleUrls: ['./my-client-detail.component.scss']
 })
-export class MyClientDetailComponent implements OnInit {
+export class MyClientDetailComponent implements OnInit, OnDestroy {
   user: User;
+  user$: Subscription;
   specialist: Specialist;
+  specialist$: Subscription;
   measurementCol: AngularFirestoreCollection<Measurement>;
   measurements: Measurement[];
+  measurements$: Subscription;
   followUpCol: AngularFirestoreCollection<FollowUpConsultation>;
   followUps: FollowUpConsultation[];
+  followUps$: Subscription;
   firstConsultationsCol: AngularFirestoreCollection<FollowUpConsultation>;
   firstConsultations: FollowUpConsultation[];
+  firstConsultations$: Subscription;
   guidelinesCol: AngularFirestoreCollection<Guideline>;
   guidelines: Observable<Guideline[]>;
   mealplansCol: AngularFirestoreCollection<Mealplan>;
-  mealplans$: Observable<Mealplan[]>;
+  mealplans$: Subscription;
   mealplans: Mealplan[];
 
   tooltipPosition = 'left';
@@ -48,13 +53,11 @@ export class MyClientDetailComponent implements OnInit {
   reviewsVisible = true;
   actionMenuOpen: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
+  stateChange$: Subscription;
   aboutExtended = false;
   hasReadMore = false;
   hasGuidelines = false;
   hasMealplans = false;
-
-
-  // specialist = Observable<Specialist>;
 
   constructor( private afs: AngularFirestore,
                private cdr: ChangeDetectorRef,
@@ -65,7 +68,7 @@ export class MyClientDetailComponent implements OnInit {
                public threadService: ChatThreadService,
                public location: Location,
                public dialog: MatDialog) {
-    this.editStateChange.subscribe((value) => {
+    this.stateChange$ = this.editStateChange.subscribe((value) => {
       this.actionMenuOpen = value;
     });
   }
@@ -74,9 +77,19 @@ export class MyClientDetailComponent implements OnInit {
     this.getUser();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.specialist$.unsubscribe();
+    this.measurements$.unsubscribe();
+    this.mealplans$.unsubscribe();
+    this.stateChange$.unsubscribe();
+    this.firstConsultations$.unsubscribe();
+    this.followUps$.unsubscribe();
+  }
+
   getUser() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
       const sID  = this.user.specialist;
       this.getSpecialist(sID);
@@ -90,7 +103,7 @@ export class MyClientDetailComponent implements OnInit {
   }
 
   getSpecialist(sID: string) {
-    this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
+    this.specialist$ = this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
   }
 
   getGuidelines(uid) {
@@ -102,14 +115,13 @@ export class MyClientDetailComponent implements OnInit {
   getMealplans(uid) {
     this.mealplansCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${uid}`)
       .orderBy('creationDate', 'desc'));
-    this.mealplans$ = this.mealplansCol.valueChanges();
-    this.mealplans$.subscribe(mealplans => this.mealplans = mealplans);
+    this.mealplans$ = this.mealplansCol.valueChanges().subscribe(mealplans => this.mealplans = mealplans);
   }
 
   getMeasurements(uid) {
     this.measurementCol = this.afs.collection('measurements', ref => ref.where('clientID', '==', `${uid}`)
       .orderBy('created', 'desc'));
-    this.measurementCol.valueChanges().subscribe(measurements => {
+    this.measurements$ = this.measurementCol.valueChanges().subscribe(measurements => {
       this.measurements = measurements;
       this.guidelineService.updateMeasurements(measurements);
     });
@@ -118,7 +130,7 @@ export class MyClientDetailComponent implements OnInit {
   getFirstConsultations(uid) {
     this.firstConsultationsCol = this.afs.collection('first-consultations', ref => ref.where('clientID', '==', `${uid}`)
       .orderBy('creationDate', 'desc'));
-    this.firstConsultationsCol.valueChanges().subscribe(firstConsultations => {
+    this.firstConsultations$ = this.firstConsultationsCol.valueChanges().subscribe(firstConsultations => {
       this.firstConsultations = firstConsultations;
       this.guidelineService.updateFics(firstConsultations);
     });
@@ -127,7 +139,7 @@ export class MyClientDetailComponent implements OnInit {
   getFollowUps(uid) {
     this.followUpCol = this.afs.collection('follow-ups', ref => ref.where('clientID', '==', `${uid}`)
       .orderBy('creationDate', 'desc'));
-    this.followUpCol.valueChanges().subscribe(followUps => {
+    this.followUps$ = this.followUpCol.valueChanges().subscribe(followUps => {
       this.followUps = followUps;
     });
   }

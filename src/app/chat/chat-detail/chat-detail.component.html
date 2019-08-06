@@ -1,5 +1,5 @@
-<main class="detail-wrapper" *ngIf="!showThread && thread">
-  <mat-toolbar *ngIf="auth.user | async as user">
+<main class="detail-wrapper" *ngIf="!showThread && thread && auth.user | async as user">
+  <mat-toolbar>
     <button mat-icon-button (click)="goBack()" class="back-btn not-mobile">
       <mat-icon>arrow_back</mat-icon>
     </button>
@@ -24,6 +24,6 @@
     <app-chat-feed></app-chat-feed>
   </section>
   <section class="chat-input">
-    <app-chat-input></app-chat-input>
+    <app-chat-input [user]="user"></app-chat-input>
   </section>
 </main>

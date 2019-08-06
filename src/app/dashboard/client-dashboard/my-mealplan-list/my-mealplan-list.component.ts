@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
-import { MealplanService } from './../../../mealplans/mealplan.service';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Mealplan } from './../../../mealplans/mealplan.model';
 import { UserService } from './../../../user/user.service';
 import { AuthService } from './../../../core/auth/auth.service';
@@ -13,22 +12,26 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
   styleUrls: ['./my-mealplan-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MyMealplanListComponent implements OnInit {
+export class MyMealplanListComponent implements OnInit, OnDestroy {
   mealplanCol: AngularFirestoreCollection<Mealplan[]>;
   mealplans: Observable<Mealplan[][]>;
   specialist: User;
+  userSubscription$: Subscription;
 
-  constructor( private mealplanService: MealplanService,
-               private userService: UserService,
+  constructor( private userService: UserService,
                private afs: AngularFirestore,
                private auth: AuthService) { }
 
   ngOnInit() {
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
+    this.userSubscription$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
       const clientID = user.uid;
       this.mealplanCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${clientID}`));
       this.mealplans = this.mealplanCol.valueChanges();
     });
+  }
+
+  ngOnDestroy() {
+    this.userSubscription$.unsubscribe();
   }
 
 }

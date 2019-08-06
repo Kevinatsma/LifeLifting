@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from './../user/user.model';
@@ -9,21 +9,27 @@ import { AuthService } from '../core/auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ClientService {
+
+export class ClientService implements OnDestroy {
   userCol: AngularFirestoreCollection<User>;
   users: Observable<User[]>;
   userDoc: AngularFirestoreDocument<User>;
   user: Observable<User>;
   editShow: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
+  stateChange$: Subscription;
 
   constructor( private afs: AngularFirestore,
                private auth: AuthService) {
     this.userCol = this.afs.collection(`users`, ref => ref.where('roles.specialist', '==', false));
     this.users = this.getClients();
-    this.editStateChange.subscribe((value) => {
+    this.stateChange$ = this.editStateChange.subscribe((value) => {
       this.editShow = value;
     });
+  }
+
+  ngOnDestroy() {
+    this.stateChange$.unsubscribe();
   }
 
 

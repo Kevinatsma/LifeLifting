@@ -1,17 +1,19 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { AddFoodDialogComponent } from '../shared/dialogs/add-food-dialog/add-food-dialog.component';
 import { Food } from './food.model';
 import { FoodService } from './food.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-foods',
   templateUrl: './foods.component.html',
   styleUrls: ['./foods.component.scss']
 })
-export class FoodsComponent implements OnInit {
+export class FoodsComponent implements OnInit, OnDestroy {
   foods: Food[];
+  foods$: Subscription;
   searchFoods: Food[];
   searchActive = false;
 
@@ -21,9 +23,13 @@ export class FoodsComponent implements OnInit {
                public cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.foodService.getFoods().subscribe(foods => {
+    this.foods$ =  this.foodService.getFoods().subscribe(foods => {
       this.foods = foods;
     });
+  }
+
+  ngOnDestroy() {
+    this.foods$.unsubscribe();
   }
 
   openDialog() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MealplanService } from '../../../../mealplans/mealplan.service';
 import { MatDialog } from '@angular/material';
@@ -11,20 +11,23 @@ import { Food } from '../../../../foods/food.model';
 import { FoodService } from '../../../../foods/food.service';
 import { AddMealDialogService } from '../add-meal-dialog.service';
 import { Time } from './../../../../shared/data/models/time.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-friday-form',
   templateUrl: 'friday-form.component.html',
   styleUrls: ['./../add-meal-dialog.component.scss']
 })
-export class FridayFormComponent implements OnInit {
+export class FridayFormComponent implements OnInit, OnDestroy {
   @Input() foods: Array<Food>;
   @Input() mealTimes;
   @Output() mealFormChange = new EventEmitter();
   user = User;
   specialistID;
+  specialistID$: Subscription;
   hide = true;
   exercises: Exercise[];
+  foods$: Subscription;
 
   ///////////////
   // FormGroups
@@ -89,7 +92,7 @@ export class FridayFormComponent implements OnInit {
                private mealService: AddMealDialogService,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
-                this.foodService.getFoods().subscribe(foods => this.foods = foods);
+                this.foods$ = this.foodService.getFoods().subscribe(foods => this.foods = foods);
 
                 // Query elements
                 const controlButtons = document.querySelectorAll('.dialog-button');
@@ -140,10 +143,14 @@ export class FridayFormComponent implements OnInit {
       mSevenMealTwoArr: this.fb.array([ this.createProduct()]),
     });
 
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
+    this.specialistID$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
     });
-    // this.userService.getUserDataByID(this.fridayMealplan.clientID).subscribe(user => this.client = user);
+  }
+
+  ngOnDestroy() {
+    this.specialistID$.unsubscribe();
+    this.foods$.unsubscribe();
   }
 
   ///////////////////////////////////////////////////////////

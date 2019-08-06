@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, HostListener, ViewChild, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -8,7 +8,7 @@ import { UserService } from '../../../user/user.service';
 import { FoodService } from '../../../foods/food.service';
 import { MealplanService } from '../../../mealplans/mealplan.service';
 import { EditMealDialogService } from './edit-meal-dialog.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 // Data
 import { MAT_DIALOG_DATA } from '@angular/material';
@@ -35,7 +35,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
   templateUrl: './edit-meal-dialog.component.html',
   styleUrls: ['./edit-meal-dialog.component.scss'],
 })
-export class EditMealDialogComponent implements OnInit {
+export class EditMealDialogComponent implements OnInit, OnDestroy {
   // Child components
   @ViewChild(EditMondayFormComponent) mondayComp: EditMondayFormComponent;
   @ViewChild(EditTuesdayFormComponent) tuesdayComp: EditTuesdayFormComponent;
@@ -46,9 +46,12 @@ export class EditMealDialogComponent implements OnInit {
 
   // Values for storing data
   client: User;
+  client$: Subscription;
   clients: Observable<User[]>;
   specialistID;
+  specialistID$: Subscription;
   specialist: Specialist;
+  specialist$: Subscription;
   mealplan: Mealplan;
 
   // FormGroups
@@ -59,12 +62,19 @@ export class EditMealDialogComponent implements OnInit {
 
   // Day forms, these get changed by events emitted from the child components
   mondayMeals: Observable<DayForm>;
+  monday$: Subscription;
   tuesdayMeals: Observable<DayForm>;
+  tuesday$: Subscription;
   wednesdayMeals: Observable<DayForm>;
+  wednesday$: Subscription;
   thursdayMeals: Observable<DayForm>;
+  thursday$: Subscription;
   fridayMeals: Observable<DayForm>;
+  friday$: Subscription;
   supps: Observable<SuppsForm>;
+  supps$: Subscription;
   exercises: Observable<{}>;
+  foods$: Subscription;
 
   // Select value loops - retreive from json/firestore
   mealTimeNames = mealTimes.mealTimes;
@@ -98,8 +108,8 @@ export class EditMealDialogComponent implements OnInit {
                public dialog: MatDialog,
                private dialogRef: MatDialogRef<EditMealDialogComponent>,
                @Inject(MAT_DIALOG_DATA) public data: any) {
-                this.foodService.getFoods().subscribe(foods => this.foods = foods);
-                this.userService.getUserDataByID(this.data.mealplan.clientID).subscribe(client => this.client = client);
+                this.foods$ = this.foodService.getFoods().subscribe(foods => this.foods = foods);
+                this.client$ = this.userService.getUserDataByID(this.data.mealplan.clientID).subscribe(client => this.client = client);
                 this.mealplan = this.data.mealplan;
                }
 
@@ -115,7 +125,7 @@ export class EditMealDialogComponent implements OnInit {
       mealTimeArr: this.fb.array([]),
     });
 
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
+    this.specialistID$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
       const sID =  user.specialist;
       this.getSpecialist(sID);
@@ -124,18 +134,30 @@ export class EditMealDialogComponent implements OnInit {
         this.afs.collection('users', ref => ref.where('specialist', '==', `${sID}`));
       this.clients = myClientsCol.valueChanges();
     });
-    // this.userService.getUserDataByID(this.mealplan.clientID).subscribe(user => this.client = user);
 
     // Subscribe to Form day Objects
-    this.editMealService.mondayFormChange.subscribe(obj => this.mondayMeals = obj);
-    this.editMealService.tuesdayFormChange.subscribe(obj => this.tuesdayMeals = obj);
-    this.editMealService.wednesdayFormChange.subscribe(obj => this.wednesdayMeals = obj);
-    this.editMealService.thursdayFormChange.subscribe(obj => this.thursdayMeals = obj);
-    this.editMealService.fridayFormChange.subscribe(obj => this.fridayMeals = obj);
-    this.editMealService.suppsFormChange.subscribe(obj => this.supps = obj);
+    this.monday$ = this.editMealService.mondayFormChange.subscribe(obj => this.mondayMeals = obj);
+    this.tuesday$ = this.editMealService.tuesdayFormChange.subscribe(obj => this.tuesdayMeals = obj);
+    this.wednesday$ = this.editMealService.wednesdayFormChange.subscribe(obj => this.wednesdayMeals = obj);
+    this.thursday$ = this.editMealService.thursdayFormChange.subscribe(obj => this.thursdayMeals = obj);
+    this.friday$ = this.editMealService.fridayFormChange.subscribe(obj => this.fridayMeals = obj);
+    this.supps$ = this.editMealService.suppsFormChange.subscribe(obj => this.supps = obj);
 
     // Fill arrays and objects
     this.loadForm(this.data.mealplan);
+  }
+
+  ngOnDestroy() {
+    this.foods$.unsubscribe();
+    this.monday$.unsubscribe();
+    this.tuesday$.unsubscribe();
+    this.wednesday$.unsubscribe();
+    this.thursday$.unsubscribe();
+    this.friday$.unsubscribe();
+    this.supps$.unsubscribe();
+    this.specialistID$.unsubscribe();
+    this.specialist$.unsubscribe();
+    this.client$.unsubscribe();
   }
 
   // Save items on step change
@@ -206,7 +228,7 @@ export class EditMealDialogComponent implements OnInit {
   // Getters
 
   getSpecialist(sID: string) {
-    this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
+    this.specialist$ = this.specialistService.getSpecialistData(sID).subscribe(specialist => (this.specialist = specialist));
   }
 
 

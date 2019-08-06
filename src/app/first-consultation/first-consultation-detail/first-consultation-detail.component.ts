@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirstConsultationService } from '../first-consultation.service';
 import { Specialist } from '../../specialists/specialist.model';
@@ -15,7 +15,7 @@ import { GuidelineService } from '../../guidelines/guideline.service';
 import { Guideline } from '../../guidelines/guideline.model';
 import { AuthService } from '../../core/auth/auth.service';
 import { EditFirstConsultationComponent } from './../edit-first-consultation/edit-first-consultation.component';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { UtilService } from '../../shared/services/util.service';
 import { DisplayTextDialogComponent } from '../../shared/dialogs/display-text-dialog/display-text-dialog.component';
 
@@ -26,15 +26,15 @@ import { DisplayTextDialogComponent } from '../../shared/dialogs/display-text-di
   styleUrls: [
     './first-consultation-detail.component.scss',
     './../first-consultation-list-item/first-consultation-list-item.component.scss'
-  ],
+  ]
 })
-export class FirstConsultationDetailComponent implements OnInit {
+export class FirstConsultationDetailComponent implements OnInit, OnDestroy {
   firstConsultationNav: ElementRef;
   firstNavItem: ElementRef;
   @ViewChild('firstConsultationNav') set content(content: ElementRef) {
     this.firstConsultationNav = content;
   }
- firstConsultation$: Observable<FirstConsultation>;
+ firstConsultation$: Subscription;
  firstConsultation: FirstConsultation;
 
  isMobile: boolean;
@@ -57,14 +57,19 @@ export class FirstConsultationDetailComponent implements OnInit {
     eThree: any;
   };
   exerciseOne: Exercise;
+  exerciseOne$: Subscription;
   exerciseTwo: Exercise;
+  exerciseTwo$: Subscription;
   exerciseThree: Exercise;
+  exerciseThree$: Subscription;
 
   specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
   user: User;
+  user$: Subscription;
   client: User;
+  client$: Subscription;
   gainWeight: boolean;
   increaseCals: boolean;
   actionMenuOpen: boolean;
@@ -88,15 +93,23 @@ export class FirstConsultationDetailComponent implements OnInit {
                 this.editStateChange.subscribe((value) => {
                   this.actionMenuOpen = value;
                 });
-
                 this.isMobile = this.utils.checkIfMobile();
-  }
+              }
 
   ngOnInit() {
     this.getFirstConsultation();
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
+    this.user$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
       this.user = user;
     });
+  }
+
+  ngOnDestroy() {
+    this.firstConsultation$.unsubscribe();
+    this.user$.unsubscribe();
+    this.client$.unsubscribe();
+    if (this.exerciseOne$ !== undefined) { this.exerciseOne$.unsubscribe(); }
+    if (this.exerciseTwo !== undefined) { this.exerciseTwo$.unsubscribe(); }
+    if (this.exerciseThree !== undefined) { this.exerciseThree$.unsubscribe(); }
   }
 
   // Getters
@@ -104,26 +117,28 @@ export class FirstConsultationDetailComponent implements OnInit {
   getFirstConsultation() {
     setTimeout(() => {
       const id = this.route.snapshot.paramMap.get('id');
-      this.firstConsultation$ = this.firstConsultationService.getFirstConsultationDataById(id);
-      this.firstConsultation$.subscribe(firstConsultation => {
-        this.firstConsultation = firstConsultation;
-        this.userService.getUserDataByID(firstConsultation.clientID).subscribe(user => this.client = user);
+      this.firstConsultation$ = this.firstConsultationService.getFirstConsultationDataById(id)
+        .subscribe(firstConsultation => {
+          this.firstConsultation = firstConsultation;
+          this.client$ = this.userService.getUserDataByID(firstConsultation.clientID).subscribe(user => {
+            this.client = user;
+          });
         });
     }, 500);
   }
 
   getExercises(guideline) {
     this.exerciseService.getMultipleExercises(guideline);
-    this.exerciseService.guideExercises.eOne.subscribe(exercise => {
+    this.exerciseOne$ = this.exerciseService.guideExercises.eOne.subscribe(exercise => {
       this.exercises.eOne = exercise;
     });
     if (this.exerciseService.guideExercises.eTwo) {
-      this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
+      this.exerciseTwo$ = this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
         this.exercises.eTwo = exercise;
       });
     }
     if (this.exerciseService.guideExercises.eThree) {
-      this.exerciseService.guideExercises.eThree.subscribe(exercise => {
+      this.exerciseThree$ = this.exerciseService.guideExercises.eThree.subscribe(exercise => {
         this.exercises.eThree = exercise;
       });
     }
@@ -139,7 +154,7 @@ export class FirstConsultationDetailComponent implements OnInit {
   // Open/closers
 
   editFirstConsultation(firstConsultation) {
-    const dialogRef = this.dialog.open(EditFirstConsultationComponent, {
+    this.dialog.open(EditFirstConsultationComponent, {
       data: {
         firstConsultation: firstConsultation,
         client: this.client
@@ -147,14 +162,10 @@ export class FirstConsultationDetailComponent implements OnInit {
       panelClass: 'first-consultation-dialog',
       disableClose: true
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // AFter close
-    });
   }
 
-  openNotesDialog(firstConsultation) {
-    const dialogRef = this.dialog.open(DisplayTextDialogComponent, {
+  openNotesDialog() {
+    this.dialog.open(DisplayTextDialogComponent, {
       data: {
         title: `Extra notes for this consultation`,
         text: this.firstConsultation.specialistNotes
@@ -165,7 +176,6 @@ export class FirstConsultationDetailComponent implements OnInit {
 
   aboutExtendedToggle() {
     this.aboutExtended = this.aboutExtended ? this.aboutExtended : false;
-    // this.cdr.detectChanges();
   }
 
   /*
@@ -308,3 +318,4 @@ export class FirstConsultationDetailComponent implements OnInit {
     this.location.back();
   }
 }
+

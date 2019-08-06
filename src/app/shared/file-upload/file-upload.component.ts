@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { FileSizePipe } from './../pipes/file-size.pipe';
 
@@ -9,12 +9,13 @@ import { FileSizePipe } from './../pipes/file-size.pipe';
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss'],
 })
-export class FileUploadComponent implements OnInit {
+export class FileUploadComponent implements OnDestroy {
 
   @Output() imageEvent = new EventEmitter<string>();
 
   // Main Task
   task: AngularFireUploadTask;
+  task$: Subscription;
 
   // Tracing
   percentage: Observable<number>;
@@ -22,6 +23,7 @@ export class FileUploadComponent implements OnInit {
 
   // Download URL
   downloadURL: Observable<string>;
+  downloadURL$: Subscription;
   imageURL: string;
 
   // Dropzone Hover State
@@ -29,7 +31,9 @@ export class FileUploadComponent implements OnInit {
 
   constructor( private storage: AngularFireStorage) { }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.task$.unsubscribe();
+    this.downloadURL$.unsubscribe();
   }
 
   toggleHover(event: boolean) {
@@ -47,11 +51,11 @@ export class FileUploadComponent implements OnInit {
     this.percentage = task.percentageChanges();
     this.snapshot = task.snapshotChanges();
     // get notified when the download URL is available
-    task.snapshotChanges()
+    this.task$ = task.snapshotChanges()
     .pipe(
         finalize(() => {
           this.downloadURL = fileRef.getDownloadURL();
-          this.downloadURL.subscribe(url => {
+          this.downloadURL$ = this.downloadURL.subscribe(url => {
             this.imageURL = url;
             this.imageEvent.emit(this.imageURL);
           });
@@ -59,10 +63,6 @@ export class FileUploadComponent implements OnInit {
      )
     .subscribe();
   }
-
-  // .then(() => {
-  //   this.sendDownloadURL();
-  // });
 
   sendDownloadURL() {
     this.imageEvent.emit(this.imageURL);

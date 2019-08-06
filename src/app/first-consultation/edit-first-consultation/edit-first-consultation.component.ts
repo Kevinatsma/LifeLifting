@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, HostListener, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, HostListener, Input, ViewChild, OnDestroy } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
 import { User } from '../../user/user.model';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
@@ -12,13 +12,14 @@ import { Exercise } from '../../exercises/exercise.model';
 import { ExerciseService } from '../../exercises/exercise.service';
 import { FirstConsultation } from '../first-consultation.model';
 import { UtilService } from '../../shared/services/util.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-first-consultation',
   templateUrl: './edit-first-consultation.component.html',
   styleUrls: ['./../add-first-consultation/add-first-consultation.component.scss', './edit-first-consultation.component.scss']
 })
-export class EditFirstConsultationComponent implements OnInit {
+export class EditFirstConsultationComponent implements OnInit, OnDestroy {
   // Elements
   @ViewChild('stepper') stepper: MatStepper;
 
@@ -30,6 +31,7 @@ export class EditFirstConsultationComponent implements OnInit {
   healthConditions = healthConditions.conditions;
   times: Time[] = times.times;
   activities: Exercise[];
+  exercises$: Subscription;
 
   // Form
   basicDataForm: FormGroup;
@@ -54,6 +56,7 @@ export class EditFirstConsultationComponent implements OnInit {
   homeToWorkScale: number;
   workToHomeScale: number;
   age: number;
+  birthDay$: Subscription;
 
   // Disable popup from closing
   @HostListener('window:keyup.esc') onKeyUp() {
@@ -174,9 +177,14 @@ export class EditFirstConsultationComponent implements OnInit {
       specialistNotes: [this.firstConsultation.specialistNotes || ''],
     });
 
-    this.exerciseService.getExercises().subscribe(exercises => this.activities = exercises);
+    this.exercises$ = this.exerciseService.getExercises().subscribe(exercises => this.activities = exercises);
     this.loadForm(this.firstConsultation);
     this.getBirthday();
+  }
+
+  ngOnDestroy() {
+    this.birthDay$.unsubscribe();
+    this.exercises$.unsubscribe();
   }
 
   // Getters
@@ -204,7 +212,7 @@ export class EditFirstConsultationComponent implements OnInit {
   }
 
   getBirthday() {
-    this.basicDataForm.get('birthDate').valueChanges.subscribe(val => {
+    this.birthDay$ = this.basicDataForm.get('birthDate').valueChanges.subscribe(val => {
       this.age = this.utilService.getAge(val);
     });
   }

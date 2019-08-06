@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { User } from '../../user/user.model';
 import { Router } from '@angular/router';
 import { FollowUpConsultation } from '../follow-up-consultation.model';
@@ -11,6 +11,7 @@ import { EditFollowUpComponent } from '../edit-follow-up/edit-follow-up.componen
 import { SpecialistService } from './../../specialists/specialist.service';
 import { Specialist } from './../../specialists/specialist.model';
 import { FollowUpDetailComponent } from '../follow-up-detail/follow-up-detail.component';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -19,11 +20,12 @@ import { FollowUpDetailComponent } from '../follow-up-detail/follow-up-detail.co
   styleUrls: ['./follow-up-list-item.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FollowUpListItemComponent implements OnInit {
+export class FollowUpListItemComponent implements OnDestroy {
   @Input() followUp: FollowUpConsultation;
   @Input() client: User;
   @Input() i;
   specialist: Specialist;
+  specialist$: Subscription;
   detailOpen = false;
 
   constructor( public auth: AuthService,
@@ -34,12 +36,13 @@ export class FollowUpListItemComponent implements OnInit {
                  setTimeout(() => this.getSpecialist(this.client.specialist));
                 }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.specialist$.unsubscribe();
   }
 
   // Getters
   getSpecialist(id) {
-    this.specialistService.getSpecialistData(id).subscribe(specialist => this.specialist = specialist);
+    this.specialist$ = this.specialistService.getSpecialistData(id).subscribe(specialist => this.specialist = specialist);
   }
 
   // Data modifiers

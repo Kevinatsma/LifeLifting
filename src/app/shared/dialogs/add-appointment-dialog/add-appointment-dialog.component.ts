@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { BookingService } from './../../../booking/booking.service';
@@ -8,7 +8,7 @@ import { AuthService } from './../../../core/auth/auth.service';
 import { Specialist } from './../../../specialists/specialist.model';
 import { UserService } from './../../../user/user.service';
 import { SpecialistService } from './../../../specialists/specialist.service';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { UtilService } from '../../services/util.service';
 import { take } from 'rxjs/operators';
 
@@ -18,12 +18,15 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./add-appointment-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AddAppointmentDialogComponent implements OnInit {
+export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
   user: User;
   specialist: Specialist;
   specialistID: string;
   clients: User[];
+  clients$: Subscription;
   specialists: Specialist[];
+  specialist$: Subscription;
+  specialists$: Subscription;
 
   hide = true;
   appointmentForm: FormGroup;
@@ -105,8 +108,13 @@ export class AddAppointmentDialogComponent implements OnInit {
     });
   }
 
-  // Toggles
+  ngOnDestroy() {
+    this.clients$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
+    this.specialists$.unsubscribe();
+  }
 
+  // Toggles
   toggleContext() {
     const formValue = this.appointmentForm.get('appointmentContext').value;
 
@@ -140,13 +148,12 @@ export class AddAppointmentDialogComponent implements OnInit {
   }
 
   // Getters
-
   get appointmentText() {
     return this.appointmentForm.get('appointmentText');
   }
 
   getClients() {
-    this.userService.getUsers().subscribe(users => this.clients = users);
+    this.clients$ = this.userService.getUsers().subscribe(users => this.clients = users);
   }
 
   getSpecialist() {
@@ -159,7 +166,7 @@ export class AddAppointmentDialogComponent implements OnInit {
       sID = this.user.specialist;
     }
     this.specialistID = sID;
-    this.specialistService.getSpecialistData(sID).pipe(take(1)).subscribe(specialist => {
+    this.specialist$ = this.specialistService.getSpecialistData(sID).pipe(take(1)).subscribe(specialist => {
       this.specialist = specialist;
     });
     setTimeout(() => {
@@ -168,7 +175,7 @@ export class AddAppointmentDialogComponent implements OnInit {
   }
 
   getSpecialists() {
-    this.specialistService.getSpecialists().subscribe(specialists => this.specialists = specialists);
+    this.specialists$ = this.specialistService.getSpecialists().subscribe(specialists => this.specialists = specialists);
   }
 
   // Add Appointment
@@ -219,7 +226,10 @@ export class AddAppointmentDialogComponent implements OnInit {
       location: this.appointmentForm.get('location').value || null,
       whatsappNumber: this.appointmentForm.get('wappNumber').value || null,
       skypeName: this.appointmentForm.get('skypeName').value || null,
-      onlineAppointmentPhone: this.appointmentForm.get('phoneAreaCode').value + this.appointmentForm.get('phoneRest').value || null
+      onlineAppointmentPhone: {
+        phoneAreaCode: this.appointmentForm.get('phoneAreaCode').value,
+        phoneRest: this.appointmentForm.get('phoneRest').value || null
+      }
     };
 
     // Update request amount on specialist

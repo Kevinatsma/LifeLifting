@@ -1,17 +1,15 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { User } from '../../user/user.model';
 import { Router } from '@angular/router';
 import { FirstConsultation } from '../first-consultation.model';
 import { AuthService } from '../../core/auth/auth.service';
 import { MatDialog } from '@angular/material';
-import { UserService } from '../../user/user.service';
 import { FirstConsultationService } from '../first-consultation.service';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
-// import { EditFirstConsultationComponent } from '../edit-first-consultation/edit-first-consultation.component';
 import { SpecialistService } from '../../specialists/specialist.service';
 import { Specialist } from '../../specialists/specialist.model';
-import { FirstConsultationDetailComponent } from '../first-consultation-detail/first-consultation-detail.component';
 import { EditFirstConsultationComponent } from '../edit-first-consultation/edit-first-consultation.component';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -20,11 +18,12 @@ import { EditFirstConsultationComponent } from '../edit-first-consultation/edit-
   styleUrls: ['./first-consultation-list-item.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FirstConsultationListItemComponent implements OnInit {
+export class FirstConsultationListItemComponent implements OnDestroy {
   @Input() firstConsultation: FirstConsultation;
   @Input() client: User;
   @Input() i;
   specialist: Specialist;
+  specialist$: Subscription;
   detailOpen = false;
 
   constructor( public auth: AuthService,
@@ -35,12 +34,13 @@ export class FirstConsultationListItemComponent implements OnInit {
                  setTimeout(() => this.getSpecialist(this.client.specialist));
                 }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.specialist$.unsubscribe();
   }
 
   // Getters
   getSpecialist(id) {
-    this.specialistService.getSpecialistData(id).subscribe(specialist => this.specialist = specialist);
+    this.specialist$ = this.specialistService.getSpecialistData(id).subscribe(specialist => this.specialist = specialist);
   }
 
   // Data modifiers

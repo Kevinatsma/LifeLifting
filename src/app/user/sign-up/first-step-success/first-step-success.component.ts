@@ -1,18 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { AuthService } from './../../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../user.service';
 import { User } from '../../user.model';
 import { UtilService } from './../../../shared/services/util.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-first-step-success',
   templateUrl: './first-step-success.component.html',
   styleUrls: ['./first-step-success.component.scss', './../../login/login.component.scss']
 })
-export class FirstStepSuccessComponent implements OnInit {
+export class FirstStepSuccessComponent implements OnInit, OnDestroy {
   @Output() close = new EventEmitter();
   user: User;
+  user$: Subscription;
   isMobile: boolean;
 
   constructor( public auth: AuthService,
@@ -27,9 +29,13 @@ export class FirstStepSuccessComponent implements OnInit {
     this.getUserData();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+  }
+
   getUserData() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
     });
   }

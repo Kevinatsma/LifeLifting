@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from '../../user.model';
 import { Specialist } from './../../../specialists/specialist.model';
 import { Appointment } from './../../../booking/appointment.model';
@@ -8,16 +8,20 @@ import { AuthService } from './../../../core/auth/auth.service';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-limbo-state',
   templateUrl: './limbo-state.component.html',
   styleUrls: ['./limbo-state.component.scss']
 })
-export class LimboStateComponent implements OnInit {
+export class LimboStateComponent implements OnInit, OnDestroy {
   user: User;
+  user$: Subscription;
   specialist: Specialist;
+  specialist$: Subscription;
   events: Appointment[];
+  events$: Subscription;
   event: Appointment;
 
   // Toggles
@@ -35,6 +39,12 @@ export class LimboStateComponent implements OnInit {
     this.redirect();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.specialist$.unsubscribe();
+    this.events$.unsubscribe();
+  }
+
   redirect() {
     if ( this.auth.currentUserId ) {
       this.getUser();
@@ -43,26 +53,21 @@ export class LimboStateComponent implements OnInit {
     }
   }
   // Getters
-
-  // Get user
   getUser() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
-      // Get Specialist
-      this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
+      this.specialist$ = this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
       this.getAppointments(user);
     });
   }
-
-  // Get appointments
 
   getAppointments(user) {
     const colRef: AngularFirestoreCollection =
       this.afs.collection('appointments', ref => ref.where('members', 'array-contains', `${user.uid}`)
         .limit(1)
         .orderBy('created', 'desc'));
-    this.bookingService.getSpecificAppointments(colRef).subscribe(events => {
+    this.events$ = this.bookingService.getSpecificAppointments(colRef).subscribe(events => {
       this.events = events;
     });
   }

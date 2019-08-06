@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -8,12 +8,13 @@ import { finalize } from 'rxjs/operators';
   templateUrl: './file-upload-button.component.html',
   styleUrls: ['./file-upload-button.component.scss']
 })
-export class FileUploadButtonComponent implements OnInit {
+export class FileUploadButtonComponent implements OnInit, OnDestroy {
   @Input() url: any;
   @Output() imageEvent = new EventEmitter<string>();
 
   // Main Task
   task: AngularFireUploadTask;
+  task$: Subscription;
 
   // Tracing
   percentage: Observable<number>;
@@ -21,6 +22,7 @@ export class FileUploadButtonComponent implements OnInit {
 
   // Download URL
   downloadURL: Observable<string>;
+  downloadURL$: Subscription;
   imageURL: string;
 
   // Dropzone Hover State
@@ -46,17 +48,22 @@ export class FileUploadButtonComponent implements OnInit {
     this.percentage = task.percentageChanges();
     this.snapshot = task.snapshotChanges();
     // get notified when the download URL is available
-    task.snapshotChanges()
+    this.task$ = task.snapshotChanges()
     .pipe(
         finalize(() => {
           this.downloadURL = fileRef.getDownloadURL();
-          this.downloadURL.subscribe(url => {
+          this.downloadURL$ = this.downloadURL.subscribe(url => {
             this.imageURL = url;
             this.imageEvent.emit(this.imageURL);
           });
         })
      )
     .subscribe();
+  }
+
+  ngOnDestroy() {
+    this.task$.unsubscribe();
+    this.downloadURL$.unsubscribe();
   }
 
   sendDownloadURL() {

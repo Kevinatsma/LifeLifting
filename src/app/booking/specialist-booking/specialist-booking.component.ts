@@ -2,13 +2,14 @@ import {
   Component,
   ChangeDetectionStrategy,
   OnInit,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  OnDestroy
 } from '@angular/core';
 import {
   isSameMonth,
   isSameDay,
 } from 'date-fns';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -48,9 +49,11 @@ import { EventRequestComponent } from './../../requests/event-request/event-requ
   ]
 })
 
-export class SpecialistBookingComponent implements OnInit {
+export class SpecialistBookingComponent implements OnInit, OnDestroy {
   user: User;
   specialist: Specialist;
+  user$: Subscription;
+  specialist$: Subscription;
   view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
@@ -63,10 +66,6 @@ export class SpecialistBookingComponent implements OnInit {
     mode: 'indeterminate',
     value: 70
   };
-
-
-  // events$: Observable<Array<CalendarEvent<{ film: Film }>>>;
-  // events$: Observable<Appointment[]>;
 
   modalData: {
     action: string;
@@ -87,15 +86,17 @@ export class SpecialistBookingComponent implements OnInit {
                private utilService: UtilService,
                public location: Location,
                public router: Router,
-               private route: ActivatedRoute,
                private afs: AngularFirestore) {
                }
-
-
 
   ngOnInit() {
     this.getUser();
     this.replaceDates();
+  }
+
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.specialist$.unsubscribe();
   }
 
   replaceDates() {
@@ -106,11 +107,11 @@ export class SpecialistBookingComponent implements OnInit {
 
   getUser() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
       // get Specialist
       const sID = `specialist${user.sID}`;
-      this.specialistService.getSpecialistData(sID).subscribe(specialist => {
+      this.specialist$ = this.specialistService.getSpecialistData(sID).subscribe(specialist => {
         this.specialist = specialist;
         if (this.specialist.stats) {
           if (this.specialist.stats.amountOfEventRequests > 0) {

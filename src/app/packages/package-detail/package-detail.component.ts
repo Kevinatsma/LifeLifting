@@ -1,11 +1,12 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PackageService } from '../package.service';
 import { Specialist } from './../../specialists/specialist.model';
 import { SpecialistService } from './../../specialists/specialist.service';
 import { Package } from '../package.model';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -13,14 +14,15 @@ import { Package } from '../package.model';
   templateUrl: './package-detail.component.html',
   styleUrls: ['./package-detail.component.scss']
 })
-export class PackageDetailComponent implements OnInit {
+export class PackageDetailComponent implements OnInit, OnDestroy {
   package: Package;
+  package$: Subscription;
+  prevPackage$: Subscription;
+  nextPackage$: Subscription;
   specialist: Specialist;
+  specialist$: Subscription;
   aboutExtended = false;
   reviewsVisible = true;
-
-
-  // specialist = Observable<Specialist>;
 
   constructor( private cdr: ChangeDetectorRef,
                public router: Router,
@@ -35,9 +37,16 @@ export class PackageDetailComponent implements OnInit {
     this.getPackage();
   }
 
+  ngOnDestroy() {
+    this.package$.unsubscribe();
+    this.prevPackage$.unsubscribe();
+    this.nextPackage$.unsubscribe();
+    this.specialist$.unsubscribe();
+  }
+
   getPackage() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.packageService.getPackageData(id).subscribe(llPackage => (this.package = llPackage));
+    this.package$ = this.packageService.getPackageData(id).subscribe(llPackage => (this.package = llPackage));
   }
 
   aboutExtendedOpen() {
@@ -81,13 +90,13 @@ export class PackageDetailComponent implements OnInit {
     const packageID = llPackage.packageID - 1;
     const url = `dashboard/packages/${packageID}`;
     this.router.navigate([url]);
-    this.packageService.getPackageData(packageID).subscribe(a => (this.package = a));
+    this.prevPackage$ = this.packageService.getPackageData(packageID).subscribe(a => (this.package = a));
   }
 
   linkToNext(llPackage) {
     const packageID = llPackage.packageID + 1;
     const url = `dashboard/packages/${packageID}`;
     this.router.navigate([url]);
-    this.packageService.getPackageData(packageID).subscribe(a => (this.package = a));
+    this.nextPackage$ = this.packageService.getPackageData(packageID).subscribe(a => (this.package = a));
   }
 }

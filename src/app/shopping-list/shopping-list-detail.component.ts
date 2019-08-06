@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Mealplan } from '../mealplans/mealplan.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MealplanService } from '../mealplans/mealplan.service';
@@ -9,15 +9,18 @@ import { FoodService } from '../foods/food.service';
 import { MatDialog } from '@angular/material';
 import { PrintShoppingListComponent } from './print-shopping-list/print-shopping-list.component';
 import { UtilService } from '../shared/services/util.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-list-detail',
   templateUrl: './shopping-list-detail.component.html',
   styleUrls: ['./shopping-list-detail.component.scss']
 })
-export class ShoppingListDetailComponent implements OnInit {
+export class ShoppingListDetailComponent implements OnInit, OnDestroy {
   mealplan: Mealplan;
+  mealplan$: Subscription;
   foods: Food[];
+  foods$: Subscription;
   foodArr: Array<any> = [];
   countFoodItemArr: Array<any> = [];
   allFoodItemsArr: Array<any> = [];
@@ -34,12 +37,17 @@ export class ShoppingListDetailComponent implements OnInit {
     this.getMealplan();
   }
 
+  ngOnDestroy() {
+    this.foods$.unsubscribe();
+    this.mealplan$.unsubscribe();
+  }
+
   getMealplan() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.foodService.getFoods().subscribe(foods => {
+    this.foods$ = this.foodService.getFoods().subscribe(foods => {
       this.foods = foods;
 
-      this.mealplanService.getMealplanDataById(id).subscribe(mealplan => {
+      this.mealplan$ = this.mealplanService.getMealplanDataById(id).subscribe(mealplan => {
         this.mealplan = mealplan;
         this.getArrays(mealplan);
       });

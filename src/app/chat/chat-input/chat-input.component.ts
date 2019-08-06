@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { AuthService } from './../../core/auth/auth.service';
@@ -15,26 +15,15 @@ import { Observable } from 'rxjs';
   templateUrl: './chat-input.component.html',
   styleUrls: ['./chat-input.component.scss']
 })
-export class ChatInputComponent implements OnInit {
+export class ChatInputComponent {
+  @Input() user: User;
   message: string;
-  user: User;
 
   constructor( private route: ActivatedRoute,
                private messageService: ChatMessageService,
                private auth: AuthService,
                private threadService: ChatThreadService,
                private userService: UserService ) { }
-
-  ngOnInit() {
-    this.getUser();
-  }
-
-  getUser() {
-    const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
-      this.user = user;
-    });
-  }
 
   send() {
     const channelId = this.route.snapshot.paramMap.get('id');

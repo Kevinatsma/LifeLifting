@@ -1,10 +1,10 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { Specialist } from '../../../specialists/specialist.model';
 import { ActivatedRoute } from '@angular/router';
 import { SpecialistService } from '../../../specialists/specialist.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ChatThreadService } from '../../../chat/chat-thread.service';
 import { UserService } from '../../../user/user.service';
 import { User } from '../../../user/user.model';
@@ -20,9 +20,11 @@ import { Review } from '../../../reviews/review.model';
   templateUrl: './my-specialist.component.html',
   styleUrls: ['./my-specialist.component.scss']
 })
-export class MySpecialistComponent implements OnInit {
+export class MySpecialistComponent implements OnInit, OnDestroy {
   user: User;
+  user$: Subscription;
   specialist: Specialist;
+  specialist$: Subscription;
   mySpecialistActive = true;
   aboutExtended = false;
   reviewsVisible = true;
@@ -47,10 +49,15 @@ export class MySpecialistComponent implements OnInit {
     this.getUser();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.specialist$.unsubscribe();
+  }
+
   // Getters
   getUser() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
       this.getMySpecialist(user);
     });
@@ -58,7 +65,7 @@ export class MySpecialistComponent implements OnInit {
 
   getMySpecialist(user) {
     const id = this.route.snapshot.paramMap.get('id') || user.specialist;
-    this.specialistService.getSpecialistData(id).subscribe(specialist => {
+    this.specialist$ = this.specialistService.getSpecialistData(id).subscribe(specialist => {
       this.specialist = specialist;
       this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${specialist.uid}`));
       this.reviews = this.reviewsCol.valueChanges();

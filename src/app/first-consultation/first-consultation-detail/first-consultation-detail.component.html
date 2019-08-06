@@ -1,4 +1,4 @@
-<main class="specialist-wrapper" *ngIf="firstConsultation$ | async as firstConsultation">
+<main class="specialist-wrapper" *ngIf="firstConsultation">
   <section class="action-toolbar-top">
     <div class="left" *ngIf="auth.user | async as user">
       <button type="button" class="icon-button" (click)="goBack()">
@@ -16,7 +16,7 @@
         </h5>
       </h1>
       <ng-template #gID>
-          <h1>FirstConsultation ID: {{firstConsultation.mID}}</h1>
+        <h1>FirstConsultation ID: {{firstConsultation.mID}}</h1>
       </ng-template>
     </div>
 

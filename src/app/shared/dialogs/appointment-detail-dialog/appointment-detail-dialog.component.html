@@ -43,22 +43,6 @@
       </div>
     </section>
 
-    <!-- <section class="appointment-type" *ngIf="event.faceToFacePhone.whatever">
-      <h4>Face 2 face</h4>
-      <ul>
-        <li>
-          <i class="fas fa-map-marker-alt"></i>
-          <a class="text-link"  href="https://maps.google.com">{{event.location}}</a>
-        </li>
-        <li class="phone">
-          <i class="fas fa-phone"></i>
-          <a class="text-link" href="tel:{{event.faceToFacePhone.phoneAreaCode}}{{event.faceToFacePhone.phoneRest}}">
-            {{event.faceToFacePhone.phoneAreaCode}}{{event.faceToFacePhone.phoneRest}}
-          </a>
-        </li>
-      </ul>
-    </section> -->
-
     <section class="appointment-type" *ngIf="event">
       <div class="contact-container" *ngIf="onlineAppointment">
         <h4>Online call</h4>
@@ -76,7 +60,7 @@
           </p>
         </div>
 
-        <div class="contact-container__item phone" *ngIf="onlinePhone && event.onlineAppointmentPhone.phoneRest">
+        <div class="contact-container__item phone" *ngIf="event.onlineAppointmentPhone">
           <p *ngIf="client">
             <i class="fas fa-phone"></i>
             <a class="text-link" href="tel:{{event.onlineAppointmentPhone.phoneAreaCode}}{{event.onlineAppointmentPhone.phoneRest}}">

@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { BookingService } from '../../booking/booking.service';
 import { Appointment } from '../../booking/appointment.model';
@@ -7,6 +7,7 @@ import { User } from './../../user/user.model';
 import { SpecialistService } from './../../specialists/specialist.service';
 import { UserService } from './../../user/user.service';
 import { AuthService } from './../../core/auth/auth.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-appointment-detail',
@@ -14,11 +15,13 @@ import { AuthService } from './../../core/auth/auth.service';
   styleUrls: ['./appointment-detail.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppointmentDetailComponent {
+export class AppointmentDetailComponent implements OnDestroy {
   @Input() event: Appointment;
   @Input() editAllowed: boolean;
   editShow = false;
   // Involved user objects
+  specialist$: Subscription;
+  client$: Subscription;
   specialist: Specialist;
   client: User;
 
@@ -66,13 +69,14 @@ export class AppointmentDetailComponent {
         this.getSpecialist(this.event.specialistID);
         this.getClient(this.event.clientID);
       }, 200);
-    }
+  }
+
+  ngOnDestroy() {
+    this.specialist$.unsubscribe();
+    this.client$.unsubscribe();
+  }
 
   // Getters
-
-  // get editShow(): boolean {
-  //   return this.bookingService.editShow;
-  // }
 
   doEventCheck(e) {
     if (e.meetMethod === 'faceToFace') {
@@ -93,7 +97,7 @@ export class AppointmentDetailComponent {
       } else {
         this.skype = true;
       }
-      if (e.onlineAppointmentPhone.phoneRest === '') {
+      if (e.onlineAppointmentPhone.phoneRest !== '') {
         this.onlinePhone = false;
       } else {
         this.onlinePhone = true;
@@ -133,11 +137,15 @@ export class AppointmentDetailComponent {
   }
 
   getSpecialist(sID) {
-    this.specialistService.getSpecialistData(sID).subscribe(obj => this.specialist = obj);
+    this.specialist$ = this.specialistService.getSpecialistData(sID).subscribe(obj => {
+      this.specialist = obj;
+    });
   }
 
   getClient(uid) {
-    this.userService.getUserDataByID(uid).subscribe(obj => this.client = obj);
+    this.client$ = this.userService.getUserDataByID(uid).subscribe(obj => {
+      this.client = obj;
+    });
   }
 
   // Edit event

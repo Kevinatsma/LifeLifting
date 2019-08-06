@@ -1,4 +1,4 @@
-import { Component, Inject, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { Component, Inject, ViewEncapsulation, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { BookingService } from '../../../booking/booking.service';
 import { Appointment } from '../../../booking/appointment.model';
@@ -7,7 +7,7 @@ import { User } from './../../../user/user.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { UserService } from './../../../user/user.service';
 import { AuthService } from './../../../core/auth/auth.service';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-appointment-detail-dialog',
@@ -15,12 +15,14 @@ import { Subject } from 'rxjs';
   styleUrls: ['./appointment-detail-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppointmentDetailDialogComponent {
+export class AppointmentDetailDialogComponent implements OnDestroy {
   event: Appointment;
 
   // Involved user objects
   specialist: Specialist;
+  specialist$: Subscription;
   client: User;
+  client$: Subscription;
 
   // Substrings to display date and time
   start = {
@@ -61,7 +63,6 @@ export class AppointmentDetailDialogComponent {
                @Inject(MAT_DIALOG_DATA) public data: any,
                private specialistService: SpecialistService
     ) {
-      // this.getEvent(data.event);
       this.event = data.event.event;
       this.doEventCheck(this.event);
       this.getTimeAndDate();
@@ -70,8 +71,12 @@ export class AppointmentDetailDialogComponent {
       this.getClient(this.event.clientID);
     }
 
-  // Getters
+  ngOnDestroy() {
+    this.specialist$.unsubscribe();
+    this.client$.unsubscribe();
+  }
 
+  // Getters
   getEvent(data) {
     setTimeout(() => {
       if (this.event) {
@@ -110,7 +115,6 @@ export class AppointmentDetailDialogComponent {
         this.onlinePhone = true;
       }
     }
-    // this.cdr.detectChanges();
   }
 
   getTimeAndDate() {
@@ -145,11 +149,11 @@ export class AppointmentDetailDialogComponent {
   }
 
   getSpecialist(sID) {
-    this.specialistService.getSpecialistData(sID).subscribe(obj => this.specialist = obj);
+    this.specialist$ = this.specialistService.getSpecialistData(sID).subscribe(obj => this.specialist = obj);
   }
 
   getClient(uid) {
-    this.userService.getUserDataByID(uid).subscribe(obj => this.client = obj);
+    this.client$ = this.userService.getUserDataByID(uid).subscribe(obj => this.client = obj);
   }
 
   // Edit event

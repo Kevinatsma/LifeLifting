@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { Guideline } from './guideline.model';
 import { MatSnackBar } from '@angular/material';
 import { UserService } from '../user/user.service';
@@ -12,9 +12,10 @@ import { FirstConsultation } from '../first-consultation/first-consultation.mode
 @Injectable({
   providedIn: 'root'
 })
-export class GuidelineService {
+export class GuidelineService implements OnDestroy {
   specialistID: string;
   user: User;
+  user$: Subscription;
   guidelineCol: AngularFirestoreCollection<Guideline>;
   guidelines: Observable<Guideline[]>;
   guidelineDoc: AngularFirestoreDocument<Guideline>;
@@ -39,7 +40,7 @@ export class GuidelineService {
                public snackBar: MatSnackBar,
                private userService: UserService
              ) {
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.user = user;
       this.specialistID = this.user.sID;
     });
@@ -53,7 +54,10 @@ export class GuidelineService {
     this.ficChange.subscribe((value) => {
       this.fics = value;
     });
+  }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
   }
 
   toggleEdit() {

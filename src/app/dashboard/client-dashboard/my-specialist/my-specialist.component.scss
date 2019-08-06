@@ -19,16 +19,18 @@ app-loading-spinner {
 
 main.specialist-wrapper {
     box-sizing: border-box;
-    width: 100%;
+    width: 75vw;
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 1.5em 2em;
+    min-width: 75vw;
 
     @include respond-down($sm) {
         flex-direction: column;
         padding: 1.5em 1em;
         height: 100%;
+        width: 100%;
     }
 
     .action-toolbar-top {

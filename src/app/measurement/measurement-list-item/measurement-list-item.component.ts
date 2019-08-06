@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { User } from './../../user/user.model';
 import { Router } from '@angular/router';
 import { Measurement } from './../measurement.model';
@@ -9,6 +9,7 @@ import { MeasurementService } from './../measurement.service';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { EditMeasurementComponent } from '../edit-measurement/edit-measurement.component';
 import { MeasurementDetailComponent } from '../measurement-detail/measurement-detail.component';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -17,11 +18,12 @@ import { MeasurementDetailComponent } from '../measurement-detail/measurement-de
   styleUrls: ['./measurement-list-item.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MeasurementListItemComponent implements OnInit {
+export class MeasurementListItemComponent implements OnInit, OnDestroy {
   @Input() measurement: Measurement;
   @Input() client: User;
   @Input() i;
   specialist: User;
+  specialist$: Subscription;
   detailOpen = false;
 
   constructor( public auth: AuthService,
@@ -31,7 +33,11 @@ export class MeasurementListItemComponent implements OnInit {
                private measurementService: MeasurementService) { }
 
   ngOnInit() {
-    this.userService.getUserDataByID(this.measurement.specialistID).subscribe(user => this.specialist = user);
+    this.specialist$ =  this.userService.getUserDataByID(this.measurement.specialistID).subscribe(user => this.specialist = user);
+  }
+
+  ngOnDestroy() {
+    this.specialist$.unsubscribe();
   }
 
   deleteMeasurement(measurement) {

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { Mealplan } from './mealplan.model';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
@@ -12,9 +12,10 @@ import { User } from '../user/user.model';
 @Injectable({
   providedIn: 'root'
 })
-export class MealplanService {
+export class MealplanService implements OnDestroy {
   specialistID: string;
   user: User;
+  user$: Subscription;
   mealplanCol: AngularFirestoreCollection<Mealplan>;
   mealplans: Observable<Mealplan[]>;
   mealplanDoc: AngularFirestoreDocument<Mealplan>;
@@ -35,7 +36,7 @@ export class MealplanService {
                public snackBar: MatSnackBar,
                private userService: UserService
              ) {
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.user = user;
       this.specialistID = this.user.sID;
     });
@@ -43,7 +44,10 @@ export class MealplanService {
     this.editStateChange.subscribe((value) => {
       this.editShow = value;
     });
+  }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
   }
 
   toggleEdit() {

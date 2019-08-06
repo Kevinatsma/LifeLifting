@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, HostListener, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Inject, HostListener, ViewChild, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
 import { User } from '../../user/user.model';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
@@ -11,13 +11,14 @@ import healthConditions from './../../shared/data/JSON/healthConditions.json';
 import { Exercise } from './../../exercises/exercise.model';
 import { ExerciseService } from './../../exercises/exercise.service';
 import { UtilService } from './../../shared/services/util.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-first-consultation',
   templateUrl: './add-first-consultation.component.html',
   styleUrls: ['./add-first-consultation.component.scss']
 })
-export class AddFirstConsultationComponent implements OnInit {
+export class AddFirstConsultationComponent implements OnInit, OnDestroy {
   // Elements
   @ViewChild('stepper') stepper: MatStepper;
 
@@ -28,6 +29,7 @@ export class AddFirstConsultationComponent implements OnInit {
   healthConditions = healthConditions.conditions;
   times: Time[] = times.times;
   activities: Exercise[];
+  exercises$: Subscription;
 
   // Form
   basicDataForm: FormGroup;
@@ -51,6 +53,7 @@ export class AddFirstConsultationComponent implements OnInit {
   hungryScale: string;
   homeToWorkScale: string;
   workToHomeScale: string;
+  birthDay$: Subscription;
   age: number;
 
   // Disable popup from closing
@@ -170,8 +173,13 @@ export class AddFirstConsultationComponent implements OnInit {
       specialistNotes: [''],
     });
 
-    this.exerciseService.getExercises().subscribe(exercises => this.activities = exercises);
+    this.exercises$ = this.exerciseService.getExercises().subscribe(exercises => this.activities = exercises);
     this.getBirthday();
+  }
+
+  ngOnDestroy() {
+    this.exercises$.unsubscribe();
+    this.birthDay$.unsubscribe();
   }
 
   // Getters
@@ -199,7 +207,7 @@ export class AddFirstConsultationComponent implements OnInit {
   }
 
   getBirthday() {
-    this.basicDataForm.get('birthDate').valueChanges.subscribe(val => {
+    this.birthDay$ = this.basicDataForm.get('birthDate').valueChanges.subscribe(val => {
       this.age = this.utilService.getAge(val);
     });
   }

@@ -1,19 +1,21 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { FollowUpConsultation } from '../follow-up-consultation.model';
 import { User } from './../../user/user.model';
 import { MealplanService } from './../../mealplans/mealplan.service';
 import { Mealplan } from './../../mealplans/mealplan.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-follow-up-detail',
   templateUrl: './follow-up-detail.component.html',
   styleUrls: ['./follow-up-detail.component.scss']
 })
-export class FollowUpDetailComponent implements OnInit {
+export class FollowUpDetailComponent implements OnDestroy {
   followUp: FollowUpConsultation;
   client: User;
   mealplan: Mealplan;
+  mealplan$: Subscription;
 
   constructor( public dialog: MatDialog,
                private mealService: MealplanService,
@@ -23,11 +25,12 @@ export class FollowUpDetailComponent implements OnInit {
                   this.getMealplan(data.followUp.mealplanID);
               }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.mealplan$.unsubscribe();
   }
 
   getMealplan(mID) {
-    this.mealService.getMealplanDataById(mID).subscribe(mealplan => this.mealplan = mealplan);
+    this.mealplan$ = this.mealService.getMealplanDataById(mID).subscribe(mealplan => this.mealplan = mealplan);
   }
 
   closeDialog() {

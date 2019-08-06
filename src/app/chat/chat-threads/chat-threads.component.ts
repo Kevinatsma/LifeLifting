@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 import { Thread } from './../thread.model';
 import { ChatThreadService } from './../chat-thread.service';
@@ -13,11 +13,12 @@ import { UtilService } from './../../shared/services/util.service';
   templateUrl: './chat-threads.component.html',
   styleUrls: ['./chat-threads.component.scss']
 })
-export class ChatThreadsComponent implements OnInit {
+export class ChatThreadsComponent implements OnInit, OnDestroy {
   @ViewChild(ChatDetailComponent) chatComp: ChatDetailComponent;
   threads: Observable<Thread[]>;
   thread: Observable<Thread>;
   showThreads: boolean;
+  showThreads$: Subscription;
   isMobile: boolean;
 
   constructor( public route: ActivatedRoute,
@@ -26,7 +27,7 @@ export class ChatThreadsComponent implements OnInit {
                private utils: UtilService,
                public router: Router
                ) {
-                 this.threadService.showThread.subscribe(showThread => this.showThreads = showThread);
+                 this.showThreads$ = this.threadService.showThread.subscribe(showThread => this.showThreads = showThread);
                  this.threadService.showThread.next(true);
                  this.isMobile = this.utils.checkIfMobile();
                }
@@ -34,6 +35,10 @@ export class ChatThreadsComponent implements OnInit {
   ngOnInit() {
     this.threadService.getThreads();
     this.threads = this.threadService.threads;
+  }
+
+  ngOnDestroy() {
+    this.showThreads$.unsubscribe();
   }
 
   linkToChild(thread) {

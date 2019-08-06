@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MealplanService } from '../../../../mealplans/mealplan.service';
 import { MatDialog } from '@angular/material';
@@ -11,13 +11,14 @@ import { Food } from '../../../../foods/food.model';
 import { FoodService } from '../../../../foods/food.service';
 import { EditMealDialogService } from '../edit-meal-dialog.service';
 import { Time } from '../../../data/models/time.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-wednesday-form',
   templateUrl: 'edit-wednesday-form.component.html',
   styleUrls: ['./../edit-meal-dialog.component.scss']
 })
-export class EditWednesdayFormComponent implements OnInit {
+export class EditWednesdayFormComponent implements OnInit, OnDestroy {
   @Input() foods: Array<Food>;
   @Input() mealTimes;
   @Input() client: User;
@@ -25,6 +26,7 @@ export class EditWednesdayFormComponent implements OnInit {
   @Output() mealFormChange = new EventEmitter();
   user = User;
   specialistID;
+  specialistID$: Subscription;
   hide = true;
   exercises: Exercise[];
 
@@ -87,11 +89,9 @@ export class EditWednesdayFormComponent implements OnInit {
   constructor( private fb: FormBuilder,
                private auth: AuthService,
                private userService: UserService,
-               private foodService: FoodService,
                private editMealService: EditMealDialogService,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
-                this.foodService.getFoods().subscribe(foods => this.foods = foods);
               }
 
   ngOnInit() {
@@ -126,13 +126,16 @@ export class EditWednesdayFormComponent implements OnInit {
       mSevenMealTwoArr: this.fb.array([]),
     });
 
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
+    this.specialistID$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
     });
 
     this.loadForm();
   }
 
+  ngOnDestroy() {
+    this.specialistID$.unsubscribe();
+  }
 
   // Update data when mat stepper changes steps
   updateData() {

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy, ChangeDetectorRef } from '@angular
 import { User } from '../../user.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../user.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { Specialist } from './../../../specialists/specialist.model';
@@ -29,6 +29,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   // Form
   editUserForm: FormGroup;
   specialist: Specialist;
+  specialist$: Subscription;
   specialists: Observable<Specialist[]>;
   selectedSpecialist = '';
   downloadURL: string | null;
@@ -80,14 +81,20 @@ export class EditUserComponent implements OnInit, OnDestroy {
     }, 200);
   }
 
-  // Getters
+  ngOnDestroy() {
+    this.specialist$.unsubscribe();
+    this.userService.editShow = false;
+  }
 
+  // Getters
   get editShow(): boolean {
     return this.userService.editShow;
   }
 
   getSpecialist(user) {
-    this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
+    this.specialist$ = this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => {
+      this.specialist = specialist;
+    });
   }
 
   // Listeners
@@ -125,11 +132,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   // Toggles
 
   toggleEdit() {
-      this.userService.toggleEdit();
-  }
-
-  ngOnDestroy() {
-    this.userService.editShow = false;
+    this.userService.toggleEdit();
   }
 
   editUser() {

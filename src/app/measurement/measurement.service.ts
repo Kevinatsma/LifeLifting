@@ -1,23 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Measurement } from './measurement.model';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { MatSnackBar } from '@angular/material';
 import { UserService } from '../user/user.service';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MeasurementService {
+export class MeasurementService implements OnDestroy {
   measurementDoc: AngularFirestoreDocument;
+  measurements$: Subscription;
 
   constructor( private afs: AngularFirestore,
                private snackBar: MatSnackBar,
                private userService: UserService
                ) { }
 
+  ngOnDestroy() {
+    this.measurements$.unsubscribe();
+  }
 
   getMeasurements(colRef) {
-    colRef.valueChanges().subscribe(measurements => {
+    this.measurements$ = colRef.valueChanges().subscribe(measurements => {
       return measurements;
     });
   }

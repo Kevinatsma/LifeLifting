@@ -1004,6 +1004,13 @@ mat-select.ng-dirty{
     vertical-align: middle
 }
 
+::ng-deep app-loading-spinner {
+    .container {
+        min-height: calc(100vh - 65px) !important;
+        min-width: 75vw !important;
+    }
+}
+
 // Detail view
 
 .specialist-wrapper {

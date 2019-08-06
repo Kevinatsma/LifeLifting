@@ -1,19 +1,21 @@
-import { Component, OnInit, Inject, HostListener } from '@angular/core';
+import { Component, OnInit, Inject, HostListener, OnDestroy } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { User } from './../../user/user.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FollowUpConsultationService } from '../follow-up-consultation.service';
 import { Mealplan } from './../../mealplans/mealplan.model';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-follow-up',
   templateUrl: './add-follow-up.component.html',
   styleUrls: ['./add-follow-up.component.scss']
 })
-export class AddFollowUpComponent implements OnInit {
+export class AddFollowUpComponent implements OnInit, OnDestroy {
   client: User;
   mealplans: Mealplan[];
+  mealplans$: Subscription;
   mealplansCol: AngularFirestoreCollection<Mealplan>;
 
   // Form
@@ -71,10 +73,14 @@ export class AddFollowUpComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.mealplans$.unsubscribe();
+  }
+
   // Getters
   getMealplans(client) {
     this.mealplansCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${client.uid}`));
-    this.mealplansCol.valueChanges().subscribe(mealplans => {
+    this.mealplans$ = this.mealplansCol.valueChanges().subscribe(mealplans => {
       if (mealplans.length > 0) {
         this.hasMealplans = true;
       }

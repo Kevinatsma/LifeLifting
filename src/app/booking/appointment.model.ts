@@ -21,7 +21,10 @@ export class Appointment {
     members?: Array<string>;
     meetMethod?: string;
     contactMethod?: string;
-    onlineAppointmentPhone?: string;
+    onlineAppointmentPhone?: {
+      phoneAreaCode: string,
+      phoneRest: number
+    };
     whatsappNumber?: string;
     skypeName?: string;
     faceToFacePhone?: number;

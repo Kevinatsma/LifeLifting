@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material';
@@ -13,17 +13,19 @@ import { AddMealDialogService } from '../add-meal-dialog.service';
 import { Guideline } from './../../../../guidelines/guideline.model';
 import { GuidelineService } from './../../../../guidelines/guideline.service';
 import { ExerciseService } from './../../../../exercises/exercise.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-supps-form',
   templateUrl: 'supps-form.component.html',
   styleUrls: ['./../add-meal-dialog.component.scss']
 })
-export class SuppsFormComponent implements OnInit {
+export class SuppsFormComponent implements OnInit, OnDestroy {
   @Input() foods: Array<Food>;
   @Output() suppsFormChange = new EventEmitter();
-  user = User;
+  user: User;
   specialistID;
+  specialistID$: Subscription;
   hide = true;
 
   // Form
@@ -34,12 +36,18 @@ export class SuppsFormComponent implements OnInit {
 
   // Guidelines and Exercises
   guideline: Guideline;
+  guideline$: Subscription;
   guidelines: Guideline[];
+  guidelines$: Subscription;
   guideExercises: Object;
   exercises: any;
   exerciseOne: Exercise;
+  exerciseOne$: Subscription;
   exerciseTwo: Exercise;
+  exerciseTwo$: Subscription;
   exerciseThree: Exercise;
+  exerciseThree$: Subscription;
+  foods$: Subscription;
 
 
   constructor( private fb: FormBuilder,
@@ -51,10 +59,10 @@ export class SuppsFormComponent implements OnInit {
                public guidelineService: GuidelineService,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
-                this.foodService.getFoods().subscribe(foods => this.foods = foods);
+                this.foods$ = this.foodService.getFoods().subscribe(foods => this.foods = foods);
 
                 // Get guidelines
-                this.guidelineService.getGuidelinesByClient(userData.uid).subscribe(guidelines => {
+                this.guidelines$ = this.guidelineService.getGuidelinesByClient(userData.uid).subscribe(guidelines => {
                   this.guidelines = guidelines;
 
                   if (this.guidelines.length < 1) {
@@ -97,9 +105,19 @@ export class SuppsFormComponent implements OnInit {
       afterThreeArr: this.fb.array([ this.createProduct()]),
     });
 
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
+    this.specialistID$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
     });
+  }
+
+  ngOnDestroy() {
+    this.specialistID$.unsubscribe();
+    this.foods$.unsubscribe();
+    if (this.exerciseOne$ !== undefined) { this.exerciseOne$.unsubscribe(); }
+    if (this.exerciseTwo !== undefined) { this.exerciseTwo$.unsubscribe(); }
+    if (this.exerciseThree !== undefined) { this.exerciseThree$.unsubscribe(); }
+    this.guideline$.unsubscribe();
+    this.guidelines$.unsubscribe();
   }
 
 
@@ -107,7 +125,7 @@ export class SuppsFormComponent implements OnInit {
 
   guidelineHandler() {
     const id = this.suppsForm.get('guideline').value;
-    this.guidelineService.getGuidelineDataById(id)
+    this.guideline$ = this.guidelineService.getGuidelineDataById(id)
       .subscribe(guideline => {
         this.guideline = guideline;
         this.getExercises(guideline);
@@ -118,16 +136,16 @@ export class SuppsFormComponent implements OnInit {
 
   getExercises(guideline) {
     this.exerciseService.getMultipleExercises(guideline);
-    this.exerciseService.guideExercises.eOne.subscribe(exercise => {
+    this.exerciseOne$ = this.exerciseService.guideExercises.eOne.subscribe(exercise => {
       this.exerciseOne = exercise;
     });
     if (this.exerciseService.guideExercises.eTwo) {
-      this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
+      this.exerciseTwo$ = this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
         this.exerciseTwo = exercise;
       });
     }
     if (this.exerciseService.guideExercises.eThree) {
-      this.exerciseService.guideExercises.eThree.subscribe(exercise => {
+      this.exerciseThree$ = this.exerciseService.guideExercises.eThree.subscribe(exercise => {
         this.exerciseThree = exercise;
       });
     }

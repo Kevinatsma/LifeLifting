@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { UserService } from '../../../../user/user.service';
 import { User } from '../../../../user/user.model';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
@@ -11,8 +11,9 @@ import { AuthService } from './../../../../core/auth/auth.service';
   templateUrl: './my-client-list.component.html',
   styleUrls: ['./my-client-list.component.scss']
 })
-export class MyClientListComponent implements OnInit {
+export class MyClientListComponent implements OnInit, OnDestroy {
   specialist: User;
+  specialist$: Subscription;
   myClients: Observable<User[]>;
   myClientsCol: AngularFirestoreCollection<User>;
 
@@ -21,13 +22,16 @@ export class MyClientListComponent implements OnInit {
                private  auth: AuthService) { }
 
   ngOnInit() {
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
+    this.specialist$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
       this.specialist = user;
       const specialistID = 'specialist'  + this.specialist.sID;
       this.myClientsCol = this.afs.collection('users', ref => ref.where('specialist', '==', `${specialistID}`));
       this.myClients = this.myClientsCol.valueChanges();
     });
-    // this.myClients = this.userService.getMyClients();
+  }
+
+  ngOnDestroy() {
+    this.specialist$.unsubscribe();
   }
 
 }

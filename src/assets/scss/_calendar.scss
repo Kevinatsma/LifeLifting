@@ -151,6 +151,7 @@
     overflow-y: scroll;
     padding: 3em 2em;
     min-width: 75vw;
+    max-width: 75vw !important;
     width: 75vw;
 
     @include respond-down($sm) {
@@ -160,10 +161,11 @@
     }
 
     &-container {
+        box-sizing: border-box;
+        width: 100%;
+
         @include respond-down($sm) {
             padding: 0!important;
-            width: 100%;
-            box-sizing: border-box;
         }
     }
 

@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, OnDestroy } from '@angular/core';
 
 import { Location } from '@angular/common';
 import { ChatThreadService } from './../chat-thread.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Thread } from './../thread.model';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UtilService } from '../../shared/services/util.service';
@@ -16,25 +16,28 @@ import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/co
   styleUrls: ['./chat-detail.component.scss']
 })
 
-export class ChatDetailComponent implements AfterViewChecked, OnInit {
+export class ChatDetailComponent implements AfterViewChecked, OnInit, OnDestroy {
   @ViewChild('scroller') private feed: ElementRef;
-
+  navigationSubscription$: Subscription;
   threads: Observable<Thread[]>;
   thread: Thread;
+  thread$: Subscription;
   threadId: string;
   showThread: boolean;
+  showThread$: Subscription;
   isMobile: boolean;
   isCreator: boolean;
 
   constructor( public el: ElementRef,
-               private auth: AuthService,
-               private location: Location,
+               public auth: AuthService,
                private threadService: ChatThreadService,
                private utils: UtilService,
                private route: ActivatedRoute,
                private router: Router,
                private dialog: MatDialog) {
-                 this.threadService.showThread.subscribe(thread => this.showThread = thread);
+                 this.showThread$ = this.threadService.showThread.subscribe(thread => {
+                   this.showThread = thread;
+                 });
                  this.isMobile = this.utils.checkIfMobile();
                  setTimeout(() => this.scrollToBottom(), 1000);
                }
@@ -45,12 +48,18 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
 
   ngOnInit() {
     this.getThread();
-    const navigationSubscription = this.router.events.subscribe((e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
+    this.navigationSubscription$ = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event, re-initalise the component
       if (e instanceof NavigationEnd) {
         this.getThread();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.navigationSubscription$.unsubscribe();
+    this.showThread$.unsubscribe();
+    this.thread$.unsubscribe();
   }
 
   scrollToBottom(): void {
@@ -63,7 +72,7 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit {
   getThread() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.threadService.getThread(id).subscribe(thread => {
+      this.thread$ = this.threadService.getThread(id).subscribe(thread => {
         this.threadId = thread.id;
         this.thread = thread;
         this.isCreator = this.checkCreator(thread);

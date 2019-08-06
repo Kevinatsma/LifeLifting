@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
@@ -7,6 +7,7 @@ import { Guideline } from '../guideline.model';
 import { UserService } from './../../user/user.service';
 import { User } from './../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-guideline-list-item',
@@ -14,11 +15,12 @@ import { AuthService } from './../../core/auth/auth.service';
   styleUrls: ['./guideline-list-item.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class GuidelineListItemComponent implements OnInit {
+export class GuidelineListItemComponent implements OnInit, OnDestroy {
   @Input() guideline: Guideline;
   @Input() i;
   detailOpen = false;
   client: User;
+  client$: Subscription;
 
   constructor( public auth: AuthService,
                public router: Router,
@@ -27,7 +29,11 @@ export class GuidelineListItemComponent implements OnInit {
                private guidelineService: GuidelineService) { }
 
   ngOnInit() {
-    this.userService.getUserDataByID(this.guideline.clientID).subscribe(user => this.client = user);
+    this.client$ =  this.userService.getUserDataByID(this.guideline.clientID).subscribe(user => this.client = user);
+  }
+
+  ngOnDestroy() {
+    this.client$.unsubscribe();
   }
 
   deleteGuidelineDialog(guideline) {

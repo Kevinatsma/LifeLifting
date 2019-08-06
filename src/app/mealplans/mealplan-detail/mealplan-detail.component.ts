@@ -1,9 +1,7 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MealplanService } from '../mealplan.service';
-import { Specialist } from '../../specialists/specialist.model';
-import { SpecialistService } from '../../specialists/specialist.service';
 import { Mealplan } from '../mealplan.model';
 import { User } from './../../user/user.model';
 import { UserService } from './../../user/user.service';
@@ -15,7 +13,7 @@ import { GuidelineService } from './../../guidelines/guideline.service';
 import { Guideline } from './../../guidelines/guideline.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { EditMealDialogComponent } from './../../shared/dialogs/edit-meal-dialog/edit-meal-dialog.component';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { UtilService } from './../../shared/services/util.service';
 import { DisplayTextDialogComponent } from './../../shared/dialogs/display-text-dialog/display-text-dialog.component';
 import { PrintMealplanComponent } from './../print-mealplan/print-mealplan.component';
@@ -26,14 +24,14 @@ import { PrintMealplanComponent } from './../print-mealplan/print-mealplan.compo
   templateUrl: './mealplan-detail.component.html',
   styleUrls: ['./mealplan-detail.component.scss', './../mealplan-list-item/mealplan-list-item.component.scss'],
 })
-export class MealplanDetailComponent implements OnInit {
+export class MealplanDetailComponent implements OnInit, OnDestroy {
   mealplanNav: ElementRef;
   firstNavItem: ElementRef;
   @ViewChild('mealplanNav') set content(content: ElementRef) {
     this.mealplanNav = content;
   }
  mealplan: Mealplan;
-
+ mealplan$: Subscription;
  isMobile: boolean;
 
   // Navigation
@@ -45,18 +43,19 @@ export class MealplanDetailComponent implements OnInit {
   fridayTab = false;
   suppsTab = false;
 
-  // Exercises
   guideline: Guideline;
-
-  specialist: Specialist;
+  guideline$: Subscription;
   aboutExtended = false;
   reviewsVisible = true;
   user: User;
+  user$: Subscription;
   client: User;
+  client$: Subscription;
   gainWeight: boolean;
   increaseCals: boolean;
   actionMenuOpen: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
+  stateChange$: Subscription;
 
   constructor( public auth: AuthService,
                public dialog: MatDialog,
@@ -67,13 +66,12 @@ export class MealplanDetailComponent implements OnInit {
                public exerciseService: ExerciseService,
                public guidelineService: GuidelineService,
                public mealplanService: MealplanService,
-               public specialistService: SpecialistService,
                public location: Location) {
                 this.aboutExtended = false;
                 setTimeout(() => {
                   this.createHighlight(this.mealplanNav.nativeElement);
                 }, 1000);
-                this.editStateChange.subscribe((value) => {
+                this.stateChange$ = this.editStateChange.subscribe((value) => {
                   this.actionMenuOpen = value;
                 });
 
@@ -82,9 +80,17 @@ export class MealplanDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getMealplan();
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
+    this.user$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
       this.user = user;
     });
+  }
+
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.client$.unsubscribe();
+    this.guideline$.unsubscribe();
+    this.stateChange$.unsubscribe();
+    this.mealplan$.unsubscribe();
   }
 
   // Getters
@@ -93,9 +99,9 @@ export class MealplanDetailComponent implements OnInit {
     this.gainWeight = this.mealplanService.gainWeight;
     setTimeout(() => {
       const id = this.route.snapshot.paramMap.get('id');
-      this.mealplanService.getMealplanDataById(id).subscribe(mealplan => {
+      this.mealplan$ = this.mealplanService.getMealplanDataById(id).subscribe(mealplan => {
         this.mealplan = mealplan;
-        this.userService.getUserDataByID(mealplan.clientID).subscribe(user => this.client = user);
+        this.client$ = this.userService.getUserDataByID(mealplan.clientID).subscribe(user => this.client = user);
         this.getGuideline(mealplan);
         });
     }, 500);
@@ -104,7 +110,7 @@ export class MealplanDetailComponent implements OnInit {
 
   getGuideline(mealplan) {
     const id = mealplan.supplementation.guideline;
-    this.guidelineService.getGuidelineDataById(id)
+    this.guideline$ = this.guidelineService.getGuidelineDataById(id)
       .subscribe(guideline => {
         this.guideline = guideline;
       });
@@ -125,10 +131,6 @@ export class MealplanDetailComponent implements OnInit {
       },
       panelClass: 'mealplan-dialog',
       disableClose: true
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // AFter close
     });
   }
 

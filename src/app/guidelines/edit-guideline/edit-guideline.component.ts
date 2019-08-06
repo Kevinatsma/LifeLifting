@@ -12,6 +12,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { UtilService } from './../../shared/services/util.service';
 import { Measurement } from './../../measurement/measurement.model';
 import { FirstConsultation } from './../../first-consultation/first-consultation.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-guideline',
@@ -28,6 +29,8 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
   @Input() exercise: Exercise;
   fics: FirstConsultation[];
   measurements: Measurement[];
+  measurement$: Subscription;
+  fic$: Subscription;
   aboutExtended = false;
   reviewsVisible = true;
   increaseCals: boolean;
@@ -93,6 +96,12 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
     });
   }
 
+  ngOnDestroy() {
+    if (this.fic$ !== undefined) { this.fic$.unsubscribe(); }
+    if (this.measurement$ !== undefined) { this.measurement$.unsubscribe(); }
+    this.guidelineService.editShow = false;
+  }
+
   // Getters
 
   get editShow(): boolean {
@@ -121,10 +130,6 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
     } else {
       this.gainWeight = 'Loss';
     }
-  }
-
-  ngOnDestroy() {
-    this.guidelineService.editShow = false;
   }
 
   editGuideline() {
@@ -204,7 +209,7 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
     const ficDoc = this.afs.doc<FirstConsultation>(`first-consultations/${this.editGuidelineForm.get('firstConsultation').value.ficID}`);
     this.formulaValues.factorCalorie = this.editGuidelineForm.get('factorCalorie').value;
 
-    measurementDoc.valueChanges().subscribe(measurement => {
+    this.measurement$ = measurementDoc.valueChanges().subscribe(measurement => {
       if (measurement.weight) {
         this.formulaValues.weight = measurement.weight;
         this.formulaValues.triceps = measurement.skinfolds.triceps;
@@ -220,7 +225,7 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
         this.formulaValues.supraespinal = measurement.skinfolds.supraespinal;
       }
     });
-    ficDoc.valueChanges().subscribe(doc => {
+    this.fic$ = ficDoc.valueChanges().subscribe(doc => {
       this.formulaValues.height = doc.basicData.height;
       this.formulaValues.age = this.utils.getAge(doc.basicData.birthDate.toDate());
       this.formulaValues.gender = doc.basicData.sex;

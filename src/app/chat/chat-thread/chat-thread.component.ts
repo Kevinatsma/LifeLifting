@@ -1,20 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { Thread } from './../thread.model';
 import { ChatThreadService } from './../chat-thread.service';
 import { User } from './../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { UserService } from './../../user/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat-thread',
   templateUrl: './chat-thread.component.html',
   styleUrls: ['./chat-thread.component.scss']
 })
-export class ChatThreadComponent implements OnInit {
+export class ChatThreadComponent implements OnDestroy {
   @Input() thread: Thread;
   user: User;
+  user$: Subscription;
   isCreator: boolean;
   param: string;
   id: any;
@@ -28,7 +29,8 @@ export class ChatThreadComponent implements OnInit {
                 setTimeout(() => this.checkUnreads(), 300);
                }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.user$.unsubscribe();
   }
 
   checkUnreads() {
@@ -43,7 +45,7 @@ export class ChatThreadComponent implements OnInit {
 
   checkCreator() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
       if (this.thread.creator.creatorUID === this.user.uid) {
         return this.isCreator = true;

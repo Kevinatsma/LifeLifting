@@ -2,13 +2,14 @@ import {
   Component,
   ChangeDetectionStrategy,
   OnInit,
-  ViewChild
+  ViewChild,
+  OnDestroy
 } from '@angular/core';
 import {
   isSameMonth,
   isSameDay,
 } from 'date-fns';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -50,9 +51,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   ]
 })
 
-export class SignUpBookingComponent implements OnInit {
+export class SignUpBookingComponent implements OnInit, OnDestroy {
   user: User;
   specialist: Specialist;
+  user$: Subscription;
+  specialist$: Subscription;
   view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
@@ -121,6 +124,11 @@ export class SignUpBookingComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.specialist$.unsubscribe();
+  }
+
   replaceDates() {
     this.utils.replaceCalendarHeaderDates();
   }
@@ -129,10 +137,11 @@ export class SignUpBookingComponent implements OnInit {
 
   getUser() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
-      // get Specialist
-      this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
+      this.specialist$ = this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => {
+        this.specialist = specialist;
+      });
       this.getEvents(this.user);
     });
   }

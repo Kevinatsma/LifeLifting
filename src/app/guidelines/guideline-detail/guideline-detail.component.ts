@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GuidelineService } from '../guideline.service';
@@ -12,7 +12,7 @@ import { ExerciseService } from './../../exercises/exercise.service';
 import { Exercise } from './../../exercises/exercise.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { AuthService } from './../../core/auth/auth.service';
 import { Measurement } from './../../measurement/measurement.model';
 import { FirstConsultation } from './../../first-consultation/first-consultation.model';
@@ -26,26 +26,34 @@ import { take } from 'rxjs/operators';
   templateUrl: './guideline-detail.component.html',
   styleUrls: ['./guideline-detail.component.scss', './../guideline-list-item/guideline-list-item.component.scss']
 })
-export class GuidelineDetailComponent implements OnInit {
+export class GuidelineDetailComponent implements OnInit, OnDestroy {
   guideline: Guideline;
+  guideline$: Subscription;
   guideExercises: Object;
   exercises: any;
   exerciseOne: Exercise;
+  exerciseOne$: Subscription;
   exerciseTwo: Exercise;
+  exerciseTwo$: Subscription;
   exerciseThree: Exercise;
+  exerciseThree$: Subscription;
   specialist: Specialist;
   aboutExtended = false;
   reviewsVisible = true;
   client: User;
+  client$: Subscription;
   gainWeight: boolean;
   increaseCals: boolean;
 
   actionMenuOpen: boolean;
   editStateChange: Subject<boolean> = new Subject<boolean>();
+  stateChange$: Subscription;
 
   measurements: Measurement[];
+  measurements$: Subscription;
   measurement: Measurement;
   fics: FirstConsultation[];
+  fics$: Subscription;
 
   constructor( public auth: AuthService,
                private afs: AngularFirestore,
@@ -60,7 +68,7 @@ export class GuidelineDetailComponent implements OnInit {
                public location: Location) {
                 this.aboutExtended = false;
 
-                this.editStateChange.subscribe((value) => {
+                this.stateChange$ = this.editStateChange.subscribe((value) => {
                   this.actionMenuOpen = value;
                 });
   }
@@ -69,15 +77,29 @@ export class GuidelineDetailComponent implements OnInit {
     this.getGuideline();
   }
 
+  ngOnDestroy() {
+    this.client$.unsubscribe();
+    this.measurements$.unsubscribe();
+    this.guideline$.unsubscribe();
+    if (this.exerciseOne$ !== undefined) { this.exerciseOne$.unsubscribe(); }
+    if (this.exerciseTwo$) {
+      if (this.exerciseTwo !== undefined) { this.exerciseTwo$.unsubscribe(); }
+    }
+    if (this.exerciseThree$) {
+      if (this.exerciseThree !== undefined) { this.exerciseThree$.unsubscribe(); }
+    }
+    this.stateChange$.unsubscribe();
+  }
+
   // Getters
   getGuideline() {
     this.gainWeight = this.guidelineService.gainWeight;
     const id = this.route.snapshot.paramMap.get('id');
-    this.guidelineService.getGuidelineDataById(id)
+    this.guideline$ = this.guidelineService.getGuidelineDataById(id)
       .subscribe(guideline => {
         this.guideline = guideline;
         if (guideline) {
-          this.userService.getUserDataByID(guideline.clientID).subscribe(user => {
+          this.client$ = this.userService.getUserDataByID(guideline.clientID).subscribe(user => {
               this.client = user;
               this.getExtraDocs(user.uid);
           });
@@ -93,7 +115,7 @@ export class GuidelineDetailComponent implements OnInit {
       ref.where('clientID', '==', `${uid}`)
       .orderBy('created', 'desc'))
       .valueChanges();
-    measurementRef.pipe(take(1)).subscribe(measurements => {
+    this.measurements$ = measurementRef.pipe(take(1)).subscribe(measurements => {
       this.measurements = <Measurement[]>measurements;
       this.measurement = this.measurements.find(m => {
         return m.measurementID === `${this.guideline.measurementID}`;
@@ -105,7 +127,7 @@ export class GuidelineDetailComponent implements OnInit {
       ref.where('clientID', '==', `${uid}`)
       .orderBy('creationDate', 'desc'))
       .valueChanges();
-    ficRef.pipe(take(1)).subscribe(fics => {
+    this.fics$ = ficRef.pipe(take(1)).subscribe(fics => {
       this.fics = <FirstConsultation[]>fics;
       this.guidelineService.updateFics(fics);
     });
@@ -143,16 +165,16 @@ export class GuidelineDetailComponent implements OnInit {
   // Getters
   getExercises(guideline) {
     this.exerciseService.getMultipleExercises(guideline);
-    this.exerciseService.guideExercises.eOne.subscribe(exercise => {
+    this.exerciseOne$ = this.exerciseService.guideExercises.eOne.subscribe(exercise => {
       this.exerciseOne = exercise;
     });
     if (this.exerciseService.guideExercises.eTwo) {
-      this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
+      this.exerciseTwo$ = this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
         this.exerciseTwo = exercise;
       });
     }
     if (this.exerciseService.guideExercises.eThree) {
-      this.exerciseService.guideExercises.eThree.subscribe(exercise => {
+      this.exerciseThree$ = this.exerciseService.guideExercises.eThree.subscribe(exercise => {
       this.exerciseThree = exercise;
       });
     }
@@ -166,7 +188,6 @@ export class GuidelineDetailComponent implements OnInit {
 
   // Like this to avoid State Changed Error
   // Open/closers
-
   get editShow(): boolean {
     return this.guidelineService.editShow;
   }

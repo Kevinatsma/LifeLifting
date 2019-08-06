@@ -1,17 +1,19 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { AddExerciseDialogComponent } from '../shared/dialogs/add-exercise-dialog/add-exercise-dialog.component';
 import { Exercise } from './exercise.model';
 import { ExerciseService } from './exercise.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-exercises',
   templateUrl: './exercises.component.html',
   styleUrls: ['./exercises.component.scss']
 })
-export class ExercisesComponent implements OnInit {
+export class ExercisesComponent implements OnInit, OnDestroy {
   exercises: Exercise[];
+  exercises$: Subscription;
   searchExercises: Exercise[];
   searchActive = false;
 
@@ -21,7 +23,11 @@ export class ExercisesComponent implements OnInit {
                public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
+    this.exercises$ = this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
+  }
+
+  ngOnDestroy() {
+    this.exercises$.unsubscribe();
   }
 
   openDialog() {

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { Message } from './../message.model';
 import { ChatMessageService } from './../chat-message.service';
@@ -13,8 +13,10 @@ import { Thread } from '../thread.model';
   styleUrls: ['./chat-messages.component.scss']
 })
 export class ChatMessagesComponent implements OnInit, OnDestroy {
-  navigationSubscription;
-  messages: Observable<Message[]>;
+  navigationSubscription: Subscription;
+  messages$: Observable<Message[]>;
+  messageSubscription$: Subscription;
+  messages: Message[];
   channelId: Observable<string>;
   thread: Thread;
 
@@ -24,8 +26,6 @@ export class ChatMessagesComponent implements OnInit, OnDestroy {
                public router: Router) { }
 
   ngOnInit() {
-    // subscribe to the router events. Store the subscription so we can
-   // unsubscribe later.
     this.getMessages();
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
@@ -38,12 +38,17 @@ export class ChatMessagesComponent implements OnInit, OnDestroy {
   getMessages() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.messages = this.messageService.getMessages(id);
+      this.messages$ = this.messageService.getMessages(id);
+      this.messageSubscription$ = this.messages$.subscribe(messages => {
+        this.messages = messages;
+      });
     }
   }
 
   ngOnDestroy() {
     this.messages = null;
+    this.navigationSubscription.unsubscribe();
+    this.messageSubscription$.unsubscribe();
   }
 
 

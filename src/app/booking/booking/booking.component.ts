@@ -1,13 +1,14 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import {
   isSameMonth,
   isSameDay,
 } from 'date-fns';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -45,9 +46,11 @@ import { UtilService } from './../../shared/services/util.service';
   ]
 })
 
-export class BookingComponent implements OnInit {
+export class BookingComponent implements OnInit, OnDestroy {
   user: User;
   specialist: Specialist;
+  user$: Subscription;
+  specialist$: Subscription;
   view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
@@ -60,18 +63,12 @@ export class BookingComponent implements OnInit {
     value: 70
   };
 
-
-  // events$: Observable<Array<CalendarEvent<{ film: Film }>>>;
-  // events$: Observable<Appointment[]>;
-
   modalData: {
     action: string;
     event: Appointment;
   };
-
   activeDayIsOpen = true;
 
-  // TODO: HOOKUP MAT DIALOG INSTEAD OF BOOTSTRAP MODAL
   constructor( private userService: UserService,
                public auth: AuthService,
                private dialog: MatDialog,
@@ -91,16 +88,22 @@ export class BookingComponent implements OnInit {
     this.replaceDates();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.specialist$.unsubscribe();
+  }
+
   replaceDates() {
     this.utilService.replaceCalendarHeaderDates();
   }
 
   getUser() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ =  this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
-      // get Specialist
-      this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
+      this.specialist$ = this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => {
+        this.specialist = specialist;
+      });
     });
   }
 
@@ -179,12 +182,11 @@ export class BookingComponent implements OnInit {
       } else {
         return;
       }
-
     });
   }
+
   ////////////////
   // For Users
-
   deleteEventDialog(event) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
@@ -215,13 +217,11 @@ export class BookingComponent implements OnInit {
   }
 
   // Chat
-
   chat(id) {
     this.threadService.createThread(id);
   }
 
   // Misc
-
   goBack() {
     this.location.back();
   }

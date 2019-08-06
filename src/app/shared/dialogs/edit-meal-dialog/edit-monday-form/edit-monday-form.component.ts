@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material';
@@ -10,13 +10,14 @@ import { Food } from '../../../../foods/food.model';
 import { FoodService } from '../../../../foods/food.service';
 import { EditMealDialogService } from '../edit-meal-dialog.service';
 import { DayForm, Mealplan } from '../../../../mealplans/mealplan.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-monday-form',
   templateUrl: 'edit-monday-form.component.html',
   styleUrls: ['./../edit-meal-dialog.component.scss']
 })
-export class EditMondayFormComponent implements OnInit {
+export class EditMondayFormComponent implements OnInit, OnDestroy {
   @Input() foods: Array<Food>;
   @Input() mealTimes: DayForm;
   @Input() mealplan;
@@ -24,6 +25,7 @@ export class EditMondayFormComponent implements OnInit {
   @Output() mealFormChange = new EventEmitter();
   user = User;
   specialistID;
+  specialistID$: Subscription;
   hide = true;
   exercises: Exercise[];
 
@@ -83,8 +85,6 @@ export class EditMondayFormComponent implements OnInit {
 
 
   selectedProduct: Food;
-
-
   showAddProduct = true;
 
   constructor( private fb: FormBuilder,
@@ -94,7 +94,6 @@ export class EditMondayFormComponent implements OnInit {
                private editMealService: EditMealDialogService,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
-                this.foodService.getFoods().subscribe(foods => this.foods = foods);
               }
 
   ngOnInit() {
@@ -129,12 +128,15 @@ export class EditMondayFormComponent implements OnInit {
       mSevenMealTwoArr: this.fb.array([]),
     });
 
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
+    this.specialistID$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
     });
 
     this.loadForm();
-    // this.userService.getUserDataByID(this.mondayMealplan.clientID).subscribe(user => this.client = user);
+  }
+
+  ngOnDestroy() {
+    this.specialistID$.unsubscribe();
   }
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Review } from '../review.model';
 import { openClose } from './../../core/animations/open-close.animation';
 import { ReviewsService } from '../reviews.service';
@@ -9,6 +9,7 @@ import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/co
 import { AuthService } from './../../core/auth/auth.service';
 import { UserService } from './../../user/user.service';
 import { User } from './../../user/user.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-review-list-item',
@@ -18,11 +19,12 @@ import { User } from './../../user/user.model';
   templateUrl: './review-list-item.component.html',
   styleUrls: ['./review-list-item.component.scss']
 })
-export class ReviewListItemComponent implements OnInit {
+export class ReviewListItemComponent implements OnInit, OnDestroy {
   @Input() review: Review;
   @Input() specialist: Specialist;
   textOpened = false;
   user: User;
+  user$: Subscription;
 
   constructor( public auth: AuthService,
                private userService: UserService,
@@ -34,6 +36,10 @@ export class ReviewListItemComponent implements OnInit {
     this.getUser();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+  }
+
   // Getters
   get editActive() {
     return this.reviewService.editShow;
@@ -41,7 +47,7 @@ export class ReviewListItemComponent implements OnInit {
 
   getUser() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
     });
   }

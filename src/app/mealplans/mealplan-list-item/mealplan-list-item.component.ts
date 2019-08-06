@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
@@ -8,8 +8,8 @@ import { UserService } from '../../user/user.service';
 import { User } from '../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { EditMealDialogComponent } from './../../shared/dialogs/edit-meal-dialog/edit-meal-dialog.component';
-import { ChooseMealplanDialogComponent } from './../../shared/dialogs/choose-mealplan-dialog/choose-mealplan-dialog.component';
 import { PrintMealplanComponent } from '../print-mealplan/print-mealplan.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mealplan-list-item',
@@ -17,11 +17,12 @@ import { PrintMealplanComponent } from '../print-mealplan/print-mealplan.compone
   styleUrls: ['./mealplan-list-item.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MealplanListItemComponent implements OnInit {
+export class MealplanListItemComponent implements OnInit, OnDestroy {
   @Input() mealplan: Mealplan;
   @Input() i;
   detailOpen = false;
   client: User;
+  client$: Subscription;
 
   constructor( public auth: AuthService,
                public router: Router,
@@ -30,7 +31,11 @@ export class MealplanListItemComponent implements OnInit {
                private mealplanService: MealplanService) { }
 
   ngOnInit() {
-    this.userService.getUserDataByID(this.mealplan.clientID).subscribe(user => this.client = user);
+    this.client$ = this.userService.getUserDataByID(this.mealplan.clientID).subscribe(user => this.client = user);
+  }
+
+  ngOnDestroy() {
+    this.client$.unsubscribe();
   }
 
   deleteMealplanDialog(mealplan) {
@@ -75,10 +80,6 @@ export class MealplanListItemComponent implements OnInit {
       },
       panelClass: 'mealplan-dialog',
       disableClose: true
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // AFter close
     });
   }
 

@@ -11,7 +11,7 @@
       send a request for a date for their first consultation. If you accept by clicking the checkbox, it will show up
       in your calendar. Please let the users know as fast as possible, so you don't lose your clients.
     </p>
-    <app-event-request-list-item *ngFor="let event of events" [event]="event"></app-event-request-list-item>
+    <app-event-request-list-item *ngFor="let event of events" [specialist]="specialist" [event]="event"></app-event-request-list-item>
   </div>
   <ng-template #loading>
     <app-loading-spinner></app-loading-spinner>

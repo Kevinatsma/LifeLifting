@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { FileSizePipe } from '../../pipes/file-size.pipe';
 
@@ -9,12 +9,13 @@ import { FileSizePipe } from '../../pipes/file-size.pipe';
   templateUrl: './file-upload-exercise.component.html',
   styleUrls: ['./file-upload-exercise.component.scss', './../file-upload.component.scss'],
 })
-export class FileUploadExerciseComponent implements OnInit {
+export class FileUploadExerciseComponent implements OnInit, OnDestroy {
 
   @Output() imageEvent = new EventEmitter<string>();
 
   // Main Task
   task: AngularFireUploadTask;
+  task$: Subscription;
 
   // Tracing
   percentage: Observable<number>;
@@ -22,6 +23,7 @@ export class FileUploadExerciseComponent implements OnInit {
 
   // Download URL
   downloadURL: Observable<string>;
+  downloadURL$: Subscription;
   imageURL: string;
 
   // Dropzone Hover State
@@ -47,11 +49,11 @@ export class FileUploadExerciseComponent implements OnInit {
     this.percentage = task.percentageChanges();
     this.snapshot = task.snapshotChanges();
     // get notified when the download URL is available
-    task.snapshotChanges()
+    this.task$ = task.snapshotChanges()
     .pipe(
         finalize(() => {
           this.downloadURL = fileRef.getDownloadURL();
-          this.downloadURL.subscribe(url => {
+          this.downloadURL$ = this.downloadURL.subscribe(url => {
             this.imageURL = url;
             this.imageEvent.emit(this.imageURL);
           });
@@ -60,14 +62,14 @@ export class FileUploadExerciseComponent implements OnInit {
     .subscribe();
   }
 
-  // .then(() => {
-  //   this.sendDownloadURL();
-  // });
+  ngOnDestroy() {
+    this.task$.unsubscribe();
+    this.downloadURL$.unsubscribe();
+  }
 
   sendDownloadURL() {
     this.imageEvent.emit(this.imageURL);
   }
-
 
   // Determines if task is active
   isActive(snapshot) {

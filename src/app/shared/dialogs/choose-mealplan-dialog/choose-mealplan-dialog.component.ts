@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -6,7 +6,7 @@ import { Mealplan } from './../../../mealplans/mealplan.model';
 import { MealplanService } from './../../../mealplans/mealplan.service';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AuthService } from './../../../core/auth/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { UserService } from './../../../user/user.service';
 import { User } from './../../../user/user.model';
 import { Router } from '@angular/router';
@@ -17,8 +17,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./choose-mealplan-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ChooseMealplanDialogComponent implements OnInit {
+export class ChooseMealplanDialogComponent implements OnInit, OnDestroy {
   user: User;
+  user$: Subscription;
   chooseMealplanForm: FormGroup;
   selectedMealplan;
   mealplan: Mealplan;
@@ -44,10 +45,14 @@ export class ChooseMealplanDialogComponent implements OnInit {
     this.getUser();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+  }
+
 
   getUser() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
       this.getMealplans(user.uid);
     });

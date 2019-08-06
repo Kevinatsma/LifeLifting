@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, OnDestroy } from '@angular/core';
 import { BookingService } from './../../../booking/booking.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from './../../../user/user.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Appointment } from './../../../booking/appointment.model';
@@ -13,10 +13,12 @@ import { SpecialistService } from './../../../specialists/specialist.service';
   templateUrl: './event-request-list.component.html',
   styleUrls: ['./event-request-list.component.scss'],
 })
-export class EventRequestListComponent implements OnInit {
+export class EventRequestListComponent implements OnInit, OnDestroy {
   @Input() user: User;
   specialist: Specialist;
+  specialist$: Subscription;
   events: Observable<Appointment[]>;
+  events$: Subscription;
   eventLength: number;
   eventArr = true;
 
@@ -32,9 +34,15 @@ export class EventRequestListComponent implements OnInit {
     }, 500);
   }
 
+  ngOnDestroy() {
+    this.specialist$.unsubscribe();
+    this.events$.unsubscribe();
+    this.updateSpecialist();
+  }
+
   getSpecialist(user) {
     const sID = 'specialist' + user.sID;
-    this.specialistService.getSpecialistData(sID).subscribe(specialist => {
+    this.specialist$ = this.specialistService.getSpecialistData(sID).subscribe(specialist => {
       this.specialist = specialist;
     });
   }
@@ -47,12 +55,22 @@ export class EventRequestListComponent implements OnInit {
     .orderBy('created'));
 
     this.events = this.bookingService.getSpecificAppointments(colRef);
-    this.events.subscribe(events => {
+    this.events$ = this.events.subscribe(events => {
       this.eventArr = events.length > 0;
       this.eventLength = events.length;
     });
   }
 
+  updateSpecialist() {
+    const newStat = this.eventLength;
+    const specialistData = {
+      stats: {
+        amountOfEventRequests: newStat
+      }
+    };
+    const sID = this.specialist.specialistID;
+    this.specialistService.updateSpecialist(sID, specialistData);
+  }
 
   closeDialog() {
     const data = {

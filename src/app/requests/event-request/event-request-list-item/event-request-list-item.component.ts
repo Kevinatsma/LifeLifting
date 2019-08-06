@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Appointment } from './../../../booking/appointment.model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from './../../../user/user.model';
 import { UserService } from './../../../user/user.service';
 import { BookingService } from './../../../booking/booking.service';
@@ -15,10 +15,11 @@ import { SpecialistService } from './../../../specialists/specialist.service';
   styleUrls: ['./event-request-list-item.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class EventRequestListItemComponent implements OnInit {
+export class EventRequestListItemComponent implements OnDestroy {
   @Input() event: Appointment;
+  @Input() specialist: Specialist;
   user: User;
-  specialist: Specialist;
+  user$: Subscription;
   eventAccepted = false;
   deleting = false;
 
@@ -28,16 +29,14 @@ export class EventRequestListItemComponent implements OnInit {
                public router: Router,
                public dialog: MatDialog) {
                 setTimeout(() => {
-                  this.userService.getUserDataByID(this.event.clientID).subscribe(user => {
+                  this.user$ = this.userService.getUserDataByID(this.event.clientID).subscribe(user => {
                     this.user = user;
-                  });
-                  this.specialistService.getSpecialistData(this.event.specialistID).subscribe(specialist => {
-                    this.specialist = specialist;
                   });
                 }, 500);
                }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.user$.unsubscribe();
   }
 
   acceptEvent(event, accepted = true) {

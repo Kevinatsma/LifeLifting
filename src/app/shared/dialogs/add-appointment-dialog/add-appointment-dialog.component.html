@@ -210,13 +210,12 @@
       <ng-container *ngIf="whatsApp | async">
         <div class="multiple-input online-phone" formGroupName="wappNumber">
           <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Area Code</mat-label>
-              <input type="text" matInput formControlName="wappAreaCode" placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
-              <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+            <mat-label>Area Code</mat-label>
+            <input type="text" matInput formControlName="wappAreaCode" placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Phone Number</mat-label>
-              <input type="number" formControlName="wappRest" matInput placeholder="123456789" autocomplete="off" >
+            <mat-label>Phone Number</mat-label>
+            <input type="number" formControlName="wappRest" matInput placeholder="123456789" autocomplete="off" >
           </mat-form-field>
         </div>
       </ng-container>
@@ -229,16 +228,15 @@
       </ng-container>
 
       <ng-container *ngIf="onlinePhone | async">
-        <div class="multiple-input online-phone" formGroupName="onlinePhone">
+        <div class="multiple-input online-phone">
           <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Area code</mat-label>
-              <input type="text" matInput formControlName="phoneAreaCode" [value]="'+51'" readonly
+            <mat-label>Area code</mat-label>
+            <input type="text" matInput formControlName="phoneAreaCode" [value]="'+51'" readonly
               autofocus="off" autocomplete="off" maxlength="3">
-              <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Phone Number</mat-label>
-              <input type="number" formControlName="phoneRest" matInput placeholder="123456789" autocomplete="off" >
+            <mat-label>Phone Number</mat-label>
+            <input type="number" formControlName="phoneRest" matInput placeholder="123456789" autocomplete="off" >
           </mat-form-field>
         </div>
       </ng-container>

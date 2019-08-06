@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MealplanService } from '../../../../mealplans/mealplan.service';
 import { MatDialog } from '@angular/material';
@@ -11,13 +11,14 @@ import { Food } from '../../../../foods/food.model';
 import { FoodService } from '../../../../foods/food.service';
 import { EditMealDialogService } from '../edit-meal-dialog.service';
 import { Time } from '../../../data/models/time.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-tuesday-form',
   templateUrl: 'edit-tuesday-form.component.html',
   styleUrls: ['./../edit-meal-dialog.component.scss']
 })
-export class EditTuesdayFormComponent implements OnInit {
+export class EditTuesdayFormComponent implements OnInit, OnDestroy {
   @Input() foods: Array<Food>;
   @Input() mealTimes;
   @Input() client: User;
@@ -25,6 +26,7 @@ export class EditTuesdayFormComponent implements OnInit {
   @Output() mealFormChange = new EventEmitter();
   user = User;
   specialistID;
+  specialistID$: Subscription;
   hide = true;
   exercises: Exercise[];
 
@@ -91,7 +93,6 @@ export class EditTuesdayFormComponent implements OnInit {
                private editMealService: EditMealDialogService,
                public matDialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public userData: any) {
-                this.foodService.getFoods().subscribe(foods => this.foods = foods);
               }
 
   ngOnInit() {
@@ -126,12 +127,15 @@ export class EditTuesdayFormComponent implements OnInit {
       mSevenMealTwoArr: this.fb.array([]),
     });
 
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
+    this.specialistID$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe(user => {
       this.specialistID = user.uid;
     });
-    // this.userService.getUserDataByID(this.tuesdayMealplan.clientID).subscribe(user => this.client = user);
 
     this.loadForm();
+  }
+
+  ngOnDestroy() {
+    this.specialistID$.unsubscribe();
   }
 
   // Update data when mat stepper changes steps

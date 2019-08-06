@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import {Router} from '@angular/router';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
   AngularFirestoreDocument
 } from 'angularfire2/firestore';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { Thread } from './thread.model';
 import { Message } from './message.model';
 
@@ -15,15 +15,18 @@ import { User } from '../user/user.model';
 import { UserService } from '../user/user.service';
 
 @Injectable()
-export class ChatThreadService {
+export class ChatThreadService implements OnDestroy {
   threadsCollection: AngularFirestoreCollection<Thread>;
   threadDoc: AngularFirestoreDocument<Thread>;
   user: User;
+  user$: Subscription;
   targetUser: User;
+  targetUser$: Subscription;
   threadExists: boolean;
   requestedThread: string;
   reverseRequestedThread: string;
   thread: Observable<Thread>;
+  thread$: Subscription;
   threads: Observable<Thread[]>;
   showThread: Subject<boolean> = new Subject;
 
@@ -37,15 +40,20 @@ export class ChatThreadService {
     this.getUser();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.targetUser$.unsubscribe();
+  }
+
   getUser() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
     });
   }
 
   getTargetUser(profileId) {
-    this.userService.getUserDataByID(profileId).subscribe(targetUser => {
+    this.targetUser$ = this.userService.getUserDataByID(profileId).subscribe(targetUser => {
       this.targetUser = targetUser;
     });
     return this.targetUser;

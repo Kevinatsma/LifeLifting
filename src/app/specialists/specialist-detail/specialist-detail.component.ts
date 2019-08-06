@@ -1,10 +1,10 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { Specialist } from '../specialist.model';
 import { ActivatedRoute } from '@angular/router';
 import { SpecialistService } from '../specialist.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ChatThreadService } from './../../chat/chat-thread.service';
 import { UserService } from './../../user/user.service';
 import { User } from './../../user/user.model';
@@ -20,15 +20,15 @@ import { Review } from './../../reviews/review.model';
   templateUrl: './specialist-detail.component.html',
   styleUrls: ['./specialist-detail.component.scss']
 })
-export class SpecialistDetailComponent implements OnInit {
+export class SpecialistDetailComponent implements OnInit, OnDestroy {
   user: User;
+  user$: Subscription;
   @Input() specialist: Specialist = null;
+  specialist$: Subscription;
   aboutExtended = false;
   reviewsVisible = true;
   reviews: Observable<Review[]>;
   reviewsCol: AngularFirestoreCollection<Review>;
-
-  // specialist = Observable<Specialist>;
 
   constructor( public auth: AuthService,
                private afs: AngularFirestore,
@@ -47,10 +47,15 @@ export class SpecialistDetailComponent implements OnInit {
     this.getSpecialist();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.specialist$.unsubscribe();
+  }
+
   // Getters
   getUser() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
     });
   }
@@ -66,7 +71,7 @@ export class SpecialistDetailComponent implements OnInit {
       } else {
         // Otherwise get id from url parameter
         id = this.route.snapshot.paramMap.get('id');
-        this.specialistService.getSpecialistData(id).subscribe(specialist => {
+        this.specialist$ = this.specialistService.getSpecialistData(id).subscribe(specialist => {
           this.specialist = specialist;
           this.reviewsCol = this.afs.collection('reviews', ref => ref.where('specialistID', '==', `${this.specialist.uid}`));
           this.reviews = this.reviewsCol.valueChanges();

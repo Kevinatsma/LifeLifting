@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AuthService } from './../core/auth/auth.service';
 import { Message } from './message.model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Thread } from './thread.model';
 import { ActivatedRoute } from '@angular/router';
 import { ChatThreadService } from './chat-thread.service';
@@ -12,17 +12,21 @@ import { ChatThreadService } from './chat-thread.service';
 })
 
 @Injectable()
-export class ChatMessageService {
+export class ChatMessageService implements OnDestroy {
   messagesCollection: AngularFirestoreCollection<Message>;
   messageDoc: AngularFirestoreDocument<Message>;
   threadDoc: AngularFirestoreDocument<Thread>;
   thread: Thread;
-  thread$: Observable<Thread>;
+  thread$: Subscription;
   messages: Observable<Message[]>;
 
   constructor( private auth: AuthService,
                private afs: AngularFirestore,
                public route: ActivatedRoute) { }
+
+  ngOnDestroy() {
+    this.thread$.unsubscribe();
+  }
 
   getMessages(channelID) {
     this.messagesCollection = this.afs.collection(
@@ -69,7 +73,9 @@ export class ChatMessageService {
 
   getThread(channelID) {
     const threadDoc = this.afs.doc<Thread>(`chats/${channelID}`);
-    threadDoc.valueChanges().subscribe(thread => this.thread = thread);
+    this.thread$ = threadDoc.valueChanges().subscribe(thread => {
+      this.thread = thread;
+    });
     return this.thread;
   }
 }

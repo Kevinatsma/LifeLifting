@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { MealplanService } from '../mealplan.service';
 import { Mealplan } from '../mealplan.model';
 import { UserService } from '../../user/user.service';
@@ -12,23 +12,27 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
   templateUrl: './mealplan-list.component.html',
   styleUrls: ['./mealplan-list.component.scss']
 })
-export class MealplanListComponent implements OnInit {
+export class MealplanListComponent implements OnInit, OnDestroy {
   mealplanCol: AngularFirestoreCollection<Mealplan[]>;
   mealplans: Observable<Mealplan[][]>;
   specialist: User;
+  specialist$: Subscription;
 
-  constructor( private mealplanService: MealplanService,
-               private userService: UserService,
+  constructor( private userService: UserService,
                private afs: AngularFirestore,
                private auth: AuthService) { }
 
   ngOnInit() {
-    this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
+    this.specialist$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
       this.specialist = user;
       const specialistID = this.specialist.uid;
       this.mealplanCol = this.afs.collection('mealplans', ref => ref.where('specialistID', '==', `${specialistID}`));
       this.mealplans = this.mealplanCol.valueChanges();
     });
+  }
+
+  ngOnDestroy() {
+    this.specialist$.unsubscribe();
   }
 
 }

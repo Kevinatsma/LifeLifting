@@ -2,13 +2,14 @@ import {
   Component,
   ChangeDetectionStrategy,
   OnInit,
-  ViewEncapsulation
+  ViewEncapsulation,
+  OnDestroy
 } from '@angular/core';
 import {
   isSameMonth,
   isSameDay,
 } from 'date-fns';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -48,9 +49,11 @@ import { UtilService } from './../../shared/services/util.service';
   encapsulation: ViewEncapsulation.None
 })
 
-export class ClientBookingComponent implements OnInit {
+export class ClientBookingComponent implements OnInit, OnDestroy {
   user: User;
   specialist: Specialist;
+  user$: Subscription;
+  specialist$: Subscription;
   view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
@@ -63,17 +66,12 @@ export class ClientBookingComponent implements OnInit {
     value: 70
   };
 
-
-  // events$: Observable<Array<CalendarEvent<{ film: Film }>>>;
-  // events$: Observable<Appointment[]>;
-
   modalData: {
     action: string;
     event: Appointment;
   };
 
   actions: CalendarEventAction[] = [];
-
   activeDayIsOpen = true;
 
   // TODO: HOOKUP MAT DIALOG INSTEAD OF BOOTSTRAP MODAL
@@ -95,6 +93,11 @@ export class ClientBookingComponent implements OnInit {
     this.replaceDates();
   }
 
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    this.specialist$.unsubscribe();
+  }
+
   replaceDates() {
     this.utilService.replaceCalendarHeaderDates();
   }
@@ -103,10 +106,11 @@ export class ClientBookingComponent implements OnInit {
 
   getUser() {
     const id = this.auth.currentUserId;
-    this.userService.getUserDataByID(id).subscribe(user => {
+    this.user$ = this.userService.getUserDataByID(id).subscribe(user => {
       this.user = user;
-      // get Specialist
-      this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => this.specialist = specialist);
+      this.specialist$ = this.specialistService.getSpecialistData(user.specialist).subscribe(specialist => {
+        this.specialist = specialist;
+      });
       this.getEvents(this.user);
     });
   }
