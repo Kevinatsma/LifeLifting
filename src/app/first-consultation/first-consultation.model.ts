@@ -114,6 +114,7 @@ export class GeneralData {
         medication: string;
         pastTwoWeeks: [];
         dontEat: [];
+        dietType: string;
     };
     dinner: {
         portion: string;

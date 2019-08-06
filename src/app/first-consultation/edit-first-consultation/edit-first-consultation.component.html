@@ -909,6 +909,15 @@
           </button>
         </section>
 
+        <mat-form-field appearance="standard" floatLabel="always" class="diet-type">
+          <mat-label>Preferred diet type</mat-label>
+          <mat-select matInput placeholder="Pick an appropriate diet type" formControlName="dietType"
+          autocomplete="off" panelClass="dropdown-regular" required>
+            <mat-option *ngFor="let type of dietTypes" value="{{type.value}}">{{type.viewValue}}</mat-option>
+          </mat-select>
+          <mat-error class="input-error" *ngIf="!generalDataForm['controls'].dietType.valid">This is <strong>required</strong></mat-error>
+        </mat-form-field>
+
         <section class="big-category dinner" id="dinner">
           <h1 class="big-category__title">Dinner</h1>
 

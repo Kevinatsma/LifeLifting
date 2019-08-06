@@ -21,7 +21,6 @@
           panelClass="dropdown-regular" required>
             <mat-option *ngFor="let client of clients" [value]="client.uid">{{client.displayName}}</mat-option>
           </mat-select>
-          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
       </p>
       <p class="secondary-chip" *ngIf="user.roles.admin">
@@ -31,7 +30,6 @@
             formControlName="specialistID" autocomplete="off" panelClass="dropdown-regular" required>
               <mat-option *ngFor="let specialist of specialists" [value]="specialist.specialistID">{{specialist.firstName}} {{specialist.lastName}}</mat-option>
             </mat-select>
-            <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
       </p>
     </section>
@@ -77,21 +75,14 @@
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Hour</mat-label>
                 <input type="number" matInput formControlName="startHour" placeholder="{{start.startHours}}" />
-                <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
-                  This is <strong>required</strong>
-                </mat-error> -->
               </mat-form-field>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Minutes</mat-label>
                 <input type="number" matInput formControlName="startMinutes" placeholder="{{start.startMinutes}}" />
-                <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
-                  This is <strong>required</strong>
-                </mat-error> -->
               </mat-form-field>
             </div>
           </div>
         </div>
-
 
         <div class="end">
           <div class="add-date-time-container">
@@ -107,16 +98,10 @@
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Hour</mat-label>
                 <input type="number" matInput formControlName="endHour" placeholder="{{end.endHours}}" />
-                <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
-                  This is <strong>required</strong>
-                </mat-error> -->
               </mat-form-field>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Minutes</mat-label>
                 <input type="number" matInput formControlName="endMinutes" placeholder="{{end.endMinutes}}" />
-                <!-- <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
-                  This is <strong>required</strong>
-                </mat-error> -->
               </mat-form-field>
             </div>
           </div>
@@ -133,7 +118,6 @@
           <mat-option value="faceToFace">Face to face</mat-option>
           <mat-option value="onlineAppointment">Online appointment</mat-option>
         </mat-select>
-        <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
       </mat-form-field>
     </section>
 
@@ -154,7 +138,6 @@
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Area Code</mat-label>
           <p>+51</p>
-          <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Phone Number</mat-label>
@@ -174,7 +157,6 @@
             <mat-option value="skype"><i class="fab fa-skype"></i> Skype</mat-option>
             <mat-option value="phone"><i class="fas fa-phone"></i> Phone (only Peru)</mat-option>
           </mat-select>
-          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
       </div>
 
@@ -183,7 +165,6 @@
           <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Area Code</mat-label>
               <input type="text" matInput formControlName="wappAreaCode" placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
-              <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Phone Number</mat-label>
@@ -204,7 +185,6 @@
           <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Area code</mat-label>
               <input type="text" matInput autofocus="nope" autocomplete="off" formControlName="phoneAreaCode" readonly>
-              <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Phone Number</mat-label>

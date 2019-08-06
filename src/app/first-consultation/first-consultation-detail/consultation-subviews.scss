@@ -182,5 +182,10 @@
             height: auto;
             width: 100%;
         }
+
+        &.long {
+            margin-right: 10%;
+            width: 54%;
+        }
     }
 }

@@ -1,0 +1,11 @@
+{
+  "dietTypes": [
+    {"value":"omnivore", "viewValue": "Omnivore"},
+    {"value":"vegetarian", "viewValue": "Vegetarian"},
+    {"value":"vegan", "viewValue": "Vegan"},
+    {"value":"pescatarian", "viewValue": "Pescatarian"},
+    {"value":"paleo", "viewValue": "Paleo"},
+    {"value":"keto", "viewValue": "Keto"},
+    {"value":"plant-based", "viewValue": "Plant Based"}
+  ]
+}

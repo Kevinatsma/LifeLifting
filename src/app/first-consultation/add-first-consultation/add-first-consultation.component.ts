@@ -7,6 +7,7 @@ import { Mealplan } from '../../mealplans/mealplan.model';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { Time } from './../../shared/data/models/time.model';
 import times from './../../shared/data/JSON/times.json';
+import dietTypes from './../../shared/data/JSON/dietTypes.json';
 import healthConditions from './../../shared/data/JSON/healthConditions.json';
 import { Exercise } from './../../exercises/exercise.model';
 import { ExerciseService } from './../../exercises/exercise.service';
@@ -28,6 +29,7 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
   mealplansCol: AngularFirestoreCollection<Mealplan>;
   healthConditions = healthConditions.conditions;
   times: Time[] = times.times;
+  dietTypes: any[] = dietTypes.dietTypes;
   activities: Exercise[];
   exercises$: Subscription;
 
@@ -151,6 +153,7 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
       medication: ['', Validators.required],
       pastTwoWeeksArr: this.fb.array([ this.createPastTwoWeeks() ]),
       dontEatArr: this.fb.array([ this.createDontEatItem() ]),
+      dietType: ['', Validators.required],
       portion: ['', Validators.required],
       preparedBy: ['', Validators.required],
       eatAfterDinner: ['', Validators.required],
@@ -454,6 +457,7 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
         medication: this.generalDataForm.get('medication').value,
         pastTwoWeeks: this.pastTwoWeeksArray.value,
         dontEat: this.dontEatArray.value,
+        dietType: this.generalDataForm.get('dietType').value
       },
       dinner: {
         portion: this.generalDataForm.get('portion').value,

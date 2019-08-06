@@ -8,6 +8,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { Time } from '../../shared/data/models/time.model';
 import healthConditions from '../../shared/data/JSON/healthConditions.json';
 import times from '../../shared/data/JSON/times.json';
+import dietTypes from '../../shared/data/JSON/dietTypes.json';
 import { Exercise } from '../../exercises/exercise.model';
 import { ExerciseService } from '../../exercises/exercise.service';
 import { FirstConsultation } from '../first-consultation.model';
@@ -30,6 +31,7 @@ export class EditFirstConsultationComponent implements OnInit, OnDestroy {
   mealplansCol: AngularFirestoreCollection<Mealplan>;
   healthConditions = healthConditions.conditions;
   times: Time[] = times.times;
+  dietTypes: any[] = dietTypes.dietTypes;
   activities: Exercise[];
   exercises$: Subscription;
 
@@ -154,6 +156,7 @@ export class EditFirstConsultationComponent implements OnInit, OnDestroy {
       medication: [this.firstConsultation.generalData.general.medication, Validators.required],
       pastTwoWeeksArr: this.fb.array([]),
       dontEatArr: this.fb.array([]),
+      dietType: [this.firstConsultation.generalData.general.dietType, Validators.required],
       portion: [this.firstConsultation.generalData.dinner.portion, Validators.required],
       preparedBy: [this.firstConsultation.generalData.dinner.preparedBy, Validators.required],
       eatAfterDinner: [this.firstConsultation.generalData.dinner.eatAfterDinner, Validators.required],
@@ -535,6 +538,7 @@ export class EditFirstConsultationComponent implements OnInit, OnDestroy {
         medication: this.generalDataForm.get('medication').value || this.firstConsultation.generalData.general.medication,
         pastTwoWeeks: this.pastTwoWeeksArray.value || this.firstConsultation.generalData.general.pastTwoWeeks,
         dontEat: this.dontEatArray.value || this.firstConsultation.generalData.general.dontEat,
+        dietType: this.generalDataForm.get('dietType').value || this.firstConsultation.generalData.general.dietType
       },
       dinner: {
         portion: this.generalDataForm.get('portion').value || this.firstConsultation.generalData.dinner.portion,
