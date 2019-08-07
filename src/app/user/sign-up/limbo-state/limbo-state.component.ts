@@ -40,9 +40,15 @@ export class LimboStateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.user$.unsubscribe();
-    this.specialist$.unsubscribe();
-    this.events$.unsubscribe();
+    if (this.user$ !== undefined) {
+      this.user$.unsubscribe();
+    }
+    if (this.specialist$ !== undefined) {
+      this.specialist$.unsubscribe();
+    }
+    if (this.events$ !== undefined) {
+      this.events$.unsubscribe();
+    }
   }
 
   redirect() {

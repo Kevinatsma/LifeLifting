@@ -39,10 +39,15 @@ button.has-messages {
     }
 
     .calendar-container {
+        box-sizing: border-box;
         background: #fff;
         box-shadow: $card-shadow;
         padding: 1em 2em;
         margin-top: 2em;
+
+        @include respond-up($sm) {
+            max-width: 90%;
+        }
 
         .profile-picture {
             background-position: center center;

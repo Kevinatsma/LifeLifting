@@ -185,7 +185,7 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
     let start;
     let end;
 
-    if (this.user.roles.client) {
+    if (this.user.roles.specialist || this.user.roles.admin) {
       start = startNoTime
         .replace('00:00:00',
         `${this.appointmentForm.get('startHour').value}` + ':' + `${this.appointmentForm.get('startMinutes').value}` + ':00');
@@ -194,19 +194,25 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
         .replace('00:00:00',
         `${this.appointmentForm.get('startHour').value + 1}` + ':' + `${this.appointmentForm.get('startMinutes').value}` + ':00');
     } else {
-      start = this.startDate.toString();
-      end = this.endDate.toString();
+      start = this.data.date.toString();
+      end = this.utils.dateAdd(this.data.date, 'minute', 60).toString();
+    }
+
+    let title;
+
+    if (this.user.roles.admin || this.user.roles.specialist) {
+      title = this.appointmentForm.get('eventTitle').value;
+    } else {
+      title = `Consultation with your specialist`;
     }
 
     const specialistID = this.specialistID;
-
     const data: Appointment = {
       accepted: this.appointmentAccepted,
       rejected: false,
       created: new Date(),
-      title: this.appointmentForm.get('eventTitle').value,
+      title: title,
       start: start,
-      // start: new Date(),
       end: end,
       color: {
         primary: this.appointmentForm.get('selectedColorPrimary').value || this.standardColorPrimary,
@@ -262,6 +268,7 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
   // Checkers
 
   checkForDate(date) {
+    console.log(date);
     if (date) {
       this.hasStartDate = true;
       this.hasEndDate = true;
@@ -301,9 +308,11 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
     const startHours = date.getHours().toString();
     const startMinutes = this.convertMinutes(date);
 
+
     this.start = {
       startDay, startMonth, startYear, startHours, startMinutes
     };
+    console.log(this.start);
     this.startDate = date;
     this.getEndTimeAndDate(dateObj);
   }

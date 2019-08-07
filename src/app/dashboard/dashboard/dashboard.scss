@@ -67,6 +67,17 @@
             transition: all 100ms ease-in-out;
             z-index: 1;
 
+            &.dashboard-router-outlet {
+                ::ng-deep {
+                    .specialist-wrappeer {
+                        min-width: 75vw;
+                    }
+                }
+
+                .specialist-wrappeer {
+                    min-width: 75vw;
+                }
+            }
 
             @include respond-down($sm) {
                 min-width: 100vw;

@@ -336,7 +336,6 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
       created: new Date(),
       title: 'First consultation',
       start: this.startDate.toString(),
-      // start: new Date(),
       end: this.endDate.toString(),
       color: {
         primary: '#2ecc71',

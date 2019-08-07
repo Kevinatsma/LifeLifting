@@ -14,7 +14,7 @@ div.success-wrapper {
 
     .login-container {
         @extend %flex-column-center;
-        padding: 0;
+        padding: 2em 0;
         align-items: center!important;
         position: relative;
         @include respond-down($sm) {

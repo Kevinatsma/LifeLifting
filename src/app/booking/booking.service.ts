@@ -62,7 +62,7 @@ export class BookingService implements OnDestroy {
           appointmentAccepted: user.status.appointmentAccepted || false,
           appointmentCompleted: user.status.appointmentCompleted || false,
           appointmentRejected: user.status.appointmentRejected || false,
-          subscriptionValid: user.status.subscriptionValid
+          subscriptionValid: user.status.subscriptionValid || false
         }
       };
       this.userService.updateUser(user.uid, userData);

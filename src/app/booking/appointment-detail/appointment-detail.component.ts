@@ -72,8 +72,12 @@ export class AppointmentDetailComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.specialist$.unsubscribe();
-    this.client$.unsubscribe();
+    if (this.specialist$ !== undefined) {
+      this.specialist$.unsubscribe();
+    }
+    if (this.client$ !== undefined) {
+      this.client$.unsubscribe();
+    }
   }
 
   // Getters
