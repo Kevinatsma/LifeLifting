@@ -29,6 +29,7 @@ export class ChatThreadService implements OnDestroy {
   thread$: Subscription;
   threads: Observable<Thread[]>;
   showThread: Subject<boolean> = new Subject;
+  activeThreadID: Subject<string> = new Subject;
 
   constructor(
     private router: Router,

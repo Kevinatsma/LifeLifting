@@ -19,6 +19,8 @@ export class ChatThreadsComponent implements OnInit, OnDestroy {
   thread: Observable<Thread>;
   showThreads: boolean;
   showThreads$: Subscription;
+  activeThreadID: string;
+  activeThread$: Subscription;
   isMobile: boolean;
 
   constructor( public route: ActivatedRoute,
@@ -28,6 +30,10 @@ export class ChatThreadsComponent implements OnInit, OnDestroy {
                public router: Router
                ) {
                  this.showThreads$ = this.threadService.showThread.subscribe(showThread => this.showThreads = showThread);
+                 this.activeThread$ = this.threadService.activeThreadID.subscribe(id => {
+                   this.activeThreadID = id;
+                   this.setActiveThread(id);
+                 });
                  this.threadService.showThread.next(true);
                  this.isMobile = this.utils.checkIfMobile();
                }
@@ -47,7 +53,6 @@ export class ChatThreadsComponent implements OnInit, OnDestroy {
     this.messageService.getMessages(channelID);
     this.threadService.getThread(channelID);
     this.router.navigate([url]);
-    this.setActiveThread(channelID);
     this.threadService.getThread(channelID);
 
     if (this.chatComp) {
@@ -62,11 +67,13 @@ export class ChatThreadsComponent implements OnInit, OnDestroy {
 
   setActiveThread(channelID) {
     const threadDiv = document.querySelectorAll('.thread-item');
-    const threadDivActive = document.getElementById(`${channelID}`);
-    threadDiv.forEach(function(el) {
-      el.classList.remove('active');
-    });
-    threadDivActive.classList.add('active');
+    setTimeout(() => {
+      const threadDivActive = document.getElementById(`${channelID}`);
+      threadDiv.forEach(function(el) {
+        el.classList.remove('active');
+      });
+      threadDivActive.classList.add('active');
+    }, 500);
   }
 
   hideThreads() {

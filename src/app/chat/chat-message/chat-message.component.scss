@@ -18,8 +18,10 @@ div.message-container {
     }
 
     div#message {
+        animation: slide-up-appear .5s ease-in-out;
         display: flex;
         justify-content: flex-start;
+
         &:last-child {
             margin-bottom: 1em;
         }
@@ -30,6 +32,13 @@ div.message-container {
 
         mat-card {
             box-shadow: $card-shadow;
+        }
+    }
+
+    @for $i from 1 through 10 {
+        #message:nth-child(#{$i}) {
+            -webkit-animation-delay:(#{$i*0.25s}); 
+            animation-delay:(#{$i*0.25s}); 
         }
     }
 

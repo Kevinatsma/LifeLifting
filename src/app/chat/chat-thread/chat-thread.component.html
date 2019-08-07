@@ -1,7 +1,6 @@
-<div id="{{thread.id}}" class="thread-item" *ngIf="auth.user | async as user">
+<div id="{{thread.id}}" class="thread-item" *ngIf="auth.user | async as user" [class.active]="activeThread">
   <div>
       <section class="photo-container">
-        <!-- <div class="photo" [style.backgroundImage]="'url('+ thread.avatar +')'"></div> -->
         <img class="photo" *ngIf="thread.creator.creatorPhoto === user.photoURL" matListAvatar
           [src]="thread.target.targetPhoto || './../../../assets/img/icons/user-no-photo.svg'">
         <img class="photo" *ngIf="thread.creator.creatorPhoto !== user.photoURL" matListAvatar

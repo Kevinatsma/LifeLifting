@@ -25,12 +25,15 @@ export class ChatThreadComponent implements OnDestroy {
                public auth: AuthService,
                private userService: UserService,
                private route: ActivatedRoute) {
-                // this.checkCreator();
-                setTimeout(() => this.checkUnreads(), 300);
+                setTimeout(() => {
+                  this.checkUnreads();
+                }, 300);
                }
 
   ngOnDestroy() {
-    this.user$.unsubscribe();
+    if (this.user$ !== undefined) {
+      this.user$.unsubscribe();
+    }
   }
 
   checkUnreads() {
@@ -54,6 +57,7 @@ export class ChatThreadComponent implements OnDestroy {
       }
     });
   }
+
 
   delete(threadId) {
     this.threadService.deleteThread(threadId);

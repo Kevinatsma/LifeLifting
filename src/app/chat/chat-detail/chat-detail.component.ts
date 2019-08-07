@@ -21,12 +21,14 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit, OnDestroy 
   navigationSubscription$: Subscription;
   threads: Observable<Thread[]>;
   thread: Thread;
+  threadID: string;
   thread$: Subscription;
   threadId: string;
   showThread: boolean;
   showThread$: Subscription;
   isMobile: boolean;
   isCreator: boolean;
+  routeSub$: Subscription;
 
   constructor( public el: ElementRef,
                public auth: AuthService,
@@ -35,11 +37,18 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit, OnDestroy 
                private route: ActivatedRoute,
                private router: Router,
                private dialog: MatDialog) {
-                 this.showThread$ = this.threadService.showThread.subscribe(thread => {
-                   this.showThread = thread;
-                 });
-                 this.isMobile = this.utils.checkIfMobile();
-                 setTimeout(() => this.scrollToBottom(), 1000);
+                this.showThread$ = this.threadService.showThread.subscribe(thread => {
+                  this.showThread = thread;
+                });
+
+                this.isMobile = this.utils.checkIfMobile();
+                setTimeout(() => {
+                  this.scrollToBottom();
+                  this.routeSub$ = this.route.params.subscribe(params => {
+                    this.threadID = params['id'];
+                    this.setActiveThread(this.threadID);
+                  });
+                }, 750);
                }
 
   ngAfterViewChecked() {
@@ -52,6 +61,7 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit, OnDestroy 
       // If it is a NavigationEnd event, re-initalise the component
       if (e instanceof NavigationEnd) {
         this.getThread();
+        this.setActiveThread(this.threadID);
       }
     });
   }
@@ -60,6 +70,7 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit, OnDestroy 
     this.navigationSubscription$.unsubscribe();
     this.showThread$.unsubscribe();
     this.thread$.unsubscribe();
+    this.routeSub$.unsubscribe();
   }
 
   scrollToBottom(): void {
@@ -76,8 +87,18 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit, OnDestroy 
         this.threadId = thread.id;
         this.thread = thread;
         this.isCreator = this.checkCreator(thread);
+        this.threadService.activeThreadID.next(id);
       });
     }
+  }
+
+  setActiveThread(id) {
+    const threadDiv = document.querySelectorAll('.thread-item');
+    const threadDivActive = document.getElementById(`${id}`);
+    threadDiv.forEach(el => {
+      el.classList.remove('active');
+    });
+    threadDivActive.classList.add('active');
   }
 
   checkCreator(thread) {
@@ -119,10 +140,6 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit, OnDestroy 
   showThreads() {
     this.threadService.showThread.next(true);
   }
-
-  // delete() {
-  //   this.threadService.deleteThread(this.threadId);
-  // }
 
   goBack() {
     this.router.navigate(['dashboard']);

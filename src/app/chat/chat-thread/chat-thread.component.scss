@@ -1,6 +1,7 @@
 @import './../../../assets/scss/_master.scss';
 
 div.thread-item {
+    animation: slide-up-appear .5s ease-in-out;
     display: flex;
     flex-flow: column wrap;
     width: 100%;
