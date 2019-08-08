@@ -40,11 +40,28 @@ export class ChatThreadsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.threadService.getThreads();
-    this.threads = this.threadService.threads;
+    this.loadThreads();
   }
 
   ngOnDestroy() {
     this.showThreads$.unsubscribe();
+  }
+
+  async loadThreads() {
+    this.threads = await this.threadService.threads;
+    setTimeout(() => {
+      const threadDivs = document.querySelectorAll('.thread-item');
+      threadDivs.forEach(el => {
+        el.classList.add('is-loading');
+      });
+
+      // Remove animation
+      setTimeout(() => {
+        threadDivs.forEach(el => {
+          el.classList.remove('is-loading');
+        });
+      }, 3000);
+    });
   }
 
   linkToChild(thread) {

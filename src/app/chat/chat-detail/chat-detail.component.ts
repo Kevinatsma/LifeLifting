@@ -141,6 +141,11 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit, OnDestroy 
     this.threadService.showThread.next(true);
   }
 
+  // Links
+  linkToProfile(id) {
+    this.router.navigate([`../../dashboard/users/${id}`]);
+  }
+
   goBack() {
     this.router.navigate(['dashboard']);
   }

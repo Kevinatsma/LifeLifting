@@ -61,7 +61,7 @@ export class ShoppingListDetailComponent implements OnInit, OnDestroy {
     const wednesdayMeals = mealplan.wednesdayMeals;
     const thursdayMeals = mealplan.thursdayMeals;
     const fridayMeals = mealplan.fridayMeals;
-    const suppsMeals = mealplan.supplementation;
+    const suppsMeals = mealplan.supplementation.supps;
 
     this.getMonday(mondayMeals);
     this.getTuesday(tuesdayMeals);

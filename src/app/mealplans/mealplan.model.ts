@@ -88,6 +88,7 @@ export class DayForm {
 }
 
 export interface Supplementation {
+    guideline: string;
     supps: {
         beforeOne: string;
         duringOne: string;
@@ -115,7 +116,6 @@ export class Mealplan {
     mID: string;
     mealplanNR: number;
     mealplanName: string;
-    guideline: string;
     mealTimes: [{}];
     mondayMeals: DayForm;
     tuesdayMeals: DayForm;

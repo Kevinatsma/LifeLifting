@@ -1,0 +1,33 @@
+<ng-container *ngIf="user">
+  <section class="user__photo" *ngIf="user.photoURL" [style.background-image]="'url('+ user.photoURL +')'">
+  </section>
+
+  <section class="user__consultations" *ngIf="upcomingConsultations">
+    <h1> Upcoming consultations </h1>
+  </section>
+
+  <section class="user__consultations" *ngIf="pastConsultations">
+    <h1> Past consultations </h1>
+  </section>
+
+  <section class="quick-action">
+    <h1>Quick actions</h1>
+
+    <div class="quick-actions__btn-container">
+      <button (click)="linkToChat()">
+        <div class="icon">
+          <i class="fas fa-comment-alt"></i>
+        </div>
+        Go to chat
+        <i class="fas fa-arrow-right"></i>
+      </button>
+      <button (click)="linkToCalendar()">
+        <div class="icon">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        Go to calendar
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </section>
+</ng-container>

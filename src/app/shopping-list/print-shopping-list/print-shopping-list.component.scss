@@ -15,7 +15,10 @@
         h2 {
             margin-bottom: 0.75em;
             font-size: 10px;
-            letter-spacing: 0.7px;
+        }
+
+        h1, h2, span, p, li, h4 {
+            letter-spacing: initial;
         }
 
         ul {
@@ -30,7 +33,6 @@
                     align-items: center;
                     font-size: 8px;
                     word-spacing: unset;
-                    letter-spacing: unset;
                     color: $grey;
 
                     &::before {

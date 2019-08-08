@@ -15,12 +15,6 @@
     </div>
     <ul class="link-container" [@openClose]="linksOpened ? 'open' : 'closed'">
       <li>
-        <a (click)="closeMenu()" class="menu-link" routerLink="home" routerLinkActive="active">
-          <i class="fas fa-angle-double-up"></i>
-          Workflow
-        </a>
-      </li>
-      <li>
         <a (click)="closeMenu()" class="menu-link" routerLink="my-mealplans" routerLinkActive="active">
           <i class="fas fa-weight"></i>
           Meal Plans

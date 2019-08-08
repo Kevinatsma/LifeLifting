@@ -12,7 +12,7 @@
       <h1 *ngIf="client; else gID">
         For {{client.displayName}}
         <h5 class="not-mobile">
-          Current weight: {{client.basicData.currentWeight}}kg
+          Current weight: {{client.currentWeight}}kg
         </h5>
       </h1>
       <ng-template #gID>

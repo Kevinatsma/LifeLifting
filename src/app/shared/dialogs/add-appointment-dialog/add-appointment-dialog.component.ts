@@ -268,7 +268,6 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
   // Checkers
 
   checkForDate(date) {
-    console.log(date);
     if (date) {
       this.hasStartDate = true;
       this.hasEndDate = true;
@@ -312,7 +311,6 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
     this.start = {
       startDay, startMonth, startYear, startHours, startMinutes
     };
-    console.log(this.start);
     this.startDate = date;
     this.getEndTimeAndDate(dateObj);
   }

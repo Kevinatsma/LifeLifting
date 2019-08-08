@@ -31,6 +31,7 @@ export class ChatInputComponent {
     const sender = this.auth.authState.displayName || this.auth.authState.email;
     const senderId = this.auth.currentUserId;
     const message = this.message;
+    console.log(senderId, message);
     this.messageService.sendMessage(channelId, photoURL, sender, senderId, message);
     this.messageService.getMessages(channelId);
     this.saveLast(channelId, message);

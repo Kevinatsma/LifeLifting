@@ -13,11 +13,23 @@
     <button mat-icon-button [matMenuTriggerFor]="menu"  [class.hidden]="!user.roles.specialist || !user.roles.admin">
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="deleteChat()">
-          <mat-icon>delete</mat-icon>
-          <span>Delete this chat</span>
+    <mat-menu #menu="matMenu" class="more-menu">
+      <button mat-menu-item (click)="deleteChat()" class="more-menu__button">
+        <mat-icon>delete</mat-icon>
+        <span>Delete this chat</span>
       </button>
+      <ng-container *ngIf="isCreator">
+        <button mat-menu-item (click)="linkToProfile(thread.target.targetUID)" class="more-menu__button">
+          <i class="fas fa-external-link-alt"></i>
+          <span>See {{thread.target.targetName}}'s profile</span>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!isCreator">
+        <button mat-menu-item (click)="linkToProfile(thread.creator.creatorUID)" class="more-menu__button">
+          <i class="fas fa-external-link-alt"></i>
+          <span>See {{thread.creator.creatorName}}'s profile</span>
+        </button>
+      </ng-container>
     </mat-menu>
   </mat-toolbar>
   <section class="chat-feed" #scroller>

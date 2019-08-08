@@ -8,7 +8,8 @@ export class Thread {
     };
     target: {
         targetName: string,
-        targetPhoto: string
+        targetPhoto: string,
+        targetUID: string
     };
     lastMessage: string;
     lastUpdated: Date;

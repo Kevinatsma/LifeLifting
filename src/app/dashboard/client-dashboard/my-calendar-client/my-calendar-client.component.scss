@@ -2,3 +2,9 @@
 @import './../../../../assets/scss/_calendar.scss';
 
 
+::ng-deep .calendar-signup, .calendar-signup {
+    .create-appointment-mobile {
+        top: 35px !important;
+        height: auto;
+    }
+}

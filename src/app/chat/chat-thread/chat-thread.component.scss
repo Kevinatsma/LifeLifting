@@ -1,12 +1,15 @@
 @import './../../../assets/scss/_master.scss';
 
 div.thread-item {
-    animation: slide-up-appear .5s ease-in-out;
     display: flex;
     flex-flow: column wrap;
     width: 100%;
     padding: 1em 0;
     border-top: 1px solid $light-grey;
+
+    &.is-loading {
+        animation: slide-up-appear .5s ease-in-out;
+    }
 
     &:hover {
         background: $light-grey;

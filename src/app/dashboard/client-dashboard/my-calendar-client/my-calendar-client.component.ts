@@ -1,7 +1,8 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  OnInit
+  OnInit,
+  Input
 } from '@angular/core';
 import {
   isSameMonth,
@@ -30,6 +31,7 @@ import { ChatThreadService } from '../../../chat/chat-thread.service';
 import { AddAppointmentDialogComponent } from '../../../shared/dialogs/add-appointment-dialog/add-appointment-dialog.component';
 import { AppointmentDetailDialogComponent } from '../../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
 import { CustomEventTitleFormatter } from '../../../booking/custom-event-title-formatter.provider';
+import { DashboardService } from '../../dashboard.service';
 
 @Component({
   selector: 'app-my-calendar-client-component',
@@ -45,8 +47,17 @@ import { CustomEventTitleFormatter } from '../../../booking/custom-event-title-f
 })
 
 export class MyCalendarClientComponent implements OnInit {
+  signupCalendar = false;
 
-  constructor( public auth: AuthService) {}
+  constructor( public auth: AuthService,
+               private dbService: DashboardService) {
+                 setTimeout(() => {
+                  this.signupCalendar = this.dbService.isSignUpCalendar;
+                 });
+                 setTimeout(() => {
+                   this.signupCalendar = this.dbService.isSignUpCalendar;
+                 }, 1000);
+               }
 
   ngOnInit() {
   }

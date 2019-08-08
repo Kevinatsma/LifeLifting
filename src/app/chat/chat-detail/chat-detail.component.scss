@@ -74,6 +74,14 @@ main.detail-wrapper {
             background: #fff;
             border-top: 1px solid $light-grey;
             padding: 5px 10px;
+
+            app-chat-input {
+                box-sizing: border-box;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                width: 100%;
+            }
         }
     }
 }
@@ -89,5 +97,38 @@ mat-toolbar {
     }
     mat-icon {
         color: #fff;
+    }
+}
+
+.more-menu {
+    min-width: 240px;
+    max-width: 300px;
+
+    &__button {
+        align-items: center;
+        display: flex;
+        flex-flow: row nowrap;
+        font-family: $main-font;
+        font-weight: $bold;
+        justify-content: flex-start;
+        padding: 12px 1em;
+        width: 100%;
+
+        svg, mat-icon {
+            color: $secondary-color;
+            font-size: 22px;
+            height: 22px;
+            margin-right: 20px;
+            width: 22px;
+            @extend %flex-center;
+        }
+
+        &:last-child {
+            svg {
+                font-size: 14px;
+                height: 14px;
+                width: 22px;
+            }
+        }
     }
 }

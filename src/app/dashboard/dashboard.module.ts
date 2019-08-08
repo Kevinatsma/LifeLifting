@@ -7,7 +7,6 @@ import { DashboardMenuComponent } from './dashboard-menu/dashboard-menu.componen
 import { DashboardTopNavComponent } from './dashboard-top-nav/dashboard-top-nav.component';
 import { SpecialistsComponent } from '../specialists/specialists/specialists.component';
 import { SpecialistModule } from '../specialists/specialist.module';
-import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
 import { UserModule } from '../user/user.module';
 import { UsersComponent } from '../user/users/users.component';
 import { ClientsModule } from './../clients/clients.module';
@@ -57,6 +56,9 @@ import { MeasurementModule } from './../measurement/measurement.module';
 import { FirstConsultationModule } from '../first-consultation/first-consultation.module';
 import { FollowUpConsultationModule } from '../follow-up-consultation/follow-up-consultation.module';
 import { FirstConsultationDetailComponent } from '../first-consultation/first-consultation-detail/first-consultation-detail.component';
+import { OverviewComponent } from './overview/overview.component';
+import { SpecialistOverviewComponent } from './overview/specialist-overview/specialist-overview.component';
+import { UserOverviewComponent } from './overview/user-overview/user-overview.component';
 
 
 const routes: Routes = [
@@ -65,8 +67,8 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard],
     children: [
-      {path: '', redirectTo: 'home', pathMatch: 'full'},
-      {path: 'home', component: DashboardHomeComponent, data: {state: 'home'}},
+      {path: '', redirectTo: 'overview', pathMatch: 'full'},
+      {path: 'overview', component: OverviewComponent, data: {state: 'home'}},
       {path: 'users', component: UsersComponent, data: {state: 'users'}, canActivate: [AuthGuard]},
       {path: 'users/:id', component: UserDetailComponent, data: {state: 'user-detail'}, canActivate: [AuthGuard]},
       {path: 'specialists', component: SpecialistsComponent, data: {state: 'specialist'}, canActivate: [AuthGuard]},
@@ -108,7 +110,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     DashboardComponent,
-    DashboardHomeComponent,
     DashboardMenuComponent,
     DashboardTopNavComponent,
     AdminMenuComponent,
@@ -126,6 +127,9 @@ const routes: Routes = [
     MyCalendarComponent,
     MyCalendarClientComponent,
     MiscMenuComponent,
+    OverviewComponent,
+    SpecialistOverviewComponent,
+    UserOverviewComponent,
   ],
   imports: [
     BrowserAnimationsModule,

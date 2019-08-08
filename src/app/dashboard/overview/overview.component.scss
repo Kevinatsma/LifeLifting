@@ -1,0 +1,13 @@
+@import './../../../assets/scss/master';
+@import './../../../assets/scss/animations';
+@import './../../../assets/scss/mixins';
+
+.dashboard-overview {
+    min-width: calc(75vw - 6em);
+    padding: 3em;
+
+    @include respond-down($sm) {
+        min-width: calc(100vw - 32px);
+        padding: 3em 16px;
+    }
+}

@@ -1,4 +1,4 @@
-<div id="{{thread.id}}" class="thread-item" *ngIf="auth.user | async as user" [class.active]="activeThread">
+<div id="{{thread.id}}" class="thread-item" *ngIf="auth.user | async as user">
   <div>
       <section class="photo-container">
         <img class="photo" *ngIf="thread.creator.creatorPhoto === user.photoURL" matListAvatar

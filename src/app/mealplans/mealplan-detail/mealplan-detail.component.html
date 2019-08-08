@@ -2,7 +2,10 @@
   <section class="action-toolbar-top">
     <div class="left" *ngIf="auth.user | async as user">
       <button type="button" class="icon-button" (click)="goBack()">
-          <i class="fas fa-arrow-left"></i>
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <button type="button" class="icon-btn hidden" *ngIf="!user.roles.specialist || !user.roles.admin">
+        <i class="fas fa-arrow-left"></i>
       </button>
 
       <button type="button" class="icon-button not-mobile" (click)="deleteMealplanDialog(mealplan)" 
@@ -15,11 +18,11 @@
       <h1 *ngIf="client; else gID">
         Mealplan for {{client.displayName}}
         <h5 class="not-mobile">
-          Current weight: {{client.basicData.currentWeight}}kg
+          Current weight: {{client.currentWeight}}kg
         </h5>
       </h1>
       <ng-template #gID>
-          <h1>Mealplan ID: {{mealplan.mID}}</h1>
+        <h1>Mealplan ID: {{mealplan.mID}}</h1>
       </ng-template>
     </div>
 
@@ -29,7 +32,7 @@
           <button type="button" class="icon-button" (click)="printMealplan(mealplan)">
             <i class="fas fa-print"></i>
           </button>
-          <button type="button" class="icon-button action-btn" (click)="linkToShoppingList(mealplan)">
+          <button type="button" class="icon-button" (click)="linkToShoppingList(mealplan)">
             <i class="fas fa-shopping-cart"></i>
           </button>
         </ng-container>

@@ -44,4 +44,5 @@ export class User {
     specialist?: string;
     signUpDate?: Date;
     formulas?: Formulas;
+    currentWeight?: number;
 }

@@ -5,6 +5,8 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class DashboardService {
+  isSignUpCalendar$: Subject<boolean> = new Subject();
+  isSignUpCalendar: boolean;
   sideNavStateChange: Subject<boolean> = new Subject();
   sideNavOpened: boolean;
 
@@ -12,6 +14,10 @@ export class DashboardService {
     this.sideNavOpened = false;
     this.sideNavStateChange.subscribe((value) => {
       this.sideNavOpened = value;
+    });
+    this.isSignUpCalendar = false;
+    this.isSignUpCalendar$.subscribe((value) => {
+      this.isSignUpCalendar = value;
     });
    }
 

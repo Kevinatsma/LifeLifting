@@ -1,0 +1,224 @@
+@import './../../../../assets/scss/master';
+@import './../../../../assets/scss/animations';
+@import './../../../../assets/scss/mixins';
+
+section {
+    margin: 0 0 2em;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: $grey;
+    margin: 5px auto 40px;
+    text-align: center;
+    width: 75%;
+}
+
+.user-info {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    padding-bottom: 20px;
+
+    &__photo {
+        background-position: center;
+        background-size: cover;
+        border-radius: 50%;
+        height: 180px;
+        width: 180px;
+    }
+
+    &__details {
+        align-items: center;
+        display: flex;
+        flex-flow: column nowrap;
+        width: 100%;
+
+        h1 {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .info-cards {
+            box-sizing: border-box;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around;
+            width: 100%;
+
+            @include respond-down($sm) {
+                flex-flow: column nowrap;
+            }
+
+            .info-card {
+                align-items: center;
+                background-color: #fff;
+                box-shadow: $card-shadow;
+                border-radius: 8px;
+                display: flex;
+                flex-flow: column nowrap;
+                padding: 2em 1em;
+                width: 20%;
+
+                @include respond-down($sm) {
+                    box-sizing: border-box;
+                    margin-bottom: 40px;
+                    width: 100%;
+                }
+
+                .icon {
+                    height: 38px;
+                    margin-bottom: 1em;
+                    padding-bottom: 1.5em;
+                    position: relative;
+                    width: 50%;
+                    @extend %flex-center;
+
+                    &::after {
+                        background-color: $border-color;
+                        bottom: 0;
+                        content: '';
+                        height: 1px;
+                        position: absolute;
+                        left: 10%;
+                        right: 10%;
+                        width: 80%;
+                    }
+
+                    svg {
+                        color: $icon-grey;
+                        font-size: 38px;
+                        width: 38px;
+                    }
+                }
+
+                h3 {
+                    margin: 0;
+                    font-size: 28px;
+                    color: $primary-color;
+                    text-align: center;
+                    width: 80%;
+                }
+
+                .card-text {
+                    text-align: center;
+                    width: 100%;
+                }
+
+                h5 {
+                    font-size: 15px;
+                    margin-top: .25em;
+                }
+            }
+        }
+
+        table {
+            td {
+                border-right: 1px solid $border-color;
+                font-family: $main-font;
+                color: $text-black;
+                font-size: 16px;
+                letter-spacing: normal;
+                font-weight: $bold;
+                padding: .5em 3em .5em 0;
+                min-width: 80px;
+
+                &:last-child {
+                    border-right: none;
+                }
+            }
+
+            th {
+                border-bottom: 1px solid $border-color;
+                color: $grey;
+                font-size: 15px;
+                font-weight: $bold;
+                font-family: $main-font;
+                letter-spacing: .75px;
+                padding-bottom: 1em;
+                text-align: left;
+            }
+        }
+    }
+}
+
+.quick-actions {
+    margin-top: 2em;
+
+    &__btn-container {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        margin: 2em 0;
+        width: 100%;
+
+        button {
+            align-items: center;
+            background-color: #fff;
+            box-shadow: $card-shadow;
+            box-sizing: border-box;
+            border-radius: 8px;
+            display: flex;
+            flex-flow: row nowrap;
+            padding: 2em 1em;
+            margin-bottom: 2em;
+            transform: scale(1);
+            transition: transform .3s ease-in-out;
+            text-align: left;
+            width: 45%;
+
+            @include respond-down($sm) {
+                height: 95px;
+                font-size: 15px;
+                padding: 2em 16px;
+                width: 100%;
+            }
+
+            &:hover {
+                transform: scale(1.03);
+            }
+
+            &:nth-child(odd) {
+                margin-right: 7.5%;
+
+                @include respond-down($sm) {
+                    margin-right: 0;
+                }
+            }
+
+            .icon {
+                margin-right: 5%;
+                padding-right: 5%;
+                position: relative;
+                width: 10%;
+                @extend %flex-center;
+
+                &::after {
+                    background-color: $border-color;
+                    bottom: 0;
+                    content: '';
+                    height: 100%;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    width: 1px;
+                }
+
+                svg {
+                    color: $secondary-color;
+                    font-size: 22px;
+                    height: 22px;
+                    width: 22px;
+                }
+            }
+
+            .fa-arrow-right {
+                color: $middle-grey;
+                font-size: 14px;
+                height: 14px;
+                margin: 0 15px 0 auto;
+                width: 14px;
+            }
+        }
+    }
+}

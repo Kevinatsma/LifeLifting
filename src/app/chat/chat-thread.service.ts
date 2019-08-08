@@ -114,7 +114,8 @@ export class ChatThreadService implements OnDestroy {
       },
       target: {
         targetPhoto: targetUser.photoURL,
-        targetName: targetUser.displayName
+        targetName: targetUser.displayName,
+        targetUID: targetUser.uid
       },
       members: [ profileID, creatorID ],
       unreadMessages: 0,

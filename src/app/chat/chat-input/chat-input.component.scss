@@ -2,9 +2,11 @@
 @import './../../../assets/scss/_forms.scss';
 
 mat-form-field.chat-box {
-    width: 96%;
-    margin: 10px 2% 0 2%;
-
+    display: flex;
+    justify-content: flex-start;
+    width: 90%;
+    margin: 10px 0 0;
+    padding-left: 1.5em;
 
     ::ng-deep .mat-form-field-underline {
         display: none;
@@ -16,6 +18,10 @@ mat-form-field.chat-box {
         font-weight: $semi-bold;
         font-family: $main-font;
         letter-spacing: 1px;
+    }
+
+    ::ng-deep .mat-form-field-wrapper {
+        width: 100%;
     }
 
     .mat-form-field-infix {
@@ -30,12 +36,16 @@ mat-form-field.chat-box {
         margin-top: 5px;
         width: 90%;
     }
+}
+
+.send-btn {
+    width: 10%;
+    @extend %flex-center;
 
     svg {
-        top: 5px;
         cursor: pointer;
         font-size: 20px;
         color: $primary-color;
-        width: 10%;
+        width: 20px;
     }
 }

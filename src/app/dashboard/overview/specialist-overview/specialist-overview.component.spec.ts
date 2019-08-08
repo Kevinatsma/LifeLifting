@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardHomeComponent } from './dashboard-home.component';
+import { SpecialistOverviewComponent } from './specialist-overview.component';
 
-describe('DashboardHomeComponent', () => {
-  let component: DashboardHomeComponent;
-  let fixture: ComponentFixture<DashboardHomeComponent>;
+describe('SpecialistOverviewComponent', () => {
+  let component: SpecialistOverviewComponent;
+  let fixture: ComponentFixture<SpecialistOverviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardHomeComponent ]
+      declarations: [ SpecialistOverviewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardHomeComponent);
+    fixture = TestBed.createComponent(SpecialistOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

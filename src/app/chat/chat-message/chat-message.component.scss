@@ -33,6 +33,11 @@ div.message-container {
         mat-card {
             box-shadow: $card-shadow;
         }
+
+        &.is-loaded {
+            animation: none !important;
+            animation-delay: 5s;
+        }
     }
 
     @for $i from 1 through 10 {

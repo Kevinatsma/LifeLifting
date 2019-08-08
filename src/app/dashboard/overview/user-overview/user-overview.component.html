@@ -1,0 +1,94 @@
+<ng-container *ngIf="user">
+  <section class="user-info">
+    <div class="user-info__photo" [style.background-image]="'url('+ user.photoURL +')'">
+    </div>
+    <div class="user-info__details">
+      <h1>Welcome back, {{user.displayName}}</h1>
+      <h5 class="subtitle" *ngIf="lastConsultation">Last consultation: {{lastConsultation.start | date:'short'}}</h5>
+      <h5 class="subtitle" *ngIf="!lastConsultation">No consultation has taken place yet</h5>
+
+
+      <div class="info-cards" *ngIf="guideline">
+        <div class="info-card">
+          <div class="icon">
+            <i class="fas fa-weight"></i>
+          </div>
+          <p class="card-text">
+            Weight
+          </p>
+          <h3>{{user.currentWeight}}kg</h3>
+          <h5>Goal: {{guideline.idealWeight}}kg</h5>
+        </div>
+        <div class="info-card">
+          <div class="icon">
+            <i class="fas fa-running"></i>
+          </div>
+          <p class="card-text">
+            BMI
+          </p>
+          <h3>{{guideline.formulaData.bmi | number:'1.0-0'}}</h3>
+          <h5 *ngIf="idealBMI">Goal: {{idealBMI | number:'1.0-0'}}</h5>
+          <h5 *ngIf="!idealBMI">No goal yet</h5>
+        </div>
+        <div class="info-card">
+          <div class="icon">
+            <i class="fas fa-ruler-combined"></i>
+          </div>
+          <p class="card-text">
+            Fat percentage
+          </p>
+          <h3>
+            <ng-container *ngIf="guideline.formulaData.fatPercentageRegular !== null; else athlete">
+              {{guideline.formulaData.fatPercentageRegular | number: '1.0-0'}}%
+            </ng-container>
+            <ng-template #athlete>
+              {{guideline.formulaData.fatPercentageAthlete | number: '1.0-0'}}%
+            </ng-template>
+          </h3>
+          <h5 *ngIf="!guideline.formulaData.fatPercentageAthlete || !guideline.formulaData.fatPercentageRegular">
+            No goal yet
+          </h5>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quick-actions">
+    <h1>Quick actions</h1>
+
+    <div class="quick-actions__btn-container">
+      <button (click)="linkToMealplan()" *ngIf="mealplan">
+        <div class="icon">
+          <i class="fas fa-utensils"></i>
+        </div>
+        See current mealplan
+        <i class="fas fa-arrow-right"></i>
+      </button>
+      <button (click)="linkToShoppingList()" *ngIf="mealplan">
+        <div class="icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        See current shopping list
+        <i class="fas fa-arrow-right"></i>
+      </button>
+      <button (click)="chatWithSpecialist()" *ngIf="specialist">
+        <div class="icon">
+          <i class="fas fa-comment-alt"></i>
+        </div>
+        Chat with specialist
+        <i class="fas fa-arrow-right"></i>
+      </button>
+      <button (click)="linkToCalendar()">
+        <div class="icon">
+          <i class="fas fa-calendar-plus"></i>
+        </div>
+        Request a consultation
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </section>
+
+  <section class="process-chart">
+    <h1>Process Chart</h1>
+  </section>
+</ng-container>

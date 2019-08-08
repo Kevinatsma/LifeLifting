@@ -62,7 +62,15 @@ export class MeasurementService implements OnDestroy {
 
   updateMeasurement(id, data) {
     this.measurementDoc = this.afs.doc<Measurement>(`measurements/${id}`);
-    this.measurementDoc.update(data);
+    this.measurementDoc.update(data)
+    .then(() => {
+      const weightData = {
+        currentWeight: data.weight
+      };
+      const uid = data.clientID;
+
+      this.userService.updateUser(uid, weightData);
+    });
   }
 
   deleteMeasurement(id) {

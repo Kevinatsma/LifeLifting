@@ -6,6 +6,7 @@ import { Message } from './../message.model';
 import { ChatMessageService } from './../chat-message.service';
 import { ChatThreadService } from '../chat-thread.service';
 import { Thread } from '../thread.model';
+import { UtilService } from './../../shared/services/util.service';
 
 @Component({
   selector: 'app-chat-messages',
@@ -23,7 +24,8 @@ export class ChatMessagesComponent implements OnInit, OnDestroy {
   constructor( private messageService: ChatMessageService,
                public threadService: ChatThreadService,
                private route: ActivatedRoute,
-               public router: Router) { }
+               public router: Router,
+               private utils: UtilService) { }
 
   ngOnInit() {
     this.getMessages();
@@ -40,7 +42,19 @@ export class ChatMessagesComponent implements OnInit, OnDestroy {
     if (id) {
       this.messages$ = this.messageService.getMessages(id);
       this.messageSubscription$ = this.messages$.subscribe(messages => {
-        this.messages = messages;
+        this.messages = messages.sort(function(a, b) {
+          // convert date object into number to resolve issue in typescript
+          return  +new Date(a.timestamp) - +new Date(b.timestamp);
+        });
+
+        const messageElements = document.querySelectorAll('message');
+        setTimeout(() => {
+          messageElements.forEach(el => {
+            if (!el.classList.contains('is-loaded')) {
+              el.classList.add('is-loaded');
+            }
+          });
+        }, 2000);
       });
     }
   }
