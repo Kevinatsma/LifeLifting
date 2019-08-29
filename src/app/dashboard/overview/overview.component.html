@@ -1,7 +1,7 @@
 <main class="dashboard-overview" *ngIf="auth.user | async as user">
-  <app-user-overview [user]="user"  *ngIf="user.roles.client"></app-user-overview>
+  <app-user-overview [user]="user"  *ngIf="user.roles.client && !user.roles.specialist || !user.roles.admin"></app-user-overview>
 
-  <!-- <section *ngIf="user.roles.specialist">
+  <section *ngIf="user.roles.specialist">
     <app-specialist-overview [user]="user"></app-specialist-overview>
-  </section> -->
+  </section>
 </main>

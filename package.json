@@ -12,7 +12,7 @@
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
     "dev": "npm run build:client-and-server-bundles && npm run compile:server && node dist/server",
-    "build-prod": "bash ./scripts/ng.sh build --prod --aot",
+    "build-prod": "bash ./scripts/ng.sh build --prod --aot", 
     "build:client-and-server-bundles": "npm run build-prod && ng run LifeLifting:server:production"
   },
   "private": true,
@@ -49,7 +49,7 @@
     "moment": "^2.24.0",
     "node-sass": "^4.12.0",
     "rxjs": "^6.4.0",
-    "typescript": "^3.2.2",
+    "typescript": "^3.5.3",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {

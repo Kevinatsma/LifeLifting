@@ -1,17 +1,52 @@
 <ng-container *ngIf="user">
-  <section class="user__photo" *ngIf="user.photoURL" [style.background-image]="'url('+ user.photoURL +')'">
+  <section class="user-info">
+    <div class="user-info__photo" [style.background-image]="'url('+ user.photoURL +')'">
+    </div>
+    <div class="user-info__details">
+      <h1>Welcome back, {{user.displayName}}</h1>
+      <h5 class="subtitle" *ngIf="lastConsultation"></h5>
+      <h5 class="subtitle" *ngIf="!lastConsultation"></h5>
+    </div>
   </section>
 
-  <section class="user__consultations" *ngIf="upcomingConsultations">
-    <h1> Upcoming consultations </h1>
-  </section>
-
-  <section class="user__consultations" *ngIf="pastConsultations">
-    <h1> Past consultations </h1>
+  <section class="user-consultations">
+    <div class="user-consultations__future" *ngIf="futureAppointments">
+      <h2> Upcoming Consultations </h2>
+      <ul *ngIf="futureAppointments.length > 0">
+        <li class="appointment-item" *ngFor="let appointment of futureAppointments" (click)="openEventDetailDialog(appointment)">
+          <i class="fas fa-calendar-plus"></i>
+          {{appointment.start | date:'short'}} - {{getString(appointment.meetMethod)}}
+          <i class="fas fa-arrow-right"></i>
+        </li>
+      </ul>
+      <a class="see-more-btn text-link" *ngIf="futureAppointments.length > 2" [routerLink]="['../my-calendar']">
+        See more
+      </a>
+      <p class="card-text" *ngIf="futureAppointments.length <= 0">
+        No future consultations planned.
+      </p>
+    </div>
+  
+    <div class="user-consultations__past" *ngIf="pastAppointments">
+      <h2> Past Consultations </h2>
+      <ul *ngIf="pastAppointments.length > 0">
+        <li class="appointment-item" *ngFor="let appointment of pastAppointments" (click)="openEventDetailDialog(appointment)">
+          <i class="fas fa-calendar-check"></i>
+          {{appointment.start | date:'short'}} - {{getString(appointment.meetMethod)}}
+          <i class="fas fa-arrow-right"></i>
+        </li>
+      </ul>
+      <a class="see-more-btn text-link" *ngIf="pastAppointments.length > 2" [routerLink]="['../my-calendar']">
+        See more
+      </a>
+      <p class="card-text" *ngIf="pastAppointments.length <= 0">
+        No past consultations yet.
+      </p>
+    </div>
   </section>
 
   <section class="quick-action">
-    <h1>Quick actions</h1>
+    <h2>Quick Actions</h2>
 
     <div class="quick-actions__btn-container">
       <button (click)="linkToChat()">
@@ -29,5 +64,19 @@
         <i class="fas fa-arrow-right"></i>
       </button>
     </div>
+  </section>
+
+  <section class="my-clients-list" *ngIf="clients">
+    <h2>My Clients</h2>
+    <div class="user-container" *ngIf="clients.length > 0">
+      <app-my-client-list-item *ngFor="let user of clients" [user]="user"></app-my-client-list-item>
+      <button class="see-more icon-btn" [routerLink]="['../my-clients']">
+        <i class="fa fa-user"></i>
+        See all Clients
+      </button>
+    </div>
+    <p class="card-text" *ngIf="clients.length <= 0">
+      No past consultations yet.
+    </p>
   </section>
 </ng-container>

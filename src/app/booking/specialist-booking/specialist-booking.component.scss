@@ -29,6 +29,12 @@ button.has-messages {
 
     }
 
+    .left {
+        button:first-child {
+            margin-right: 2em;
+        }
+    }
+
     .right {
         button:last-child {
             @include respond-down($sm) {

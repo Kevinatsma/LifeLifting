@@ -5,6 +5,9 @@
       <button class="icon-button not-mobile" (click)="goBack()">
         <i class="fas fa-arrow-left"></i>
       </button>
+      <button class="icon-button not-mobile hidden">
+        <i class="fas fa-arrow-left"></i>
+      </button>
       <button class="icon-button mobile" [class.has-messages]="hasEventRequest" (click)="openUnacceptedUsers()">
         <i class="fas fa-bell"></i>
       </button>

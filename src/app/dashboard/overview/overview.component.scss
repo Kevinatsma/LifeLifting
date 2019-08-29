@@ -4,10 +4,96 @@
 
 .dashboard-overview {
     min-width: calc(75vw - 6em);
+    width: calc(75vw - 6em);
+    max-width: 75vw;
+    overflow: hidden;
     padding: 3em;
 
     @include respond-down($sm) {
         min-width: calc(100vw - 32px);
         padding: 3em 16px;
+    }
+
+    ::ng-deep {
+        .quick-actions {
+            margin-top: 2em;
+        
+            &__btn-container {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: center;
+                margin: 2em 0;
+                width: 100%;
+        
+                button {
+                    align-items: center;
+                    background-color: #fff;
+                    box-shadow: $card-shadow;
+                    box-sizing: border-box;
+                    border-radius: 8px;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    padding: 2em 1em;
+                    margin-bottom: 2em;
+                    transform: scale(1);
+                    transition: transform .3s ease-in-out;
+                    text-align: left;
+                    width: 45%;
+        
+                    @include respond-down($sm) {
+                        height: 95px;
+                        font-size: 15px;
+                        padding: 2em 16px;
+                        width: 100%;
+                    }
+        
+                    &:hover {
+                        transform: scale(1.03);
+                    }
+        
+                    &:nth-child(odd) {
+                        margin-right: 7.5%;
+        
+                        @include respond-down($sm) {
+                            margin-right: 0;
+                        }
+                    }
+        
+                    .icon {
+                        margin-right: 5%;
+                        padding-right: 5%;
+                        position: relative;
+                        width: 10%;
+                        @extend %flex-center;
+        
+                        &::after {
+                            background-color: $border-color;
+                            bottom: 0;
+                            content: '';
+                            height: 100%;
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            width: 1px;
+                        }
+        
+                        svg {
+                            color: $secondary-color;
+                            font-size: 16px;
+                            height: 16px;
+                            width: 16px;
+                        }
+                    }
+        
+                    .fa-arrow-right {
+                        color: $border-color;
+                        font-size: 12px;
+                        height: 12px;
+                        margin: 0 15px 0 auto;
+                        width: 12px;
+                    }
+                }
+            }
+        }
     }
 }

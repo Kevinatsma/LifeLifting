@@ -1,0 +1,210 @@
+@import './../../../../assets/scss/master';
+@import './../../../../assets/scss/mixins';
+
+
+section {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 2em 0;
+    width: 100%;
+
+    h2 {
+        margin: 0 0 15px;
+    }
+
+    &.user-consultations {
+        box-sizing: border-box; 
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        width: 100%;
+
+        > div {
+            background-color: #fff;
+            box-sizing: border-box;
+            box-shadow: $card-shadow;
+            border-radius: 8px;
+            display: flex;
+            flex-flow: column nowrap;
+            height: 100%;
+            padding: 2em 1.5em;
+            width: 48%;
+            
+            p {
+                margin: 0;
+            }
+
+            .see-more-btn {
+                font-family: $main-font;
+                font-weight: $bold;
+                margin: 20px 10px 0 auto;
+                width: fit-content;
+                font-size: 14px;
+            }
+
+            ul {
+                li {
+                    align-items: center;
+                    box-sizing: border-box;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    position: relative;
+                    padding: 20px 2.5% 20px;
+                    text-transform: capitalize;
+                    width: 100%;
+
+                    &::after {
+                        background-color: $border-color;
+                        bottom: 0px;
+                        content: '';
+                        height: 1px;
+                        left: 2%;
+                        position: absolute;
+                        right: 2%;
+                        width: 96%;
+                    }
+
+                    &:hover {
+                        background-color: $light-grey;
+                        cursor: pointer;
+                    }
+
+                    svg {
+                        &:first-child {
+                            color: darken($middle-grey, 10%);
+                            height: 16px;
+                            margin: -1.5px 20px 0 0;
+                            width: 16px;
+                        }
+
+                        &:last-child {
+                            color: $border-color;
+                            font-size: 12px;
+                            margin: 2px 0 0 auto;
+                            width: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.my-clients-list {
+        flex-flow: column nowrap;
+        max-width: 75vw;
+        width: 100%;
+
+        .user-container {
+            box-sizing: border-box;
+            display: flex;
+            flex-flow: row nowrap;
+            overflow: auto;
+            padding: 1em 2em 1em;
+            margin-left: -3em;
+            width: 75vw;
+
+            .see-more {
+                align-items: center;
+                display: flex;
+                font-size: 14px;
+                font-weight: $bold;
+                flex-flow: column nowrap;
+                justify-content: center;
+                line-height: 1.37;
+                min-width: 200px;
+
+                &:hover {
+                    background-color: $middle-grey;
+
+                    svg {
+                        transform: scale(1.05);
+                    }
+                }
+                
+                svg {
+                    color: darken($middle-grey, 10%);
+                    font-size: 22px;
+                    margin-bottom: 15px;
+                    transition: transform 300ms ease-in-out;
+                }
+            }
+
+            ::ng-deep {
+                mat-card.list-item-card {
+                    flex-flow: column nowrap;
+                    height: 520px;
+                    max-height: 520px;
+                    margin-right: 2em;
+                    width: 410px;
+
+                    .type-chip {
+                        display: none;
+                    }
+
+                    section {
+                        box-sizing: border-box;
+                        width: 100%!important;
+
+                        &.profile-photo {
+                            height: 200px;
+                        }
+
+                        &.middle {
+                            .title {
+                                flex-flow: column wrap;
+                                align-items: flex-start;
+
+                                h2 {
+                                    width: 100% !important;
+                                }
+
+                                .dividing-circle {
+                                    display: none;
+                                }
+                            }
+
+                            .quick-info {
+                                p.description {
+                                    height: 70px;
+        
+                                    &::after {
+                                        content: '';
+                                        width: 100%;
+                                        height: 100%;    
+                                        position: absolute;
+                                        left: 0;
+                                        top: 0;
+                                        background: linear-gradient(transparent 30px, white);
+                                    }
+                                }
+
+                                p.speciality-title {
+                                    display: none;
+                                }
+
+                                ul.contact-menu {
+                                    display: flex;
+                                    align-items: center;
+                                    flex-flow: row nowrap;
+                                    justify-content: space-between;
+                                    margin: 1.5em 0;
+
+                                    li {
+                                        box-sizing: border-box;
+                                        margin: 0;
+                                        width: 30%;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: flex-start;
+                                        width: auto;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

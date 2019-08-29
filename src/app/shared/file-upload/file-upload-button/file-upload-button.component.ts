@@ -62,8 +62,12 @@ export class FileUploadButtonComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.task$.unsubscribe();
-    this.downloadURL$.unsubscribe();
+    if (this.task !== undefined) {
+      this.task$.unsubscribe();
+    }
+    if (this.downloadURL$ !== undefined) {
+      this.downloadURL$.unsubscribe();
+    }
   }
 
   sendDownloadURL() {

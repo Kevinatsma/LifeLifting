@@ -63,7 +63,13 @@ export class AppointmentDetailDialogComponent implements OnDestroy {
                @Inject(MAT_DIALOG_DATA) public data: any,
                private specialistService: SpecialistService
     ) {
-      this.event = data.event.event;
+      if (data.event.clientID) {
+        this.event = data.event;
+      } else {
+        this.event = data.event.event;
+      }
+
+      console.log(this.event);
       this.doEventCheck(this.event);
       this.getTimeAndDate();
       this.getEndTimeAndDate();

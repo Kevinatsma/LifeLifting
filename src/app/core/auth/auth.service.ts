@@ -134,8 +134,6 @@ export class AuthService {
     return this.user.pipe(first()).toPromise();
   }
 
-
-
   addUser(email: string, password: string, formData: any) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
     .then((credential) => {

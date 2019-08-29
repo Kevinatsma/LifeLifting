@@ -97,12 +97,12 @@ export class UserOverviewComponent implements OnInit, OnDestroy {
   }
 
   getAppointments() {
-    const eventCol = this.afs.collection<Mealplan>('appointments', ref =>
+    const eventCol = this.afs.collection<Appointment>('appointments', ref =>
       ref.where('clientID', '==', `${this.user.uid}`)
       .orderBy('created', 'desc'));
 
     this.lastConsultation$ = eventCol.valueChanges().subscribe(appointments => {
-      this.appointments = appointments;
+      this.appointments = appointments.filter(obj => new Date(obj.created).getTime() <= new Date().getTime());
       this.lastConsultation = appointments[0];
     });
   }

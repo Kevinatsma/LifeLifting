@@ -32,8 +32,12 @@ export class FileUploadComponent implements OnDestroy {
   constructor( private storage: AngularFireStorage) { }
 
   ngOnDestroy() {
-    this.task$.unsubscribe();
-    this.downloadURL$.unsubscribe();
+    if (this.task !== undefined) {
+      this.task$.unsubscribe();
+    }
+    if (this.downloadURL$ !== undefined) {
+      this.downloadURL$.unsubscribe();
+    }
   }
 
   toggleHover(event: boolean) {
