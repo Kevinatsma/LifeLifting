@@ -14,7 +14,7 @@ import { UtilService } from './../../shared/services/util.service';
   styleUrls: ['./chat-threads.component.scss']
 })
 export class ChatThreadsComponent implements OnInit, OnDestroy {
-  @ViewChild(ChatDetailComponent) chatComp: ChatDetailComponent;
+  @ViewChild(ChatDetailComponent, {static: false}) chatComp: ChatDetailComponent;
   threads: Observable<Thread[]>;
   thread: Observable<Thread>;
   showThreads: boolean;

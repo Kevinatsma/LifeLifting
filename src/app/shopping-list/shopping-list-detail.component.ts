@@ -2,8 +2,6 @@ import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Mealplan } from '../mealplans/mealplan.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MealplanService } from '../mealplans/mealplan.service';
-import { getComponentViewDefinitionFactory } from '@angular/core/src/view';
-import { AnimationTransitionInstructionType } from '@angular/animations/browser/src/render/animation_engine_instruction';
 import { Food } from '../foods/food.model';
 import { FoodService } from '../foods/food.service';
 import { MatDialog } from '@angular/material';

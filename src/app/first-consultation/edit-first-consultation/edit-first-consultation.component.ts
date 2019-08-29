@@ -22,7 +22,7 @@ import { Subscription } from 'rxjs';
 })
 export class EditFirstConsultationComponent implements OnInit, OnDestroy {
   // Elements
-  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild('stepper', {static: false}) stepper: MatStepper;
 
   // Data
   firstConsultation: FirstConsultation;

@@ -35,7 +35,6 @@ import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointme
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UtilService } from './../../shared/services/util.service';
-import { checkAndUpdateBinding } from '@angular/core/src/view/util';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({

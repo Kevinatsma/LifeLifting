@@ -37,12 +37,12 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 })
 export class EditMealDialogComponent implements OnInit, OnDestroy {
   // Child components
-  @ViewChild(EditMondayFormComponent) mondayComp: EditMondayFormComponent;
-  @ViewChild(EditTuesdayFormComponent) tuesdayComp: EditTuesdayFormComponent;
-  @ViewChild(EditWednesdayFormComponent) wednesdayComp: EditThursdayFormComponent;
-  @ViewChild(EditThursdayFormComponent) thursdayComp: EditWednesdayFormComponent;
-  @ViewChild(EditFridayFormComponent) fridayComp: EditFridayFormComponent;
-  @ViewChild(EditSuppsFormComponent) suppsComp: EditSuppsFormComponent;
+  @ViewChild(EditMondayFormComponent, {static: false}) mondayComp: EditMondayFormComponent;
+  @ViewChild(EditTuesdayFormComponent, {static: false}) tuesdayComp: EditTuesdayFormComponent;
+  @ViewChild(EditWednesdayFormComponent, {static: false}) wednesdayComp: EditThursdayFormComponent;
+  @ViewChild(EditThursdayFormComponent, {static: false}) thursdayComp: EditWednesdayFormComponent;
+  @ViewChild(EditFridayFormComponent, {static: false}) fridayComp: EditFridayFormComponent;
+  @ViewChild(EditSuppsFormComponent, {static: false}) suppsComp: EditSuppsFormComponent;
 
   // Values for storing data
   client: User;

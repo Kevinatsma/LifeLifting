@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { Mealplan } from './../../mealplans/mealplan.model';
-import * as html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas';
 const jsPDF = require('jspdf');
 
 @Component({
@@ -11,7 +11,7 @@ const jsPDF = require('jspdf');
   encapsulation: ViewEncapsulation.None
 })
 export class PrintShoppingListComponent implements OnInit {
-  @ViewChild('shoppingList') shoppingListEl: ElementRef;
+  @ViewChild('shoppingList', {static: false}) shoppingListEl: ElementRef;
   shoppingListItems: Array<any>;
   mealplan: Mealplan;
 
@@ -33,7 +33,7 @@ export class PrintShoppingListComponent implements OnInit {
     const quality = 4;
 
     html2canvas(this.shoppingListEl.nativeElement, {
-      letterRendering: true,
+      useCORS: true,
       scale: quality
     })
     .then(canvas => {

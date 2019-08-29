@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs';
 })
 export class AddFirstConsultationComponent implements OnInit, OnDestroy {
   // Elements
-  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild('stepper', {static: false}) stepper: MatStepper;
 
   // Data
   client: User;
