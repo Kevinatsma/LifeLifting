@@ -44,7 +44,7 @@ export class LimboStateComponent implements OnInit, OnDestroy {
       this.user$.unsubscribe();
     }
     if (this.specialist$ !== undefined) {
-      this.specialist$.unsubscribe();
+      if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
     }
     if (this.events$ !== undefined) {
       this.events$.unsubscribe();
@@ -102,7 +102,7 @@ export class LimboStateComponent implements OnInit, OnDestroy {
       }
     };
     this.userService.updateUser(user.uid, data);
-    this.router.navigate(['..//signup/step-four']);
+    this.router.navigate(['../signup/step-four']);
   }
 
   // Toggles

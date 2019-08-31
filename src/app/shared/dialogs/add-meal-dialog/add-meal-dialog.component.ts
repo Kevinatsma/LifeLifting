@@ -133,7 +133,7 @@ export class AddMealDialogComponent implements OnInit, OnDestroy {
     this.supps$.unsubscribe();
     this.foods$.unsubscribe();
     this.specialistID$.unsubscribe();
-    this.specialist$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
     this.mealplans$.unsubscribe();
   }
 

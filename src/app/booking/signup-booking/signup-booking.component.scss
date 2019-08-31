@@ -93,6 +93,11 @@
 .calendar {
     width: 100%;
 
+    &.calendar-signup {
+        min-width: 100%;
+        max-width: 75vw;
+    }
+
     &-signup {
         ::ng-deep {
             .cal-open-day-events {

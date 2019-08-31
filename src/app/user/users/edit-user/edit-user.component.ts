@@ -82,7 +82,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.specialist$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
     this.userService.editShow = false;
   }
 

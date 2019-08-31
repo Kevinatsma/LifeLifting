@@ -183,7 +183,7 @@ export class AddGuideDialogComponent implements OnInit, OnDestroy {
     this.measurements$.unsubscribe();
     if (this.fic$ !== undefined) { this.fic$.unsubscribe(); }
     this.fics$.unsubscribe();
-    this.specialist$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
     this.backdropClick$.unsubscribe();
     this.user$.unsubscribe();
     this.exercises$.unsubscribe();

@@ -51,7 +51,7 @@ export class MySpecialistComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.user$.unsubscribe();
-    this.specialist$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
   }
 
   // Getters

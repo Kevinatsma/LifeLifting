@@ -41,7 +41,7 @@ export class PackageDetailComponent implements OnInit, OnDestroy {
     this.package$.unsubscribe();
     this.prevPackage$.unsubscribe();
     this.nextPackage$.unsubscribe();
-    this.specialist$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
   }
 
   getPackage() {

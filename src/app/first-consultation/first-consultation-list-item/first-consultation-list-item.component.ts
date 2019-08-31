@@ -35,7 +35,7 @@ export class FirstConsultationListItemComponent implements OnDestroy {
                 }
 
   ngOnDestroy() {
-    this.specialist$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
   }
 
   // Getters

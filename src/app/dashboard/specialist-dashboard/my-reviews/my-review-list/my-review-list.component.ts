@@ -29,7 +29,7 @@ export class MyReviewListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.specialist$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
   }
 
 }

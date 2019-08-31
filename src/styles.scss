@@ -358,6 +358,22 @@ button.add-form-field {
     }
 }
 
+.warning-link {
+    color: darken($brand-warning, 12%);
+    font-size: 14px;
+    font-weight: $bold;
+    text-decoration: underline;
+    transition: all .18s ease-in-out;
+
+    &::after {
+        display: none;
+    }
+
+    &:hover {
+        color: darken($brand-warning, 18%);
+    }
+}
+
 //////////////////
 //////////////////
 // Headers & Text

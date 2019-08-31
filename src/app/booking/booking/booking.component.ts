@@ -90,7 +90,7 @@ export class BookingComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.user$.unsubscribe();
-    this.specialist$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
   }
 
   replaceDates() {

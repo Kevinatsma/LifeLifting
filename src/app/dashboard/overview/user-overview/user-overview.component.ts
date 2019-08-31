@@ -50,7 +50,7 @@ export class UserOverviewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.specialist$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
     if (this.guideline$ !== undefined) {
       this.guideline$.unsubscribe();
     }

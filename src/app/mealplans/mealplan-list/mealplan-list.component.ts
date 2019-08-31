@@ -32,7 +32,7 @@ export class MealplanListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.specialist$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
   }
 
 }

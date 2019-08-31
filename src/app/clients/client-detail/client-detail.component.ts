@@ -63,7 +63,7 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.user$.unsubscribe();
-    this.specialist$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
     this.guidelines$.unsubscribe();
     this.measurements$.unsubscribe();
     this.mealplans$.unsubscribe();

@@ -150,7 +150,8 @@
     height: auto;
     overflow-y: scroll;
     padding: 3em 2em;
-    max-width: calc(75vh - 2em) !important;
+    min-width: 75vw;
+    max-width: 75vw;
     width: 100%;
 
     @include respond-down($sm) {
