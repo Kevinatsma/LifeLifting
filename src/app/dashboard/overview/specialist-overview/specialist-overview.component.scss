@@ -49,6 +49,8 @@ section {
                     box-sizing: border-box;
                     display: flex;
                     flex-flow: row nowrap;
+                    font-size: 14px;
+                    font-weight: $bold;
                     position: relative;
                     padding: 20px 2.5% 20px;
                     text-transform: capitalize;
