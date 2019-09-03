@@ -238,8 +238,12 @@ main.dialog-wrapper {
 }
 
 .print-dialog {
-    min-width: 35vw;
+    min-width: 445px;
     max-height: 65vh;
+
+    @include respond-down($sm) {
+        min-width: 35vw;
+    }
 
     .mat-dialog-container {
         border-radius: 0;

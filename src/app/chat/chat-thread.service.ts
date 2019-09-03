@@ -92,7 +92,6 @@ export class ChatThreadService implements OnDestroy {
   }
 
   getExistingThread(doc) {
-    console.log('doc exists!');
     this.threadExists = true;
     this.messageService.getMessages(`${this.requestedThread}`);
     this.router.navigate([`chat/chat-detail/${this.requestedThread}`]);
