@@ -71,10 +71,15 @@ main.specialist-wrapper {
         }
 
         button.icon-button {
-            position: inherit;
-
             svg {
                 font-size: 16px;
+            }
+        }
+
+        .right {
+            button.icon-button {
+                margin-left: 0;
+                right: 0;
             }
         }
 
@@ -92,11 +97,12 @@ main.specialist-wrapper {
             height: auto;
             width: 55px;
             position: absolute;
-            right: calc(1em + 5px);
-            top: 5em;
+            right: 3em;
+            top: 6em;
             display: flex;
             flex-direction: column;
             z-index: 1234;
+
             @include respond-down($sm) {
                 right: 13px;
                 top: 6em;
@@ -110,6 +116,8 @@ main.specialist-wrapper {
                 opacity: 0;
                 transform: scale(0);
                 transition: opacity 0.3ms ease-in-out, transform 0.3s cubic-bezier(.17,.67,.79,1.46);
+                height: 55px;
+                width: 55px;
 
                 &.visible {
                     opacity: 1;

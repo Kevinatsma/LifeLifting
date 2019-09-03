@@ -9,8 +9,18 @@ section {
     margin: 2em 0;
     width: 100%;
 
+    @include respond-down($md) {
+        margin: .5em 0;
+    }
+
     h2 {
         margin: 0 0 15px;
+    }
+
+    &.user-info {
+        @include respond-down($md) {
+            margin: 2em 0 0;
+        }
     }
 
     &.user-consultations {
@@ -19,6 +29,13 @@ section {
         flex-flow: row nowrap;
         justify-content: space-between;
         width: 100%;
+
+        @include respond-down($md) {
+            flex-flow: column nowrap;
+            height: 100%;
+            margin: 0;
+            padding: 2em 0;
+        }
 
         > div {
             background-color: #fff;
@@ -30,6 +47,11 @@ section {
             height: 100%;
             padding: 2em 1.5em;
             width: 48%;
+
+            @include respond-down($md) {
+                margin: 1em 0 2em;
+                width: 100%;
+            }
             
             p {
                 margin: 0;
@@ -106,6 +128,13 @@ section {
             margin-left: -3em;
             width: 75vw;
 
+            @include respond-down($md) {
+                margin: 0 0 0 -16px;
+                padding: 1em 1em;
+                min-width: 100%;
+                width: 100vw;
+            }
+
             .see-more {
                 align-items: center;
                 display: flex;
@@ -139,6 +168,10 @@ section {
                     max-height: 520px;
                     margin-right: 2em;
                     width: 410px;
+
+                    @include respond-down($md) {
+                        width: 320px;
+                    }
 
                     .type-chip {
                         display: none;

@@ -21,6 +21,6 @@
 
   <app-admin-menu [user]="user" *ngIf="user && auth.adminRoles(user)"></app-admin-menu>
   <app-specialist-menu [user]="user" *ngIf="user && auth.specialistRoles(user)"></app-specialist-menu>
-  <app-client-menu  [user]="user" *ngIf="user && auth.clientRoles(user)"></app-client-menu>
+  <app-client-menu [user]="user" *ngIf="user && auth.clientRoles(user)"></app-client-menu>
   <app-misc-menu [user]="user" *ngIf="user && auth.adminRoles(user)"></app-misc-menu>
 </div>

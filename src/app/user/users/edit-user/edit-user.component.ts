@@ -113,7 +113,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
     } else if (el === 'subscriptionValid') {
       this.status.subscriptionValid  = $event.checked;
       if ($event.checked === true) {
-        console.log('TODO DISABLE ALL');
       }
     }
     this.cdr.detectChanges();

@@ -4,14 +4,6 @@
       <button type="button" class="icon-button" (click)="goBack()">
         <i class="fas fa-arrow-left"></i>
       </button>
-      <button type="button" class="icon-btn hidden" *ngIf="!user.roles.specialist || !user.roles.admin">
-        <i class="fas fa-arrow-left"></i>
-      </button>
-
-      <button type="button" class="icon-button not-mobile" (click)="deleteMealplanDialog(mealplan)" 
-      *ngIf="!editShow && user.roles.admin || user.roles.specialist">
-        <i class="fas fa-trash"></i>
-      </button>
     </div>
 
     <div class="middle">
@@ -27,60 +19,36 @@
     </div>
 
     <div class="right" *ngIf="user">
-      <div class="not-mobile">
-        <ng-container *ngIf="!user.roles.admin || !user.roles.specialist">
-          <button type="button" class="icon-button" (click)="printMealplan(mealplan)">
-            <i class="fas fa-print"></i>
-          </button>
-          <button type="button" class="icon-button" (click)="linkToShoppingList(mealplan)">
-            <i class="fas fa-shopping-cart"></i>
-          </button>
-        </ng-container>
-        <ng-container *ngIf="user.roles.admin || user.roles.specialist">
-          <button type="button" class="icon-button" (click)="editMealplan(mealplan)"
+      <button class="icon-button edit-button" *ngIf="actionMenuOpen; else plus" (click)="toggleButtonMenu()">
+        <i class="fas fa-minus"></i>
+      </button>
+      <ng-template #plus>
+        <button class="icon-button edit-button" (click)="toggleButtonMenu()">
+          <i class="fas fa-plus"></i>
+        </button>
+      </ng-template>
+
+      <div class="specialist-actions">
+        <ng-container  *ngIf="user.roles.admin || user.roles.specialist">
+          <button type="button" class="icon-button action-btn" (click)="editMealplan(mealplan)"
           *ngIf="!editShow">
             <i class="fas fa-edit"></i>
           </button>
 
-          <button type="button" class="icon-button" (click)="printMealplan(mealplan)">
-            <i class="fas fa-print"></i>
+          <button type="button" class="icon-button action-btn" (click)="deleteMealplanDialog(mealplan)" 
+          *ngIf="!editShow">
+            <i class="fas fa-trash"></i>
           </button>
         </ng-container>
-      </div>
 
-      <div class="mobile">
-        <button class="icon-button edit-button" *ngIf="actionMenuOpen; else plus" (click)="toggleButtonMenu()">
-          <i class="fas fa-minus"></i>
+        <button type="button" class="icon-button action-btn" (click)="printMealplan(mealplan)">
+          <i class="fas fa-print"></i>
         </button>
-        <ng-template #plus>
-          <button class="icon-button edit-button" (click)="toggleButtonMenu()">
-            <i class="fas fa-plus"></i>
-          </button>
-        </ng-template>
 
-        <div class="specialist-actions">
-          <ng-container  *ngIf="user.roles.admin || user.roles.specialist">
-            <button type="button" class="icon-button action-btn" (click)="editMealplan(mealplan)"
-            *ngIf="!editShow">
-              <i class="fas fa-edit"></i>
-            </button>
-
-            <button type="button" class="icon-button action-btn" (click)="deleteMealplanDialog(mealplan)" 
-            *ngIf="!editShow">
-              <i class="fas fa-trash"></i>
-            </button>
-          </ng-container>
-
-          <button type="button" class="icon-button action-btn" (click)="printMealplan(mealplan)">
-            <i class="fas fa-print"></i>
-          </button>
-
-          <button type="button" class="icon-button action-btn" (click)="linkToShoppingList(mealplan)">
-            <i class="fas fa-shopping-cart"></i>
-          </button>
-        </div>
+        <button type="button" class="icon-button action-btn" (click)="linkToShoppingList(mealplan)">
+          <i class="fas fa-shopping-cart"></i>
+        </button>
       </div>
-
     </div>
   </section>
 

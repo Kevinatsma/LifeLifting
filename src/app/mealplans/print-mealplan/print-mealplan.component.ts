@@ -51,7 +51,7 @@ export class PrintMealplanComponent implements OnInit {
   }
 
   drawCanvas() {
-    const quality = 3;
+    const quality = 4;
 
     html2canvas(this.pageOne.nativeElement, {
       useCORS: true,

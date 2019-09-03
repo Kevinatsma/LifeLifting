@@ -1,7 +1,4 @@
 <main class="calendar-wrapper">
-  <ng-container *ngIf="!signupCalendar">
-    <h1>IS NOT THE SIGNUP CALENDAR</h1>
-  </ng-container>
   <app-client-booking *ngIf="!signupCalendar"></app-client-booking>
   <app-signup-booking *ngIf="signupCalendar"></app-signup-booking>
 </main>

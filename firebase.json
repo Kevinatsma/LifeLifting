@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "lifelifting",
     "public": "dist/browser",
     "ignore": [
       "firebase.json",
