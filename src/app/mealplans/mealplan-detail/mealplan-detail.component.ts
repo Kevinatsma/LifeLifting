@@ -100,7 +100,8 @@ export class MealplanDetailComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       const id = this.route.snapshot.paramMap.get('id');
       this.mealplan$ = this.mealplanService.getMealplanDataById(id).subscribe(mealplan => {
-        this.mealplan = mealplan;
+        // this.mealplan = mealplan;
+        this.mealplan = null;
         this.client$ = this.userService.getUserDataByID(mealplan.clientID).subscribe(user => this.client = user);
         this.getGuideline(mealplan);
         });

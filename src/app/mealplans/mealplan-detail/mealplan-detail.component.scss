@@ -62,17 +62,39 @@ main.specialist-wrapper {
 
     .action-toolbar-top {
         @include respond-down($sm) {
-            padding: 0 16px;
+            padding: 0 16px 16px;
+            height: auto;
         }
+
         .left {
             button {
                 margin-right: 2em;
+
+                @include respond-down($sm) {
+                    margin-right: 0;
+                }
             }
         }
 
         button.icon-button {
+            @include respond-down($sm) {
+                height: 45px !important;
+                width: 45px !important;
+                min-height: 45px !important;
+            }
+
             svg {
                 font-size: 16px;
+
+                @include respond-down($sm) {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .middle {
+            @include respond-down($sm) {
+                width: 65%;
             }
         }
 
@@ -80,6 +102,12 @@ main.specialist-wrapper {
             button.icon-button {
                 margin-left: 0;
                 right: 0;
+            }
+
+            .specialist-actions {
+                @include respond-down($sm) {
+                    right: 6px;
+                }
             }
         }
 
@@ -150,6 +178,11 @@ main.specialist-wrapper {
                     &.visible {
                         transition-delay: 0.6s;
                     }
+                }
+
+                @include respond-down($sm) {
+                    width: 45px;
+                    height: 45px;
                 }
             }
         }
@@ -256,6 +289,11 @@ main.specialist-wrapper {
             }
 
         section {
+            &.introduction {
+                @include respond-down($sm) {
+                    min-height: 210px;
+                }
+            }
 
             .section-title {
                 position: relative;

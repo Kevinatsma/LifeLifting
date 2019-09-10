@@ -24,7 +24,8 @@ export class ChooseMealplanDialogComponent implements OnInit, OnDestroy {
   selectedMealplan;
   mealplan: Mealplan;
   mealplansCol: AngularFirestoreCollection<Mealplan>;
-  mealplans: Observable<Mealplan[]>;
+  mealplans: Mealplan[];
+  mealplansAvailable = false;
 
   constructor( private fb: FormBuilder,
                private auth: AuthService,
@@ -60,7 +61,11 @@ export class ChooseMealplanDialogComponent implements OnInit, OnDestroy {
 
   getMealplans(uid) {
     this.mealplansCol = this.afs.collection('mealplans', ref => ref.where('clientID', '==', `${uid}`));
-    this.mealplans = this.mealplansCol.valueChanges();
+    const mealplanList = this.mealplansCol.valueChanges();
+    mealplanList.subscribe(mealplans =>  {
+      this.mealplans = mealplans;
+      this.mealplansAvailable = mealplans.length > 0;
+    });
   }
 
   patchDropdown(data) {
