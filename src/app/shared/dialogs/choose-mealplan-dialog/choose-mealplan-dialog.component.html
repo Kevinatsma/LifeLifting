@@ -3,7 +3,7 @@
     <div class="animated-container">
       <h1>Choose a mealplan</h1>
       <!-- Call method -->
-      <form [formGroup]="chooseMealplanForm" class="auth-form" *ngIf="mealplans && mealplansAvailable; else noMealplans">
+      <form [formGroup]="chooseMealplanForm" class="auth-form" *ngIf="mealplans && mealplans.length > 0; else noMealplans">
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>Choose a mealplan to get your shopping list</mat-label>
           <mat-select matInput placeholder="Pick one from the list" [(value)]="selectedMealplan" formControlName="mealplan" autocomplete="off" 
@@ -26,7 +26,8 @@
 
     <section class="dialog-actions">
       <button type="button" class="text-link" [mat-dialog-close]="true">Back</button>
-      <button class="text-link" (click)="linkToChild()" *ngIf="mealplans">Continue</button>
+      <button [disabled]="mealplans.length < 1" [class.disabled]="mealplans.length < 1" 
+      class="text-link" (click)="linkToChild()" *ngIf="mealplans">Continue</button>
     </section>
   </main>
 </div>

@@ -606,6 +606,25 @@ a {
         transition: all 0.4s ease-in-out;
         pointer-events: none;
     }
+
+    &.disabled {
+        color: $grey;
+        text-decoration: none;
+
+        &::after {
+            display: none;
+        }
+
+        &:hover, &:focus {
+            color: $grey;
+            cursor: initial;
+            text-decoration: none;
+
+            &::after {
+                display: none;
+            }
+        }
+    }
 }
 
 //////////////////
