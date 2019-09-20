@@ -48,7 +48,7 @@
   <ng-container *ngIf="user">
     <div class="show-section" *ngIf="!succesVisible && user.uid" (click)="openSuccess()">
       <button class="open-side-component">
-        <i class="fas fa-chevron-right"></i>
+        <i class="fa__icon fas fa-chevron-right"></i>
       </button>
     </div>
     <app-first-step-success *ngIf="user.uid && succesVisible" (close)="succesVisible = false"></app-first-step-success>

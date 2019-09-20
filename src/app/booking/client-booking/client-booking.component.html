@@ -3,7 +3,7 @@
   <section class="action-toolbar-top calendar__toolbar">
     <div class="left">
       <button class="icon-button" (click)="goBack()">
-        <i class="fas fa-arrow-left"></i>
+        <i class="fa__icon fas fa-arrow-left"></i>
       </button>
     </div>
 
@@ -11,7 +11,7 @@
 
     <div class="right">
       <button class="icon-button hidden">
-        <i class="fas fa-comment-alt"></i>
+        <i class="fa__icon fas fa-comment-alt"></i>
       </button>
     </div>
   </section>
@@ -34,7 +34,7 @@
         [(viewDate)]="viewDate"
         (viewDateChange)="activeDayIsOpen = false"
       >
-        <i class="fas fa-arrow-left"></i>
+        <i class="fa__icon fas fa-arrow-left"></i>
         <span class="not-mobile">Previous</span>
       </button>
       <!-- <div
@@ -57,7 +57,7 @@
         (viewChange)="getEvents(user)"
       >
       <span class="not-mobile">Next</span>
-        <i class="fas fa-arrow-right"></i>
+        <i class="fa__icon fas fa-arrow-right"></i>
       </button>
     </section>
 

@@ -4,11 +4,11 @@
     <section class="action-toolbar-top">
       <div class="left">
         <button type="button" class="icon-button" (click)="goBack()">
-            <i class="fas fa-arrow-left"></i>
+            <i class="fa__icon fas fa-arrow-left"></i>
         </button>
         <button type="button" class="icon-button edit-button not-mobile" (click)="deleteGuidelineDialog(guideline)" 
         *ngIf="!editShow && auth.adminRoles(user)">
-          <i class="fas fa-trash"></i>
+          <i class="fa__icon fas fa-trash"></i>
         </button>
       </div>
       
@@ -29,27 +29,27 @@
             <button type="button" class="hidden">
             </button>
             <button type="button" class="icon-button edit-button" (click)="toggleEdit()">
-              <i class="fas fa-edit"></i>
+              <i class="fa__icon fas fa-edit"></i>
             </button>
           </ng-container>
         </div>
     
         <div class="mobile">
           <button class="icon-button edit-button" *ngIf="actionMenuOpen; else plus" (click)="toggleButtonMenu()">
-            <i class="fas fa-minus"></i>
+            <i class="fa__icon fas fa-minus"></i>
           </button>
           <ng-template #plus>
             <button class="icon-button edit-button" (click)="toggleButtonMenu()">
-              <i class="fas fa-plus"></i>
+              <i class="fa__icon fas fa-plus"></i>
             </button>
           </ng-template>
   
           <div class="specialist-actions">
             <button type="button" class="icon-button action-btn" (click)="deleteGuidelineDialog(guideline)">
-              <i class="fas fa-trash"></i>
+              <i class="fa__icon fas fa-trash"></i>
             </button>
             <button type="button" class="icon-button action-btn" (click)="toggleEdit()">
-              <i class="fas fa-edit"></i>
+              <i class="fa__icon fas fa-edit"></i>
             </button>
           </div>
         </div>
@@ -114,10 +114,10 @@
               <div class="target-container__right">
                 <div class="icon-circle">
                   <ng-container *ngIf="!gainWeight">
-                    <i class="fas fa-angle-double-down"></i>
+                    <i class="fa__icon fas fa-angle-double-down"></i>
                   </ng-container>
                   <ng-container *ngIf="gainWeight">
-                    <i class="fas fa-angle-double-up"></i>
+                    <i class="fa__icon fas fa-angle-double-up"></i>
                   </ng-container>
                 </div>
                 <h6>{{guideline.target}} weight</h6>
@@ -133,10 +133,10 @@
             <div class="metric golden">
               <div class="icon-circle">
                 <ng-container *ngIf="increaseCals">
-                  <i class="fas fa-level-up-alt"></i>
+                  <i class="fa__icon fas fa-level-up-alt"></i>
                 </ng-container>
                 <ng-container *ngIf="!increaseCals">
-                  <i class="fas fa-level-down-alt"></i>
+                  <i class="fa__icon fas fa-level-down-alt"></i>
                 </ng-container>
               </div>
               <h6 class="metric__title">

@@ -3,7 +3,7 @@
   </section>
   <section class="profile-photo no-photo" *ngIf="!client.photoURL">
     <p>
-      <i class="far fa-sad-cry"></i> <br>
+      <i class="fa__icon far fa-sad-cry"></i> <br>
       No Photo Yet
     </p>
   </section>
@@ -32,23 +32,23 @@
         <button class="btn-icon-right__animated" (click)="linkToChild(client)">
           More info
         </button>
-        <i class="fas fa-long-arrow-alt-right"></i>
+        <i class="fa__icon fas fa-long-arrow-alt-right"></i>
       </div>
       <ul class="contact-menu">
         <li>
-          <i class="far fa-envelope"></i>
+          <i class="fa__icon far fa-envelope"></i>
           <a class="text-link" href="mailto:{{client.email}}">
             Email
           </a>
         </li>
         <li>
-          <i class="fas fa-mobile-alt"></i>
+          <i class="fa__icon fas fa-mobile-alt"></i>
           <a class="text-link" *ngIf="client.basicData" href="tel:{{client.basicData.phoneNumber}}">
             Call
           </a>
         </li>
         <li>
-          <i class="far fa-comment-alt"></i>
+          <i class="fa__icon far fa-comment-alt"></i>
           <a class="text-link">
             Chat
           </a>
@@ -58,10 +58,10 @@
   </section>
   <section class="actions">
     <button type="button" (click)="deleteClientDialog(client)">
-      <i class="fas fa-trash"></i>
+      <i class="fa__icon fas fa-trash"></i>
     </button>
     <button (click)="editClient(client)">
-      <i class="fas fa-edit"></i>
+      <i class="fa__icon fas fa-edit"></i>
     </button>
   </section>
 

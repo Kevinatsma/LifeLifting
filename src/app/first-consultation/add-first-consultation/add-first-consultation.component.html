@@ -1,7 +1,7 @@
 <main class="dialog-wrapper" *ngIf="client">
   <div class="close-section">
     <button mat-icon-button class="not-mobile close-btn" (click)="closeDialog()" type="button">
-      <i class="fas fa-times"></i>
+      <i class="fa__icon fas fa-times"></i>
     </button>
 
     <button class="mobile text-link close-btn" (click)="closeDialog()" type="button">
@@ -14,14 +14,14 @@
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="generalone"
         [class.valid]="basicDataForm.valid">
         General info 1/2
-        <i class="far fa-check-circle"></i>
+        <i class="fa__icon far fa-check-circle"></i>
       </h4>
     </div>
     <div class="navigation__link-container">
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="habits"
         [class.valid]="habitForm.valid">
         Habits
-        <i class="far fa-check-circle"></i>
+        <i class="fa__icon far fa-check-circle"></i>
       </h4>
       <ul>
         <li>
@@ -45,7 +45,7 @@
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="bodyfunctions"
         [class.valid]="bodyFunctionsForm.valid">
         Body functions
-        <i class="far fa-check-circle"></i>
+        <i class="fa__icon far fa-check-circle"></i>
       </h4>
       <ul>
         <li>
@@ -79,7 +79,7 @@
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="generaltwo"
         [class.valid]="generalDataForm.valid">
         General info 2/2
-        <i class="far fa-check-circle"></i>
+        <i class="fa__icon far fa-check-circle"></i>
       </h4>
       <ul>
         <li>
@@ -109,7 +109,7 @@
         Notes
 
         <ng-container *ngIf="noteForm['controls'].specialistNotes.dirty">
-          <i class="far fa-check-circle"></i>
+          <i class="fa__icon far fa-check-circle"></i>
         </ng-container>
       </h4>
     </div>
@@ -819,12 +819,12 @@
               </mat-form-field>
               <div class="btn-area">
                 <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteHealthCondition(i)">
-                  <i class="fa fa-trash"></i>
+                  <i class="fa__icon fa fa-trash"></i>
                 </button>
               </div>
             </div>
           <button type="button" class="add-form-field" (click)="addHealthCondition()">
-            <i class="fa fa-plus"></i>
+            <i class="fa__icon fa fa-plus"></i>
             Add a Health condition
           </button>
         </section>
@@ -850,12 +850,12 @@
               </mat-form-field>
               <div class="btn-area">
                 <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deletePastTwoWeeks(i)">
-                  <i class="fa fa-trash"></i>
+                  <i class="fa__icon fa fa-trash"></i>
                 </button>
               </div>
             </div>
           <button type="button" class="add-form-field" (click)="addPastTwoWeeks()">
-            <i class="fa fa-plus"></i>
+            <i class="fa__icon fa fa-plus"></i>
             Add
           </button>
         </section>
@@ -892,12 +892,12 @@
               </mat-form-field>
               <div class="btn-area">
                 <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteDontEatItem(i)">
-                  <i class="fa fa-trash"></i>
+                  <i class="fa__icon fa fa-trash"></i>
                 </button>
               </div>
             </div>
           <button type="button" class="add-form-field" (click)="addDontEatItem()">
-            <i class="fa fa-plus"></i>
+            <i class="fa__icon fa fa-plus"></i>
             Add a product
           </button>
         </section>
@@ -972,12 +972,12 @@
                 </mat-form-field>
                 <div class="btn-area">
                   <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteShoppingLocation(i)">
-                    <i class="fa fa-trash"></i>
+                    <i class="fa__icon fa fa-trash"></i>
                   </button>
                 </div>
               </div>
             <button type="button" class="add-form-field" (click)="addShoppingLocation()">
-              <i class="fa fa-plus"></i>
+              <i class="fa__icon fa fa-plus"></i>
               Add a location
             </button>
           </section>
@@ -1097,13 +1097,13 @@
 
                   <div class="btn-area">
                     <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteActivity(i)">
-                      <i class="fa fa-trash"></i>
+                      <i class="fa__icon fa fa-trash"></i>
                     </button>
                   </div>
                 </div>
 
                 <button type="button" class="add-form-field" (click)="addActivity()">
-                  <i class="fa fa-plus"></i>
+                  <i class="fa__icon fa fa-plus"></i>
                   Add an activity
                 </button>
               </section>

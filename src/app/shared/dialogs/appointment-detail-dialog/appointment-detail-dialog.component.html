@@ -1,27 +1,27 @@
 <main class="dialog-wrapper" *ngIf="event && auth.user | async as user">
   <div class="profile-pic-bubble">
-    <i class="fas fa-calendar-alt"></i>
+    <i class="fa__icon fas fa-calendar-alt"></i>
   </div>
 
   <ng-container *ngIf="!editShow">
     <section class="intro">
       <button class="edit-btn delete" (click)="deleteEvent(event)" *ngIf="user.roles.admin || user.roles.specialist" mat-dialog-close>
-        <i class="far fa-trash-alt"></i>
+        <i class="fa__icon far fa-trash-alt"></i>
       </button>
       <h1>{{event.title}}</h1>
       <button class="edit-btn" *ngIf="!editShow && user.roles.admin || user.roles.specialist" 
       (click)="toggleEdit()">
-        <i class="far fa-edit"></i>
+        <i class="fa__icon far fa-edit"></i>
       </button>
     </section>
 
     <section class="chip-area">
       <p class="secondary-chip" *ngIf="client">
-        <i class="fas fa-user-tie"></i>
+        <i class="fa__icon fas fa-user-tie"></i>
         {{client.displayName}}
       </p>
       <p class="secondary-chip" *ngIf="specialist">
-        <i class="fas fa-user-ninja"></i>
+        <i class="fa__icon fas fa-user-ninja"></i>
         {{specialist.firstName}} {{specialist.lastName}}
       </p>
     </section>
@@ -30,14 +30,14 @@
       <div class="start">
         <h5>From: {{start.startDay}} {{start.startMonth}} {{start.startYear}}</h5>
         <p class="time">
-          <i class="far fa-clock"></i>
+          <i class="fa__icon far fa-clock"></i>
           {{start.startHours}}{{start.startMinutes}}
         </p>
       </div>
       <div class="end">
           <h5>To: {{end.endDay}} {{end.endMonth}} {{end.endYear}}</h5>
           <p class="time">
-            <i class="far fa-clock"></i>
+            <i class="fa__icon far fa-clock"></i>
             {{end.endHours}}{{end.endMinutes}}
           </p>
       </div>
@@ -48,21 +48,21 @@
         <h4>Online call</h4>
         <div class="contact-container__item skype" *ngIf="skype && event.skypeName">
           <p>
-            <i class="fab fa-skype"></i> 
+            <i class="fa__icon fab fa-skype"></i> 
             {{event.skypeName}}
           </p>
         </div>
 
         <div class="contact-container__item whatsapp" *ngIf="whatsApp && event.whatsappNumber.wappAreaCode">
           <p>
-            <i class="fab fa-whatsapp"></i>
+            <i class="fa__icon fab fa-whatsapp"></i>
             <a class="text-link" href="tel:{{event.whatsappNumber.wappAreaCode}}{{event.whatsappNumber.wappRest}}">Add to phone</a>
           </p>
         </div>
 
         <div class="contact-container__item phone" *ngIf="event.onlineAppointmentPhone">
           <p *ngIf="client">
-            <i class="fas fa-phone"></i>
+            <i class="fa__icon fas fa-phone"></i>
             <a class="text-link" href="tel:{{event.onlineAppointmentPhone.phoneAreaCode}}{{event.onlineAppointmentPhone.phoneRest}}">
               Call {{client.displayName}}
             </a>
@@ -72,7 +72,7 @@
       <div class="contact-container__item face-to-face" *ngIf="faceToFace && event.faceToFacePhone || event.location">
         <h4>Face to Face </h4>
         <p *ngIf="client" class="phone-number">
-          <i class="fas fa-phone"></i>
+          <i class="fa__icon fas fa-phone"></i>
           <a class="text-link" href="tel:{{event.faceToFacePhone}}">
             Call {{client.displayName}}
           </a>

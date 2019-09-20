@@ -4,7 +4,7 @@
       <section class="action-toolbar-top">
         <div class="left">
           <button type="button" class="icon-button" (click)="toggleEdit()">
-            <i class="fas fa-ban"></i>
+            <i class="fa__icon fas fa-ban"></i>
           </button>
         </div>
         <div class="middle">
@@ -16,7 +16,7 @@
         </div>
         <div class="right">
           <button type="submit" class="icon-button edit-button" (click)="editGuideline()" *ngIf="editShow">
-            <i class="fas fa-check"></i>
+            <i class="fa__icon fas fa-check"></i>
           </button>
         </div>
       </section>
@@ -97,7 +97,7 @@
   
                 <div class="target-container__right">
                   <div class="icon-circle">
-                    <i class="fas fa-question"></i>
+                    <i class="fa__icon fas fa-question"></i>
                   </div>
                   <mat-select matInput placeholder="{{guideline.target}} weight" [class.dropdown-edit]="guideline.target" [(value)]="selectedTarget" 
                   autocomplete="off" panelClass="dropdown-edit" required (selectionChange)="toggleGainWeight(selectedTarget)">
@@ -117,7 +117,7 @@
               </div>
               <div class="metric golden">
                 <div class="icon-circle">
-                  <i class="fas fa-question"></i>
+                  <i class="fa__icon fas fa-question"></i>
                 </div>
                 <h6 class="metric__title">
                   <mat-select matInput placeholder="{{guideline.increaseCalories}} calories" [class.dropdown-cals]="guideline.increaseCalories" 
@@ -231,7 +231,7 @@
                 <p class="speciality-title">Guideline ID: {{guideline.productID}}</p>
                 <ul class="contact-menu">
                    <li>
-                    <i class="fas fa-balance-scale"></i>
+                    <i class="fa__icon fas fa-balance-scale"></i>
                     <input type="number" class="text-field half" name="amount" formControlName="amount">
                     <input type="text" class="text-field half" name="unit" formControlName="unit">
                   </li> 

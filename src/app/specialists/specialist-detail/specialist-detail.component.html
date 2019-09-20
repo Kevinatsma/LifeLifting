@@ -3,23 +3,23 @@
     <section class="action-toolbar-top">
       <div class="left">
         <button class="icon-button" (click)="goBack()" *ngIf="user.status.accepted">
-            <i class="fas fa-arrow-left"></i>
+            <i class="fa__icon fas fa-arrow-left"></i>
         </button>
         <a class="icon-button" href="tel:{{specialist.phoneNumber}}" *ngIf="!user.status.accepted">
-            <i class="fas fa-phone"></i>
+            <i class="fa__icon fas fa-phone"></i>
         </a>
       </div>
       <div class="right">
         <button class="icon-button" href="#" *ngIf="!editShow" (click)="chat()">
-          <i class="fas fa-comment-alt"></i>
+          <i class="fa__icon fas fa-comment-alt"></i>
         </button>
 
         <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && user.roles.admin">
-          <i class="fas fa-edit"></i>
+          <i class="fa__icon fas fa-edit"></i>
         </button>
 
         <button class="icon-button edit-button" (click)="openReviewDialog(specialist)" *ngIf="!editShow &&  user.status.canReview">
-          <i class="fas fa-star"></i>
+          <i class="fa__icon fas fa-star"></i>
         </button>
       </div>
     </section>
@@ -37,11 +37,11 @@
           <p>Speciality: {{specialist.speciality}}</p>
           <div class="icon-fact-container">
             <div class="fact">
-              <i class="fas fa-globe-americas"></i> 
+              <i class="fa__icon fas fa-globe-americas"></i> 
               <span>{{specialist.country}}</span>
             </div>
             <div class="fact">
-              <i class="fas fa-city"></i>
+              <i class="fa__icon fas fa-city"></i>
               <span>{{specialist.city}} </span>
             </div>
           </div>
@@ -61,11 +61,11 @@
         <h5>About {{specialist.firstName}}</h5>
         <p [class.read-more]="aboutExtended">{{specialist.description}}</p>
         <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
-          <i class="fas fa-plus"></i>
+          <i class="fa__icon fas fa-plus"></i>
           Read More
         </button>
         <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
-          <i class="fas fa-minus"></i>
+          <i class="fa__icon fas fa-minus"></i>
           Read Less
         </button>
       </section>
@@ -75,19 +75,19 @@
           <h5 class="purple">Contact Info</h5>
           <ul class="contact-menu">
             <li>
-              <i class="far fa-envelope"></i>
+              <i class="fa__icon far fa-envelope"></i>
               <a class="text-link" href="mailto:{{specialist.email}}">
                 {{specialist.email}}
               </a>
             </li>
             <li>
-              <i class="fas fa-mobile-alt"></i>
+              <i class="fa__icon fas fa-mobile-alt"></i>
               <a class="text-link" href="tel:{{specialist.phoneNumber}}">
                 {{specialist.phoneNumber}}
               </a>
             </li>
             <li>
-              <i class="far fa-comment-alt"></i>
+              <i class="fa__icon far fa-comment-alt"></i>
               <a class="text-link" (click)="chat()">
                 Chat
               </a>
@@ -119,11 +119,11 @@
         <section class="btn-area">
           <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
             Show reviews
-            <i class="fas fa-chevron-down"></i>
+            <i class="fa__icon fas fa-chevron-down"></i>
           </button>
           <button class="text-link" *ngIf="reviewsVisible" (click)="closeReviews()">
             Hide reviews
-            <i class="fas fa-chevron-up"></i>
+            <i class="fa__icon fas fa-chevron-up"></i>
           </button>
         </section>
     </ng-container>

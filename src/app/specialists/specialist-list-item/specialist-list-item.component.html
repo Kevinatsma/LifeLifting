@@ -15,23 +15,23 @@
         <button class="btn-icon-right__animated" (click)="linkToChild(specialist)">
           More info
         </button>
-        <i class="fas fa-long-arrow-alt-right"></i>
+        <i class="fa__icon fas fa-long-arrow-alt-right"></i>
       </div>
       <ul class="contact-menu">
         <li>
-          <i class="far fa-envelope"></i>
+          <i class="fa__icon far fa-envelope"></i>
           <a class="text-link" href="mailto:{{specialist.email}}">
             Email
           </a>
         </li>
         <li>
-          <i class="fas fa-mobile-alt"></i>
+          <i class="fa__icon fas fa-mobile-alt"></i>
           <a class="text-link" href="tel:{{specialist.phoneNumber}}">
             Call
           </a>
         </li>
         <li>
-          <i class="far fa-comment-alt"></i>
+          <i class="fa__icon far fa-comment-alt"></i>
           <a class="text-link" (click)="chat()">
             Chat
           </a>
@@ -41,10 +41,10 @@
   </section>
   <section class="actions">
     <button type="button" (click)="deleteSpecialistDialog(specialist)">
-      <i class="fas fa-trash"></i>
+      <i class="fa__icon fas fa-trash"></i>
     </button>
     <button (click)="editSpecialist(specialist)">
-      <i class="fas fa-edit"></i>
+      <i class="fa__icon fas fa-edit"></i>
     </button>
   </section>
 

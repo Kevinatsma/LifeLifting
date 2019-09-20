@@ -26,7 +26,7 @@
 
     <div class="chip-area"  *ngIf="user.roles.specialist || user.roles.admin">
       <p class="secondary-chip">
-        <i class="fas fa-user-tie"></i>
+        <i class="fa__icon fas fa-user-tie"></i>
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-select matInput placeholder="Pick a user" formControlName="clientID" autocomplete="off" 
           panelClass="dropdown-regular">
@@ -36,7 +36,7 @@
         </mat-form-field>
       </p>
       <p class="secondary-chip" *ngIf="user.roles.admin">
-        <i class="fas fa-user-ninja"></i>
+        <i class="fa__icon fas fa-user-ninja"></i>
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-select matInput placeholder="Pick a specialist"
           formControlName="specialistID" autocomplete="off" panelClass="dropdown-regular">
@@ -97,7 +97,7 @@
         </div>
 
         <h3 class="date" *ngIf="hasStartDate">
-          <i class="far fa-clock"></i>
+          <i class="fa__icon far fa-clock"></i>
           <ng-container *ngIf="start">{{ start.startHours }} {{ start.startMinutes }}</ng-container>
         </h3>
       </div>
@@ -132,7 +132,7 @@
         </div>
 
         <h3 class="date" *ngIf="hasEndDate">
-          <i class="far fa-clock"></i>
+          <i class="fa__icon far fa-clock"></i>
           <ng-container *ngIf="end">{{ end.endHours }} {{ end.endMinutes }}</ng-container>
         </h3>
 
@@ -149,7 +149,7 @@
           {{ end.endDay }} {{ end.endMonth }} {{ end.endYear }}
         </h3>
         <h3 class="date" *ngIf="hasEndDate">
-          <i class="far fa-clock"></i>
+          <i class="fa__icon far fa-clock"></i>
           {{ end.endHours }} {{ end.endMinutes }}
         </h3>
       </div>
@@ -199,9 +199,9 @@
           <mat-select matInput placeholder="How would you like to be contacted?"
           (selectionChange)="toggleContactMethod()" formControlName="contactMethod" autocomplete="off" 
           panelClass="dropdown-regular" required>
-            <mat-option value="whatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</mat-option>
-            <mat-option value="skype"><i class="fab fa-skype"></i> Skype</mat-option>
-            <mat-option value="phone"><i class="fas fa-phone"></i> Phone (only Peru)</mat-option>
+            <mat-option value="whatsApp"><i class="fa__icon fab fa-whatsapp"></i> WhatsApp</mat-option>
+            <mat-option value="skype"><i class="fa__icon fab fa-skype"></i> Skype</mat-option>
+            <mat-option value="phone"><i class="fa__icon fas fa-phone"></i> Phone (only Peru)</mat-option>
           </mat-select>
           <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
         </mat-form-field>

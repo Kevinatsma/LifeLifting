@@ -339,6 +339,11 @@ a.menu-link, button.menu-link {
     svg {
         font-size: 16px;
         margin: -1px 0 0 -1px;
+
+        @include respond-down($sm) {
+            font-size: 14px;
+            margin: -1px 10px 0 -1px;
+        }
     }
 }
 
@@ -546,7 +551,7 @@ p, span {
                 position: absolute;
                 left: 0;
                 top: 0;
-                background: linear-gradient(transparent 30px, white);
+                background-image: $white-bottom-gradient;
             }
         }
     }

@@ -1,7 +1,7 @@
 
 <mat-card class="list-item-card" *ngIf="guideline && auth.user | async as user">
   <div class="card-circle" (click)="linkToChild(guideline, client)">
-    <i class="far fa-file-alt"></i>
+    <i class="fa__icon far fa-file-alt"></i>
     <div class="nr-circle">
       <span>{{guideline.guidelineNR}}</span>
     </div>
@@ -15,7 +15,7 @@
       </button>
       <mat-menu #menu="matMenu" backdropClass="context-menu-guideline">
         <button mat-menu-item (click)="duplicateGuideline(guideline)">
-          <i class="far fa-copy"></i>
+          <i class="fa__icon far fa-copy"></i>
           <span>Duplicate</span>
         </button>
       </mat-menu>
@@ -39,7 +39,7 @@
       <p class="speciality-title">Created: {{guideline.creationDate.toDate() | date:'MM/dd/yy'}}</p>
       <ul class="contact-menu">
         <!-- <li>
-          <i class="fas fa-balance-scale"></i>
+          <i class="fa__icon fas fa-balance-scale"></i>
           {{guideline.portion.amount}} {{guideline.portion.unit}}
         </li> -->
       </ul>
@@ -47,10 +47,10 @@
   </section>
   <section class="actions" *ngIf="user.roles.admin || user.roles.specialist">
     <button type="button" (click)="deleteGuidelineDialog(guideline)">
-      <i class="fas fa-trash"></i>
+      <i class="fa__icon fas fa-trash"></i>
     </button>
     <button (click)="editGuideline(guideline)">
-      <i class="fas fa-edit"></i>
+      <i class="fa__icon fas fa-edit"></i>
     </button>
   </section>
 

@@ -16,14 +16,14 @@
 
     <div class="btn-area">
       <button class="btn-icon-left" routerLink="../step-two">
-        <i class="fas fa-chevron-left small"></i>
+        <i class="fa__icon fas fa-chevron-left small"></i>
         <span class="not-mobile">Previous step</span>
         <span class="mobile">Previous</span>
       </button>
       <button class="btn-icon-right" (click)="updateUser(user)" [class.btn-disabled]="chosenSpecialist === null" [disabled]="chosenSpecialist === null">
         <span class="not-mobile">Next step</span>
         <span class="mobile">Next</span>
-        <i class="fas fa-chevron-right small"></i>
+        <i class="fa__icon fas fa-chevron-right small"></i>
       </button>
     </div>
   </section>

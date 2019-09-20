@@ -20,13 +20,13 @@
       </button>
       <ng-container *ngIf="isCreator">
         <button mat-menu-item (click)="linkToProfile(thread.target.targetUID)" class="more-menu__button">
-          <i class="fas fa-external-link-alt"></i>
+          <i class="fa__icon fas fa-external-link-alt"></i>
           <span>See {{thread.target.targetName}}'s profile</span>
         </button>
       </ng-container>
       <ng-container *ngIf="!isCreator">
         <button mat-menu-item (click)="linkToProfile(thread.creator.creatorUID)" class="more-menu__button">
-          <i class="fas fa-external-link-alt"></i>
+          <i class="fa__icon fas fa-external-link-alt"></i>
           <span>See {{thread.creator.creatorName}}'s profile</span>
         </button>
       </ng-container>

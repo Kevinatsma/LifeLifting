@@ -6,7 +6,7 @@
   <div class="mobile create-appointment-mobile" *ngIf="showStepTwoMobile">
     <div class="close-section">
       <button class="text-link close-btn" (click)="closeMobileAppointment()" type="button">
-        <i class="fas fa-arrow-left"></i> Back
+        <i class="fa__icon fas fa-arrow-left"></i> Back
       </button>
     </div>
     <section class="intro">
@@ -26,14 +26,14 @@
       <div class="start">
         <h5>From: {{start.startDay}} {{start.startMonth}} {{start.startYear}}</h5>
         <p class="time">
-          <i class="far fa-clock"></i>
+          <i class="fa__icon far fa-clock"></i>
           {{start.startHours}}{{start.startMinutes}}
         </p>
       </div>
       <div class="end">
           <h5>To: {{end.endDay}} {{end.endMonth}} {{end.endYear}}</h5>
           <p class="time">
-            <i class="far fa-clock"></i>
+            <i class="fa__icon far fa-clock"></i>
             {{end.endHours}}{{end.endMinutes}}
           </p>
       </div>
@@ -53,7 +53,7 @@
   <section class="action-toolbar-top calendar__toolbar">
     <div class="left">
       <button class="icon-button hidden">
-        <i class="fas fa-plus"></i>
+        <i class="fa__icon fas fa-plus"></i>
       </button>
     </div>
 
@@ -62,7 +62,7 @@
     <div class="right" *ngIf="specialist">
       <button class="icon-button" (click)="chat(specialist.uid)" matTooltip="User hasn't completed the Signup process yet"
       matTooltipClass="tooltip-info" [matTooltipPosition]="below">
-        <i class="fas fa-comment-alt"></i>
+        <i class="fa__icon fas fa-comment-alt"></i>
       </button>
     </div>
   </section>
@@ -81,7 +81,7 @@
         [(viewDate)]="viewDate"
         (viewDateChange)="activeDayIsOpen = false"
       >
-        <i class="fas fa-arrow-left"></i>
+        <i class="fa__icon fas fa-arrow-left"></i>
         <span class="not-mobile">Previous</span>
       </button>
       <!-- <div
@@ -104,7 +104,7 @@
         (viewChange)="getEvents(user)"
       >
       <span class="not-mobile">Next</span>
-        <i class="fas fa-arrow-right"></i>
+        <i class="fa__icon fas fa-arrow-right"></i>
       </button>
     </section>
 

@@ -4,10 +4,10 @@
             <h1>Saved Exercises</h1>
             <div class="overview-search-bar not-mobile" mat-button>
                 <input type="text" placeholder="Search by name" (input)="onChangeSearch($event)" class="overview-search-bar__input">
-                <i class="fas fa-search"></i>
+                <i class="fa__icon fas fa-search"></i>
             </div>
             <button class="icon-button" (click)="openDialog()">
-                <i class="fas fa-plus"></i>
+                <i class="fa__icon fas fa-plus"></i>
             </button>
         </section>
         
@@ -19,7 +19,7 @@
 
     <div class="overview-search-bar mobile" mat-button>
         <input type="text" placeholder="Search by name" (input)="onChangeSearch($event)" class="overview-search-bar__input">
-        <i class="fas fa-search"></i>
+        <i class="fa__icon fas fa-search"></i>
     </div>
     <app-exercise-list [exercises]="exercises" *ngIf="!searchActive"></app-exercise-list>
     <app-exercise-list [exercises]="searchExercises" *ngIf="searchActive"></app-exercise-list>

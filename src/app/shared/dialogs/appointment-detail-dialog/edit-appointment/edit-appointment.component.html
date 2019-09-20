@@ -3,19 +3,19 @@
   class="edit-appointment">
     <section class="intro">
       <button class="edit-btn delete" (click)="back()">
-        <i class="fas fa-times"></i>
+        <i class="fa__icon fas fa-times"></i>
       </button>
       <h1>
           <input type="text" placeholder="{{event.title}}" matInput formControlName="title">
       </h1>
       <button class="edit-btn" *ngIf="editShow" type="submit">
-        <i class="far fa-check-circle"></i>
+        <i class="fa__icon far fa-check-circle"></i>
       </button>
     </section>
 
     <section class="chip-area"  *ngIf="user.roles.specialist || user.roles.admin">
       <p class="secondary-chip">
-        <i class="fas fa-user-tie"></i>
+        <i class="fa__icon fas fa-user-tie"></i>
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-select matInput placeholder="{{client.displayName}}" formControlName="clientID" autocomplete="off" 
           panelClass="dropdown-regular" required>
@@ -24,7 +24,7 @@
         </mat-form-field>
       </p>
       <p class="secondary-chip" *ngIf="user.roles.admin">
-        <i class="fas fa-user-ninja"></i>
+        <i class="fa__icon fas fa-user-ninja"></i>
         <mat-form-field appearance="standard" floatLabel="always">
             <mat-select matInput placeholder="{{specialist.firstName}} {{specialist.lastName}}"
             formControlName="specialistID" autocomplete="off" panelClass="dropdown-regular" required>
@@ -153,9 +153,9 @@
           <mat-select matInput placeholder="{{event.contactMethod}}"
           (selectionChange)="toggleContactMethod()" formControlName="contactMethod" autocomplete="off" 
           panelClass="dropdown-regular" required>
-            <mat-option value="whatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</mat-option>
-            <mat-option value="skype"><i class="fab fa-skype"></i> Skype</mat-option>
-            <mat-option value="phone"><i class="fas fa-phone"></i> Phone (only Peru)</mat-option>
+            <mat-option value="whatsApp"><i class="fa__icon fab fa-whatsapp"></i> WhatsApp</mat-option>
+            <mat-option value="skype"><i class="fa__icon fab fa-skype"></i> Skype</mat-option>
+            <mat-option value="phone"><i class="fa__icon fas fa-phone"></i> Phone (only Peru)</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

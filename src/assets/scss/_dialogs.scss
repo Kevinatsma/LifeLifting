@@ -100,6 +100,18 @@ main.dialog-wrapper {
     }
 }
 
+.add-user-dialog {
+    @include respond-down($sm) {
+        min-width: 100vw;
+        min-height: 100vh;
+
+        .btn-area-one {
+            position: fixed;
+            bottom: 0;
+        }
+    }
+}
+
 ::ng-deep {
     .add-user-dialog, .add-package-dialog, .review-dialog, .add-food-dialog, .add-exercise-dialog, .add-guide-dialog, .follow-up-dialog {
         overflow-y: auto;

@@ -1,7 +1,7 @@
 <main class="dialog-wrapper" *ngIf="client && mealplan">
   <div class="close-section">
     <button mat-icon-button class="not-mobile close-btn" (click)="closeDialog()" type="button">
-      <i class="fas fa-times"></i>
+      <i class="fa__icon fas fa-times"></i>
     </button>
 
     <button class="mobile text-link close-btn" (click)="closeDialog()" type="button">
@@ -78,7 +78,7 @@
             </div>
             <div class="btn-area">
               <button type="button"mat-icon-button type="button" class="delete-btn" (click)="deleteMealTime(i); checkMealTime();">
-                <i class="fa fa-trash"></i>
+                <i class="fa__icon fa fa-trash"></i>
               </button>
             </div>
           </section>
@@ -86,7 +86,7 @@
 
 
         <button type="button" *ngIf="showAddMealTime" class="add-form-field" (click)="addMealTime(); checkMealTime();">
-          <i class="fa fa-plus"></i>
+          <i class="fa__icon fa fa-plus"></i>
           Add a Meal Time
         </button>
       </form>

@@ -4,7 +4,7 @@
     <section class="action-toolbar-top">
       <div class="left">
         <button class="icon-button" (click)="goBack()">
-            <i class="fas fa-arrow-left"></i>
+            <i class="fa__icon fas fa-arrow-left"></i>
         </button>
       </div>
       <div class="middle">
@@ -12,10 +12,10 @@
       </div>
       <div class="right">
         <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && auth.adminRoles(user)">
-          <i class="fas fa-edit"></i>
+          <i class="fa__icon fas fa-edit"></i>
         </button>
         <button class="icon-button edit-button hidden" *ngIf="!editShow && !auth.adminRoles(user)">
-          <i class="fas fa-edit"></i>
+          <i class="fa__icon fas fa-edit"></i>
         </button>
       </div>
     </section>
@@ -27,13 +27,13 @@
           [class.disabled]="exercise.exerciseID === 1"
           [disabled]="exercise.exerciseID === 1"
           >
-              <i class="fas fa-chevron-left"></i>
+              <i class="fa__icon fas fa-chevron-left"></i>
           </button>
       </section>
 
       <mat-card class="list-item-card" *ngIf="exercise">
           <section class="exercise-photo" [style.background]="'url('+ exercise.exercisePhoto +')'">
-              <!-- <i class="fas fa-carrot"></i>
+              <!-- <i class="fa__icon fas fa-carrot"></i>
             <h1>{{i+1}}</h1> -->
           </section>
           <section class="subtitle-container">
@@ -68,7 +68,7 @@
           [class.disabled]="exercise.packageID === 3"
           [disabled]="exercise.packageID === 3"
           >
-            <i class="fas fa-chevron-right"></i>
+            <i class="fa__icon fas fa-chevron-right"></i>
         </button>
       </section>
 

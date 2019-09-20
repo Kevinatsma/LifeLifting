@@ -4,18 +4,18 @@
     <section class="action-toolbar-top">
       <div class="left">
         <button class="icon-button" (click)="goBack()">
-            <i class="fas fa-arrow-left"></i>
+            <i class="fa__icon fas fa-arrow-left"></i>
         </button>
       </div>
       <div class="right">
         <button class="icon-button" (click)="chat()">
-          <i class="fas fa-comment-alt"></i>
+          <i class="fa__icon fas fa-comment-alt"></i>
         </button>
 
         <button class="icon-button edit-button" (click)="toggleEdit()"
         [class.icon-button-disabled]="!user.status.signUpCompleted" [disabled]="!user.status.signUpCompleted">
-          <ng-container *ngIf="user.status.signUpCompleted"> <i class="fas fa-edit"></i> </ng-container>
-          <ng-container *ngIf="!user.status.signUpCompleted"> <i class="fas fa-ban"></i> </ng-container>
+          <ng-container *ngIf="user.status.signUpCompleted"> <i class="fa__icon fas fa-edit"></i> </ng-container>
+          <ng-container *ngIf="!user.status.signUpCompleted"> <i class="fa__icon fas fa-ban"></i> </ng-container>
         </button>
 
       </div>
@@ -42,19 +42,19 @@
           <p class="uid"><span class="not-mobile">User ID:</span>{{user.uid}}</p>
           <div class="icon-fact-container">
             <div class="fact" *ngIf="user.basicData">
-              <i class="fas fa-transgender"></i>
+              <i class="fa__icon fas fa-transgender"></i>
               <span>{{user.basicData.gender}}</span>
             </div>
             <div class="fact" *ngIf="!user.basicData">
-              <i class="fas fa-transgender"></i>
+              <i class="fa__icon fas fa-transgender"></i>
               <span>Not filled out</span>
             </div>
             <div class="fact" *ngIf="specialist">
-              <i class="fas fa-user-ninja"></i>
+              <i class="fa__icon fas fa-user-ninja"></i>
               <span>{{specialist.firstName}} {{specialist.lastName}}</span>
             </div>
             <div class="fact" *ngIf="!specialist">
-              <i class="fas fa-user-ninja"></i>
+              <i class="fa__icon fas fa-user-ninja"></i>
               <span>None chosen</span>
             </div>
           </div>
@@ -91,11 +91,11 @@
         </p>
         <ng-container *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
           <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
-            <i class="fas fa-plus"></i>
+            <i class="fa__icon fas fa-plus"></i>
             Read More
           </button>
           <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
-            <i class="fas fa-minus"></i>
+            <i class="fa__icon fas fa-minus"></i>
             Read Less
           </button>
         </ng-container>
@@ -106,7 +106,7 @@
           <h5 class="purple">Contact Info</h5>
           <ul class="contact-menu">
             <li>
-              <i class="far fa-envelope"></i>
+              <i class="fa__icon far fa-envelope"></i>
               <a class="text-link" href="mailto:{{user.email}}" *ngIf="user.basicData">
                 {{user.email}}
               </a>
@@ -115,7 +115,7 @@
               </p>
             </li>
             <li>
-              <i class="fas fa-mobile-alt"></i>
+              <i class="fa__icon fas fa-mobile-alt"></i>
               <a class="text-link"  *ngIf="user.basicData" href="tel:{{user.basicData.phoneNumber}}">
                 {{user.basicData.phoneNumber}}
               </a>
@@ -124,7 +124,7 @@
               </p>
             </li>
             <li>
-              <i class="far fa-comment-alt"></i>
+              <i class="fa__icon far fa-comment-alt"></i>
               <button class="text-link" *ngIf="user.basicData" (click)="chat()">
                 Chat
               </button>
@@ -184,29 +184,29 @@
             <h3>General</h3>
             <div class="switch">
               <p class="card-text" *ngIf="user.status.signUpCompleted">
-                <i class="fas fa-check-circle"></i>
+                <i class="fa__icon fas fa-check-circle"></i>
                 Signup Completed
               </p>
               <p class="card-text" *ngIf="!user.status.signUpCompleted">
-                <i class="fas fa-ban"></i>
+                <i class="fa__icon fas fa-ban"></i>
                 Signup NOT Completed
               </p>
 
               <p class="card-text" *ngIf="user.status.accepted">
-                <i class="fas fa-check-circle"></i>
+                <i class="fa__icon fas fa-check-circle"></i>
                 Accepted
               </p>
               <p class="card-text" *ngIf="!user.status.accepted">
-                <i class="fas fa-ban"></i>
+                <i class="fa__icon fas fa-ban"></i>
                 Not Accepted
               </p>
 
               <p class="card-text" *ngIf="!user.status.subscriptionValid">
-                <i class="fas fa-ban"></i>
+                <i class="fa__icon fas fa-ban"></i>
                 Subscription Not Valid
               </p>
               <p class="card-text" *ngIf="user.status.subscriptionValid">
-                <i class="fas fa-check-circle"></i>
+                <i class="fa__icon fas fa-check-circle"></i>
                 Subscribtion Valid
               </p>
             </div>
@@ -215,29 +215,29 @@
             <h3 class="section-title">Appointment</h3>
             <div class="switch">
               <p class="card-text" *ngIf="user.status.appointment">
-                <i class="fas fa-check-circle"></i>
+                <i class="fa__icon fas fa-check-circle"></i>
                 Appointment Requested
               </p>
               <p class="card-text" *ngIf="!user.status.appointment">
-                <i class="fas fa-ban"></i>
+                <i class="fa__icon fas fa-ban"></i>
                 No Appointment Requested
               </p>
 
               <p class="card-text" *ngIf="user.status.appointmentAccepted">
-                <i class="fas fa-check-circle"></i>
+                <i class="fa__icon fas fa-check-circle"></i>
                 Appointment Accepted
               </p>
               <p class="card-text" *ngIf="!user.status.appointmentAccepted">
-                <i class="fas fa-ban"></i>
+                <i class="fa__icon fas fa-ban"></i>
                 Appointment Not Accepted
               </p>
 
               <p class="card-text" *ngIf="user.status.appointmentCompleted">
-                <i class="fas fa-check-circle"></i>
+                <i class="fa__icon fas fa-check-circle"></i>
                 Appointment Completed
               </p>
               <p class="card-text" *ngIf="!user.status.appointmentCompleted">
-                <i class="fas fa-ban"></i>
+                <i class="fa__icon fas fa-ban"></i>
                 Appointment Not Completed
               </p>
             </div>

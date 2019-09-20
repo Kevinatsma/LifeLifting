@@ -28,16 +28,16 @@
       </div>
       <button class="open-dropdown-menu" [matMenuTriggerFor]="menu">
           <span class="user-name">{{user.displayName}}</span>
-          <i class="fas fa-sort-down"></i>
+          <i class="fa__icon fas fa-sort-down"></i>
       </button>
 
       <mat-menu #menu="matMenu" class="popup-menu">
         <button mat-menu-item class="menu-link" (click)="editUser(user)">
-          <i class="fas fa-user-edit"></i>
+          <i class="fa__icon fas fa-user-edit"></i>
           Edit profile
         </button>
         <button mat-menu-item class="menu-link" (click)="signOut()">
-          <i class="fas fa-sign-out-alt"></i>
+          <i class="fa__icon fas fa-sign-out-alt"></i>
           Sign out
         </button>
       </mat-menu>

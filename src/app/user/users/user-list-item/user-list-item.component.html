@@ -1,13 +1,13 @@
 <mat-card class="list-item-card" *ngIf="!detailOpen && user">
   <div class="type-chip">
-    <i class="fas fa-user-ninja" *ngIf="auth.specialistRoles(user)"></i>
-    <i class="fas fa-user-tie" *ngIf="auth.clientRoles(user)"></i>
+    <i class="fa__icon fas fa-user-ninja" *ngIf="auth.specialistRoles(user)"></i>
+    <i class="fa__icon fas fa-user-tie" *ngIf="auth.clientRoles(user)"></i>
   </div>
   <section class="profile-photo" *ngIf="user.photoURL" [style.backgroundImage]="'url('+ user.photoURL +')'">
   </section>
   <section class="profile-photo no-photo" *ngIf="!user.photoURL">
     <p>
-      <i class="far fa-sad-cry"></i> <br>
+      <i class="fa__icon far fa-sad-cry"></i> <br>
       No Photo Yet
     </p>
   </section>
@@ -41,11 +41,11 @@
         <button class="btn-icon-right__animated" (click)="linkToChild(user)">
           More info
         </button>
-        <i class="fas fa-long-arrow-alt-right"></i>
+        <i class="fa__icon fas fa-long-arrow-alt-right"></i>
       </div>
       <ul class="contact-menu">
         <li>
-          <i class="far fa-envelope"></i>
+          <i class="fa__icon far fa-envelope"></i>
           <a class="text-link" *ngIf="user.basicData" href="mailto:{{user.email}}">
             Email
           </a>
@@ -54,7 +54,7 @@
           </p>
         </li>
         <li>
-          <i class="fas fa-mobile-alt"></i>
+          <i class="fa__icon fas fa-mobile-alt"></i>
           <a class="text-link" *ngIf="user.basicData" href="tel:{{user.basicData.phoneNumber}}">
             Call
           </a>
@@ -63,7 +63,7 @@
           </p>
         </li>
         <li>
-          <i class="far fa-comment-alt"></i>
+          <i class="fa__icon far fa-comment-alt"></i>
           <a class="text-link" (click)="chat()" *ngIf="user.basicData">
             Chat
           </a>
@@ -76,20 +76,20 @@
   </section>
   <section class="actions">
     <button type="button" (click)="deleteUserDialog(user)">
-      <i class="fas fa-trash"></i>
+      <i class="fa__icon fas fa-trash"></i>
     </button>
     <!-- Disabled button when user hasn't completed signup yet -->
     <button mat-button *ngIf="!user.status.signUpCompleted " matTooltip="User hasn't completed the Signup process yet"
       matTooltipClass="tooltip-warning" [matTooltipPosition]="tooltipPosition" [class.icon-button-disabled]="!user.status.signUpCompleted">
-      <i class="fas fa-ban"></i>
+      <i class="fa__icon fas fa-ban"></i>
     </button>
     <!-- Accept user button when Signup is completed -->
     <button (click)="acceptUser(user)" *ngIf="!user.status.accepted && user.status.signUpCompleted">
-      <i class="fas fa-user-check"></i>
+      <i class="fa__icon fas fa-user-check"></i>
     </button>
     <!-- Edit button when user is accepted and has completed the signup process -->
     <button (click)="editUser(user)" *ngIf="user.status.signUpCompleted && user.status.accepted">
-      <i class="fas fa-edit"></i>
+      <i class="fa__icon fas fa-edit"></i>
     </button>
   </section>
 

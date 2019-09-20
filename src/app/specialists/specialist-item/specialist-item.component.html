@@ -18,11 +18,11 @@
     <h5>👩 About {{specialist.firstName}}</h5>
     <p [class.read-more]="aboutExtended">{{specialist.description}}</p>
     <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
-      <i class="fas fa-plus"></i>
+      <i class="fa__icon fas fa-plus"></i>
       Read More
     </button>
     <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
-      <i class="fas fa-minus"></i>
+      <i class="fa__icon fas fa-minus"></i>
       Read Less
     </button>
   </section>
@@ -55,11 +55,11 @@
   <section class="btn-area not-mobile">
     <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
       Show reviews
-      <i class="fas fa-chevron-down"></i>
+      <i class="fa__icon fas fa-chevron-down"></i>
     </button>
     <button class="text-link" *ngIf="reviewsVisible" (click)="closeReviews()">
       Hide reviews
-      <i class="fas fa-chevron-up"></i>
+      <i class="fa__icon fas fa-chevron-up"></i>
     </button>
   </section>
 
@@ -68,7 +68,7 @@
 
 <section class="specialist-container" *ngIf="showSpecialist" [class.active]="showSpecialist">
   <button class="hide-btn" (click)="closeSpecialist()" *ngIf="showSpecialist">
-    <i class="fas fa-times"></i>
+    <i class="fa__icon fas fa-times"></i>
   </button>
   <app-specialist-detail [specialist]="specialistToShow" *ngIf="showSpecialist">
   </app-specialist-detail>

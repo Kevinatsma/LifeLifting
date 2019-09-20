@@ -15,11 +15,11 @@
     <div class="not-mobile">
       <button class="edit-btn" *ngIf="user.roles.admin || user.roles.specialist" 
       (click)="editFollowUp(followUp)">
-        <i class="far fa-edit"></i>
+        <i class="fa__icon far fa-edit"></i>
       </button>
       <button class="delete-btn" *ngIf="user.roles.admin || user.roles.specialist" 
       (click)="deleteFollowUp(followUp)">
-        <i class="far fa-trash-alt"></i>
+        <i class="fa__icon far fa-trash-alt"></i>
       </button>
     </div>
     <div class="mobile mat-menu" *ngIf="user.roles.specialist || user.roles.admin">
@@ -30,12 +30,12 @@
         <div class="list-item-menu">
           <button class="edit-btn"
           (click)="editFollowUp(followUp)">
-            <i class="far fa-edit"></i>
+            <i class="fa__icon far fa-edit"></i>
             Edit
           </button>
           <button class="delete-btn"
           (click)="deleteFollowUp(followUp)">
-            <i class="far fa-trash-alt"></i>
+            <i class="fa__icon far fa-trash-alt"></i>
             Delete
           </button>
         </div>

@@ -1,6 +1,6 @@
 <mat-card class="list-item-card" *ngIf="package">
   <section class="number-id">
-    <i class="fas fa-archive"></i>
+    <i class="fa__icon fas fa-archive"></i>
     <h1>{{i+1}}</h1>
   </section>
   <section class="middle">
@@ -22,15 +22,15 @@
         <button class="btn-icon-right__animated" (click)="linkToChild(package)">
           More info
         </button>
-        <i class="fas fa-long-arrow-alt-right"></i>
+        <i class="fa__icon fas fa-long-arrow-alt-right"></i>
       </div>
       <ul class="contact-menu">
         <li>
-          <i class="far fa-clock"></i>
+          <i class="fa__icon far fa-clock"></i>
           {{package.packageDuration}} week(s)
         </li>
         <li>
-          <i class="far fa-money-bill-alt"></i>
+          <i class="fa__icon far fa-money-bill-alt"></i>
           {{package.packagePrice}} dollar
         </li>
       </ul>
@@ -38,10 +38,10 @@
   </section>
   <section class="actions">
     <button type="button" (click)="deletePackageDialog(package)">
-      <i class="fas fa-trash"></i>
+      <i class="fa__icon fas fa-trash"></i>
     </button>
     <button (click)="editPackage(package)">
-      <i class="fas fa-edit"></i>
+      <i class="fa__icon fas fa-edit"></i>
     </button>
   </section>
 

@@ -98,7 +98,9 @@ export class MyClientDetailComponent implements OnInit, OnDestroy {
       this.getMeasurements(user.uid);
       this.getFirstConsultations(user.uid);
       this.getFollowUps(user.uid);
-      this.checkReadMore(user);
+      if (user.basicData.age > 0) {
+        this.checkReadMore(user);
+      }
     });
   }
 

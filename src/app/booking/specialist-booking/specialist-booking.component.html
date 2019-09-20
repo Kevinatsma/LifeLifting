@@ -3,13 +3,13 @@
   <section class="action-toolbar-top calendar__toolbar">
     <div class="left">
       <button class="icon-button not-mobile" (click)="goBack()">
-        <i class="fas fa-arrow-left"></i>
+        <i class="fa__icon fas fa-arrow-left"></i>
       </button>
       <button class="icon-button not-mobile hidden">
-        <i class="fas fa-arrow-left"></i>
+        <i class="fa__icon fas fa-arrow-left"></i>
       </button>
       <button class="icon-button mobile" [class.has-messages]="hasEventRequest" (click)="openUnacceptedUsers()">
-        <i class="fas fa-bell"></i>
+        <i class="fa__icon fas fa-bell"></i>
       </button>
     </div>
 
@@ -18,10 +18,10 @@
 
     <div class="right" *ngIf="specialist">
       <button class="icon-button not-mobile" [class.has-messages]="hasEventRequest" (click)="openUnacceptedUsers()">
-        <i class="fas fa-bell"></i>
+        <i class="fa__icon fas fa-bell"></i>
       </button>
       <button class="icon-button" (click)="addEvent()">
-        <i class="fas fa-plus"></i>
+        <i class="fa__icon fas fa-plus"></i>
       </button>
     </div>
   </section>
@@ -44,7 +44,7 @@
         [(viewDate)]="viewDate"
         (viewDateChange)="activeDayIsOpen = false"
       >
-        <i class="fas fa-arrow-left"></i>
+        <i class="fa__icon fas fa-arrow-left"></i>
         <span class="not-mobile">Previous</span>
       </button>
       <!-- <div
@@ -67,7 +67,7 @@
         (viewChange)="getEvents(user)"
       >
       <span class="not-mobile">Next</span>
-        <i class="fas fa-arrow-right"></i>
+        <i class="fa__icon fas fa-arrow-right"></i>
       </button>
     </section>
 

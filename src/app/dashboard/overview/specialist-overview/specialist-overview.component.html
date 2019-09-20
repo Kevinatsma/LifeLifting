@@ -14,9 +14,9 @@
       <h2> Upcoming Consultations </h2>
       <ul *ngIf="futureAppointments.length > 0">
         <li class="appointment-item" *ngFor="let appointment of futureAppointments" (click)="openEventDetailDialog(appointment)">
-          <i class="fas fa-calendar-plus"></i>
+          <i class="fa__icon fas fa-calendar-plus"></i>
           {{appointment.start | date:'short'}} - {{getString(appointment.meetMethod)}}
-          <i class="fas fa-arrow-right"></i>
+          <i class="fa__icon fas fa-arrow-right"></i>
         </li>
       </ul>
       <a class="see-more-btn text-link" *ngIf="futureAppointments.length > 2" [routerLink]="['../my-calendar']">
@@ -31,9 +31,9 @@
       <h2> Past Consultations </h2>
       <ul *ngIf="pastAppointments.length > 0">
         <li class="appointment-item" *ngFor="let appointment of pastAppointments" (click)="openEventDetailDialog(appointment)">
-          <i class="fas fa-calendar-check"></i>
+          <i class="fa__icon fas fa-calendar-check"></i>
           {{appointment.start | date:'short'}} - {{getString(appointment.meetMethod)}}
-          <i class="fas fa-arrow-right"></i>
+          <i class="fa__icon fas fa-arrow-right"></i>
         </li>
       </ul>
       <a class="see-more-btn text-link" *ngIf="pastAppointments.length > 2" [routerLink]="['../my-calendar']">
@@ -51,17 +51,17 @@
     <div class="quick-actions__btn-container">
       <button (click)="linkToChat()">
         <div class="icon">
-          <i class="fas fa-comment-alt"></i>
+          <i class="fa__icon fas fa-comment-alt"></i>
         </div>
         Go to chat
-        <i class="fas fa-arrow-right"></i>
+        <i class="fa__icon fas fa-arrow-right"></i>
       </button>
       <button (click)="linkToCalendar()">
         <div class="icon">
-          <i class="fas fa-calendar-alt"></i>
+          <i class="fa__icon fas fa-calendar-alt"></i>
         </div>
         Go to calendar
-        <i class="fas fa-arrow-right"></i>
+        <i class="fa__icon fas fa-arrow-right"></i>
       </button>
     </div>
   </section>
@@ -71,7 +71,7 @@
     <div class="user-container" *ngIf="clients.length > 0">
       <app-my-client-list-item *ngFor="let user of clients" [user]="user"></app-my-client-list-item>
       <button class="see-more icon-btn" [routerLink]="['../my-clients']">
-        <i class="fa fa-user"></i>
+        <i class="fa__icon fa fa-user"></i>
         See all Clients
       </button>
     </div>

@@ -4,16 +4,16 @@
     <section class="action-toolbar-top" *ngIf="editShow">
         <div class="left">
           <button class="icon-button" (click)="goBack()">
-              <i class="fas fa-arrow-left"></i>
+              <i class="fa__icon fas fa-arrow-left"></i>
           </button>
         </div>
         <div class="right">
           <!-- <button class="icon-button" href="#">
-            <i class="fas fa-comment-alt"></i>
+            <i class="fa__icon fas fa-comment-alt"></i>
           </button> -->
   
           <button class="icon-button" (click)="editUser()">
-            <i class="fas fa-check"></i>
+            <i class="fa__icon fas fa-check"></i>
           </button>
   
         </div>
@@ -45,14 +45,14 @@
             </p>
             <div class="icon-fact-container">
               <div class="fact" *ngIf="user.basicData">
-                <i class="fas fa-transgender"></i>
+                <i class="fa__icon fas fa-transgender"></i>
                 <mat-select matInput placeholder="{{user.basicData.gender}}" [(value)]="selectedGender" formControlName="gender" 
                 panelClass="dropdown-regular" autocomplete="off" required>
                   <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
                 </mat-select>
               </div>
               <div class="fact" *ngIf="specialist">
-                <i class="fas fa-user-ninja"></i>
+                <i class="fa__icon fas fa-user-ninja"></i>
                 <mat-select matInput placeholder="{{specialist.firstName}}" [(value)]="selectedSpecialist" 
                 formControlName="specialist" autocomplete="off" required name="specialist"
                 panelClass="dropdown-regular"
@@ -92,11 +92,11 @@
             <h5 class="purple">Contact Info</h5>
             <ul class="contact-menu">
               <li>
-                <i class="far fa-envelope"></i>
+                <i class="fa__icon far fa-envelope"></i>
                 <input type="contact-item" name="email" formControlName="email">
               </li>
               <li>
-                <i class="fas fa-mobile-alt"></i>
+                <i class="fa__icon fas fa-mobile-alt"></i>
                 <input type="contact-item" name="phoneNumber" formControlName="phoneNumber">
               </li>
             </ul>

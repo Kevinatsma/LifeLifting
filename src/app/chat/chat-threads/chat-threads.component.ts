@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ChatMessageService } from '../chat-message.service';
 import { ChatDetailComponent } from '../chat-detail/chat-detail.component';
 import { UtilService } from './../../shared/services/util.service';
+import { AuthService } from './../../core/auth/auth.service';
 
 @Component({
   selector: 'app-chat-threads',
@@ -27,7 +28,8 @@ export class ChatThreadsComponent implements OnInit, OnDestroy {
                private threadService: ChatThreadService,
                public messageService: ChatMessageService,
                private utils: UtilService,
-               public router: Router
+               public router: Router,
+               public auth: AuthService
                ) {
                  this.showThreads$ = this.threadService.showThread.subscribe(showThread => this.showThreads = showThread);
                  this.activeThread$ = this.threadService.activeThreadID.subscribe(id => {

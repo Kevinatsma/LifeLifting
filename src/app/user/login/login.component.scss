@@ -99,6 +99,20 @@ section.login-container{
                     display: block;
                 }
             }
+
+            .forgot-password {
+                a {
+                    color: $grey;
+                    font-family: $main-font;
+                    font-size: 13px;
+                    font-weight: $semi-bold;
+                    letter-spacing: 1px;
+                    
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
         }
     }
 

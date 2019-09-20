@@ -1,7 +1,7 @@
 
 <mat-card class="list-item-card" *ngIf="mealplan && auth.user | async as user">
   <div *ngIf="client" class="card-circle" (click)="linkToChild(mealplan)">
-    <i class="fas fa-weight"></i>
+    <i class="fa__icon fas fa-weight"></i>
     <div class="nr-circle">
       <span>{{mealplan.mealplanNR}}</span>
     </div>
@@ -15,15 +15,15 @@
 
     <mat-menu #menu="matMenu" backdropClass="context-menu-mealplan">
       <button mat-menu-item (click)="duplicateMealplan(mealplan)" *ngIf="$user.roles.admin || $user.roles.specialist">
-        <i class="far fa-copy"></i>
+        <i class="fa__icon far fa-copy"></i>
         <span>Duplicate</span>
       </button>
       <button mat-menu-item (click)="linkToShoppingList(mealplan)">
-        <i class="fas fa-shopping-cart"></i>
+        <i class="fa__icon fas fa-shopping-cart"></i>
         <span>Shopping list</span>
       </button>
       <button mat-menu-item (click)="printMealplan(mealplan)">
-        <i class="fas fa-print"></i>
+        <i class="fa__icon fas fa-print"></i>
         <span>Print</span>
       </button>
     </mat-menu>
@@ -46,7 +46,7 @@
       <p class="speciality-title">Created: {{mealplan.creationDate.toDate() | date:'MM/dd/yy'}}</p>
       <ul class="contact-menu">
         <!-- <li>
-          <i class="fas fa-balance-scale"></i>
+          <i class="fa__icon fas fa-balance-scale"></i>
           {{mealplan.portion.amount}} {{mealplan.portion.unit}}
         </li> -->
       </ul>
@@ -54,10 +54,10 @@
   </section>
   <section class="actions" *ngIf="user.roles.specialist || user.roles.admin">
     <button type="button" (click)="deleteMealplanDialog(mealplan)">
-      <i class="fas fa-trash"></i>
+      <i class="fa__icon fas fa-trash"></i>
     </button>
     <button (click)="editMealplan(mealplan)">
-      <i class="fas fa-edit"></i>
+      <i class="fa__icon fas fa-edit"></i>
     </button>
   </section>
 

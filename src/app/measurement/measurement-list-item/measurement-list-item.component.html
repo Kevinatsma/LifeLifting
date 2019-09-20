@@ -13,11 +13,11 @@
     <div class="not-mobile">
       <button class="edit-btn" *ngIf="user.roles.admin || user.roles.specialist" 
       (click)="editMeasurement(measurement)">
-        <i class="far fa-edit"></i>
+        <i class="fa__icon far fa-edit"></i>
       </button>
       <button class="delete-btn" *ngIf="user.roles.admin || user.roles.specialist" 
       (click)="deleteMeasurement(measurement)">
-        <i class="far fa-trash-alt"></i>
+        <i class="fa__icon far fa-trash-alt"></i>
       </button>
     </div>
 
@@ -30,12 +30,12 @@
         <div class="list-item-menu">
           <button class="edit-btn mat-menu-btn"
           (click)="editMeasurement(measurement)">
-            <i class="far fa-edit"></i>
+            <i class="fa__icon far fa-edit"></i>
             Edit
           </button>
           <button class="delete-btn mat-menu-btn"
           (click)="deleteMeasurement(measurement)">
-            <i class="far fa-trash-alt"></i>
+            <i class="fa__icon far fa-trash-alt"></i>
             Delete
           </button>
         </div>

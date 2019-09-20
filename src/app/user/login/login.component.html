@@ -22,7 +22,7 @@
         >
         <!-- <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off'}}</mat-icon> -->
         <mat-hint class="forgot-password" align="end">
-          <a class="small-text" routerLink="/forgot-password">Forgot password?</a>
+          <a class="small-text"  tabindex="0" routerLink="/forgot-password">Forgot password?</a>
         </mat-hint>
         <mat-error class="input-error" *ngIf="capsOn | async"><strong>&#x26A0; Warning</strong> Caps lock is turned on</mat-error>
         <mat-error class="input-error" *ngIf="!password.touched">This is <strong>required</strong></mat-error>
@@ -32,11 +32,15 @@
       </mat-form-field>
 
       <div class="btn-area">
-        <button class="btn-primary" type="submit" [disabled]="!signInForm.valid">Login</button>
+        <button class="btn-primary" type="submit" [disabled]="!signInForm.valid" tabindex="0">Login</button>
         <br>
         <ng-container *ngIf="(auth.user | async) || {} as user">
-          <button type="button" class="text-link" routerLink="../signup" *ngIf="!user.uid">Sign up for an account</button>
-          <button type="button" class="text-link" routerLink="../dashboard" *ngIf="user.uid">Sign up for an account</button>
+          <button type="button" class="text-link" routerLink="../signup" *ngIf="!user.uid" tabindex="0">
+            Sign up for an account
+          </button>
+          <button type="button" class="text-link" routerLink="../dashboard" *ngIf="user.uid" tabindex="0">
+            Sign up for an account
+          </button>
         </ng-container>
 
         <p class="light-text">- or -</p>

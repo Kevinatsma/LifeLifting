@@ -32,10 +32,17 @@ main.thread-container {
 
             .close-section {
                 margin: 2em 1em 1em;
-                button {
-                    svg {
-                        margin-right: 10px;
+
+                .close-btn {
+                    .back-arrow {
+                        margin-right: 15px !important;
                         font-size: 14px;
+                    }
+
+                    @include respond-down($sm) {
+                        svg {
+                            margin-right: 2em !important;
+                        }
                     }
                 }
             }
@@ -45,6 +52,29 @@ main.thread-container {
                 margin: 0 1em 1em;
                 @include respond-up($sm) {
                     margin: 1em;
+                }
+            }
+
+            .no-threads {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-flow: row nowrap;
+                width: 100%;
+
+                ::ng-deep .fa-ban {
+                    font-size: 42px;
+                    color: $middle-grey;
+                    margin: 0 .5em;
+                }
+                
+                p {
+                    text-align: left;
+                    margin: 0;
+
+                    a {
+                        font-size: 14px;
+                    }
                 }
             }
 

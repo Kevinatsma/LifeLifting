@@ -3,7 +3,7 @@
       <section class="action-toolbar-top">
         <div class="left">
           <button class="icon-button" [routerLink]="['../']">
-              <i class="fas fa-arrow-left"></i>
+              <i class="fa__icon fas fa-arrow-left"></i>
           </button>
         </div>
         <div class="middle">
@@ -11,7 +11,7 @@
         </div>
         <div class="right">
           <button class="icon-button" (click)="editPackage()">
-            <i class="fas fa-check"></i>
+            <i class="fa__icon fas fa-check"></i>
           </button>
         </div>
       </section>
@@ -42,7 +42,7 @@
           <div class="list-container" *ngIf="editArray">
             <ul>
               <li *ngFor="let benefit of package.packageBenefits">
-                <i class="fas fa-check"></i>
+                <i class="fa__icon fas fa-check"></i>
                 {{benefit.benefitValue}}
               </li>
             </ul>

@@ -89,7 +89,9 @@ export class UserDetailComponent implements OnInit, OnDestroy {
         this.getMeasurements(uid);
         this.getFirstConsultations(uid);
         this.getFollowUps(uid);
-        this.checkReadMore(user);
+        if (user.basicData.age > 0) {
+          this.checkReadMore(user);
+        }
       }, 200);
     });
   }

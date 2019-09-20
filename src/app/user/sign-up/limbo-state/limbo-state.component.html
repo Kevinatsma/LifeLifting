@@ -1,7 +1,7 @@
 <main class="limbo-container" *ngIf="auth.user | async as user">
   <ng-container *ngIf="user.status.appointment && user.status.appointmentAccepted && !user.status.appointmentCompleted">
     <div class="warning-banner">
-      <i class="fas fa-exclamation-triangle"></i>
+      <i class="fa__icon fas fa-exclamation-triangle"></i>
       <p>
         Did the specialist forget to accept/cancel it and it's past due date? 
         Please, <a class="warning-link" (click)="requestNewEvent(user)">request a new consultation</a>.
@@ -115,7 +115,7 @@
 
   <section class="specialist-container" [class.active]="showSpecialist">
     <button class="hide-btn" (click)="toggleSpecialist()" *ngIf="showSpecialist">
-      <i class="fas fa-times"></i>
+      <i class="fa__icon fas fa-times"></i>
     </button>
     <app-specialist-detail [specialist]="specialist" *ngIf="showSpecialist">
     </app-specialist-detail>

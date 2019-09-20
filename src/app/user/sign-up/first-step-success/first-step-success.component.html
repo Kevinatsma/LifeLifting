@@ -2,7 +2,7 @@
   <section class="login-container">
     <div class="close-section">
       <button mat-icon-button class="close-btn" (click)="closeSection()" type="button">
-        <i class="fas fa-times"></i>
+        <i class="fa__icon fas fa-times"></i>
       </button>
     </div>
     <img class="logo" src="./../../../../assets/img/logo-extended.svg" title="Logo" alt="Logo">
@@ -13,14 +13,14 @@
     <ul class="checklist" *ngIf="user.status">
       <li [class.activated]="user.basicData">
         <div class="placeholder" *ngIf="!user.basicData"></div>
-        <i class="fas fa-check-square" *ngIf="user.basicData"></i>
+        <i class="fa__icon fas fa-check-square" *ngIf="user.basicData"></i>
 
         <ng-container *ngIf="!isMobile"><a routerLink="step-one">Step 1: Fill out basic data</a></ng-container>
         <ng-container *ngIf="isMobile"><a (click)="closeSection()" routerLink="step-one">Step 1: Fill out basic data</a></ng-container>
       </li>
       <li [class.activated]="user.packageChoice">
         <div class="placeholder" *ngIf="!user.packageChoice"></div>
-        <i class="fas fa-check-square" *ngIf="user.packageChoice"></i>
+        <i class="fa__icon fas fa-check-square" *ngIf="user.packageChoice"></i>
 
         <ng-container *ngIf="!isMobile"><a routerLink="step-two" *ngIf="user.basicData">Step 2: Choose a package</a></ng-container>
         <ng-container *ngIf="isMobile"><a routerLink="step-two" (click)="closeSection()" *ngIf="user.basicData">Step 2: Choose a package</a></ng-container>
@@ -29,7 +29,7 @@
       </li>
       <li [class.activated]="user.specialist">
         <div class="placeholder" *ngIf="!user.specialist"></div>
-        <i class="fas fa-check-square" *ngIf="user.specialist"></i>
+        <i class="fa__icon fas fa-check-square" *ngIf="user.specialist"></i>
 
         <ng-container *ngIf="!isMobile"><a routerLink="step-three" *ngIf="user.packageChoice">Step 3: Choose a specialist</a></ng-container>
         <ng-container *ngIf="isMobile"><a routerLink="step-three" (click)="closeSection()" *ngIf="user.packageChoice">Step 3: Choose a specialist</a></ng-container>
@@ -38,7 +38,7 @@
       </li>
       <li [class.activated]="user.status.appointment">
         <div class="placeholder" *ngIf="!user.status.appointment"></div>
-        <i class="fas fa-check-square" *ngIf="user.status.appointment"></i>
+        <i class="fa__icon fas fa-check-square" *ngIf="user.status.appointment"></i>
 
         <ng-container *ngIf="!isMobile"><a routerLink="step-four" *ngIf="user.specialist">Step 4: Request appointment</a></ng-container>
         <ng-container *ngIf="isMobile"><a routerLink="step-four" (click)="closeSection()" *ngIf="user.specialist">Step 4: Request appointment</a></ng-container>
@@ -47,7 +47,7 @@
       </li>
       <li [class.activated]="user.status.accepted">
         <div class="placeholder" *ngIf="!user.status.accepted"></div>
-        <i class="fas fa-check-square" *ngIf="user.status.accepted"></i>
+        <i class="fa__icon fas fa-check-square" *ngIf="user.status.accepted"></i>
 
         <ng-container *ngIf="!isMobile"><a routerLink="limbo" *ngIf="user.status.appointment">Step 5: Finishing up</a></ng-container>
         <ng-container *ngIf="isMobile"><a routerLink="limbo" (click)="closeSection()" *ngIf="user.status.appointment">Step 5: Finishing up</a></ng-container>

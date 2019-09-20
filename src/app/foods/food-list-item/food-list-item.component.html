@@ -1,7 +1,7 @@
 
 <mat-card class="list-item-card" *ngIf="food">
   <section class="product-photo" (click)="linkToChild(food)" [style.background]="'url('+ food.productPhoto +')'">
-      <!-- <i class="fas fa-carrot"></i>
+      <!-- <i class="fa__icon fas fa-carrot"></i>
     <h1>{{i+1}}</h1> -->
   </section>
   <p class="subtitle" (click)="linkToChild(food)">
@@ -18,7 +18,7 @@
       </p>
       <ul class="contact-menu" *ngIf="!amount">
         <li>
-          <i class="fas fa-balance-scale"></i>
+          <i class="fa__icon fas fa-balance-scale"></i>
           {{food.unit}}
         </li>
       </ul>
@@ -29,7 +29,7 @@
           </span>
           <ul class="contact-menu">
             <li>
-              <i class="fas fa-balance-scale"></i>
+              <i class="fa__icon fas fa-balance-scale"></i>
               {{amount}} {{food.unit}}
             </li>
           </ul>
@@ -43,7 +43,7 @@
           </span>
           <ul class="contact-menu">
             <li>
-              <i class="fas fa-balance-scale"></i>
+              <i class="fa__icon fas fa-balance-scale"></i>
               {{amount}} {{food.unit}}
             </li>
           </ul>
@@ -54,10 +54,10 @@
   </section>
   <section class="actions" *ngIf="!amount">
     <button type="button" (click)="deleteFoodDialog(food)">
-      <i class="fas fa-trash"></i>
+      <i class="fa__icon fas fa-trash"></i>
     </button>
     <button (click)="editFood(food)">
-      <i class="fas fa-edit"></i>
+      <i class="fa__icon fas fa-edit"></i>
     </button>
   </section>
 

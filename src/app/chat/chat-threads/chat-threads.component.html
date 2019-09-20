@@ -2,12 +2,29 @@
   <section class="chat-sidebar" *ngIf="showThreads">
     <div class="close-section mobile">
       <button class="text-link close-btn" (click)="goToDashboard()" type="button">
-        <i class="fas fa-arrow-left"></i> Back
+        <i class="fa__icon fas fa-arrow-left back-arrow"></i> Back
       </button>
     </div>
     <h6 class="big-title">LifeLifting Chat</h6>
     <app-chat-thread *ngFor="let thread of threads" [thread]="thread" (click)="linkToChild(thread); hideThreads()" routerLinkActive="active">
     </app-chat-thread>
+    <ng-container *ngIf="auth.user | async as user">
+      <div class="no-threads" *ngIf="threads.length < 1">
+        <i class="fa__icon fas fa-ban"></i>
+        <p class="card-text">
+          Woops.. No chats yet. <br>
+          <ng-container *ngIf="user.roles.admin">
+            Check out the <a class="text-link" routerLink="../dashboard/users">users</a>
+          </ng-container>
+          <ng-container *ngIf="user.roles.specialist && !user.roles.admin">
+            Check out <a class="text-link" routerLink="../dashboard/my-clients">your clients</a>
+          </ng-container>
+          <ng-container *ngIf="user.roles.client && !user.roles.specialist && !user.roles.admin">
+            Check out <a class="text-link" routerLink="../dashboard/my-specialist">your specialist</a>
+          </ng-container>
+        </p>
+      </div>
+    </ng-container>
   </section>
   <section class="router-wrapper">
     <router-outlet #o="outlet"></router-outlet>

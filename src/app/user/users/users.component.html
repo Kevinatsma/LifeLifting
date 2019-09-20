@@ -1,5 +1,5 @@
 <!-- <button mat-icon-button class="back-btn" (click)="goBack()" type="button">
-    <i class="fas fa-arrow-left"></i>
+    <i class="fa__icon fas fa-arrow-left"></i>
 </button> -->
 <div class="wrapper">
     <header>
@@ -7,28 +7,28 @@
             <h1>The Users of LifeLifting</h1>
             <div class="overview-search-bar not-mobile" mat-button>
                 <input type="text" placeholder="Search by name" (input)="onChangeSearch($event)" class="overview-search-bar__input">
-                <i class="fas fa-search"></i>
+                <i class="fa__icon fas fa-search"></i>
             </div>
             <button class="filter not-mobile" mat-button [matMenuTriggerFor]="filterMenu">
                 Filter
-                <i class="fas fa-sort-down"></i>
+                <i class="fa__icon fas fa-sort-down"></i>
             </button>
             <mat-menu #filterMenu="matMenu">
                 <button mat-menu-item (click)="toggleQuery(filterSelection = 'all')" [class.active]="allUsers">
-                    <i class="fas fa-users"></i>
+                    <i class="fa__icon fas fa-users"></i>
                     All users
                 </button>
                 <button mat-menu-item (click)="toggleQuery(filterSelection = 'accepted')" [class.active]="acceptedUsers">
-                    <i class="fas fa-user-check"></i>
+                    <i class="fa__icon fas fa-user-check"></i>
                     Accepted users
                 </button>
                 <button mat-menu-item (click)="toggleQuery(filterSelection = 'unaccepted')" [class.active]="unacceptedUsers">
-                    <i class="fas fa-user-times"></i>
+                    <i class="fa__icon fas fa-user-times"></i>
                     Unaccepted users
                 </button>
             </mat-menu>
             <button class="icon-button" (click)="openDialog()">
-                <i class="fas fa-plus"></i>
+                <i class="fa__icon fas fa-plus"></i>
             </button>
         </section>
     
@@ -39,11 +39,11 @@
         <section class="list-header">
             <div class="overview-search-bar mobile" mat-button>
                 <input type="text" placeholder="Search by name" (input)="onChangeSearch($event)" class="overview-search-bar__input">
-                <i class="fas fa-search"></i>
+                <i class="fa__icon fas fa-search"></i>
             </div>
             <button class="filter mobile" mat-button [matMenuTriggerFor]="filterMenu">
                 Filter
-                <i class="fas fa-sort-down"></i>
+                <i class="fa__icon fas fa-sort-down"></i>
             </button>
         </section>
     </header>

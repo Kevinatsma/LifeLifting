@@ -75,7 +75,7 @@
     section.right {
         display: flex;
         flex-flow: row nowrap;
-        width: 30%;
+        width: 400px;
         background: #fff;
         border-bottom: $light-border;
 
@@ -99,10 +99,9 @@
                 position: relative;
 
                 img {
-                    width: 40%;
+                    width: 20px;
                     height: auto;
                     margin-top: 4px;
-
                 }
 
                 div.notification-circle {

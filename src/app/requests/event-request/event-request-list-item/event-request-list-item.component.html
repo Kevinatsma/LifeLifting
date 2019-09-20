@@ -12,13 +12,13 @@
 
         <div class="contact-method">
           <p>
-            <ng-container *ngIf="event.meetMethod == 'onlineAppointment'"><i class="fas fa-globe-americas"></i> Online Appointment</ng-container>
-            <ng-container *ngIf="event.meetMethod == 'faceToFace'"><i class="fas fa-coffee"></i> Face to face meeting</ng-container>
+            <ng-container *ngIf="event.meetMethod == 'onlineAppointment'"><i class="fa__icon fas fa-globe-americas"></i> Online Appointment</ng-container>
+            <ng-container *ngIf="event.meetMethod == 'faceToFace'"><i class="fa__icon fas fa-coffee"></i> Face to face meeting</ng-container>
           </p>
           <p>
-            <ng-container *ngIf="event.contactMethod == 'skype'"><i class="fab fa-skype"></i> Skype</ng-container>
-            <ng-container *ngIf="event.contactMethod == 'whatsApp'"><i class="fab fa-whatsapp"></i> Whatsapp</ng-container>
-            <ng-container *ngIf="event.contactMethod == 'phone'"><i class="fas fa-phone"></i> Phonecall</ng-container>
+            <ng-container *ngIf="event.contactMethod == 'skype'"><i class="fa__icon fab fa-skype"></i> Skype</ng-container>
+            <ng-container *ngIf="event.contactMethod == 'whatsApp'"><i class="fa__icon fab fa-whatsapp"></i> Whatsapp</ng-container>
+            <ng-container *ngIf="event.contactMethod == 'phone'"><i class="fa__icon fas fa-phone"></i> Phonecall</ng-container>
           </p>
         </div>
       </div>
@@ -35,10 +35,10 @@
     </section>
     <section class="list-item__btn-area">
       <button class="icon-button" (click)="deleteConfirm()">
-        <i class="fas fa-trash"></i>
+        <i class="fa__icon fas fa-trash"></i>
       </button>
       <button class="icon-button mobile" (click)="acceptEvent(event, true)">
-        <i class="fas fa-check"></i>
+        <i class="fa__icon fas fa-check"></i>
       </button>
     </section>
   </main>
