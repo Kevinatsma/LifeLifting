@@ -180,13 +180,13 @@ export class AddGuideDialogComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.measurement$ !== undefined) { this.measurement$.unsubscribe(); }
-    this.measurements$.unsubscribe();
+    if (this.measurements$ !== undefined) { this.measurements$.unsubscribe(); }
     if (this.fic$ !== undefined) { this.fic$.unsubscribe(); }
-    this.fics$.unsubscribe();
+    if (this.fics$ !== undefined) { this.fics$.unsubscribe(); }
     if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
     this.backdropClick$.unsubscribe();
     this.user$.unsubscribe();
-    this.exercises$.unsubscribe();
+    if (this.exercises$ !== undefined) { this.exercises$.unsubscribe(); }
   }
 
   // Getters

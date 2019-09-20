@@ -286,10 +286,7 @@ main.specialist-wrapper {
                 padding: 0;
                 margin: 0;
                 height: 140px;
-
-                @include respond-down($sm) {
-                    width: 100%;
-                }
+                width: 100%;
 
                 h2, input {
                     font-size: 38px;

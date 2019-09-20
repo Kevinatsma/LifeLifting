@@ -109,15 +109,21 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
   }
 
   patchForm() {
-    const measurementDoc: Measurement = this.measurements.find(measurement => {
-      return measurement.measurementID === `${this.guideline.measurementID}`;
-    });
-    this.editGuidelineForm.controls['measurement'].setValue(measurementDoc);
+    let measurementDoc: Measurement;
+    if (this.measurements && this.measurements.length > 0) {
+      measurementDoc = this.measurements.find(measurement => {
+        return measurement.measurementID === `${this.guideline.measurementID}`;
+      });
+      this.editGuidelineForm.controls['measurement'].setValue(measurementDoc);
+    }
 
-    const ficDoc = this.fics.find(fic => {
-      return fic.ficID === `${this.guideline.ficID}`;
-    });
-    this.editGuidelineForm.controls['firstConsultation'].setValue(ficDoc);
+    let ficDoc;
+    if (this.fics && this.fics.length > 0) {
+      ficDoc = this.fics.find(fic => {
+        return fic.ficID === `${this.guideline.ficID}`;
+      });
+      this.editGuidelineForm.controls['firstConsultation'].setValue(ficDoc);
+    }
   }
 
   toggleEdit() {
@@ -196,6 +202,7 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
 
       if (!data.isAthlete) {
         this.fatPercentageRegResult = this.utils.calculateFatPercentageRegular(data);
+        console.log(data);
       } else {
         this.fatPercentageAthResult = this.utils.calculateFatPercentageAthlete(data);
       }

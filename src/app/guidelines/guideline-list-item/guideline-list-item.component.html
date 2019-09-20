@@ -1,6 +1,6 @@
 
 <mat-card class="list-item-card" *ngIf="guideline && auth.user | async as user">
-  <div *ngIf="client" class="card-circle" (click)="linkToChild(guideline, client)">
+  <div class="card-circle" (click)="linkToChild(guideline, client)">
     <i class="far fa-file-alt"></i>
     <div class="nr-circle">
       <span>{{guideline.guidelineNR}}</span>

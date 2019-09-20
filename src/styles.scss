@@ -617,7 +617,7 @@ a {
 
         &:hover, &:focus {
             color: $grey;
-            cursor: initial;
+            cursor: unset;
             text-decoration: none;
 
             &::after {

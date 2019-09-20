@@ -79,8 +79,8 @@ export class GuidelineDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.client$.unsubscribe();
-    this.measurements$.unsubscribe();
-    this.guideline$.unsubscribe();
+    if (this.measurements$ !== undefined) { this.measurements$.unsubscribe(); }
+    if (this.guideline$ !== undefined) { this.guideline$.unsubscribe(); }
     if (this.exerciseOne$ !== undefined) { this.exerciseOne$.unsubscribe(); }
     if (this.exerciseTwo$) {
       if (this.exerciseTwo !== undefined) { this.exerciseTwo$.unsubscribe(); }
@@ -101,7 +101,7 @@ export class GuidelineDetailComponent implements OnInit, OnDestroy {
         if (guideline) {
           this.client$ = this.userService.getUserDataByID(guideline.clientID).subscribe(user => {
               this.client = user;
-              this.getExtraDocs(user.uid);
+              if (user) { this.getExtraDocs(user.uid); }
           });
           this.setTarget(guideline);
           this.setIncreaseCals(guideline);

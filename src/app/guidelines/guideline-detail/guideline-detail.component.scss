@@ -293,10 +293,7 @@ main.specialist-wrapper {
                 padding: 0;
                 margin: 0 0 3rem;
                 height: auto;
-
-                @include respond-down($sm) {
-                    width:  100%;
-                }
+                width: 100%;
 
                 &::after {
                     content: '';
