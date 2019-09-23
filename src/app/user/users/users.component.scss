@@ -91,7 +91,7 @@
         }
     }
 
-    ::ng-deep svg {
+    .fa__icon, svg, ::ng-deep svg {
         font-size: 14px;
         margin-top: -2px;
         margin-left: 10px;
@@ -112,7 +112,7 @@
             background: $middle-grey;
         }
 
-        ::ng-deep svg {
+        .fa__icon, svg, ::ng-deep svg {
             color: $secondary-color;
             font-size:  17px;
             margin-right: 1em;

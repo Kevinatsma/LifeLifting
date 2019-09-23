@@ -21,7 +21,7 @@
     .close-section {
         margin-top: 2em;
         
-        ::ng-deep svg {
+        .fa__icon, svg, ::ng-deep svg {
             margin-right: 0.5em;
         }
     }
@@ -180,7 +180,7 @@
                 justify-content: center;
                 flex-flow: column wrap;
 
-                ::ng-deep svg {
+                .fa__icon, svg, ::ng-deep svg {
                     color: $grey;
                     margin-bottom: 10px;
                     font-size: 38px;

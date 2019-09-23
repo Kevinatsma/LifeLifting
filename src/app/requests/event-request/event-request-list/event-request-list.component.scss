@@ -4,7 +4,7 @@
         margin-bottom: 10px;
     }
 
-    ::ng-deep svg {
+    .fa__icon, svg, ::ng-deep svg {
         margin-right: 15px;
     }
 }

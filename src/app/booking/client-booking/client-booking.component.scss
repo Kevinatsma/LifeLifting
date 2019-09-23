@@ -8,7 +8,7 @@
 
 button.has-messages {
     animation: signal 1s infinite;
-    ::ng-deep svg {
+    .fa__icon, svg, ::ng-deep svg {
         color: $primary-color;
     }
 }
@@ -68,7 +68,7 @@ button.has-messages {
                 justify-content: center;
                 flex-flow: column wrap;
 
-                ::ng-deep svg {
+                .fa__icon, svg, ::ng-deep svg {
                     color: $grey;
                     margin-bottom: 10px;
                     font-size: 38px;

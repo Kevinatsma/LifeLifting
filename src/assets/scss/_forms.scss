@@ -44,7 +44,7 @@
         border-radius: 0;
         border: $light-border;
         transition: all 300ms ease-in-out;
-        ::ng-deep svg {
+        .fa__icon, svg, ::ng-deep svg {
             margin: 0;
             padding: 0;
         }
@@ -53,7 +53,7 @@
             background: darken($light-grey, 5%);
             cursor: pointer; 
             
-            ::ng-deep svg {
+            .fa__icon, svg, ::ng-deep svg {
                 transition: transform 300ms ease-in-out;
                 transform: scale(1.1);
             }
@@ -76,12 +76,12 @@
     background: $light-grey;
     border: 2px solid $light-grey;
 
-    ::ng-deep svg {
+    .fa__icon, svg, ::ng-deep svg {
         color: $grey;
     }
 
     &:hover, &:focus {
-        ::ng-deep svg {
+        .fa__icon, svg, ::ng-deep svg {
             color: $grey;
         }
     }

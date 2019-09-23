@@ -202,7 +202,6 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
 
       if (!data.isAthlete) {
         this.fatPercentageRegResult = this.utils.calculateFatPercentageRegular(data);
-        console.log(data);
       } else {
         this.fatPercentageAthResult = this.utils.calculateFatPercentageAthlete(data);
       }

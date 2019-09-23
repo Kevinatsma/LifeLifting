@@ -30,7 +30,7 @@
                 font-size: 15px;
                 color: $secondary-color;
 
-                ::ng-deep svg {
+                .fa__icon, svg, ::ng-deep svg {
                     margin-right: 1em;
                     color: $secondary-color
                 }

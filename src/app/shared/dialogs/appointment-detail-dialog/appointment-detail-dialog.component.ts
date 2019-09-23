@@ -69,7 +69,6 @@ export class AppointmentDetailDialogComponent implements OnDestroy {
         this.event = data.event.event;
       }
 
-      console.log(this.event);
       this.doEventCheck(this.event);
       this.getTimeAndDate();
       this.getEndTimeAndDate();

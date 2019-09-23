@@ -85,7 +85,7 @@ section {
                         width: 80%;
                     }
 
-                    ::ng-deep svg {
+                    .fa__icon, svg, ::ng-deep svg {
                         color: $icon-grey;
                         font-size: 38px;
                         width: 38px;

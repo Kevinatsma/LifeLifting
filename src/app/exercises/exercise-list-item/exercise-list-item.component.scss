@@ -37,7 +37,7 @@ mat-card.list-item-card {
             background-position: center!important;
             background-repeat: no-repeat!important;
             background: $middle-grey;
-            ::ng-deep svg {
+            .fa__icon, svg, ::ng-deep svg {
                 font-size: 70px;
                 color: $primary-color;
                 margin-bottom: 15px;
@@ -121,7 +121,7 @@ mat-card.list-item-card {
                         display: inline-block;
                         margin: 0.25em 1.5em 0 0;
 
-                        ::ng-deep svg {
+                        .fa__icon, svg, ::ng-deep svg {
                             font-size: 18px;
                             margin-right: 0.5em;
                             color: $secondary-color;
@@ -138,7 +138,7 @@ mat-card.list-item-card {
                         font-weight: $semi-bold;
                     }
 
-                    ::ng-deep svg {
+                    .fa__icon, svg, ::ng-deep svg {
                         font-size: 12px;
                         color: $middle-grey;
                         transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
@@ -151,7 +151,7 @@ mat-card.list-item-card {
                     }
 
                     &:hover, &:focus {
-                        ::ng-deep svg {
+                        .fa__icon, svg, ::ng-deep svg {
                             left: 10px;
                             top: 5px;
                             transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
@@ -176,7 +176,7 @@ mat-card.list-item-card {
                 height: 50px;
                 border-top: $light-border;
 
-                ::ng-deep svg {
+                .fa__icon, svg, ::ng-deep svg {
                     margin-top: -3px;
                     font-size: 15px;
                     color: $icon-black;
@@ -189,7 +189,7 @@ mat-card.list-item-card {
 
                 &:hover, &:focus {
                     background: $light-grey;
-                    ::ng-deep svg {
+                    .fa__icon, svg, ::ng-deep svg {
                         transition: transform 200ms ease-in-out;
                         transform: scale(1.2);
                     }

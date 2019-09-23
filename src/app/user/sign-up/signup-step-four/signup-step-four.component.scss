@@ -16,7 +16,7 @@
             margin-right: 4em;
         }
 
-        ::ng-deep svg {
+        .fa__icon, svg, ::ng-deep svg {
             font-size: 48px;
         }
 
@@ -34,7 +34,7 @@
 .btn-area {
     .disabled {
         background: $light-grey!important;
-        ::ng-deep svg {
+        .fa__icon, svg, ::ng-deep svg {
             color: $grey;
         }
         &:hover {

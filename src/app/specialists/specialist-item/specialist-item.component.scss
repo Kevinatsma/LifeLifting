@@ -84,7 +84,7 @@ section.about {
         align-items: center;
         justify-content: center;
 
-        ::ng-deep svg {
+        .fa__icon, svg, ::ng-deep svg {
             margin: 0 10px 0 0;
             font-size: 12px;
         }
@@ -161,7 +161,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        ::ng-deep svg {
+        .fa__icon, svg, ::ng-deep svg {
             font-size: 12px;
             margin-left: 5px;
         }     

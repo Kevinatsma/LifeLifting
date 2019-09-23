@@ -80,7 +80,6 @@ export class SignupComponent implements OnInit {
   // Misc
 
   getState(o) {
-    console.log(o);
     return o.activatedRouteData.state;
   }
 

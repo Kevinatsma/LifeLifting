@@ -161,7 +161,7 @@
     justify-content: center;
     flex-flow: column wrap;
 
-    ::ng-deep svg {
+    .fa__icon, svg, ::ng-deep svg {
         font-size: 36px;
         color: $grey;
         margin-bottom: 15px;

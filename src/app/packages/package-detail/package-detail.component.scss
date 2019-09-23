@@ -121,7 +121,7 @@ main.specialist-wrapper {
                         padding: 0 0 1em 2em;
                     }
 
-                    ::ng-deep svg {
+                    .fa__icon, svg, ::ng-deep svg {
                         margin-right: 1.5em;
                         color: $secondary-color;
                         @include respond-down($sm) {
@@ -143,7 +143,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        ::ng-deep svg {
+        .fa__icon, svg, ::ng-deep svg {
             font-size: 12px;
             margin-left: 5px;
         }     

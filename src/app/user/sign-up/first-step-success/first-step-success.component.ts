@@ -26,13 +26,12 @@ export class FirstStepSuccessComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isMobile = this.utils.checkIfMobile();
-    console.log(this.isMobile);
 
     this.getUserData();
   }
 
   ngOnDestroy() {
-    this.user$.unsubscribe();
+    if (this.user$ !== undefined) { this.user$.unsubscribe(); }
   }
 
   getUserData() {

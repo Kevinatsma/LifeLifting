@@ -94,7 +94,7 @@ section {
                         cursor: pointer;
                     }
 
-                    ::ng-deep svg {
+                    .fa__icon, svg, ::ng-deep svg {
                         &:first-child {
                             color: darken($middle-grey, 10%);
                             height: 16px;
@@ -148,12 +148,12 @@ section {
                 &:hover {
                     background-color: $middle-grey;
 
-                    ::ng-deep svg {
+                    .fa__icon, svg, ::ng-deep svg {
                         transform: scale(1.05);
                     }
                 }
                 
-                ::ng-deep svg {
+                .fa__icon, svg, ::ng-deep svg {
                     color: darken($middle-grey, 10%);
                     font-size: 22px;
                     margin-bottom: 15px;

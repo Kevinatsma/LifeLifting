@@ -18,7 +18,7 @@
             color: $secondary-color;
             margin: 0;
 
-            ::ng-deep svg {
+            .fa__icon, svg, ::ng-deep svg {
                 margin-right: 10px;
             }
         }
@@ -48,7 +48,7 @@
             @include respond-down($sm) {
                 display: flex;
                 align-items: center;
-                ::ng-deep svg {
+                .fa__icon, svg, ::ng-deep svg {
                     font-size: 12px;
                     margin-right: 10px;
                 }
@@ -80,7 +80,7 @@
                     align-items: center;
                 }
 
-                ::ng-deep svg {
+                .fa__icon, svg, ::ng-deep svg {
                     margin-right: 1em;
                     color: $secondary-color
                 }

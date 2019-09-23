@@ -24,7 +24,7 @@
                 margin-bottom: 20px;
 
                 button {
-                    ::ng-deep svg {
+                    .fa__icon, svg, ::ng-deep svg {
                         margin: 0 10px 0 0;
                     }
                 }

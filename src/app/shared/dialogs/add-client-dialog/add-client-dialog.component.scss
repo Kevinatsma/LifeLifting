@@ -86,7 +86,7 @@ form {
             right: 1em;
             top: 1em;
 
-            ::ng-deep svg {
+            .fa__icon, svg, ::ng-deep svg {
                 color:  $secondary-color;
             }
         }
@@ -141,7 +141,7 @@ form {
             border-radius: 0;
             border: $light-border;
             transition: all 300ms ease-in-out;
-            ::ng-deep svg {
+            .fa__icon, svg, ::ng-deep svg {
                 margin: 0;
                 padding: 0;
             }
@@ -150,7 +150,7 @@ form {
                 background: darken($light-grey, 5%);
                 cursor: pointer; 
                 
-                ::ng-deep svg {
+                .fa__icon, svg, ::ng-deep svg {
                     transition: transform 300ms ease-in-out;
                     transform: scale(1.1);
                 }

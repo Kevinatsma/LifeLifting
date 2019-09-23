@@ -232,7 +232,7 @@
                 }
             }
 
-            ::ng-deep svg {
+            .fa__icon, svg, ::ng-deep svg {
                 margin-right: 1em;
                 font-size: 14px;
                 position: relative;
@@ -242,7 +242,7 @@
             
             &:last-child {
                 justify-content: flex-end;
-                ::ng-deep svg {
+                .fa__icon, svg, ::ng-deep svg {
                     margin-right: 0;
                     margin-left: 1em;
                 }
@@ -415,7 +415,7 @@
         margin: 7px 0 0;
         letter-spacing: 1.2px;
 
-        ::ng-deep svg {
+        .fa__icon, svg, ::ng-deep svg {
             margin-right: 10px;
             color: $secondary-color;
         }

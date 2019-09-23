@@ -170,7 +170,7 @@
 
             @extend %flex-center;
 
-            ::ng-deep svg {
+            .fa__icon, svg, ::ng-deep svg {
                 color: $icon-grey;
                 font-size: 18px;
             }

@@ -62,6 +62,9 @@ export class AuthService {
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
+        if (credential.additionalUserInfo.isNewUser) {
+          this.updateUserData(credential.user);
+        }
       })
       .then(() => {
         this.router.navigate(['dashboard']);
