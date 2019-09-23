@@ -25,7 +25,7 @@
             .close-btn {
                 &.not-mobile {
                     z-index: 1500;
-                    svg {
+                    ::ng-deep svg {
                         margin-right: 0;
                     }
                 }

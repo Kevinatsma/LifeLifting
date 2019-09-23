@@ -6,6 +6,10 @@ section.step-wrapper {
     height: auto;
     box-sizing: border-box;
 
+    &.step-three {
+        overflow: hidden;
+    }
+
     @include respond-down($sm) {
         overflow-y: auto;
         padding: 2em 0 2em;
@@ -17,18 +21,6 @@ section.step-wrapper {
         justify-content: center;
     }
 
-    &.not-success {
-        .btn-area {
-            button {
-                @include respond-down($sm) {
-                    background: transparent!important;
-                    border: none!important;
-                    box-shadow: none!important;
-                }
-            }
-        }
-    }
-
     .step-done {
         .btn-area {
             margin-top: 0;
@@ -37,6 +29,23 @@ section.step-wrapper {
         p {
             @include respond-down($sm) {
                 width: 100%;
+            }
+        }
+    }
+
+    .btn-area {
+        @include respond-down($sm) {
+            margin-bottom: 3em;
+        }
+
+
+        .btn-icon-left {
+            ::ng-deep svg {
+                margin-right: 0 !important;
+            }
+
+            span {
+                margin-left: 20px;
             }
         }
     }
@@ -58,7 +67,7 @@ section.slider-nav-container {
         width: 2em;
         font-size: 38px;
 
-        svg {
+        ::ng-deep svg {
             margin: 0 0 2px 3px;
         }
     }
@@ -73,23 +82,35 @@ app-specialist-item {
 .specialist-container {
     overflow-y: hidden!important;
     height: auto;
+    width: auto;
 
     .package-slider {
         overflow-x: auto;
         overflow-y: hidden;
-        width: fit-content!important;
+        width: 100%;
         display: flex;
-        padding: 1em 0;
+        padding: 1em 1.5em;
+        flex-flow: row nowrap;
+        width: 100%;
+
+        @include respond-down($sm) {
+            padding: 0;
+            width: 100vw;
+        }
     }
 
     .specialist-item {
-        width: 70%;
+        width: 55vw;
         margin: 0 2.5em 0 2.5em;
         height: 100%;
+        max-width: 60vw;
+        overflow: hidden;
+
         @include respond-down($sm) {
-            width: 75vw;
             padding: 0;
-            margin: 0 3vw!important;
+            margin: 0 auto 50px !important;
+            max-width: 70vw;
+            width: 80%;
         }
 
     }

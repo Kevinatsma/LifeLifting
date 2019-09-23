@@ -103,11 +103,11 @@
       </section>
     </ng-container>
 
-    <ng-container *ngIf="!editShow">
+    <ng-container *ngIf="!editShow && reviews | async as reviews">
         <section class="reviews-opened">
           <h5 class="purple">Reviews</h5>
           <div class="review-container" *ngIf="reviewsVisible">
-            <app-review-list-item *ngFor="let review of reviews | async as review" [review]="review" [specialist]="specialist">
+            <app-review-list-item *ngFor="let review of reviews" [review]="review" [specialist]="specialist">
             </app-review-list-item>
             <div class="placeholder">
               Oh hello there.
@@ -115,8 +115,7 @@
           </div>
         </section>
       
-
-        <section class="btn-area">
+        <section class="btn-area" *ngIf="reviews.length > 0">
           <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
             Show reviews
             <i class="fa__icon fas fa-chevron-down"></i>

@@ -117,10 +117,6 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.replaceDates();
-
-    this.appointmentForm = this.fb.group({
-      phoneNumber: ['', Validators.required],
-    });
   }
 
   ngOnDestroy() {
@@ -349,7 +345,7 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
       clientID: this.user.uid,
       members: [this.user.uid, this.specialist.uid],
       meetMethod: 'faceToFace',
-      faceToFacePhone: this.appointmentForm.get('phoneNumber').value,
+      faceToFacePhone: this.user.basicData.phoneNumber
     };
 
     // Update request amount on specialist

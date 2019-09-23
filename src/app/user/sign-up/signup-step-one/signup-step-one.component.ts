@@ -41,7 +41,8 @@ export class SignupStepOneComponent implements OnInit {
 
   ngOnInit() {
     this.basicUserDataForm = this.fb.group({
-      displayName: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       age: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       country: ['', [Validators.required]],
@@ -59,7 +60,7 @@ export class SignupStepOneComponent implements OnInit {
     const phoneNumber = this.basicUserDataForm.controls.phoneNumber.get('phoneRest').value +
                         this.basicUserDataForm.controls.phoneNumber.get('phoneRest').value;
     const data = {
-      displayName: this.basicUserDataForm.get('displayName').value,
+      displayName: this.basicUserDataForm.get('firstName').value + ' ' + this.basicUserDataForm.get('lastName').value,
       basicData: {
         age: this.basicUserDataForm.get('age').value,
         gender: this.selectedGender,

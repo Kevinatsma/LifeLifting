@@ -34,7 +34,7 @@ div.success-wrapper {
             top: 0;
             right: 5px;
 
-            svg {
+            ::ng-deep svg {
                 color: $grey;
             }
         }
@@ -83,7 +83,7 @@ div.success-wrapper {
                     }
                 }
                 
-                svg {
+                ::ng-deep ::ng-deep svg {
                     color: $secondary-color;
                     margin: 0.1em 1.5em 0 0;
                 }

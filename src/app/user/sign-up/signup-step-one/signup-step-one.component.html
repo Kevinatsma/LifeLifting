@@ -7,8 +7,15 @@
       <div class="animated-container">
         <!-- Name -->
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Your name?</mat-label>
-          <input type="text" matInput placeholder="My name is: {{user.displayName}}" formControlName="displayName" 
+          <mat-label>First name</mat-label>
+          <input type="text" matInput placeholder="John" formControlName="firstName" 
+            autocomplete="off" required
+          >
+          <!-- <mat-error class="input-error" *ngIf="!displayName.dirty">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Last name</mat-label>
+          <input type="text" matInput placeholder="Doe" formControlName="lastName" 
             autocomplete="off" required
           >
           <!-- <mat-error class="input-error" *ngIf="!displayName.dirty">This is <strong>required</strong></mat-error> -->

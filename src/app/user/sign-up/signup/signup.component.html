@@ -46,12 +46,12 @@
     </section>
   </div>
   <ng-container *ngIf="user">
-    <div class="show-section" *ngIf="!succesVisible && user.uid" (click)="openSuccess()">
+    <div class="show-section" *ngIf="!succesVisible && user.uid" (click)="toggleStepOverlay()">
       <button class="open-side-component">
         <i class="fa__icon fas fa-chevron-right"></i>
       </button>
     </div>
-    <app-first-step-success *ngIf="user.uid && succesVisible" (close)="succesVisible = false"></app-first-step-success>
+    <app-first-step-success *ngIf="user.uid && succesVisible" (close)="toggleStepOverlay()"></app-first-step-success>
   </ng-container>
 
   <ng-container *ngIf="user">

@@ -13,6 +13,7 @@ section.step-wrapper {
 
     h5 {
         text-align: center;
+        width: 90%;
     }
 
     &.success {
@@ -30,6 +31,10 @@ section.step-wrapper {
 }
 
 .package-container {
+    @include respond-down($sm) {
+        margin: 2em 0 0 !important;
+    }
+
     mat-radio-group.package-slider {
         height: 100%;
         width: 100%;
@@ -39,7 +44,7 @@ section.step-wrapper {
         padding: 1em 0 1em;
 
         @include respond-down($sm) {
-            flex-flow: row nowrap;
+            flex-flow: column nowrap;
             height: auto;
         }
 
@@ -55,6 +60,14 @@ section.step-wrapper {
     }
 }
 
+
+.btn-area.step-two {
+    @include respond-down($sm) {
+        margin: 0 0 3em;
+        min-height: 40px;
+    }
+}
+
 ::ng-deep mat-radio-button, .package-item {
     flex: 0 0 auto;
     width: 40%;
@@ -66,8 +79,8 @@ section.step-wrapper {
     outline: 5px solid transparent;
 
     @include respond-down($sm) {
-        width: 75vw;
-        margin: 0 1.5em 0!important;
+        width: 80vw;
+        margin: 0 auto 1.5em !important;
         height: auto;
     }
 
@@ -77,12 +90,13 @@ section.step-wrapper {
 
     app-package-item {
         @extend %flex-column-center;
+        align-items: flex-start;
         width: 100%;
         height: 100%;
         box-sizing: border-box;
-        @include respond-down($sm) {
-            align-items: flex-start;
 
+        ::ng-deep .fa__icon {
+            margin: -1px 15px 0 0 !important;
         }
     }
 
@@ -101,6 +115,7 @@ section.step-wrapper {
         .mat-radio-label-content {
             max-width: 100%;
             padding: 0;
+            width: 100%;
 
             h2 {
                 @include respond-down($sm) {

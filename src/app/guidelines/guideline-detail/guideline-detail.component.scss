@@ -282,7 +282,7 @@ main.specialist-wrapper {
                 margin-bottom: 1rem;
                 @extend %flex-center;
 
-                svg {
+                ::ng-deep svg {
                     font-size: 38px;
                     color: $primary-color;
                 }
@@ -475,7 +475,7 @@ main.specialist-wrapper {
                         margin-top: -2rem;
                         width: 75px;
 
-                        svg {
+                        ::ng-deep svg {
                             color: #fff;
                         }
                     }
@@ -750,7 +750,7 @@ main.specialist-wrapper {
                     margin: -85px calc(50% - (175px/2)) 0;
                 }
 
-                svg {
+                ::ng-deep svg {
                     font-size: 38px;
                 }
             }
@@ -782,7 +782,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        svg {
+        ::ng-deep svg {
             font-size: 12px;
             margin-left: 5px;
         }     

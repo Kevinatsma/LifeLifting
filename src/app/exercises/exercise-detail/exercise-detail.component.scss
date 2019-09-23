@@ -133,7 +133,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        svg {
+        ::ng-deep svg {
             font-size: 12px;
             margin-left: 5px;
         }     

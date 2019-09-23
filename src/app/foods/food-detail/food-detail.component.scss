@@ -109,7 +109,7 @@ main.specialist-wrapper {
                     margin: 0 0 15px;
                     text-align: left;
 
-                    svg {
+                    ::ng-deep svg {
                         color: darken($section-grey, 20%);
                         font-size: 21px;
                         margin-right: 10px;
@@ -164,7 +164,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        svg {
+        ::ng-deep svg {
             font-size: 12px;
             margin-left: 5px;
         }     

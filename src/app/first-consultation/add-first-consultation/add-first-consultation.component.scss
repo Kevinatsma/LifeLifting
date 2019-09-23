@@ -36,7 +36,7 @@
                     top: 15px;
                     z-index: 1500;
 
-                    svg {
+                    ::ng-deep svg {
                         margin-right: 0;
                     }
                 }
@@ -46,7 +46,7 @@
                     top: 10px;
                     left: 20px;
 
-                    svg {
+                    ::ng-deep svg {
                         margin-right: 10px;
                     }
                 }
@@ -111,12 +111,12 @@
                         text-decoration: underline;
                     }
 
-                    svg {
+                    ::ng-deep svg {
                         display: none;
                     }
 
                     &.valid {
-                        svg {
+                        ::ng-deep svg {
                             display: block;
                             color: $primary-color;
                             font-size: 18px;

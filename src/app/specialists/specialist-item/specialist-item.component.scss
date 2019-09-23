@@ -48,6 +48,12 @@ section.specialist-header {
         p {
             margin-top: 0.5em;
         }
+
+        .text-link {
+            @include respond-down($sm) {
+                width: 30%;
+            }
+        }
     }
 }
 
@@ -58,6 +64,9 @@ section.about {
     padding: 1.5em 2em;
     background: $light-grey;
     box-shadow: $card-shadow;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
 
     p {
         overflow: hidden;
@@ -74,7 +83,8 @@ section.about {
         display: flex;
         align-items: center;
         justify-content: center;
-        svg {
+
+        ::ng-deep svg {
             margin: 0 10px 0 0;
             font-size: 12px;
         }
@@ -97,22 +107,34 @@ section.middle {
 
     div.languages {
         width: 50%;
+
+        ul li {
+            white-space: normal;
+        }
     }
 }
 
 section.reviews-opened {
+    flex-flow: column nowrap;
     padding-left: 2em;
     width: calc(100% + 4em);
 }
 
 div.review-container {
-    width: 100%;
+    width: calc(100% + 2em);
     height: auto;
-    padding: 2em 0;
-    margin-left: -2em;
+    padding: 2em 2em;
+    margin-left: -4em;
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
+
+    @include respond-down($sm) {
+        width: 100%;
+        height: auto;
+        padding: 2em 0;
+        margin-left: -2em;
+    }
 
     mat-card.review-item {
         flex: 0 0 auto;
@@ -139,7 +161,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        svg {
+        ::ng-deep svg {
             font-size: 12px;
             margin-left: 5px;
         }     
@@ -147,6 +169,11 @@ section.btn-area {
 }
 
 .specialist-container {
+    @include respond-down($sm) {
+        padding: 0 !important;
+        width: 100%; 
+    }
+
     &.active {
         position: fixed;
         top: 0;

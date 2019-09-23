@@ -9,13 +9,12 @@
             <app-package-item [package]="package" [user]="user"></app-package-item>
           </mat-radio-button>
           <div class="right-scroll-margin">
-            <p class="hide">HI</p>
+            <p class="hide"></p>
           </div>
         </mat-radio-group>
-        <p class="card-text mobile swipe">Swipe <i class="fa__icon fas fa-long-arrow-alt-right"></i></p>
       </section>
 
-      <div class="btn-area" *ngIf="!user.packageChoice">
+      <div class="btn-area step-two" *ngIf="!user.packageChoice">
         <button class="btn-icon-left no-bg" routerLink="../step-one">
           <i class="fa__icon fas fa-chevron-left small"></i>
           <span class="not-mobile">Previous step</span>

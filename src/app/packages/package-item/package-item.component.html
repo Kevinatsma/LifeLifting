@@ -20,6 +20,16 @@
     {{package.packageDescription}}
   </p>
 
+  <div class="list-container mobile" *ngIf="aboutExtended">
+    <h5>Benefits</h5>
+    <ul>
+      <li *ngFor="let benefit of package.packageBenefits">
+        <i class="fa__icon fas fa-check"></i>
+        <span>{{benefit.benefitValue}}</span>
+      </li>
+    </ul>
+  </div>
+
   <div class="read-more__buttons mobile" *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
     <button class="text-link read-more" (click)="aboutExtendedToggle()" *ngIf="!aboutExtended">
       <i class="fa__icon fas fa-plus"></i>
@@ -31,7 +41,7 @@
     </button>
   </div>
 
-  <div class="list-container">
+  <div class="list-container not-mobile">
     <h5>Benefits</h5>
     <ul>
       <li *ngFor="let benefit of package.packageBenefits">

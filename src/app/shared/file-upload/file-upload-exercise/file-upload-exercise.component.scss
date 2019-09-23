@@ -14,7 +14,7 @@
     color: $secondary-color;
     box-sizing: border-box;
 
-    > svg {
+    > ::ng-deep svg {
         font-size: 90px;
         color: $middle-grey;
         margin: 0 0 0.2em;
@@ -26,7 +26,7 @@
 
     a.text-link {
         margin-top: 0.2em;
-        svg {
+        ::ng-deep svg {
             font-size: 14px;
             margin-left: 5px;
         }
@@ -79,7 +79,7 @@
     .file-icon {
         margin-right: 0.5em;
 
-        svg {
+        ::ng-deep svg {
             font-size: 18px;
             margin: 0;
         }
@@ -195,12 +195,12 @@ div.profile-pic {
                     color: #fff;
                 }
 
-                svg {
+                ::ng-deep svg {
                     color: $secondary-color;
                 }
 
                 &:hover, &:focus {
-                    svg {
+                    ::ng-deep svg {
                         color: #fff;
                     }
                 }
@@ -246,7 +246,7 @@ div.profile-pic {
                     color: $text-black;
                 }
 
-                svg {
+                ::ng-deep svg {
                     margin-left: 1.5em;
                 }
             }

@@ -40,7 +40,7 @@ main.thread-container {
                     }
 
                     @include respond-down($sm) {
-                        svg {
+                        ::ng-deep svg {
                             margin-right: 2em !important;
                         }
                     }

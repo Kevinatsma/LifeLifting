@@ -4,6 +4,11 @@
     h2 {
         color: $primary-color;
         margin: 0;
+
+        @include respond-down($sm) {
+            font-size: 19px;
+            white-space: normal;
+        }
     }
 
     .quick-facts {
@@ -13,7 +18,7 @@
             color: $secondary-color;
             margin: 0;
 
-            svg {
+            ::ng-deep svg {
                 margin-right: 10px;
             }
         }
@@ -22,7 +27,7 @@
     p.card-text {
         color: $text-black;
         white-space: normal;
-        text-align: center;
+        text-align: left;
         font-size: 15px;
         @include respond-down($sm) {
             text-align: left;
@@ -43,7 +48,7 @@
             @include respond-down($sm) {
                 display: flex;
                 align-items: center;
-                svg {
+                ::ng-deep svg {
                     font-size: 12px;
                     margin-right: 10px;
                 }
@@ -52,7 +57,10 @@
     }
 
     .list-container {
-        margin: 2em auto;
+        display: flex;
+        flex-flow: column nowrap;
+        margin: 2em 0;
+
         @include respond-down($sm) {
             margin: 1em 0;
         }
@@ -72,7 +80,7 @@
                     align-items: center;
                 }
 
-                svg {
+                ::ng-deep svg {
                     margin-right: 1em;
                     color: $secondary-color
                 }

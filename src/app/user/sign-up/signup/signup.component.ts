@@ -73,13 +73,14 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  openSuccess() {
-    this.succesVisible = true;
+  toggleStepOverlay() {
+    this.succesVisible = !this.succesVisible;
   }
 
   // Misc
 
   getState(o) {
+    console.log(o);
     return o.activatedRouteData.state;
   }
 

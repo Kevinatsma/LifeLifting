@@ -134,7 +134,7 @@ main.dialog-wrapper {
             top: 10px;
 
             .close-btn {
-                svg {
+                ::ng-deep svg {
                     margin-right: 10px;
                 }
             }
@@ -322,7 +322,7 @@ main.dialog-wrapper {
                 border-radius: 50%;
                 box-shadow: $card-shadow;
 
-                svg {
+                ::ng-deep svg {
                     font-size: 21px;
                 }
             }
@@ -344,7 +344,7 @@ main.dialog-wrapper {
                 color: $primary-color;
                 border: 2px solid $primary-color;
 
-                svg {
+                ::ng-deep svg {
                     margin-right: 1em;
                 }
 

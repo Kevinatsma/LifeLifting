@@ -74,7 +74,7 @@ main.specialist-wrapper {
         button.icon-button {
             position: inherit;
 
-            svg {
+            ::ng-deep svg {
                 font-size: 16px;
             }
         }
@@ -272,7 +272,7 @@ main.specialist-wrapper {
                 margin-bottom: 1rem;
                 @extend %flex-center;
 
-                svg {
+                ::ng-deep svg {
                     font-size: 38px;
                     color: $primary-color;
                 }
@@ -358,7 +358,7 @@ main.specialist-wrapper {
                             }
                         }
 
-                        svg {
+                        ::ng-deep svg {
                             pointer-events: none;
                             touch-action: none;
                         }
@@ -508,7 +508,7 @@ main.specialist-wrapper {
                     background: transparent;
                 }
 
-                svg {
+                ::ng-deep svg {
                     font-size: 38px;
                 }
             }
@@ -540,7 +540,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        svg {
+        ::ng-deep svg {
             font-size: 12px;
             margin-left: 5px;
         }     

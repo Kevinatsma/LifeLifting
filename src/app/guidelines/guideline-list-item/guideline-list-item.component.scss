@@ -12,7 +12,7 @@
             font-size: 16px;
             font-family: $main-font;
             
-            svg {
+            ::ng-deep svg {
                 margin-right: 1em;
                 color: $primary-color;
             }
@@ -67,7 +67,7 @@ mat-card.list-item-card {
         background: #fff;
         box-shadow: $card-shadow;
         border-radius: 50%;
-        svg {
+        ::ng-deep svg {
             font-size: 38px;
         }
 
@@ -168,7 +168,7 @@ mat-card.list-item-card {
                             margin-left: 0;
                         }
 
-                        svg {
+                        ::ng-deep svg {
                             font-size: 18px;
                             margin-right: 0.5em;
                             color: $secondary-color;
@@ -185,7 +185,7 @@ mat-card.list-item-card {
                         font-weight: $semi-bold;
                     }
 
-                    svg {
+                    ::ng-deep svg {
                         font-size: 12px;
                         color: $middle-grey;
                         transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
@@ -198,7 +198,7 @@ mat-card.list-item-card {
                     }
 
                     &:hover, &:focus {
-                        svg {
+                        ::ng-deep svg {
                             left: 10px;
                             top: 5px;
                             transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
@@ -220,7 +220,7 @@ mat-card.list-item-card {
                 height: 50px;
                 border-top: $light-border;
 
-                svg {
+                ::ng-deep svg {
                     margin-top: -3px;
                     font-size: 15px;
                     color: $icon-black;
@@ -233,7 +233,7 @@ mat-card.list-item-card {
 
                 &:hover, &:focus {
                     background: $light-grey;
-                    svg {
+                    ::ng-deep svg {
                         transition: transform 200ms ease-in-out;
                         transform: scale(1.2);
                     }

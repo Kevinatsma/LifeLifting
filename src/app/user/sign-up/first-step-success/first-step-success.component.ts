@@ -22,10 +22,12 @@ export class FirstStepSuccessComponent implements OnInit, OnDestroy {
                private utils: UtilService,
                private cdr: ChangeDetectorRef,
                public route: Router) {
-                this.isMobile = this.utils.checkIfMobile();
                }
 
   ngOnInit() {
+    this.isMobile = this.utils.checkIfMobile();
+    console.log(this.isMobile);
+
     this.getUserData();
   }
 
@@ -40,7 +42,27 @@ export class FirstStepSuccessComponent implements OnInit, OnDestroy {
     });
   }
 
-  closeSection() {
-    this.close.emit(null);
+  closeSection(step: String) {
+    this.close.emit(false);
+
+    switch (step) {
+      case 'step-one':
+        this.route.navigate(['../../signup/step-one']);
+        break;
+      case 'step-two':
+        this.route.navigate(['../../signup/step-two']);
+        break;
+      case 'step-three':
+        this.route.navigate(['../../signup/step-three']);
+        break;
+      case 'step-four':
+        this.route.navigate(['../../signup/step-four']);
+        break;
+      case 'step-five':
+        this.route.navigate(['../../signup/limbo']);
+        break;
+      default:
+        return;
+    }
   }
 }

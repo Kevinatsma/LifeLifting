@@ -66,7 +66,7 @@
                     justify-content: flex-start;
                     margin: 5px 0;
 
-                    svg {
+                    ::ng-deep svg {
                         color: $secondary-color;
                         font-size: 20px;
                         margin: 2px 1.5em 0 0;

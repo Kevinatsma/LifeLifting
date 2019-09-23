@@ -16,7 +16,7 @@
             margin-right: 4em;
         }
 
-        svg {
+        ::ng-deep svg {
             font-size: 48px;
         }
 
@@ -34,7 +34,7 @@
 .btn-area {
     .disabled {
         background: $light-grey!important;
-        svg {
+        ::ng-deep svg {
             color: $grey;
         }
         &:hover {

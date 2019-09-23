@@ -1,8 +1,10 @@
 <ng-container *ngIf="specialist">
   <section class="specialist-header">
-    <div class="profile-picture" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
-
+    <div class="profile-picture" *ngIf="specialist.photoURL" [style.backgroundImage]="'url('+ specialist.photoURL +')'"></div>
+    <div class="profile-picture" *ngIf="!specialist.photoURL">
+      <span>No Photo Yet</span>
     </div>
+
     <div class="quick-info">
       <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
       <h5>{{specialist.position}}</h5>

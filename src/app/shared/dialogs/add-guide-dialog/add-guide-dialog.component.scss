@@ -144,7 +144,7 @@ form {
                 margin: 0;
             }
 
-            svg {
+            ::ng-deep svg {
                 margin: 0;
                 padding: 0;
             }
@@ -153,7 +153,7 @@ form {
                 background: darken($light-grey, 5%);
                 cursor: pointer; 
                 
-                svg {
+                ::ng-deep svg {
                     transition: transform 300ms ease-in-out;
                     transform: scale(1.1);
                 }
@@ -196,7 +196,7 @@ form {
                     transition: transform 300ms ease-in-out;
                     @extend %flex-center;
 
-                    svg {
+                    ::ng-deep svg {
                         margin: 0;
                         font-size: 20px;
                         color: $secondary-color;

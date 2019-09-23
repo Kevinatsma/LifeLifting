@@ -94,7 +94,6 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       startTime: [''],
       startHour: [''],
       startMinutes: [''],
-      faceToFacePhone: [''],
       phoneAreaCode: [`${this.phoneAreaCode.value}`],
       phoneRest: [''] || null,
       wappNumber: this.fb.group({
@@ -228,7 +227,7 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       members: [this.user.uid, this.specialist.uid],
       meetMethod: this.appointmentForm.get('appointmentContext').value,
       contactMethod: this.appointmentForm.get('contactMethod').value,
-      faceToFacePhone: this.appointmentForm.get('faceToFacePhone').value,
+      faceToFacePhone: this.user.basicData.phoneNumber,
       location: this.appointmentForm.get('location').value || null,
       whatsappNumber: this.appointmentForm.get('wappNumber').value || null,
       skypeName: this.appointmentForm.get('skypeName').value || null,

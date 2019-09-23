@@ -77,7 +77,7 @@
                             width: 1px;
                         }
         
-                        svg {
+                        ::ng-deep svg {
                             color: $secondary-color;
                             font-size: 16px;
                             height: 16px;

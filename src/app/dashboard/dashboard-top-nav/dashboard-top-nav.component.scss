@@ -7,7 +7,7 @@
     border-radius: 2px;
     box-shadow: $card-shadow;
     button.menu-link {
-        svg {
+        ::ng-deep svg {
             margin-right: 1em;
         }
     }
@@ -133,7 +133,7 @@
 
             &:hover {
                 background: $middle-grey;
-                svg {
+                ::ng-deep svg {
                     color: $secondary-color;
                 }
             }
@@ -174,7 +174,7 @@
                 }
             }
 
-            svg {
+            ::ng-deep svg {
                 color: lighten($grey, 2%);
                 width: 14px;
                 height: 14px;

@@ -38,7 +38,7 @@
                 z-index: 15;
 
                 .close-btn {
-                    svg {
+                    ::ng-deep svg {
                         margin-right: 10px;
                         font-size: 13px;
                     }
