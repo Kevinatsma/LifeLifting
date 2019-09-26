@@ -54,16 +54,16 @@ export class EditUserComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.specialists = this.specialistService.getSpecialists();
     this.editUserForm = this.fb.group({
-      displayName: '' || this.user.displayName || 'Not filled in yet',
-      country: '' || this.user.basicData.country || 'Not filled in yet',
-      packageChoice: '' || this.user.packageChoice || 'Not filled in yet',
-      specialist: this.selectedSpecialist || 'Not filled in yet',
-      gender: this.selectedGender || 'Not filled in yet',
-      age: '' || this.user.basicData.age || 'Not filled in yet',
-      mainGoal: '' || this.user.basicData.mainGoal || 'Not filled in yet',
-      heardFromUs: '' || this.user.basicData.heardFromUs || 'Not filled in yet',
-      phoneNumber: '' || this.user.basicData.phoneNumber || 'Not filled in yet',
-      email: '' || this.user.email || 'Not filled in yet',
+      displayName: this.user.displayName || 'Display name',
+      country: this.user.basicData ? this.user.basicData.country : 'Country',
+      packageChoice: this.user.packageChoice || '',
+      specialist: this.selectedSpecialist || 'Specialist',
+      gender: this.selectedGender || 'Gender',
+      age: this.user.basicData ? this.user.basicData.age : 'Age',
+      mainGoal: this.user.basicData ? this.user.basicData.mainGoal : 'Main goal',
+      heardFromUs: this.user.basicData ? this.user.basicData.heardFromUs : 'Heard from us',
+      phoneNumber: this.user.basicData ? this.user.basicData.phoneNumber : 'Phone number',
+      email: this.user.email || 'E-mail address',
       signUpCompleted: ''  || this.user.status.accepted,
       accepted: '' || this.user.status.accepted,
       // TODO subscription ended --> subscription valid
@@ -139,18 +139,22 @@ export class EditUserComponent implements OnInit, OnDestroy {
       displayName: this.editUserForm.get('displayName').value || this.user.displayName,
       packageChoice: this.editUserForm.get('packageChoice').value || this.user.packageChoice,
       email:  this.editUserForm.get('email').value || this.user.email,
-      specialist: this.selectedSpecialist || this.user.specialist,
+      specialist: this.selectedSpecialist || this.user.specialist || null,
       photoURL: this.downloadURL || this.user.photoURL,
-      basicData: {
-        gender: this.selectedGender || this.user.basicData.gender,
-        country: this.editUserForm.get('country').value || this.user.basicData.country,
-        age: this.editUserForm.get('age').value || this.user.basicData.age,
-        mainGoal: this.editUserForm.get('mainGoal').value || this.user.basicData.mainGoal,
-        heardFromUs:  this.editUserForm.get('heardFromUs').value || this.user.basicData.heardFromUs || null,
-        phoneNumber:  this.editUserForm.get('phoneNumber').value || this.user.basicData.phoneNumber,
-      },
+      basicData: {},
       status: this.status
     };
+
+    if (this.user.basicData) {
+      data.basicData = {
+        gender: this.selectedGender || this.user.basicData.gender || null,
+        country: this.editUserForm.get('country').value || this.user.basicData.country || null,
+        age: this.editUserForm.get('age').value || this.user.basicData.age || null,
+        mainGoal: this.editUserForm.get('mainGoal').value || this.user.basicData.mainGoal || null,
+        heardFromUs:  this.editUserForm.get('heardFromUs').value || this.user.basicData.heardFromUs || null,
+        phoneNumber:  this.editUserForm.get('phoneNumber').value || this.user.basicData.phoneNumber || null,
+      };
+    }
     this.userService.updateUser(this.user.uid, data);
     this.toggleEdit();
   }

@@ -3,6 +3,7 @@ import { AuthService } from './../../../core/auth/auth.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import countries from './../../../shared/data/JSON/countries.json';
+import countryCodes from './../../../shared/data/JSON/countryCodes.json';
 
 @Component({
   selector: 'app-signup-step-one',
@@ -29,6 +30,7 @@ export class SignupStepOneComponent implements OnInit {
   ];
 
   countries = countries.countries;
+  areaCodes = countryCodes.countryCodes;
 
   constructor(
     public fb: FormBuilder,
@@ -57,7 +59,8 @@ export class SignupStepOneComponent implements OnInit {
   }
 
   updateUser(user) {
-    const phoneNumber = this.basicUserDataForm.controls.phoneNumber.get('phoneRest').value +
+    console.log(this.basicUserDataForm.controls.phoneNumber.get('phoneAreaCode').value);
+    const phoneNumber = this.basicUserDataForm.controls.phoneNumber.get('phoneAreaCode').value +
                         this.basicUserDataForm.controls.phoneNumber.get('phoneRest').value;
     const data = {
       displayName: this.basicUserDataForm.get('firstName').value + ' ' + this.basicUserDataForm.get('lastName').value,

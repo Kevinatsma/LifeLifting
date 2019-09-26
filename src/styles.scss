@@ -308,6 +308,18 @@ a.menu-link, button.menu-link {
     }
 }
 
+::ng-deep .mat-drawer-backdrop, .mat-drawer-backdrop  {
+    @include respond-up($sm) {
+        display: none !important;
+    }
+}
+
+.mat-drawer-backdrop.mat-drawer-shown {
+    @include respond-up($sm) {
+        display: none !important;
+    }
+}
+
 .open-side-component {
     position: absolute;
     left: -5px;

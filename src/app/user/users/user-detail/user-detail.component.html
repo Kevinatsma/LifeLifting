@@ -12,10 +12,8 @@
           <i class="fa__icon fas fa-comment-alt"></i>
         </button>
 
-        <button class="icon-button edit-button" (click)="toggleEdit()"
-        [class.icon-button-disabled]="!user.status.signUpCompleted" [disabled]="!user.status.signUpCompleted">
-          <ng-container *ngIf="user.status.signUpCompleted"> <i class="fa__icon fas fa-edit"></i> </ng-container>
-          <ng-container *ngIf="!user.status.signUpCompleted"> <i class="fa__icon fas fa-ban"></i> </ng-container>
+        <button class="icon-button edit-button" (click)="toggleEdit()">
+          <i class="fa__icon fas fa-edit"></i>
         </button>
 
       </div>

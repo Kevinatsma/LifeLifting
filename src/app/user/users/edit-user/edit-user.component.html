@@ -38,32 +38,43 @@
               <div class="display-name">
                 <input class="h2" name="displayName" formControlName="displayName">
               </div>
-            <input class="h5" placeholder="Which country?" name="country" formControlName="country">
+              <input class="h5" placeholder="Which country?" name="country" formControlName="country">
 
-            <p class="speciality">
-              User ID: {{user.uid}}
-            </p>
-            <div class="icon-fact-container">
-              <div class="fact" *ngIf="user.basicData">
-                <i class="fa__icon fas fa-transgender"></i>
-                <mat-select matInput placeholder="{{user.basicData.gender}}" [(value)]="selectedGender" formControlName="gender" 
-                panelClass="dropdown-regular" autocomplete="off" required>
-                  <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
-                </mat-select>
-              </div>
-              <div class="fact" *ngIf="specialist">
-                <i class="fa__icon fas fa-user-ninja"></i>
-                <mat-select matInput placeholder="{{ specialist.firstName }} {{ specialist.lastName }}" 
-                [(value)]="selectedSpecialist" panelClass="dropdown-regular" formControlName="specialist" autocomplete="off" 
-                required name="specialist">
-                  <mat-option disabled selected>{{specialist.firstName}}</mat-option>
-                  <mat-option *ngFor="let specialist of specialists | async" 
-                  [value]="specialist.specialistID"
-                  > {{specialist.firstName}} {{specialist.lastName}}</mat-option>
-                </mat-select>
+              <p class="speciality">
+                User ID: {{user.uid}}
+              </p>
+              <div class="icon-fact-container">
+                <div class="fact">
+                  <i class="fa__icon fas fa-transgender"></i>
+                  <mat-select matInput placeholder="{{user.basicData.gender}}" [(value)]="selectedGender" formControlName="gender" 
+                  panelClass="dropdown-regular" autocomplete="off" required *ngIf="user.basicData">
+                    <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
+                  </mat-select>
+                  <mat-select matInput placeholder="Gender" [(value)]="selectedGender" formControlName="gender" 
+                  panelClass="dropdown-regular" autocomplete="off" required *ngIf="!user.basicData">
+                    <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
+                  </mat-select>
+                </div>
+                <div class="fact">
+                  <i class="fa__icon fas fa-user-ninja"></i>
+                  <mat-select matInput placeholder="{{ specialist.firstName }} {{ specialist.lastName }}" 
+                  [(value)]="selectedSpecialist" panelClass="dropdown-regular" formControlName="specialist" autocomplete="off" 
+                  required name="specialist" *ngIf="specialist">
+                    <mat-option disabled selected>{{specialist.firstName}}</mat-option>
+                    <mat-option *ngFor="let specialist of specialists | async" 
+                    [value]="specialist.specialistID"
+                    > {{specialist.firstName}} {{specialist.lastName}}</mat-option>
+                  </mat-select>
+                  <mat-select matInput placeholder="Specialist" 
+                  [(value)]="selectedSpecialist" panelClass="dropdown-regular" formControlName="specialist" autocomplete="off" 
+                  required name="specialist" *ngIf="!specialist">
+                    <mat-option *ngFor="let specialist of specialists | async" 
+                    [value]="specialist.specialistID"
+                    > {{specialist.firstName}} {{specialist.lastName}}</mat-option>
+                  </mat-select>
+                </div>
               </div>
             </div>
-          </div>
 
             <div class="bottom">
               <p class="tab">

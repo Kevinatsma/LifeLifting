@@ -68,11 +68,21 @@
         </mat-form-field>
 
         <!-- Phone Number -->
-        <div class="multiple-input" formGroupName="phoneNumber">
-          <mat-form-field appearance="standard" floatLabel="always">
+        <div class="multiple-input phone-field" formGroupName="phoneNumber">
+          <mat-form-field class="area-code" appearance="standard" floatLabel="always">
               <mat-label>Code</mat-label>
-              <input type="text" disabled matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
               <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+              <mat-select matInput placeholder="+1"
+              panelClass="dropdown-area-code" formControlName="phoneAreaCode" autocomplete="off" required>
+                <mat-option *ngFor="let code of areaCodes" value="{{code.dial_code}}" class="dial-code">
+                  <img 
+                  src="./../../../../assets/img/icons/flags/{{code.name.toString().split(' ').join('-').replace(',', '').split('.').join('').split('(').join('').split(')').join('').toLowerCase() }}.svg">
+                  <div class="country-content">
+                    <span class="country-content__title">{{code.name}}</span>
+                    <span class="country-content__code">{{code.dial_code}}</span>
+                  </div>
+                </mat-option>
+              </mat-select>
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>Phone Number</mat-label>
