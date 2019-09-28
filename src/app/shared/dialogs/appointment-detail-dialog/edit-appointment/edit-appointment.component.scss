@@ -3,7 +3,7 @@
 // Ng  deeps
 
 mat-option {
-    .fa__icon, svg, ::ng-deep svg {
+    .fa__icon, .svg-inline--fa, svg {
         margin-right: 1em;
         font-size: 20px!important;
 
@@ -93,14 +93,28 @@ form.edit-appointment {
         }
     }
 
-    .online-phone {
-        @include respond-down($sm) {
-            padding: 0 2em;
+    .multiple-input {
+        display: flex;
+        flex-flow: row nowrap;
+
+        &.online-phone {
+            .mat-form-field:first-child {
+                margin-right: 1.5em;
+                width: 75px;
+
+                .mat-form-field-infix {
+                    padding-top: 0;
+                }
+            }
         }
 
-        mat-form-field:first-child {
-            margin-right: 1em;
+        .mat-form-field.fixed-value {
+            margin-right: 2em;
             width: 75px;
+            
+            input {
+                border-bottom: none !important;
+            }
         }
     }
 }
@@ -240,7 +254,7 @@ section {
         input {
             margin-right: 1em;
         }
-        .mat-icon-button .fa__icon, svg, ::ng-deep svg {
+        .mat-icon-button .fa__icon, .svg-inline--fa, svg {
             color: $secondary-color;
         }
     }

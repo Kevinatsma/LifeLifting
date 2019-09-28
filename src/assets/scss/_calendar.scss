@@ -81,8 +81,21 @@
 }
 
 
+::ng-deep {
+    mwl-calendar-month-cell,
+    mwl-calendar-day-view-hour-segment, 
+    mwl-calendar-week-view-hour-segment,
+    .cal-day-columns {
+        @include respond-down($sm) {
+            touch-action: auto !important;
+        }
+    }
+}
+
 // Week view
 ::ng-deep .cal-week-view {
+    touch-action: auto !important;
+
     .cal-header {
         padding: 0.5em 0;
         @include respond-down($sm) {
@@ -232,7 +245,7 @@
                 }
             }
 
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 margin-right: 1em;
                 font-size: 14px;
                 position: relative;
@@ -242,7 +255,7 @@
             
             &:last-child {
                 justify-content: flex-end;
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     margin-right: 0;
                     margin-left: 1em;
                 }
@@ -415,7 +428,7 @@
         margin: 7px 0 0;
         letter-spacing: 1.2px;
 
-        .fa__icon, svg, ::ng-deep svg {
+        .fa__icon, .svg-inline--fa, svg {
             margin-right: 10px;
             color: $secondary-color;
         }

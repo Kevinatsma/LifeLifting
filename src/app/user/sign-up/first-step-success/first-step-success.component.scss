@@ -17,6 +17,7 @@ div.success-wrapper {
         padding: 2em 0;
         align-items: center!important;
         position: relative;
+
         @include respond-down($sm) {
             overflow: auto;
             height: 100%;
@@ -34,7 +35,7 @@ div.success-wrapper {
             top: 0;
             right: 5px;
 
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 color: $grey;
             }
         }
@@ -52,7 +53,7 @@ div.success-wrapper {
 
         ul.checklist {
             margin: 20px auto;
-            width: 70%;
+            width: 75%;
 
             @include respond-down($sm) {
                 margin: 20px 0;
@@ -68,6 +69,7 @@ div.success-wrapper {
                 align-items: center;
                 justify-content: flex-start;
                 margin: 11px 0;
+                text-align: left;
 
                 a {
                     color: $grey;
@@ -83,7 +85,7 @@ div.success-wrapper {
                     }
                 }
                 
-                ::ng-deep .fa__icon, svg, ::ng-deep svg {
+                ::ng-deep .fa__icon, .svg-inline--fa, svg {
                     color: $secondary-color;
                     margin: 0.1em 1.5em 0 0;
                 }
@@ -101,9 +103,10 @@ div.success-wrapper {
 
         p.intro-text {
             width: 80%;
+
             @include  respond-down($sm) {
                 margin: 0;
-                width: 100%;
+                width: 100% !important;
             }
         }
 

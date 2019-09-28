@@ -9,6 +9,8 @@ import { UserService } from './../../../../user/user.service';
 import { SpecialistService } from './../../../../specialists/specialist.service';
 import { AuthService } from './../../../../core/auth/auth.service';
 import { Subject, Subscription } from 'rxjs';
+import countryCodes from './../../../../shared/data/JSON/countryCodes.json';
+
 @Component({
   selector: 'app-edit-appointment',
   templateUrl: './edit-appointment.component.html',
@@ -26,6 +28,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   clients$: Subscription;
   specialists: Specialist[];
   specialists$: Subscription;
+  areaCodes = countryCodes.countryCodes;
 
   editAppointmentForm: FormGroup;
   phoneAreaCode = new FormControl({value: '+51', disabled: true});
@@ -66,10 +69,8 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
       faceToFacePhone: [''],
       phoneAreaCode: [`${this.phoneAreaCode.value}`],
       phoneRest: [''],
-      wappNumber: this.fb.group({
-        'wappAreaCode': [''] || null,
-        'wappRest': [''] || null,
-      }),
+      wappAreaCode: [''],
+      wappRest: [''],
       appointmentContext: [''],
       contactMethod: [''],
       location: [''],
@@ -122,7 +123,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
         phoneAreaCode: '+51',
         phoneRest: this.editAppointmentForm.get('phoneRest').value || this.event.onlineAppointmentPhone.phoneRest || null
       },
-      whatsappNumber: this.editAppointmentForm.get('wappNumber').value || this.event.whatsappNumber || null,
+      whatsappNumber: this.editAppointmentForm.get('wappAreaCode').value + this.editAppointmentForm.get('wappRest').value || this.event.whatsappNumber || null,
       skypeName: this.editAppointmentForm.get('skypeName').value || this.event.skypeName || null,
     };
     const id = this.event.eventID;
@@ -172,7 +173,7 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   }
 
   initContactMethod() {
-    if (this.event.whatsappNumber.length > 0) {
+    if (this.event.whatsappNumber && this.event.whatsappNumber.length > 0) {
       this.whatsApp.next(true);
       this.skype.next(false);
       this.onlinePhone.next(false);

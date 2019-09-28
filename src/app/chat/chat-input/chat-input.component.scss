@@ -42,7 +42,7 @@ mat-form-field.chat-box {
     width: 10%;
     @extend %flex-center;
 
-    .fa__icon, svg, ::ng-deep svg {
+    .fa__icon, .svg-inline--fa, svg {
         cursor: pointer;
         font-size: 20px;
         color: $primary-color;

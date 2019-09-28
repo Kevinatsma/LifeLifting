@@ -42,7 +42,7 @@
                     display: flex;
                     align-items: center;
 
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         font-size: 20px;
                         margin-right: 1em;
                         background: #fff;
@@ -112,7 +112,7 @@
                         span.indicator {
                             margin-right: 1em;
                             transition: all 300ms ease-in-out;
-                            .fa__icon, svg, ::ng-deep svg {
+                            .fa__icon, .svg-inline--fa, svg {
                                 font-size: 24px;
                                 color: $black;
                             }

@@ -25,7 +25,7 @@
             .close-btn {
                 &.not-mobile {
                     z-index: 1500;
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         margin-right: 0;
                     }
                 }

@@ -109,7 +109,7 @@
 
     .delete-btn {
         &:hover {
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 color: $brand-danger;
             }
         }
@@ -119,7 +119,7 @@
         margin: 0 30px 0 auto;
 
         &:hover {
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 color: $brand-warning;
             }
         }

@@ -18,10 +18,8 @@
     bottom: 0;
     z-index: 1000;
 
-    .close-section {
-        margin-top: 2em;
-        
-        .fa__icon, svg, ::ng-deep svg {
+    .close-section {        
+        .fa__icon, .svg-inline--fa, svg {
             margin-right: 0.5em;
         }
     }
@@ -180,7 +178,7 @@
                 justify-content: center;
                 flex-flow: column wrap;
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     color: $grey;
                     margin-bottom: 10px;
                     font-size: 38px;

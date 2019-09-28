@@ -134,7 +134,7 @@ main.dialog-wrapper {
             top: 10px;
 
             .close-btn {
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     margin-right: 10px;
                 }
             }
@@ -237,8 +237,14 @@ main.dialog-wrapper {
     }
 }
 
-.add-food-dialog {
+.add-food-dialog, .add-exercise-dialog {
     overflow-y: auto;
+    
+    @include respond-down($sm) {
+        min-width: 100vw;
+        width: 100vw;
+    }
+
     form {
         box-sizing: border-box;
         margin: 2em 0 3em;
@@ -322,7 +328,7 @@ main.dialog-wrapper {
                 border-radius: 50%;
                 box-shadow: $card-shadow;
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     font-size: 21px;
                 }
             }
@@ -344,7 +350,7 @@ main.dialog-wrapper {
                 color: $primary-color;
                 border: 2px solid $primary-color;
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     margin-right: 1em;
                 }
 
@@ -372,5 +378,13 @@ main.dialog-wrapper {
     .mat-dialog-container {
         margin: 0;
         padding: 0;
+    }
+}
+
+// MISC AND GLOBAL
+
+.mat-step-label {
+    @include respond-down($sm) {
+        display: none;
     }
 }

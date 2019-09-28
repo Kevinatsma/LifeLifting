@@ -5,6 +5,7 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 import 'hammerjs';
+import 'html2canvas';
 import 'jspdf';
 
 if (environment.production) {

@@ -18,7 +18,7 @@
         padding: 3em 2em;
     }
 
-    > .fa__icon, svg, ::ng-deep svg {
+    > .fa__icon, .svg-inline--fa, svg {
         font-size: 90px;
         color: $middle-grey;
         margin: 0 0 0.2em;
@@ -75,7 +75,7 @@
     .file-icon {
         margin-right: 0.5em;
 
-        .fa__icon, svg, ::ng-deep svg {
+        .fa__icon, .svg-inline--fa, svg {
             font-size: 18px;
             margin: 0;
         }
@@ -191,12 +191,12 @@ div.profile-pic {
                     color: #fff;
                 }
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     color: $secondary-color;
                 }
 
                 &:hover, &:focus {
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         color: #fff;
                     }
                 }
@@ -242,7 +242,7 @@ div.profile-pic {
                     color: $text-black;
                 }
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     margin-left: 1.5em;
                 }
             }

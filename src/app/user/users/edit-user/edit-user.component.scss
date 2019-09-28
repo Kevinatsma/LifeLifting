@@ -223,14 +223,14 @@ section.specialist-header {
                     border-bottom: 1px solid $border-color;
                     padding-bottom: 1vh;
 
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         width: 10%;
                         font-size: 24px;
                         margin-right: 15%;
                     }
 
                     &:nth-child(2) {
-                        .fa__icon, svg, ::ng-deep svg {
+                        .fa__icon, .svg-inline--fa, svg {
                             font-size: 20px;
                         }
                     }
@@ -240,7 +240,7 @@ section.specialist-header {
                         display: flex;
                         width: 100%;
 
-                        .fa__icon, svg, ::ng-deep svg {
+                        .fa__icon, .svg-inline--fa, svg {
                             font-size: 20px;
                             margin-right: 2em;
                         }
@@ -338,7 +338,7 @@ section.contact-language {
                 flex-flow: row nowrap;
                 margin-bottom: 10px;
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     @extend %flex-center;
                     width: 20px;
                     height: 20px;
@@ -402,7 +402,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        .fa__icon, svg, ::ng-deep svg {
+        .fa__icon, .svg-inline--fa, svg {
             font-size: 12px;
             margin-left: 5px;
         }     

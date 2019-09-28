@@ -64,4 +64,9 @@ export class FirstStepSuccessComponent implements OnInit, OnDestroy {
         return;
     }
   }
+
+  logout() {
+    this.auth.signOut();
+    this.route.navigate(['../../login']);
+  }
 }

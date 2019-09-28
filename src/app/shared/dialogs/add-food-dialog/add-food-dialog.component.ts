@@ -163,28 +163,11 @@ export class AddFoodDialogComponent implements OnInit {
         this.unitForm.get('factor').setValue(250);
         this.unitForm.get('shoppingUnit').reset();
         break;
-      case 'Spoon':
-        this.shoppingUnit = 'Milliliter';
-        this.showShoppingUnit = false;
-        this.unitForm.get('factor').setValue(15);
-        this.unitForm.get('shoppingUnit').reset();
-        break;
-      case 'Teaspoon':
-        this.shoppingUnit = 'Milliliter';
-        this.showShoppingUnit = false;
-        this.unitForm.get('factor').setValue(5);
-        this.unitForm.get('shoppingUnit').setValue('');
-        break;
       case 'Cup':
         this.shoppingUnit = '';
         this.showShoppingUnit = true;
         this.unitForm.get('factor').setValue(240);
         this.unitForm.get('shoppingUnit').setValue('Milliliter');
-        break;
-      case 'Slice':
-        this.shoppingUnit = 'Unit';
-        this.showShoppingUnit = false;
-        this.unitForm.get('factor').setValue(1);
         break;
       default:
         this.shoppingUnit = '';

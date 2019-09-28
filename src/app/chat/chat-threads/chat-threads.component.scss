@@ -40,7 +40,7 @@ main.thread-container {
                     }
 
                     @include respond-down($sm) {
-                        .fa__icon, svg, ::ng-deep svg {
+                        .fa__icon, .svg-inline--fa, svg {
                             margin-right: 2em !important;
                         }
                     }

@@ -2,59 +2,6 @@
 @import './../../../../assets/scss/_dialogs.scss';
 @import './../../../../assets/scss/_forms.scss';
 
-.dropdown-area-code {
-    box-shadow: $card-shadow;
-}
-
-::ng-deep .mat-select-panel.mat-primary.dropdown-area-code {
-    box-shadow: $card-shadow;
-    width: 250px;
-}
-
-.dial-code {
-    margin: .25em 0;
-    width: 250px;
-
-    .country-content {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: flex-start;
-        justify-content: center;
-        width: 100%;
-
-        span {
-            font-family: $main-font;
-        }
-
-        &__title {
-            font-size: 12px;
-        }
-
-        &__code {
-            font-size: 16px;
-            font-weight: $extra-bold;
-            margin-top: -3px;
-        }
-    }
-
-    ::ng-deep .mat-option-text {
-        align-items: center;
-        padding: 0;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: flex-start;
-        width: 100%;
-
-        img {
-            display: flex;
-            height: 30px;
-            margin: 0 20px 0 0;
-            max-width: 30px;
-            width: 30px;
-        }
-    }
-}
-
 .step-wrapper {
     @extend %flex-column-center;
     width: 100%;
@@ -76,11 +23,15 @@
         .intro-text {
             width: 80%;
             text-align: center;
+
+            @include respond-down($sm) {
+                width: 100%;
+            }
         }
         
         @include respond-down($sm) {
             justify-content: center;
-            padding-top: 0;
+            padding: 0 16px !important;
             height: 100vh;
             overflow: hidden;
 
@@ -234,7 +185,7 @@
     justify-content: center;
     flex-flow: column wrap;
 
-    .fa__icon, svg, ::ng-deep svg {
+    .fa__icon, .svg-inline--fa, svg {
         font-size: 36px;
         color: $grey;
         margin-bottom: 15px;

@@ -104,7 +104,7 @@ export class AppointmentDetailDialogComponent implements OnDestroy {
       this.faceToFace = false;
     }
     if (!this.faceToFace) {
-      if (e.whatsappNumber.wappRest === '') {
+      if (e.wappRest === '') {
         this.whatsApp = false;
       } else {
         this.whatsApp = true;

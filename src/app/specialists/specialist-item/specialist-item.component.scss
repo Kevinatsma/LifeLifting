@@ -84,7 +84,7 @@ section.about {
         align-items: center;
         justify-content: center;
 
-        .fa__icon, svg, ::ng-deep svg {
+        .fa__icon, .svg-inline--fa, svg {
             margin: 0 10px 0 0;
             font-size: 12px;
         }
@@ -109,6 +109,7 @@ section.middle {
         width: 50%;
 
         ul li {
+            padding: 1em 0;
             white-space: normal;
         }
     }
@@ -118,6 +119,11 @@ section.reviews-opened {
     flex-flow: column nowrap;
     padding-left: 2em;
     width: calc(100% + 4em);
+
+    > p.card-text {
+        margin: 1em 0;
+        text-align: left;
+    }
 }
 
 div.review-container {
@@ -136,23 +142,10 @@ div.review-container {
         margin-left: -2em;
     }
 
-    mat-card.review-item {
-        flex: 0 0 auto;
-        height: 100%;
-        width: 400px;
-        margin: 0.5em 2em;
-        padding: 1.5em 1em;
-        box-sizing: border-box;
-        box-shadow: $card-shadow;
-
-        &:first-child {
-            margin-left: 5px;
-        }
-
-        p {
-            white-space: normal;
-            width: 100%;
-        }
+    app-review-list-item {
+        min-width: 300px;
+        margin: 1em;
+        width: 300px;
     }
 }
 
@@ -161,7 +154,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        .fa__icon, svg, ::ng-deep svg {
+        .fa__icon, .svg-inline--fa, svg {
             font-size: 12px;
             margin-left: 5px;
         }     

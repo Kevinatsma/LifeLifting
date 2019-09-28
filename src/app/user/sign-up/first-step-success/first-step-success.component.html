@@ -81,7 +81,7 @@
       [disabled]="!user.status.accepted"
       routerLink="../dashboard">Go to Mirror</button>
       <br>
-      <button type="link" class="text-link" routerLink="../login">Go back</button>
+      <button type="link" class="text-link" (click)="logout()">Go back</button>
     </div>
   </section>
 </div>

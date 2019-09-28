@@ -10,7 +10,7 @@
     flex-flow: column wrap;
     background: darken($middle-grey, 10%);
 
-    .fa__icon, svg, ::ng-deep svg {
+    .fa__icon, .svg-inline--fa, svg {
         font-size: 36px;
         color: $grey;
         margin-bottom: 15px;

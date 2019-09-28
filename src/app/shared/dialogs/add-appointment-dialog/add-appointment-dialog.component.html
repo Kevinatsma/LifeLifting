@@ -197,10 +197,20 @@
       </div>
 
       <ng-container *ngIf="whatsApp | async">
-        <div class="multiple-input online-phone" formGroupName="wappNumber">
-          <mat-form-field appearance="standard" floatLabel="always" formControlName="wappAreaCode">
-            <mat-label>Area Code</mat-label>
-            <input type="text" matInput formControlName="wappAreaCode" placeholder="+51" autofocus="off" autocomplete="off" maxlength="3">
+        <div class="multiple-input online-phone">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Code</mat-label>
+            <mat-select matInput placeholder="+1"
+            panelClass="dropdown-area-code" formControlName="wappAreaCode" autocomplete="off" required>
+              <mat-option *ngFor="let code of areaCodes" value="{{code.dial_code}}" class="dial-code">
+                <img 
+                src="./../../../../assets/img/icons/flags/{{code.name.toString().split(' ').join('-').replace(',', '').split('.').join('').split('(').join('').split(')').join('').toLowerCase() }}.svg">
+                <div class="country-content">
+                  <span class="country-content__title">{{code.name}}</span>
+                  <span class="country-content__code">{{code.dial_code}}</span>
+                </div>
+              </mat-option>
+            </mat-select>
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>Phone Number</mat-label>
@@ -217,8 +227,8 @@
       </ng-container>
 
       <ng-container *ngIf="onlinePhone | async">
-        <div class="multiple-input online-phone">
-          <mat-form-field appearance="standard" floatLabel="always">
+        <div class="multiple-input">
+          <mat-form-field class="fixed-value" appearance="standard" floatLabel="always">
             <mat-label>Area code</mat-label>
             <input type="text" matInput formControlName="phoneAreaCode" [value]="'+51'" readonly
               autofocus="off" autocomplete="off" maxlength="3">

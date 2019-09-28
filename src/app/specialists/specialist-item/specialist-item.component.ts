@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { Specialist } from '../specialist.model';
 import { Observable } from 'rxjs';
+import { Review } from './../../reviews/review.model';
+import { ReviewsService } from './../../reviews/reviews.service';
 
 @Component({
   selector: 'app-specialist-item',
@@ -12,17 +14,22 @@ export class SpecialistItemComponent implements OnInit {
   @Output() specialistToShow = new EventEmitter();
   aboutExtended = false;
   reviewsVisible = false;
+  reviews: Array<Review>;
 
   // Toggles
   showSpecialist = false;
 
   // specialist = Observable<Specialist>;
 
-  constructor( private cdr: ChangeDetectorRef) {
+  constructor( private cdr: ChangeDetectorRef,
+               private reviewService: ReviewsService) {
     this.aboutExtended = false;
   }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.getReviews();
+    }, 200);
   }
 
   aboutExtendedOpen() {
@@ -33,6 +40,14 @@ export class SpecialistItemComponent implements OnInit {
   aboutExtendedClose() {
     this.aboutExtended = false;
     this.cdr.detectChanges();
+  }
+
+  getReviews() {
+    const condition = 'specialistID';
+    const value = this.specialist.uid;
+    this.reviewService.getSpecificReviews(condition, value).subscribe(reviews => {
+      this.reviews = reviews;
+    });
   }
 
   // Like this to avoid State Changed Error

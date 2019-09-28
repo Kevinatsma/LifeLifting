@@ -109,7 +109,7 @@
                     }
                 }
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     font-size: 18px;
                     color: $secondary-color;
                     margin-right: 0.75em;
@@ -182,7 +182,7 @@
                 height: 55px;
             }
 
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 color: #fff;
                 font-size: 19px;
             }

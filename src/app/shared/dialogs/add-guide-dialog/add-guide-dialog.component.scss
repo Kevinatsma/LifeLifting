@@ -144,7 +144,7 @@ form {
                 margin: 0;
             }
 
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 margin: 0;
                 padding: 0;
             }
@@ -153,7 +153,7 @@ form {
                 background: darken($light-grey, 5%);
                 cursor: pointer; 
                 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     transition: transform 300ms ease-in-out;
                     transform: scale(1.1);
                 }
@@ -196,7 +196,7 @@ form {
                     transition: transform 300ms ease-in-out;
                     @extend %flex-center;
 
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         margin: 0;
                         font-size: 20px;
                         color: $secondary-color;

@@ -57,7 +57,7 @@
             top: 10px;
 
             .close-btn {
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     margin-right: 10px;
                 }
             }
@@ -80,7 +80,7 @@
 
     .close-section {
         .close-btn {
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 margin-right: 0!important;
             }
         }
@@ -259,7 +259,7 @@ form {
             border-radius: 0;
             border: $light-border;
             transition: all 300ms ease-in-out;
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 margin: 0;
                 padding: 0;
             }
@@ -268,7 +268,7 @@ form {
                 background: darken($light-grey, 5%);
                 cursor: pointer; 
                 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     transition: transform 300ms ease-in-out;
                     transform: scale(1.1);
                 }
@@ -516,7 +516,7 @@ form {
 
             .icon-btn {
                 margin-left: 1em;
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     font-size: 18px;
                     color: $secondary-color;
                 }
@@ -529,13 +529,13 @@ form {
             border-radius: 25px;
             border: 1.5px solid $secondary-color;
             margin: 0 1em 1em;
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 color: $secondary-color;
             }
 
             &:hover {
                 background: $secondary-color;
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     color:  #fff;
                 }
             }
@@ -602,7 +602,7 @@ form {
                         font-size: 19px;
                     }
 
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         font-size: 20px;
                         margin-right: 5px;
                     }
@@ -676,7 +676,7 @@ form {
                     transition: transform 300ms ease-in-out;
                     @extend %flex-center;
 
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         margin: 0;
                         font-size: 20px;
                         color: $secondary-color;

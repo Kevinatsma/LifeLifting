@@ -11,6 +11,7 @@ import { SpecialistService } from './../../../specialists/specialist.service';
 import { Subject, Subscription } from 'rxjs';
 import { UtilService } from '../../services/util.service';
 import { take } from 'rxjs/operators';
+import countryCodes from './../../../shared/data/JSON/countryCodes.json';
 
 @Component({
   selector: 'app-add-appointment-dialog',
@@ -27,6 +28,7 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
   specialists: Specialist[];
   specialist$: Subscription;
   specialists$: Subscription;
+  areaCodes = countryCodes.countryCodes;
 
   hide = true;
   appointmentForm: FormGroup;
@@ -59,7 +61,6 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
   standardColorSecondary = '#5ec78a';
   phoneAreaCode = new FormControl({value: '+51', disabled: true});
   appointmentAccepted = false;
-
 
   constructor( public auth: AuthService,
                private fb: FormBuilder,
@@ -94,23 +95,16 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       startTime: [''],
       startHour: [''],
       startMinutes: [''],
-      phoneAreaCode: [`${this.phoneAreaCode.value}`],
-      phoneRest: [''] || null,
-      wappNumber: this.fb.group({
-        wappAreaCode: [''] || null,
-        wappRest: [''] || null,
-      }),
-      appointmentContext: [''],
-      contactMethod: [''],
+      appointmentContext: ['', Validators.required],
       location: [''] || null,
       skypeName: [''] || null
     });
   }
 
   ngOnDestroy() {
-    this.clients$.unsubscribe();
+    if (this.clients$ !== undefined) { this.clients$.unsubscribe(); }
     if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
-    this.specialists$.unsubscribe();
+    if (this.specialists$ !== undefined) { this.specialists$.unsubscribe(); }
   }
 
   // Toggles
@@ -120,10 +114,17 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
     if (formValue === 'faceToFace') {
       this.onlineAppointment.next(false);
       this.faceToFace.next(true);
+      if (this.appointmentForm.controls['contactMethod']) {
+        this.appointmentForm.removeControl('contactMethod');
+        console.log('control removed');
+      }
     } else {
       this.faceToFace.next(false);
       this.onlineAppointment.next(true);
+      this.appointmentForm.addControl('contactMethod', new FormControl('', Validators.required));
+      console.log('control added');
     }
+
     this.cdr.detectChanges();
   }
 
@@ -133,19 +134,45 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       this.whatsApp.next(true);
       this.skype.next(false);
       this.onlinePhone.next(false);
+
+      this._resetContactForm();
+      this.appointmentForm.addControl('wappAreaCode', new FormControl('', Validators.required));
+      this.appointmentForm.addControl('wappRest', new FormControl('', Validators.required));
+
     } else if (formValue  === 'skype') {
       this.whatsApp.next(false);
       this.skype.next(true);
       this.onlinePhone.next(false);
+
+      this._resetContactForm();
+      this.appointmentForm.addControl('skypeName', new FormControl('', Validators.required));
     } else {
       this.whatsApp.next(false);
       this.skype.next(false);
       this.onlinePhone.next(true);
+
+      this._resetContactForm();
+      this.appointmentForm.addControl('phoneAreaCode', new FormControl(`${this.phoneAreaCode.value}`, Validators.required));
+      this.appointmentForm.addControl('phoneRest', new FormControl('', Validators.required));
     }
 
     this.cdr.detectChanges();
   }
 
+
+  _resetContactForm() {
+    if (this.appointmentForm.controls['phoneAreaCode']) {
+      this.appointmentForm.removeControl('phoneAreaCode');
+      this.appointmentForm.removeControl('phoneRest');
+    }
+    if (this.appointmentForm.controls['wappAreaCode']) {
+      this.appointmentForm.removeControl('wappAreaCode');
+      this.appointmentForm.removeControl('wappRest');
+    }
+    if (this.appointmentForm.controls['skypeName']) {
+      this.appointmentForm.removeControl('skypeName');
+    }
+  }
   // Getters
   get appointmentText() {
     return this.appointmentForm.get('appointmentText');
@@ -229,11 +256,13 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       contactMethod: this.appointmentForm.get('contactMethod').value,
       faceToFacePhone: this.user.basicData.phoneNumber,
       location: this.appointmentForm.get('location').value || null,
-      whatsappNumber: this.appointmentForm.get('wappNumber').value || null,
-      skypeName: this.appointmentForm.get('skypeName').value || null,
+      whatsappNumber: this.appointmentForm['wappAreaCode'] ?
+        this.appointmentForm.get('wappAreaCode').value + this.appointmentForm.get('wappRest').value :
+        null,
+      skypeName: this.appointmentForm['skkypeName'] ? this.appointmentForm.get('skypeName').value : null,
       onlineAppointmentPhone: {
-        phoneAreaCode: this.appointmentForm.get('phoneAreaCode').value,
-        phoneRest: this.appointmentForm.get('phoneRest').value || null
+        phoneAreaCode: this.appointmentForm['phoneAreaCode'] ? this.appointmentForm.get('phoneAreaCode').value : null,
+        phoneRest: this.appointmentForm['phoneAreaCode'] ? this.appointmentForm.get('phoneRest').value : null
       }
     };
 

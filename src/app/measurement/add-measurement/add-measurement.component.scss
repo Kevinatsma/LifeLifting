@@ -7,13 +7,13 @@ main.add-measurement-wrapper {
 
     .close-section {
         &.mobile {
-            position: absolute;
+            position: relative;
             left: 20px;
-            top: 100px;
+            top: 25px;
             z-index: 13;
 
             .close-btn {
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     margin-right: 10px;
                     font-size: 13px;
                 }
@@ -81,6 +81,10 @@ main.add-measurement-wrapper {
             font-weight: $bold!important;
             letter-spacing: 0.5px;
             color: $grey!important;
+
+            @include respond-down($sm) {
+                display: block !important;
+            }
 
             &-selected {
                 color: $primary-color!important;
@@ -315,7 +319,8 @@ main.add-measurement-wrapper {
             min-height: 620px;
 
             @include respond-down($sm) {
-                min-height: 515px;
+                min-height: calc(100vh - 177px);
+                padding: 30px 16px;
             }
 
             .form-wrapper {

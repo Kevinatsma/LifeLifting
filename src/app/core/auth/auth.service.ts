@@ -175,6 +175,7 @@ export class AuthService {
       })
       .catch(error => {
         console.log('Async issue:' + error.message);
+        alert('Wrong email or password ... 😔');
       });
   }
 

@@ -63,7 +63,7 @@
 
             @extend %flex-center;
             
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 font-size: 28px;
                 color: $icon-black;
             }
@@ -119,7 +119,7 @@
                     }
                 }
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     color: $grey;
                     font-size: 18px;
                 }
@@ -134,7 +134,7 @@
             width: 100%;
             display: flex;
             flex-flow: row nowrap;
-            justify-content: center;
+            justify-content: center !important;
             align-items: center;
             margin: 1em 0;
             padding: 0;
@@ -157,7 +157,7 @@
                     border-left: 3px solid $secondary-color;
                 }
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     margin-right: 10px;
                 }
             }
@@ -214,7 +214,7 @@
                 margin: 7px 0 0;
                 letter-spacing: 1.2px;
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     margin-right: 10px;
                     color: $secondary-color;
                 }
@@ -244,7 +244,7 @@
             li {
                 margin: 5px 0;
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     color: $secondary-color;
                     font-size: 16px;
                     margin-right: 10px;
@@ -276,7 +276,7 @@
                     }
 
 
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         position: relative;
                         margin-right: 25px;
                         vertical-align: middle;
@@ -316,7 +316,7 @@
                         
                         .phone-number {
                             display: flex;
-                            .fa__icon, svg, ::ng-deep svg {
+                            .fa__icon, .svg-inline--fa, svg {
                                 color:$icon-black;
                                 @include respond-down($sm) {
                                     margin-right: 25px;
@@ -381,7 +381,7 @@
                     }
                 }
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     font-size: 30px;
                     height: 30px;
                     margin-right: 25px;

@@ -4,7 +4,7 @@
 <form (ngSubmit)="addFaceToFace()" [formGroup]="faceToFaceForm">
   <div class="multiple-input" formGroupName="faceToFacePhone">
     <mat-form-field appearance="standard" floatLabel="always">
-        <mat-label>Code</mat-label>
+        <mat-label>Area code</mat-label>
         <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
         <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
     </mat-form-field>

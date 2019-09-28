@@ -48,6 +48,18 @@ export class ReviewsService {
     return this.reviews;
   }
 
+  getSpecificReviews(condition, value) {
+    const reviewCol = this.afs.collection('reviews', ref => ref.where(`${condition}`, '==', `${value}`));
+    const reviews$ = reviewCol.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Review;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    }));
+    return reviews$;
+  }
+
   addReview(data) {
     this.afs.collection<Review>(`reviews`).add(data)
     .then(obj => {

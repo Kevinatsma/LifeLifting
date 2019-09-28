@@ -22,10 +22,15 @@ const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 // Global
 const domino = require('domino');
 const fs = require('fs');
-const path = require('path');
-const template = fs.readFileSync(path.join(__dirname + '/../../browser/index.html')).toString();
+const template = fs.readFileSync(join(DIST_FOLDER , 'index.html')).toString();
 const win = domino.createWindow(template);
 global['window'] = win;
+global['Node'] = win.Node;
+global['navigator'] = win.navigator;
+global['Event'] = win.Event;
+global['KeyboardEvent'] = win.Event;
+global['MouseEvent'] = win.Event;
+global['Event']['prototype'] = win.Event.prototype;
 global['document'] = win.document;
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack

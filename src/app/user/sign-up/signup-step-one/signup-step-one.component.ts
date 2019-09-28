@@ -59,7 +59,6 @@ export class SignupStepOneComponent implements OnInit {
   }
 
   updateUser(user) {
-    console.log(this.basicUserDataForm.controls.phoneNumber.get('phoneAreaCode').value);
     const phoneNumber = this.basicUserDataForm.controls.phoneNumber.get('phoneAreaCode').value +
                         this.basicUserDataForm.controls.phoneNumber.get('phoneRest').value;
     const data = {

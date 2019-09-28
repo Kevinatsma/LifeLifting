@@ -81,7 +81,7 @@ main.specialist-wrapper {
 
             button.action-btn {
                 @include respond-down($sm) {
-                    .fa__icon, svg, ::ng-deep svg { font-size: 22px; }
+                    .fa__icon, .svg-inline--fa, svg { font-size: 22px; }
                 }
             }
         }
@@ -200,7 +200,7 @@ section.specialist-header {
                     width: 40%;
                     padding-bottom: 1vh;
 
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         width: 10%;
                         font-size: 24px;
                         margin-right: 15%;
@@ -222,7 +222,7 @@ section.specialist-header {
                         margin-bottom: 1em;
                         width: 100%;
 
-                        .fa__icon, svg, ::ng-deep svg {
+                        .fa__icon, .svg-inline--fa, svg {
                             font-size: 18px;
                             margin-right: 2em;
                         }
@@ -298,7 +298,7 @@ section.about {
             }
         }
 
-        .fa__icon, svg, ::ng-deep svg {
+        .fa__icon, .svg-inline--fa, svg {
             font-size: 60px;
             color: $primary-color;
             margin: 30px 40px 30px 10px;
@@ -372,7 +372,7 @@ section.about {
             margin: 1em auto 0;
         }
 
-        .fa__icon, svg, ::ng-deep svg {
+        .fa__icon, .svg-inline--fa, svg {
             margin: 0 10px 0 0;
             font-size: 12px;
         }
@@ -411,7 +411,7 @@ section.middle {
                 flex-flow: row nowrap;
                 margin-bottom: 10px;
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     @extend %flex-center;
                     width: 20px;
                     height: 20px;
@@ -583,7 +583,7 @@ section.switches {
             p {
                 font-size: 18px;
                 margin: 1em 0;
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     font-size: 22px;
                     margin-right: 1em;
                     padding-right: 1em;
@@ -651,7 +651,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        .fa__icon, svg, ::ng-deep svg {
+        .fa__icon, .svg-inline--fa, svg {
             font-size: 12px;
             margin-left: 5px;
         }     

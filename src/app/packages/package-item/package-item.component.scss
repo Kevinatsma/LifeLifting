@@ -4,10 +4,11 @@
     h2 {
         color: $primary-color;
         margin: 0;
+        white-space: normal;
+        width: 100%;
 
         @include respond-down($sm) {
             font-size: 19px;
-            white-space: normal;
         }
     }
 
@@ -17,8 +18,9 @@
         p {
             color: $secondary-color;
             margin: 0;
+            font-weight: $bold;
 
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 margin-right: 10px;
             }
         }
@@ -48,7 +50,7 @@
             @include respond-down($sm) {
                 display: flex;
                 align-items: center;
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     font-size: 12px;
                     margin-right: 10px;
                 }
@@ -80,14 +82,16 @@
                     align-items: center;
                 }
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     margin-right: 1em;
                     color: $secondary-color
                 }
 
                 span {
+                    font-weight: $bold;
                     margin: 0;
                     padding: 0;
+
                     @include respond-down($sm) {
                         height: auto;
                         word-wrap: break-word;

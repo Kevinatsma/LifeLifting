@@ -46,15 +46,21 @@
 
   <section class="reviews-opened not-mobile">
     <h5 class="purple">⭐ Reviews</h5>
+    <p class="card-text" *ngIf="reviews && reviews.length < 1">
+      No reviews yet...
+    </p>
+
     <div class="review-container" *ngIf="reviewsVisible">
-      <mat-card class="review-item" *ngFor="let review of specialist.reviews">
-        <p>{{review.reviewText}}</p>
-        <p><strong>- {{review.reviewerName}}</strong></p>
-      </mat-card>
+      <ng-container *ngIf="reviews && reviews.length > 0">
+        <app-review-list-item *ngFor="let review of reviews" [review]="review"></app-review-list-item>
+        <div class="hidden">
+          margin-block
+        </div>
+      </ng-container>
     </div>
   </section>
 
-  <section class="btn-area not-mobile">
+  <section class="btn-area not-mobile" *ngIf="reviews && reviews.length > 0">
     <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
       Show reviews
       <i class="fa__icon fas fa-chevron-down"></i>

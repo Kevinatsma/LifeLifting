@@ -37,8 +37,9 @@ export class DashboardComponent implements OnInit {
       .then(() => {
           this.redirect();
       })
-      .catch(function(error) {
+      .catch(error => {
           console.log('Error getting document:', error);
+          this.router.navigate(['../login']);
       });
   }
 

@@ -83,7 +83,7 @@ main.specialist-wrapper {
                 min-height: 45px !important;
             }
 
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 font-size: 16px;
 
                 @include respond-down($sm) {
@@ -319,7 +319,7 @@ main.specialist-wrapper {
                 margin-bottom: 1rem;
                 @extend %flex-center;
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     font-size: 38px;
                     color: $primary-color;
                 }
@@ -539,7 +539,7 @@ main.specialist-wrapper {
                     background: transparent;
                 }
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     font-size: 38px;
                 }
             }
@@ -571,7 +571,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        .fa__icon, svg, ::ng-deep svg {
+        .fa__icon, .svg-inline--fa, svg {
             font-size: 12px;
             margin-left: 5px;
         }     

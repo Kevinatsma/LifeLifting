@@ -10,7 +10,7 @@
             font-size: 16px;
             font-family: $main-font;
             
-            .fa__icon, svg, ::ng-deep svg {
+            .fa__icon, .svg-inline--fa, svg {
                 margin-right: 1em;
                 color: $primary-color;
             }
@@ -62,7 +62,7 @@ mat-card.list-item-card {
         background: #fff;
         box-shadow: $card-shadow;
         border-radius: 50%;
-        .fa__icon, svg, ::ng-deep svg {
+        .fa__icon, .svg-inline--fa, svg {
             font-size: 38px;
             color: darken($middle-grey, 5%);
         }
@@ -164,7 +164,7 @@ mat-card.list-item-card {
                             margin-left: 0;
                         }
 
-                        .fa__icon, svg, ::ng-deep svg {
+                        .fa__icon, .svg-inline--fa, svg {
                             font-size: 18px;
                             margin-right: 0.5em;
                             color: $secondary-color;
@@ -181,7 +181,7 @@ mat-card.list-item-card {
                         font-weight: $semi-bold;
                     }
 
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         font-size: 12px;
                         color: $middle-grey;
                         transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
@@ -194,7 +194,7 @@ mat-card.list-item-card {
                     }
 
                     &:hover, &:focus {
-                        .fa__icon, svg, ::ng-deep svg {
+                        .fa__icon, .svg-inline--fa, svg {
                             left: 10px;
                             top: 5px;
                             transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
@@ -216,7 +216,7 @@ mat-card.list-item-card {
                 height: 50px;
                 border-top: $light-border;
 
-                .fa__icon, svg, ::ng-deep svg {
+                .fa__icon, .svg-inline--fa, svg {
                     margin-top: -3px;
                     font-size: 15px;
                     color: $icon-black;
@@ -229,7 +229,7 @@ mat-card.list-item-card {
 
                 &:hover, &:focus {
                     background: $light-grey;
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         transition: transform 200ms ease-in-out;
                         transform: scale(1.2);
                     }

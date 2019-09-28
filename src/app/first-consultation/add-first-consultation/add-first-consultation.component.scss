@@ -26,7 +26,7 @@
 
             @include respond-down($sm) {
                 position: relative;
-                top: 4.5em;
+                top: 0;
             }
 
             .close-btn {
@@ -36,7 +36,7 @@
                     top: 15px;
                     z-index: 1500;
 
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         margin-right: 0;
                     }
                 }
@@ -46,7 +46,7 @@
                     top: 10px;
                     left: 20px;
 
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         margin-right: 10px;
                     }
                 }
@@ -111,12 +111,12 @@
                         text-decoration: underline;
                     }
 
-                    .fa__icon, svg, ::ng-deep svg {
+                    .fa__icon, .svg-inline--fa, svg {
                         display: none;
                     }
 
                     &.valid {
-                        .fa__icon, svg, ::ng-deep svg {
+                        .fa__icon, .svg-inline--fa, svg {
                             display: block;
                             color: $primary-color;
                             font-size: 18px;
@@ -147,6 +147,14 @@
                 }
             }
 
+            .mat-horizontal-stepper-content {
+                @include respond-down($sm) {
+                    padding: 0 1em;
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+            }
+
             .mat-horizontal-content-container {
                 position: relative;
                 min-height: 98vh;
@@ -161,7 +169,7 @@
 
                     @include respond-down($sm) {
                         padding: 0;
-                        margin: 4em 0 1em;
+                        margin: 1em 0;
                     }
 
                     h3 {
@@ -640,6 +648,12 @@
                                     width: 80%;
                                 }
                             }
+
+                            .mat-form-field-infix {
+                                display: flex;
+                                flex-flow: row nowrap;
+                                align-items: center;
+                            }
                         }
                     }
 
@@ -688,11 +702,14 @@
                             mat-form-field {
 
                                 &:first-child {
+                                    align-items: center;
+                                    display: flex;
                                     margin-right: 0;
                                     width: 30%;
 
                                     input {
-                                        margin-top: 0;
+                                        position: relative;
+                                        top: 10px;
                                     }
                                 }
 
