@@ -5,7 +5,7 @@
 // Ng Deeps
 
  mat-option {
-    .fa__icon, .svg-inline--fa, svg {
+    .fa__icon, .svg-inline--fa, svg, svg path {
         margin-right: 1em;
         font-size: 20px!important;
 
@@ -69,7 +69,7 @@
                     border-left: 3px solid $secondary-color;
                 }
 
-                .fa__icon, .svg-inline--fa, svg {
+                .fa__icon, .svg-inline--fa, svg, svg path {
                     margin-right: 10px;
                 }
             }
@@ -133,7 +133,7 @@
                     align-items: center;
                     flex-flow: row nowrap;
 
-                    .fa__icon, .svg-inline--fa, svg {
+                    .fa__icon, .svg-inline--fa, svg, svg path {
                         margin-right: 0.5em;
                     }
                 }
@@ -157,7 +157,7 @@
                                 margin-top: -2px;
                                 flex-shrink: none!important;
 
-                                .fa__icon, .svg-inline--fa, svg {
+                                .fa__icon, .svg-inline--fa, svg, svg path {
                                     color: $secondary-color;
                                 }
                             }
@@ -238,7 +238,7 @@
 }
 
  mat-option {
-    .fa__icon, .svg-inline--fa, svg {
+    .fa__icon, .svg-inline--fa, svg, svg path {
         margin-right: 1em;
         font-size: 20px!important;
 
@@ -434,7 +434,7 @@ form {
             border-radius: 0;
             border: $light-border;
             transition: all 300ms ease-in-out;
-            .fa__icon, .svg-inline--fa, svg {
+            .fa__icon, .svg-inline--fa, svg, svg path {
                 margin: 0;
                 padding: 0;
             }
@@ -443,7 +443,7 @@ form {
                 background: darken($light-grey, 5%);
                 cursor: pointer; 
                 
-                .fa__icon, .svg-inline--fa, svg {
+                .fa__icon, .svg-inline--fa, svg, svg path {
                     transition: transform 300ms ease-in-out;
                     transform: scale(1.1);
                 }
@@ -495,7 +495,7 @@ form {
         }
 
         .close-section {
-            .fa__icon, .svg-inline--fa, svg {
+            .fa__icon, .svg-inline--fa, svg, svg path {
                 margin-right: 15px;
             }
         }

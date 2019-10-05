@@ -134,7 +134,7 @@ main.dialog-wrapper {
             top: 10px;
 
             .close-btn {
-                .fa__icon, .svg-inline--fa, svg {
+                .fa__icon, .svg-inline--fa, svg, svg path {
                     margin-right: 10px;
                 }
             }
@@ -328,7 +328,7 @@ main.dialog-wrapper {
                 border-radius: 50%;
                 box-shadow: $card-shadow;
 
-                .fa__icon, .svg-inline--fa, svg {
+                .fa__icon, .svg-inline--fa, svg, svg path {
                     font-size: 21px;
                 }
             }
@@ -350,7 +350,7 @@ main.dialog-wrapper {
                 color: $primary-color;
                 border: 2px solid $primary-color;
 
-                .fa__icon, .svg-inline--fa, svg {
+                .fa__icon, .svg-inline--fa, svg, svg path {
                     margin-right: 1em;
                 }
 

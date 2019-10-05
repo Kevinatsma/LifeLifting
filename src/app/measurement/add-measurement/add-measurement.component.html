@@ -140,8 +140,8 @@
       </form>
 
       <section class="btn-area-one">
-        <button class="dialog-button" (click)="addMeasurements()" [disabled]="!perimeterForm.valid || !skinfoldForm.valid"
-        [class.disabled]="!perimeterForm.valid || !skinfoldForm.valid" mat-dialog-close>
+        <button class="dialog-button" (click)="addMeasurements()" [disabled]="!perimeterForm.valid || !skinfoldForm.valid || !weightForm.valid"
+        [class.disabled]="!perimeterForm.valid || !skinfoldForm.valid || !weightForm.valid" mat-dialog-close>
           Done
         </button>
       </section>

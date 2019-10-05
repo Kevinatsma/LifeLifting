@@ -3,7 +3,7 @@
 // Ng  deeps
 
 mat-option {
-    .fa__icon, .svg-inline--fa, svg {
+    .fa__icon, .svg-inline--fa, svg, svg path {
         margin-right: 1em;
         font-size: 20px!important;
 
@@ -254,7 +254,7 @@ section {
         input {
             margin-right: 1em;
         }
-        .mat-icon-button .fa__icon, .svg-inline--fa, svg {
+        .mat-icon-button .fa__icon, .svg-inline--fa, svg, svg path {
             color: $secondary-color;
         }
     }

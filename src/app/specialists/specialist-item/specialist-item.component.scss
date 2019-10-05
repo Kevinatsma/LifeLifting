@@ -84,7 +84,7 @@ section.about {
         align-items: center;
         justify-content: center;
 
-        .fa__icon, .svg-inline--fa, svg {
+        .fa__icon, .svg-inline--fa, svg, svg path {
             margin: 0 10px 0 0;
             font-size: 12px;
         }
@@ -154,7 +154,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        .fa__icon, .svg-inline--fa, svg {
+        .fa__icon, .svg-inline--fa, svg, svg path {
             font-size: 12px;
             margin-left: 5px;
         }     

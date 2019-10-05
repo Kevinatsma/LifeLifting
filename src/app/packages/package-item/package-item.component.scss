@@ -20,7 +20,7 @@
             margin: 0;
             font-weight: $bold;
 
-            .fa__icon, .svg-inline--fa, svg {
+            .fa__icon, .svg-inline--fa, svg, svg path {
                 margin-right: 10px;
             }
         }
@@ -50,7 +50,7 @@
             @include respond-down($sm) {
                 display: flex;
                 align-items: center;
-                .fa__icon, .svg-inline--fa, svg {
+                .fa__icon, .svg-inline--fa, svg, svg path {
                     font-size: 12px;
                     margin-right: 10px;
                 }
@@ -82,7 +82,7 @@
                     align-items: center;
                 }
 
-                .fa__icon, .svg-inline--fa, svg {
+                .fa__icon, .svg-inline--fa, svg, svg path {
                     margin-right: 1em;
                     color: $secondary-color
                 }

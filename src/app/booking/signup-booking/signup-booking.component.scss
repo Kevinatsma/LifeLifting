@@ -19,7 +19,7 @@
     z-index: 1000;
 
     .close-section {        
-        .fa__icon, .svg-inline--fa, svg {
+        .fa__icon, .svg-inline--fa, svg, svg path {
             margin-right: 0.5em;
         }
     }
@@ -178,7 +178,7 @@
                 justify-content: center;
                 flex-flow: column wrap;
 
-                .fa__icon, .svg-inline--fa, svg {
+                .fa__icon, .svg-inline--fa, svg, svg path {
                     color: $grey;
                     margin-bottom: 10px;
                     font-size: 38px;

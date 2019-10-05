@@ -7,7 +7,7 @@
     border-radius: 2px;
     box-shadow: $card-shadow;
     button.menu-link {
-        .fa__icon, .svg-inline--fa, svg {
+        .fa__icon, .svg-inline--fa, svg, svg path {
             margin-right: 1em;
         }
     }
@@ -133,7 +133,7 @@
 
             &:hover {
                 background: $middle-grey;
-                .fa__icon, .svg-inline--fa, svg {
+                .fa__icon, .svg-inline--fa, svg, svg path {
                     color: $secondary-color;
                 }
             }
@@ -174,7 +174,7 @@
                 }
             }
 
-            .fa__icon, .svg-inline--fa, svg {
+            .fa__icon, .svg-inline--fa, svg, svg path {
                 color: lighten($grey, 2%);
                 width: 14px;
                 height: 14px;

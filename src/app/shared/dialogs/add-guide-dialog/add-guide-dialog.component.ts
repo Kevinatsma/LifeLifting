@@ -277,10 +277,10 @@ export class AddGuideDialogComponent implements OnInit, OnDestroy {
           fatValue: this.macroForm.get('fatValue').value
         },
         formulaData: {
-          maxCalories: this.maxCaloriesResult,
+          maxCalories: this.maxCaloriesResult || null,
           fatPercentageRegular: this.fatPercentageRegResult || null,
           fatPercentageAthlete: this.fatPercentageAthResult || null,
-          bmi: this.bmiResult,
+          bmi: this.bmiResult || null,
           weight: this.formulaValues.weight
         }
       };
@@ -303,7 +303,9 @@ export class AddGuideDialogComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       const data = this.formulaValues;
 
-      this.maxCaloriesResult = this.utils.calculateMaxCalories(data.weight, data.height, data.age, data.gender);
+      if (data.weight && data.height && data.age && data.gender) {
+        this.maxCaloriesResult = this.utils.calculateMaxCalories(data.weight, data.height, data.age, data.gender);
+      }
 
       if (!data.isAthlete) {
         this.fatPercentageRegResult = this.utils.calculateFatPercentageRegular(data);
@@ -311,7 +313,9 @@ export class AddGuideDialogComponent implements OnInit, OnDestroy {
         this.fatPercentageAthResult = this.utils.calculateFatPercentageAthlete(data);
       }
 
-      this.bmiResult = this.utils.calculateBMI(data.weight, data.height);
+      if (data.weight && data.height) {
+        this.bmiResult = this.utils.calculateBMI(data.weight, data.height);
+      }
     }, 1000);
   }
 

@@ -92,18 +92,12 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
     });
     this.habitForm = this.fb.group({
       alcohol: ['', Validators.required],
-      alcoholNote: [''],
       smoke: ['', Validators.required],
-      smokeNote: [''],
       drugs: ['', Validators.required],
       coffee: ['', Validators.required],
-      coffeeNote: [''],
       tea: ['', Validators.required],
-      teaNote: [''],
       socialLife: ['', Validators.required],
-      socialLifeNote: [''],
       stayUpLate: ['', Validators.required],
-      stayUpLateNote: [''],
       wakeUpTime: ['', Validators.required],
       sleepTime: ['', Validators.required],
       breakfastTime: ['', Validators.required],
@@ -111,20 +105,18 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
       dinnerTime: ['', Validators.required],
       whoCooks: ['', Validators.required],
       breakfastAtHome: ['', Validators.required],
-      breakfastAtHomeNote: [''],
       timeForBreakfast: ['', Validators.required],
-      timeForBreakfastNote: [''],
-      workDescription: ['', Validators.required],
-      workScheduleFrom: ['', Validators.required],
-      workScheduleTo: ['', Validators.required],
-      workOnWeekends: ['', Validators.required],
+      workDescription: [''],
+      workScheduleFrom: [''],
+      workScheduleTo: [''],
+      workOnWeekends: [''],
       workOnWeekendsFrom: [''],
       workOnWeekendsTo: [''],
-      transportationMethod: ['', Validators.required],
-      eatDuringJob: ['', Validators.required],
-      practicalSnackDuringJob: ['', Validators.required],
-      snacksPreference: ['', Validators.required],
-      kitchenGadgetsAtWork: ['', Validators.required]
+      transportationMethod: [''],
+      eatDuringJob: [''],
+      practicalSnackDuringJob: [''],
+      snacksPreference: [''],
+      kitchenGadgetsAtWork: ['']
     });
     this.bodyFunctionsForm = this.fb.group({
       urinateAmount: ['', Validators.required],
@@ -137,14 +129,12 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
       firstMenstrualPeriod: [''],
       regularCycle: [''],
       birthControlPills: [''],
-      birthControlPillsNote: [''],
       pregnancies: [''],
       periodXDays: [''],
       bleedingXDays: [''],
       sleepingStatus: ['', Validators.required],
       averageHours: ['', Validators.required],
       troubleFallingAsleep: ['', Validators.required],
-      troubleFallingAsleepNote: [''],
       wakeUpEnergized: ['', Validators.required],
     });
     this.generalDataForm = this.fb.group({
@@ -157,18 +147,14 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
       portion: ['', Validators.required],
       preparedBy: ['', Validators.required],
       eatAfterDinner: ['', Validators.required],
-      eatAfterDinnerNote: [''],
       shoppingLocationArr: this.fb.array([ this.createShoppingLocation() ]),
       whoBuys: ['', Validators.required],
       orderOnline: ['', Validators.required],
       physicalActivitiesConfirmation: ['', Validators.required],
-      activityArr: this.fb.array([ this.createActivity() ]),
       physicalActivitiesWhy: [''],
       wakeUpTime: ['', Validators.required],
       orderFood: ['', Validators.required],
-      orderFoodNote: [''],
       supplements: ['', Validators.required],
-      supplementNote: [''],
       willingToUseSupps: ['', Validators.required],
       eatingRecordatory: ['', Validators.required],
     });
@@ -289,7 +275,12 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
   }
 
   deleteActivity(i) {
-    (this.generalDataForm.get('activityArr') as FormArray).removeAt(i);
+    const activityArr = (this.generalDataForm.get('activityArr') as FormArray);
+    activityArr.removeAt(i);
+
+    if (activityArr.length < 1) {
+      this.generalDataForm.controls['activityArr'].setErrors({'incorrect': true});
+    }
   }
 
   // Navigation
@@ -325,6 +316,16 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
         scrollAnchor.scrollIntoView();
       }, 100);
 
+    }
+  }
+
+  toggleActivity(event) {
+    const value = event.value;
+
+    if (value === 'yes') {
+      this.generalDataForm.addControl('activityArr', this.fb.array([ this.createActivity() ]));
+    } else {
+      this.generalDataForm.removeControl('activityArr');
     }
   }
 
@@ -372,18 +373,18 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
     };
     const habits = {
       alcohol: this.habitForm.get('alcohol').value,
-      alcoholNote: this.habitForm.get('alcoholNote').value || null,
+      alcoholNote: this.habitForm.controls['alcoholNote'] ? this.habitForm.get('alcoholNote').value : null,
       smoke: this.habitForm.get('smoke').value,
-      smokeNote: this.habitForm.get('smokeNote').value || null,
+      smokeNote: this.habitForm.controls['smokeNote'] ? this.habitForm.get('smokeNote').value : null,
       drugs: this.habitForm.get('drugs').value,
       coffee: this.habitForm.get('coffee').value,
-      coffeeNote: this.habitForm.get('coffeeNote').value || null,
+      coffeeNote: this.habitForm.controls['coffeeNote'] ? this.habitForm.get('coffeeNote').value : null,
       tea: this.habitForm.get('tea').value,
-      teaNote: this.habitForm.get('teaNote').value || null,
+      teaNote: this.habitForm.controls['teaNote'] ? this.habitForm.get('teaNote').value : null,
       socialLife: this.habitForm.get('socialLife').value,
-      socialLifeNote: this.habitForm.get('socialLifeNote').value || null,
+      socialLifeNote: this.habitForm.controls['socialLifeNote'] ? this.habitForm.get('socialLifeNote').value : null,
       stayUpLate: this.habitForm.get('stayUpLate').value,
-      stayUpLateNote: this.habitForm.get('stayUpLateNote').value || null,
+      stayUpLateNote: this.habitForm.controls['stayUpLateNote'] ? this.habitForm.get('stayUpLateNote').value : null,
       sleepingHabits: {
         wakeUpTime: this.habitForm.get('wakeUpTime').value,
         sleepTime: this.habitForm.get('sleepTime').value,
@@ -394,28 +395,28 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
         dinnerTime: this.habitForm.get('dinnerTime').value,
         whoCooks: this.habitForm.get('whoCooks').value,
         breakfastAtHome: this.habitForm.get('breakfastAtHome').value,
-        breakfastAtHomeNote: this.habitForm.get('breakfastAtHomeNote').value || null,
+        breakfastAtHomeNote: this.habitForm.controls['breakfastAtHomeNote'] ? this.habitForm.get('breakfastAtHomeNote').value : null,
         timeForBreakfast: this.habitForm.get('timeForBreakfast').value,
-        timeForBreakfastNote: this.habitForm.get('timeForBreakfastNote').value || null
+        timeForBreakfastNote: this.habitForm.controls['timeForBreakfastNote'] ? this.habitForm.get('timeForBreakfastNote').value : null
       },
       work: {
-        description: this.habitForm.get('workDescription').value,
+        description: this.habitForm.get('workDescription').value || null,
         schedules: {
-          from: this.habitForm.get('workScheduleFrom').value,
-          to: this.habitForm.get('workScheduleTo').value
+          from: this.habitForm.get('workScheduleFrom').value || null,
+          to: this.habitForm.get('workScheduleTo').value || null
         },
-        workOnWeekends: this.habitForm.get('workOnWeekends').value,
-        workOnWeekendsNote: {
-          from: this.habitForm.get('workOnWeekendsFrom').value || null,
-          to: this.habitForm.get('workOnWeekendsTo').value || null
-        },
-        homeToWork: this.homeToWorkScale,
-        workToHome: this.workToHomeScale,
-        transportationMethod: this.habitForm.get('transportationMethod').value,
-        eatDuringJob: this.habitForm.get('eatDuringJob').value,
+        workOnWeekends: this.habitForm.get('workOnWeekends').value || null,
+        workOnWeekendsNote: this.habitForm.controls['workOnWeekendsNote'] ? {
+          from: this.habitForm.get('workOnWeekendsFrom').value,
+          to: this.habitForm.get('workOnWeekendsTo').value
+        } : null,
+        homeToWork: this.homeToWorkScale || null,
+        workToHome: this.workToHomeScale || null,
+        transportationMethod: this.habitForm.get('transportationMethod').value || null,
+        eatDuringJob: this.habitForm.get('eatDuringJob').value || null,
         practicalSnackDuringJob: this.habitForm.get('practicalSnackDuringJob').value || null,
-        snacksPreference: this.habitForm.get('snacksPreference').value,
-        kitchenGadgetsAtWork: this.habitForm.get('kitchenGadgetsAtWork').value,
+        snacksPreference: this.habitForm.get('snacksPreference').value || null,
+        kitchenGadgetsAtWork: this.habitForm.get('kitchenGadgetsAtWork').value || null,
       }
     };
     const bodyFunctions = {
@@ -437,7 +438,9 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
         firstMenstrualPeriod: this.bodyFunctionsForm.get('firstMenstrualPeriod').value || null,
         regularCycle: this.bodyFunctionsForm.get('regularCycle').value || null,
         birthControlPills: this.bodyFunctionsForm.get('birthControlPills').value || null,
-        birthControlPillsNote: this.bodyFunctionsForm.get('birthControlPillsNote').value || null,
+        birthControlPillsNote: this.bodyFunctionsForm.controls['birthControlPillsNote'] ?
+          this.bodyFunctionsForm.get('birthControlPillsNote').value :
+          null,
         periodXDays: this.bodyFunctionsForm.get('periodXDays').value || null,
         bleedingXDays: this.bodyFunctionsForm.get('bleedingXDays').value || null,
         pregnancies: this.bodyFunctionsForm.get('pregnancies').value || null
@@ -446,7 +449,9 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
         sleepingStatus: this.bodyFunctionsForm.get('sleepingStatus').value,
         averageHours: this.bodyFunctionsForm.get('averageHours').value,
         troubleFallingAsleep: this.bodyFunctionsForm.get('troubleFallingAsleep').value,
-        troubleFallingAsleepNote: this.bodyFunctionsForm.get('troubleFallingAsleepNote').value || null,
+        troubleFallingAsleepNote: this.bodyFunctionsForm.controls['troubleFallingAsleepNote'] ?
+          this.bodyFunctionsForm.get('troubleFallingAsleepNote').value :
+          null,
         wakeUpEnergized: this.bodyFunctionsForm.get('wakeUpEnergized').value,
       }
     };
@@ -456,31 +461,33 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
         gastritis: this.generalDataForm.get('gastritis').value,
         medication: this.generalDataForm.get('medication').value,
         pastTwoWeeks: this.pastTwoWeeksArray.value,
-        dontEat: this.dontEatArray.value,
+        dontEat: this.dontEatArray.value || 'None',
         dietType: this.generalDataForm.get('dietType').value
       },
       dinner: {
         portion: this.generalDataForm.get('portion').value,
         preparedBy: this.generalDataForm.get('preparedBy').value,
         eatAfterDinner: this.generalDataForm.get('eatAfterDinner').value,
-        eatAfterDinnerNote: this.generalDataForm.get('eatAfterDinnerNote').value || null,
+        eatAfterDinnerNote: this.generalDataForm.controls['eatAfterDinnerNote'] ?
+          this.generalDataForm.get('eatAfterDinnerNote').value :
+          null,
         shoppingLocations: this.shoppingLocationArray.value,
         whoBuys: this.generalDataForm.get('whoBuys').value,
         orderOnline: this.generalDataForm.get('orderOnline').value,
       },
       physicalActivity: {
         physicalActivitiesConfirmation: this.generalDataForm.get('physicalActivitiesConfirmation').value,
-        physicalActivities: this.activityArray.value || null,
+        physicalActivities: this.activityArray ? this.activityArray.value : null,
         physicalActivitiesWhy: this.generalDataForm.get('physicalActivitiesWhy').value || null,
       },
       weekends: {
         wakeUpTime: this.generalDataForm.get('wakeUpTime').value,
         orderFood: this.generalDataForm.get('orderFood').value,
-        orderFoodNote: this.generalDataForm.get('orderFoodNote').value || null,
+        orderFoodNote: this.generalDataForm.controls['orderFoodNote'] ? this.generalDataForm.get('orderFoodNote').value : null,
       },
       supplements: {
         supplements: this.generalDataForm.get('supplements').value,
-        supplementNote: this.generalDataForm.get('supplementNote').value || null,
+        supplementsNote: this.generalDataForm.controls['supplementsNote'] ? this.generalDataForm.get('supplementsNote').value : null,
         willingToUseSupps: this.generalDataForm.get('willingToUseSupps').value,
         eatingRecordatory: this.generalDataForm.get('eatingRecordatory').value,
       }
@@ -497,6 +504,31 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
     };
 
     this.firstConsultationService.addFirstConsultation(data);
+  }
+
+  radioChange(form: String, formControlName: String, requirement: String, event) {
+    const value = event.value;
+
+    if (value === 'yes' && requirement === 'yes' || value === 'no' && requirement === 'no') {
+      if (form === 'habits') {
+        this.habitForm.addControl(`${formControlName}Note`, new FormControl('', Validators.required));
+      } else if (form === 'bodyFunctions') {
+        this.bodyFunctionsForm.addControl(`${formControlName}Note`, new FormControl('', Validators.required));
+      } else if (form === 'generalData') {
+        this.generalDataForm.addControl(`${formControlName}Note`, new FormControl('', Validators.required));
+      }
+    } else {
+      if (form === 'habit') {
+        this.habitForm.removeControl(`${formControlName}Note`);
+      } else if (form === 'bodyFunctions') {
+        this.bodyFunctionsForm.removeControl(`${formControlName}Note`);
+      } else if (form === 'generalData') {
+        this.generalDataForm.removeControl(`${formControlName}Note`);
+      }
+    }
+    console.log(this.habitForm);
+    console.log(this.bodyFunctionsForm);
+    console.log(this.generalDataForm);
   }
 
   closeDialog() {

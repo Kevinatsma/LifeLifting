@@ -16,7 +16,7 @@
             margin-right: 4em;
         }
 
-        .fa__icon, .svg-inline--fa, svg {
+        .fa__icon, .svg-inline--fa, svg, svg path {
             font-size: 48px;
         }
 
@@ -34,7 +34,7 @@
 .btn-area {
     .disabled {
         background: $light-grey!important;
-        .fa__icon, .svg-inline--fa, svg {
+        .fa__icon, .svg-inline--fa, svg, svg path {
             color: $grey;
         }
         &:hover {

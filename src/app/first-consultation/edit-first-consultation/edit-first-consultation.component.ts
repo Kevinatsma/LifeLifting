@@ -87,7 +87,7 @@ export class EditFirstConsultationComponent implements OnInit, OnDestroy {
     this.basicDataForm = this.fb.group({
       mealplanMainGoal: [this.firstConsultation.basicData.mealplanMainGoal, Validators.required],
       sex: [this.firstConsultation.basicData.sex, Validators.required],
-      birthDate: [new Date(this.firstConsultation.basicData.birthDate), Validators.required],
+      birthDate: [this.firstConsultation.basicData.birthDate.toDate(), Validators.required],
       height: [this.firstConsultation.basicData.height, Validators.required],
       phoneAreaCode: [this.firstConsultation.basicData.phoneNumber.areaCode, Validators.required],
       phoneNumber: [this.firstConsultation.basicData.phoneNumber.number, Validators.required],
@@ -121,8 +121,10 @@ export class EditFirstConsultationComponent implements OnInit, OnDestroy {
       workScheduleFrom: [this.firstConsultation.habits.work.schedules.from, Validators.required],
       workScheduleTo: [this.firstConsultation.habits.work.schedules.to, Validators.required],
       workOnWeekends: [this.firstConsultation.habits.work.workOnWeekends, Validators.required],
-      workOnWeekendsFrom: [this.firstConsultation.habits.work.workOnWeekendsNote.from || ''],
-      workOnWeekendsTo: [this.firstConsultation.habits.work.workOnWeekendsNote.to || ''],
+      workOnWeekendsFrom: this.firstConsultation.habits.work.workOnWeekendsNote ?
+        [this.firstConsultation.habits.work.workOnWeekendsNote.from] : [''],
+      workOnWeekendsTo: this.firstConsultation.habits.work.workOnWeekendsNote ?
+        [this.firstConsultation.habits.work.workOnWeekendsNote.to ] : [''],
       transportationMethod: [this.firstConsultation.habits.work.transportationMethod, Validators.required],
       eatDuringJob: [this.firstConsultation.habits.work.eatDuringJob, Validators.required],
       practicalSnackDuringJob: [this.firstConsultation.habits.work.practicalSnackDuringJob, Validators.required],
@@ -306,6 +308,7 @@ export class EditFirstConsultationComponent implements OnInit, OnDestroy {
       trainingIntensity: ''
     });
   }
+
   createNewActivity(activity): FormGroup {
     return this.fb.group({
       physicalActivity: activity.physicalActivity,
@@ -473,10 +476,10 @@ export class EditFirstConsultationComponent implements OnInit, OnDestroy {
           to: this.habitForm.get('workScheduleTo').value || this.firstConsultation.habits.work.schedules.to
         },
         workOnWeekends: this.habitForm.get('workOnWeekends').value || this.firstConsultation.habits.work.workOnWeekends,
-        workOnWeekendsNote: {
-          from: this.habitForm.get('workOnWeekendsFrom').value || this.firstConsultation.habits.work.workOnWeekendsNote.from || null,
-          to: this.habitForm.get('workOnWeekendsTo').value || this.firstConsultation.habits.work.workOnWeekendsNote.to || null
-        },
+        workOnWeekendsNote: this.habitForm.controls['workOnWeekendsNote'] ? {
+          from: this.habitForm.get('workOnWeekendsFrom').value || this.firstConsultation.habits.work.workOnWeekendsNote.from,
+          to: this.habitForm.get('workOnWeekendsTo').value || this.firstConsultation.habits.work.workOnWeekendsNote.to
+        } : null,
         homeToWork: this.homeToWorkScale || this.firstConsultation.habits.work.homeToWork,
         workToHome: this.workToHomeScale || this.firstConsultation.habits.work.workToHome,
         transportationMethod: this.habitForm.get('transportationMethod').value || this.firstConsultation.habits.work.transportationMethod,

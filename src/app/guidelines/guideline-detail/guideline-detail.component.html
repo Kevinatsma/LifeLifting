@@ -158,11 +158,13 @@
           <section class="calorie-metrics formulas" *ngIf="guideline">
             <h2 class="section-title">Calculated values</h2>
             <div class="metric">
-              <span class="metric__value">{{guideline.formulaData.maxCalories | number: '1.0-0'}}</span>
+              <span class="metric__value" *ngIf="guideline.formulaData.maxCalories; else noValue">
+                {{guideline.formulaData.maxCalories | number: '1.0-0'}}
+              </span>
               <h6 class="metric__title">Max amount of kcal</h6>
             </div>
             <div class="metric">
-              <span class="metric__value">{{guideline.formulaData.bmi | number: '1.0-0'}}</span>
+              <span class="metric__value" *ngIf="guideline.formulaData.bmi; else noValue">{{guideline.formulaData.bmi | number: '1.0-0'}}</span>
               <h6 class="metric__title">Body Mass Index</h6>
             </div>
             <div class="metric" *ngIf="guideline.formulaData.fatPercentageAthlete">
@@ -174,9 +176,14 @@
               <h6 class="metric__title">Fat percentage (regular)</h6>
             </div>
             <div class="metric" *ngIf="!guideline.formulaData.fatPercentageRegular && !guideline.formulaData.fatPercentageAthlete">
-              <span class="metric__value">0</span>
+              <span class="metric__value">-</span>
               <h6 class="metric__title">Linked measurement is incomplete</h6>
             </div>
+
+            <ng-template #noValue>
+              <span class="metric__value">-</span>
+            </ng-template>
+
           </section>
           
           <section class="guideline-activities" *ngIf="guideline && guideline.activities">

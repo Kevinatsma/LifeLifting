@@ -42,7 +42,7 @@
         <div class="info-card__content">
           <span class="label small">Consumes tea</span>
           <p class="value big">{{habits.tea}}</p>
-          <p class="value sub-value" *ngIf="habits.teaNote">{{habits.teaNote}}</p>
+          <p class="value sub-value" *ngIf="habits.teaNote">{{habits.teaNote}} cups/day</p>
         </div>
       </div>
 
@@ -201,7 +201,7 @@
         <div class="info-card__content">
           <span class="label small">Works on weekends</span>
           <p class="value big">{{habits.work.workOnWeekends}}</p>
-          <p class="value sub-value" *ngIf="habits.work.workOnWeekendsNote.from">
+          <p class="value sub-value" *ngIf="habits.work.workOnWeekendsNote !== null">
             <span>From:</span> {{habits.work.workOnWeekendsNote.from}} <br> 
             <span>To:</span> {{habits.work.workOnWeekendsNote.to}}
           </p>

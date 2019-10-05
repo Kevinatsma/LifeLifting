@@ -817,7 +817,7 @@
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Do you have any health conditions?</mat-label>
                 <mat-select matInput formControlName="healthCondition" panelClass="dropdown-regular" autocomplete="off" required
-                  [placeholder]="condition.value.healthCondition.healthCondition ? condition.value.healthCondition.healthCondition : 'Pick one'">
+                  placeholder="{{condition.value.healthCondition.healthCondition ? condition.value.healthCondition.healthCondition : 'Pick one'}}">
                   <mat-option *ngFor="let condition of healthConditions" value="{{condition.viewValue}}">{{condition.viewValue}}</mat-option>
                 </mat-select>
                 <mat-error class="input-errors" *ngIf="!healthCondition.valid && healthCondition.touched">This is <strong>required</strong></mat-error>
@@ -843,7 +843,7 @@
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>During the past two weeks I had:</mat-label>
                 <mat-select matInput placeholder="Pick an option" formControlName="pastTwoWeeksValue"
-                [placeholder]="item.value.pastTwoWeeksValue.pastTwoWeeksValue ? item.value.pastTwoWeeksValue.pastTwoWeeksValue : 'Pick an option'"
+                placeholder="{{item.value.pastTwoWeeksValue.pastTwoWeeksValue ? item.value.pastTwoWeeksValue.pastTwoWeeksValue : 'Pick an option'}}"
                 panelClass="dropdown-regular" autocomplete="off" required>
                   <mat-option value="diarrhea">Diarrhea</mat-option>
                   <mat-option value="gastritis">Gastritis</mat-option>
@@ -894,7 +894,7 @@
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>I can't consume</mat-label>
                 <input type="text" formControlName="dontEatItem" matInput placeholder="Describe the product" autocomplete="off" required
-                [placeholder]="item.value.dontEatItem.dontEatItem ? item.value.dontEatItem.dontEatItem : 'Describe the product'">
+                placeholder="{{item.value.dontEatItem.dontEatItem ? item.value.dontEatItem.dontEatItem : 'Describe the product'}}">
                 <mat-error class="input-errors" *ngIf="!dontEatItem.valid && dontEatItem.touched">This is <strong>required</strong></mat-error>
               </mat-form-field>
               <div class="btn-area">
@@ -971,7 +971,7 @@
                   <mat-label>Shopping location</mat-label>
                   <input type="text" formControlName="shoppingLocation" matInput
                     autocomplete="off" required
-                    [placeholder]="control.value.shoppingLocation ? control.value.shoppingLocation : 'Store name'">
+                    placeholder="{{control.value.shoppingLocation ? control.value.shoppingLocation : 'Store name'}}">
                   <mat-error class="input-errors" *ngIf="!shoppingLocation.valid && shoppingLocation.touched">
                     This is <strong>required</strong>
                   </mat-error>
@@ -1043,7 +1043,7 @@
                   <div class="form-fields">
                     <mat-form-field appearance="standard" floatLabel="always">
                       <mat-label>Which activities?</mat-label>
-                      <mat-select matInput [placeholder]="getChosenActivity(i).controls['physicalActivity'].value.exerciseName" 
+                      <mat-select matInput placeholder="{{getChosenActivity(i).controls['physicalActivity'].value.exerciseName}}" 
                         formControlName="physicalActivity" panelClass="dropdown-regular" autocomplete="off" required>
                         <mat-option *ngFor="let activity of activities" [(value)]="activity">{{activity.exerciseName}}</mat-option>
                         <mat-option value="other">Other</mat-option>

@@ -25,7 +25,7 @@
             .close-btn {
                 &.not-mobile {
                     z-index: 1500;
-                    .fa__icon, .svg-inline--fa, svg {
+                    .fa__icon, .svg-inline--fa, svg, svg path {
                         margin-right: 0;
                     }
                 }

@@ -40,7 +40,7 @@ section.step-wrapper {
 
 
         .btn-icon-left {
-            .fa__icon, .svg-inline--fa, svg {
+            .fa__icon, .svg-inline--fa, svg, svg path {
                 margin-right: 0 !important;
             }
 
@@ -67,7 +67,7 @@ section.slider-nav-container {
         width: 2em;
         font-size: 38px;
 
-        .fa__icon, .svg-inline--fa, svg {
+        .fa__icon, .svg-inline--fa, svg, svg path {
             margin: 0 0 2px 3px;
         }
     }

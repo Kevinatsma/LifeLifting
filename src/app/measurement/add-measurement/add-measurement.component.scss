@@ -13,7 +13,7 @@ main.add-measurement-wrapper {
             z-index: 13;
 
             .close-btn {
-                .fa__icon, .svg-inline--fa, svg {
+                .fa__icon, .svg-inline--fa, svg, svg path {
                     margin-right: 10px;
                     font-size: 13px;
                 }
@@ -139,7 +139,7 @@ main.add-measurement-wrapper {
 
                 @include  respond-down($sm) {
                     position: unset;
-                    width: 75%;
+                    width: 100%;
 
                     input {
                         width: 69% !important;

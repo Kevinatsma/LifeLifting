@@ -128,7 +128,7 @@
         margin: -3.5em auto 2.5em;
         width: 90%;
 
-        .fa__icon, .svg-inline--fa, svg {
+        .fa__icon, .svg-inline--fa, svg, svg path {
             margin-right: 3.5em;
             color: darken($brand-warning, 12%);
             font-size: 16px;

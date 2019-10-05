@@ -57,6 +57,14 @@ main.specialist-wrapper {
     overflow-y: auto;
     padding: 1.5em 2em;
 
+    &.fic-wrapper {
+        min-width: 75vw;
+
+        @include respond-down($sm) {
+            min-width: 100vw;
+        }
+    }
+
     @include respond-down($sm) {
         padding: 1.5em 0 0;
     }
@@ -74,7 +82,7 @@ main.specialist-wrapper {
         button.icon-button {
             position: inherit;
 
-            .fa__icon, .svg-inline--fa, svg {
+            .fa__icon, .svg-inline--fa, svg, svg path {
                 font-size: 16px;
             }
         }
@@ -272,7 +280,7 @@ main.specialist-wrapper {
                 margin-bottom: 1rem;
                 @extend %flex-center;
 
-                .fa__icon, .svg-inline--fa, svg {
+                .fa__icon, .svg-inline--fa, svg, svg path {
                     font-size: 38px;
                     color: $primary-color;
                 }
@@ -310,6 +318,8 @@ main.specialist-wrapper {
                 }
             }
             &.navigation {
+                min-width: 100%;
+
                 .first-consultation-nav {
                     display: flex;
                     width: 100%;
@@ -358,7 +368,7 @@ main.specialist-wrapper {
                             }
                         }
 
-                        .fa__icon, .svg-inline--fa, svg {
+                        .fa__icon, .svg-inline--fa, svg, svg path {
                             pointer-events: none;
                             touch-action: none;
                         }
@@ -508,7 +518,7 @@ main.specialist-wrapper {
                     background: transparent;
                 }
 
-                .fa__icon, .svg-inline--fa, svg {
+                .fa__icon, .svg-inline--fa, svg, svg path {
                     font-size: 38px;
                 }
             }
@@ -540,7 +550,7 @@ section.btn-area {
 
     button.text-link {
         margin: 1em 0;
-        .fa__icon, .svg-inline--fa, svg {
+        .fa__icon, .svg-inline--fa, svg, svg path {
             font-size: 12px;
             margin-left: 5px;
         }     

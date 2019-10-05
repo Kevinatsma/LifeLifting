@@ -30,11 +30,11 @@ export class Guideline {
         fatValue: number;
     };
     formulaData: {
-        maxCalories: number,
+        maxCalories?: number,
         fatPercentageRegular?: number,
         fatPercentageAthlete?: number,
-        bmi: number,
-        weight: string
+        bmi?: number,
+        weight?: string
     };
 }
 

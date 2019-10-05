@@ -152,9 +152,12 @@
     .info-card {
         background-color: #fff;
         box-shadow: $card-shadow;
+        box-sizing: border-box;
         display: flex;
-        flex-flow: row nowrap;
-        height: 100%;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: fit-content;
+        max-height: 180px;
         padding: 1em;
         position: relative;
 
@@ -170,17 +173,25 @@
 
             @extend %flex-center;
 
-            .fa__icon, .svg-inline--fa, svg {
+            .fa__icon, .svg-inline--fa, svg, svg path {
                 color: $icon-grey;
                 font-size: 18px;
             }
         }
 
         &__content {
+            align-items: flex-start;
+            box-sizing: border-box;
             display: flex;
             flex-flow: column nowrap;
             height: auto;
+            justify-content: flex-start;
             width: 100%;
+
+            p, span {
+                box-sizing: border-box;
+                display: flex;
+            }
         }
 
         &.long {

@@ -1,5 +1,6 @@
 {
   "conditions": [
+    {"value": "none", "viewValue": "None"},
     {"value":"diabetes-1", "viewValue": "Diabetes I"},
     {"value":"diabetes-2", "viewValue": "Diabetes II"},
     {"value":"hypertension", "viewValue": "Hypertension"},

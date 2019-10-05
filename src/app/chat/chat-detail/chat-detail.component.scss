@@ -124,7 +124,7 @@ mat-toolbar {
         }
 
         &:last-child {
-            .fa__icon, .svg-inline--fa, svg {
+            .fa__icon, .svg-inline--fa, svg, svg path {
                 font-size: 14px;
                 height: 14px;
                 width: 22px;

@@ -36,7 +36,7 @@
                     top: 15px;
                     z-index: 1500;
 
-                    .fa__icon, .svg-inline--fa, svg {
+                    .fa__icon, .svg-inline--fa, svg, svg path {
                         margin-right: 0;
                     }
                 }
@@ -46,7 +46,7 @@
                     top: 10px;
                     left: 20px;
 
-                    .fa__icon, .svg-inline--fa, svg {
+                    .fa__icon, .svg-inline--fa, svg, svg path {
                         margin-right: 10px;
                     }
                 }
@@ -111,12 +111,12 @@
                         text-decoration: underline;
                     }
 
-                    .fa__icon, .svg-inline--fa, svg {
+                    .fa__icon, .svg-inline--fa, svg, svg path {
                         display: none;
                     }
 
                     &.valid {
-                        .fa__icon, .svg-inline--fa, svg {
+                        .fa__icon, .svg-inline--fa, svg, svg path {
                             display: block;
                             color: $primary-color;
                             font-size: 18px;
@@ -196,7 +196,11 @@
                     }
 
                     &.personal-form {
-                        min-height: calc(100vh - 257px);
+                        min-height: calc(100vh - 217px);
+
+                        @include respond-down($sm) {
+                            min-height: calc(100vh - 257px);
+                        }
                     }
 
                     .time-range {

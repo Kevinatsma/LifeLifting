@@ -37,12 +37,14 @@ export class MeasurementService implements OnDestroy {
       this.updateMeasurement(docRef.id, measurementData);
     })
     .then(() => {
-      const weightData = {
-        currentWeight: data.weight
-      };
-      const uid = data.clientID;
+      if (data.weight) {
+        const weightData = {
+          currentWeight: data.weight
+        };
+        const uid = data.clientID;
 
-      this.userService.updateUser(uid, weightData);
+        this.userService.updateUser(uid, weightData);
+      }
     })
     .then(() => {
       // Show Snackbar

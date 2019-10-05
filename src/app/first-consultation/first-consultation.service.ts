@@ -47,8 +47,7 @@ export class FirstConsultationService {
         }
       };
       const uid = data.clientID;
-
-      this.userService.updateUser(formulaData, uid);
+      this.userService.updateUser(uid, formulaData);
     })
     .then(() => {
       // Show Snackbar
@@ -62,7 +61,6 @@ export class FirstConsultationService {
       this.dialog.closeAll();
     })
     .catch(error => {
-      alert(error.message);
       console.error(error.message);
     });
   }
@@ -82,7 +80,6 @@ export class FirstConsultationService {
       this.dialog.closeAll();
     })
     .catch(error => {
-      alert(error.message);
       console.error(error.message);
     });
   }

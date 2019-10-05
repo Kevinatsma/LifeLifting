@@ -35,7 +35,7 @@ div.success-wrapper {
             top: 0;
             right: 5px;
 
-            .fa__icon, .svg-inline--fa, svg {
+            .fa__icon, .svg-inline--fa, svg, svg path {
                 color: $grey;
             }
         }
@@ -85,7 +85,7 @@ div.success-wrapper {
                     }
                 }
                 
-                ::ng-deep .fa__icon, .svg-inline--fa, svg {
+                ::ng-deep .fa__icon, .svg-inline--fa, svg, svg path {
                     color: $secondary-color;
                     margin: 0.1em 1.5em 0 0;
                 }
