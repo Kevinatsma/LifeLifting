@@ -3,7 +3,7 @@
   <ng-template #loading>
     <app-loading-spinner></app-loading-spinner>
   </ng-template>
-  <div class="mobile create-appointment-mobile" *ngIf="showStepTwoMobile">
+  <form class="create-appointment-mobile" [formGroup]="appointmentForm" *ngIf="showStepTwoMobile">
     <div class="close-section">
       <button class="text-link close-btn" (click)="closeMobileAppointment()" type="button">
         <i class="fa__icon fas fa-arrow-left"></i> Back
@@ -30,18 +30,98 @@
           </p>
       </div>
     </section>
-    <div class="location-card">
-      <img src="./../../../../assets/img/icons/maps.svg">
-      <div class="address">
-        <h4>Jirón Arturo García Salazar 306</h4>
-        <p>Chama - Surco. Lima, Perú</p>
-      </div>
-      <a class="text-link" href="https://goo.gl/maps/3dXhLj2B94KLRWZS8" target="_blank">Open in Maps</a>
+
+    <div class="meeting-place-picker">
+      <h5>How is the meeting taking place?</h5>
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-select matInput placeholder="Online or in real?"
+        (selectionChange)="toggleContext()" formControlName="meetMethod" autocomplete="off" 
+        panelClass="dropdown-regular" required>
+          <mat-option value="faceToFace">Face to face</mat-option>
+          <mat-option value="onlineAppointment">Online appointment</mat-option>
+        </mat-select>
+        <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+      </mat-form-field>
     </div>
-    <button type="submit" class="btn-primary" (click)="addMobileEvent()">
+
+    <ng-container *ngIf="faceToFace | async">
+      <div class="location-card">
+        <img src="./../../../../assets/img/icons/maps.svg">
+        <div class="address">
+          <h3>Jirón Arturo García Salazar 306</h3>
+          <p>Chama - Surco. Lima, Perú</p>
+        </div>
+        <a class="text-link" href="https://goo.gl/maps/3dXhLj2B94KLRWZS8" target="_blank">
+          <span class="not-mobile">Open in Maps</span>
+          <i class="mobile fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="onlineAppointment | async">
+      <div class="meeting-place-picker">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-select matInput placeholder="How would you like to be contacted?"
+          (selectionChange)="toggleContactMethod()" formControlName="contactMethod" autocomplete="off" 
+          panelClass="dropdown-regular" required>
+            <mat-option value="whatsApp"><i class="fa__icon fab fa-whatsapp"></i> WhatsApp</mat-option>
+            <mat-option value="skype"><i class="fa__icon fab fa-skype"></i> Skype</mat-option>
+            <mat-option value="phone"><i class="fa__icon fas fa-phone"></i> Phone (only Peru)</mat-option>
+          </mat-select>
+          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
+        </mat-form-field>
+      </div>
+
+      <ng-container *ngIf="whatsApp | async">
+        <div class="multiple-input online-phone" *ngIf="areaCodes">
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Code</mat-label>
+            <mat-select matInput placeholder="+1"
+            panelClass="dropdown-area-code" formControlName="wappAreaCode" autocomplete="off" required>
+              <mat-option *ngFor="let code of areaCodes" value="{{code.dial_code}}" class="dial-code">
+                <img 
+                src="./../../../../assets/img/icons/flags/{{code.name.toString().split(' ').join('-').replace(',', '').split('.').join('').split('(').join('').split(')').join('').toLowerCase() }}.svg">
+                <div class="country-content">
+                  <span class="country-content__title">{{code.name}}</span>
+                  <span class="country-content__code">{{code.dial_code}}</span>
+                </div>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Phone Number</mat-label>
+            <input type="number" formControlName="wappRest" matInput placeholder="123456789" autocomplete="off" >
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="skype | async">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Skype name</mat-label>
+          <input type="text" matInput formControlName="skypeName" placeholder="What's your skype name?" />
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngIf="onlinePhone | async">
+        <div class="multiple-input">
+          <mat-form-field class="fixed-value" appearance="standard" floatLabel="always">
+            <mat-label>Area code</mat-label>
+            <input type="text" matInput formControlName="phoneAreaCode" [value]="'+51'" readonly
+              autofocus="off" autocomplete="off" maxlength="3">
+          </mat-form-field>
+          <mat-form-field appearance="standard" floatLabel="always">
+            <mat-label>Phone Number</mat-label>
+            <input type="number" formControlName="phoneRest" matInput placeholder="123456789" autocomplete="off" >
+          </mat-form-field>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <button type="submit" class="btn-primary" (click)="addMobileEvent()" [disabled]="!appointmentForm.valid" [class.disabled]="!appointmentForm.valid">
       Confirm appointment
     </button>
-  </div>
+  </form>
+
   <section class="action-toolbar-top calendar__toolbar">
     <div class="left">
       <button class="icon-button hidden">
@@ -76,13 +156,6 @@
         <i class="fa__icon fas fa-arrow-left"></i>
         <span class="not-mobile">Previous</span>
       </button>
-      <!-- <div
-        class="btn btn-outline-secondary"
-        mwlCalendarToday
-        [(viewDate)]="viewDate"
-      >
-        Today
-      </div> -->
       <h2>
         {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}
       </h2>

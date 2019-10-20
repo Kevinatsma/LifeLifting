@@ -53,31 +53,35 @@ export class PrintMealplanComponent implements OnInit {
   drawCanvas() {
     const quality = 4;
 
-    html2canvas(this.pageOne.nativeElement, {
-      useCORS: true,
-      scale: quality,
-      letterRendering: true
-    })
-    .then(canvas => {
-      this.canvas = canvas;
-      this.pdf = new jsPDF('p', 'px', 'a4');
-    })
-    .then(() => {
-      this.pageOne.nativeElement.style.width = `${this.docWidth}px`;
-    });
+    if (this.pageOne) {
+      html2canvas(this.pageOne.nativeElement, {
+        useCORS: true,
+        scale: quality,
+        letterRendering: true
+      })
+      .then(canvas => {
+        this.canvas = canvas;
+        this.pdf = new jsPDF('p', 'px', 'a4');
+      })
+      .then(() => {
+        this.pageOne.nativeElement.style.width = `${this.docWidth}px`;
+      });
+    }
 
-    html2canvas(this.pageTwo.nativeElement, {
-      useCORS: true,
-      scale: quality,
-      letterRendering: true
-    })
-    .then(canvas => {
-      this.canvasTwo = canvas;
-      this.pdfTwo = new jsPDF('p', 'px', 'a4');
-    })
-    .then(() => {
-      this.pageTwo.nativeElement.style.width = `${this.docWidth}px`;
-    });
+    if (this.pageTwo) {
+      html2canvas(this.pageTwo.nativeElement, {
+        useCORS: true,
+        scale: quality,
+        letterRendering: true
+      })
+      .then(canvas => {
+        this.canvasTwo = canvas;
+        this.pdfTwo = new jsPDF('p', 'px', 'a4');
+      })
+      .then(() => {
+        this.pageTwo.nativeElement.style.width = `${this.docWidth}px`;
+      });
+    }
   }
 
   saveAsPDF() {

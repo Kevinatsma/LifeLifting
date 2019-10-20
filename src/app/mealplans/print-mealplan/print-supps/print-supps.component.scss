@@ -154,6 +154,12 @@ main {
                                 &:first-child {
                                     margin-top: 3px;
                                 }
+
+
+                                span {
+                                    color: $grey;
+                                    font-size: 2.8pt;
+                                }
                             }
                         }
                     }

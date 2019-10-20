@@ -41,10 +41,10 @@ export class ExerciseDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.user$.unsubscribe();
-    this.exercise$.unsubscribe();
-    this.prevExercise$.unsubscribe();
-    this.nextExercise$.unsubscribe();
+    if (this.user$ !== null) { this.user$.unsubscribe(); }
+    if (this.exercise$ !== null) { this.exercise$.unsubscribe(); }
+    if (this.prevExercise$ !== null && this.prevExercise$ !== undefined) { this.prevExercise$.unsubscribe(); }
+    if (this.nextExercise$ !== null && this.nextExercise$ !== undefined) { this.nextExercise$.unsubscribe(); }
   }
 
   getUser() {

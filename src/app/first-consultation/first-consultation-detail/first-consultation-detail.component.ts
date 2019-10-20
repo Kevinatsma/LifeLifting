@@ -104,9 +104,9 @@ export class FirstConsultationDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.firstConsultation$.unsubscribe();
-    this.user$.unsubscribe();
-    this.client$.unsubscribe();
+    if (this.firstConsultation$ !== undefined) { this.firstConsultation$.unsubscribe(); }
+    if (this.user$ !== undefined) { this.user$.unsubscribe(); }
+    if (this.client$ !== undefined) { this.client$.unsubscribe(); }
     if (this.exerciseOne$ !== undefined) { this.exerciseOne$.unsubscribe(); }
     if (this.exerciseTwo !== undefined) { this.exerciseTwo$.unsubscribe(); }
     if (this.exerciseThree !== undefined) { this.exerciseThree$.unsubscribe(); }

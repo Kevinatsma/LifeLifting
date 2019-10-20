@@ -47,7 +47,6 @@ export class BookingService implements OnDestroy {
   addEvent(data, user) {
     return this.afs.collection('appointments').add(data)
     .then(docRef => {
-      console.log('Document written with ID: ', docRef.id);
       const eventData = {
         eventID: docRef.id
       };

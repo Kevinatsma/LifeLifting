@@ -55,6 +55,7 @@ main.specialist-wrapper {
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
+        min-width: 70vw;
 
         .package-controls {
             width: 15%;

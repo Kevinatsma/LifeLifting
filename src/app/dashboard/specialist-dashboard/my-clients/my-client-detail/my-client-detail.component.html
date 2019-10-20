@@ -166,7 +166,7 @@
       <h1 class="section-title left">Guidelines</h1>
       <section class="guidelines" *ngIf="guidelines">
         <div class="guidelines__container">
-          <app-guideline-list-item *ngFor="let guideline of guidelines | async" [guideline]="guideline"></app-guideline-list-item>
+          <app-guideline-list-item *ngFor="let guideline of guidelines" [guideline]="guideline"></app-guideline-list-item>
           <div class="guidelines__container__filler">
             Filler
           </div>

@@ -45,10 +45,10 @@ export class FoodDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.user$.unsubscribe();
-    this.food$.unsubscribe();
-    this.prevFood$.unsubscribe();
-    this.nextFood$.unsubscribe();
+    if (this.user$ !== null) { this.user$.unsubscribe(); }
+    if (this.food$ !== null) { this.food$.unsubscribe(); }
+    if (this.prevFood$ !== null && this.prevFood$ !== undefined) { this.prevFood$.unsubscribe(); }
+    if (this.nextFood$ !== null && this.nextFood$ !== undefined) { this.nextFood$.unsubscribe(); }
   }
 
   getUser() {

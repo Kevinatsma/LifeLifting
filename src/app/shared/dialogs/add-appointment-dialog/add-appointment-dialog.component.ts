@@ -97,7 +97,6 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       startMinutes: [''],
       appointmentContext: ['', Validators.required],
       location: [''] || null,
-      skypeName: [''] || null
     });
   }
 
@@ -116,13 +115,11 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       this.faceToFace.next(true);
       if (this.appointmentForm.controls['contactMethod']) {
         this.appointmentForm.removeControl('contactMethod');
-        console.log('control removed');
       }
     } else {
       this.faceToFace.next(false);
       this.onlineAppointment.next(true);
       this.appointmentForm.addControl('contactMethod', new FormControl('', Validators.required));
-      console.log('control added');
     }
 
     this.cdr.detectChanges();
@@ -173,6 +170,7 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       this.appointmentForm.removeControl('skypeName');
     }
   }
+
   // Getters
   get appointmentText() {
     return this.appointmentForm.get('appointmentText');
@@ -259,7 +257,7 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       whatsappNumber: this.appointmentForm['wappAreaCode'] ?
         this.appointmentForm.get('wappAreaCode').value + this.appointmentForm.get('wappRest').value :
         null,
-      skypeName: this.appointmentForm['skkypeName'] ? this.appointmentForm.get('skypeName').value : null,
+      skypeName: this.appointmentForm['skypeName'] ? this.appointmentForm.get('skypeName').value : null,
       onlineAppointmentPhone: {
         phoneAreaCode: this.appointmentForm['phoneAreaCode'] ? this.appointmentForm.get('phoneAreaCode').value : null,
         phoneRest: this.appointmentForm['phoneAreaCode'] ? this.appointmentForm.get('phoneRest').value : null

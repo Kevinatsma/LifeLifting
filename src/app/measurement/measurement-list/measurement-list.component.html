@@ -8,9 +8,11 @@
       <h3 class="not-mobile">Specialist</h3>
       <h3>Weight</h3>
     </div>
-    <app-measurement-list-item *ngFor="let measurement of measurements; let i=index"
+    <div *ngFor="let measurement of measurements; let i=index">
+    <app-measurement-list-item
     [client]="client" [measurement]="measurement" [i]="i">
     </app-measurement-list-item>
+    </div>
     <p class="card-text nothing-here" *ngIf="!measurements.length">
       No measurements yet
     </p>

@@ -18,6 +18,7 @@
 }
 
 ::ng-deep .cdk-overlay-pane {
+    box-shadow: $card-shadow;
     overflow-y: auto;
 }
 

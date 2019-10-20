@@ -7,7 +7,7 @@
   </button>
 </div>
 
-<main class="print-container" *ngIf="mealplan">
+<main class="print-container" *ngIf="mealplan && client">
   <section class="close-section">
     <button mat-icon-button class="not-mobile close-btn" (click)="closeDialog()" type="button">
       <i class="fa__icon fas fa-times"></i>
@@ -35,7 +35,7 @@
       </div>
     </div>
     
-    <div class="mealplan-wrapper" *ngIf="mealplan && client">
+    <div class="mealplan-wrapper">
       <div class="mealplan-wrapper__schedule">
         <div class="day-wrapper">
           <div class="day-wrapper__header">

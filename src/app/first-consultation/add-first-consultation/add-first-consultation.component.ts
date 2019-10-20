@@ -526,9 +526,6 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
         this.generalDataForm.removeControl(`${formControlName}Note`);
       }
     }
-    console.log(this.habitForm);
-    console.log(this.bodyFunctionsForm);
-    console.log(this.generalDataForm);
   }
 
   closeDialog() {

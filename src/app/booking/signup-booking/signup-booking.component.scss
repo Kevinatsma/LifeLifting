@@ -1,22 +1,51 @@
 @import './../../../assets/scss/_master.scss';
 @import './../../../assets/scss/_calendar.scss';
 
+
+::ng-deep mat-option, mat-option {
+    .fa__icon, .svg-inline--fa, svg, svg path {
+        margin-right: 1em;
+        font-size: 20px!important;
+
+        &.fa-phone {
+            color: $secondary-color;
+            font-size: 18px!important;
+            transform: scale(-1, 1);
+        }
+
+        &.fa-whatsapp {
+            color: #25D366;
+        }
+
+        &.fa-skype {
+            color: #00aff0;
+        }
+    }
+}
+
 .create-appointment-mobile {
     background: #fff;
+    box-shadow: $card-shadow;
     position: fixed;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 0 2em;
+    padding: 0 5em;
     overflow-x: hidden;
     overflow-y: auto;
     height: 100%;
     top: 0;
-    left: 0;
+    left: 30vw;
     right: 0;
     bottom: 0;
     z-index: 1000;
+
+    @include respond-down($sm) {
+        left: 0;
+        right: 0;
+        padding: 0 2em;
+    }
 
     .close-section {        
         .fa__icon, .svg-inline--fa, svg, svg path {
@@ -35,21 +64,44 @@
         }
     }
 
-    .location-card {
-        width: 110%;
-        margin: 0 0 2em -5%;
-        padding: 0 0 0 1.5em;
+    .meeting-place-picker {
+        width: 100%;
+
+        mat-form-field {
+            width: 100%;
+        }
+    }
+
+    mat-form-field {
+        width: 60%;
+
         @include respond-down($sm) {
-            padding: 1em;
+          width: 100%;  
+        }
+    }
+
+    .location-card {
+        width: 70%;
+        margin: 1em auto 2em;
+        padding: 0 2em;
+
+        @include respond-down($sm) {
+            padding: 1em 2em 1em 1em;
+            width: 100%;
         }
 
         .address {
             width: 60%;
 
+            h3 {
+                margin-left: 0;
+            }
+
             @include respond-down($sm) {
-                h4 {
+                h3 {
                     font-size: 16px;
                 }
+
                 p {
                     font-size: 13px;
                 }
@@ -85,6 +137,12 @@
     button {
         margin: 1em auto;
         min-height: 50px;
+
+        &.disabled {
+            border: none;
+            background: $light-grey;
+            color: $grey;
+        }
     }
 }
 

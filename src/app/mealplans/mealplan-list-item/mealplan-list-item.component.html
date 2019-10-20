@@ -1,6 +1,6 @@
 
 <mat-card class="list-item-card" *ngIf="mealplan && auth.user | async as user">
-  <div *ngIf="client" class="card-circle" (click)="linkToChild(mealplan)">
+  <div class="card-circle" (click)="linkToChild(mealplan)">
     <i class="fa__icon fas fa-weight"></i>
     <div class="nr-circle">
       <span>{{mealplan.mealplanNR}}</span>

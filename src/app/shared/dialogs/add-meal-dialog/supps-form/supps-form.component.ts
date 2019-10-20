@@ -114,10 +114,10 @@ export class SuppsFormComponent implements OnInit, OnDestroy {
     this.specialistID$.unsubscribe();
     this.foods$.unsubscribe();
     if (this.exerciseOne$ !== undefined) { this.exerciseOne$.unsubscribe(); }
-    if (this.exerciseTwo !== undefined) { this.exerciseTwo$.unsubscribe(); }
-    if (this.exerciseThree !== undefined) { this.exerciseThree$.unsubscribe(); }
-    this.guideline$.unsubscribe();
-    this.guidelines$.unsubscribe();
+    if (this.exerciseTwo$ !== undefined) { this.exerciseTwo$.unsubscribe(); }
+    if (this.exerciseThree$ !== undefined) { this.exerciseThree$.unsubscribe(); }
+    if (this.guideline$ !== undefined) { this.guideline$.unsubscribe(); }
+    if (this.guidelines$ !== undefined) { this.guidelines$.unsubscribe(); }
   }
 
 

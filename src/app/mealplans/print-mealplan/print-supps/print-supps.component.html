@@ -19,27 +19,27 @@
     </div>
     <div class="meal-container">
       <div class="activity__meals">
-        <div class="activity__time-section" *ngIf="supplementation.supps.beforeOneArr[0]">
+        <div class="activity__time-section" *ngIf="supplementation.supps.beforeOneArr[0].amount > 0">
           <h1>Before the training</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.beforeOneArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue}}</span>
             </li>
           </ul>
         </div>
-        <div class="activity__time-section" *ngIf="supplementation.supps.duringOneArr[0]">
+        <div class="activity__time-section" *ngIf="supplementation.supps.duringOneArr[0].amount > 0">
           <h1>During the training</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.duringOneArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue}}</span>
             </li>
           </ul>
         </div>
-        <div class="activity__time-section" *ngIf="supplementation.supps.afterOneArr[0]">
+        <div class="activity__time-section" *ngIf="supplementation.supps.afterOneArr[0].amount > 0">
           <h1>After the training</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.afterOneArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue}}</span>
             </li>
           </ul>
         </div>
@@ -53,27 +53,27 @@
     </div>
     <div class="meal-container">
       <div class="activity__meals">
-        <div class="activity__time-section" *ngIf="supplementation.supps.beforeTwoArr[0]">
+        <div class="activity__time-section" *ngIf="supplementation.supps.beforeTwoArr[0].amount > 0">
           <h1>Before the training</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.beforeTwoArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue}}</span>
             </li>
           </ul>
         </div>
-        <div class="activity__time-section" *ngIf="supplementation.supps.duringTwoArr[0]">
+        <div class="activity__time-section" *ngIf="supplementation.supps.duringTwoArr[0].amount > 0">
           <h1>During the training</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.duringTwoArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue}}</span>
             </li>
           </ul>
         </div>
-        <div class="activity__time-section" *ngIf="supplementation.supps.afterTwoArr[0]">
+        <div class="activity__time-section" *ngIf="supplementation.supps.afterTwoArr[0].amount > 0">
           <h1>After the training</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.afterTwoArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue}}</span>
             </li>
           </ul>
         </div>
@@ -87,27 +87,27 @@
     </div>
     <div class="meal-container">
       <div class="activity__meals">
-        <div class="activity__time-section" *ngIf="supplementation.supps.beforeThreeArr[0]">
+        <div class="activity__time-section" *ngIf="supplementation.supps.beforeThreeArr[0].amount > 0">
           <h1>Before the training</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.beforeThreeArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue}}</span>
             </li>
           </ul>
         </div>
-        <div class="activity__time-section" *ngIf="supplementation.supps.duringThreeArr[0]">
+        <div class="activity__time-section" *ngIf="supplementation.supps.duringThreeArr[0].amount > 0">
           <h1>During the training</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.duringThreeArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue}}</span>
             </li>
           </ul>
         </div>
-        <div class="activity__time-section" *ngIf="supplementation.supps.afterThreeArr[0]">
+        <div class="activity__time-section" *ngIf="supplementation.supps.afterThreeArr[0].amount > 0">
           <h1>After the training</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.afterThreeArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}}
+              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue}}</span>
             </li>
           </ul>
         </div>

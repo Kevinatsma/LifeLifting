@@ -56,6 +56,7 @@ main.specialist-wrapper {
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
+        min-width: 70vw;
 
         .package-controls {
             @extend %flex-center;
@@ -63,7 +64,7 @@ main.specialist-wrapper {
         }
 
         mat-card.list-item-card {
-            width: 60%;
+            width: 50%;
             margin: 1.5em;
             cursor: auto;
             @include respond-down($sm) {

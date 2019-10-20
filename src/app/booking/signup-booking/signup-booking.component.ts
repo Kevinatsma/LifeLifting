@@ -3,13 +3,14 @@ import {
   ChangeDetectionStrategy,
   OnInit,
   ViewChild,
-  OnDestroy
+  OnDestroy,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   isSameMonth,
   isSameDay,
 } from 'date-fns';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -35,7 +36,8 @@ import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointme
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UtilService } from './../../shared/services/util.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import countryCodes from './../../shared/data/JSON/countryCodes.json';
 
 @Component({
   selector: 'app-signup-booking',
@@ -61,6 +63,8 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
 
   appointmentForm: FormGroup;
+  phoneAreaCode = new FormControl({value: '+51', disabled: true});
+  areaCodes = countryCodes.countryCodes;
 
   modalData: {
     action: string;
@@ -98,6 +102,15 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
     'October', 'November', 'December'
   ];
 
+  // Meet methods
+  faceToFace: Subject<boolean> = new Subject();
+  onlineAppointment: Subject<boolean> = new Subject();
+
+  // Call methods
+  whatsApp: Subject<boolean> = new Subject();
+  skype: Subject<boolean> = new Subject();
+  onlinePhone: Subject<boolean> = new Subject();
+
   // TODO: HOOKUP MAT DIALOG INSTEAD OF BOOTSTRAP MODAL
   constructor( private userService: UserService,
                public auth: AuthService,
@@ -110,19 +123,88 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
                public router: Router,
                private route: ActivatedRoute,
                private fb: FormBuilder,
-               private afs: AngularFirestore) {
+               private afs: AngularFirestore,
+               private cdr: ChangeDetectorRef) {
                 this.getUser();
                 this.isMobile = this.utils.checkIfMobile();
                }
 
   ngOnInit() {
     this.replaceDates();
+    this.appointmentForm = this.fb.group({
+      meetMethod: ['', Validators.required],
+    });
   }
 
   ngOnDestroy() {
     this.user$.unsubscribe();
     if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
   }
+
+    // Toggles
+    toggleContext() {
+      const formValue = this.appointmentForm.get('meetMethod').value;
+
+      if (formValue === 'faceToFace') {
+        this.onlineAppointment.next(false);
+        this.faceToFace.next(true);
+        if (this.appointmentForm.controls['contactMethod']) {
+          this.appointmentForm.removeControl('contactMethod');
+        }
+      } else {
+        this.faceToFace.next(false);
+        this.onlineAppointment.next(true);
+        this.appointmentForm.addControl('contactMethod', new FormControl('', Validators.required));
+      }
+
+      this.cdr.detectChanges();
+    }
+
+    toggleContactMethod() {
+      const formValue = this.appointmentForm.get('contactMethod').value;
+      if (formValue === 'whatsApp') {
+        this.whatsApp.next(true);
+        this.skype.next(false);
+        this.onlinePhone.next(false);
+
+        this._resetContactForm();
+        this.appointmentForm.addControl('wappAreaCode', new FormControl('', Validators.required));
+        this.appointmentForm.addControl('wappRest', new FormControl('', Validators.required));
+
+      } else if (formValue  === 'skype') {
+        this.whatsApp.next(false);
+        this.skype.next(true);
+        this.onlinePhone.next(false);
+
+        this._resetContactForm();
+        this.appointmentForm.addControl('skypeName', new FormControl('', Validators.required));
+      } else {
+        this.whatsApp.next(false);
+        this.skype.next(false);
+        this.onlinePhone.next(true);
+
+        this._resetContactForm();
+        this.appointmentForm.addControl('phoneAreaCode', this.phoneAreaCode);
+        this.appointmentForm.addControl('phoneRest', new FormControl('', Validators.required));
+      }
+
+      this.cdr.detectChanges();
+    }
+
+
+    _resetContactForm() {
+      if (this.appointmentForm.controls['phoneAreaCode']) {
+        this.appointmentForm.removeControl('phoneAreaCode');
+        this.appointmentForm.removeControl('phoneRest');
+      }
+      if (this.appointmentForm.controls['wappAreaCode']) {
+        this.appointmentForm.removeControl('wappAreaCode');
+        this.appointmentForm.removeControl('wappRest');
+      }
+      if (this.appointmentForm.controls['skypeName']) {
+        this.appointmentForm.removeControl('skypeName');
+      }
+    }
 
   replaceDates() {
     this.utils.replaceCalendarHeaderDates();
@@ -236,8 +318,6 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
     this.bookingService.updateEvent(obj.eventID, data);
   }
 
-
-  // TODO: OPEN MAT DIALOG AND SEND EVENT OBJECT TO DISPLAY CORRECTLY
   openEventDetailDialog(event) {
     this.dialog.open(AppointmentDetailDialogComponent, {
       data: {
@@ -247,21 +327,10 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
     });
   }
 
-
   hourClicked(date) {
-    if (!this.isMobile) {
-      this.dialog.open(AddAppointmentDialogComponent, {
-        data: {
-          user: this.user,
-          specialist: this.specialist,
-          date: date
-        },
-      });
-    } else {
-      this.showStepTwoMobile = true;
-      this.startDate = date;
-      this.getTimeAndDate();
-    }
+    this.showStepTwoMobile = true;
+    this.startDate = date;
+    this.getTimeAndDate();
   }
 
   closeMobileAppointment() {
@@ -290,40 +359,9 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
     });
   }
 
-  addEvent() {
-    const dialogRef = this.dialog.open(AddAppointmentDialogComponent, {
-      data: {
-        user: this.user,
-        specialist: this.specialist
-      },
-      panelClass: 'add-appointment-dialog'
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === true) {
-        const uid = this.user.uid;
-        const data = {
-          status: {
-            accepted: false,
-            appointment: true,
-            signUpCompleted: true,
-            appointmentAccepted: false,
-            appointmentCompleted: false,
-            subscriptionValid: this.user.status.subscriptionValid
-          }
-        };
-        this.userService.updateUser(uid, data);
-        setTimeout(() => {
-          this.router.navigate(['../limbo'], { relativeTo: this.route });
-        }, 500);
-      } else {
-        return null;
-      }
-    });
-  }
-
   addMobileEvent() {
     const specialistID = this.specialist.specialistID;
+    const f2fPhone = this.appointmentForm.controls['meetMethod'].value === 'faceToFace' ? this.user.basicData.phoneNumber : null;
 
     const data: Appointment = {
       accepted: false,
@@ -344,8 +382,16 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
       specialistID: specialistID,
       clientID: this.user.uid,
       members: [this.user.uid, this.specialist.uid],
-      meetMethod: 'faceToFace',
-      faceToFacePhone: this.user.basicData.phoneNumber
+      meetMethod: this.appointmentForm.get('meetMethod').value,
+      contactMethod: this.appointmentForm.controls['contactMethod'] ? this.appointmentForm.get('contactMethod').value : null,
+      faceToFacePhone: f2fPhone,
+      whatsappNumber: this.appointmentForm.controls['wappAreaCode'] ?
+        this.appointmentForm.get('wappAreaCode').value + this.appointmentForm.get('wappRest').value : null,
+      skypeName: this.appointmentForm.controls['skypeName'] ? this.appointmentForm.get('skypeName').value : null,
+      onlineAppointmentPhone: {
+        phoneAreaCode: this.appointmentForm.controls['phoneAreaCode'] ? this.appointmentForm.get('phoneAreaCode').value : null,
+        phoneRest: this.appointmentForm.controls['phoneAreaCode'] ? this.appointmentForm.get('phoneRest').value : null
+      }
     };
 
     // Update request amount on specialist
@@ -388,13 +434,11 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
   }
 
   // Chat
-
   chat(id) {
     this.threadService.createThread(id);
   }
 
   // Misc
-
   goBack() {
     this.location.back();
   }

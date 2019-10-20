@@ -30,7 +30,8 @@ export class MeasurementListItemComponent implements OnInit, OnDestroy {
                public router: Router,
                public dialog: MatDialog,
                private userService: UserService,
-               private measurementService: MeasurementService) { }
+               private measurementService: MeasurementService) {
+                }
 
   ngOnInit() {
     this.specialist$ =  this.userService.getUserDataByID(this.measurement.specialistID).subscribe(user => this.specialist = user);

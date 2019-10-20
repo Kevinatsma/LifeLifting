@@ -34,9 +34,6 @@ export class ReviewListItemComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getUser();
-    setTimeout(() =>  {
-      console.log(this.review);
-    }, 1000);
   }
 
   ngOnDestroy() {

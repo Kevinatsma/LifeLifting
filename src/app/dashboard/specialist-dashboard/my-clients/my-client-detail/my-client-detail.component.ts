@@ -42,7 +42,7 @@ export class MyClientDetailComponent implements OnInit, OnDestroy {
   firstConsultations: FollowUpConsultation[];
   firstConsultations$: Subscription;
   guidelinesCol: AngularFirestoreCollection<Guideline>;
-  guidelines: Observable<Guideline[]>;
+  guidelines: Guideline[];
   mealplansCol: AngularFirestoreCollection<Mealplan>;
   mealplans$: Subscription;
   mealplans: Mealplan[];
@@ -111,7 +111,9 @@ export class MyClientDetailComponent implements OnInit, OnDestroy {
   getGuidelines(uid) {
     this.guidelinesCol = this.afs.collection('guidelines', ref => ref.where('clientID', '==', `${uid}`)
       .orderBy('creationDate', 'desc'));
-    this.guidelines = this.guidelinesCol.valueChanges();
+    this.guidelinesCol.valueChanges().subscribe(guidelines => {
+      this.guidelines = guidelines;
+    });
   }
 
   getMealplans(uid) {

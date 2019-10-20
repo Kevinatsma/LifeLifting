@@ -69,7 +69,9 @@ export class MealplanDetailComponent implements OnInit, OnDestroy {
                public location: Location) {
                 this.aboutExtended = false;
                 setTimeout(() => {
-                  this.createHighlight(this.mealplanNav.nativeElement);
+                  if (this.mealplanNav) {
+                    this.createHighlight(this.mealplanNav.nativeElement);
+                  }
                 }, 1000);
                 this.stateChange$ = this.editStateChange.subscribe((value) => {
                   this.actionMenuOpen = value;
@@ -100,8 +102,7 @@ export class MealplanDetailComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       const id = this.route.snapshot.paramMap.get('id');
       this.mealplan$ = this.mealplanService.getMealplanDataById(id).subscribe(mealplan => {
-        // this.mealplan = mealplan;
-        this.mealplan = null;
+        this.mealplan = mealplan;
         this.client$ = this.userService.getUserDataByID(mealplan.clientID).subscribe(user => this.client = user);
         this.getGuideline(mealplan);
         });
