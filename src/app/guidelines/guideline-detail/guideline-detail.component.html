@@ -58,7 +58,11 @@
 
     <div class="package-container">
       <mat-card class="list-item-card" *ngIf="guideline">
-          <section *ngIf="client" class="card-circle" [style.background]="'url('+ client.photoURL +')'">
+          <section *ngIf="client" class="card-circle" [style.background-image]="'url('+ client.photoURL +')'">
+            <div class="no-photo" *ngIf="!client.photoURL">
+              <i class="fa__icon fas fa-sad-tear"></i>
+              <p class="card-text">No photo</p>
+            </div>
           </section>
           <section class="chip-area">
             <p class="secondary-chip">
@@ -186,7 +190,7 @@
 
           </section>
           
-          <section class="guideline-activities" *ngIf="guideline && guideline.activities">
+          <section class="guideline-activities" *ngIf="guideline && guideline.activities && guideline.activities.length > 0">
             <h2 class="section-title">Activities</h2>
             <div class="activity">
               <div class="activity__left" *ngIf="exerciseOne">

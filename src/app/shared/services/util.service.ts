@@ -142,6 +142,11 @@ export class UtilService {
     const S = data.subescapular;
     const SP = data.crestaIliaca;
 
+    console.log('biceps', B);
+    console.log('triceps', T);
+    console.log('subescapular', S);
+    console.log('crestaIliaca', SP);
+
     const logX =  B + T + S + SP;
 
     const D = c - (m * Math.log(logX));

@@ -741,6 +741,7 @@ main.specialist-wrapper {
                 height: 175px;
                 margin: -85px auto 0;
                 box-shadow: $card-shadow;
+                background-color: $middle-grey;
                 background-size: cover!important;
                 background-position: center!important;
                 border-radius: 50%;
@@ -752,6 +753,12 @@ main.specialist-wrapper {
 
                 .fa__icon, .svg-inline--fa, svg, svg path {
                     font-size: 38px;
+                }
+
+                .no-photo {
+                    @extend %flex-center;
+                    flex-flow: column nowrap;
+                    background: transparent;
                 }
             }
 

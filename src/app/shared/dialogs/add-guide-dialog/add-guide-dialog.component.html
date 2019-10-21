@@ -174,7 +174,7 @@
           Describe more about the activity that the client mainly loves and does. Also put in the macro distribution values. 
         </p>
 
-        <div class="add-form-field-container" formArrayName="activityArr">
+        <div class="add-form-field-container" formArrayName="activityArr" *ngIf="activityForms.controls.length > 0">
           <h4>Add the client's activities</h4>
           <section class="dynamic-form-field-container" *ngFor="let activity of activityForms.controls; let i=index" [formGroupName]="i">
             <div class="number-id">

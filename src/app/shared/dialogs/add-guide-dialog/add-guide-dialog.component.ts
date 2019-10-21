@@ -160,7 +160,7 @@ export class AddGuideDialogComponent implements OnInit, OnDestroy {
     });
 
     this.activityForm = this.fb.group({
-      activityArr: this.fb.array([ this.createActivity() ]),
+      activityArr: this.fb.array([]),
     });
 
     this.macroForm = this.fb.group({

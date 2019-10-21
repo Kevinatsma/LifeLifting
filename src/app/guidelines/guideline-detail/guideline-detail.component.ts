@@ -82,12 +82,8 @@ export class GuidelineDetailComponent implements OnInit, OnDestroy {
     if (this.measurements$ !== undefined) { this.measurements$.unsubscribe(); }
     if (this.guideline$ !== undefined) { this.guideline$.unsubscribe(); }
     if (this.exerciseOne$ !== undefined) { this.exerciseOne$.unsubscribe(); }
-    if (this.exerciseTwo$) {
-      if (this.exerciseTwo !== undefined) { this.exerciseTwo$.unsubscribe(); }
-    }
-    if (this.exerciseThree$) {
-      if (this.exerciseThree !== undefined) { this.exerciseThree$.unsubscribe(); }
-    }
+    if (this.exerciseTwo$ && this.exerciseTwo !== undefined) { this.exerciseTwo$.unsubscribe(); }
+    if (this.exerciseThree$ && this.exerciseThree !== undefined) { this.exerciseThree$.unsubscribe(); }
     this.stateChange$.unsubscribe();
   }
 
@@ -163,27 +159,32 @@ export class GuidelineDetailComponent implements OnInit, OnDestroy {
   }
 
   // Getters
-  getExercises(guideline) {
-    this.exerciseService.getMultipleExercises(guideline);
-    this.exerciseOne$ = this.exerciseService.guideExercises.eOne.subscribe(exercise => {
-      this.exerciseOne = exercise;
-    });
-    if (this.exerciseService.guideExercises.eTwo) {
-      this.exerciseTwo$ = this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
-        this.exerciseTwo = exercise;
-      });
-    }
-    if (this.exerciseService.guideExercises.eThree) {
-      this.exerciseThree$ = this.exerciseService.guideExercises.eThree.subscribe(exercise => {
-      this.exerciseThree = exercise;
-      });
-    }
+  async getExercises(guideline) {
+    await this.exerciseService.getMultipleExercises(guideline);
 
-    this.exercises = [
-      this.exerciseOne,
-      this.exerciseTwo,
-      this.exerciseThree
-    ];
+    if (this.exerciseService.guideExercises) {
+      if (this.exerciseService.guideExercises.eOne) {
+        this.exerciseOne$ = this.exerciseService.guideExercises.eOne.subscribe(exercise => {
+          this.exerciseOne = exercise;
+        });
+      }
+      if (this.exerciseService.guideExercises.eTwo) {
+        this.exerciseTwo$ = this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
+          this.exerciseTwo = exercise;
+        });
+      }
+      if (this.exerciseService.guideExercises.eThree) {
+        this.exerciseThree$ = this.exerciseService.guideExercises.eThree.subscribe(exercise => {
+        this.exerciseThree = exercise;
+        });
+      }
+
+      this.exercises = [
+        this.exerciseOne,
+        this.exerciseTwo,
+        this.exerciseThree
+      ];
+    }
   }
 
   // Like this to avoid State Changed Error
