@@ -121,7 +121,6 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       this.onlineAppointment.next(true);
       this.appointmentForm.addControl('contactMethod', new FormControl('', Validators.required));
     }
-
     this.cdr.detectChanges();
   }
 
@@ -251,7 +250,7 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       clientID: this.appointmentForm.get('clientID').value || this.user.uid,
       members: [this.user.uid, this.specialist.uid],
       meetMethod: this.appointmentForm.get('appointmentContext').value,
-      contactMethod: this.appointmentForm.get('contactMethod').value,
+      contactMethod: this.appointmentForm['contactMethod'] ? this.appointmentForm.get('contactMethod').value : null,
       faceToFacePhone: this.user.basicData.phoneNumber,
       location: this.appointmentForm.get('location').value || null,
       whatsappNumber: this.appointmentForm['wappAreaCode'] ?

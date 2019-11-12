@@ -3,4 +3,15 @@
 @import './../../../assets/scss/_list-items';
 
 .measurement-item-container {
+    .creation-date {
+        @include respond-down($sm) {
+            min-width: 175px !important;
+        }
+    }
+    .weight {
+        @include respond-down($sm) {
+            min-width: 70px !important;
+            width: 70px;
+        }
+    }
 }

@@ -222,87 +222,82 @@ main.add-measurement-wrapper {
                     justify-content: flex-end;
                 }
 
-
-                .head {
+                .arms-relaxed {
                     mat-form-field {
-                        right: -105px;
+                        right: -110px;
+                        top: -20px;
                     }
                 }
 
-                .arms-relaxed {
+                .arms-flexed {
                     mat-form-field {
-                        right: -85px;
-                        top: -10px;
+                        right: -90px;
+                        top: -25px;
                     }
                 }
 
                 .thorax {
                     mat-form-field {
-                        right: -55px;
-                        top: -20px;
+                        right: -65px;
+                        top: -30px;
+                    }
+                }
+
+                .waist {
+                    mat-form-field {
+                        right: -75px;
+                        top: -35px;
                     }
                 }
 
                 .hip {
                     mat-form-field {
-                        right: -25px;
-                        top: -42px;
+                        right: -65px;
+                        top: -40px;
                     }
                 }
 
-                .wrist {
+                .thigh-max {
                     mat-form-field {
                         right: -60px;
-                        top: -50px;
+                        top: -45px;
                     }
                 }
 
-                .thigh-mid {
+                .thigh-min {
                     mat-form-field {
                         right: -85px;
-                        top: -60px;
-                    }
-                }
-
-                .ankle {
-                    mat-form-field {
-                        right: -105px;
-                        top: -60px;
+                        top: -55px;
                     }
                 }
             }
 
             &.right {
+                .head {
+                    mat-form-field {
+                        left: -90px;
+                        top: -35px;
+                    }
+                }
+
                 .neck {
                     mat-form-field {
-                        left: -85px;
-                    }
-                }
-                
-                .arms-flexed {
-                    mat-form-field {
-                        left: -40px;
-                    }
-                }
-                
-                .waist {
-                    mat-form-field {
-                        left: -25px;
-                        top: -10px;
+                        left: -65px;
+                        top: -45px;
                     }
                 }
 
                 .forearm{
                     mat-form-field {
-                        top: -20px;
-                        left: -25px;
+                        left: -40px;
+                        top: -45px;
                     }
                 }
 
-                .thigh-max{
+                .wrist {
                     mat-form-field {
-                        top: -10px;
-                        left: -60px;
+                        left: -20px;
+                        top: -40px;
                     }
                 }
                 
@@ -310,6 +305,13 @@ main.add-measurement-wrapper {
                     mat-form-field {
                         left: -60px;
                         top: 5px;
+                    }
+                }
+
+                .ankle {
+                    mat-form-field {
+                        left: -75px;
+                        top: 15px;
                     }
                 }
             }

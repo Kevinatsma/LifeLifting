@@ -2,7 +2,7 @@
   <div class="measurement-item-container" *ngIf="measurement && client && specialist">
     <h2>{{i + 1}}.</h2>
     <div class="info-container" (click)="openMeasurementDetail(measurement)">
-      <h3>{{measurement.created.toDate() | date: 'short'}}</h3>
+      <h3 class="creation-date">{{measurement.created.toDate() | date: 'short'}}</h3>
       <h3 *ngIf="measurement.edited" class="not-mobile">{{measurement.edited.toDate() | date: 'short'}}</h3>
       <h3 *ngIf="!measurement.edited" class="not-mobile">Not edited yet</h3>
       <h3 class="not-mobile">{{specialist.displayName}}</h3>

@@ -55,7 +55,7 @@ export class EditMeasurementComponent implements OnInit {
       thorax: [this.measurement.perimeters.thorax || ''],
       waist: [this.measurement.perimeters.waist || ''],
       hip: [this.measurement.perimeters.hip || ''],
-      thighMid: [this.measurement.perimeters.thighMid || ''],
+      thighMin: [this.measurement.perimeters.thighMin || ''],
       thighMax: [this.measurement.perimeters.thighMax || ''],
       calf: [this.measurement.perimeters.calf || ''],
       ankle: [this.measurement.perimeters.ankle || '']

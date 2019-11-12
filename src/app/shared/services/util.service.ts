@@ -122,10 +122,10 @@ export class UtilService {
 
     if ( data.age < 19 ) {
         c = data.gender === 'Feminine' ? 1.549 : 1.1620;
-        m = data.gender === 'Feminine' ? 1.549 : 1.1620;
+        m = data.gender === 'Feminine' ? 0.0678 : 0.0630;
     } else if (19 < data.age && data.age < 29) {
         c = data.gender === 'Feminine' ? 1.1599 : 1.1631;
-        m = data.gender === 'Feminine' ? 1.1599 : 1.1631;
+        m = data.gender === 'Feminine' ? 0.0717 : 0.0632;
     } else if (29 < data.age && data.age < 39) {
         c = data.gender === 'Feminine' ? 1.1423 : 1.1422;
         m = data.gender === 'Feminine' ? 0.0632 : 0.0544;
@@ -142,14 +142,10 @@ export class UtilService {
     const S = data.subescapular;
     const SP = data.crestaIliaca;
 
-    console.log('biceps', B);
-    console.log('triceps', T);
-    console.log('subescapular', S);
-    console.log('crestaIliaca', SP);
+    const sum = B + T + S + SP;
+    const logX =  Math.log10(sum);
 
-    const logX =  B + T + S + SP;
-
-    const D = c - (m * Math.log(logX));
+    const D = c - (m * logX);
     const fatPercentage = ((4.95 / D) - 4.50) * 100;
 
     return fatPercentage;

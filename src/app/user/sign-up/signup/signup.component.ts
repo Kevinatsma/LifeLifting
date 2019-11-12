@@ -58,7 +58,8 @@ export class SignupComponent implements OnInit {
           this.router.navigate(['signup/step-one']);
           return this.user = this.auth.user;
         }
-      });
+      })
+      .catch(error => alert(error.message));
   }
 
   googleLogin() {

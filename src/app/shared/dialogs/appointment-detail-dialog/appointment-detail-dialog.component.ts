@@ -171,4 +171,8 @@ export class AppointmentDetailDialogComponent implements OnDestroy {
     const id = event.eventID;
     this.bookingService.deleteEvent(id);
   }
+
+  closeDialog() {
+    this.matDialog.closeAll();
+  }
 }

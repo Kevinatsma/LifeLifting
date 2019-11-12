@@ -20,7 +20,7 @@ export class Perimeters {
     thorax: number;
     waist: number;
     hip: number;
-    thighMid: number;
+    thighMin: number;
     thighMax: number;
     calf: number;
     ankle: number;

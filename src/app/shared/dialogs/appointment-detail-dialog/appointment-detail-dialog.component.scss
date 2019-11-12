@@ -110,12 +110,21 @@
                 &:hover {
                     background: $light-grey;
                 }
+
+                &.back {
+                    @include respond-down($sm) {
+                        left: 0;
+                        right: unset;
+                    }
+                }
         
                 &.delete {
                     left: 0;
-                    right: none;
+                    right: unset;
+
                     @include respond-down($sm) {
-                        left: 1em;
+                        left: unset;
+                        right: 5em;
                     }
                 }
 

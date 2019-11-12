@@ -2,7 +2,9 @@
 
 div.router-wrapper {
     flex: 1;
+    height: auto;
     position: relative;
+    overflow-y: auto;
 
     ::ng-deep router-outlet + * {
         position: absolute;
@@ -45,6 +47,15 @@ div.show-section {
     }
     100% {
         transform: translateY(0);
+    }
+}
+
+::ng-deep app-signup-step-one {
+    height: auto !important;
+    overflow: auto !important;
+
+    @include respond-up($sm) {
+        padding: 2em 0;
     }
 }
 

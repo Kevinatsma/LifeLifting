@@ -55,7 +55,7 @@ export class AddMeasurementComponent implements OnInit {
       thorax: [''],
       waist: [''],
       hip: [''],
-      thighMid: [''],
+      thighMin: [''],
       thighMax: [''],
       calf: [''],
       ankle: ['']

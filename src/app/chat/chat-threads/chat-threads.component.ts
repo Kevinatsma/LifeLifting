@@ -91,7 +91,9 @@ export class ChatThreadsComponent implements OnInit, OnDestroy {
       threadDiv.forEach(function(el) {
         el.classList.remove('active');
       });
-      threadDivActive.classList.add('active');
+      if (threadDivActive) {
+        threadDivActive.classList.add('active');
+      }
     }, 500);
   }
 

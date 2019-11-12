@@ -19,14 +19,14 @@
 
         <!--  Left side -->
         <div class="wrapper left">
-          <div class="field-container head">
-            <p class="card-text">Head</p>
-            <h4>{{ measurement.perimeters.head }} cm </h4>
-          </div>          
-
           <div class="field-container arms-relaxed">
-            <p class="card-text">Arm relaxed</p>
+            <p class="card-text">Relaxed arm</p>
             <h4>{{ measurement.perimeters.armRelaxed }} cm </h4>
+          </div>
+
+          <div class="field-container arms-flexed">
+            <p class="card-text">Flexed arm</p>
+            <h4>{{ measurement.perimeters.armFlexed }} cm </h4>
           </div>
 
           <div class="field-container thorax">
@@ -34,24 +34,24 @@
             <h4>{{ measurement.perimeters.thorax }} cm </h4>
           </div>
 
+          <div class="field-container waist">
+            <p class="card-text">Waist</p>
+            <h4>{{ measurement.perimeters.waist }} cm </h4>
+          </div>
+
           <div class="field-container hip">
             <p class="card-text">Hip</p>
             <h4>{{ measurement.perimeters.hip }} cm </h4>
           </div>
 
-          <div class="field-container wrist">
-            <p class="card-text">Wrist</p>
-            <h4>{{ measurement.perimeters.wrist }} cm </h4>
+          <div class="field-container thigh-max">
+            <p class="card-text">Thigh max</p>
+            <h4>{{ measurement.perimeters.thighMax }} cm </h4>
           </div>
 
-          <div class="field-container thigh-mid">
-            <p class="card-text">Thigh Mid</p>
-            <h4>{{ measurement.perimeters.thighMid }} cm </h4>
-          </div>
-
-          <div class="field-container ankle">
-            <p class="card-text">Ankle</p>
-            <h4>{{ measurement.perimeters.ankle }} cm </h4>
+          <div class="field-container thigh-min">
+            <p class="card-text">Thigh min</p>
+            <h4>{{ measurement.perimeters.thighMin }} cm </h4>
           </div>
         </div>
 
@@ -60,20 +60,14 @@
 
         <!-- Right side -->
         <div class="wrapper right">
+          <div class="field-container head">
+            <p class="card-text">Head</p>
+            <h4>{{ measurement.perimeters.head }} cm </h4>
+          </div>  
     
           <div class="field-container neck">
             <p class="card-text">Neck</p>
             <h4>{{ measurement.perimeters.neck }} cm </h4>
-          </div>
-
-          <div class="field-container arms-flexed">
-            <p class="card-text">Arm flexed</p>
-            <h4>{{ measurement.perimeters.armFlexed }} cm </h4>
-          </div>
-
-          <div class="field-container waist">
-            <p class="card-text">Waist</p>
-            <h4>{{ measurement.perimeters.waist }} cm </h4>
           </div>
 
           <div class="field-container forearm">
@@ -81,14 +75,19 @@
             <h4>{{ measurement.perimeters.forearm }} cm </h4>
           </div>
 
-          <div class="field-container thigh-max">
-            <p class="card-text">Thigh Max</p>
-            <h4>{{ measurement.perimeters.thighMax }} cm </h4>
+          <div class="field-container wrist">
+            <p class="card-text">Wrist</p>
+            <h4>{{ measurement.perimeters.wrist }} cm </h4>
           </div>
     
           <div class="field-container calf">
             <p class="card-text">Calf</p>
             <h4>{{ measurement.perimeters.calf }} cm </h4>
+          </div>
+
+          <div class="field-container ankle">
+            <p class="card-text">Ankle</p>
+            <h4>{{ measurement.perimeters.ankle }} cm </h4>
           </div>
         </div>
       </section>

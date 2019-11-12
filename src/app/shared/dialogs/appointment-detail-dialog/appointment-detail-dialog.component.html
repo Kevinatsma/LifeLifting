@@ -5,6 +5,9 @@
 
   <ng-container *ngIf="!editShow">
     <section class="intro">
+      <button class="edit-btn back mobile" *ngIf="user.roles.admin || user.roles.specialist" mat-dialog-close>
+        <i class="fa__icon fas fa-arrow-left"></i>
+      </button>
       <button class="edit-btn delete" (click)="deleteEvent(event)" *ngIf="user.roles.admin || user.roles.specialist" mat-dialog-close>
         <i class="fa__icon far fa-trash-alt"></i>
       </button>
@@ -108,7 +111,6 @@
   <ng-container *ngIf="editShow">
     <app-edit-appointment [event]="event" [client]="client" [specialist]="specialist"
       [end]="end" [start]="start">
-
     </app-edit-appointment>
   </ng-container>
 </main>

@@ -233,42 +233,70 @@
                     justify-content: flex-end;
                 }
 
-                .head {
-                    right: -15px;
-                    top: 0px;
+                .arms-relaxed {
+                    right: -20px;
+                    top: 25px;
+
+                    @include respond-down($sm) {
+                        right: -10px;
+                        top: 0;
+                    }
                 }
 
-                .arms-relaxed {
-                    right: 20px;
-                    top: 10px;
+                .arms-flexed {
+                    right: 10px;
+                    top: 35px;
+
+                    @include respond-down($sm) {
+                        right: 20px;
+                        top: 10px;
+                    }
                 }
 
                 .thorax {
                     right: 35px;
-                    top: 30px;
+                    top: 45px;
+
+                    @include respond-down($sm) {
+                        right: 20px;
+                        top: 25px;
+                    }
+                }
+
+                                
+                .waist {
+                    right: 30px;
+                    top: 65px;
+
+                    @include respond-down($sm) {
+                        top: 45px;
+                    }
                 }
 
                 .hip {
                     right: 40px;
-                    top: 45px;
-                }
-
-                .wrist {
-                    right: 40px;
-                    top: 60px;
-                }
-
-                .thigh-mid {
-                    right: 20px;
-                    top: 75px;
-                }
-
-                .ankle {
-                    right: 10px;
-                    top: 165px;
+                    top: 80px;
 
                     @include respond-down($sm) {
-                        top: 95px;
+                        top: 65px;
+                    }
+                }
+
+                .thigh-max {
+                    right: 5px;
+                    top: 105px;
+
+                    @include respond-down($sm) {
+                        top: 85px;
+                    }
+                }
+
+                .thigh-min {
+                    right: 20px;
+                    top: 120px;
+
+                    @include respond-down($sm) {
+                        top: 105px;
                     }
                 }
             }
@@ -285,48 +313,41 @@
                     align-items: flex-start;
                 }
 
-                .neck {
-                    left: -15px;
-                    top: 30px;
+                .head {
+                    left: -25px;
+                    top: -5px;
 
                     @include respond-down($sm) {
+                        left: -15px;
+                        top: 25px;
+                    }
+                }
+
+                .neck {
+                    left: 10px;
+                    top: 20px;
+
+                    @include respond-down($sm) {
+                        left: 15px;
                         top: 40px;
                     }
                 }
-                
-                .arms-flexed {
-                    left: 10px;
-                    top: 50px;
 
-                    @include respond-down($sm) {
-                        top: 55px;
-                    }
-                }
-                
-                .waist {
-                    left: 30px;
-                    top: 75px;
+                .forearm {
+                    left: 20px;
+                    top: 60px;
 
                     @include respond-down($sm) {
                         top: 65px;
                     }
                 }
 
-                .forearm {
-                    top: 100px;
-                    left: 35px;
+                .wrist {
+                    left: 40px;
+                    top: 90px;
 
                     @include respond-down($sm) {
-                        top: 75px;
-                    }
-                }
-
-                .thigh-max {
-                    top: 145px;
-                    left: 5px;
-
-                    @include respond-down($sm) {
-                        top: 115px;
+                        top: 85px;
                     }
                 }
                 
@@ -335,7 +356,16 @@
                     top: 190px;
 
                     @include respond-down($sm) {
-                        top: 135px;
+                        top: 145px;
+                    }
+                }
+
+                .ankle {
+                    left: 10px;
+                    top: 230px;
+
+                    @include respond-down($sm) {
+                        top: 175px;
                     }
                 }
             }
