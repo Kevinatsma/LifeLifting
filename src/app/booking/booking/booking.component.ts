@@ -68,6 +68,7 @@ export class BookingComponent implements OnInit, OnDestroy {
     event: Appointment;
   };
   activeDayIsOpen = true;
+  excludeDays: number[] = [0, 6];
 
   constructor( private userService: UserService,
                public auth: AuthService,

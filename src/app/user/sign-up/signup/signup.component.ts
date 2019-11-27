@@ -17,6 +17,7 @@ export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   hide = true;
   user: Observable<User>;
+  _user: User;
 
   succesVisible = true;
   capsOn: Subject<boolean> = new Subject();
@@ -28,19 +29,42 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.user = this.auth.user;
+    this.auth.user.subscribe(user => {
+      this._user = user;
+      this.checkForReroute();
+    });
     this.signUpForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
         '',
         [
-          Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+          // Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
           Validators.minLength(6),
           Validators.maxLength(25)
         ]
       ]
     });
+  }
 
-    this.user = this.auth.user;
+  checkForReroute() {
+    if (!this._user.basicData) {
+      this.router.navigate(['signup/step-one']);
+    } else if (!this._user.packageChoice) {
+      this.router.navigate(['signup/step-two']);
+    } else if (!this._user.specialist) {
+      this.router.navigate(['signup/step-three']);
+    } else if (!this._user.status.appointment) {
+      this.router.navigate(['signup/step-four']);
+    } else if (!this._user.status.accepted  && this.auth.currentUserId) {
+      this.router.navigate(['signup/limbo']);
+    } else if (!this._user.status.appointmentAccepted) {
+      this.router.navigate(['signup/limbo']);
+    } else if (!this._user.status.appointmentCompleted) {
+      this.router.navigate(['signup/limbo']);
+    } else if (!this._user.status.subscriptionValid) {
+      this.router.navigate(['signup/limbo']);
+    }
   }
 
   // Getters

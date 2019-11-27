@@ -51,9 +51,10 @@ export class AddUserDialogComponent implements OnInit {
       password: [
         '',
         [
-          Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
+          // Validators.pattern('/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z])$/'),
           Validators.minLength(6),
-          Validators.maxLength(25)
+          Validators.maxLength(25),
+          Validators.required
         ]
       ]
     });
@@ -83,7 +84,7 @@ export class AddUserDialogComponent implements OnInit {
     const password = this.password.value;
     const formData = {
       displayName: this.personalForm.get('firstName').value + ' ' + this.personalForm.get('lastName').value,
-      photoURL: this.downloadURL,
+      photoURL: this.downloadURL || null,
       email: email,
     };
 

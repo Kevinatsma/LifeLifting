@@ -149,7 +149,14 @@ export class AuthService {
           specialist: false,
           admin: false
         },
-        signUpCompleted: false,
+        status: {
+          accepted: false,
+          appointment: false,
+          appointmentAccepted: false,
+          appointmentCompleted: false,
+          signUpCompleted: false,
+          subscriptionValid: false
+        },
         signUpDate: new Date(),
         email: formData.email
       };

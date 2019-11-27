@@ -101,6 +101,7 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
     'May', 'June', 'July', 'August', 'September',
     'October', 'November', 'December'
   ];
+  excludeDays: number[] = [0, 6];
 
   // Meet methods
   faceToFace: Subject<boolean> = new Subject();

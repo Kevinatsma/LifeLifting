@@ -74,6 +74,7 @@ export class SpecialistBookingComponent implements OnInit, OnDestroy {
 
   actions: CalendarEventAction[];
   activeDayIsOpen = true;
+  excludeDays: number[] = [0, 6];
 
   // TODO: HOOKUP MAT DIALOG INSTEAD OF BOOTSTRAP MODAL
   constructor( private userService: UserService,

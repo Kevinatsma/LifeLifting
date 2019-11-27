@@ -97,6 +97,7 @@
           [activeDayIsOpen]="activeDayIsOpen"
           (dayClicked)="dayClicked($event.day)"
           (eventClicked)="openEventDetailDialog($event)"
+          [excludeDays]="excludeDays"
         >
         </mwl-calendar-month-view>
         <mwl-calendar-week-view
@@ -104,8 +105,9 @@
           [viewDate]="viewDate"
           [events]="events"
           [dayStartHour]="16"
-          [dayEndHour]="21"
+          [dayEndHour]="20"
           (eventClicked)="openEventDetailDialog($event)"
+          [excludeDays]="excludeDays"
         >
         </mwl-calendar-week-view>
         <mwl-calendar-day-view
@@ -113,7 +115,7 @@
           [viewDate]="viewDate"
           [events]="events"
           [dayStartHour]="16"
-          [dayEndHour]="21"
+          [dayEndHour]="20"
           (eventClicked)="openEventDetailDialog($event)"
         >
         </mwl-calendar-day-view>

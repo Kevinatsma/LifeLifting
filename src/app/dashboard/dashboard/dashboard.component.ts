@@ -81,6 +81,6 @@ export class DashboardComponent implements OnInit {
   }
 
   goBack() {
-    this.location.back();
+    this.router.navigate(['../../signup']);
   }
 }

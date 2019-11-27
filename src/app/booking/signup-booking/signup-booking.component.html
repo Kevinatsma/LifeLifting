@@ -182,6 +182,7 @@
           [events]="events"
           [activeDayIsOpen]="activeDayIsOpen"
           (dayClicked)="dayClicked($event.day)"
+          [excludeDays]="excludeDays"
         >
         </mwl-calendar-month-view>
         <mwl-calendar-week-view
@@ -189,8 +190,9 @@
           [viewDate]="viewDate"
           (hourSegmentClicked)="hourClicked($event.date)"
           [dayStartHour]="16"
-          [dayEndHour]="21"
+          [dayEndHour]="20"
           [events]="events"
+          [excludeDays]="excludeDays"
         >
         </mwl-calendar-week-view>
         <mwl-calendar-day-view
@@ -198,7 +200,7 @@
           [viewDate]="viewDate"
           (hourSegmentClicked)="hourClicked($event.date)"
           [dayStartHour]="16"
-          [dayEndHour]="21"
+          [dayEndHour]="20"
           [events]="events"
         >
         </mwl-calendar-day-view>

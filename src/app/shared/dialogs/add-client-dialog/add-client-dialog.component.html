@@ -30,7 +30,7 @@
         <mat-error class="input-error" *ngIf="!password.dirty">This is <strong>required</strong></mat-error>
         <mat-error class="input-error" *ngIf="password.errors?.minlength"><strong>Not enough</strong> characters, try harder!</mat-error>
         <mat-error class="input-error" *ngIf="password.errors?.maxlength">Too <strong>much</strong> characters, slow down there.</mat-error>
-        <mat-error class="input-error" *ngIf="password.errors?.pattern">Password contains <strong>a special character</strong>, or lacks a <strong>number/letter</strong>.</mat-error>
+        <!-- <mat-error class="input-error" *ngIf="password.errors?.pattern">Password needs at least a <strong>number, uppercase and lowercase letter.</strong></mat-error> -->
       </mat-form-field>
 
       </form>
@@ -84,8 +84,8 @@
       <section class="btn-area">
         <button class="dialog-button" matStepperPrevious>Back</button>
         <button class="dialog-button" (click)="userSignup()"
-        [disabled]="!personalForm.valid || !downloadURL"
-        [class.disabled]="!personalForm.valid || !downloadURL"
+        [disabled]="!signUpForm.valid || !personalForm.valid"
+        [class.disabled]="!signUpForm.valid || !personalForm.valid"
         mat-dialog-close
         >
           Done
