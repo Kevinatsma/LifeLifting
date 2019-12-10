@@ -80,7 +80,7 @@ section.step-wrapper {
     }
 }
 
-::ng-deep mat-radio-button, .package-item {
+::ng-deep .step-two mat-radio-button, .package-item {
     flex: 0 0 auto;
     width: 40%;
     height: 100%;

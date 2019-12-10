@@ -518,7 +518,7 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
         this.generalDataForm.addControl(`${formControlName}Note`, new FormControl('', Validators.required));
       }
     } else {
-      if (form === 'habit') {
+      if (form === 'habits') {
         this.habitForm.removeControl(`${formControlName}Note`);
       } else if (form === 'bodyFunctions') {
         this.bodyFunctionsForm.removeControl(`${formControlName}Note`);

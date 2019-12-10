@@ -6,6 +6,7 @@ import { Observable, Subject } from 'rxjs';
 import { AuthService } from './../../../core/auth/auth.service';
 import { User } from '../../user.model';
 import { fadeAnimation } from './../../../core/animations/fade.animation';
+import { UtilService } from './../../../shared/services/util.service';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +26,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public auth: AuthService,
-    private router: Router
+    private router: Router,
+    private utils: UtilService
   ) { }
 
   ngOnInit() {
@@ -45,6 +47,12 @@ export class SignupComponent implements OnInit {
         ]
       ]
     });
+    this.getSuccessStep();
+  }
+
+  getSuccessStep() {
+    const isMobile = this.utils.checkIfMobile();
+    this.succesVisible = isMobile ? false : true;
   }
 
   checkForReroute() {
