@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -7,6 +7,7 @@ import { AuthService } from './../../../core/auth/auth.service';
 import { User } from '../../user.model';
 import { fadeAnimation } from './../../../core/animations/fade.animation';
 import { UtilService } from './../../../shared/services/util.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-signup',
@@ -56,6 +57,7 @@ export class SignupComponent implements OnInit {
   }
 
   checkForReroute() {
+    if (_.isNil(this._user)) return;
     if (!this._user.basicData) {
       this.router.navigate(['signup/step-one']);
     } else if (!this._user.packageChoice) {

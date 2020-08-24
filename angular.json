@@ -155,5 +155,8 @@
       }
     }
   },
-  "defaultProject": "LifeLifting"
+  "defaultProject": "LifeLifting",
+  "cli": {
+    "analytics": "62c89eed-dac4-4722-8e2a-7d83e22a54bb"
+  }
 }

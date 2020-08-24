@@ -132,8 +132,7 @@
     <h1 *ngIf="specialist">{{specialist.firstName}}'s Calendar</h1>
 
     <div class="right" *ngIf="specialist">
-      <button class="icon-button" (click)="chat(specialist.uid)" matTooltip="User hasn't completed the Signup process yet"
-      matTooltipClass="tooltip-info" [matTooltipPosition]="below">
+      <button class="icon-button" (click)="chat(specialist.uid)">
         <i class="fa__icon fas fa-comment-alt"></i>
       </button>
     </div>
@@ -174,7 +173,7 @@
     </section>
 
     <section class="calendar__view" [ngSwitch]="view">
-      <div *ngIf="events$ | async; else loading; let events">
+      <div *ngIf="events$ | async as events; else loading">
       <!-- <ng-container *ngIf="appointments"> -->
         <mwl-calendar-month-view
           *ngSwitchCase="CalendarView.Month"

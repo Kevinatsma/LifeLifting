@@ -131,4 +131,7 @@ export class AddFollowUpComponent implements OnInit, OnDestroy {
     }
   }
 
+  getFormButtonDisabled(): boolean {
+    return !this.followUpForm.valid
+  }
 }

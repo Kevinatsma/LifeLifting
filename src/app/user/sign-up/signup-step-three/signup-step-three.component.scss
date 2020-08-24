@@ -100,19 +100,42 @@ app-specialist-item {
     }
 
     .specialist-item {
-        width: 55vw;
+        width: 100%;
         margin: 0 2.5em 0 2.5em;
         height: 100%;
         max-width: 60vw;
         overflow: hidden;
+
+        &:nth-last-child(2) {
+            margin: 0 -2em 0 2.5em;
+        }
 
         @include respond-down($sm) {
             padding: 0;
             margin: 0 auto 50px !important;
             max-width: 70vw;
             width: 80%;
+
+            &:nth-last-child(2) {
+                margin: 0 auto 50px !important;
+            }
         }
 
+        ::ng-deep label.mat-radio-label {
+            width: 100%;
+
+            .mat-radio-label-content {
+                width: 100%;
+            }
+
+            @include respond-down($sm) {
+                padding: 1em;
+            }
+    
+            .mat-radio-container {
+                display: none!important;
+            }
+        }
     }
 
     ::ng-deep .mat-radio-input {

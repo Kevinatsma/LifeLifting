@@ -1,8 +1,9 @@
 {
   "name": "life-lifting",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
+    "nghm": "node --max_old_space_size=8096 ./node_modules/@angular/cli/bin/ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -13,7 +14,7 @@
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
     "dev": "npm run build:client-and-server-bundles && npm run compile:server && node dist/server",
     "build-prod": "bash ./scripts/ng.sh build --prod --aot",
-    "build:client-and-server-bundles": "npm run build-prod && ng run LifeLifting:server:production"
+    "build:client-and-server-bundles": "npm run build-prod && npm run nghm run LifeLifting:server:production"
   },
   "private": true,
   "dependencies": {

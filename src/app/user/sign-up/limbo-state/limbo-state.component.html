@@ -1,5 +1,5 @@
 <main class="limbo-container" *ngIf="auth.user | async as user">
-  <ng-container *ngIf="user.status.appointment && user.status.appointmentAccepted && !user.status.appointmentCompleted">
+  <ng-container *ngIf="user.status.appointment && user.status.appointmentAccepted && !user.status.appointmentCompleted && !showSpecialist">
     <div class="warning-banner">
       <i class="fa__icon fas fa-exclamation-triangle"></i>
       <p>
@@ -14,7 +14,7 @@
     !user.status.appointmentAccepted &&
     !user.status.appointmentCompleted &&
     !user.status.appointmentRejected">
-    <div class="step-done">
+    <div class="step-done" [class.hidden]="showSpecialist">
       <h1>Cheers to planning that in! 🍻</h1>
       <p class="intro-text">
         Congrats on looking for a better version of yourself. Thank you for your trust in <b>LifeLifting Nutrition</b>.
@@ -27,7 +27,7 @@
 
   <!-- display something if it isn't accepted as well -->
   <ng-container *ngIf="user.status.appointmentRejected">
-    <div class="step-done not-accepted">
+    <div class="step-done not-accepted" [class.hidden]="showSpecialist">
       <h1> Oh.. Appointment not accepted! </h1>
       <p class="subtitle" *ngIf="specialist">
         The specialist couldn't fit your request in his schedule. Please contact
@@ -44,19 +44,21 @@
   </ng-container>
 
   <ng-container *ngIf="user.status.appointment && user.status.appointmentAccepted && !user.status.appointmentCompleted">
-    <h1> Appointment status </h1>
-    <p class="subtitle" *ngIf="specialist">
-      If you see your appointment down here. Congrats! Then it has been accepted. If not, please wait untill the specialist
-      accepts your request. Is it taking a long time? Please contact 
-      <a class="text-link" (click)="toggleSpecialist()">
-        {{specialist.firstName}} {{specialist.lastName}} 
-      </a>
-      if you have any trouble, or for any further questions.
-    </p>
+    <div class="appointment-status" [class.hidden]="showSpecialist">
+      <h1> Appointment status </h1>
+      <p class="subtitle" *ngIf="specialist">
+        If you see your appointment down here. Congrats! Then it has been accepted. If not, please wait untill the specialist
+        accepts your request. Is it taking a long time? Please contact 
+        <a class="text-link" (click)="toggleSpecialist()">
+          {{specialist.firstName}} {{specialist.lastName}} 
+        </a>
+        if you have any trouble, or for any further questions.
+      </p>
 
-    <section class="appointments" *ngFor="let event of events">
-      <app-appointment-detail [event]="event"></app-appointment-detail>
-    </section>
+      <section class="appointment-status__appointments" *ngFor="let event of events">
+        <app-appointment-detail [event]="event"></app-appointment-detail>
+      </section>
+    </div>
   </ng-container>
 
   <ng-container *ngIf="user.status.appointmentAccepted && user.status.appointmentCompleted && !user.status.accepted">
@@ -89,14 +91,13 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="
-  user.status.subscriptionValid &&
-  user.status.accepted &&
-  user.status.appointmentAccepted &&
-  user.status.appointmentCompleted &&
-  user.status.appointment">
+  <ng-container *ngIf="user.status.subscriptionValid &&
+                        user.status.accepted &&
+                        user.status.appointmentAccepted &&
+                        user.status.appointmentCompleted &&
+                        user.status.appointment">
 
-    <div class="step-done">
+    <div class="step-done" [class.hidden]="showSpecialist">
       <h1>Looks like everything is ok!</h1>
       <p class="subtitle" *ngIf="specialist">
         You've completed all the steps. Click the button below to continue to the dashboard.

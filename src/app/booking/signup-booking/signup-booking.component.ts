@@ -1,24 +1,8 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  OnInit,
-  ViewChild,
-  OnDestroy,
-  ChangeDetectorRef
-} from '@angular/core';
-import {
-  isSameMonth,
-  isSameDay,
-} from 'date-fns';
+import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import {isSameMonth, isSameDay } from 'date-fns';
 import { Observable, Subscription, Subject } from 'rxjs';
-import {
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
-  CalendarView,
-  CalendarEventTitleFormatter,
-  ɵp
-} from 'angular-calendar';
+import { takeUntil, map } from 'rxjs/operators';
+import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView, CalendarEventTitleFormatter, CalendarMonthViewDay } from 'angular-calendar';
 import { BookingService } from '../booking.service';
 import { User } from '../../user/user.model';
 import { AuthService } from '../../core/auth/auth.service';
@@ -31,13 +15,14 @@ import { Location } from '@angular/common';
 import { SpecialistService } from '../../specialists/specialist.service';
 import { Specialist } from '../../specialists/specialist.model';
 import { ChatThreadService } from '../../chat/chat-thread.service';
-import { AddAppointmentDialogComponent } from '../../shared/dialogs/add-appointment-dialog/add-appointment-dialog.component';
 import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { UtilService } from './../../shared/services/util.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import countryCodes from './../../shared/data/JSON/countryCodes.json';
+import firebase from 'firebase';
+import moment from 'moment';
 
 @Component({
   selector: 'app-signup-booking',
@@ -61,7 +46,9 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
+  events: Appointment[];
 
+  destroy$: Subject<boolean> = new Subject();
   appointmentForm: FormGroup;
   phoneAreaCode = new FormControl({value: '+51', disabled: true});
   areaCodes = countryCodes.countryCodes;
@@ -122,7 +109,6 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
                private threadService: ChatThreadService,
                public location: Location,
                public router: Router,
-               private route: ActivatedRoute,
                private fb: FormBuilder,
                private afs: AngularFirestore,
                private cdr: ChangeDetectorRef) {
@@ -135,11 +121,6 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
     this.appointmentForm = this.fb.group({
       meetMethod: ['', Validators.required],
     });
-  }
-
-  ngOnDestroy() {
-    this.user$.unsubscribe();
-    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
   }
 
     // Toggles
@@ -235,6 +216,42 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
     return `T00:00:00${direction}${hoursOffset}:${minutesOffset}`;
   }
 
+  // mapEvents = (events: Appointment[]): Appointment[] => {
+  //   const addTwoDays = this.utils.dateAdd(new Date(), 'hour', 48);
+  //   console.log('first income events', events);
+  //   const time = moment.duration("00:09:15");
+  //   let date = moment("2020-08-18 17:22:06");
+  //   date.subtract(time);
+  //   const blockedEvent: Appointment = {
+  //     accepted: true,
+  //     clientID: 'XeeS86g4KpgtXri8OIB9eO1KwfE3',
+  //     color: {primary: '#e74c3c', secondary: '#f58f84'},
+  //     contactMethod: null,
+  //     created: firebase.firestore.Timestamp.fromDate(new Date()),
+  //     draggable: false,
+  //     end: addTwoDays,
+  //     eventID: 'testId',
+  //     faceToFacePhone: 12341234,
+  //     location: null,
+  //     meetMethod: 'faceToFace',
+  //     onlineAppointmentPhone: {
+  //       phoneAreaCode: '51',
+  //       phoneRest: 50005
+  //     },
+  //     rejected: false,
+  //     resizable: {beforeStart: true, afterEnd: true},
+  //     skypeName: null,
+  //     specialistID: 'specialist2',
+  //     start: date.toString(),
+  //     title: 'test Appointment',
+  //     whatsappNumber: null
+  //   };
+  //   events.push(blockedEvent)
+  //   console.log('events pushed', events);
+  //   console.log('moment time', date.toString());
+  //   return events;
+  // };
+
   getEvents(user) {
     const specialist = user.specialist;
     // Pull appointments from service
@@ -244,6 +261,13 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
       .where('accepted', '==', true)
       .orderBy('start'));
     this.events$ = this.bookingService.getSpecificAppointments(colRef);
+    // this.events$.pipe(
+    //   takeUntil(this.destroy$),
+    // ).subscribe((events: any) => {
+    //   console.log('events', events);
+    //   this.events = this.mapEvents(events);
+    //   // this.events = events;
+    // });
   }
 
   injectEventOverviewTitle(timeOut) {
@@ -442,5 +466,12 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
   // Misc
   goBack() {
     this.location.back();
+  }
+
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

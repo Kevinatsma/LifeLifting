@@ -116,9 +116,10 @@ section.middle {
 }
 
 section.reviews-opened {
+    display: flex;
     flex-flow: column nowrap;
     padding-left: 2em;
-    width: calc(100% + 4em);
+    width: 100%;
 
     > p.card-text {
         margin: 1em 0;
@@ -127,7 +128,7 @@ section.reviews-opened {
 }
 
 div.review-container {
-    width: calc(100% + 2em);
+    width: 100%;
     height: auto;
     padding: 2em 2em;
     margin-left: -4em;

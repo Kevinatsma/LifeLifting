@@ -59,7 +59,7 @@
             width: 100%;
             height: 100vh;
             top: 5em;
-            overflow:  hidden;
+            overflow: hidden;
             z-index: 150;
 
             button {
@@ -68,11 +68,18 @@
         }
     }
 
-    .appointments {
-        margin-top: 5em;
-        width: 70%;
-        @include respond-down($sm) {
-            width: 95%;
+    .appointment-status {
+        align-items: center;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+
+        &__appointments {
+            margin-top: 5em;
+            width: 70%;
+            @include respond-down($sm) {
+                width: 95%;
+            }
         }
     }
 
@@ -80,7 +87,7 @@
         background: $middle-grey;
         position: absolute;
         transition: transform 0.5s cubic-bezier(.63,.91,.38,1.19);
-        z-index: 510;
+        z-index: 10000000;
 
         .hide-btn {
             position: absolute;

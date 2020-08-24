@@ -85,9 +85,12 @@
         margin: 1em auto 2em;
         padding: 0 2em;
 
+        @include respond-down($lg) {
+            width: 100%;
+        }
+
         @include respond-down($sm) {
             padding: 1em 2em 1em 1em;
-            width: 100%;
         }
 
         .address {

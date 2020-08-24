@@ -40,7 +40,7 @@
             <i class="fa__icon fas fa-weight"></i>
           </button>
           <button class="icon-button action-btn" (click)="openFollowUpDialog()" matTooltip="Create a follow-up consultation"
-          matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition" *ngIf="firstConsultations && firstConsultations.length > 0">
+          matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition" *ngIf="firstConsultations && firstConsultations?.length > 0 && mealplans?.length">
             <i class="fa__icon fas fa-file-import"></i>
           </button>
         </div>
