@@ -1,7 +1,13 @@
 @import './../../../../assets/scss/_master.scss';
 @import './../../../../assets/scss/_dialogs.scss';
 @import './../../../../assets/scss/_forms.scss';
-// Ng Deeps
+
+#add-user-dialog {
+    .mat-horizontal-stepper-header-container {
+        margin: 0 auto;
+        width: 80%;
+    }
+}
 
 .mat-dialog-container {
     overflow-y: auto;
@@ -26,19 +32,19 @@ mat-form-field {
     }
 }
 
-    .image-uploader{
-        width: 80%;
-        margin: 4em auto;
-    }
+.image-uploader{
+    width: 80%;
+    margin: 4em auto;
+}
 
 
-    .image-subtitle {
-        margin: 0.5em 1.6em;
-    }
+.image-subtitle {
+    margin: 0.5em 1.6em;
+}
 
-        section.photo-title {
-            margin: 2em 3em;
-        }
+section.photo-title {
+    margin: 2em 3em;
+}
 
 // Component Css
 

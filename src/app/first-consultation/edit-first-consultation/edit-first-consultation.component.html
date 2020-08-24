@@ -473,14 +473,14 @@
               <label>What's your schedule?</label>
               <div class="time-form-container">
                 <mat-form-field appearance="standard" floatLabel="always">
-                  <mat-select matInput placeholder="{{firstConsultation.habits.work.workOnWeekendsNote.from}}" formControlName="workOnWeekendsFrom" 
+                  <mat-select matInput placeholder="{{firstConsultation?.habits?.work?.workOnWeekendsNote?.from}}" formControlName="workOnWeekendsFrom" 
                   panelClass="dropdown-regular" autocomplete="off" required>
-                    <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                    <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                   </mat-select>
                   <mat-error class="input-error" *ngIf="!habitForm['controls'].workOnWeekendsFrom.touched">This is <strong>required</strong></mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="standard" floatLabel="always">
-                  <mat-select matInput placeholder="{{firstConsultation.habits.work.workOnWeekendsNote.to}}" formControlName="workOnWeekendsTo" 
+                  <mat-select matInput placeholder="{{firstConsultation?.habits?.work?.workOnWeekendsNote?.to}}" formControlName="workOnWeekendsTo" 
                   panelClass="dropdown-regular" autocomplete="off" required>
                     <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
                   </mat-select>

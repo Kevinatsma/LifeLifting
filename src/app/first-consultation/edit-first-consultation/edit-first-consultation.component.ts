@@ -14,6 +14,7 @@ import { ExerciseService } from '../../exercises/exercise.service';
 import { FirstConsultation } from '../first-consultation.model';
 import { UtilService } from '../../shared/services/util.service';
 import { Subscription } from 'rxjs';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-edit-first-consultation',
@@ -72,15 +73,14 @@ export class EditFirstConsultationComponent implements OnInit, OnDestroy {
       event.returnValue = false;
   }
 
-  constructor( private afs: AngularFirestore,
-               private fb: FormBuilder,
+  constructor( private fb: FormBuilder,
                private firstConsultationService: FirstConsultationService,
                private exerciseService: ExerciseService,
                private utilService: UtilService,
                public dialog: MatDialog,
                @Inject(MAT_DIALOG_DATA) public data: any) {
-     this.client = data.client;
-     this.firstConsultation = data.firstConsultation;
+     this.client = _.get(data, 'client');
+     this.firstConsultation = _.get(data, 'firstConsultation');
   }
 
   ngOnInit() {
@@ -232,23 +232,23 @@ export class EditFirstConsultationComponent implements OnInit, OnDestroy {
     this.homeToWorkScale = data.habits.work.homeToWork;
     this.workToHomeScale = data.habits.work.workToHome;
 
-    healthConditionsArr.forEach((condition) => {
+    _.forEach(healthConditionsArr, (condition) => {
       this.healthConditionsArray.push(this.createNewHealthCondition(condition));
     });
 
-    pastTwoWeeks.forEach((item) => {
+    _.forEach(pastTwoWeeks, (item) => {
       this.pastTwoWeeksArray.push(this.createNewPastTwoWeeks(item));
     });
 
-    dontEat.forEach((product) => {
+    _.forEach(dontEat, (product) => {
       this.dontEatArray.push(this.createNewDontEat(product));
     });
 
-    shoppingLocations.forEach((location) => {
+    _.forEach(shoppingLocations, (location) => {
       this.shoppingLocationArray.push(this.createNewShoppingLocation(location));
     });
 
-    activities.forEach((activity) => {
+    _.forEach(activities, (activity) => {
       this.activityArray.push(this.createNewActivity(activity));
     });
   }

@@ -116,7 +116,7 @@
 ::ng-deep .radio-form-field {
     display: flex;
     flex-flow: column nowrap;
-    height: auto;
+    height: fit-content;
 
     @include respond-down($sm) {
         flex-flow: column wrap !important;

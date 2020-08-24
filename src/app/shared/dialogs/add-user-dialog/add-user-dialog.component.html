@@ -1,4 +1,4 @@
-<main class="dialog-wrapper">
+<main class="dialog-wrapper" id="add-user-dialog">
     <div class="close-section  mobile">
       <button class="text-link close-btn" (click)="closeDialog()" type="button">
         <i class="mobile fas fa-arrow-left"></i> Back
@@ -61,33 +61,11 @@
           </form>
           <section class="btn-area">
             <button class="dialog-button" matStepperPrevious>Back</button>
-            <button class="dialog-button" matStepperNext>Next</button>
-          </section>
-        </mat-step>
-
-        <mat-step>
-          <ng-template matStepLabel>Picture</ng-template>
-          <div class="image-uploader-container">
-            <section class="photo-title">
-              <h3>📷 Profile Image</h3>
-              <p class="card-text image-subtitle">
-                Please choose a clear picture that represents the present appearance of this person.
-              </p>
-            </section>
-
-            <div class="image-uploader">
-              <app-file-upload (imageEvent)="receiveDownloadURL($event)"></app-file-upload>
-            </div>
-          </div>
-
-          <section class="btn-area">
-            <button class="dialog-button" matStepperPrevious>Back</button>
             <button class="dialog-button" (click)="userSignup()"
-            [disabled]="!signUpForm.valid || !personalForm.valid"
-            [class.disabled]="!signUpForm.valid || !personalForm.valid"
-            mat-dialog-close
-           >
-             Done
+                    [disabled]="!signUpForm.valid || !personalForm.valid"
+                    [class.disabled]="!signUpForm.valid || !personalForm.valid"
+                    mat-dialog-close>
+              Done
            </button>
           </section>
         </mat-step>

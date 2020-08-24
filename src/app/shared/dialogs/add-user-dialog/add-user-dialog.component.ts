@@ -16,8 +16,6 @@ export class AddUserDialogComponent implements OnInit {
   personalForm: FormGroup;
   hide = true;
 
-  downloadURL: string | null;
-
   languageLevels = [
     {
       value: 'proficient',
@@ -36,10 +34,6 @@ export class AddUserDialogComponent implements OnInit {
       viewValue: 'Beginner - a few words and sentences'
     },
   ]; selectedLevel: string;
-
-  receiveDownloadURL($event) {
-    return this.downloadURL = $event;
-  }
 
   constructor( private fb: FormBuilder,
                private auth: AuthService,
@@ -84,7 +78,7 @@ export class AddUserDialogComponent implements OnInit {
     const password = this.password.value;
     const formData = {
       displayName: this.personalForm.get('firstName').value + ' ' + this.personalForm.get('lastName').value,
-      photoURL: this.downloadURL || null,
+      photoURL: null,
       email: email,
     };
 

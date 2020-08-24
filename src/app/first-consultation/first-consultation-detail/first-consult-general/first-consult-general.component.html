@@ -2,21 +2,21 @@
   <section class="fic-detail-container__general">
     <h3>General</h3>
 
-    <div class="form-field">
+    <div class="form-field" *ngIf="generalData?.general?.healthConditions?.length">
       <span class="label small">Health conditions</span>
       <ul>
         <li *ngFor="let condition of generalData.general.healthConditions" class="list-item">{{condition.healthCondition}}</li>
       </ul>
     </div>
 
-    <div class="form-field">
+    <div class="form-field" *ngIf="generalData?.general?.pastTwoWeeks?.length">
       <span class="label small">Conditions in the past 2 weeks</span>
       <ul>
         <li *ngFor="let item of generalData.general.pastTwoWeeks" class="list-item">{{item.pastTwoWeeksValue}}</li>       
       </ul>
     </div>
     
-    <div class="form-field">
+    <div class="form-field" *ngIf="generalData?.general?.dontEat?.length">
       <span class="label small">Can't eat</span>
       <ul>
         <li *ngFor="let item of generalData.general.dontEat" class="list-item">{{item.dontEatItem}}</li>
@@ -26,7 +26,7 @@
     <div class="form-field long-text">
       <span class="label small">List of medication</span>
       <div class="text-field">
-        <p class="value big">{{generalData.general.medication}}x</p>
+        <p class="value big">{{generalData?.general?.medication}}</p>
       </div>
     </div>
 
@@ -127,37 +127,39 @@
       </div>
     </div>
 
-    <h5>Activities</h5>
-    <div class="activity-container" *ngFor="let activity of generalData.physicalActivity.physicalActivities">
-      <app-exercise-list-item *ngIf="activity.physicalActivity"
-        [exercise]="activity.physicalActivity">
-      </app-exercise-list-item>
-      
-      <div class="activity-container__content">
+    <ng-container *ngIf="generalData?.physicalActivity?.physicalActivities.length">
+      <h5>Activities</h5>
+      <div class="activity-container" *ngFor="let activity of generalData.physicalActivity.physicalActivities">
+        <app-exercise-list-item *ngIf="activity.physicalActivity"
+          [exercise]="activity.physicalActivity">
+        </app-exercise-list-item>
+        
+        <div class="activity-container__content">
 
-        <div class="form-field">
-          <span class="label small">Usual workout schedule</span>
-          <p class="value big schedule">
-            {{activity.workoutScheduleFrom}} - {{activity.workoutScheduleTo}}
-          </p>
-        </div>
+          <div class="form-field">
+            <span class="label small">Usual workout schedule</span>
+            <p class="value big schedule">
+              {{activity.workoutScheduleFrom}} - {{activity.workoutScheduleTo}}
+            </p>
+          </div>
 
-        <div class="form-field">
-          <span class="label small">Training location</span>
-          <p class="value big">{{activity.trainingLocation}}</p>
-        </div>
+          <div class="form-field">
+            <span class="label small">Training location</span>
+            <p class="value big">{{activity.trainingLocation}}</p>
+          </div>
 
-        <div class="form-field">
-          <span class="label small">Time to travel to training</span>
-          <p class="value big">{{activity.travelTime}} minutes</p>
-        </div>
+          <div class="form-field">
+            <span class="label small">Time to travel to training</span>
+            <p class="value big">{{activity.travelTime}} minutes</p>
+          </div>
 
-        <div class="form-field">
-          <span class="label small">Training intensity</span>
-          <p class="value big">{{activity.trainingIntensity}}</p>
+          <div class="form-field">
+            <span class="label small">Training intensity</span>
+            <p class="value big">{{activity.trainingIntensity}}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </section>
 
   <section class="fic-detail-container__weekends">

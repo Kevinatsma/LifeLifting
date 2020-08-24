@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FirstConsultation, BodyFunctions } from '../../first-consultation.model';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-first-consult-body',
@@ -9,12 +10,10 @@ import { FirstConsultation, BodyFunctions } from '../../first-consultation.model
 export class FirstConsultBodyComponent implements OnInit {
   @Input() firstConsultation: FirstConsultation;
   bodyFunctions: BodyFunctions;
-
-  constructor() {
-    setTimeout(() => this.bodyFunctions = this.firstConsultation.bodyFunctions);
-  }
+  isFemale: boolean;
 
   ngOnInit() {
+    this.bodyFunctions = _.get(this.firstConsultation, 'bodyFunctions');
+    this.isFemale = _.chain(this.firstConsultation).get('basicData.sex').eq('Feminine').value();
   }
-
 }
