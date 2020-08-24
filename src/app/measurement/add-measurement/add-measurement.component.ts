@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, HostListener, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation, HostListener, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { User } from './../../user/user.model';
 import { MeasurementService } from '../measurement.service';
 import { AuthService } from './../../core/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-measurement',
@@ -11,12 +12,12 @@ import { AuthService } from './../../core/auth/auth.service';
   styleUrls: ['./add-measurement.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AddMeasurementComponent implements OnInit {
+export class AddMeasurementComponent implements OnInit, OnDestroy {
   weightForm: FormGroup;
   perimeterForm: FormGroup;
   skinfoldForm: FormGroup;
-
   client:  User;
+  backdropClick$: Subscription;
 
   // Disable popup from closing
   @HostListener('window:keyup.esc') onKeyUp() {
@@ -71,6 +72,17 @@ export class AddMeasurementComponent implements OnInit {
       frontalThigh: [''],
       skinfoldCalf:  ['']
     });
+
+    this.listenToBackdrop();
+  }
+
+  listenToBackdrop() {
+    this.backdropClick$ = this.dialogRef.backdropClick().subscribe(() => {
+      const cn = confirm('Are you sure you want to quit adding these measurements? Your progress will be lost.');
+      if (cn) {
+        this.dialogRef.close();
+      }
+    });
   }
 
   addMeasurements() {
@@ -91,4 +103,7 @@ export class AddMeasurementComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.backdropClick$.unsubscribe();
+  }
 }

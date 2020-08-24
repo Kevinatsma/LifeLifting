@@ -220,7 +220,8 @@ export class MyClientDetailComponent implements OnInit, OnDestroy {
         displayName: this.user.displayName,
         currentWeight: this.user.basicData.currentWeight
       },
-      panelClass: 'add-measurement-dialog'
+      panelClass: 'add-measurement-dialog',
+      disableClose: true
     });
   }
 

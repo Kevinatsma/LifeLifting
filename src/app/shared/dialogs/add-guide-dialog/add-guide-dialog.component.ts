@@ -118,8 +118,6 @@ export class AddGuideDialogComponent implements OnInit, OnDestroy {
                private utils: UtilService,
                private exerciseService: ExerciseService,
                private guidelineService: GuidelineService,
-               private measurementService: MeasurementService,
-               private ficService: FirstConsultationService,
                public dialog: MatDialog,
                private dialogRef: MatDialogRef<AddGuideDialogComponent>,
                private afs: AngularFirestore,

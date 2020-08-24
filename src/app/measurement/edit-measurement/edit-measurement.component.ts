@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, HostListener, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MeasurementService } from '../measurement.service';
-import { User } from './../../user/user.model';
 import { Measurement } from '../measurement.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-measurement',
@@ -15,8 +15,8 @@ export class EditMeasurementComponent implements OnInit {
   weightForm: FormGroup;
   perimeterForm: FormGroup;
   skinfoldForm: FormGroup;
-
   measurement: Measurement;
+  backdropClick$: Subscription;
 
   // Disable popup from closing
   @HostListener('window:keyup.esc') onKeyUp() {
@@ -35,8 +35,7 @@ export class EditMeasurementComponent implements OnInit {
                private fb: FormBuilder,
                private measurementService: MeasurementService,
                @Inject(MAT_DIALOG_DATA) public data: any
-               ) {
-               }
+               ) {}
 
   ngOnInit() {
     this.measurement = this.data.measurement;
@@ -70,6 +69,17 @@ export class EditMeasurementComponent implements OnInit {
       abdominal: [this.measurement.skinfolds.abdominal || ''],
       frontalThigh: [this.measurement.skinfolds.frontalThigh || ''],
       skinfoldCalf:  [this.measurement.skinfolds.skinfoldCalf || '']
+    });
+
+    this.listenToBackdrop();
+  }
+
+  listenToBackdrop() {
+    this.backdropClick$ = this.dialogRef.backdropClick().subscribe(() => {
+      const cn = confirm('Are you sure you want to quit adding these measurements? Your progress will be lost.');
+      if (cn) {
+        this.dialogRef.close();
+      }
     });
   }
 

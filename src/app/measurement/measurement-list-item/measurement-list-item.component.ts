@@ -66,7 +66,8 @@ export class MeasurementListItemComponent implements OnInit, OnDestroy {
       data: {
         measurement: measurement
       },
-      panelClass: 'add-measurement-dialog'
+      panelClass: 'add-measurement-dialog',
+      disableClose: true
     });
   }
 
