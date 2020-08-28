@@ -74,6 +74,8 @@ export class SignupComponent implements OnInit {
       this.router.navigate(['signup/limbo']);
     } else if (!this._user.status.subscriptionValid) {
       this.router.navigate(['signup/limbo']);
+    } else if (this._user.status.accepted && this._user.status.subscriptionValid) {
+      this.router.navigate(['dashboard/overview']);
     }
   }
 

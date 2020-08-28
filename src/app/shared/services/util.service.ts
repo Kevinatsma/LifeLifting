@@ -162,7 +162,7 @@ export class UtilService {
     const C = data.calf;
 
     const sum =  T + S + CI + A + FT + C;
-    const fatPercentage = c * sum * m;
+    const fatPercentage = c * sum + m;
 
     return fatPercentage;
   }

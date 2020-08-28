@@ -51,7 +51,7 @@ section.step-wrapper {
         @include respond-down($sm) {
             flex-flow: column nowrap;
             height: auto;
-            overflow: auto;
+            overflow: hidden;
         }
 
         .right-scroll-margin {

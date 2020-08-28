@@ -7,6 +7,8 @@ import { ChatMessageService } from './../chat-message.service';
 import { ChatThreadService } from '../chat-thread.service';
 import { Thread } from '../thread.model';
 import { UtilService } from './../../shared/services/util.service';
+import * as _ from 'lodash';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-chat-messages',
@@ -41,20 +43,18 @@ export class ChatMessagesComponent implements OnInit, OnDestroy {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.messages$ = this.messageService.getMessages(id);
-      this.messageSubscription$ = this.messages$.subscribe(messages => {
+      this.messageSubscription$ = this.messages$.pipe(distinctUntilChanged()).subscribe(messages => {
         this.messages = messages.sort(function(a, b) {
           // convert date object into number to resolve issue in typescript
           return  +new Date(a.timestamp) - +new Date(b.timestamp);
         });
 
-        const messageElements = document.querySelectorAll('message');
-        setTimeout(() => {
-          messageElements.forEach(el => {
+        const messageElements = document.querySelectorAll('.message');
+          _.each(messageElements, (el: HTMLElement) => {
             if (!el.classList.contains('is-loaded')) {
               el.classList.add('is-loaded');
             }
           });
-        }, 2000);
       });
     }
   }

@@ -17,10 +17,12 @@ div.message-container {
         border-radius: 50%;
     }
 
-    div#message {
+    div.message {
         animation: slide-up-appear .5s ease-in-out;
+        animation-fill-mode: forwards;
         display: flex;
         justify-content: flex-start;
+        opacity: 0;
 
         &:last-child {
             margin-bottom: 1em;
@@ -36,7 +38,7 @@ div.message-container {
 
         &.is-loaded {
             animation: none !important;
-            animation-delay: 5s;
+            animation-delay: 5s !important;
         }
     }
 

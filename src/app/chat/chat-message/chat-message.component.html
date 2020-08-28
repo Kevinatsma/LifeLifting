@@ -1,5 +1,5 @@
 <div class="message-container">
-  <div id="message" [class.inbound]="incoming" [class.outbound]="!incoming">
+  <div class="message" [class.inbound]="incoming" [class.outbound]="!incoming">
     <img matListAvatar [src]="message.photoURL || './../../../assets/img/icons/user-no-photo.svg'" alt="{{message.sender}}">
     <mat-card>
         <p>{{ message.content }}</p>

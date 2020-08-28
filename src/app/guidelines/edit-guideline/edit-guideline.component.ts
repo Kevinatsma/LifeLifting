@@ -199,7 +199,6 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
       const data = this.formulaValues;
 
       this.maxCaloriesResult = this.utils.calculateMaxCalories(data.weight, data.height, data.age, data.gender);
-
       if (!data.isAthlete) {
         this.fatPercentageRegResult = this.utils.calculateFatPercentageRegular(data);
       } else {
