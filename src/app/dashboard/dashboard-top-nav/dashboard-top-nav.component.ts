@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation, Renderer, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, ElementRef, Renderer2 } from '@angular/core';
 import { User } from './../../user/user.model';
 import { AuthService } from './../../core/auth/auth.service';
 import { Router } from '@angular/router';
@@ -20,7 +20,7 @@ export class DashboardTopNavComponent implements OnInit {
                public router: Router,
                private clientService: ClientService,
                private dashboardService: DashboardService,
-               private renderer: Renderer, private elem: ElementRef
+               private renderer: Renderer2, private elem: ElementRef
                ) { }
 
   ngOnInit() {

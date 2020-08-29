@@ -31,7 +31,7 @@ import { DisplayTextDialogComponent } from '../../shared/dialogs/display-text-di
 export class FirstConsultationDetailComponent implements OnInit, OnDestroy {
   firstConsultationNav: ElementRef;
   firstNavItem: ElementRef;
-  @ViewChild('firstConsultationNav', {static: false}) set content(content: ElementRef) {
+  @ViewChild('firstConsultationNav') set content(content: ElementRef) {
     this.firstConsultationNav = content;
   }
  firstConsultation$: Subscription;

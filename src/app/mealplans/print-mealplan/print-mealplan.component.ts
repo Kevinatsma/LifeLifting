@@ -12,11 +12,11 @@ const jsPDF = require('jspdf');
   encapsulation: ViewEncapsulation.None
 })
 export class PrintMealplanComponent implements OnInit {
-  @ViewChild('pageOne', {static: false}) pageOne: ElementRef;
-  @ViewChild('pageTwo', {static: false}) pageTwo: ElementRef;
-  @ViewChild('back', {static: false}) back: ElementRef;
-  @ViewChild('next', {static: false}) next: ElementRef;
-  @ViewChild('canvasDisplayTwo', {static: false}) canvasDisplayTwo: ElementRef;
+  @ViewChild('pageOne') pageOne: ElementRef;
+  @ViewChild('pageTwo') pageTwo: ElementRef;
+  @ViewChild('back') back: ElementRef;
+  @ViewChild('next') next: ElementRef;
+  @ViewChild('canvasDisplayTwo') canvasDisplayTwo: ElementRef;
   mealplan: Mealplan;
   creationDate: Date;
   client: User;

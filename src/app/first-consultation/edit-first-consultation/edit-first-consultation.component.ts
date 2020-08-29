@@ -23,7 +23,7 @@ import * as _ from 'lodash';
 })
 export class EditFirstConsultationComponent implements OnInit, OnDestroy {
   // Elements
-  @ViewChild('stepper', {static: false}) stepper: MatStepper;
+  @ViewChild('stepper') stepper: MatStepper;
 
   // Data
   firstConsultation: FirstConsultation;

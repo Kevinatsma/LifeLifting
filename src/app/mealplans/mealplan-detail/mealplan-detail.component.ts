@@ -27,7 +27,7 @@ import { PrintMealplanComponent } from './../print-mealplan/print-mealplan.compo
 export class MealplanDetailComponent implements OnInit, OnDestroy {
   mealplanNav: ElementRef;
   firstNavItem: ElementRef;
-  @ViewChild('mealplanNav', {static: false}) set content(content: ElementRef) {
+  @ViewChild('mealplanNav') set content(content: ElementRef) {
     this.mealplanNav = content;
   }
  mealplan: Mealplan;

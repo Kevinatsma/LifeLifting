@@ -11,7 +11,7 @@ const jsPDF = require('jspdf');
   encapsulation: ViewEncapsulation.None
 })
 export class PrintShoppingListComponent implements OnInit {
-  @ViewChild('shoppingList', {static: false}) shoppingListEl: ElementRef;
+  @ViewChild('shoppingList') shoppingListEl: ElementRef;
   shoppingListItems: Array<any>;
   mealplan: Mealplan;
 

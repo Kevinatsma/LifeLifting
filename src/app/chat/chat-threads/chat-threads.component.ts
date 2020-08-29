@@ -15,7 +15,7 @@ import { AuthService } from './../../core/auth/auth.service';
   styleUrls: ['./chat-threads.component.scss']
 })
 export class ChatThreadsComponent implements OnInit, OnDestroy {
-  @ViewChild(ChatDetailComponent, {static: false}) chatComp: ChatDetailComponent;
+  @ViewChild(ChatDetailComponent) chatComp: ChatDetailComponent;
   threads: Observable<Thread[]>;
   thread: Observable<Thread>;
   showThreads: boolean;

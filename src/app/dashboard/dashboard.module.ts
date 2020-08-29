@@ -135,7 +135,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     CoreModule,
     CommonModule,
-    RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'}),
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled', initialNavigation: 'enabled' }),
     SharedModule,
     UserModule,
     SpecialistModule,
