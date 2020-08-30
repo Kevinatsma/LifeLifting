@@ -8,9 +8,10 @@ main.detail-wrapper {
     overflow-y: hidden;
     position: relative;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     @include respond-down($sm) {
-        max-height: 100vh;
+        height: -webkit-fill-available;
+        max-height: -webkit-fill-available;
         overflow: hidden;
     }
     
@@ -58,29 +59,27 @@ main.detail-wrapper {
     section {
         box-sizing: border-box;
         &.chat-feed {
-            height: calc(100vh - 100px);
-            overflow-y: scroll;
-            overflow: auto;
+            height: calc(100% - 135px);
+            overflow-y: auto;
             background: $light-grey;
-            padding: 1em 2em 4em;
+            padding: 0px 10px 20px;
         }
 
         &.chat-input {
-            position: absolute;
+            position: relative;
             bottom: 0;
             left: 0;
             right: 0;
-            height: auto;
-            max-height: 125px;
             background: #fff;
             border-top: 1px solid $light-grey;
-            padding: 5px 10px;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            height: 70px;
 
             app-chat-input {
                 box-sizing: border-box;
                 display: flex;
-                flex-flow: row nowrap;
-                justify-content: space-between;
                 width: 100%;
             }
         }

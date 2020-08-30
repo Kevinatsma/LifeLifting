@@ -5,7 +5,6 @@ import { SharedModule } from './../shared/shared.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ChatDetailComponent } from './chat-detail/chat-detail.component';
 import { ChatInputComponent } from './chat-input/chat-input.component';
-import { ChatFeedComponent } from './chat-feed/chat-feed.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { ChatMessagesComponent } from './chat-messages/chat-messages.component';
 import { ChatThreadsComponent } from './chat-threads/chat-threads.component';
@@ -38,7 +37,6 @@ const routes: Routes = [
   ],
   exports: [
     ChatInputComponent,
-    ChatFeedComponent,
     ChatMessageComponent,
     ChatMessagesComponent,
     ChatThreadComponent,
@@ -48,7 +46,6 @@ const routes: Routes = [
   declarations: [
     ChatDetailComponent,
     ChatInputComponent,
-    ChatFeedComponent,
     ChatMessageComponent,
     ChatMessagesComponent,
     ChatThreadsComponent,

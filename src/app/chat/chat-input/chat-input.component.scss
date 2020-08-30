@@ -1,51 +1,79 @@
 @import './../../../assets/scss/_master.scss';
 @import './../../../assets/scss/_forms.scss';
+@import './../../../assets/scss/_mixins.scss';
 
-mat-form-field.chat-box {
+.chat-input-container {
+    align-items: center;
     display: flex;
+    flex-flow: row nowrap;
+    height: 100%;
     justify-content: flex-start;
-    width: 90%;
-    margin: 10px 0 0;
-    padding-left: 1.5em;
+    padding: 0 20px 0 0;
+    width: 100%;
 
-    ::ng-deep .mat-form-field-underline {
-        display: none;
+    @include respond-down($sm) {
+        padding: 0 10px 0 0;
     }
 
-    ::ng-deep .mat-form-field-label{
-        color: $grey;
-        font-size: 16px;
-        font-weight: $semi-bold;
-        font-family: $main-font;
-        letter-spacing: 1px;
-    }
-
-    ::ng-deep .mat-form-field-wrapper {
-        width: 100%;
-    }
-
-    .mat-form-field-infix {
+    mat-form-field.chat-box {
         display: flex;
-        flex-flow: row nowrap;
+        justify-content: flex-start;
+        height: 100%;
+        margin: 0;
+        max-height: 80px;
+        padding: 0 0 0 20px;
+        width: calc(100% - 50px);
+    
+        @include respond-down($sm) {
+            max-height: 70px;
+        }
+    
+        ::ng-deep .mat-form-field-underline {
+            display: none;
+        }
+    
+        ::ng-deep .mat-form-field-label{
+            color: $grey;
+            font-size: 16px;
+            font-weight: $semi-bold;
+            font-family: $main-font;
+            letter-spacing: 1px;
+        }
+    
+        ::ng-deep .mat-form-field-wrapper {
+            @extend %flex-center;
+            padding-bottom: 0;
+            width: 100%;
+        }
+    
+        ::ng-deep .mat-form-field-infix {
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ::ng-deep .mat-form-field-flex {
+            padding: 0;
+        }
+    
+        input {
+            font-size: 16px;
+            max-height: 75px;
+            line-height: 26px;
+            box-sizing: border-box;
+            width: 100%;
+        }
     }
-
-    input {
-        max-height: 75px;
-        line-height: 26px;
-        box-sizing: border-box;
-        margin-top: 5px;
-        width: 90%;
-    }
-}
-
-.send-btn {
-    width: 10%;
-    @extend %flex-center;
-
-    .fa__icon, .svg-inline--fa, svg, svg path {
-        cursor: pointer;
-        font-size: 20px;
-        color: $primary-color;
-        width: 20px;
+    
+    .send-btn {
+        width: 50px;
+        @extend %flex-center;
+    
+        .fa__icon, .svg-inline--fa, svg, svg path {
+            cursor: pointer;
+            font-size: 20px;
+            color: $primary-color;
+            width: 20px;
+        }
     }
 }

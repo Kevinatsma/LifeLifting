@@ -2,7 +2,8 @@
 
 main.thread-container {
     width: 100vw;
-    height: 100vh;
+    height: -webkit-fill-available;
+    max-height: 100vh;
     display: flex;
     flex-flow: row nowrap;
     box-sizing: border-box;

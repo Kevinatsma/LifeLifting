@@ -1,8 +1,10 @@
-<mat-form-field class="chat-box">
-  <input matInput type="text" placeholder="Start typing.." autofocus
-    [(ngModel)]="message" (keydown)="handleSubmit($event)" matTextareaAutosize autocomplete="off">
-</mat-form-field>
+<div class="chat-input-container">
+  <mat-form-field class="chat-box" appearance="standard">
+    <input matInput type="text" placeholder="Start typing.." autocomplete="off"
+      [(ngModel)]="message" (keydown)="handleSubmit($event)" matTextareaAutosize>
+  </mat-form-field>
 
-<button class="send-btn" (click)="send()">
-  <i class="fa__icon fas fa-paper-plane"></i>
-</button>
+  <button class="send-btn" (click)="send()">
+    <i class="fa__icon fas fa-paper-plane"></i>
+  </button>
+</div>

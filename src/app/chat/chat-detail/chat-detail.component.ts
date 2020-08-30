@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, OnDestroy } from '@angular/core';
-
-import { Location } from '@angular/common';
 import { ChatThreadService } from './../chat-thread.service';
 import { Observable, Subscription } from 'rxjs';
 import { Thread } from './../thread.model';
@@ -9,6 +7,7 @@ import { UtilService } from '../../shared/services/util.service';
 import { AuthService } from './../../core/auth/auth.service';
 import { MatDialog } from '@angular/material';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-chat-detail',
@@ -52,6 +51,9 @@ export class ChatDetailComponent implements AfterViewChecked, OnInit, OnDestroy 
                }
 
   ngAfterViewChecked() {
+    if (this.isMobile) {
+      _.set(this.feed, 'nativeElement.style.height', `${+window.innerHeight - 135}px`);
+    }
     this.scrollToBottom();
   }
 
