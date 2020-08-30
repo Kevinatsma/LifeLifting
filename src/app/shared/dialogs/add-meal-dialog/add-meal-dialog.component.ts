@@ -22,7 +22,7 @@ import { Specialist } from './../../../specialists/specialist.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { SuppsForm } from './supps-form.model';
 import { Mealplan } from './../../../mealplans/mealplan.model';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-add-meal-dialog',

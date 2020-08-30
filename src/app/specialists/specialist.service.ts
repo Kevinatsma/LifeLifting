@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Specialist } from './specialist.model';
-import { AngularFirestoreDocument, AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreDocument, AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable, Subject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from './../user/user.model';
 import { UserService } from '../user/user.service';
 

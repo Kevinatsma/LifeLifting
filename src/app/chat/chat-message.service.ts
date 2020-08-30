@@ -1,11 +1,10 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthService } from './../core/auth/auth.service';
 import { Message } from './message.model';
 import { Observable, Subscription } from 'rxjs';
 import { Thread } from './thread.model';
 import { ActivatedRoute } from '@angular/router';
-import { ChatThreadService } from './chat-thread.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +19,7 @@ export class ChatMessageService implements OnDestroy {
   thread$: Subscription;
   messages: Observable<Message[]>;
 
-  constructor( private auth: AuthService,
-               private afs: AngularFirestore,
+  constructor( private afs: AngularFirestore,
                public route: ActivatedRoute) { }
 
   ngOnDestroy() {

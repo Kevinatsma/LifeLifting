@@ -3,7 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
 import { User } from './../../../user/user.model';
-import { AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material';
 
 @Injectable({

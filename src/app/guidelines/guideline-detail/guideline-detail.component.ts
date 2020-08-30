@@ -16,7 +16,7 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { AuthService } from './../../core/auth/auth.service';
 import { Measurement } from './../../measurement/measurement.model';
 import { FirstConsultation } from './../../first-consultation/first-consultation.model';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { MeasurementDetailComponent } from './../../measurement/measurement-detail/measurement-detail.component';
 import { take } from 'rxjs/operators';
 

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { UserService } from '../../../../user/user.service';
 import { User } from '../../../../user/user.model';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { Review } from './../../../../reviews/review.model';
 

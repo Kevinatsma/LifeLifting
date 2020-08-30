@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { FirstConsultation } from './first-consultation.model';
 import { UserService } from '../user/user.service';

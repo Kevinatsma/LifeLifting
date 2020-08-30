@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, OnDestroy } from '@angular/core';
 import { BookingService } from './../../../booking/booking.service';
 import { Observable, Subscription } from 'rxjs';
 import { User } from './../../../user/user.model';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Appointment } from './../../../booking/appointment.model';
 import { MatDialog } from '@angular/material';
 import { Specialist } from './../../../specialists/specialist.model';

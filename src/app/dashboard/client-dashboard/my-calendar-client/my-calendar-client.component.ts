@@ -21,7 +21,7 @@ import { User } from '../../../user/user.model';
 import { AuthService } from '../../../core/auth/auth.service';
 import { UserService } from '../../../user/user.service';
 import { Appointment } from '../../../booking/appointment.model';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { ConfirmDialogComponent } from '../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { Location } from '@angular/common';

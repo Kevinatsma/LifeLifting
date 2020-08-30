@@ -1,14 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import {Router} from '@angular/router';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-  AngularFirestoreDocument
-} from 'angularfire2/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { Thread } from './thread.model';
-import { Message } from './message.model';
-
 import { AuthService } from './../core/auth/auth.service';
 import { ChatMessageService } from './chat-message.service';
 import { User } from '../user/user.model';

@@ -4,7 +4,7 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { DayForm } from './day-form.model';
 import { FormArray } from '@angular/forms';
 import { Mealplan } from './../../../mealplans/mealplan.model';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material';
 import { SuppsForm } from './supps-form.model';
 

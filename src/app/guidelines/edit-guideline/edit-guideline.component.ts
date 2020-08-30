@@ -8,7 +8,7 @@ import { AuthService } from './../../core/auth/auth.service';
 import { User } from './../../user/user.model';
 import { Exercise } from './../../exercises/exercise.model';
 import { ActivatedRoute } from '@angular/router';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { UtilService } from './../../shared/services/util.service';
 import { Measurement } from './../../measurement/measurement.model';
 import { FirstConsultation } from './../../first-consultation/first-consultation.model';

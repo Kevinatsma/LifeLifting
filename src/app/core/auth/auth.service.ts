@@ -1,14 +1,12 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-
 import * as firebase from 'firebase/app';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
-
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap, first } from 'rxjs/operators';
 
-import { User, Roles } from './../../user/user.model';
+import { User } from './../../user/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +18,11 @@ export class AuthService {
 
   constructor( private afs: AngularFirestore,
                private afAuth: AngularFireAuth,
-               private router: Router,
-               private ngZone: NgZone) {
+               private router: Router) {
 
     // Get Auth data, then get Firestore User Document || null
     this.user = this.afAuth.authState.pipe(
-      switchMap(user => {
+      switchMap((user: User) => {
         if (user) {
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {

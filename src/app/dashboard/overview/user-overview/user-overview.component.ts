@@ -6,7 +6,7 @@ import { Specialist } from './../../../specialists/specialist.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { GuidelineService } from './../../../guidelines/guideline.service';
 import { Guideline } from './../../../guidelines/guideline.model';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Mealplan } from './../../../mealplans/mealplan.model';
 import { ChatThreadService } from './../../../chat/chat-thread.service';
 import { DashboardService } from '../../dashboard.service';

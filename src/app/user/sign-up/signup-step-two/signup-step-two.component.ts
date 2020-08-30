@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { AuthService } from './../../../core/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PackageService } from './../../../packages/package.service';
 import { Observable } from 'rxjs';
 import { Package } from './../../../packages/package.model';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-signup-step-two',

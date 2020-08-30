@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { DayForm } from './../add-meal-dialog/day-form.model';
 import { FormArray } from '@angular/forms';
 import { Mealplan } from '../../../mealplans/mealplan.model';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material';
 import { SuppsForm } from '../add-meal-dialog/supps-form.model';
 

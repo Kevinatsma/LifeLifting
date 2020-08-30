@@ -9,7 +9,7 @@ import { UserService } from './../../../user/user.service';
 import { Exercise } from './../../../exercises/exercise.model';
 import { Observable, Subscription } from 'rxjs';
 import { ExerciseService } from './../../../exercises/exercise.service';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FirstConsultation } from './../../../first-consultation/first-consultation.model';
 import { UtilService } from '../../services/util.service';
 import { Measurement } from './../../../measurement/measurement.model';

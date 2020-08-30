@@ -28,7 +28,7 @@ import { EditTuesdayFormComponent } from './edit-tuesday-form/edit-tuesday-form.
 import { EditThursdayFormComponent } from './edit-thursday-form/edit-thursday-form.component';
 import { EditFridayFormComponent } from './edit-friday-form/edit-friday-form.component';
 import { EditSuppsFormComponent } from './edit-supps-form/edit-supps-form.component';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-edit-meal-dialog',

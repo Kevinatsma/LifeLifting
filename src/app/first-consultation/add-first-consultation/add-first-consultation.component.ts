@@ -4,7 +4,7 @@ import { User } from '../../user/user.model';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { FirstConsultationService } from '../first-consultation.service';
 import { Mealplan } from '../../mealplans/mealplan.model';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Time } from './../../shared/data/models/time.model';
 import times from './../../shared/data/JSON/times.json';
 import dietTypes from './../../shared/data/JSON/dietTypes.json';

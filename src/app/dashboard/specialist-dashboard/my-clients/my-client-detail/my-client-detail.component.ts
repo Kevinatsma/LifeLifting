@@ -11,7 +11,7 @@ import { Subject, Observable, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { AddMealDialogComponent } from '../../../../shared/dialogs/add-meal-dialog/add-meal-dialog.component';
 import { AddGuideDialogComponent } from '../../../../shared/dialogs/add-guide-dialog/add-guide-dialog.component';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Guideline } from '../../../../guidelines/guideline.model';
 import { Mealplan } from '../../../../mealplans/mealplan.model';
 import { AddMeasurementComponent } from '../../../../measurement/add-measurement/add-measurement.component';

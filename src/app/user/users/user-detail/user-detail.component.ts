@@ -7,7 +7,7 @@ import { UserService } from './../../user.service';
 import { Specialist } from './../../../specialists/specialist.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { ChatThreadService } from './../../../chat/chat-thread.service';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Guideline } from './../../../guidelines/guideline.model';
 import { Subscription } from 'rxjs';
 import { Mealplan } from './../../../mealplans/mealplan.model';

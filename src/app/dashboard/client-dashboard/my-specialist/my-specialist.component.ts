@@ -11,7 +11,7 @@ import { User } from '../../../user/user.model';
 import { AddReviewDialogComponent } from '../../../shared/dialogs/add-review-dialog/add-review-dialog.component';
 import { MatDialog } from '@angular/material';
 import { AuthService } from '../../../core/auth/auth.service';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Review } from '../../../reviews/review.model';
 
 

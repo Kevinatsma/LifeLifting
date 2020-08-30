@@ -2,11 +2,10 @@ import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef, OnDestroy } fr
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { AddUserDialogComponent } from './../../shared/dialogs/add-user-dialog/add-user-dialog.component';
-import { Observable, Subscription } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-users',
