@@ -1,5 +1,5 @@
 import { Component, Inject, ViewEncapsulation, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BookingService } from '../../../booking/booking.service';
 import { Appointment } from '../../../booking/appointment.model';
 import { Specialist } from './../../../specialists/specialist.model';
@@ -8,6 +8,7 @@ import { SpecialistService } from './../../../specialists/specialist.service';
 import { UserService } from './../../../user/user.service';
 import { AuthService } from './../../../core/auth/auth.service';
 import { Subject, Subscription } from 'rxjs';
+import { IStartDate, IEndDate } from 'app/shared/constants/utils.constants';
 
 @Component({
   selector: 'app-appointment-detail-dialog',
@@ -25,7 +26,7 @@ export class AppointmentDetailDialogComponent implements OnDestroy {
   client$: Subscription;
 
   // Substrings to display date and time
-  start = {
+  start: IStartDate = {
     startDay: '',
     startMonth: '',
     startYear: '',
@@ -33,7 +34,7 @@ export class AppointmentDetailDialogComponent implements OnDestroy {
     startMinutes: '',
   };
 
-  end = {
+  end: IEndDate = {
     endDay: '',
     endMonth: '',
     endYear: '',

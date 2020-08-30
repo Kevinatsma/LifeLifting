@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, HostListener, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MeasurementService } from '../measurement.service';
 import { Measurement } from '../measurement.model';

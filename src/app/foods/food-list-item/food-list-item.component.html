@@ -1,50 +1,50 @@
 
 <mat-card class="list-item-card" *ngIf="food">
-  <section class="product-photo" (click)="linkToChild(food)" [style.background]="'url('+ food.productPhoto +')'">
+  <section class="product-photo" (click)="linkToChild(food)" [style.background]="'url('+ food?.productPhoto +')'">
       <!-- <i class="fa__icon fas fa-carrot"></i>
     <h1>{{i+1}}</h1> -->
   </section>
   <p class="subtitle" (click)="linkToChild(food)">
-    {{food.categories.nutritionType}}
+    {{food?.categories?.nutritionType}}
   </p>
   <section class="middle" (click)="linkToChild(food)">
     <div class="title">
-        <h2>{{food.productName}}</h2>
+        <h2>{{food?.productName}}</h2>
     </div>
 
     <div class="quick-info">
       <p class="speciality-title" *ngIf="!amount">
-        Product ID: {{food.productID}}
+        Product ID: {{food?.productID}}
       </p>
       <ul class="contact-menu" *ngIf="!amount">
         <li>
           <i class="fa__icon fas fa-balance-scale"></i>
-          {{food.unit}}
+          {{food?.unit}}
         </li>
       </ul>
       <div class="wrapper" *ngIf="amount">
         <ng-container *ngIf="prep">
           <span class="card-text">
-            {{prep.prepValue}}
+            {{prep?.prepValue}}
           </span>
           <ul class="contact-menu">
             <li>
               <i class="fa__icon fas fa-balance-scale"></i>
-              {{amount}} {{food.unit}}
+              {{amount}} {{food?.unit}}
             </li>
           </ul>
         </ng-container>
         <ng-container *ngIf="!prep">
-          <span class="card-text" *ngFor="let prep of food.preperations; let i=index">
+          <span class="card-text" *ngFor="let prep of food?.preparations; let i=index">
           <ng-container *ngIf="i !== 0">
             /
           </ng-container>
-          {{prep.prepValue}}
+          {{prep?.prepValue}}
           </span>
           <ul class="contact-menu">
             <li>
               <i class="fa__icon fas fa-balance-scale"></i>
-              {{amount}} {{food.unit}}
+              {{amount}} {{food?.unit}}
             </li>
           </ul>
         </ng-container>

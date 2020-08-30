@@ -12,21 +12,21 @@
   <!------------------------------>
 
   <ng-container *ngIf="mealTimes">
-  <div class="time-container" *ngIf="mealTimes.controls[0] as time">
+  <div class="time-container" *ngIf="mealTimes?.controls[0] as time">
     <section class="header">
       <div class="title">
-        <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
+        <h4 class="not-filled" *ngIf="!time?.value?.mealTimeName">
           1. This meal doesn't contain a meal time yet..
         </h4>
-        <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          1. {{time.value.mealTimeName}}
+        <h4 class="not-filled" *ngIf="time?.value?.mealTimeName">
+          1. {{time?.value?.mealTimeName}}
         </h4>
       </div>
-      <h5 class="time" *ngIf="time.value.mealTime">
+      <h5 class="time" *ngIf="time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
-        {{time.value.mealTime}}
+        {{time?.value?.mealTime}}
       </h5>
-      <h5 class="time" *ngIf="!time.value.mealTime">
+      <h5 class="time" *ngIf="!time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
         hh.mm
       </h5>
@@ -44,28 +44,28 @@
       </div>
 
       <div class="add-form-field-container" formArrayName="mOneMealOneArr">
-        <section class="chip-container" *ngFor="let food of mOneMealOneForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mOneMealOneForms?.controls; let i=index" 
         [formGroupName]="i">
         <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(11, i)" placeholder="Pick a food item" class="f-input select" placeholder="Pick a food item"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
-                {{food.value.product.productName}}
+              <mat-option *ngIf="food?.value?.product?.productName" selected disabled [value]="food?.value?.product">
+                {{food?.value?.product?.productName}}
               </mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mOneMealOneForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mOneMealOneForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -91,28 +91,28 @@
         </div>
 
       <div class="add-form-field-container" formArrayName="mOneMealTwoArr">
-        <section class="chip-container" *ngFor="let food of mOneMealTwoForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mOneMealTwoForms?.controls; let i=index" 
         [formGroupName]="i">
         <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(12, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
-                {{food.value.product.productName}}
+              <mat-option *ngIf="food?.value?.product?.productName" selected disabled [value]="food?.value?.product">
+                {{food?.value?.product?.productName}}
               </mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mOneMealTwoForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mOneMealTwoForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -149,21 +149,21 @@
   <!------------------------------>
   <!------------------------------>
 
-  <div class="time-container" *ngIf="mealTimes.controls[1] as time">
+  <div class="time-container" *ngIf="mealTimes?.controls[1] as time">
     <section class="header">
       <div class="title">
-        <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
+        <h4 class="not-filled" *ngIf="!time?.value?.mealTimeName">
           2. This meal doesn't contain a meal time yet..
         </h4>
-        <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          2. {{time.value.mealTimeName}}
+        <h4 class="not-filled" *ngIf="time?.value?.mealTimeName">
+          2. {{time?.value?.mealTimeName}}
         </h4>
       </div>
-      <h5 class="time" *ngIf="time.value.mealTime">
+      <h5 class="time" *ngIf="time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
-        {{time.value.mealTime}}
+        {{time?.value?.mealTime}}
       </h5>
-      <h5 class="time" *ngIf="!time.value.mealTime">
+      <h5 class="time" *ngIf="!time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
         hh.mm
       </h5>
@@ -181,28 +181,28 @@
       </div>
 
       <div class="add-form-field-container" formArrayName="mTwoMealOneArr">
-        <section class="chip-container" *ngFor="let food of mTwoMealOneForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mTwoMealOneForms?.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(21, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
-                {{food.value.product.productName}}
+              <mat-option *ngIf="food?.value?.product?.productName" selected disabled [value]="food?.value?.product">
+                {{food?.value?.product?.productName}}
               </mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mTwoMealOneForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mTwoMealOneForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -228,28 +228,28 @@
         </div>
 
       <div class="add-form-field-container" formArrayName="mTwoMealTwoArr">
-        <section class="chip-container" *ngFor="let food of mTwoMealTwoForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mTwoMealTwoForms?.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(22, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
-                {{food.value.product.productName}}
+              <mat-option *ngIf="food?.value?.product?.productName" selected disabled [value]="food?.value?.product">
+                {{food?.value?.product?.productName}}
               </mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mTwoMealTwoForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mTwoMealTwoForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -288,21 +288,21 @@
   <!------------------------------>
 
 
-  <div class="time-container" *ngIf="mealTimes.controls[2] as time">
+  <div class="time-container" *ngIf="mealTimes?.controls[2] as time">
     <section class="header">
       <div class="title">
-        <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
+        <h4 class="not-filled" *ngIf="!time?.value?.mealTimeName">
           3. This meal doesn't contain a meal time yet..
         </h4>
-        <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          3. {{time.value.mealTimeName}}
+        <h4 class="not-filled" *ngIf="time?.value?.mealTimeName">
+          3. {{time?.value?.mealTimeName}}
         </h4>
       </div>
-      <h5 class="time" *ngIf="time.value.mealTime">
+      <h5 class="time" *ngIf="time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
-        {{time.value.mealTime}}
+        {{time?.value?.mealTime}}
       </h5>
-      <h5 class="time" *ngIf="!time.value.mealTime">
+      <h5 class="time" *ngIf="!time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
         hh.mm
       </h5>
@@ -320,28 +320,28 @@
       </div>
 
       <div class="add-form-field-container" formArrayName="mThreeMealOneArr">
-        <section class="chip-container" *ngFor="let food of mThreeMealOneForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mThreeMealOneForms?.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(31, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
-                {{food.value.product.productName}}
+              <mat-option *ngIf="food?.value?.product?.productName" selected disabled [value]="food?.value?.product">
+                {{food?.value?.product?.productName}}
               </mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mThreeMealOneForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mThreeMealOneForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -367,28 +367,28 @@
         </div>
 
       <div class="add-form-field-container" formArrayName="mThreeMealTwoArr">
-        <section class="chip-container" *ngFor="let food of mThreeMealTwoForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mThreeMealTwoForms?.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(32, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
-                {{food.value.product.productName}}
+              <mat-option *ngIf="food?.value?.product?.productName" selected disabled [value]="food?.value?.product">
+                {{food?.value?.product?.productName}}
               </mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mThreeMealTwoForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mThreeMealTwoForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -427,21 +427,21 @@
   <!------------------------------>
 
 
-  <div class="time-container" *ngIf="mealTimes.controls[3] as time">
+  <div class="time-container" *ngIf="mealTimes?.controls[3] as time">
     <section class="header">
       <div class="title">
-        <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
+        <h4 class="not-filled" *ngIf="!time?.value?.mealTimeName">
           4. This meal doesn't contain a meal time yet..
         </h4>
-        <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          4. {{time.value.mealTimeName}}
+        <h4 class="not-filled" *ngIf="time?.value?.mealTimeName">
+          4. {{time?.value?.mealTimeName}}
         </h4>
       </div>
-      <h5 class="time" *ngIf="time.value.mealTime">
+      <h5 class="time" *ngIf="time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
-        {{time.value.mealTime}}
+        {{time?.value?.mealTime}}
       </h5>
-      <h5 class="time" *ngIf="!time.value.mealTime">
+      <h5 class="time" *ngIf="!time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
         hh.mm
       </h5>
@@ -459,28 +459,28 @@
       </div>
 
       <div class="add-form-field-container" formArrayName="mFourMealOneArr">
-        <section class="chip-container" *ngFor="let food of mFourMealOneForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mFourMealOneForms?.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(41, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
-                {{food.value.product.productName}}
+              <mat-option *ngIf="food?.value?.product?.productName" selected disabled [value]="food?.value?.product">
+                {{food?.value?.product?.productName}}
               </mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mFourMealOneForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mFourMealOneForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -506,28 +506,28 @@
         </div>
 
       <div class="add-form-field-container" formArrayName="mFourMealTwoArr">
-        <section class="chip-container" *ngFor="let food of mFourMealTwoForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mFourMealTwoForms?.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(42, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
-                {{food.value.product.productName}}
+              <mat-option *ngIf="food?.value?.product?.productName" selected disabled [value]="food?.value?.product">
+                {{food?.value?.product?.productName}}
               </mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mFourMealTwoForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mFourMealTwoForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -566,21 +566,21 @@
   <!------------------------------>
 
 
-  <div class="time-container" *ngIf="mealTimes.controls[4] as time">
+  <div class="time-container" *ngIf="mealTimes?.controls[4] as time">
     <section class="header">
       <div class="title">
-        <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
+        <h4 class="not-filled" *ngIf="!time?.value?.mealTimeName">
           5. This meal doesn't contain a meal time yet..
         </h4>
-        <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          5. {{time.value.mealTimeName}}
+        <h4 class="not-filled" *ngIf="time?.value?.mealTimeName">
+          5. {{time?.value?.mealTimeName}}
         </h4>
       </div>
-      <h5 class="time" *ngIf="time.value.mealTime">
+      <h5 class="time" *ngIf="time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
-        {{time.value.mealTime}}
+        {{time?.value?.mealTime}}
       </h5>
-      <h5 class="time" *ngIf="!time.value.mealTime">
+      <h5 class="time" *ngIf="!time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
         hh.mm
       </h5>
@@ -598,28 +598,28 @@
       </div>
 
       <div class="add-form-field-container" formArrayName="mFiveMealOneArr">
-        <section class="chip-container" *ngFor="let food of mFiveMealOneForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mFiveMealOneForms?.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(51, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
-                {{food.value.product.productName}}
+              <mat-option *ngIf="food?.value?.product?.productName" selected disabled [value]="food?.value?.product">
+                {{food?.value?.product?.productName}}
               </mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mFiveMealOneForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mFiveMealOneForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -645,28 +645,28 @@
       </div>
 
       <div class="add-form-field-container" formArrayName="mFiveMealTwoArr">
-        <section class="chip-container" *ngFor="let food of mFiveMealTwoForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mFiveMealTwoForms?.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(52, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
-                {{food.value.product.productName}}
+              <mat-option *ngIf="food?.value?.product?.productName" selected disabled [value]="food?.value?.product">
+                {{food?.value?.product?.productName}}
               </mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mFourMealTwoForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mFourMealTwoForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -705,21 +705,21 @@
   <!------------------------------>
 
 
-  <div class="time-container" *ngIf="mealTimes.controls[5] as time">
+  <div class="time-container" *ngIf="mealTimes?.controls[5] as time">
     <section class="header">
       <div class="title">
-        <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
+        <h4 class="not-filled" *ngIf="!time?.value?.mealTimeName">
           6. This meal doesn't contain a meal time yet..
         </h4>
-        <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          6. {{time.value.mealTimeName}}
+        <h4 class="not-filled" *ngIf="time?.value?.mealTimeName">
+          6. {{time?.value?.mealTimeName}}
         </h4>
       </div>
-      <h5 class="time" *ngIf="time.value.mealTime">
+      <h5 class="time" *ngIf="time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
-        {{time.value.mealTime}}
+        {{time?.value?.mealTime}}
       </h5>
-      <h5 class="time" *ngIf="!time.value.mealTime">
+      <h5 class="time" *ngIf="!time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
         hh.mm
       </h5>
@@ -737,28 +737,28 @@
       </div>
 
       <div class="add-form-field-container" formArrayName="mSixMealOneArr">
-        <section class="chip-container" *ngFor="let food of mSixMealOneForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mSixMealOneForms?.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(61, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
-                {{food.value.product.productName}}
+              <mat-option *ngIf="food?.value?.product?.productName" selected disabled [value]="food?.value?.product">
+                {{food?.value?.product?.productName}}
               </mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mSixMealOneForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mSixMealOneForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -784,28 +784,28 @@
         </div>
 
       <div class="add-form-field-container" formArrayName="mSixMealTwoArr">
-        <section class="chip-container" *ngFor="let food of mSixMealTwoForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mSixMealTwoForms?.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(62, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option *ngIf="food.value.product.productName" selected disabled [value]="food.value.product">
-                {{food.value.product.productName}}
+              <mat-option *ngIf="food?.value?.product?.productName" selected disabled [value]="food?.value?.product">
+                {{food?.value?.product?.productName}}
               </mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mSixMealTwoForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mSixMealTwoForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -844,21 +844,21 @@
   <!------------------------------>
 
 
-  <div class="time-container" *ngIf="mealTimes.controls[6] as time">
+  <div class="time-container" *ngIf="mealTimes?.controls[6] as time">
     <section class="header">
       <div class="title">
-        <h4 class="not-filled" *ngIf="!time.value.mealTimeName">
+        <h4 class="not-filled" *ngIf="!time?.value?.mealTimeName">
           7. This meal doesn't contain a meal time yet..
         </h4>
-        <h4 class="not-filled" *ngIf="time.value.mealTimeName">
-          7. {{time.value.mealTimeName}}
+        <h4 class="not-filled" *ngIf="time?.value?.mealTimeName">
+          7. {{time?.value?.mealTimeName}}
         </h4>
       </div>
-      <h5 class="time" *ngIf="time.value.mealTime">
+      <h5 class="time" *ngIf="time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
-        {{time.value.mealTime}}
+        {{time?.value?.mealTime}}
       </h5>
-      <h5 class="time" *ngIf="!time.value.mealTime">
+      <h5 class="time" *ngIf="!time?.value?.mealTime">
         <i class="fa__icon far fa-clock"></i>
         hh.mm
       </h5>
@@ -876,26 +876,26 @@
       </div>
 
       <div class="add-form-field-container" formArrayName="mSevenMealOneArr">
-        <section class="chip-container" *ngFor="let food of mSevenMealOneForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mSevenMealOneForms?.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(71, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option selected disabled [value]="food.value.product">{{food.value.product.productName}}</mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option selected disabled [value]="food?.value?.product">{{food?.value?.product?.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mSevenMealOneForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mSevenMealOneForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="Preperation"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep">{{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep">{{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -921,26 +921,26 @@
         </div>
 
       <div class="add-form-field-container" formArrayName="mSevenMealTwoArr">
-        <section class="chip-container" *ngFor="let food of mSevenMealTwoForms.controls; let i=index" 
+        <section class="chip-container" *ngFor="let food of mSevenMealTwoForms?.controls; let i=index" 
         [formGroupName]="i">
           <mat-form-field appearance="standard">
             <mat-select matInput (selectionChange)="clearFields(72, i)" placeholder="Pick a food item" class="f-input select"
             panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-              <mat-option selected disabled [value]="food.value.product">{{food.value.product.productName}}</mat-option>
-              <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+              <mat-option selected disabled [value]="food?.value?.product">{{food?.value?.product?.productName}}</mat-option>
+              <mat-option *ngFor="let product of foods" [value]="product"> {{product?.productName}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div class="unit" *ngIf="mSevenMealTwoForms.controls[i].value.product as prodObj">
+          <div class="unit" *ngIf="mSevenMealTwoForms?.controls[i]?.value?.product as prodObj">
             <mat-form-field appearance="standard" floatLabel="always">
               <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
               autofocus="none">
             </mat-form-field>
-            <span>{{prodObj.unit}}</span>
+            <span>{{prodObj?.unit}}</span>
             <mat-form-field appearance="standard" class="select">
               <mat-select matInput class="f-input select" placeholder="Preperation"
               panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                <mat-option *ngIf="food.value.prep" disabled selected [value]="food.value.prep"> {{food.value.prep.prepValue}}</mat-option>
-                <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                <mat-option *ngIf="food?.value?.prep" disabled selected [value]="food?.value?.prep"> {{food?.value?.prep?.prepValue}}</mat-option>
+                <mat-option *ngFor="let prep of prodObj?.preperations" [value]="prep"> {{prep?.prepValue}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>

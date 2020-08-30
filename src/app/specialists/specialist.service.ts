@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Specialist } from './specialist.model';
-import { AngularFirestoreDocument, AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreDocument, AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable, Subject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from './../user/user.model';
 import { UserService } from '../user/user.service';
 
@@ -53,19 +53,21 @@ export class SpecialistService {
   }
 
   emailSignUp(email: string, password: string, formData: any) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
     .then((credential) => {
       this.updateUserData(credential.user, formData);
     })
     .then(() => console.log('Congratulations. The specialists account has been created!'))
-    .then(() => {
-      this.afAuth.auth.currentUser.sendEmailVerification()
-        .then(() => console.log('We sent him/her an email verification'))
-        .catch(error => console.log(error.message));
-    })
+    .then(() => this.sendEmailVerification)
     .then((credential) => {
       return credential;
     });
+  }
+
+  sendEmailVerification = () => {
+    this.afAuth.currentUser.then(user => user.sendEmailVerification())
+      .then(() => console.log('We sent him/her an email verification'))
+      .catch(error => console.log(error.message));
   }
 
   private updateUserData(user, formData) {

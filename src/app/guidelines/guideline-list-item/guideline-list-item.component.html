@@ -1,9 +1,9 @@
 
 <mat-card class="list-item-card" *ngIf="guideline && auth.user | async as user">
-  <div class="card-circle" (click)="linkToChild(guideline, client)">
+  <div class="card-circle" (click)="linkToChild(guideline)">
     <i class="fa__icon far fa-file-alt"></i>
     <div class="nr-circle">
-      <span>{{guideline.guidelineNR}}</span>
+      <span>{{guideline?.guidelineNR}}</span>
     </div>
   </div>
 
@@ -22,25 +22,25 @@
     </ng-container>
   </ng-container>
 
-  <p class="subtitle" *ngIf="!guideline.lastEdited">
+  <p class="subtitle" *ngIf="!guideline?.lastEdited">
     Edited: Not edited yet...
   </p>
-  <p class="subtitle" *ngIf="guideline.lastEdited">
-    Edited: {{guideline.lastEdited.toDate() | date: 'short'}}
+  <p class="subtitle" *ngIf="guideline?.lastEdited">
+    Edited: {{guideline?.lastEdited?.toDate() | date: 'short'}}
   </p>
   <section class="middle" (click)="linkToChild(guideline)">
     <div class="title">
-        <h2>{{guideline.guidelineName}}</h2>
+        <h2>{{guideline?.guidelineName}}</h2>
     </div>
 
     <div class="quick-info">
-      <p class="speciality-title">gID: {{guideline.gID}}</p>
+      <p class="speciality-title">gID: {{guideline?.gID}}</p>
       <p *ngIf="client" class="speciality-title">For: {{client.displayName}}</p>
-      <p class="speciality-title">Created: {{guideline.creationDate.toDate() | date:'MM/dd/yy'}}</p>
+      <p class="speciality-title">Created: {{guideline?.creationDate?.toDate() | date:'MM/dd/yy'}}</p>
       <ul class="contact-menu">
         <!-- <li>
           <i class="fa__icon fas fa-balance-scale"></i>
-          {{guideline.portion.amount}} {{guideline.portion.unit}}
+          {{guideline?.portion.amount}} {{guideline?.portion.unit}}
         </li> -->
       </ul>
     </div>

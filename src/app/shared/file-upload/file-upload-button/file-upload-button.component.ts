@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
-import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
 import { Observable, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 

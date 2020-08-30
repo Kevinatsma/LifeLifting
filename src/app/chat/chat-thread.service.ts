@@ -4,7 +4,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
   AngularFirestoreDocument
-} from 'angularfire2/firestore';
+} from '@angular/fire/firestore';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { Thread } from './thread.model';
 import { Message } from './message.model';

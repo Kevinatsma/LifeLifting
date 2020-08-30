@@ -1,36 +1,36 @@
 <ng-container class="info-wrapper" *ngIf="package">
-  <h2>{{package.packageTitle}}</h2>
+  <h2>{{package?.packageTitle}}</h2>
   <div class="quick-facts">
     <p class="quick-fact">
       <i class="fa__icon far fa-money-bill-alt"></i>
-      {{package.packagePrice}} USD
+      {{package?.packagePrice}} USD
     </p>
     <div class="circle-divider"></div>
     <p class="quick-fact">
       <i class="fa__icon far fa-clock"></i>
-      {{package.packageDuration}} 
-      <span *ngIf="package.packageDuration === 1">week</span>
-      <span *ngIf="package.packageDuration !== 1">weeks</span>
+      {{package?.packageDuration}} 
+      <span *ngIf="package?.packageDuration === 1">week</span>
+      <span *ngIf="package?.packageDuration !== 1">weeks</span>
     </p>
   </div>
   <p class="card-text not-mobile">
-    {{package.packageDescription}}
+    {{package?.packageDescription}}
   </p>
-  <p class="card-text desc mobile" [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="user.basicData">
-    {{package.packageDescription}}
+  <p class="card-text desc mobile" [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="user?.basicData">
+    {{package?.packageDescription}}
   </p>
 
   <div class="list-container mobile" *ngIf="aboutExtended">
     <h5>Benefits</h5>
     <ul>
-      <li *ngFor="let benefit of package.packageBenefits">
+      <li *ngFor="let benefit of package?.packageBenefits">
         <i class="fa__icon fas fa-check"></i>
         <span>{{benefit.benefitValue}}</span>
       </li>
     </ul>
   </div>
 
-  <div class="read-more__buttons mobile" *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
+  <div class="read-more__buttons mobile" *ngIf="user?.basicData && user?.basicData?.mainGoal && hasReadMore">
     <button class="text-link read-more" (click)="aboutExtendedToggle()" *ngIf="!aboutExtended">
       <i class="fa__icon fas fa-plus"></i>
       Read More
@@ -44,7 +44,7 @@
   <div class="list-container not-mobile">
     <h5>Benefits</h5>
     <ul>
-      <li *ngFor="let benefit of package.packageBenefits">
+      <li *ngFor="let benefit of package?.packageBenefits">
         <i class="fa__icon fas fa-check"></i>
         <span>{{benefit.benefitValue}}</span>
       </li>

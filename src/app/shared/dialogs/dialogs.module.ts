@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './../material.module';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { MatNativeDateModule } from '@angular/material';
+import { MatNativeDateModule } from '@angular/material/core';
 
 // Components
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';

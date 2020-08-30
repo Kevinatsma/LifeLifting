@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, EmailValidator } from '@angular/forms';
 import { AuthService } from './../../../core/auth/auth.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-user-dialog',

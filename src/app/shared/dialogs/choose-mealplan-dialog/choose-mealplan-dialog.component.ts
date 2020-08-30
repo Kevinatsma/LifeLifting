@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Mealplan } from './../../../mealplans/mealplan.model';
 import { MealplanService } from './../../../mealplans/mealplan.service';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthService } from './../../../core/auth/auth.service';
 import { Observable, Subscription } from 'rxjs';
 import { UserService } from './../../../user/user.service';

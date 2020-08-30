@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 import { FollowUpConsultation } from './follow-up-consultation.model';
 
 @Injectable({

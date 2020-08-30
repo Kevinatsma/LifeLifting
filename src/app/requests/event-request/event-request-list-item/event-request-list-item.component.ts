@@ -5,7 +5,7 @@ import { User } from './../../../user/user.model';
 import { UserService } from './../../../user/user.service';
 import { BookingService } from './../../../booking/booking.service';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Specialist } from './../../../specialists/specialist.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
 

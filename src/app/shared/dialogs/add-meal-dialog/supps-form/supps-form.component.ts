@@ -1,8 +1,8 @@
 
 import { Component, OnInit, Inject, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MatDialog } from '@angular/material';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from '../../../../user/user.model';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { UserService } from '../../../../user/user.service';

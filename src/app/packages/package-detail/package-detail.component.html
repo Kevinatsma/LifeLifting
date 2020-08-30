@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="middle">
-        <h1>Package: {{package.packageID}}</h1>
+        <h1>Package: {{package?.packageID}}</h1>
       </div>
       <div class="right">
         <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
@@ -21,31 +21,31 @@
 
       <section class="package-controls last-package">
           <button class="slide-control-btn" (click)="linkToPrevious(package)" 
-          [class.disabled]="package.packageID === 1"
-          [disabled]="package.packageID === 1"
+          [class.disabled]="package?.packageID === 1"
+          [disabled]="package?.packageID === 1"
           >
               <i class="fa__icon fas fa-chevron-left"></i>
           </button>
       </section>
       <section class="package-item" *ngIf="!editShow">
-        <h2>{{package.packageTitle}}</h2>
+        <h2>{{package?.packageTitle}}</h2>
         <div class="quick-facts">
           <p class="quick-fact">
-            ${{package.packagePrice}} USD
+            ${{package?.packagePrice}} USD
           </p>
           <div class="circle-divider"></div>
           <p class="quick-fact">
-            {{package.packageDuration}} 
-            <span *ngIf="package.packageDuration === 1">week</span>
-            <span *ngIf="package.packageDuration !== 1">weeks</span>
+            {{package?.packageDuration}} 
+            <span *ngIf="package?.packageDuration === 1">week</span>
+            <span *ngIf="package?.packageDuration !== 1">weeks</span>
           </p>
         </div>
         <p class="card-text">
-          {{package.packageDescription}}
+          {{package?.packageDescription}}
         </p>
         <div class="list-container">
           <ul>
-            <li *ngFor="let benefit of package.packageBenefits">
+            <li *ngFor="let benefit of package?.packageBenefits">
               <i class="fa__icon fas fa-check"></i>
               {{benefit.benefitValue}}
             </li>
@@ -54,8 +54,8 @@
       </section>
       <section class="package-controls next-package">
         <button class="slide-control-btn" (click)="linkToNext(package)"
-          [class.disabled]="package.packageID === 3"
-          [disabled]="package.packageID === 3"
+          [class.disabled]="package?.packageID === 3"
+          [disabled]="package?.packageID === 3"
           >
             <i class="fa__icon fas fa-chevron-right"></i>
         </button>

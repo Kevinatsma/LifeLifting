@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { openClose } from './../../../core/animations/open-close.animation';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ChooseMealplanDialogComponent } from '../../../shared/dialogs/choose-mealplan-dialog/choose-mealplan-dialog.component';
 import { DashboardService } from '../../dashboard.service';

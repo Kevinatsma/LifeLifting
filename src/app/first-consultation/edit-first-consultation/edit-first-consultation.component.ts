@@ -1,10 +1,11 @@
-import { Component, OnInit, Inject, HostListener, Input, ViewChild, OnDestroy } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
+import { Component, OnInit, Inject, HostListener, ViewChild, OnDestroy } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatStepper } from '@angular/material/stepper';
 import { User } from '../../user/user.model';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { FirstConsultationService } from '../first-consultation.service';
 import { Mealplan } from '../../mealplans/mealplan.model';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Time } from '../../shared/data/models/time.model';
 import healthConditions from '../../shared/data/JSON/healthConditions.json';
 import times from '../../shared/data/JSON/times.json';
@@ -23,7 +24,7 @@ import * as _ from 'lodash';
 })
 export class EditFirstConsultationComponent implements OnInit, OnDestroy {
   // Elements
-  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild('stepper', {static: false}) stepper: MatStepper;
 
   // Data
   firstConsultation: FirstConsultation;

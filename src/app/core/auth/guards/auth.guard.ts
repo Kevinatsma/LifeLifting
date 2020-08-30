@@ -3,8 +3,8 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
 import { User } from './../../../user/user.model';
-import { AngularFirestoreDocument } from 'angularfire2/firestore';
-import { MatSnackBar } from '@angular/material';
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +22,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+      console.log('can activate', this.auth);
       if (!this.auth.authenticated) {
         console.log(`⛔ Access denied`);
         this.router.navigate(['/signup']);

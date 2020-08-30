@@ -3,7 +3,7 @@ import { User } from '../../user/user.model';
 import { Router } from '@angular/router';
 import { FirstConsultation } from '../first-consultation.model';
 import { AuthService } from '../../core/auth/auth.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { FirstConsultationService } from '../first-consultation.service';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { SpecialistService } from '../../specialists/specialist.service';

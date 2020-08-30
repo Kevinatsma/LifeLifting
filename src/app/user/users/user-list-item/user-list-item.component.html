@@ -79,16 +79,16 @@
       <i class="fa__icon fas fa-trash"></i>
     </button>
     <!-- Disabled button when user hasn't completed signup yet -->
-    <button mat-button *ngIf="!user.status.signUpCompleted " matTooltip="User hasn't completed the Signup process yet"
+    <button mat-button *ngIf="!user?.status?.signUpCompleted " matTooltip="User hasn't completed the Signup process yet"
       matTooltipClass="tooltip-warning" [matTooltipPosition]="tooltipPosition" (click)="editUser(user)">
       <i class="fa__icon fas fa-edit"></i>
     </button>
     <!-- Accept user button when Signup is completed -->
-    <button (click)="acceptUser(user)" *ngIf="!user.status.accepted && user.status.signUpCompleted">
+    <button (click)="acceptUser(user)" *ngIf="!user?.status?.accepted && user?.status?.signUpCompleted">
       <i class="fa__icon fas fa-user-check"></i>
     </button>
     <!-- Edit button when user is accepted and has completed the signup process -->
-    <button (click)="editUser(user)" *ngIf="user.status.signUpCompleted && user.status.accepted">
+    <button (click)="editUser(user)" *ngIf="user?.status?.signUpCompleted && user?.status?.accepted">
       <i class="fa__icon fas fa-edit"></i>
     </button>
   </section>

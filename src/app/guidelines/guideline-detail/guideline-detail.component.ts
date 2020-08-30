@@ -11,12 +11,12 @@ import { UserService } from './../../user/user.service';
 import { ExerciseService } from './../../exercises/exercise.service';
 import { Exercise } from './../../exercises/exercise.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { AuthService } from './../../core/auth/auth.service';
 import { Measurement } from './../../measurement/measurement.model';
 import { FirstConsultation } from './../../first-consultation/first-consultation.model';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { MeasurementDetailComponent } from './../../measurement/measurement-detail/measurement-detail.component';
 import { take } from 'rxjs/operators';
 

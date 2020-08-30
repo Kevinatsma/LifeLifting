@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Measurement } from './measurement.model';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { MatSnackBar } from '@angular/material';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../user/user.service';
 import { Subscription } from 'rxjs';
 

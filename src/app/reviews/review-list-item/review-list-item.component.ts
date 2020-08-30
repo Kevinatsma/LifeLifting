@@ -3,7 +3,7 @@ import { Review } from '../review.model';
 import { openClose } from './../../core/animations/open-close.animation';
 import { ReviewsService } from '../reviews.service';
 import { EditDialogComponent } from './../../shared/dialogs/edit-dialog/edit-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Specialist } from './../../specialists/specialist.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { AuthService } from './../../core/auth/auth.service';

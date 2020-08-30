@@ -5,14 +5,14 @@
 
   <ng-container *ngIf="!editShow">
     <section class="intro">
-      <button class="edit-btn back mobile" *ngIf="user.roles.admin || user.roles.specialist" mat-dialog-close>
+      <button class="edit-btn back mobile" *ngIf="user?.roles?.admin || user?.roles?.specialist" mat-dialog-close>
         <i class="fa__icon fas fa-arrow-left"></i>
       </button>
-      <button class="edit-btn delete" (click)="deleteEvent(event)" *ngIf="user.roles.admin || user.roles.specialist" mat-dialog-close>
+      <button class="edit-btn delete" (click)="deleteEvent(event)" *ngIf="user?.roles?.admin || user?.roles?.specialist" mat-dialog-close>
         <i class="fa__icon far fa-trash-alt"></i>
       </button>
-      <h1>{{event.title}}</h1>
-      <button class="edit-btn" *ngIf="!editShow && user.roles.admin || user.roles.specialist" 
+      <h1>{{event?.title}}</h1>
+      <button class="edit-btn" *ngIf="!editShow && user?.roles?.admin || user?.roles?.specialist" 
       (click)="toggleEdit()">
         <i class="fa__icon far fa-edit"></i>
       </button>
@@ -21,27 +21,27 @@
     <section class="chip-area">
       <p class="secondary-chip" *ngIf="client">
         <i class="fa__icon fas fa-user-tie"></i>
-        {{client.displayName}}
+        {{client?.displayName}}
       </p>
       <p class="secondary-chip" *ngIf="specialist">
         <i class="fa__icon fas fa-user-ninja"></i>
-        {{specialist.firstName}} {{specialist.lastName}}
+        {{specialist?.firstName}} {{specialist?.lastName}}
       </p>
     </section>
 
     <section class="timeline">
       <div class="start">
-        <h5>From: {{start.startDay}} {{start.startMonth}} {{start.startYear}}</h5>
+        <h5>From: {{start?.startDay}} {{start?.startMonth}} {{start?.startYear}}</h5>
         <p class="time">
           <i class="fa__icon far fa-clock"></i>
-          {{start.startHours}}{{start.startMinutes}}
+          {{start?.startHours}}{{start?.startMinutes}}
         </p>
       </div>
       <div class="end">
-          <h5>To: {{end.endDay}} {{end.endMonth}} {{end.endYear}}</h5>
+          <h5>To: {{end?.endDay}} {{end?.endMonth}} {{end?.endYear}}</h5>
           <p class="time">
             <i class="fa__icon far fa-clock"></i>
-            {{end.endHours}}{{end.endMinutes}}
+            {{end?.endHours}}{{end?.endMinutes}}
           </p>
       </div>
     </section>
@@ -49,47 +49,47 @@
     <section class="appointment-type" *ngIf="event">
       <div class="contact-container" *ngIf="onlineAppointment">
         <h4>Online call</h4>
-        <div class="contact-container__item skype" *ngIf="skype && event.skypeName">
+        <div class="contact-container__item skype" *ngIf="skype && event?.skypeName">
           <p>
             <i class="fa__icon fab fa-skype"></i> 
-            {{event.skypeName}}
+            {{event?.skypeName}}
           </p>
         </div>
 
-        <div class="contact-container__item whatsapp" *ngIf="whatsApp && event.whatsappNumber">
+        <div class="contact-container__item whatsapp" *ngIf="whatsApp && event?.whatsappNumber">
           <p>
             <i class="fa__icon fab fa-whatsapp"></i>
-            <a class="text-link" href="tel:{{event.whatsappNumber}}">Add to phone</a>
+            <a class="text-link" href="tel:{{event?.whatsappNumber}}">Add to phone</a>
           </p>
         </div>
 
         <div class="contact-container__item phone"
-          *ngIf="user.roles.specialist && event.onlineAppointmentPhone.phoneRest !== '' && event.onlineAppointmentPhone.phoneRest !== null">
+          *ngIf="user?.roles?.specialist && event?.onlineAppointmentPhone?.phoneRest !== '' && event?.onlineAppointmentPhone?.phoneRest !== null">
           <p *ngIf="client">
             <i class="fa__icon fas fa-phone"></i>
-            <a class="text-link" href="tel:{{event.onlineAppointmentPhone.phoneAreaCode}}{{event.onlineAppointmentPhone.phoneRest}}">
-              Call {{client.displayName}}
+            <a class="text-link" href="tel:{{event?.onlineAppointmentPhone?.phoneAreaCode}}{{event?.onlineAppointmentPhone?.phoneRest}}">
+              Call {{client?.displayName}}
             </a>
           </p>
         </div>
 
         <div class="contact-container__item phone"
-          *ngIf="user.roles.client && !user.roles.specialist && specialist">
+          *ngIf="user?.roles?.client && !user?.roles?.specialist && specialist">
           <p>
             <i class="fa__icon fas fa-phone"></i>
-            <a class="text-link" href="tel:{{specialist.phoneNumber}}">
-              Call {{specialist.firstName}} {{specialist.lastName}}
+            <a class="text-link" href="tel:{{specialist?.phoneNumber}}">
+              Call {{specialist?.firstName}} {{specialist?.lastName}}
             </a>
           </p>
         </div>
       </div>
       
-      <div class="contact-container__item face-to-face" *ngIf="faceToFace && event.faceToFacePhone || event.location">
+      <div class="contact-container__item face-to-face" *ngIf="faceToFace && event?.faceToFacePhone || event?.location">
         <h4>Face to Face </h4>
         <p *ngIf="client" class="phone-number">
           <i class="fa__icon fas fa-phone"></i>
-          <a class="text-link" href="tel:{{event.faceToFacePhone}}">
-            Call {{client.displayName}}
+          <a class="text-link" href="tel:{{event?.faceToFacePhone}}">
+            Call {{client?.displayName}}
           </a>
         </p>
         <div class="location-card">

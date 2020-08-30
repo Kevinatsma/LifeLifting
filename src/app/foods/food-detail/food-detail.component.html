@@ -8,13 +8,13 @@
         </button>
       </div>
       <div class="middle">
-        <h1>Product ID: {{food.productID}}</h1>
+        <h1>Product ID: {{food?.productID}}</h1>
       </div>
       <div class="right">
-        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && auth.adminRoles(user)">
+        <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && auth?.adminRoles(user)">
           <i class="fa__icon fas fa-edit"></i>
         </button>
-        <button class="icon-button edit-button hidden"*ngIf="!editShow && !auth.adminRoles(user)">
+        <button class="icon-button edit-button hidden"*ngIf="!editShow && !auth?.adminRoles(user)">
           <i class="fa__icon fas fa-edit"></i>
         </button>
       </div>
@@ -24,112 +24,112 @@
 
       <section class="package-controls last-package not-mobile">
           <button class="slide-control-btn" (click)="linkToPrevious(food)" 
-          [class.disabled]="food.productID === 1"
-          [disabled]="food.productID === 1"
+          [class.disabled]="food?.productID === 1"
+          [disabled]="food?.productID === 1"
           >
               <i class="fa__icon fas fa-chevron-left"></i>
           </button>
       </section>
 
       <mat-card class="list-item-card" *ngIf="food">
-          <section class="product-photo" [style.background]="'url('+ food.productPhoto +')'">
+          <section class="product-photo" [style.background]="'url('+ food?.productPhoto +')'">
               <!-- <i class="fa__icon fas fa-carrot"></i>
             <h1>{{i+1}}</h1> -->
           </section>
           <p class="subtitle">
-            {{food.categories.nutritionType}}
+            {{food?.categories?.nutritionType}}
           </p>
           <section class="middle">
             <div class="title">
-                <h2>{{food.productName}}</h2>
+                <h2>{{food?.productName}}</h2>
             </div>
         
             <div class="quick-info">
-              <p class="speciality-title">Product ID: {{food.productID}}</p>
+              <p class="speciality-title">Product ID: {{food?.productID}}</p>
               <ul class="contact-menu">
                 <li>
                   <i class="fa__icon fas fa-balance-scale"></i>
-                  {{food.unit}}
+                  {{food?.unit}}
                 </li>
                 <li>
                   <i class="fa__icon fas fa-times"></i>
-                  {{food.factor}}
+                  {{food?.factor}}
                 </li>
                 <li>
                   <i class="fa__icon fas fa-list-ul"></i>
-                  {{food.shoppingUnit}}
+                  {{food?.shoppingUnit}}
                 </li>
               </ul>
             </div>
             <div class="shopping-list-container">
               <h3><i class="fa__icon fas fa-shopping-cart"></i> Shopping list info</h3>
-              <p class="card-text">Shopping list name: <strong>{{food.shoppingListName}}</strong></p>
-              <p class="card-text">Shopping list unit: <strong>{{food.shoppingUnit}}</strong></p>
-              <p class="card-text">Calculative factor: <strong>{{food.factor}}</strong></p>
+              <p class="card-text">Shopping list name: <strong>{{food?.shoppingListName}}</strong></p>
+              <p class="card-text">Shopping list unit: <strong>{{food?.shoppingUnit}}</strong></p>
+              <p class="card-text">Calculative factor: <strong>{{food?.factor}}</strong></p>
             </div>   
             <div class="list-container">
               <div class="preperations-container">
                 <h4>Ways of preperation</h4>
                 <ul class="contact-menu">
-                  <li *ngFor="let preperation of food.preperations">
-                    <span *ngIf="preperation.prepValue === 'None'" class="emoji">
+                  <li *ngFor="let preperation of food?.preparations">
+                    <span *ngIf="preperation?.prepValue === 'None'" class="emoji">
                       🙅
                     </span>
-                    <span *ngIf="preperation.prepValue === 'Cooked'" class="emoji">
+                    <span *ngIf="preperation?.prepValue === 'Cooked'" class="emoji">
                       🥘
                     </span>
-                    <span *ngIf="preperation.prepValue === 'Cooked w/Spinach'" class="emoji">
+                    <span *ngIf="preperation?.prepValue === 'Cooked w/Spinach'" class="emoji">
                       🥬
                     </span>
-                    <span *ngIf="preperation.prepValue === 'Sauteed w/Veggies'" class="emoji">
+                    <span *ngIf="preperation?.prepValue === 'Sauteed w/Veggies'" class="emoji">
                       🍆
                     </span>
-                    <span *ngIf="preperation.prepValue === 'Grated'" class="emoji">
+                    <span *ngIf="preperation?.prepValue === 'Grated'" class="emoji">
                       🧀
                     </span>
-                    <span *ngIf="preperation.prepValue === 'Steamed'" class="emoji">
+                    <span *ngIf="preperation?.prepValue === 'Steamed'" class="emoji">
                       ♨️
                     </span>
-                    <span *ngIf="preperation.prepValue === 'Raw'" class="emoji">
+                    <span *ngIf="preperation?.prepValue === 'Raw'" class="emoji">
                       🍣
                     </span>
-                    <span *ngIf="preperation.prepValue === 'Whole'" class="emoji">
+                    <span *ngIf="preperation?.prepValue === 'Whole'" class="emoji">
                       🍎
                     </span>
-                    <span *ngIf="preperation.prepValue === 'Snacked'" class="emoji">
+                    <span *ngIf="preperation?.prepValue === 'Snacked'" class="emoji">
                       🍿
                     </span>
-                    <span *ngIf="preperation.prepValue === 'Scrambled' || 
-                                preperation.prepValue === 'Omelette' || 
-                                preperation.prepValue === 'Hard Boiled'" class="emoji">
+                    <span *ngIf="preperation?.prepValue === 'Scrambled' || 
+                                preperation?.prepValue === 'Omelette' || 
+                                preperation?.prepValue === 'Hard Boiled'" class="emoji">
                       🍳
                     </span>
-                    <span *ngIf="preperation.prepValue === 'Diced' || 
-                                preperation.prepValue === 'Chopped' || 
-                                preperation.prepValue === 'Sliced'" class="emoji">
+                    <span *ngIf="preperation?.prepValue === 'Diced' || 
+                                preperation?.prepValue === 'Chopped' || 
+                                preperation?.prepValue === 'Sliced'" class="emoji">
                       🔪
                     </span>
-                    {{preperation.prepValue}}
+                    {{preperation?.prepValue}}
                   </li>
                 </ul>
               </div>
               <div class="preperations-container">
                 <h4>Mostly consumed during</h4>
                 <ul class="contact-menu">
-                  <li *ngFor="let name of food.categories.productMealTimes">
-                      <span *ngIf="name.mealTimeValue === 'Breakfast'" class="emoji">
+                  <li *ngFor="let name of food?.categories.productMealTimes">
+                      <span *ngIf="name?.mealTimeValue === 'Breakfast'" class="emoji">
                         🥞
                       </span>
-                      <span *ngIf="name.mealTimeValue === 'Lunch'" class="emoji">
+                      <span *ngIf="name?.mealTimeValue === 'Lunch'" class="emoji">
                         🥪
                       </span>
-                      <span *ngIf="name.mealTimeValue === 'Dinner'" class="emoji">
+                      <span *ngIf="name?.mealTimeValue === 'Dinner'" class="emoji">
                         🍝
                       </span>
-                      <span *ngIf="name.mealTimeValue === 'Snacks'" class="emoji">
+                      <span *ngIf="name?.mealTimeValue === 'Snacks'" class="emoji">
                         🍕
                       </span>
-                    {{name.mealTimeValue}}
+                    {{name?.mealTimeValue}}
                   </li>
                 </ul>
               </div>
@@ -138,8 +138,8 @@
         </mat-card>
       <section class="package-controls next-package not-mobile">
         <button class="slide-control-btn" (click)="linkToNext(food)"
-          [class.disabled]="food.packageID === 3"
-          [disabled]="food.packageID === 3"
+          [class.disabled]="food?.productID === 3"
+          [disabled]="food?.productID === 3"
           >
             <i class="fa__icon fas fa-chevron-right"></i>
         </button>

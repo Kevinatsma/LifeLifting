@@ -4,4 +4,5 @@ export class Package {
     packageDescription: string;
     packagePrice: number;
     packageDuration: number;
+    packageBenefits?: [];
 }

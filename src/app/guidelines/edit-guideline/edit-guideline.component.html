@@ -9,9 +9,9 @@
         </div>
         <div class="middle">
           <h1 *ngIf="client; else gID">Guideline for: {{client.displayName}}</h1>
-          <h5 *ngIf="client">Current weight: {{guideline.formulaData.weight}}kg</h5>
+          <h5 *ngIf="client">Current weight: {{guideline?.formulaData.weight}}kg</h5>
           <ng-template #gID>
-            <h1>Guideline ID: {{guideline.gID}}</h1>
+            <h1>Guideline ID: {{guideline?.gID}}</h1>
           </ng-template>
         </div>
         <div class="right">
@@ -31,7 +31,7 @@
                 <input type="text" class="text-field" name="guidelineName" formControlName="guidelineName">
               </h2>
               <h5>
-                gID: {{guideline.gID}}
+                gID: {{guideline?.gID}}
               </h5>
 
               <div class="link-form">
@@ -81,13 +81,13 @@
                       <input type="number" class="text-field" name="totalTarget" formControlName="totalTarget"> kg
                     </span>
                   </div>
-                  <div class="target-block" *ngIf="guideline.idealKiloOfMuscle">
+                  <div class="target-block" *ngIf="guideline?.idealKiloOfMuscle">
                     <h6 class="target-block__title">Ideal Kg of muscle</h6>
                     <span class="target-block__value">
                       <input type="number" class="text-field" name="idealKiloOfMuscle" formControlName="idealKiloOfMuscle"> kg
                     </span>
                   </div>
-                  <div class="target-block" *ngIf="guideline.guidelineDuration">
+                  <div class="target-block" *ngIf="guideline?.guidelineDuration">
                     <h6 class="target-block__title">Total duration</h6>
                     <span class="target-block__value">
                       <input type="number" class="text-field" name="guidelineDuration" formControlName="guidelineDuration"> weeks
@@ -99,8 +99,8 @@
                   <div class="icon-circle">
                     <i class="fa__icon fas fa-question"></i>
                   </div>
-                  <mat-select matInput placeholder="{{guideline.target}} weight" [class.dropdown-edit]="guideline.target" [(value)]="selectedTarget" 
-                  autocomplete="off" panelClass="dropdown-edit" required (selectionChange)="toggleGainWeight(selectedTarget)">
+                  <mat-select matInput placeholder="{{guideline?.target}} weight" [class.dropdown-edit]="guideline?.target" [(value)]="selectedTarget" 
+                  autocomplete="off" panelClass="dropdown-edit" required (selectionChange)="toggleGainWeight()">
                     <mat-option *ngFor="let target of targets" [value]="target.value">{{target.viewValue}}</mat-option>
                   </mat-select>
                 </div>
@@ -120,7 +120,7 @@
                   <i class="fa__icon fas fa-question"></i>
                 </div>
                 <h6 class="metric__title">
-                  <mat-select matInput placeholder="{{guideline.increaseCalories}} calories" [class.dropdown-cals]="guideline.increaseCalories" 
+                  <mat-select matInput placeholder="{{guideline?.increaseCalories}} calories" [class.dropdown-cals]="guideline?.increaseCalories" 
                   [(value)]="selectedBasalValue" autocomplete="off" panelClass="dropdown-edit" required>
                     <mat-option *ngFor="let value of basalValues" [value]="value.value">{{value.viewValue}}</mat-option>
                   </mat-select>
@@ -136,32 +136,32 @@
               </div>
             </section>
             
-            <section class="guideline-activities" *ngIf="exercise">
+            <section class="guideline-activities" *ngIf="guideline?.activities?.length">
               <h2 class="section-title">Activities and Macros</h2>
               <!-- <h2>ID: {{exercise.exerciseID}}</h2> -->
-              <div class="activity">
-                <app-exercise-list-item class="activity__left" [exercise]="exercise"></app-exercise-list-item>
+              <div class="activity" *ngFor="let activity of guideline?.activities">
+                <app-exercise-list-item class="activity__left" [exercise]="activity"></app-exercise-list-item>
                 <div class="activity__right">
-                  <div class="target-block" *ngIf="guideline.activityPerWeek">
+                  <div class="target-block" *ngIf="activity?.activityPerWeek">
                     <h6 class="target-block__title">Per week</h6>
-                    <span class="target-block__value">{{guideline.activityPerWeek}}x</span>
+                    <span class="target-block__value">{{activity?.activityPerWeek}}x</span>
                   </div>
-                  <div class="target-block" *ngIf="guideline.activityDuration">
+                  <div class="target-block" *ngIf="activity?.activityDuration">
                     <h6 class="target-block__title">How long</h6>
-                    <span class="target-block__value">{{guideline.activityDuration}} min</span>
-                  </div>
-                  <div class="target-block__full-width">
-                    <h6 class="target-block__title">Macros</h6>
-                    <ul>
-                      <li *ngFor="let macro of guideline.macroDistribution">
-                        <span class="percentage">
-                          {{macro.percentage}}%
-                        </span>
-                        <h4>{{macro.macroValue}}</h4>
-                      </li>
-                    </ul>
+                    <span class="target-block__value">{{activity?.activityDuration}} min</span>
                   </div>
                 </div>
+              </div>
+              <div class="target-block__full-width">
+                <h6 class="target-block__title">Macros</h6>
+                <ul>
+                  <li *ngFor="let macro of guideline?.macroDistribution">
+                    <span class="percentage">
+                      {{macro?.percentage}}%
+                    </span>
+                    <h4>{{macro?.macroValue}}</h4>
+                  </li>
+                </ul>
               </div>
             </section>
                       
@@ -213,13 +213,13 @@
             </section>
             <section class="chip-area">
               <p class="secondary-chip">
-                Guideline number: {{guideline.productNR}}
+                Guideline number: {{guideline?.productNR}}
               </p>
               <p class="secondary-chip">
-                Created: {{guideline.creationDate.toDate() | date: 'MM/dd/yy'}}
+                Created: {{guideline?.creationDate.toDate() | date: 'MM/dd/yy'}}
               </p>
-              <p *ngIf="guideline.lastEdited" class="secondary-chip">
-                Last edited: {{guideline.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
+              <p *ngIf="guideline?.lastEdited" class="secondary-chip">
+                Last edited: {{guideline?.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
               </p>
             </section>
             <section class="middle">
@@ -228,7 +228,7 @@
               </div>
           
               <div class="quick-info">
-                <p class="speciality-title">Guideline ID: {{guideline.productID}}</p>
+                <p class="speciality-title">Guideline ID: {{guideline?.productID}}</p>
                 <ul class="contact-menu">
                    <li>
                     <i class="fa__icon fas fa-balance-scale"></i>

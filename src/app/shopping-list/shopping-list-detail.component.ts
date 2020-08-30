@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MealplanService } from '../mealplans/mealplan.service';
 import { Food } from '../foods/food.model';
 import { FoodService } from '../foods/food.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { PrintShoppingListComponent } from './print-shopping-list/print-shopping-list.component';
 import { UtilService } from '../shared/services/util.service';
 import { Subscription } from 'rxjs';

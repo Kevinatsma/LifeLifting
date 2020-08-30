@@ -29,8 +29,8 @@
       <div class="mealplan-info">
         <p>
           For: {{client.displayName}} - 
-          By: {{mealplan.specialistName}} - 
-          Created: {{mealplan.creationDate.toDate() | date:'short'}}
+          By: {{mealplan?.specialistName}} - 
+          Created: {{mealplan?.creationDate?.toDate() | date:'short'}}
         </p>
       </div>
     </div>
@@ -45,12 +45,12 @@
           <div class="day-wrapper__container">
             <div class="meal-time">
               <div class="meal-time__header" *ngFor="let mealtime of mealTimes">
-                <span>{{mealtime.mealTime}}</span>
-                <span>{{mealtime.mealTimeName}}</span>
+                <span>{{mealtime?.mealTime}}</span>
+                <span>{{mealtime?.mealTimeName}}</span>
               </div>
             </div>
 
-            <app-print-meal-monday class="meal-time__ingredients" [mondayMeals]="mealplan.mondayMeals"></app-print-meal-monday>
+            <app-print-meal-monday class="meal-time__ingredients" [mondayMeals]="mealplan?.mondayMeals"></app-print-meal-monday>
           </div>
         </div>
 
@@ -62,12 +62,12 @@
           <div class="day-wrapper__container">
             <div class="meal-time">
               <div class="meal-time__header" *ngFor="let mealtime of mealTimes">
-                <span>{{mealtime.mealTime}}</span>
-                <span>{{mealtime.mealTimeName}}</span>
+                <span>{{mealtime?.mealTime}}</span>
+                <span>{{mealtime?.mealTimeName}}</span>
               </div>
             </div>
 
-            <app-print-meal-tuesday class="meal-time__ingredients" [tuesdayMeals]="mealplan.tuesdayMeals"></app-print-meal-tuesday>
+            <app-print-meal-tuesday class="meal-time__ingredients" [tuesdayMeals]="mealplan?.tuesdayMeals"></app-print-meal-tuesday>
           </div>
         </div>
 
@@ -79,12 +79,12 @@
           <div class="day-wrapper__container">
             <div class="meal-time">
               <div class="meal-time__header" *ngFor="let mealtime of mealTimes">
-                <span>{{mealtime.mealTime}}</span>
-                <span>{{mealtime.mealTimeName}}</span>
+                <span>{{mealtime?.mealTime}}</span>
+                <span>{{mealtime?.mealTimeName}}</span>
               </div>
             </div>
 
-            <app-print-meal-wednesday class="meal-time__ingredients" [wednesdayMeals]="mealplan.wednesdayMeals"></app-print-meal-wednesday>
+            <app-print-meal-wednesday class="meal-time__ingredients" [wednesdayMeals]="mealplan?.wednesdayMeals"></app-print-meal-wednesday>
           </div>
         </div>
 
@@ -96,12 +96,12 @@
           <div class="day-wrapper__container">
             <div class="meal-time">
               <div class="meal-time__header" *ngFor="let mealtime of mealTimes">
-                <span>{{mealtime.mealTime}}</span>
-                <span>{{mealtime.mealTimeName}}</span>
+                <span>{{mealtime?.mealTime}}</span>
+                <span>{{mealtime?.mealTimeName}}</span>
               </div>
             </div>
 
-            <app-print-meal-thursday class="meal-time__ingredients" [thursdayMeals]="mealplan.thursdayMeals"></app-print-meal-thursday>
+            <app-print-meal-thursday class="meal-time__ingredients" [thursdayMeals]="mealplan?.thursdayMeals"></app-print-meal-thursday>
           </div>
         </div>
 
@@ -113,12 +113,12 @@
           <div class="day-wrapper__container">
             <div class="meal-time">
               <div class="meal-time__header" *ngFor="let mealtime of mealTimes">
-                <span>{{mealtime.mealTime}}</span>
-                <span>{{mealtime.mealTimeName}}</span>
+                <span>{{mealtime?.mealTime}}</span>
+                <span>{{mealtime?.mealTimeName}}</span>
               </div>
             </div>
 
-            <app-print-meal-friday class="meal-time__ingredients" [fridayMeals]="mealplan.fridayMeals"></app-print-meal-friday>
+            <app-print-meal-friday class="meal-time__ingredients" [fridayMeals]="mealplan?.fridayMeals"></app-print-meal-friday>
           </div>
         </div>
 
@@ -127,7 +127,7 @@
   </section>
 
   <section class="print-preview-container print-mealplan page__two" #pageTwo>
-    <app-print-supps class="mealplan__supps" [supplementation]="mealplan.supplementation" [notes]="mealplan.extraNotes"></app-print-supps>
+    <app-print-supps class="mealplan__supps" [supplementation]="mealplan?.supplementation" [notes]="mealplan?.extraNotes"></app-print-supps>
   </section>
 
   <div class="page-number">

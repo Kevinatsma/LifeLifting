@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AddGuideDialogComponent } from '../shared/dialogs/add-guide-dialog/add-guide-dialog.component';
 
 @Component({

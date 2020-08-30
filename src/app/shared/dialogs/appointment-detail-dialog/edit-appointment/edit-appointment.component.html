@@ -66,7 +66,7 @@
             <mat-form-field class="date-picker" ppearance="standard" floatLabel="always">
               <mat-label>Pick a date or click the icon</mat-label>
               <input matInput formControlName="startDate" [matDatepicker]="datePickerOne"
-              placeholder="{{start.startDay}}/{{start.startMonth}}/{{start.startYear}}">
+              placeholder="{{start?.startDay}}/{{start?.startMonth}}/{{start?.startYear}}">
               <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
               <mat-datepicker #datePickerOne></mat-datepicker>
             </mat-form-field>
@@ -74,11 +74,11 @@
             <div class="time">
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Hour</mat-label>
-                <input type="number" matInput formControlName="startHour" placeholder="{{start.startHours}}" />
+                <input type="number" matInput formControlName="startHour" placeholder="{{start?.startHours}}" />
               </mat-form-field>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Minutes</mat-label>
-                <input type="number" matInput formControlName="startMinutes" placeholder="{{start.startMinutes}}" />
+                <input type="number" matInput formControlName="startMinutes" placeholder="{{start?.startMinutes}}" />
               </mat-form-field>
             </div>
           </div>
@@ -89,7 +89,7 @@
             <mat-form-field class="date-picker" ppearance="standard" floatLabel="always">
               <mat-label>Pick a date or click the icon</mat-label>
               <input matInput formControlName="endDate" [matDatepicker]="datePickerTwo"
-              placeholder="{{end.endDay}}/{{end.endMonth}}/{{end.endYear}}">
+              placeholder="{{end?.endDay}}/{{end?.endMonth}}/{{end?.endYear}}">
               <mat-datepicker-toggle [for]="datePickerTwo"></mat-datepicker-toggle>
               <mat-datepicker #datePickerTwo></mat-datepicker>
             </mat-form-field>
@@ -97,11 +97,11 @@
             <div class="time">
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Hour</mat-label>
-                <input type="number" matInput formControlName="endHour" placeholder="{{end.endHours}}" />
+                <input type="number" matInput formControlName="endHour" placeholder="{{end?.endHours}}" />
               </mat-form-field>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Minutes</mat-label>
-                <input type="number" matInput formControlName="endMinutes" placeholder="{{end.endMinutes}}" />
+                <input type="number" matInput formControlName="endMinutes" placeholder="{{end?.endMinutes}}" />
               </mat-form-field>
             </div>
           </div>

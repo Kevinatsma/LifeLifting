@@ -8,7 +8,7 @@ import { Specialist } from './../../specialists/specialist.model';
 import { SpecialistService } from './../../specialists/specialist.service';
 import { ChatThreadService } from './../../chat/chat-thread.service';
 import { Guideline } from './../../guidelines/guideline.model';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Mealplan } from './../../mealplans/mealplan.model';
 import { Measurement } from './../../measurement/measurement.model';
 import { FollowUpConsultation } from './../../follow-up-consultation/follow-up-consultation.model';

@@ -1,4 +1,4 @@
-<main class="dialog-wrapper" *ngIf="(auth.user | async) as user">
+<main class="dialog-wrapper" *ngIf="(auth?.user | async) as user">
   <div class="close-section mobile">
     <button class="text-link close-btn" (click)="closeDialog()" type="button">
       <i class="mobile fas fa-arrow-left"></i> Back
@@ -7,8 +7,8 @@
   
   <form [formGroup]="appointmentForm">
     <h3>Plan an appointment 
-      <ng-container *ngIf="!user.roles.admin || !user.roles.specialist">
-        with {{data.specialist.firstName}}
+      <ng-container *ngIf="!user?.roles?.admin || !user?.roles?.specialist">
+        with {{data?.specialist?.firstName}}
       </ng-container>
     </h3>
     <p class="card-text">
@@ -18,19 +18,19 @@
     <mat-form-field appearance="standard" floatLabel="always">
       <mat-label>Describe the meeting. Example: 'First consultation'</mat-label>
       <input type="text" matInput formControlName="eventTitle" placeholder="Write a title" />
-      <mat-error class="input-error" *ngIf="!appointmentForm['controls'].eventTitle.dirty && appointmentForm['controls'].eventTitle.touched">
+      <mat-error class="input-error" *ngIf="!appointmentForm['controls']?.eventTitle?.dirty && appointmentForm['controls']?.eventTitle?.touched">
         This is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
 
-    <div class="chip-area"  *ngIf="user.roles.specialist || user.roles.admin">
+    <div class="chip-area"  *ngIf="user?.roles?.specialist || user?.roles?.admin">
       <p class="secondary-chip">
         <i class="fa__icon fas fa-user-tie"></i>
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-select matInput placeholder="Pick a user" formControlName="clientID" autocomplete="off" 
           panelClass="dropdown-regular">
-            <mat-option *ngFor="let client of clients" [value]="client.uid">{{client.displayName}}</mat-option>
+            <mat-option *ngFor="let client of clients" [value]="client?.uid">{{client?.displayName}}</mat-option>
           </mat-select>
           <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
@@ -81,7 +81,7 @@
         </mat-form-field>
 
         <h3 class="date" *ngIf="hasStartDate">
-          <ng-container *ngIf="start">{{ start.startDay }} {{ start.startMonth }} {{ start.startYear }}</ng-container>
+          <ng-container *ngIf="start">{{ start?.startDay }} {{ start?.startMonth }} {{ start?.startYear }}</ng-container>
         </h3>
 
         <div class="time" *ngIf="!hasStartDate">
@@ -98,7 +98,7 @@
 
         <h3 class="date" *ngIf="hasStartDate">
           <i class="fa__icon far fa-clock"></i>
-          <ng-container *ngIf="start">{{ start.startHours }} {{ start.startMinutes }}</ng-container>
+          <ng-container *ngIf="start">{{ start?.startHours }} {{ start?.startMinutes }}</ng-container>
         </h3>
       </div>
     </div>
@@ -116,7 +116,7 @@
         </mat-form-field>
 
         <h3 class="date" *ngIf="hasEndDate">
-          <ng-container *ngIf="end">{{ end.endDay }} {{ end.endMonth }} {{ end.endYear }}</ng-container>
+          <ng-container *ngIf="end">{{ end?.endDay }} {{ end?.endMonth }} {{ end?.endYear }}</ng-container>
         </h3>
 
         <div class="time" *ngIf="!hasEndDate">
@@ -133,7 +133,7 @@
 
         <h3 class="date" *ngIf="hasEndDate">
           <i class="fa__icon far fa-clock"></i>
-          <ng-container *ngIf="end">{{ end.endHours }} {{ end.endMinutes }}</ng-container>
+          <ng-container *ngIf="end">{{ end?.endHours }} {{ end?.endMinutes }}</ng-container>
         </h3>
 
       </div>
@@ -146,11 +146,11 @@
       <div class="content-container">
 
         <h3 class="date" *ngIf="hasEndDate">
-          {{ end.endDay }} {{ end.endMonth }} {{ end.endYear }}
+          {{ end?.endDay }} {{ end?.endMonth }} {{ end?.endYear }}
         </h3>
         <h3 class="date" *ngIf="hasEndDate">
           <i class="fa__icon far fa-clock"></i>
-          {{ end.endHours }} {{ end.endMinutes }}
+          {{ end?.endHours }} {{ end?.endMinutes }}
         </h3>
       </div>
     </div>

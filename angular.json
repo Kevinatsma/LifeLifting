@@ -37,6 +37,18 @@
                 "src/assets/scss"
               ]
             },
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "firebase",
+              "@firebase/app",
+              "firebase/app",
+              "@firebase/database",
+              "@firebase/firestore",
+              "@firebase/functions",
+              "@firebase/performance",
+              "@firebase/remote-config",
+              "angular-calendar/date-adapters/date-fns"
+            ],
             "scripts": []
           },
           "configurations": {

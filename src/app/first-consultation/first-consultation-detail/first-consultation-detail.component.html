@@ -16,7 +16,7 @@
         </h5>
       </h1>
       <ng-template #gID>
-        <h1>FirstConsultation ID: {{firstConsultation.mID}}</h1>
+        <h1>FirstConsultation ID: {{firstConsultation?.mID}}</h1>
       </ng-template>
     </div>
 
@@ -70,17 +70,17 @@
         </section>
         <section class="chip-area">
           <p class="secondary-chip">
-            Created: {{firstConsultation.creationDate.toDate() | date: 'MM/dd/yy'}}
+            Created: {{firstConsultation?.creationDate?.toDate() | date: 'MM/dd/yy'}}
           </p>
-          <p *ngIf="firstConsultation.lastEdited" class="secondary-chip">
-            Last edited: {{firstConsultation.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
+          <p *ngIf="firstConsultation?.lastEdited" class="secondary-chip">
+            Last edited: {{firstConsultation?.lastEdited?.toDate() | date: 'M/d/yy, h:mm a'}}
           </p>
         </section>
 
         <section class="introduction">
           <h2>First Consultation</h2>
           <h5>
-            Consultation ID: {{firstConsultation.ficID}}
+            Consultation ID: {{firstConsultation?.ficID}}
           </h5>
           <a class="text-link" (click)="openNotesDialog()">
             See extra notes

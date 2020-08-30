@@ -5,8 +5,7 @@ import { FoodService } from './../../../foods/food.service';
 import preperations from './../../data/JSON/preperations.json';
 import mealTimes from './../../data/JSON/mealTimes.json';
 import units from './../../data/JSON/units.json';
-import { Food } from './../../../foods/food.model';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-food-dialog',

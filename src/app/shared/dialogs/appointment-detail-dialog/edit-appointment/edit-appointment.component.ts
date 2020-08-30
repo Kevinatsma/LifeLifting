@@ -4,12 +4,13 @@ import { User } from './../../../../user/user.model';
 import { Specialist } from './../../../../specialists/specialist.model';
 import { BookingService } from './../../../../booking/booking.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { UserService } from './../../../../user/user.service';
 import { SpecialistService } from './../../../../specialists/specialist.service';
 import { AuthService } from './../../../../core/auth/auth.service';
 import { Subject, Subscription } from 'rxjs';
 import countryCodes from './../../../../shared/data/JSON/countryCodes.json';
+import { IStartDate, IEndDate } from './../../../../shared/constants/utils.constants';
 
 @Component({
   selector: 'app-edit-appointment',
@@ -21,8 +22,8 @@ export class EditAppointmentComponent implements OnInit, OnDestroy {
   @Input() client: User;
   @Input() specialist: Specialist;
   @Input() event: Appointment;
-  @Input() start: Object;
-  @Input() end: Object;
+  @Input() start: IStartDate;
+  @Input() end: IEndDate;
 
   clients: User[];
   clients$: Subscription;

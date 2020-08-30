@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import { AngularFirestoreModule, SETTINGS } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
@@ -32,7 +32,7 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
 @NgModule({
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({ appId: 'LifeLifting' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -58,7 +58,7 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
   ],
   providers: [
     {
-    provide: FirestoreSettingsToken, useValue: {}
+    provide: SETTINGS, useValue: {}
     },
   ],
   bootstrap: [AppComponent],

@@ -7,7 +7,7 @@ import { Thread } from './../thread.model';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UtilService } from '../../shared/services/util.service';
 import { AuthService } from './../../core/auth/auth.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -17,7 +17,7 @@ import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/co
 })
 
 export class ChatDetailComponent implements AfterViewChecked, OnInit, OnDestroy {
-  @ViewChild('scroller') private feed: ElementRef;
+  @ViewChild('scroller', {static: false}) private feed: ElementRef;
   navigationSubscription$: Subscription;
   threads: Observable<Thread[]>;
   thread: Thread;

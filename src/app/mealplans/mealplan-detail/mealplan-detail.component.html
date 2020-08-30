@@ -14,7 +14,7 @@
         </h5>
       </h1>
       <ng-template #gID>
-        <h1>Mealplan ID: {{mealplan.mID}}</h1>
+        <h1>Mealplan ID: {{mealplan?.mID}}</h1>
       </ng-template>
     </div>
 
@@ -62,20 +62,20 @@
         </section>
         <section class="chip-area">
           <p class="secondary-chip">
-            Mealplan number: {{mealplan.mealplanNR}}
+            Mealplan number: {{mealplan?.mealplanNR}}
           </p>
           <p class="secondary-chip">
-            Created: {{mealplan.creationDate.toDate() | date: 'MM/dd/yy'}}
+            Created: {{mealplan?.creationDate?.toDate() | date: 'MM/dd/yy'}}
           </p>
-          <p *ngIf="mealplan.lastEdited" class="secondary-chip">
-            Last edited: {{mealplan.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
+          <p *ngIf="mealplan?.lastEdited" class="secondary-chip">
+            Last edited: {{mealplan?.lastEdited?.toDate() | date: 'M/d/yy, h:mm a'}}
           </p>
         </section>
 
         <section class="introduction">
-          <h2>{{mealplan.mealplanName}}</h2>
+          <h2>{{mealplan?.mealplanName}}</h2>
           <h5>
-            mID: {{mealplan.mID}}
+            mID: {{mealplan?.mID}}
           </h5>
           <a class="text-link" (click)="openNotesDialog()">
             See extra notes
@@ -114,22 +114,22 @@
         </section>
 
         <section class="day-section monday" *ngIf="mondayTab">
-          <app-monday [monday]="mealplan.mondayMeals" [mealTimes]="mealplan.mealTimes" [preps]="mealplan.preperations"></app-monday>
+          <app-monday [monday]="mealplan?.mondayMeals" [mealTimes]="mealplan?.mealTimes" [preps]="mealplan?.preperations"></app-monday>
         </section>
         <section class="day-section tuesday" *ngIf="tuesdayTab">
-          <app-tuesday [tuesday]="mealplan.tuesdayMeals" [mealTimes]="mealplan.mealTimes"></app-tuesday>
+          <app-tuesday [tuesday]="mealplan?.tuesdayMeals" [mealTimes]="mealplan?.mealTimes"></app-tuesday>
         </section>
         <section class="day-section wednesday" *ngIf="wednesdayTab">
-            <app-wednesday [wednesday]="mealplan.wednesdayMeals" [mealTimes]="mealplan.mealTimes"></app-wednesday>
+            <app-wednesday [wednesday]="mealplan?.wednesdayMeals" [mealTimes]="mealplan?.mealTimes"></app-wednesday>
         </section>
         <section class="day-section thursday" *ngIf="thursdayTab">
-          <app-thursday [thursday]="mealplan.thursdayMeals" [mealTimes]="mealplan.mealTimes"></app-thursday>
+          <app-thursday [thursday]="mealplan?.thursdayMeals" [mealTimes]="mealplan?.mealTimes"></app-thursday>
         </section>
         <section class="day-section friday" *ngIf="fridayTab">
-          <app-friday [friday]="mealplan.fridayMeals" [mealTimes]="mealplan.mealTimes"></app-friday>
+          <app-friday [friday]="mealplan?.fridayMeals" [mealTimes]="mealplan?.mealTimes"></app-friday>
         </section>
         <section class="supps" *ngIf="suppsTab">
-          <app-supps [supps]="mealplan.supplementation"></app-supps>
+          <app-supps [supps]="mealplan?.supplementation"></app-supps>
         </section>
 
     </mat-card>

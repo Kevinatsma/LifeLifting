@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ChangeDetectorRef, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BookingService } from './../../../booking/booking.service';
 import { Appointment } from './../../../booking/appointment.model';
 import { User } from './../../../user/user.model';
@@ -12,6 +12,7 @@ import { Subject, Subscription } from 'rxjs';
 import { UtilService } from '../../services/util.service';
 import { take } from 'rxjs/operators';
 import countryCodes from './../../../shared/data/JSON/countryCodes.json';
+import { IStartDate, IEndDate } from 'app/shared/constants/utils.constants';
 
 @Component({
   selector: 'app-add-appointment-dialog',
@@ -47,8 +48,8 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
   startDate: Date;
   hasEndDate: boolean;
   endDate: Date;
-  start: {};
-  end: {};
+  start: IStartDate;
+  end: IEndDate;
   clientEnd: {};
   monthList = [
     'January', 'February', 'March', 'April',

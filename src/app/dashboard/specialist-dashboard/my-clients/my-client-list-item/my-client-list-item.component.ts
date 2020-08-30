@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../../../user/user.model';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ChatThreadService } from '../../../../chat/chat-thread.service';
 
 @Component({

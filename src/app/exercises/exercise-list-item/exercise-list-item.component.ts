@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ExerciseService } from '../exercise.service';
 import { Exercise } from '../exercise.model';
 import { AuthService } from './../../core/auth/auth.service';

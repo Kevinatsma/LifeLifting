@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { PackageService } from './../../../packages/package.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-package-dialog',

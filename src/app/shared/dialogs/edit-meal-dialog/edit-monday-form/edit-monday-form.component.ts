@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MatDialog } from '@angular/material';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from '../../../../user/user.model';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { UserService } from '../../../../user/user.service';
@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
 })
 export class EditMondayFormComponent implements OnInit, OnDestroy {
   @Input() foods: Array<Food>;
-  @Input() mealTimes: DayForm;
+  @Input() mealTimes: FormArray;
   @Input() mealplan;
   @Input() client: User;
   @Output() mealFormChange = new EventEmitter();

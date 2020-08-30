@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject, HostListener, OnDestroy } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from '../../user/user.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FollowUpConsultationService } from '../follow-up-consultation.service';
 import { Mealplan } from '../../mealplans/mealplan.model';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { FollowUpConsultation } from '../follow-up-consultation.model';
 import { Subscription } from 'rxjs';
 

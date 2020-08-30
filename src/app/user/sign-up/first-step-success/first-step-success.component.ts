@@ -41,7 +41,7 @@ export class FirstStepSuccessComponent implements OnInit, OnDestroy {
     });
   }
 
-  closeSection(step: String) {
+  closeSection(step?: String) {
     this.close.emit(false);
 
     switch (step) {

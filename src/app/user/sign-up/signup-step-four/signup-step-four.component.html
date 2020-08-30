@@ -1,19 +1,19 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
-    <section class="step-wrapper step-four" [class.success]="user.status && user.status.appointment">
+    <section class="step-wrapper step-four" [class.success]="user.status && user?.status?.appointment">
       <h5 class="not-mobile">Choose a date {{user.displayName || user.email}}</h5>
       <h1>Step 4: Plan your first appointment</h1>
 
-      <app-signup-booking *ngIf="user.status && !user.status.appointment"></app-signup-booking>
+      <app-signup-booking *ngIf="user.status && !user?.status?.appointment"></app-signup-booking>
 
-      <div class="step-done" *ngIf="user.status && user.status.appointment">
+      <div class="step-done" *ngIf="user.status && user?.status?.appointment">
         <p class="intro-text">
           You already planned an appointment. Once the appointment is done, you'll go on to the payment. 
           Go to the next step to follow the status of your requested appointment and to chat with your specialist.
         </p>
         <div class="btn-area">
           <button class="btn-icon-right"
-            [class.btn-disabled]="user.status && !user.status.appointment"
-            [disabled]="user.status && !user.status.appointment"
+            [class.btn-disabled]="user.status && !user?.status?.appointment"
+            [disabled]="user.status && !user?.status?.appointment"
             routerLink="../limbo">
             <span>Check your status!</span>
             <span class="emoji">🚧</span>

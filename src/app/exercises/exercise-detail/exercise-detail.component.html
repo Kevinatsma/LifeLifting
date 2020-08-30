@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="middle">
-        <h1>Exercise ID: {{exercise.exerciseID}}</h1>
+        <h1>Exercise ID: {{exercise?.exerciseID}}</h1>
       </div>
       <div class="right">
         <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && auth.adminRoles(user)">
@@ -24,50 +24,47 @@
 
       <section class="package-controls last-package not-mobile">
           <button class="slide-control-btn" (click)="linkToPrevious(exercise)" 
-          [class.disabled]="exercise.exerciseID === 1"
-          [disabled]="exercise.exerciseID === 1"
+          [class.disabled]="exercise?.exerciseID === 1"
+          [disabled]="exercise?.exerciseID === 1"
           >
               <i class="fa__icon fas fa-chevron-left"></i>
           </button>
       </section>
 
       <mat-card class="list-item-card" *ngIf="exercise">
-          <section class="exercise-photo" [style.background]="'url('+ exercise.exercisePhoto +')'">
+          <section class="exercise-photo" [style.background]="'url('+ exercise?.exercisePhoto +')'">
               <!-- <i class="fa__icon fas fa-carrot"></i>
             <h1>{{i+1}}</h1> -->
           </section>
           <section class="subtitle-container">
             <p class="subtitle">
-              <span *ngFor="let category of exercise.categories">
+              <span *ngFor="let category of exercise?.categories">
                 {{category.categoryValue}}
               </span>
             </p>
             <div class="met-value">
               <span>MET</span>
               <span class="circle">
-                {{exercise.metsValue}}
+                {{exercise?.metsValue}}
               </span>
             </div>
           </section>
           <section class="middle">
             <div class="title">
-                <h2>{{exercise.exerciseName}}</h2>
+                <h2>{{exercise?.exerciseName}}</h2>
             </div>
             <div class="preperations-container">
               <h5 class="section-title">Possible Locations</h5>
               <ul class="contact-menu">
-                <li *ngFor="let location of exercise.locations">
-                  - {{location.locationValue}}
+                <li *ngFor="let location of exercise?.locations">
+                  - {{location?.locationValue}}
                 </li>
               </ul>
             </div>
           </section>        
         </mat-card>
       <section class="package-controls next-package not-mobile">
-        <button class="slide-control-btn" (click)="linkToNext(exercise)"
-          [class.disabled]="exercise.packageID === 3"
-          [disabled]="exercise.packageID === 3"
-          >
+        <button class="slide-control-btn" (click)="linkToNext(exercise)">
             <i class="fa__icon fas fa-chevron-right"></i>
         </button>
       </section>

@@ -12,14 +12,14 @@
   <section class="navigation">
     <div class="navigation__link-container">
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="generalone"
-        [class.valid]="basicDataForm.valid">
+        [class.valid]="basicDataForm?.valid">
         General info 1/2
         <i class="fa__icon far fa-check-circle"></i>
       </h4>
     </div>
     <div class="navigation__link-container">
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="habits"
-        [class.valid]="habitForm.valid">
+        [class.valid]="habitForm?.valid">
         Habits
         <i class="fa__icon far fa-check-circle"></i>
       </h4>
@@ -43,7 +43,7 @@
     </div>
     <div class="navigation__link-container">
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="bodyfunctions"
-        [class.valid]="bodyFunctionsForm.valid">
+        [class.valid]="bodyFunctionsForm?.valid">
         Body functions
         <i class="fa__icon far fa-check-circle"></i>
       </h4>
@@ -63,7 +63,7 @@
             Appetite
           </a>
         </li>
-        <li *ngIf="basicDataForm['controls'].sex.value === 'Feminine'">
+        <li *ngIf="basicDataForm['controls']?.sex.value === 'Feminine'">
           <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-female"> 
             Female
           </a>
@@ -77,7 +77,7 @@
     </div>
     <div class="navigation__link-container">
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="generaltwo"
-        [class.valid]="generalDataForm.valid">
+        [class.valid]="generalDataForm?.valid">
         General info 2/2
         <i class="fa__icon far fa-check-circle"></i>
       </h4>
@@ -108,7 +108,7 @@
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="notes">
         Notes
 
-        <ng-container *ngIf="noteForm['controls'].specialistNotes.dirty">
+        <ng-container *ngIf="noteForm['controls']?.specialistNotes?.dirty">
           <i class="fa__icon far fa-check-circle"></i>
         </ng-container>
       </h4>
@@ -133,7 +133,7 @@
           <textarea type="text" matInput formControlName="mealplanMainGoal" placeholder="Write a short summary" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].mealplanMainGoal.valid">
+          <mat-error class="input-error" *ngIf="!basicDataForm['controls']?.mealplanMainGoal?.valid">
             This is <strong>required</strong></mat-error>
         </mat-form-field>
 
@@ -142,16 +142,16 @@
           <textarea type="text" matInput formControlName="address" placeholder="Street + Number, City, Country" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].address.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!basicDataForm['controls']?.address?.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
 
         <mat-form-field class="date-picker" appearance="standard" floatLabel="always">
           <mat-label>Birth date</mat-label>
           <input matInput formControlName="birthDate" [matDatepicker]="datePickerOne"
-          placeholder="{{firstConsultation.basicData.birthDate.toDate() | date: 'dd/MM/yyyy'}}">
+          placeholder="{{firstConsultation?.basicData?.birthDate?.toDate() | date: 'dd/MM/yyyy'}}">
           <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
           <mat-datepicker #datePickerOne></mat-datepicker>
-          <mat-hint *ngIf="basicDataForm['controls'].birthDate.dirty">
+          <mat-hint *ngIf="basicDataForm['controls']?.birthDate?.dirty">
             <ng-container *ngIf="age < 0">
               You will be born in the future 🔮
             </ng-container>
@@ -164,18 +164,18 @@
         <mat-form-field appearance="standard" floatLabel="always" class="number">
           <mat-label>Height in numbers</mat-label>
           <input type="number"formControlName="height" matInput placeholder="1.85" autocomplete="off" required> <span class="specifier">meter</span>
-          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].height.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!basicDataForm['controls']?.height?.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
 
         <div class="phone-number">
           <mat-form-field appearance="standard" floatLabel="always" class="number">
             <mat-label>Area code</mat-label>
-            <input type="number"formControlName="phoneAreaCode" matInput placeholder="{{firstConsultation.basicData.phoneNumber.areaCode}}" 
+            <input type="number"formControlName="phoneAreaCode" matInput placeholder="{{firstConsultation?.basicData?.phoneNumber.areaCode}}" 
               autocomplete="off" required>
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>Phone number</mat-label>
-            <input type="number"formControlName="phoneNumber" matInput placeholder="{{firstConsultation.basicData.phoneNumber.number}}" 
+            <input type="number"formControlName="phoneNumber" matInput placeholder="{{firstConsultation?.basicData?.phoneNumber.number}}" 
               autocomplete="off" required>
           </mat-form-field>
         </div>
@@ -188,7 +188,7 @@
             <mat-option value="Feminine">Feminine</mat-option>
             <mat-option value="Other">Other</mat-option>
           </mat-select>
-          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].sex.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!basicDataForm['controls']?.sex?.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
       </form>
 
@@ -197,14 +197,14 @@
       </section>
     </mat-step>
 
-    <mat-step [stepControl]="firstConsultationForm">
+    <mat-step [stepControl]="habitForm">
       <ng-template matStepLabel>Habits</ng-template>
 
       <div class="title-area" id="habits">
         <h3>🚴 Habits</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          personal meal plan the next time?.
         </p>
       </div>
 
@@ -218,11 +218,11 @@
             <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
           </mat-radio-group>
 
-          <ng-container *ngIf="habitForm['controls'].alcohol.value === 'yes'">
+          <ng-container *ngIf="habitForm['controls']?.alcohol.value === 'yes'">
             <mat-form-field appearance="standard" floatLabel="always" class="number">
               <mat-label>How many cups a day?</mat-label>
               <input type="number"formControlName="alcoholNote" matInput placeholder="5" autocomplete="off" required>
-              <mat-error class="input-error" *ngIf="!habitForm['controls'].alcoholNote.valid">This is <strong>required</strong></mat-error>
+              <mat-error class="input-error" *ngIf="!habitForm['controls']?.alcoholNote?.valid">This is <strong>required</strong></mat-error>
             </mat-form-field>
           </ng-container>
         </div>
@@ -236,11 +236,11 @@
             <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
           </mat-radio-group>
 
-          <ng-container *ngIf="habitForm['controls'].smoke.value === 'yes'">
+          <ng-container *ngIf="habitForm['controls']?.smoke.value === 'yes'">
             <mat-form-field appearance="standard" floatLabel="always" class="number">
               <mat-label>How many packs a week?</mat-label>
               <input type="number"formControlName="smokeNote" matInput placeholder="4" autocomplete="off" required>
-              <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">This is <strong>required</strong></mat-error>
+              <mat-error class="input-error" *ngIf="!habitForm['controls']?.smokeNote?.valid">This is <strong>required</strong></mat-error>
             </mat-form-field>
           </ng-container>
         </div>
@@ -265,11 +265,11 @@
           </mat-radio-group>
 
 
-        <ng-container *ngIf="habitForm['controls'].coffee.value === 'yes'">
+        <ng-container *ngIf="habitForm['controls']?.coffee.value === 'yes'">
           <mat-form-field appearance="standard" floatLabel="always" class="number">
             <mat-label>How many cups a day?</mat-label>
             <input type="number"formControlName="coffeeNote" matInput placeholder="4" autocomplete="off" required>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].coffeeNote.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls']?.coffeeNote?.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
         </ng-container>
         </div>
@@ -283,11 +283,11 @@
             <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
           </mat-radio-group>
 
-          <ng-container *ngIf="habitForm['controls'].tea.value === 'yes'">
+          <ng-container *ngIf="habitForm['controls']?.tea.value === 'yes'">
             <mat-form-field appearance="standard" floatLabel="always" class="number">
               <mat-label>How many cups a day?</mat-label>
               <input type="number"formControlName="teaNote" matInput placeholder="4" autocomplete="off">
-              <mat-error class="input-error" *ngIf="!habitForm['controls'].teaNote.valid">This is <strong>required</strong></mat-error>
+              <mat-error class="input-error" *ngIf="!habitForm['controls']?.teaNote?.valid">This is <strong>required</strong></mat-error>
             </mat-form-field>
           </ng-container>
         </div>
@@ -301,11 +301,11 @@
             <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
           </mat-radio-group>
 
-          <ng-container *ngIf="habitForm['controls'].socialLife.value === 'yes'">
+          <ng-container *ngIf="habitForm['controls']?.socialLife.value === 'yes'">
             <mat-form-field appearance="standard" floatLabel="always" class="number">
               <mat-label>How many days a week?</mat-label>
               <input type="number"formControlName="socialLifeNote" matInput placeholder="2" autocomplete="off">
-              <mat-error class="input-error" *ngIf="!habitForm['controls'].socialLifeNote.valid">This is <strong>required</strong></mat-error>
+              <mat-error class="input-error" *ngIf="!habitForm['controls']?.socialLifeNote?.valid">This is <strong>required</strong></mat-error>
             </mat-form-field>
           </ng-container>
         </div>
@@ -319,11 +319,11 @@
             <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
           </mat-radio-group>
 
-          <ng-container *ngIf="habitForm['controls'].stayUpLate.value === 'yes'">
+          <ng-container *ngIf="habitForm['controls']?.stayUpLate.value === 'yes'">
             <mat-form-field appearance="standard" floatLabel="always" class="number">
               <mat-label>How many days a week?</mat-label>
               <input type="number"formControlName="stayUpLateNote" matInput placeholder="4" autocomplete="off">
-              <mat-error class="input-error" *ngIf="!habitForm['controls'].stayUpLateNote.valid">This is <strong>required</strong></mat-error>
+              <mat-error class="input-error" *ngIf="!habitForm['controls']?.stayUpLateNote?.valid">This is <strong>required</strong></mat-error>
             </mat-form-field>
           </ng-container>
         </div>
@@ -334,18 +334,18 @@
             <mat-label>At what time do you wake up?</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="wakeUpTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].wakeUpTime.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls']?.wakeUpTime?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>At what time do go to sleep?</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="sleepTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].sleepTime.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls']?.sleepTime?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
         </section>
 
@@ -355,27 +355,27 @@
             <mat-label>At what time do you have breakfast?</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="breakfastTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].breakfastTime.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls']?.breakfastTime?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>What's the time you lunch?</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="lunchTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].lunchTime.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls']?.lunchTime?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>At what time do you have dinner?</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="dinnerTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].dinnerTime.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls']?.dinnerTime?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always">
@@ -387,7 +387,7 @@
               <mat-option value="maid">Maid</mat-option>
               <mat-option value="other">Other</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].whoCooks.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls']?.whoCooks?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <div class="radio-form-field">
@@ -399,7 +399,7 @@
               <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="habitForm['controls'].breakfastAtHome.value === 'no'">
+            <ng-container *ngIf="habitForm['controls']?.breakfastAtHome.value === 'no'">
               <mat-form-field appearance="standard" floatLabel="always">
                 <textarea type="text" matInput formControlName="breakfastAtHomeNote" placeholder="Where?" 
                 matTextareaAutosize autofocus="off" autocomplete="off">
@@ -417,7 +417,7 @@
               <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="habitForm['controls'].timeForBreakfast.value === 'no'">
+            <ng-container *ngIf="habitForm['controls']?.timeForBreakfast.value === 'no'">
               <mat-form-field appearance="standard" floatLabel="always">
                 <textarea type="text" matInput formControlName="timeForBreakfastNote" placeholder="Why not?" 
                 matTextareaAutosize autofocus="off" autocomplete="off">
@@ -444,16 +444,16 @@
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-select matInput placeholder="From" formControlName="workScheduleFrom" 
                 panelClass="dropdown-regular" autocomplete="off" required>
-                  <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                  <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                 </mat-select>
-                <mat-error class="input-error" *ngIf="!habitForm['controls'].workScheduleFrom.touched">This is <strong>required</strong></mat-error>
+                <mat-error class="input-error" *ngIf="!habitForm['controls']?.workScheduleFrom?.touched">This is <strong>required</strong></mat-error>
               </mat-form-field>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-select matInput placeholder="To" formControlName="workScheduleTo" 
                 panelClass="dropdown-regular" autocomplete="off" required>
-                  <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                  <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                 </mat-select>
-                <mat-error class="input-error" *ngIf="!habitForm['controls'].workScheduleTo.touched">This is <strong>required</strong></mat-error>
+                <mat-error class="input-error" *ngIf="!habitForm['controls']?.workScheduleTo?.touched">This is <strong>required</strong></mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -469,7 +469,7 @@
 
 
 
-            <div class="time-range" *ngIf="habitForm['controls'].workOnWeekends.value === 'yes'">
+            <div class="time-range" *ngIf="habitForm['controls']?.workOnWeekends.value === 'yes'">
               <label>What's your schedule?</label>
               <div class="time-form-container">
                 <mat-form-field appearance="standard" floatLabel="always">
@@ -477,14 +477,14 @@
                   panelClass="dropdown-regular" autocomplete="off" required>
                     <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                   </mat-select>
-                  <mat-error class="input-error" *ngIf="!habitForm['controls'].workOnWeekendsFrom.touched">This is <strong>required</strong></mat-error>
+                  <mat-error class="input-error" *ngIf="!habitForm['controls']?.workOnWeekendsFrom?.touched">This is <strong>required</strong></mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="standard" floatLabel="always">
                   <mat-select matInput placeholder="{{firstConsultation?.habits?.work?.workOnWeekendsNote?.to}}" formControlName="workOnWeekendsTo" 
                   panelClass="dropdown-regular" autocomplete="off" required>
-                    <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                    <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                   </mat-select>
-                  <mat-error class="input-error" *ngIf="!habitForm['controls'].workOnWeekendsTo.touched">This is <strong>required</strong></mat-error>
+                  <mat-error class="input-error" *ngIf="!habitForm['controls']?.workOnWeekendsTo?.touched">This is <strong>required</strong></mat-error>
                 </mat-form-field>
               </div>
             </div>
@@ -525,7 +525,7 @@
               <mat-option value="bike">🚴‍♂️ Bike</mat-option>
               <mat-option value="walk">🚶‍♀️ Walking</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].transportationMethod.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls']?.transportationMethod?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <div class="radio-form-field">
@@ -555,7 +555,7 @@
               <mat-option value="elaborate">Elaborate</mat-option>
               <mat-option value="simple">Simple</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].snacksPreference.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls']?.snacksPreference?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
         </section>
    
@@ -583,7 +583,7 @@
         <h3>🧘 Body functions</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          personal meal plan the next time?.
         </p>
       </div>  
 
@@ -594,7 +594,7 @@
           <mat-form-field appearance="standard" floatLabel="always" class="number">
             <mat-label>How many times do you urinate each day?</mat-label>
             <input type="number"formControlName="urinateAmount" matInput placeholder="6" autocomplete="off" required>
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].urinateAmount.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls']?.urinateAmount?.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
           <div class="radio-form-field">
             <label class="radio-form-label">Do you wake up to urinate in the middle of the night?</label>
@@ -619,19 +619,19 @@
               <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="bodyFunctionsForm['controls'].everyDay.value === 'no'">
+            <ng-container *ngIf="bodyFunctionsForm['controls']?.everyDay.value === 'no'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
                 <mat-label>How many times a day do you have them per week?</mat-label>
                 <input type="number"formControlName="timesPerWeek" matInput placeholder="4" autocomplete="off" required>
-                <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].timesPerWeek.valid">This is <strong>required</strong></mat-error>
+                <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls']?.timesPerWeek?.valid">This is <strong>required</strong></mat-error>
               </mat-form-field>
             </ng-container>
 
-            <ng-container *ngIf="bodyFunctionsForm['controls'].everyDay.value === 'yes'">
+            <ng-container *ngIf="bodyFunctionsForm['controls']?.everyDay.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
                 <mat-label>How many times a day do you have bowel movements?</mat-label>
                 <input type="number"formControlName="timesPerDay" matInput placeholder="6" autocomplete="off" required>
-                <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].timesPerDay.valid">This is <strong>required</strong></mat-error>
+                <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls']?.timesPerDay?.valid">This is <strong>required</strong></mat-error>
               </mat-form-field>
             </ng-container>
           </div>
@@ -675,20 +675,20 @@
               <mat-option value="dinner">Dinner</mat-option>
               <mat-option value="after-dinner">After Dinner</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].mostHungryMoment.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls']?.mostHungryMoment?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
         </section>
 
         <section class="female" id="female"
-          *ngIf="basicDataForm['controls'].sex.value === 'Feminine' || firstConsultation.basicData.sex === 'Feminine'">
+          *ngIf="basicDataForm['controls']?.sex.value === 'Feminine' || firstConsultation?.basicData?.sex === 'Feminine'">
           <h3>Female</h3>
           
           <mat-form-field appearance="standard" floatLabel="always" class="number">
             <mat-label>How old were you at your first menstrual period?</mat-label>
             <input type="number"formControlName="firstMenstrualPeriod" matInput  autocomplete="off" 
-              placeholder="{{firstConsultation.bodyFunctions.female.firstMenstrualPeriod}}">
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].firstMenstrualPeriod.valid">This is <strong>required</strong></mat-error>
+              placeholder="{{firstConsultation?.bodyFunctions.female.firstMenstrualPeriod}}">
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls']?.firstMenstrualPeriod?.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
           
           <div class="radio-form-field">
@@ -710,7 +710,7 @@
               <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="bodyFunctionsForm['controls'].birthControlPills.value === 'yes'">
+            <ng-container *ngIf="bodyFunctionsForm['controls']?.birthControlPills.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always">
                 <input type="text" matInput formControlName="birthControlPillsNote" placeholder="Which one?" autofocus="off" autocomplete="off" >
               </mat-form-field>
@@ -721,21 +721,21 @@
             <mat-label>I have my period every X days. Fill in X.</mat-label>
             <input type="number"formControlName="periodXDays" matInput autocomplete="off" 
               placeholder="x">
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].periodXDays.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls']?.periodXDays?.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always" class="number">
             <mat-label>I bleed for X days. Fill in X</mat-label>
             <input type="number"formControlName="bleedingXDays" matInput autocomplete="off" 
               placeholder="x">
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].bleedingXDays.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls']?.bleedingXDays?.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always" class="number">
             <mat-label>How many times were you pregnant?</mat-label>
             <input type="number"formControlName="pregnancies" matInput autocomplete="off" 
-              placeholder="{{firstConsultation.bodyFunctions.female.pregnancies}}">
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].pregnancies.valid">This is <strong>required</strong></mat-error>
+              placeholder="{{firstConsultation?.bodyFunctions.female.pregnancies}}">
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls']?.pregnancies?.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
         </section>
         
@@ -743,19 +743,19 @@
           <h3>Sleep</h3>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>How are you currently sleeping?</mat-label>
-            <mat-select matInput placeholder="{{firstConsultation.bodyFunctions.sleep.sleepingStatus}}" formControlName="sleepingStatus" 
+            <mat-select matInput placeholder="{{firstConsultation?.bodyFunctions.sleep.sleepingStatus}}" formControlName="sleepingStatus" 
             panelClass="dropdown-regular" autocomplete="off" required>
               <mat-option value="good">Good</mat-option>
               <mat-option value="regular">Regular</mat-option>
               <mat-option value="bad">Bad</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].sleepingStatus.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls']?.sleepingStatus?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always" class="number">
             <mat-label>Average hours of sleep</mat-label>
             <input type="number"formControlName="averageHours" matInput placeholder="18" max="24" autocomplete="off" required>
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].averageHours.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls']?.averageHours?.valid">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <div class="radio-form-field sleep-troubles">
@@ -767,11 +767,11 @@
               <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="bodyFunctionsForm['controls'].troubleFallingAsleep.value === 'yes'">
+            <ng-container *ngIf="bodyFunctionsForm['controls']?.troubleFallingAsleep.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
                 <mat-label>How many minutes, roughly?</mat-label>
                 <input type="number"formControlName="troubleFallingAsleepNote" matInput placeholder="135" autocomplete="off">
-                <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].troubleFallingAsleepNote.valid">This is <strong>required</strong></mat-error>
+                <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls']?.troubleFallingAsleepNote?.valid">This is <strong>required</strong></mat-error>
               </mat-form-field>
             </ng-container>
           </div>
@@ -802,7 +802,7 @@
         <h3>📝 General Info 2/2</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          personal meal plan the next time?.
         </p>
       </div>
 
@@ -817,10 +817,10 @@
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>Do you have any health conditions?</mat-label>
                 <mat-select matInput formControlName="healthCondition" panelClass="dropdown-regular" autocomplete="off" required
-                  placeholder="{{condition.value.healthCondition.healthCondition ? condition.value.healthCondition.healthCondition : 'Pick one'}}">
+                  placeholder="{{condition.value?.healthCondition.healthCondition ? condition.value?.healthCondition.healthCondition : 'Pick one'}}">
                   <mat-option *ngFor="let condition of healthConditions" value="{{condition.viewValue}}">{{condition.viewValue}}</mat-option>
                 </mat-select>
-                <mat-error class="input-errors" *ngIf="!healthCondition.valid && healthCondition.touched">This is <strong>required</strong></mat-error>
+                <mat-error class="input-errors" *ngIf="!healthCondition?.valid && healthCondition?.touched">This is <strong>required</strong></mat-error>
               </mat-form-field>
               <div class="btn-area">
                 <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteHealthCondition(i)">
@@ -843,7 +843,7 @@
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>During the past two weeks I had:</mat-label>
                 <mat-select matInput placeholder="Pick an option" formControlName="pastTwoWeeksValue"
-                placeholder="{{item.value.pastTwoWeeksValue.pastTwoWeeksValue ? item.value.pastTwoWeeksValue.pastTwoWeeksValue : 'Pick an option'}}"
+                placeholder="{{item.value?.pastTwoWeeksValue?.pastTwoWeeksValue ? item.value?.pastTwoWeeksValue?.pastTwoWeeksValue : 'Pick an option'}}"
                 panelClass="dropdown-regular" autocomplete="off" required>
                   <mat-option value="diarrhea">Diarrhea</mat-option>
                   <mat-option value="gastritis">Gastritis</mat-option>
@@ -852,7 +852,7 @@
                   <mat-option value="dizziness">Dizziness</mat-option>
                   <mat-option value="none">None of the above</mat-option>
                 </mat-select>
-                <mat-error class="input-errors" *ngIf="!pastTwoWeeksValue.valid && pastTwoWeeksValue.touched">This is <strong>required</strong></mat-error>
+                <mat-error class="input-errors" *ngIf="!pastTwoWeeksValue?.valid && pastTwoWeeksValue?.touched">This is <strong>required</strong></mat-error>
               </mat-form-field>
               <div class="btn-area">
                 <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deletePastTwoWeeks(i)">
@@ -871,7 +871,7 @@
           <textarea type="text" matInput formControlName="medication" placeholder="Seperate medications with a comma :)" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!generalDataForm['controls'].medication.valid">
+          <mat-error class="input-error" *ngIf="!generalDataForm['controls']?.medication?.valid">
             This is <strong>required</strong></mat-error>
         </mat-form-field>
 
@@ -894,8 +894,8 @@
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>I can't consume</mat-label>
                 <input type="text" formControlName="dontEatItem" matInput placeholder="Describe the product" autocomplete="off" required
-                placeholder="{{item.value.dontEatItem.dontEatItem ? item.value.dontEatItem.dontEatItem : 'Describe the product'}}">
-                <mat-error class="input-errors" *ngIf="!dontEatItem.valid && dontEatItem.touched">This is <strong>required</strong></mat-error>
+                placeholder="{{item.value?.dontEatItem.dontEatItem ? item.value?.dontEatItem.dontEatItem : 'Describe the product'}}">
+                <mat-error class="input-errors" *ngIf="!dontEatItem?.valid && dontEatItem?.touched">This is <strong>required</strong></mat-error>
               </mat-form-field>
               <div class="btn-area">
                 <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteDontEatItem(i)">
@@ -915,7 +915,7 @@
           autocomplete="off" panelClass="dropdown-regular" required>
             <mat-option *ngFor="let type of dietTypes" value="{{type.value}}">{{type.viewValue}}</mat-option>
           </mat-select>
-          <mat-error class="input-error" *ngIf="!generalDataForm['controls'].dietType.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!generalDataForm['controls']?.dietType?.valid">This is <strong>required</strong></mat-error>
         </mat-form-field>
 
         <section class="big-category dinner" id="dinner">
@@ -940,7 +940,7 @@
               <mat-option value="maid">Maid</mat-option>
               <mat-option value="other">Other</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!generalDataForm['controls'].preparedBy.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!generalDataForm['controls']?.preparedBy?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <div class="radio-form-field">
@@ -952,7 +952,7 @@
               <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="generalDataForm['controls'].eatAfterDinner.value === 'yes'">
+            <ng-container *ngIf="generalDataForm['controls']?.eatAfterDinner.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always">
                 <textarea type="text" matInput formControlName="eatAfterDinnerNote" placeholder="Like what?" 
                 matTextareaAutosize autofocus="off" autocomplete="off">
@@ -971,8 +971,8 @@
                   <mat-label>Shopping location</mat-label>
                   <input type="text" formControlName="shoppingLocation" matInput
                     autocomplete="off" required
-                    placeholder="{{control.value.shoppingLocation ? control.value.shoppingLocation : 'Store name'}}">
-                  <mat-error class="input-errors" *ngIf="!shoppingLocation.valid && shoppingLocation.touched">
+                    placeholder="{{control.value?.shoppingLocation ? control.value?.shoppingLocation : 'Store name'}}">
+                  <mat-error class="input-errors" *ngIf="!shoppingLocation?.valid && shoppingLocation?.touched">
                     This is <strong>required</strong>
                   </mat-error>
                 </mat-form-field>
@@ -997,7 +997,7 @@
               <mat-option value="maid">Maid</mat-option>
               <mat-option value="other">Other</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!generalDataForm['controls'].whoBuys.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!generalDataForm['controls']?.whoBuys?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
           <div class="radio-form-field">
@@ -1023,18 +1023,18 @@
               <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'no'">
+            <ng-container *ngIf="generalDataForm['controls']?.physicalActivitiesConfirmation?.value === 'no'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <textarea type="text" matInput formControlName="physicalActivitiesWhy" placeholder="{{firstConsultation.generalData.physicalActivity.physicalActivitiesWhy}}" 
+                <textarea type="text" matInput formControlName="physicalActivitiesWhy" placeholder="{{firstConsultation?.generalData.physicalActivity?.physicalActivitiesWhy}}" 
                 matTextareaAutosize autofocus="off" autocomplete="off" required>
                 </textarea>
               </mat-form-field>
             </ng-container>
 
-            <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'yes'">
+            <ng-container *ngIf="generalDataForm['controls']?.physicalActivitiesConfirmation?.value === 'yes'">
               <section class="add-form-field-container" formArrayName="activityArr">
                 <h3>Define your activities</h3>
-                <div class="dynamic-form-field-container multiple-fields" *ngFor="let item of activityArray.controls; let i=index" 
+                <div class="dynamic-form-field-container multiple-fields" *ngFor="let item of activityArray?.controls; let i=index" 
                   [formGroupName]="i">
                   <div class="number-id">
                     <h1>{{i+1}}</h1>
@@ -1043,55 +1043,55 @@
                   <div class="form-fields">
                     <mat-form-field appearance="standard" floatLabel="always">
                       <mat-label>Which activities?</mat-label>
-                      <mat-select matInput placeholder="{{getChosenActivity(i).controls['physicalActivity'].value.exerciseName}}" 
+                      <mat-select matInput placeholder="{{getChosenActivity(i)?.controls['physicalActivity']?.value?.exerciseName}}" 
                         formControlName="physicalActivity" panelClass="dropdown-regular" autocomplete="off" required>
-                        <mat-option *ngFor="let activity of activities" [(value)]="activity">{{activity.exerciseName}}</mat-option>
+                        <mat-option *ngFor="let activityOption of activities" [value]="activityOption">{{activityOption?.exerciseName}}</mat-option>
                         <mat-option value="other">Other</mat-option>
                       </mat-select>
-                      <mat-error class="input-error" *ngIf="!physicalActivity.touched">This is <strong>required</strong></mat-error>
+                      <mat-error class="input-error" *ngIf="!physicalActivity?.touched">This is <strong>required</strong></mat-error>
                     </mat-form-field>
 
                     <div class="time-range">
                       <label>Usual schedule of workouts</label>
                       <div class="time-form-container">
                         <mat-form-field appearance="standard" floatLabel="always">
-                          <mat-select matInput placeholder="getChosenActivity(i).controls['workoutScheduleFrom'].value" formControlName="workoutScheduleFrom" 
+                          <mat-select matInput placeholder="getChosenActivity(i)?.controls['workoutScheduleFrom']?.value" formControlName="workoutScheduleFrom" 
                           panelClass="dropdown-regular" autocomplete="off" required>
-                            <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                            <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                           </mat-select>
                         </mat-form-field>
                         <mat-form-field appearance="standard" floatLabel="always">
-                          <mat-select matInput placeholder="getChosenActivity(i).controls['workoutScheduleTo'].value" formControlName="workoutScheduleTo" 
+                          <mat-select matInput placeholder="getChosenActivity(i)?.controls['workoutScheduleTo']?.value" formControlName="workoutScheduleTo" 
                           panelClass="dropdown-regular" autocomplete="off" required>
-                            <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                            <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                           </mat-select>
                         </mat-form-field>
                       </div>
                     </div>
 
-                    <ng-container *ngIf="getChosenActivity(i).controls['physicalActivity'].value === 'other'">
+                    <ng-container *ngIf="getChosenActivity(i)?.controls['physicalActivity']?.value === 'other'">
                       <mat-form-field appearance="standard" floatLabel="always">
                         <mat-label>Specify your physical activity</mat-label>
                         <input type="text" formControlName="activitySpecification" matInput autocomplete="off" required
-                          placeholder="getChosenActivity(i).controls['activitySpecification'].value || 'Describe the activity'">
+                          placeholder="getChosenActivity(i)?.controls['activitySpecification']?.value || 'Describe the activity'">
                       </mat-form-field>
                     </ng-container>
             
                     <mat-form-field appearance="standard" floatLabel="always">
                       <mat-label>Training location</mat-label>
                       <input type="text" formControlName="trainingLocation" matInput autocomplete="off" required
-                        placeholder="getChosenActivity(i).controls['trainingLocation'].value">
+                        placeholder="getChosenActivity(i)?.controls['trainingLocation']?.value">
                     </mat-form-field>
         
                     <mat-form-field appearance="standard" floatLabel="always" class="number">
                       <mat-label>How long does it take you to get there?</mat-label>
                       <input type="number"formControlName="travelTime" matInput autocomplete="off" required
-                        placeholder="getChosenActivity(i).controls['travelTime'].value">
+                        placeholder="getChosenActivity(i)?.controls['travelTime']?.value">
                     </mat-form-field>
             
                     <mat-form-field appearance="standard" floatLabel="always">
                       <mat-label>Intensity of training</mat-label>
-                      <mat-select matInput placeholder="getChosenActivity(i).controls['trainingIntensity'].value" 
+                      <mat-select matInput placeholder="getChosenActivity(i)?.controls['trainingIntensity']?.value" 
                         formControlName="trainingIntensity" panelClass="dropdown-regular" autocomplete="off" required>
                         <mat-option value="very-intense">Very intense</mat-option>
                         <mat-option value="intense">Intense</mat-option>
@@ -1125,9 +1125,9 @@
             <mat-label>At what time do you wake up?</mat-label>
             <mat-select matInput placeholder="06.00" formControlName="wakeUpTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!generalDataForm['controls'].wakeUpTime.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!generalDataForm['controls']?.wakeUpTime?.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
 
 
@@ -1140,7 +1140,7 @@
               <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="generalDataForm['controls'].orderFood.value === 'yes'">
+            <ng-container *ngIf="generalDataForm['controls']?.orderFood.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always">
                 <textarea type="text" matInput formControlName="orderFoodNote" placeholder="Like what?" 
                 matTextareaAutosize autofocus="off" autocomplete="off">
@@ -1162,7 +1162,7 @@
               <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="generalDataForm['controls'].supplements.value === 'yes'">
+            <ng-container *ngIf="generalDataForm['controls']?.supplements.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always">
                 <textarea type="text" matInput formControlName="supplementNote" placeholder="What are you taking?" 
                 matTextareaAutosize autofocus="off" autocomplete="off">

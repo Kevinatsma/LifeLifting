@@ -3,7 +3,7 @@
     <app-dashboard-menu></app-dashboard-menu>
   </mat-sidenav>
 
-  <ng-container *ngIf="user.status.signUpCompleted">
+  <ng-container *ngIf="user?.status?.signUpCompleted">
     <div class="sidenav-desktop not-mobile">
       <app-dashboard-menu></app-dashboard-menu>
     </div>
@@ -15,7 +15,7 @@
       </div>
     </section>
   </ng-container>
-  <ng-container *ngIf="!user.status.signUpCompleted">
+  <ng-container *ngIf="!user?.status?.signUpCompleted">
     <div class="not-permitted">
       <h1>Woops! You haven't completed the Signup process yet..</h1>
       <p class="card-text">

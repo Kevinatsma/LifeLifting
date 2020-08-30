@@ -140,8 +140,8 @@
               <ng-container *ngIf="!user.basicData"><strong>Not filled out</strong></ng-container>
             </li>
             <li>Sign Up Completed?
-              <ng-container *ngIf="user.status.signUpCompleted"><strong>Yes</strong></ng-container>
-              <ng-container *ngIf="!user.status.signUpCompleted"><strong>No</strong></ng-container>
+              <ng-container *ngIf="user?.status?.signUpCompleted"><strong>Yes</strong></ng-container>
+              <ng-container *ngIf="!user?.status?.signUpCompleted"><strong>No</strong></ng-container>
             </li>
           </ul>
         </div>
@@ -181,29 +181,29 @@
           <div>
             <h3>General</h3>
             <div class="switch">
-              <p class="card-text" *ngIf="user.status.signUpCompleted">
+              <p class="card-text" *ngIf="user?.status?.signUpCompleted">
                 <i class="fa__icon fas fa-check-circle"></i>
                 Signup Completed
               </p>
-              <p class="card-text" *ngIf="!user.status.signUpCompleted">
+              <p class="card-text" *ngIf="!user?.status?.signUpCompleted">
                 <i class="fa__icon fas fa-ban"></i>
                 Signup NOT Completed
               </p>
 
-              <p class="card-text" *ngIf="user.status.accepted">
+              <p class="card-text" *ngIf="user?.status?.accepted">
                 <i class="fa__icon fas fa-check-circle"></i>
                 Accepted
               </p>
-              <p class="card-text" *ngIf="!user.status.accepted">
+              <p class="card-text" *ngIf="!user?.status?.accepted">
                 <i class="fa__icon fas fa-ban"></i>
                 Not Accepted
               </p>
 
-              <p class="card-text" *ngIf="!user.status.subscriptionValid">
+              <p class="card-text" *ngIf="!user?.status?.subscriptionValid">
                 <i class="fa__icon fas fa-ban"></i>
                 Subscription Not Valid
               </p>
-              <p class="card-text" *ngIf="user.status.subscriptionValid">
+              <p class="card-text" *ngIf="user?.status?.subscriptionValid">
                 <i class="fa__icon fas fa-check-circle"></i>
                 Subscribtion Valid
               </p>
@@ -212,29 +212,29 @@
           <div>
             <h3 class="section-title">Appointment</h3>
             <div class="switch">
-              <p class="card-text" *ngIf="user.status.appointment">
+              <p class="card-text" *ngIf="user?.status?.appointment">
                 <i class="fa__icon fas fa-check-circle"></i>
                 Appointment Requested
               </p>
-              <p class="card-text" *ngIf="!user.status.appointment">
+              <p class="card-text" *ngIf="!user?.status?.appointment">
                 <i class="fa__icon fas fa-ban"></i>
                 No Appointment Requested
               </p>
 
-              <p class="card-text" *ngIf="user.status.appointmentAccepted">
+              <p class="card-text" *ngIf="user?.status?.appointmentAccepted">
                 <i class="fa__icon fas fa-check-circle"></i>
                 Appointment Accepted
               </p>
-              <p class="card-text" *ngIf="!user.status.appointmentAccepted">
+              <p class="card-text" *ngIf="!user?.status?.appointmentAccepted">
                 <i class="fa__icon fas fa-ban"></i>
                 Appointment Not Accepted
               </p>
 
-              <p class="card-text" *ngIf="user.status.appointmentCompleted">
+              <p class="card-text" *ngIf="user?.status?.appointmentCompleted">
                 <i class="fa__icon fas fa-check-circle"></i>
                 Appointment Completed
               </p>
-              <p class="card-text" *ngIf="!user.status.appointmentCompleted">
+              <p class="card-text" *ngIf="!user?.status?.appointmentCompleted">
                 <i class="fa__icon fas fa-ban"></i>
                 Appointment Not Completed
               </p>

@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Mealplan } from './../../mealplans/mealplan.model';
 import html2canvas from 'html2canvas';
-const jsPDF = require('jspdf');
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-print-shopping-list',
@@ -11,7 +11,7 @@ const jsPDF = require('jspdf');
   encapsulation: ViewEncapsulation.None
 })
 export class PrintShoppingListComponent implements OnInit {
-  @ViewChild('shoppingList') shoppingListEl: ElementRef;
+  @ViewChild('shoppingList', {static: false}) shoppingListEl: ElementRef;
   shoppingListItems: Array<any>;
   mealplan: Mealplan;
 

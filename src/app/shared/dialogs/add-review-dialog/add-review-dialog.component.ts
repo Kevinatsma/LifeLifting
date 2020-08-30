@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ReviewsService } from './../../../reviews/reviews.service';
 
 @Component({

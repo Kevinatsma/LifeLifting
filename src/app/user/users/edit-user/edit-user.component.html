@@ -122,22 +122,22 @@
               <div class="switch">
                 <p class="card-text">
                   <mat-slide-toggle formControlName="signUpCompleted" (change)="onChange($event)">
-                    <ng-container *ngIf="user.status.signUpCompleted">Signup Completed</ng-container>
-                    <ng-container *ngIf="!user.status.signUpCompleted">Signup not completed</ng-container>
+                    <ng-container *ngIf="user?.status?.signUpCompleted">Signup Completed</ng-container>
+                    <ng-container *ngIf="!user?.status?.signUpCompleted">Signup not completed</ng-container>
                   </mat-slide-toggle>
                 </p>
 
                 <p class="card-text">
                   <mat-slide-toggle formControlName="accepted" (change)="onChange($event)">
-                    <ng-container *ngIf="user.status.accepted">Accepted</ng-container>
-                    <ng-container *ngIf="!user.status.accepted">Denied</ng-container>
+                    <ng-container *ngIf="user?.status?.accepted">Accepted</ng-container>
+                    <ng-container *ngIf="!user?.status?.accepted">Denied</ng-container>
                   </mat-slide-toggle>
                 </p>
 
                 <p class="card-text">
                   <mat-slide-toggle formControlName="subscriptionValid" (change)="onChange($event)">
-                    <ng-container *ngIf="!user.status.subscriptionValid">Subscription Not valid</ng-container>
-                    <ng-container *ngIf="user.status.subscriptionValid">Subscription Valid</ng-container>
+                    <ng-container *ngIf="!user?.status?.subscriptionValid">Subscription Not valid</ng-container>
+                    <ng-container *ngIf="user?.status?.subscriptionValid">Subscription Valid</ng-container>
                   </mat-slide-toggle>
                 </p>
               </div>
@@ -147,22 +147,22 @@
               <div class="switch">
                 <p class="card-text">
                   <mat-slide-toggle formControlName="appointment" (change)="onChange($event)">
-                    <ng-container *ngIf="user.status.appointment">Appointment Requested</ng-container>
-                    <ng-container *ngIf="!user.status.appointment">Appointment is not requested</ng-container>
+                    <ng-container *ngIf="user?.status?.appointment">Appointment Requested</ng-container>
+                    <ng-container *ngIf="!user?.status?.appointment">Appointment is not requested</ng-container>
                   </mat-slide-toggle>
                 </p>
 
                 <p class="card-text">
                   <mat-slide-toggle formControlName="appointmentAccepted" (change)="onChange($event)">
-                    <ng-container *ngIf="user.status.appointmentAccepted">Appointment Accepted</ng-container>
-                    <ng-container *ngIf="!user.status.appointmentAccepted">Appointment Not Accepted</ng-container>
+                    <ng-container *ngIf="user?.status?.appointmentAccepted">Appointment Accepted</ng-container>
+                    <ng-container *ngIf="!user?.status?.appointmentAccepted">Appointment Not Accepted</ng-container>
                   </mat-slide-toggle>
                 </p>
 
                 <p class="card-text">
                   <mat-slide-toggle formControlName="appointmentCompleted" (change)="onChange($event)">
-                    <ng-container *ngIf="user.status.appointmentCompleted">Appointment Completed</ng-container>
-                    <ng-container *ngIf="!user.status.appointmentCompleted">Appointment Not Completed</ng-container>
+                    <ng-container *ngIf="user?.status?.appointmentCompleted">Appointment Completed</ng-container>
+                    <ng-container *ngIf="!user?.status?.appointmentCompleted">Appointment Not Completed</ng-container>
                   </mat-slide-toggle>
                 </p>
               </div>

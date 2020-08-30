@@ -2,10 +2,12 @@ import { Exercise } from '../exercises/exercise.model';
 
 export class FirstConsultation {
     ficID?: string;
+    mID?: string;
     clientID: string;
     specialistID: string;
     creationDate?: Date;
     edited?: Date;
+    lastEdited?: Date | string;
     basicData: BasicData;
     habits: Habits;
     bodyFunctions: BodyFunctions;

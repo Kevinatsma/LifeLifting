@@ -3,7 +3,7 @@
   <div class="card-circle" (click)="linkToChild(mealplan)">
     <i class="fa__icon fas fa-weight"></i>
     <div class="nr-circle">
-      <span>{{mealplan.mealplanNR}}</span>
+      <span>{{mealplan?.mealplanNR}}</span>
     </div>
   </div>
 
@@ -29,25 +29,25 @@
     </mat-menu>
   </ng-container>
 
-  <p class="subtitle" *ngIf="!mealplan.lastEdited">
+  <p class="subtitle" *ngIf="!mealplan?.lastEdited">
     Edited: Not edited yet...
   </p>
-  <p class="subtitle" *ngIf="mealplan.lastEdited">
-    Edited: {{mealplan.lastEdited.toDate() | date: 'short'}}
+  <p class="subtitle" *ngIf="mealplan?.lastEdited">
+    Edited: {{mealplan?.lastEdited?.toDate() | date: 'short'}}
   </p>
   <section class="middle" (click)="linkToChild(mealplan)">
     <div class="title">
-        <h2>{{mealplan.mealplanName}}</h2>
+        <h2>{{mealplan?.mealplanName}}</h2>
     </div>
 
     <div class="quick-info">
-      <p class="speciality-title">mID: {{mealplan.mID}}</p>
-      <p *ngIf="client" class="speciality-title">For: {{client.displayName}}</p>
-      <p class="speciality-title">Created: {{mealplan.creationDate.toDate() | date:'MM/dd/yy'}}</p>
+      <p class="speciality-title">mID: {{mealplan?.mID}}</p>
+      <p *ngIf="client" class="speciality-title">For: {{client?.displayName}}</p>
+      <p class="speciality-title">Created: {{mealplan?.creationDate?.toDate() | date:'MM/dd/yy'}}</p>
       <ul class="contact-menu">
         <!-- <li>
           <i class="fa__icon fas fa-balance-scale"></i>
-          {{mealplan.portion.amount}} {{mealplan.portion.unit}}
+          {{mealplan?.portion.amount}} {{mealplan?.portion.unit}}
         </li> -->
       </ul>
     </div>

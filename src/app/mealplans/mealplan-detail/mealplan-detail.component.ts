@@ -8,7 +8,7 @@ import { UserService } from './../../user/user.service';
 import { ExerciseService } from './../../exercises/exercise.service';
 import { Exercise } from './../../exercises/exercise.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { GuidelineService } from './../../guidelines/guideline.service';
 import { Guideline } from './../../guidelines/guideline.model';
 import { AuthService } from './../../core/auth/auth.service';
@@ -27,7 +27,7 @@ import { PrintMealplanComponent } from './../print-mealplan/print-mealplan.compo
 export class MealplanDetailComponent implements OnInit, OnDestroy {
   mealplanNav: ElementRef;
   firstNavItem: ElementRef;
-  @ViewChild('mealplanNav') set content(content: ElementRef) {
+  @ViewChild('mealplanNav', {static: false}) set content(content: ElementRef) {
     this.mealplanNav = content;
   }
  mealplan: Mealplan;
@@ -136,7 +136,7 @@ export class MealplanDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  openNotesDialog(mealplan) {
+  openNotesDialog() {
     const dialogRef = this.dialog.open(DisplayTextDialogComponent, {
       data: {
         title: `Extra notes for ${this.mealplan.mealplanName}`,

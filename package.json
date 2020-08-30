@@ -33,7 +33,6 @@
     "@angular/service-worker": "^10.0.14",
     "@nguniversal/express-engine": "^10.0.2",
     "@types/jspdf": "^1.3.3",
-    "angularfire2": "^5.4.2",
     "angularx-flatpickr": "^6.4.0",
     "core-js": "^3.6.5",
     "express": "^4.17.1",

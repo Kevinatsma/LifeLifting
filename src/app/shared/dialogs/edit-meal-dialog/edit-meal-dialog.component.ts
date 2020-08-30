@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, HostListener, ViewChild, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 // Services
 import { AuthService } from '../../../core/auth/auth.service';
@@ -11,7 +11,7 @@ import { EditMealDialogService } from './edit-meal-dialog.service';
 import { Observable, Subscription } from 'rxjs';
 
 // Data
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from '../../../user/user.model';
 import { Time } from '../../data/models/time.model';
 import { Food } from '../../../foods/food.model';
@@ -28,7 +28,7 @@ import { EditTuesdayFormComponent } from './edit-tuesday-form/edit-tuesday-form.
 import { EditThursdayFormComponent } from './edit-thursday-form/edit-thursday-form.component';
 import { EditFridayFormComponent } from './edit-friday-form/edit-friday-form.component';
 import { EditSuppsFormComponent } from './edit-supps-form/edit-supps-form.component';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-edit-meal-dialog',
@@ -37,12 +37,12 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 })
 export class EditMealDialogComponent implements OnInit, OnDestroy {
   // Child components
-  @ViewChild(EditMondayFormComponent) mondayComp: EditMondayFormComponent;
-  @ViewChild(EditTuesdayFormComponent) tuesdayComp: EditTuesdayFormComponent;
-  @ViewChild(EditWednesdayFormComponent) wednesdayComp: EditThursdayFormComponent;
-  @ViewChild(EditThursdayFormComponent) thursdayComp: EditWednesdayFormComponent;
-  @ViewChild(EditFridayFormComponent) fridayComp: EditFridayFormComponent;
-  @ViewChild(EditSuppsFormComponent) suppsComp: EditSuppsFormComponent;
+  @ViewChild(EditMondayFormComponent, {static: false}) mondayComp: EditMondayFormComponent;
+  @ViewChild(EditTuesdayFormComponent, {static: false}) tuesdayComp: EditTuesdayFormComponent;
+  @ViewChild(EditWednesdayFormComponent, {static: false}) wednesdayComp: EditThursdayFormComponent;
+  @ViewChild(EditThursdayFormComponent, {static: false}) thursdayComp: EditWednesdayFormComponent;
+  @ViewChild(EditFridayFormComponent, {static: false}) fridayComp: EditFridayFormComponent;
+  @ViewChild(EditSuppsFormComponent, {static: false}) suppsComp: EditSuppsFormComponent;
 
   // Values for storing data
   client: User;

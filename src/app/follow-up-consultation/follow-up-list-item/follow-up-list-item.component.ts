@@ -3,7 +3,7 @@ import { User } from '../../user/user.model';
 import { Router } from '@angular/router';
 import { FollowUpConsultation } from '../follow-up-consultation.model';
 import { AuthService } from '../../core/auth/auth.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../user/user.service';
 import { FollowUpConsultationService } from './../follow-up-consultation.service';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';

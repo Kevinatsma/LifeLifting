@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, HostListener, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 // Services
 import { AuthService } from '../../../core/auth/auth.service';
@@ -11,7 +11,7 @@ import { AddMealDialogService } from './add-meal-dialog.service';
 import { Observable, Subscription } from 'rxjs';
 
 // Data
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from '../../../user/user.model';
 import { Time } from '../../data/models/time.model';
 import { Food } from './../../../foods/food.model';
@@ -22,7 +22,7 @@ import { Specialist } from './../../../specialists/specialist.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { SuppsForm } from './supps-form.model';
 import { Mealplan } from './../../../mealplans/mealplan.model';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-add-meal-dialog',

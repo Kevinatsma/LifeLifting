@@ -1,27 +1,27 @@
-<ng-container  *ngIf="auth.user | async as user">
+<ng-container  *ngIf="auth?.user | async as user">
   <div class="measurement-item-container" *ngIf="measurement && client && specialist">
     <h2>{{i + 1}}.</h2>
     <div class="info-container" (click)="openMeasurementDetail(measurement)">
-      <h3 class="creation-date">{{measurement.created.toDate() | date: 'short'}}</h3>
-      <h3 *ngIf="measurement.edited" class="not-mobile">{{measurement.edited.toDate() | date: 'short'}}</h3>
-      <h3 *ngIf="!measurement.edited" class="not-mobile">Not edited yet</h3>
-      <h3 class="not-mobile">{{specialist.displayName}}</h3>
-      <h3 *ngIf="measurement.weight" class="weight">{{measurement.weight}}kg</h3>
-      <h3 *ngIf="!measurement.weight" class="weight">-</h3>
+      <h3 class="creation-date">{{measurement?.created?.toDate() | date: 'short'}}</h3>
+      <h3 *ngIf="measurement?.edited" class="not-mobile">{{measurement?.edited?.toDate() | date: 'short'}}</h3>
+      <h3 *ngIf="!measurement?.edited" class="not-mobile">Not edited yet</h3>
+      <h3 class="not-mobile">{{specialist?.displayName}}</h3>
+      <h3 *ngIf="measurement?.weight" class="weight">{{measurement?.weight}}kg</h3>
+      <h3 *ngIf="!measurement?.weight" class="weight">-</h3>
     </div>
 
     <div class="not-mobile">
-      <button class="edit-btn" *ngIf="user.roles.admin || user.roles.specialist" 
+      <button class="edit-btn" *ngIf="user?.roles?.admin || user?.roles?.specialist" 
       (click)="editMeasurement(measurement)">
         <i class="fa__icon far fa-edit"></i>
       </button>
-      <button class="delete-btn" *ngIf="user.roles.admin || user.roles.specialist" 
+      <button class="delete-btn" *ngIf="user?.roles?.admin || user?.roles?.specialist" 
       (click)="deleteMeasurement(measurement)">
         <i class="fa__icon far fa-trash-alt"></i>
       </button>
     </div>
 
-    <div class="mobile mat-menu" *ngIf="user.roles.specialist || user.roles.admin">
+    <div class="mobile mat-menu" *ngIf="user?.roles?.specialist || user?.roles?.admin">
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>

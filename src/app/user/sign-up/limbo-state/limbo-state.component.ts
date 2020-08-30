@@ -6,7 +6,7 @@ import { BookingService } from './../../../booking/booking.service';
 import { UserService } from '../../user.service';
 import { AuthService } from './../../../core/auth/auth.service';
 import { SpecialistService } from './../../../specialists/specialist.service';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 

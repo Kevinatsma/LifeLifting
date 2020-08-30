@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Mealplan } from '../mealplan.model';
 import html2canvas from 'html2canvas';
 import { User } from './../../user/user.model';
-const jsPDF = require('jspdf');
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-print-mealplan',
@@ -12,11 +12,11 @@ const jsPDF = require('jspdf');
   encapsulation: ViewEncapsulation.None
 })
 export class PrintMealplanComponent implements OnInit {
-  @ViewChild('pageOne') pageOne: ElementRef;
-  @ViewChild('pageTwo') pageTwo: ElementRef;
-  @ViewChild('back') back: ElementRef;
-  @ViewChild('next') next: ElementRef;
-  @ViewChild('canvasDisplayTwo') canvasDisplayTwo: ElementRef;
+  @ViewChild('pageOne', {static: false}) pageOne: ElementRef;
+  @ViewChild('pageTwo', {static: false}) pageTwo: ElementRef;
+  @ViewChild('back', {static: false}) back: ElementRef;
+  @ViewChild('next', {static: false}) next: ElementRef;
+  @ViewChild('canvasDisplayTwo', {static: false}) canvasDisplayTwo: ElementRef;
   mealplan: Mealplan;
   creationDate: Date;
   client: User;
@@ -57,7 +57,7 @@ export class PrintMealplanComponent implements OnInit {
       html2canvas(this.pageOne.nativeElement, {
         useCORS: true,
         scale: quality,
-        letterRendering: true
+        // letterRendering: true
       })
       .then(canvas => {
         this.canvas = canvas;
@@ -72,7 +72,7 @@ export class PrintMealplanComponent implements OnInit {
       html2canvas(this.pageTwo.nativeElement, {
         useCORS: true,
         scale: quality,
-        letterRendering: true
+        // letterRendering: true
       })
       .then(canvas => {
         this.canvasTwo = canvas;

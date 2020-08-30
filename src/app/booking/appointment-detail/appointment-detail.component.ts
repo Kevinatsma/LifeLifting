@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { BookingService } from '../../booking/booking.service';
 import { Appointment } from '../../booking/appointment.model';
 import { Specialist } from './../../specialists/specialist.model';
@@ -144,6 +144,10 @@ export class AppointmentDetailComponent implements OnDestroy {
     this.specialist$ = this.specialistService.getSpecialistData(sID).subscribe(obj => {
       this.specialist = obj;
     });
+  }
+
+  getSpecialistId(user: User): string {
+    return `specialist${user?.sID}`;
   }
 
   getClient(uid) {

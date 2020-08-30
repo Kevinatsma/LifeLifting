@@ -207,7 +207,7 @@
         <h3>🚴 Habits</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          personal meal plan the next time?.
         </p>
       </div>
 
@@ -340,7 +340,7 @@
             <mat-label>At what time do you wake up?</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="wakeUpTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
             </mat-select>
             <mat-error class="input-error" *ngIf="!habitForm['controls'].wakeUpTime.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
@@ -349,7 +349,7 @@
             <mat-label>At what time do go to sleep?</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="sleepTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
             </mat-select>
             <mat-error class="input-error" *ngIf="!habitForm['controls'].sleepTime.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
@@ -361,7 +361,7 @@
             <mat-label>At what time do you have breakfast?</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="breakfastTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
             </mat-select>
             <mat-error class="input-error" *ngIf="!habitForm['controls'].breakfastTime.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
@@ -370,7 +370,7 @@
             <mat-label>What's the time you lunch?</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="lunchTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
             </mat-select>
             <mat-error class="input-error" *ngIf="!habitForm['controls'].lunchTime.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
@@ -379,7 +379,7 @@
             <mat-label>At what time do you have dinner?</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="dinnerTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
             </mat-select>
             <mat-error class="input-error" *ngIf="!habitForm['controls'].dinnerTime.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>
@@ -450,13 +450,13 @@
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-select matInput placeholder="From" formControlName="workScheduleFrom" 
                 panelClass="dropdown-regular" autocomplete="off">
-                  <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                  <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                 </mat-select>
               </mat-form-field>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-select matInput placeholder="To" formControlName="workScheduleTo" 
                 panelClass="dropdown-regular" autocomplete="off">
-                  <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                  <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -477,13 +477,13 @@
                 <mat-form-field appearance="standard" floatLabel="always">
                   <mat-select matInput placeholder="From" formControlName="workOnWeekendsFrom" 
                   panelClass="dropdown-regular" autocomplete="off">
-                    <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                    <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="standard" floatLabel="always">
                   <mat-select matInput placeholder="To" formControlName="workOnWeekendsTo" 
                   panelClass="dropdown-regular" autocomplete="off">
-                    <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                    <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -581,7 +581,7 @@
         <h3>🧘 Body functions</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          personal meal plan the next time?.
         </p>
       </div>  
 
@@ -798,7 +798,7 @@
         <h3>📝 General Info 2/2</h3>
         <p class="card-text">
           Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          personal meal plan the next time?.
         </p>
       </div>
 
@@ -1029,7 +1029,7 @@
             <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'yes'">
               <section class="add-form-field-container" formArrayName="activityArr">
                 <h3>Define your activities</h3>
-                <div class="dynamic-form-field-container multiple-fields" *ngFor="let item of activityArray.controls; let i=index" 
+                <div class="dynamic-form-field-container multiple-fields" *ngFor="let item of activityArray?.controls; let i=index" 
                   [formGroupName]="i">
                   <div class="number-id">
                     <h1>{{i+1}}</h1>
@@ -1040,10 +1040,10 @@
                       <mat-label>Which activities?</mat-label>
                       <mat-select matInput placeholder="Pick one" formControlName="physicalActivity" 
                       panelClass="dropdown-regular" autocomplete="off">
-                        <mat-option *ngFor="let activity of activities" [(value)]="activity">{{activity.exerciseName}}</mat-option>
+                        <mat-option *ngFor="let activity of activities" [value]="activity">{{activity?.exerciseName}}</mat-option>
                         <mat-option value="other">Other</mat-option>
                       </mat-select>
-                      <mat-error class="input-error" *ngIf="!physicalActivity.touched">This is <strong>required</strong></mat-error>
+                      <mat-error class="input-error" *ngIf="!physicalActivity?.touched">This is <strong>required</strong></mat-error>
                     </mat-form-field>
 
                     <div class="time-range">
@@ -1052,13 +1052,13 @@
                         <mat-form-field appearance="standard" floatLabel="always">
                           <mat-select matInput placeholder="From" formControlName="workoutScheduleFrom" 
                           panelClass="dropdown-regular" autocomplete="off">
-                            <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                            <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                           </mat-select>
                         </mat-form-field>
                         <mat-form-field appearance="standard" floatLabel="always">
                           <mat-select matInput placeholder="To" formControlName="workoutScheduleTo" 
                           panelClass="dropdown-regular" autocomplete="off">
-                            <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+                            <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
                           </mat-select>
                         </mat-form-field>
                       </div>
@@ -1118,7 +1118,7 @@
             <mat-label>At what time do you wake up?</mat-label>
             <mat-select matInput placeholder="06.00" formControlName="wakeUpTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
+              <mat-option *ngFor="let time of times" [value]="time?.value">⏰ {{time?.value}}</mat-option>
             </mat-select>
             <mat-error class="input-error" *ngIf="!generalDataForm['controls'].wakeUpTime.touched">This is <strong>required</strong></mat-error>
           </mat-form-field>

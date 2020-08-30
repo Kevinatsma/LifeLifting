@@ -13,6 +13,7 @@ export class Guideline {
     target: string;
     totalTarget: number;
     targetDuration: number;
+    guidelineDuration?: number;
     increaseCalories: boolean;
     increaseAmount: number;
     factorCalorie: number;
