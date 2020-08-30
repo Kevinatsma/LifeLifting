@@ -153,6 +153,7 @@
     width: 100%;
 
     &.calendar-signup {
+        overflow-y: auto;
         min-width: 100%;
         max-width: 75vw;
     }
@@ -194,11 +195,11 @@
 
         .calendar__title {
             padding: 0 1em 2em;
+            text-align: center;
         }
     }
 
     section {
-
         &.loading {
             width: 100%;
             height: 80px;

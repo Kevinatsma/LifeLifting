@@ -56,8 +56,8 @@ export class PrintMealplanComponent implements OnInit {
     if (this.pageOne) {
       html2canvas(this.pageOne.nativeElement, {
         useCORS: true,
-        scale: quality,
-        letterRendering: true
+        scale: quality
+        // letterRendering: true
       })
       .then(canvas => {
         this.canvas = canvas;
@@ -71,8 +71,8 @@ export class PrintMealplanComponent implements OnInit {
     if (this.pageTwo) {
       html2canvas(this.pageTwo.nativeElement, {
         useCORS: true,
-        scale: quality,
-        letterRendering: true
+        scale: quality
+        // letterRendering: true
       })
       .then(canvas => {
         this.canvasTwo = canvas;
