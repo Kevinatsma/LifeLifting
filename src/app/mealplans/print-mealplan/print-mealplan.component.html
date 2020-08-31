@@ -18,7 +18,7 @@
     <h1>Print preview</h1>
   </section>
 
-  <section class="print-preview-container print-mealplan page__one" #pageOne>
+  <section class="print-preview-container print-mealplan page__one" id="page-one" #pageOne>
     <div class="branding">
       <hr>
       <img src="./../../../assets/img/logo-icon.svg" />
@@ -126,7 +126,7 @@
     </div>
   </section>
 
-  <section class="print-preview-container print-mealplan page__two" #pageTwo>
+  <section class="print-preview-container print-mealplan page__two" id="page-two" #pageTwo>
     <app-print-supps class="mealplan__supps" [supplementation]="mealplan.supplementation" [notes]="mealplan.extraNotes"></app-print-supps>
   </section>
 

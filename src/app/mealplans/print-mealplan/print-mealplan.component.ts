@@ -16,7 +16,6 @@ export class PrintMealplanComponent implements OnInit {
   @ViewChild('pageTwo', {static: false}) pageTwo: ElementRef;
   @ViewChild('back', {static: false}) back: ElementRef;
   @ViewChild('next', {static: false}) next: ElementRef;
-  @ViewChild('canvasDisplayTwo', {static: false}) canvasDisplayTwo: ElementRef;
   mealplan: Mealplan;
   creationDate: Date;
   client: User;
@@ -44,54 +43,37 @@ export class PrintMealplanComponent implements OnInit {
                 this.client = data.client;
                 this.mealTimes = data.mealplan.mealTimes;
                 this.creationDate = data.mealplan.creationDate.toString();
-                setTimeout(() => this.drawCanvas());
+                
               }
 
   ngOnInit() {
   }
 
-  drawCanvas() {
-    const quality = 4;
-
-    if (this.pageOne) {
-      html2canvas(this.pageOne.nativeElement, {
-        useCORS: true,
-        scale: quality
-        // letterRendering: true
-      })
-      .then(canvas => {
-        this.canvas = canvas;
-        this.pdf = new jsPDF('p', 'px', 'a4');
-      })
-      .then(() => {
-        this.pageOne.nativeElement.style.width = `${this.docWidth}px`;
-      });
-    }
-
-    if (this.pageTwo) {
-      html2canvas(this.pageTwo.nativeElement, {
-        useCORS: true,
-        scale: quality
-        // letterRendering: true
-      })
-      .then(canvas => {
-        this.canvasTwo = canvas;
-        this.pdfTwo = new jsPDF('p', 'px', 'a4');
-      })
-      .then(() => {
-        this.pageTwo.nativeElement.style.width = `${this.docWidth}px`;
-      });
-    }
-  }
-
   saveAsPDF() {
-    const filename  = `Mealplan ${this.mealplan.mealplanName}.pdf`;
-    const height = this.pdf.internal.pageSize.getHeight();
-    const heightTwo = this.pdfTwo.internal.pageSize.getHeight();
-    this.pdf.addImage(this.canvas.toDataURL('imgData'), 'JPEG', 0, 0, 445, height);
-    this.pdf.addPage('445px', heightTwo);
-    this.pdf.addImage(this.canvasTwo.toDataURL('imgData'), 'JPEG', 0, 0, 445, heightTwo);
-    this.pdf.save(filename);
+    const fileName  = `Mealplan ${this.mealplan.mealplanName}.pdf`;
+    const elToExport = document.getElementById('page-one');  //Id of the table
+    html2canvas(elToExport)
+      .then(canvas => {
+        const imgWidth = 208;   
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        const contentDataURL = canvas.toDataURL('image/png');
+        const position = 0;  
+        this.pdf = new jsPDF('p', 'mm', 'a4');
+        this.pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+      });
+    const elToExportTwo = document.getElementById('page-two');  //Id of the table
+    html2canvas(elToExportTwo)
+      .then(canvas => {
+        const imgWidth = 208;   
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        const contentDataURL = canvas.toDataURL('image/png');
+        const position = 0;  
+        this.pdf.addPage();
+        this.pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+      })
+      .then(_ => {
+        this.pdf.save(fileName);
+      });
   }
 
   togglePage() {
