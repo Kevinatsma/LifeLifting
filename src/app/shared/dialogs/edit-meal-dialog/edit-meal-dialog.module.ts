@@ -40,9 +40,6 @@ import { EditMealDialogComponent } from './edit-meal-dialog.component';
   ],
   providers: [
     EditMealDialogService
-  ],
-  entryComponents: [
-    EditMealDialogComponent
   ]
 })
 export class EditMealDialogModule { }

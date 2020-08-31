@@ -43,10 +43,6 @@ import { FirstConsultGeneralComponent } from './first-consultation-detail/first-
   ],
   providers: [
     FirstConsultationService
-  ],
-  entryComponents: [
-    AddFirstConsultationComponent,
-    EditFirstConsultationComponent
   ]
 })
 export class FirstConsultationModule { }

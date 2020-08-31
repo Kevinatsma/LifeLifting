@@ -85,23 +85,6 @@ import { DisplayTextDialogComponent } from './display-text-dialog/display-text-d
     AddGuideDialogComponent,
     ChooseMealplanDialogComponent
   ],
-  entryComponents: [
-    ConfirmDialogComponent,
-    EditDialogComponent,
-    AddSpecialistDialogComponent,
-    AddUserDialogComponent,
-    AddClientDialogComponent,
-    AddPackageDialogComponent,
-    AddFoodDialogComponent,
-    AddAppointmentDialogComponent,
-    AppointmentDetailDialogComponent,
-    AddReviewDialogComponent,
-    AddExerciseDialogComponent,
-    AddMealDialogComponent,
-    AddGuideDialogComponent,
-    ChooseMealplanDialogComponent,
-    DisplayTextDialogComponent
-  ],
   providers: [
     DataService
   ]

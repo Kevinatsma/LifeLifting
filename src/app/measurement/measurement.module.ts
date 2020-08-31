@@ -29,11 +29,6 @@ import { MeasurementListComponent } from './measurement-list/measurement-list.co
     EditMeasurementComponent,
     MeasurementListComponent
   ],
-  entryComponents: [
-    MeasurementDetailComponent,
-    AddMeasurementComponent,
-    EditMeasurementComponent,
-  ],
   providers: [
     MeasurementService
   ]

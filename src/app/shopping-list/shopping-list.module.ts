@@ -17,9 +17,6 @@ import { PrintShoppingListComponent } from './print-shopping-list/print-shopping
   exports: [
     ShoppingListDetailComponent
   ],
-  entryComponents: [
-    PrintShoppingListComponent
-  ],
   providers: [ShoppingListService]
 })
 export class ShoppingListModule { }

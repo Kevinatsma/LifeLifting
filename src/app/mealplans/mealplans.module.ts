@@ -63,9 +63,6 @@ import { PrintSuppsComponent } from './print-mealplan/print-supps/print-supps.co
     PrintMealThursdayComponent,
     PrintMealFridayComponent,
   ],
-  entryComponents: [
-    PrintMealplanComponent
-  ],
   providers: [
     MealplanService
   ]

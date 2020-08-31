@@ -20,9 +20,6 @@ import { SharedModule } from '../shared/shared.module';
   exports: [
     UserRequestComponent,
     EventRequestComponent
-  ],
-  entryComponents: [
-    EventRequestComponent
   ]
 })
 export class RequestModule { }

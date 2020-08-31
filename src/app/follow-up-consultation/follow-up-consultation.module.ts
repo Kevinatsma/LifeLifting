@@ -35,11 +35,6 @@ import { MealplansModule } from '../mealplans/mealplans.module';
   ],
   providers: [
     FollowUpConsultationService
-  ],
-  entryComponents: [
-    AddFollowUpComponent,
-    EditFollowUpComponent,
-    FollowUpDetailComponent
   ]
 })
 export class FollowUpConsultationModule { }
