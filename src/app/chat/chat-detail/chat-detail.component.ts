@@ -16,7 +16,7 @@ import * as _ from 'lodash';
 })
 
 export class ChatDetailComponent implements AfterViewChecked, OnInit, OnDestroy {
-  @ViewChild('scroller', {static: false}) private feed: ElementRef;
+  @ViewChild('scroller') private feed: ElementRef;
   navigationSubscription$: Subscription;
   threads: Observable<Thread[]>;
   thread: Thread;
