@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Mealplan } from '../mealplan.model';
 import html2canvas from 'html2canvas';
 import { User } from './../../user/user.model';

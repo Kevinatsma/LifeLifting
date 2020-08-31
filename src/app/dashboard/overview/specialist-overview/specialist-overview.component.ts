@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Appointment } from './../../../booking/appointment.model';
 import { AppointmentDetailDialogComponent } from './../../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { UtilService } from './../../../shared/services/util.service';
 
 @Component({

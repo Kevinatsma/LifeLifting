@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject, HostListener, ViewChild, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatStepper } from '@angular/material/stepper';
 import { User } from '../../user/user.model';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { FirstConsultationService } from '../first-consultation.service';
 import { Mealplan } from '../../mealplans/mealplan.model';
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Time } from './../../shared/data/models/time.model';
 import times from './../../shared/data/JSON/times.json';
 import dietTypes from './../../shared/data/JSON/dietTypes.json';

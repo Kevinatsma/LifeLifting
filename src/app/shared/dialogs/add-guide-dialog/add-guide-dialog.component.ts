@@ -1,20 +1,17 @@
 import { Component, OnInit, Inject, HostListener, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { GuidelineService } from '../../../guidelines/guideline.service';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from './../../../user/user.model';
 import { AuthService } from './../../../core/auth/auth.service';
 import { UserService } from './../../../user/user.service';
 import { Exercise } from './../../../exercises/exercise.model';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ExerciseService } from './../../../exercises/exercise.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FirstConsultation } from './../../../first-consultation/first-consultation.model';
 import { UtilService } from '../../services/util.service';
 import { Measurement } from './../../../measurement/measurement.model';
-import { MeasurementService } from './../../../measurement/measurement.service';
-import { FirstConsultationService } from './../../../first-consultation/first-consultation.service';
 import { FormulaValues } from './../../../guidelines/guideline.model';
 
 @Component({

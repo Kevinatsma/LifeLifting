@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AddFoodDialogComponent } from '../shared/dialogs/add-food-dialog/add-food-dialog.component';
 import { Food } from './food.model';
 import { FoodService } from './food.service';

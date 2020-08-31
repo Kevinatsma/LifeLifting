@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AddExerciseDialogComponent } from '../shared/dialogs/add-exercise-dialog/add-exercise-dialog.component';
 import { Exercise } from './exercise.model';
 import { ExerciseService } from './exercise.service';

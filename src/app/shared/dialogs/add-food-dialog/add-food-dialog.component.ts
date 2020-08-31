@@ -1,12 +1,11 @@
-import { Component, OnInit, Input, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { FoodService } from './../../../foods/food.service';
 
 import preperations from './../../data/JSON/preperations.json';
 import mealTimes from './../../data/JSON/mealTimes.json';
 import units from './../../data/JSON/units.json';
-import { Food } from './../../../foods/food.model';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-food-dialog',

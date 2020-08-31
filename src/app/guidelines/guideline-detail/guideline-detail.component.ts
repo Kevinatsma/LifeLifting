@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GuidelineService } from '../guideline.service';
@@ -11,8 +11,8 @@ import { UserService } from './../../user/user.service';
 import { ExerciseService } from './../../exercises/exercise.service';
 import { Exercise } from './../../exercises/exercise.model';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { Subject, Subscription } from 'rxjs';
 import { AuthService } from './../../core/auth/auth.service';
 import { Measurement } from './../../measurement/measurement.model';
 import { FirstConsultation } from './../../first-consultation/first-consultation.model';

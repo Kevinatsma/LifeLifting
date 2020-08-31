@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { User } from '../../../../user/user.model';
 import { ActivatedRoute } from '@angular/router';
@@ -7,8 +7,8 @@ import { UserService } from '../../../../user/user.service';
 import { Specialist } from '../../../../specialists/specialist.model';
 import { SpecialistService } from '../../../../specialists/specialist.service';
 import { ChatThreadService } from '../../../../chat/chat-thread.service';
-import { Subject, Observable, Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material';
+import { Subject, Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import { AddMealDialogComponent } from '../../../../shared/dialogs/add-meal-dialog/add-meal-dialog.component';
 import { AddGuideDialogComponent } from '../../../../shared/dialogs/add-guide-dialog/add-guide-dialog.component';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';

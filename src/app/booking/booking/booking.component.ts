@@ -23,7 +23,7 @@ import { UserService } from './../../user/user.service';
 import { Appointment } from '../appointment.model';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Location } from '@angular/common';
 import { SpecialistService } from './../../specialists/specialist.service';
 import { Specialist } from './../../specialists/specialist.model';

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, HostListener, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 // Services
 import { AuthService } from '../../../core/auth/auth.service';
@@ -11,7 +11,6 @@ import { AddMealDialogService } from './add-meal-dialog.service';
 import { Observable, Subscription } from 'rxjs';
 
 // Data
-import { MAT_DIALOG_DATA } from '@angular/material';
 import { User } from '../../../user/user.model';
 import { Time } from '../../data/models/time.model';
 import { Food } from './../../../foods/food.model';

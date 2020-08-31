@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, EmailValidator } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from './../../../core/auth/auth.service';
 import { MatDialog } from '@angular/material';
 

@@ -1,5 +1,5 @@
 import { Component, Inject, ViewEncapsulation, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BookingService } from '../../../booking/booking.service';
 import { Appointment } from '../../../booking/appointment.model';
 import { Specialist } from './../../../specialists/specialist.model';
@@ -7,7 +7,7 @@ import { User } from './../../../user/user.model';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { UserService } from './../../../user/user.service';
 import { AuthService } from './../../../core/auth/auth.service';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-appointment-detail-dialog',

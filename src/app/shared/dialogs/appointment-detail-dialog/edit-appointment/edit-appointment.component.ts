@@ -4,7 +4,7 @@ import { User } from './../../../../user/user.model';
 import { Specialist } from './../../../../specialists/specialist.model';
 import { BookingService } from './../../../../booking/booking.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { UserService } from './../../../../user/user.service';
 import { SpecialistService } from './../../../../specialists/specialist.service';
 import { AuthService } from './../../../../core/auth/auth.service';

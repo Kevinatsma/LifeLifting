@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AddUserDialogComponent } from './../../shared/dialogs/add-user-dialog/add-user-dialog.component';
 import { Subscription } from 'rxjs';
 import { User } from '../user.model';

@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { User } from '../../user/user.model';
 import { Router } from '@angular/router';
 import { FollowUpConsultation } from '../follow-up-consultation.model';
 import { AuthService } from '../../core/auth/auth.service';
-import { MatDialog } from '@angular/material';
-import { UserService } from '../../user/user.service';
+import { MatDialog } from '@angular/material/dialog';
 import { FollowUpConsultationService } from './../follow-up-consultation.service';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import { EditFollowUpComponent } from '../edit-follow-up/edit-follow-up.component';

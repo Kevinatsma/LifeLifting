@@ -5,7 +5,7 @@ import { Thread } from './../thread.model';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UtilService } from '../../shared/services/util.service';
 import { AuthService } from './../../core/auth/auth.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import * as _ from 'lodash';
 

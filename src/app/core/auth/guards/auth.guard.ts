@@ -4,7 +4,7 @@ import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
 import { User } from './../../../user/user.model';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',

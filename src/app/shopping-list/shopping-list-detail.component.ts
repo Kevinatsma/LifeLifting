@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Mealplan } from '../mealplans/mealplan.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MealplanService } from '../mealplans/mealplan.service';

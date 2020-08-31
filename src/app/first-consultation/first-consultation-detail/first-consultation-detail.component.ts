@@ -10,7 +10,7 @@ import { UserService } from '../../user/user.service';
 import { ExerciseService } from '../../exercises/exercise.service';
 import { Exercise } from '../../exercises/exercise.model';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { GuidelineService } from '../../guidelines/guideline.service';
 import { Guideline } from '../../guidelines/guideline.model';
 import { AuthService } from '../../core/auth/auth.service';

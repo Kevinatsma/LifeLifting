@@ -6,7 +6,7 @@ import { DataService } from './../../../shared/data/data.service';
 import { Timezone } from './../../../shared/data/models/timezone.model';
 import languages from './../../data/JSON/languages.json';
 import { Language } from '../../data/models/language.model';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-specialist-dialog',

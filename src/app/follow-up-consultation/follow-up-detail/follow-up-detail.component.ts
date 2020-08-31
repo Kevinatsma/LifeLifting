@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FollowUpConsultation } from '../follow-up-consultation.model';
 import { User } from './../../user/user.model';
 import { MealplanService } from './../../mealplans/mealplan.service';

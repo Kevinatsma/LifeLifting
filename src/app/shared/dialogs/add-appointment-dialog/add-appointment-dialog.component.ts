@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ChangeDetectorRef, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BookingService } from './../../../booking/booking.service';
 import { Appointment } from './../../../booking/appointment.model';
 import { User } from './../../../user/user.model';

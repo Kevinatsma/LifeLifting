@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { MatDialog } from '@angular/material';
-import { AddGuideDialogComponent } from '../shared/dialogs/add-guide-dialog/add-guide-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-mealplans',

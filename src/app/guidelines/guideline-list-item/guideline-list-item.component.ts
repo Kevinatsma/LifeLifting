@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { GuidelineService } from '../guideline.service';
 import { Guideline } from '../guideline.model';
 import { UserService } from './../../user/user.service';

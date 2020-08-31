@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MatDialog } from '@angular/material';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from '../../../../user/user.model';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { UserService } from '../../../../user/user.service';
@@ -9,7 +8,7 @@ import { Exercise } from '../../../../exercises/exercise.model';
 import { Food } from '../../../../foods/food.model';
 import { FoodService } from '../../../../foods/food.service';
 import { EditMealDialogService } from '../edit-meal-dialog.service';
-import { DayForm, Mealplan } from '../../../../mealplans/mealplan.model';
+import { DayForm } from '../../../../mealplans/mealplan.model';
 import { Subscription } from 'rxjs';
 
 @Component({

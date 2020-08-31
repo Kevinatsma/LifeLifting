@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './../../user.model';
 import { ConfirmDialogComponent } from './../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { UserService } from './../../user.service';
 import { ChatThreadService } from './../../../chat/chat-thread.service';
 import { AuthService } from './../../../core/auth/auth.service';

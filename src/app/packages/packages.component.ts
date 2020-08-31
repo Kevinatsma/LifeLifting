@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AddPackageDialogComponent } from './../shared/dialogs/add-package-dialog/add-package-dialog.component';
 
 @Component({

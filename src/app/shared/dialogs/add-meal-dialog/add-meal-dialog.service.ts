@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Food } from './../../../foods/food.model';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { DayForm } from './day-form.model';
 import { FormArray } from '@angular/forms';
 import { Mealplan } from './../../../mealplans/mealplan.model';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SuppsForm } from './supps-form.model';
 
 @Injectable({
