@@ -36,7 +36,16 @@
                 "src/assets/scss"
               ]
             },
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "rxjs-compat",
+              "firebase/app",
+              "firebase",
+              "@firebase/firestore",
+              "lodash",
+              "angular-calendar/date-adapters/date-fns",
+              "@mattlewis92/dom-autoscroller"
+            ]
           },
           "configurations": {
             "production": {

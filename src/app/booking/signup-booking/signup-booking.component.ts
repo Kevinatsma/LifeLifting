@@ -1,8 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import {isSameMonth, isSameDay } from 'date-fns';
 import { Observable, Subscription, Subject } from 'rxjs';
-import { takeUntil, map } from 'rxjs/operators';
-import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView, CalendarEventTitleFormatter, CalendarMonthViewDay } from 'angular-calendar';
+import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView, CalendarEventTitleFormatter } from 'angular-calendar';
 import { BookingService } from '../booking.service';
 import { User } from '../../user/user.model';
 import { AuthService } from '../../core/auth/auth.service';
@@ -21,8 +20,6 @@ import { Router } from '@angular/router';
 import { UtilService } from './../../shared/services/util.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import countryCodes from './../../shared/data/JSON/countryCodes.json';
-import firebase from 'firebase';
-import moment from 'moment';
 
 @Component({
   selector: 'app-signup-booking',

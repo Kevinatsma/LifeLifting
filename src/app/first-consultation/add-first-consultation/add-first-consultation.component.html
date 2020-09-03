@@ -1040,7 +1040,7 @@
                       <mat-label>Which activities?</mat-label>
                       <mat-select matInput placeholder="Pick one" formControlName="physicalActivity" 
                       panelClass="dropdown-regular" autocomplete="off">
-                        <mat-option *ngFor="let activity of activities" [(value)]="activity">{{activity.exerciseName}}</mat-option>
+                        <mat-option *ngFor="let activity of activities" [value]="activity">{{activity.exerciseName}}</mat-option>
                         <mat-option value="other">Other</mat-option>
                       </mat-select>
                       <mat-error class="input-error" *ngIf="!physicalActivity.touched">This is <strong>required</strong></mat-error>
