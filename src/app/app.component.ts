@@ -9,7 +9,7 @@ import { fadeAnimation } from './core/animations/fade.animation';
 })
 
 export class AppComponent {
-  title = 'LifeLifting';
+  title = 'Life Lifting';
 
   constructor( ) {
   }

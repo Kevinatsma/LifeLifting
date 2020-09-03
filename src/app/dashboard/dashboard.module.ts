@@ -66,6 +66,7 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard],
+    data: {state: 'dashboard'},
     children: [
       {path: '', redirectTo: 'overview', pathMatch: 'full'},
       {path: 'overview', component: OverviewComponent, data: {state: 'home'}},
@@ -86,12 +87,7 @@ const routes: Routes = [
       {path: 'guidelines/:id', component: GuidelineDetailComponent, data: {state: 'guideline-detail'}, canActivate: [AuthGuard]},
       {path: 'mealplans', component: MealplansComponent, data: {state: 'mealplans'}, canActivate: [AuthGuard]},
       {path: 'mealplans/:id', component: MealplanDetailComponent, data: {state: 'mealplan-detail'}, canActivate: [AuthGuard]},
-      {
-        path: 'first-consultations/:id',
-        component: FirstConsultationDetailComponent,
-        data: {state: 'first-consultations'},
-        canActivate: [AuthGuard]
-      },
+      {path: 'first-consultations/:id', component: FirstConsultationDetailComponent, data: {state: 'first-consultations'}, canActivate: [AuthGuard]},
       {path: 'my-guidelines', component: MyGuidelineListComponent, data: {state: 'my-guidelines'}, canActivate: [AuthGuard]},
       {path: 'my-mealplans', component: MyMealplanListComponent, data: {state: 'my-mealplans'}, canActivate: [AuthGuard]},
       {path: 'my-calendar-client', component: MyCalendarClientComponent, data: {state: 'my-calendar-client'}, canActivate: [AuthGuard]},

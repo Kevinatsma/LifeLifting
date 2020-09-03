@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   private oAuthSignUp(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
+    return this.afAuth.signInWithPopup(provider)
       .then((credential) => {
         this.updateUserData(credential.user);
       })
@@ -57,7 +57,7 @@ export class AuthService {
   }
 
   private oAuthLogin(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
+    return this.afAuth.signInWithPopup(provider)
       .then((credential) => {
         if (credential.additionalUserInfo.isNewUser) {
           this.updateUserData(credential.user);
@@ -127,7 +127,7 @@ export class AuthService {
   }
 
   getUser() {
-    return this.afAuth.auth;
+    return this.afAuth;
   }
 
   getChatUser() {
@@ -135,7 +135,7 @@ export class AuthService {
   }
 
   addUser(email: string, password: string, formData: any) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
     .then((credential) => {
       const data = {
         uid: credential.user.uid,
@@ -160,16 +160,21 @@ export class AuthService {
       this.addUserData(data, credential.user);
     })
     .then(() => console.log('Welcome, your account has been created!'))
-    .then(user => {
-      this.afAuth.auth.currentUser.sendEmailVerification()
-        .then(() => console.log('We sent you an email verification'))
-        .catch(error => console.log(error.message));
-        return user;
-    });
+    .then(_ => this.sendEmailVerification);
+  }
+
+  sendEmailVerification = () => {
+    this.afAuth.currentUser
+      .then(user => {
+        user.sendEmailVerification()
+          .then(() => console.log('We sent you an email verification'))
+          .catch(error => console.error(error.message));
+          return user;
+      });
   }
 
   emailSignIn(email: string, password: string) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    return this.afAuth.signInWithEmailAndPassword(email, password)
       .then(() => console.log('You have successfully signed in'))
       .then(() => {
         return this.user;
@@ -184,27 +189,22 @@ export class AuthService {
   }
 
   emailSignUp(email: string, password: string) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((credential) => {
         this.updateUserData(credential.user);
       })
       .then(() => console.log('Welcome, your account has been created!'))
-      .then(user => {
-        this.afAuth.auth.currentUser.sendEmailVerification()
-          .then(() => console.log('We sent you an email verification'))
-          .catch(error => alert(error.message));
-          return user;
-      });
+      .then(_ => this.sendEmailVerification);
   }
 
   resetPassword(email: string) {
-    return this.afAuth.auth.sendPasswordResetEmail(email)
+    return this.afAuth.sendPasswordResetEmail(email)
       .then(() => console.log('sent Password Reset Email!'))
       .catch((error) => console.log(error));
   }
 
   signOut() {
-    this.afAuth.auth.signOut()
+    this.afAuth.signOut()
       .then(() => {
         this.router.navigate(['login']);
       }

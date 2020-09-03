@@ -3,7 +3,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Mealplan } from '../mealplan.model';
 import html2canvas from 'html2canvas';
 import { User } from './../../user/user.model';
-const jsPDF = require('jspdf');
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-print-mealplan',
@@ -52,24 +52,22 @@ export class PrintMealplanComponent implements OnInit {
   saveAsPDF() {
     const fileName  = `Mealplan ${this.mealplan.mealplanName}.pdf`;
     const elToExport = document.getElementById('page-one');  //Id of the table
-    html2canvas(elToExport)
+    html2canvas(elToExport, {scale: 3.5})
       .then(canvas => {
-        const imgWidth = 208;   
+        const imgWidth = 195;   
         const imgHeight = canvas.height * imgWidth / canvas.width;
         const contentDataURL = canvas.toDataURL('image/png');
-        const position = 0;  
         this.pdf = new jsPDF('p', 'mm', 'a4');
-        this.pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        this.pdf.addImage(contentDataURL, 'PNG', 7.5, 0, imgWidth, imgHeight);
       });
     const elToExportTwo = document.getElementById('page-two');  //Id of the table
-    html2canvas(elToExportTwo)
+    html2canvas(elToExportTwo, {scale: 3.5})
       .then(canvas => {
-        const imgWidth = 208;   
+        const imgWidth = 195;   
         const imgHeight = canvas.height * imgWidth / canvas.width;
         const contentDataURL = canvas.toDataURL('image/png');
-        const position = 0;  
         this.pdf.addPage();
-        this.pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        this.pdf.addImage(contentDataURL, 'PNG', 7.5, 0, imgWidth, imgHeight);
       })
       .then(_ => {
         this.pdf.save(fileName);

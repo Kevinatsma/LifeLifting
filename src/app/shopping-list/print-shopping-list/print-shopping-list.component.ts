@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, ViewChild, ElementRef, ViewEncapsulation } f
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Mealplan } from './../../mealplans/mealplan.model';
 import html2canvas from 'html2canvas';
-const jsPDF = require('jspdf');
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-print-shopping-list',
@@ -31,14 +31,13 @@ export class PrintShoppingListComponent implements OnInit {
   saveAsPDF() {
     const fileName  = `Shopping list ${this.mealplan.mealplanName}.pdf`;
     const elToExport = document.getElementById('page-one');  //Id of the table
-    html2canvas(elToExport)
+    html2canvas(elToExport, {scale: 3.5})
       .then(canvas => {
-        const imgWidth = 208;   
+        const imgWidth = 195;   
         const imgHeight = canvas.height * imgWidth / canvas.width;
-        const contentDataURL = canvas.toDataURL('image/png');
-        const position = 0;  
+        const contentDataURL = canvas.toDataURL('image/png'); 
         this.pdf = new jsPDF('p', 'mm', 'a4');
-        this.pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        this.pdf.addImage(contentDataURL, 'PNG', 7.5, 0, imgWidth, imgHeight);
       })
       .then(_ => {
         this.pdf.save(fileName);

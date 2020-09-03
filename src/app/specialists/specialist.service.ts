@@ -53,19 +53,25 @@ export class SpecialistService {
   }
 
   emailSignUp(email: string, password: string, formData: any) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
     .then((credential) => {
       this.updateUserData(credential.user, formData);
     })
     .then(() => console.log('Congratulations. The specialists account has been created!'))
-    .then(() => {
-      this.afAuth.auth.currentUser.sendEmailVerification()
-        .then(() => console.log('We sent him/her an email verification'))
-        .catch(error => console.log(error.message));
-    })
+    .then(_ => this.sendEmailVerification)
     .then((credential) => {
       return credential;
     });
+  }
+
+  sendEmailVerification = () => {
+    this.afAuth.currentUser
+      .then(user => {
+        user.sendEmailVerification()
+          .then(() => console.log('We sent him/her an email verification'))
+          .catch(error => console.error(error.message));
+          return user;
+      });
   }
 
   private updateUserData(user, formData) {

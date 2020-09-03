@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { Location } from '@angular/common';
 import { AuthService } from './../../core/auth/auth.service';
 import { User } from './../../user/user.model';
@@ -14,14 +14,15 @@ import { routeTransition } from './../../core/animations/route-transition';
   animations: [routeTransition],
   encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewChecked {
   user: User;
 
   constructor( public auth: AuthService,
                private afs: AngularFirestore,
                public router: Router,
                public location: Location,
-               private dashboardService: DashboardService) { }
+               private dashboardService: DashboardService,
+               private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.afs.collection(`users`).doc(`${this.auth.authState.uid}`).ref.get()
@@ -42,6 +43,8 @@ export class DashboardComponent implements OnInit {
           this.router.navigate(['../login']);
       });
   }
+
+  ngAfterViewChecked(): void { this.cdr.detectChanges(); }
 
   signOut() {
     this.auth.signOut();

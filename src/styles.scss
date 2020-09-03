@@ -761,6 +761,12 @@ ul {
         box-shadow: $card-shadow;
         width: 250px;
     }
+
+    mat-sidenav-container .mat-drawer-backdrop {
+        @include respond-up($sm) {
+            display: none;
+        }
+    }
 }
 
 .dropdown-area-code {
