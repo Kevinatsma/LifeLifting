@@ -1,0 +1,213 @@
+{
+    "global": {
+        "general": {
+            "name": "LifeLifting",
+            "slogan": "We are not afraid of mirrors!"
+        },
+        "buttons": {
+            "next": "Next",
+            "previous": "Previous",
+            "go_back": "Go back",
+            "confirm": "Confirm",
+            "go_to_mirror": "Go to Mirror",
+            "more_info": "More info",
+            "show_all": "Show all"
+        },
+        "form": {
+            "email_placeholder": "E-mail address",
+            "password_placeholder": "Password",
+            "errors": {
+                "required": "This is required",
+                "invalid_email": "That's not a valid e-mail address!",
+                "password_special_char": "Password contains a special character, or lacks a number/letter",
+                "capslock": "&#x26A0; Warning Caps lock is turned on",
+                "not_enough_chars": "Not enough characters, try harder!",
+                "too_much_chars": "Too much characters, slow down there.."
+            },
+            "first_name": "First name",
+            "last_name": "Last name"
+        },
+        "words": {
+            "or": "Or",
+            "welcome": "Welcome",
+            "thanks": "Thanks",
+            "client": "Client",
+            "specialist": "Specialist",
+            "admin": "Admin",
+            "none": "None",
+            "age": "Age"
+        },
+        "actions": {
+            "call": "Call",
+            "chat": "Chat",
+            "filter": "Filter",
+            "search": {
+                "search_by_name": "Search by name",
+                "no_results_name": "No search results found, please try a different name. 🔎"
+            }
+        },
+        "user": {
+            "status": {
+                "signup_completed": "Signup Completed",
+                "signup_incomplete": "Signup not completed",
+                "appointment_requested": "Appointment requested",
+                "appointment_not_requested": "Appointment is not requested",
+                "appointment_accepted": "Appointment accepted",
+                "appointment_not_accepted": "Appointment not accepted",
+                "appointment_completed": "Appointment completed",
+                "appointment_not_completed": "Appointment not completed",
+                "accepted": "Accepted",
+                "denied": "Denied",
+                "subscription_invalid": "Subscription not valid",
+                "subscription_valid": "Subscription valid"
+            }
+        },
+        "errors": {
+            "no_photo": "No Photo Yet",
+            "incomplete_profile": "Incomplete profile",
+            "no_value": "No value"
+        }
+    },
+    "pages": {
+        "login": {
+            "title": "Welcome Back",
+            "intro": "Login to your account to access your personal plans and goals.",
+            "buttons": {
+                "login": "Login",
+                "forgot_password": "Forgot Password",
+                "sign_up_for_account": "Sign up for an account",
+                "login_with_google": "Login with Google"
+            }
+        },
+        "forgot_password": {
+            "title": "Forgot Password",
+            "intro": "Fill out your email, so we can send you the password reset instructions.",
+            "email_sent": "Email sent!",
+            "thanks_text": "Thank you! We've sent you an email. Please follow the steps in the mail.",
+            "buttons": {
+                "send_mail": "Send mail",
+                "new_account" : "Sign up for a new account instead"
+            }
+        },
+        "password_reset": {
+            "title": "Reset your password",
+            "intro": "Welcome back! Please enter a new password and don't forget again. 🙏🏼",
+            "intro_forbidden": "Hey! 👀 Either you didn't request this, or you've waited too long.",
+            "confirm_pass_placeholder": "Confirm your password",
+            "buttons": {
+                "back_to_login": "Back to Login"
+            },
+            "errors": {
+                "password_not_same": "Passwords are not the same."
+            }
+        },
+        "signup": {
+            "title": "Hey There! 👋🏼",
+            "intro": "Create an account to see your schedules and goals, chat with your nutritionist and get real-time data.",
+            "step_success": {
+                "title": "Account created!",
+                "intro": "Please complete the following steps to use the LifeLifting Mirror.",
+                "step_one": "Step 1: Fill out basic data",
+                "step_two": "Step 2: Choose a package",
+                "step_three": "Step 3: Choose a specialist",
+                "step_four": "Step 4: Request appointment",
+                "step_five": "Step 5: Finishing up"
+            },
+            "step_one": {
+                "title": "Step 1: Basic personal data",
+                "form": {
+                    "age_label": "Your Age",
+                    "age_placeholder": "I am ... years old",
+                    "gender_label": "Your Gender",
+                    "gender_placeholder": "I identify myself as...",
+                    "country_label": "I live in",
+                    "country_placeholder": "Pick a country"
+                }
+            },
+            "step_two": {
+
+            },
+            "step_three": {
+
+            },
+            "step_four": {
+
+            },
+            "limbo": {
+                "past_due_date": "Did the specialist forget to accept/cancel it and it's past due date?",
+                "request_new": "Please, request a new consultation",
+                "step_done": {
+                    "title": "Cheers to planning that in! 🍻",
+                    "intro": "Congrats on looking for a better version of yourself. Thank you for your trust in LifeLifting Nutrition.",
+                    "your_specialist": "Your specialist",
+                    "will_confirm": "will confirm your consultation as soon as possible."
+                },
+                "not_accepted": {
+                    "title": "Oh.. Appointment not accepted!",
+                    "subtitle_1": "The specialist couldn't fit your request in his schedule. Please contact",
+                    "subtitle_2": "or request another appointment.",
+                    "request_new": "Request new appointment"
+                },
+                "appointment_status": {
+                    "title": "Appointment status",
+                    "subtitle_1": "If you see your appointment down here. Congrats! Then it has been accepted. If not, please wait untill the specialist accepts your request. Is it taking a long time? Please contact",
+                    "subtitle_2": "if you have any trouble, or for any further questions."
+                },
+                "completed_appointment": {
+                    "title": "Nice, you completed your first appointment!",
+                    "subtitle_1": "But your payment hasn't been processed yet. Make sure you've paid. Don't hesitate contacting",
+                    "subtitle_2": "if you have any trouble with your payment, or for any further questions."
+                },
+                "subscription_ended": {
+                    "title": "Aww.. Your subscription has ended",
+                    "subtitle_1": "We hope you had an awesome growth in your time with LifeLifting. And you're always welcome to train with",
+                    "subtitle_2": "or you can choose",
+                    "another_specialist": "another specialist"
+                },
+                "all_completed": {
+                    "title":"Looks like everything is ok!",
+                    "subtitle": "You've completed all the steps. Click the button below to continue to the dashboard.",
+                    "to_dashboard": "Go to Dashboard 🚀"
+                }
+            },
+            "buttons": {
+                "already_have_account": "Already have an account",
+                "create_account": "Create account",
+                "signup_google": "Signup with Google"
+            }
+        },
+        "users": {
+            "title": "The Users of LifeLifting",
+            "intro": "In this section you have a quick overview of the users. You can view quick contact info and edit/delete them directly from the list. With the top right button you add one. 😃",
+            "filters": {
+                "all_users": "All users",
+                "accepted_users": "Accepted users",
+                "unaccepted_users": "Unaccepted users"
+            },
+            "list_item": {
+                "goal": "Goal",
+                "no_goal": "No goal yet...",
+                "tooltip": "User hasn't completed the Signup process yet"
+            },
+            "detail": {
+                "errors": {
+                    "no_country": "No country yet"
+                }
+            },
+            "edit_user": {
+                "package_choice": "Package Choice",
+                "main_goal": "main goal",
+                "contact_info": "Contact Info",
+                "user_status": {
+                    "title": "User Status",
+                    "general": {
+                        "title": "General"
+                    },
+                    "appointment": {
+                        "title": "Appointment"
+                    }
+                }
+            }
+        }
+    }
+}
