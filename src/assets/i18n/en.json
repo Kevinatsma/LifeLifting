@@ -11,7 +11,8 @@
             "confirm": "Confirm",
             "go_to_mirror": "Go to Mirror",
             "more_info": "More info",
-            "show_all": "Show all"
+            "show_all": "Show all",
+            "next_step": "Next step"
         },
         "form": {
             "email_placeholder": "E-mail address",
@@ -25,10 +26,12 @@
                 "too_much_chars": "Too much characters, slow down there.."
             },
             "first_name": "First name",
-            "last_name": "Last name"
+            "last_name": "Last name",
+            "phone_number": "Phone Number"
         },
         "words": {
             "or": "Or",
+            "of": "of",
             "welcome": "Welcome",
             "thanks": "Thanks",
             "client": "Client",
@@ -44,6 +47,12 @@
             "search": {
                 "search_by_name": "Search by name",
                 "no_results_name": "No search results found, please try a different name. 🔎"
+            },
+            "print": {
+                "preview_title": "Print preview"
+            },
+            "save": {
+                "as_pdf": "Save as PDF"
             }
         },
         "user": {
@@ -115,13 +124,24 @@
             },
             "step_one": {
                 "title": "Step 1: Basic personal data",
+                "intro": "Psst, you already filled out the basic data. If you made a mistake, don't worry. You can edit your whole profile after signing up. Click the button to go to the next step!",
                 "form": {
                     "age_label": "Your Age",
                     "age_placeholder": "I am ... years old",
                     "gender_label": "Your Gender",
                     "gender_placeholder": "I identify myself as...",
                     "country_label": "I live in",
-                    "country_placeholder": "Pick a country"
+                    "country_placeholder": "Pick a country",
+                    "main_goal_label": "What's your main goal?",
+                    "main_goal_placeholder": "I want to...",
+                    "current_weight_label": "Current weight in kg",
+                    "current_weight_placeholder": "My current weight is",
+                    "area_code_label": "Area code",
+                    "hear_from_us_label": "How did you hear from us?",
+                    "hear_from_us_placeholder": "Social Media, friends, etc."
+                },
+                "buttons": {
+                    "pick_package": "Pick a package"
                 }
             },
             "step_two": {
@@ -207,6 +227,14 @@
                         "title": "Appointment"
                     }
                 }
+            }
+        },
+        "shopping_list": {
+            "title": "Shopping list",
+            "intro_1": "This shopping list is for mealplan",
+            "intro_2": "You can print this shopping list by clicking on the button in the top right corner or you can open it on your phone and cross off the items while you're in the supermarket.",
+            "print": {
+               "title": "Shopping list for"
             }
         }
     }
