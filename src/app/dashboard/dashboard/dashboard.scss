@@ -9,27 +9,23 @@
     position: fixed;
 
     .sidenav-desktop {
-        width: 25vw;
+        height: 100vh;
+        overflow-x: hidden;
         position: sticky;
         top: 0;
-        height: 100vh;
+        width: 25vw;
         z-index: 10;
-
-        app-dashboard-menu {
-            @include respond-down($sm) {
-                display: none;
-            }
-        }
     }
 
     app-dashboard-menu {
-        width: 25vw;
-        max-width: 25vw;
-        height: 100vh;
         background: #fff;
         box-shadow: $sidebar-shadow;
+        height: 100vh;
+        max-width: 25vw;
+        overflow-x: hidden;
         overflow-y: scroll;
         position: relative;
+        width: 25vw;
         z-index: 10;
     }
 
@@ -39,6 +35,7 @@
         width: calc(100vw - 25vw);
         display: flex;
         flex-flow: column;
+        overflow-y: auto;
 
         @include respond-down($sm) {
             width: 100vw;
@@ -131,6 +128,9 @@ mat-sidenav.sidenav {
 }
 
 .mat-drawer-content {
+    overflow-x: hidden;
+    width: 100vw;
+
     @include respond-up($sm) {
         display: flex!important;
     }

@@ -86,7 +86,8 @@
               <a class="text-link" (click)="linkToMeasurement()">
                 Linked Measurement
               </a>
-              <a class="text-link" (click)="linkToFic(guideline.ficID)">
+              <a class="text-link" (click)="linkToFic(guideline.ficID)"
+                *ngIf="user?.roles?.specialist || user?.roles?.admin">
                 Linked First Consultation
               </a>
             </div>

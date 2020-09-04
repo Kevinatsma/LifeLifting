@@ -26,18 +26,18 @@ export class PrintShoppingListComponent implements OnInit {
               }
 
   ngOnInit() {
+    this.pdf = new jsPDF('p', 'mm', 'a4');
   }
 
   saveAsPDF() {
     const fileName  = `Shopping list ${this.mealplan.mealplanName}.pdf`;
-    const elToExport = document.getElementById('page-one');  //Id of the table
-    html2canvas(elToExport, {scale: 3.5})
+    const elToExport = document.getElementById('page-one');
+    html2canvas(elToExport, {scale: 6})
       .then(canvas => {
         const imgWidth = 195;   
         const imgHeight = canvas.height * imgWidth / canvas.width;
-        const contentDataURL = canvas.toDataURL('image/png'); 
-        this.pdf = new jsPDF('p', 'mm', 'a4');
-        this.pdf.addImage(contentDataURL, 'PNG', 7.5, 0, imgWidth, imgHeight);
+        const contentDataURL = canvas.toDataURL('image/jpeg');
+        this.pdf.addImage(contentDataURL, 'JPEG', 7.5, 0, imgWidth, imgHeight);
       })
       .then(_ => {
         this.pdf.save(fileName);

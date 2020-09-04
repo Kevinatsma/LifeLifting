@@ -340,6 +340,7 @@ main.dialog-wrapper {
             position: fixed;
             bottom: 2em;
             left: calc(50% - 150px);
+            z-index: 50;
 
             button {
                 width: auto;

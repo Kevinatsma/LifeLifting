@@ -12,6 +12,7 @@
     @include respond-down($sm) {
         min-width: calc(100vw - 32px);
         padding: 3em 16px;
+        overflow-y: auto;
     }
 
     ::ng-deep {

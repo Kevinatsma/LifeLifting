@@ -17,12 +17,12 @@
         position: absolute;
 
         &.back {
-            left: 13em;
+            left: 20px;
             opacity: 0;
         }
 
         &.next {
-            right: 13em;
+            right: 20px;
         }
         
         .fa__icon, .svg-inline--fa, svg, svg path {
@@ -58,11 +58,8 @@
 
     .branding {
         margin-bottom: 5px !important;
-
-        img {
-            height: 25px !important;
-            width: 27.5px !important;
-        }
+        max-width: 100%;
+        display: flex;
     }
 
     .header-subline {
