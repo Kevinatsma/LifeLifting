@@ -13,6 +13,7 @@ import { UtilService } from './../../shared/services/util.service';
 import { Measurement } from './../../measurement/measurement.model';
 import { FirstConsultation } from './../../first-consultation/first-consultation.model';
 import { Subscription } from 'rxjs';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-edit-guideline',
@@ -197,8 +198,8 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       const data = this.formulaValues;
-
-      this.maxCaloriesResult = this.utils.calculateMaxCalories(data.weight, data.height, data.age, data.gender);
+      const age = _.get(this.client, 'basicData.age');
+      this.maxCaloriesResult = this.utils.calculateMaxCalories(data.weight, data.height, age, data.gender);
       if (!data.isAthlete) {
         this.fatPercentageRegResult = this.utils.calculateFatPercentageRegular(data);
       } else {

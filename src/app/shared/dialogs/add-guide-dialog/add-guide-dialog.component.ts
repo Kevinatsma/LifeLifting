@@ -13,6 +13,7 @@ import { FirstConsultation } from './../../../first-consultation/first-consultat
 import { UtilService } from '../../services/util.service';
 import { Measurement } from './../../../measurement/measurement.model';
 import { FormulaValues } from './../../../guidelines/guideline.model';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-add-guide-dialog',
@@ -298,8 +299,10 @@ export class AddGuideDialogComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       const data = this.formulaValues;
 
-      if (data.weight && data.height && data.age && data.gender) {
-        this.maxCaloriesResult = this.utils.calculateMaxCalories(data.weight, data.height, data.age, data.gender);
+      console.log(data);
+      const age = _.get(this.user, 'basicData.age');
+      if (data.weight && data.height && age && data.gender) {
+        this.maxCaloriesResult = this.utils.calculateMaxCalories(data.weight, data.height, age, data.gender);
       }
 
       if (!data.isAthlete) {
