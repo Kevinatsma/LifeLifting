@@ -1,0 +1,235 @@
+{
+    "global": {
+      "general": {
+        "name": "LifeLifting",
+        "slogan": "We zijn niet bang voor spiegels!"
+      },
+      "buttons": {
+        "next": "Volgende",
+        "previous": "Vorige",
+        "go_back": "Ga terug",
+        "confirm": "Bevestig",
+        "go_to_mirror": "Ga naar Spiegel",
+        "more_info": "Meer info",
+        "show_all": "Toon alle",
+        "next_step": "Volgende stap"
+      },
+      "form": {
+        "email_placeholder": "E-mail adres",
+        "password_placeholder": "Wachtwoord",
+        "errors": {
+          "required": "Dit is nodig",
+          "invalid_email": "Dat is geen geldig e-mailadres!",
+          "password_special_char": "Wachtwoord bevat een speciaal karakter, of mist een nummer/letter",
+          "capslock": "⚠ Waarschuwing Caps Lock is ingeschakeld",
+          "not_enough_chars": "Niet genoeg personages, probeer het harder!",
+          "too_much_chars": "Te veel personages, vertraag daar."
+        },
+        "first_name": "Voornaam",
+        "last_name": "Achternaam",
+        "phone_number": "Telefoonnummer"
+      },
+      "words": {
+        "or": "Of",
+        "of": "van",
+        "welcome": "Welkom op",
+        "thanks": "Bedankt",
+        "client": "Klant",
+        "specialist": "Specialist",
+        "admin": "Admin",
+        "none": "Geen",
+        "age": "Leeftijd"
+      },
+      "actions": {
+        "call": "Bel naar",
+        "chat": "Chat",
+        "filter": "Filter",
+        "search": {
+          "search_by_name": "Zoek op naam",
+          "no_results_name": "Geen zoekresultaten gevonden, probeer een andere naam. 🔎"
+        },
+        "print": {
+          "preview_title": "Afdrukvoorbeeld"
+        },
+        "save": {
+          "as_pdf": "Opslaan als PDF"
+        }
+      },
+      "user": {
+        "status": {
+          "signup_completed": "Inschrijving voltooid",
+          "signup_incomplete": "Inschrijving niet voltooid",
+          "appointment_requested": "Afspraak gevraagd",
+          "appointment_not_requested": "Afspraak wordt niet gevraagd",
+          "appointment_accepted": "Afspraak geaccepteerd",
+          "appointment_not_accepted": "Afspraak niet geaccepteerd",
+          "appointment_completed": "Afspraak afgerond",
+          "appointment_not_completed": "Afspraak niet voltooid",
+          "accepted": "Geaccepteerd",
+          "denied": "Ontkend",
+          "subscription_invalid": "Abonnement niet geldig",
+          "subscription_valid": "Abonnement geldig"
+        }
+      },
+      "errors": {
+        "no_photo": "Nog geen foto",
+        "incomplete_profile": "Onvolledig profiel",
+        "no_value": "Geen waarde"
+      }
+    },
+    "pages": {
+      "login": {
+        "title": "Welkom terug",
+        "intro": "Log in op je account om toegang te krijgen tot je persoonlijke plannen en doelen.",
+        "buttons": {
+          "login": "Inloggen",
+          "forgot_password": "Wachtwoord vergeten",
+          "sign_up_for_account": "Aanmelden voor een account",
+          "login_with_google": "Inloggen met Google"
+        }
+      },
+      "forgot_password": {
+        "title": "Wachtwoord vergeten",
+        "intro": "Vul je e-mail in, zodat we je de instructies voor het resetten van het wachtwoord kunnen sturen.",
+        "email_sent": "E-mail verzonden!",
+        "thanks_text": "Dank je wel! We hebben je een e-mail gestuurd. Volg de stappen in de mail.",
+        "buttons": {
+          "send_mail": "Mailen",
+          "new_account": "Meld je aan voor een nieuw account"
+        }
+      },
+      "password_reset": {
+        "title": "Reset je wachtwoord",
+        "intro": "Welkom terug! Voer een nieuw wachtwoord in en vergeet dit niet. 🙏🏼",
+        "intro_forbidden": "Hé! 👀 Ofwel heb je hier niet om gevraagd, ofwel heb je te lang gewacht.",
+        "confirm_pass_placeholder": "Bevestig je wachtwoord",
+        "buttons": {
+          "back_to_login": "Terug naar Inloggen"
+        },
+        "errors": {
+          "password_not_same": "Wachtwoorden zijn niet hetzelfde."
+        }
+      },
+      "signup": {
+        "title": "Hé daar! 👋🏼",
+        "intro": "Maak een account aan om je schema's en doelstellingen te bekijken, te chatten met je voedingsdeskundige en om realtime gegevens te krijgen.",
+        "step_success": {
+          "title": "Account aangemaakt!",
+          "intro": "Voltooi de volgende stappen om de LifeLifting Mirror te gebruiken.",
+          "step_one": "Stap 1: Vul de basisgegevens in",
+          "step_two": "Stap 2: Kies een pakket",
+          "step_three": "Stap 3: Kies een specialist",
+          "step_four": "Stap 4: Afspraak aanvragen",
+          "step_five": "Stap 5: Afwerking"
+        },
+        "step_one": {
+          "title": "Stap 1: Basis persoonlijke gegevens",
+          "intro": "Psst, je hebt de basisgegevens al ingevuld. Als je een fout hebt gemaakt, maak je dan geen zorgen. Je kunt je hele profiel bewerken nadat je je hebt aangemeld. Klik op de knop om naar de volgende stap te gaan!",
+          "form": {
+            "age_label": "Jouw Leeftijd",
+            "age_placeholder": "Ik ben ... jaar oud",
+            "gender_label": "Jouw geslacht",
+            "gender_placeholder": "Ik identificeer mezelf als...",
+            "country_label": "Ik woon in",
+            "country_placeholder": "Kies een land",
+            "main_goal_label": "Wat is je belangrijkste doel?",
+            "main_goal_placeholder": "Ik wil...",
+            "current_weight_label": "Huidig gewicht in kg",
+            "current_weight_placeholder": "Mijn huidige gewicht is",
+            "area_code_label": "Netnummer",
+            "hear_from_us_label": "Hoe heb je van ons gehoord?",
+            "hear_from_us_placeholder": "Social Media, vrienden, etc."
+          },
+          "buttons": {
+            "pick_package": "Kies een pakketje"
+          }
+        },
+        "step_two": {},
+        "step_three": {},
+        "step_four": {},
+        "limbo": {
+          "past_due_date": "Is de specialist vergeten het te accepteren/annuleren en is de vervaldatum verstreken?",
+          "request_new": "Vraag dan een nieuw consult aan",
+          "step_done": {
+            "title": "Proost op het plannen van dat in! 🍻",
+            "intro": "Gefeliciteerd met het zoeken naar een betere versie van jezelf. Bedankt voor je vertrouwen in LifeLifting Nutrition.",
+            "your_specialist": "Jouw specialist",
+            "will_confirm": "zal je consultatie zo snel mogelijk bevestigen."
+          },
+          "not_accepted": {
+            "title": "Oh... Afspraak niet geaccepteerd!",
+            "subtitle_1": "De specialist kon jouw verzoek niet in zijn agenda plaatsen. Neem contact op met",
+            "subtitle_2": "of vraag een andere afspraak aan.",
+            "request_new": "Vraag een nieuwe afspraak aan"
+          },
+          "appointment_status": {
+            "title": "Afspraakstatus",
+            "subtitle_1": "Als je je afspraak hier beneden ziet. Gefeliciteerd! Dan is het geaccepteerd. Zo niet, wacht dan tot de specialist je aanvraag accepteert. Duurt het lang? Neem dan contact op met",
+            "subtitle_2": "als je problemen hebt, of voor verdere vragen."
+          },
+          "completed_appointment": {
+            "title": "Leuk, je hebt je eerste afspraak gemaakt!",
+            "subtitle_1": "Maar je betaling is nog niet verwerkt. Zorg ervoor dat je hebt betaald. Aarzel niet om contact op te nemen met",
+            "subtitle_2": "als je problemen hebt met je betaling, of voor verdere vragen."
+          },
+          "subscription_ended": {
+            "title": "Aww... Je abonnement is beëindigd",
+            "subtitle_1": "We hopen dat je een geweldige groei hebt doorgemaakt in je tijd met LifeLifting. En je bent altijd welkom om te trainen met",
+            "subtitle_2": "of je kunt kiezen voor",
+            "another_specialist": "een andere specialist"
+          },
+          "all_completed": {
+            "title": "Het lijkt erop dat alles in orde is!",
+            "subtitle": "Je hebt alle stappen doorlopen. Klik op de knop hieronder om verder te gaan naar het dashboard.",
+            "to_dashboard": "Ga naar Dashboard 🚀"
+          }
+        },
+        "buttons": {
+          "already_have_account": "Hebben al een account",
+          "create_account": "Maak een account aan",
+          "signup_google": "Aanmelden bij Google"
+        }
+      },
+      "users": {
+        "title": "De gebruikers van LifeLifting",
+        "intro": "In deze sectie heb je een snel overzicht van de gebruikers. Je kunt snel contactgegevens bekijken en ze direct uit de lijst bewerken/verwijderen. Met de knop rechtsboven voeg je er een toe. 😃",
+        "filters": {
+          "all_users": "Alle gebruikers",
+          "accepted_users": "Geaccepteerde gebruikers",
+          "unaccepted_users": "Onaangevaarde gebruikers"
+        },
+        "list_item": {
+          "goal": "Doel",
+          "no_goal": "Nog geen doel...",
+          "tooltip": "Gebruiker heeft het aanmeldingsproces nog niet afgerond"
+        },
+        "detail": {
+          "errors": {
+            "no_country": "Nog geen land"
+          }
+        },
+        "edit_user": {
+          "package_choice": "Pakketkeuze",
+          "main_goal": "Hoofddoel",
+          "contact_info": "Contactgegevens",
+          "user_status": {
+            "title": "Gebruikersstatus",
+            "general": {
+              "title": "Algemeen"
+            },
+            "appointment": {
+              "title": "Afspraak"
+            }
+          }
+        }
+      },
+      "shopping_list": {
+        "title": "Boodschappenlijstje",
+        "intro_1": "Deze boodschappenlijst is voor maaltijdplan",
+        "intro_2": "Je kunt dit boodschappenlijstje printen door op de knop in de rechterbovenhoek te klikken of je kunt het openen op je telefoon en de items afkruisen terwijl je in de supermarkt bent.",
+        "print": {
+          "title": "Boodschappenlijstje voor"
+        }
+      }
+    }
+  }

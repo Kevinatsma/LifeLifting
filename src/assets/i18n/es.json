@@ -1,0 +1,235 @@
+{
+    "global": {
+      "general": {
+        "name": "LifeLifting",
+        "slogan": "¡No le tememos a los espejos!"
+      },
+      "buttons": {
+        "next": "Siguiente",
+        "previous": "Anterior",
+        "go_back": "Regresa.",
+        "confirm": "Confirma",
+        "go_to_mirror": "Ir al espejo",
+        "more_info": "Más información",
+        "show_all": "Mostrar todo",
+        "next_step": "El siguiente paso..."
+      },
+      "form": {
+        "email_placeholder": "Dirección de correo electrónico",
+        "password_placeholder": "Contraseña",
+        "errors": {
+          "required": "Esto es necesario",
+          "invalid_email": "¡Esa no es una dirección de correo electrónico válida!",
+          "password_special_char": "La contraseña contiene un carácter especial, o carece de un número/letra",
+          "capslock": "⚠ Advertencia El bloqueo de las tapas está activado",
+          "not_enough_chars": "No hay suficientes personajes, ¡esfuérzate más!",
+          "too_much_chars": "Demasiados personajes, más despacio..."
+        },
+        "first_name": "Nombre de pila",
+        "last_name": "Apellido",
+        "phone_number": "Número de teléfono"
+      },
+      "words": {
+        "or": "O",
+        "of": "de",
+        "welcome": "Bienvenido",
+        "thanks": "Gracias",
+        "client": "Cliente",
+        "specialist": "Especialista",
+        "admin": "Admin",
+        "none": "Ninguno",
+        "age": "Edad"
+      },
+      "actions": {
+        "call": "Llama a",
+        "chat": "Chat",
+        "filter": "Filtro",
+        "search": {
+          "search_by_name": "Buscar por nombre",
+          "no_results_name": "No se han encontrado resultados de búsqueda, por favor, intente con un nombre diferente. 🔎"
+        },
+        "print": {
+          "preview_title": "Vista previa de la impresión"
+        },
+        "save": {
+          "as_pdf": "Guardar como PDF"
+        }
+      },
+      "user": {
+        "status": {
+          "signup_completed": "Inscripción completada",
+          "signup_incomplete": "La inscripción no se ha completado",
+          "appointment_requested": "Se solicita una cita",
+          "appointment_not_requested": "No se solicita una cita",
+          "appointment_accepted": "Nombramiento aceptado",
+          "appointment_not_accepted": "No se acepta el nombramiento",
+          "appointment_completed": "Nombramiento completado",
+          "appointment_not_completed": "Cita no completada",
+          "accepted": "Aceptado",
+          "denied": "Denegado",
+          "subscription_invalid": "La suscripción no es válida",
+          "subscription_valid": "La suscripción es válida"
+        }
+      },
+      "errors": {
+        "no_photo": "No hay foto todavía",
+        "incomplete_profile": "Perfil incompleto",
+        "no_value": "No tiene valor"
+      }
+    },
+    "pages": {
+      "login": {
+        "title": "Bienvenido de nuevo",
+        "intro": "Ingresa a tu cuenta para acceder a tus planes y objetivos personales.",
+        "buttons": {
+          "login": "Ingresa en",
+          "forgot_password": "Olvidé la contraseña",
+          "sign_up_for_account": "Regístrese para obtener una cuenta",
+          "login_with_google": "Iniciar sesión con Google"
+        }
+      },
+      "forgot_password": {
+        "title": "Olvidé la contraseña",
+        "intro": "Llena tu correo electrónico, para que podamos enviarte las instrucciones de restablecimiento de la contraseña.",
+        "email_sent": "¡E-mail enviado!",
+        "thanks_text": "¡Gracias! Te hemos enviado un correo electrónico. Por favor, siga los pasos del correo.",
+        "buttons": {
+          "send_mail": "Envía el correo.",
+          "new_account": "Regístrese para obtener una nueva cuenta en su lugar"
+        }
+      },
+      "password_reset": {
+        "title": "Restablecer la contraseña",
+        "intro": "¡Bienvenido de nuevo! Por favor, introduzca una nueva contraseña y no lo olvide de nuevo. 🙏🏼",
+        "intro_forbidden": "¡Eh! 👀 O no lo has pedido o has esperado demasiado tiempo.",
+        "confirm_pass_placeholder": "Confirma tu contraseña",
+        "buttons": {
+          "back_to_login": "Volver al inicio de sesión"
+        },
+        "errors": {
+          "password_not_same": "Las contraseñas no son las mismas."
+        }
+      },
+      "signup": {
+        "title": "¡Hola! 👋🏼",
+        "intro": "Crea una cuenta para ver tus horarios y objetivos, chatear con tu nutricionista y obtener datos en tiempo real.",
+        "step_success": {
+          "title": "Cuenta creada!",
+          "intro": "Por favor, complete los siguientes pasos para usar el espejo lifestyl.",
+          "step_one": "Paso 1: Rellene los datos básicos",
+          "step_two": "Paso 2: Elegir un paquete",
+          "step_three": "Paso 3: Elegir un especialista",
+          "step_four": "Paso 4: Solicitar una cita",
+          "step_five": "Paso 5: Terminar"
+        },
+        "step_one": {
+          "title": "Paso 1: Datos personales básicos",
+          "intro": "Psst, ya has rellenado los datos básicos. Si cometiste un error, no te preocupes. Puedes editar todo tu perfil después de registrarte. Haz clic en el botón para ir al siguiente paso!",
+          "form": {
+            "age_label": "Su edad",
+            "age_placeholder": "Tengo... años.",
+            "gender_label": "Tu género...",
+            "gender_placeholder": "Me identifico como...",
+            "country_label": "Vivo en",
+            "country_placeholder": "Elija un país",
+            "main_goal_label": "¿Cuál es tu principal objetivo?",
+            "main_goal_placeholder": "Quiero...",
+            "current_weight_label": "Peso actual en kg.",
+            "current_weight_placeholder": "Mi peso actual es",
+            "area_code_label": "Código de área",
+            "hear_from_us_label": "¿Cómo supo de nosotros?",
+            "hear_from_us_placeholder": "Medios sociales, amigos, etc."
+          },
+          "buttons": {
+            "pick_package": "Escoge un paquete"
+          }
+        },
+        "step_two": {},
+        "step_three": {},
+        "step_four": {},
+        "limbo": {
+          "past_due_date": "¿Se olvidó el especialista de aceptarlo/cancelarlo y está vencido?",
+          "request_new": "Por favor, solicite una nueva consulta",
+          "step_done": {
+            "title": "¡Salud a la planificación de eso! 🍻",
+            "intro": "Felicidades por buscar una mejor versión de ti mismo. Gracias por su confianza en LifeLifting Nutrition.",
+            "your_specialist": "Su especialista",
+            "will_confirm": "confirmará su consulta lo antes posible."
+          },
+          "not_accepted": {
+            "title": "Oh... ¡No se acepta la cita!",
+            "subtitle_1": "El especialista no pudo encajar su petición en su agenda. Por favor, póngase en contacto con",
+            "subtitle_2": "o solicitar otra cita.",
+            "request_new": "Solicitar una nueva cita"
+          },
+          "appointment_status": {
+            "title": "Estado del nombramiento",
+            "subtitle_1": "Si ves tu cita aquí abajo. ¡Felicidades! Entonces ha sido aceptado. Si no, por favor espere hasta que el especialista acepte su petición. ¿Está tardando mucho? Por favor, póngase en contacto con",
+            "subtitle_2": "si tiene algún problema, o para cualquier otra pregunta."
+          },
+          "completed_appointment": {
+            "title": "¡Bien, has completado tu primera cita!",
+            "subtitle_1": "Pero su pago no ha sido procesado todavía. Asegúrate de que has pagado. No dude en contactar con",
+            "subtitle_2": "si tiene algún problema con su pago, o para cualquier otra pregunta."
+          },
+          "subscription_ended": {
+            "title": "Aww... Su suscripción ha terminado",
+            "subtitle_1": "Esperamos que hayas tenido un crecimiento impresionante en tu tiempo con LifeLifting. Y siempre eres bienvenido a entrenar con",
+            "subtitle_2": "o puedes elegir",
+            "another_specialist": "otro especialista"
+          },
+          "all_completed": {
+            "title": "¡Parece que todo está bien!",
+            "subtitle": "Has completado todos los pasos. Haga clic en el botón de abajo para continuar con el tablero de mandos.",
+            "to_dashboard": "Ir al panel 🚀"
+          }
+        },
+        "buttons": {
+          "already_have_account": "Ya tengo una cuenta",
+          "create_account": "Crear una cuenta",
+          "signup_google": "Regístrate en Google"
+        }
+      },
+      "users": {
+        "title": "Los usuarios de LifeLifting",
+        "intro": "En esta sección tiene una rápida visión general de los usuarios. Puedes ver la información de contacto rápida y editarla/eliminarla directamente de la lista. Con el botón de arriba a la derecha puedes añadir uno. 😃",
+        "filters": {
+          "all_users": "Todos los usuarios",
+          "accepted_users": "Usuarios aceptados",
+          "unaccepted_users": "Usuarios no aceptados"
+        },
+        "list_item": {
+          "goal": "Meta",
+          "no_goal": "Aún no hay un objetivo...",
+          "tooltip": "El usuario no ha completado el proceso de registro todavía"
+        },
+        "detail": {
+          "errors": {
+            "no_country": "No hay ningún país todavía"
+          }
+        },
+        "edit_user": {
+          "package_choice": "Elección del paquete",
+          "main_goal": "objetivo principal",
+          "contact_info": "Información de contacto",
+          "user_status": {
+            "title": "Estado del usuario",
+            "general": {
+              "title": "General"
+            },
+            "appointment": {
+              "title": "Cita"
+            }
+          }
+        }
+      },
+      "shopping_list": {
+        "title": "Lista de compras",
+        "intro_1": "Esta lista de compras es para el plan de comidas",
+        "intro_2": "Puedes imprimir esta lista de compras haciendo clic en el botón de la esquina superior derecha o puedes abrirla en tu teléfono y tachar los artículos mientras estás en el supermercado.",
+        "print": {
+          "title": "Lista de compras para"
+        }
+      }
+    }
+  }
