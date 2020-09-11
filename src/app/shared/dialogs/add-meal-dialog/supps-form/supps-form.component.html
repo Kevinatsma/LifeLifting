@@ -1,48 +1,54 @@
 <form [formGroup]="suppsForm" class="supp-form">
   <ng-template matStepLabel>Supps</ng-template>
-  <h3>🥜 Supplements for {{userData.displayName}}</h3>
+  <h3>🥜 {{ 'pages.mealplan.form.supps_for' | translate }} {{userData.displayName}}</h3>
   <p class="intro-text">
-    Define the supplements the user should take before, during and/or after the training. All values are optional. But first, pick a guideline
-    to hook this mealplan up to. 
+    {{ 'pages.mealplan.form.supps_for_detail' | translate }} 
   </p>
   <h6 *ngIf="!guidelines">
-    There is no guideline for {{userData.displayName}} yet.
+    {{ 'pages.mealplan.errors.no_guideline_for' | translate: {name: userData.displayName} }}
   </h6>
   <mat-form-field class="guideline" appearance="standard" floatLabel="always" *ngIf="guidelines">
-    <mat-label>Import a guideline you created for {{userData.displayName}}</mat-label>
-    <mat-select matInput class="f-input select" placeholder="Pick a Guideline" (selectionChange)="guidelineHandler()"
-    panelClass="dropdown-regular" autocomplete="off" formControlName="guideline" required>
+    <mat-label>
+      {{ 'pages.mealplan.form.import_guideline' | translate }} {{userData.displayName}}
+    </mat-label>
+    <mat-select matInput class="f-input select" formControlName="guideline" required
+      placeholder="Pick a Guideline" (selectionChange)="guidelineHandler()"
+      panelClass="dropdown-regular" autocomplete="off">
       <mat-option *ngFor="let guideline of guidelines" [value]="guideline.gID">
         {{guideline.guidelineName}} - 
         <ng-container *ngIf="guideline.lastEdited">
-          Last edited: {{guideline.lastEdited.toDate() | date: 'short'}}
+          {{ 'global.words.edited' | translated }}: {{guideline.lastEdited.toDate() | date: 'short'}}
         </ng-container>
         <ng-container *ngIf="!guideline.lastEdited">
-          Created: {{guideline.creationDate.toDate() | date: 'short'}}
+          {{ 'global.words.created' | translated }}: {{guideline.creationDate.toDate() | date: 'short'}}
         </ng-container>
       </mat-option>
     </mat-select>
     <mat-hint class="" *ngIf="guidelines === null">
-      This user doesn't have any guidelines yet
+      {{ 'pages.mealplan.errors.no_guideline' | translate }}
     </mat-hint>
-    <!-- <mat-error class="input-error" *ngIf="!mealTimeID.touched">This is <strong>required</strong></mat-error> -->
   </mat-form-field>
 
 
 <section class="guideline-activities" *ngIf="guideline">
-  <h2 class="section-title">Activities</h2>
+  <h2 class="section-title">{{ 'pages.guideline.general.activities' | translate }}</h2>
     <div class="activity">
       <app-exercise-list-item class="activity__left" [exercise]="exerciseOne"></app-exercise-list-item>
       <div class="container">
         <div class="target-block">
-          <mat-label>Before the training</mat-label>
+          <mat-label>
+            {{ 'pages.mealplan.form.before_training' | translate }}
+          </mat-label>
           <div class="add-form-field-container" formArrayName="beforeOneArr">
             <section class="chip-container" *ngFor="let food of beforeOneForms.controls; let i=index" 
             [formGroupName]="i">
               <mat-form-field appearance="standard">
-                <mat-select matInput class="f-input select" placeholder="Pick a Product"
-                panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-                  <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+                <mat-select matInput class="f-input select" formControlName="product"
+                  placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}"
+                  panelClass="dropdown-regular" autocomplete="off" required>
+                  <mat-option *ngFor="let product of foods" [value]="product">
+                    {{product.productName}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
               <div class="unit" *ngIf="beforeOneForms.controls[i].value.product as prodObj">
@@ -52,13 +58,16 @@
                 </mat-form-field>
                 <span>{{prodObj.unit}}</span>
                 <mat-form-field appearance="standard" class="select">
-                  <mat-select matInput class="f-input select" placeholder="Preperation"
+                  <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }} "
                   panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                    <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                    <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep">
+                      {{prep.prepValue}}
+                    </mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
-              <button type="button" mat-icon-button type="button" class="icon-btn" (click)="deleteProduct(11, i);">
+              <button type="button" mat-icon-button type="button" class="icon-btn"
+                (click)="deleteProduct(11, i);">
                 <i class="fa__icon fas fa-ban"></i>
               </button>
             </section>
@@ -68,26 +77,31 @@
           </div>
         </div>
         <div class="target-block">
-          <mat-label>During the training</mat-label>
+          <mat-label>{{ 'pages.mealplan.form.during_training' | translate }}</mat-label>
           <div class="add-form-field-container" formArrayName="duringOneArr">
             <section class="chip-container" *ngFor="let food of duringOneForms.controls; let i=index" 
-            [formGroupName]="i">
+              [formGroupName]="i">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-select matInput class="f-input select" placeholder="Pick a Product"
-                panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-                  <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+                <mat-select matInput class="f-input select" formControlName="product"
+                  placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}"
+                  panelClass="dropdown-regular" autocomplete="off" required>
+                  <mat-option *ngFor="let product of foods" [value]="product">
+                    {{product.productName}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
               <div class="unit" *ngIf="duringOneForms.controls[i].value.product as prodObj">
                 <mat-form-field appearance="standard" floatLabel="always">
                   <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
-                  autofocus="none">
+                    autofocus="none">
                 </mat-form-field>
                 <span>{{prodObj.unit}}</span>
                 <mat-form-field appearance="standard" class="select">
-                  <mat-select matInput class="f-input select" placeholder="Preperation"
+                  <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }} "
                   panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
-                    <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
+                    <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep">
+                      {{prep.prepValue}}
+                    </mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -101,14 +115,17 @@
           </div>
         </div>
         <div class="target-block">
-          <mat-label>After the training</mat-label>
+          <mat-label>{{ 'pages.mealplan.form.after_training' | translate }}</mat-label>
           <div class="add-form-field-container" formArrayName="afterOneArr">
             <section class="chip-container" *ngFor="let food of afterOneForms.controls; let i=index" 
             [formGroupName]="i">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-select matInput class="f-input select" placeholder="Pick a Product"
-                panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
-                  <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
+                <mat-select matInput class="f-input select"
+                  placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}"
+                  panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
+                  <mat-option *ngFor="let product of foods" [value]="product">
+                    {{product.productName}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
               <div class="unit" *ngIf="afterOneForms.controls[i].value.product as prodObj">
@@ -118,7 +135,7 @@
                 </mat-form-field>
                 <span>{{prodObj.unit}}</span>
                 <mat-form-field appearance="standard" class="select">
-                  <mat-select matInput class="f-input select" placeholder="Preperation"
+                  <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }} "
                   panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
                     <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
                   </mat-select>
@@ -139,12 +156,12 @@
       <app-exercise-list-item class="activity__left" [exercise]="exerciseTwo"></app-exercise-list-item>
       <div class="container" *ngIf="exerciseTwo">
         <div class="target-block">
-            <mat-label>Before the training</mat-label>
+            <mat-label>{{ 'pages.mealplan.form.before_training' | translate }}</mat-label>
             <div class="add-form-field-container" formArrayName="beforeTwoArr">
               <section class="chip-container" *ngFor="let food of beforeTwoForms.controls; let i=index" 
               [formGroupName]="i">
                 <mat-form-field appearance="standard">
-                  <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                  <mat-select matInput class="f-input select" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}"
                   panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
                     <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
                   </mat-select>
@@ -156,7 +173,7 @@
                   </mat-form-field>
                   <span>{{prodObj.unit}}</span>
                   <mat-form-field appearance="standard" class="select">
-                    <mat-select matInput class="f-input select" placeholder="Preperation"
+                    <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }} "
                     panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
                       <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
                     </mat-select>
@@ -172,12 +189,12 @@
             </div>
           </div>
           <div class="target-block">
-            <mat-label>During the training</mat-label>
+            <mat-label>{{ 'pages.mealplan.form.during_training' | translate }}</mat-label>
             <div class="add-form-field-container" formArrayName="duringTwoArr">
               <section class="chip-container" *ngFor="let food of duringTwoForms.controls; let i=index" 
               [formGroupName]="i">
                 <mat-form-field appearance="standard" floatLabel="always">
-                  <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                  <mat-select matInput class="f-input select" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}"
                   panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
                     <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
                   </mat-select>
@@ -189,7 +206,7 @@
                   </mat-form-field>
                   <span>{{prodObj.unit}}</span>
                   <mat-form-field appearance="standard" class="select">
-                    <mat-select matInput class="f-input select" placeholder="Preperation"
+                    <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }} "
                     panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
                       <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
                     </mat-select>
@@ -199,18 +216,19 @@
                   <i class="fa__icon fas fa-ban"></i>
                 </button>
               </section>
-              <button type="button" *ngIf="showAddProduct" class="add-chip" (click)="addProduct(22);">
+              <button type="button" *ngIf="showAddProduct" class="add-chip"
+                (click)="addProduct(22);">
                 <i class="fa__icon fa fa-plus"></i>
               </button>
             </div>
           </div>
           <div class="target-block">
-            <mat-label>After the training</mat-label>
+            <mat-label>{{ 'pages.mealplan.form.after_training' | translate }}</mat-label>
             <div class="add-form-field-container" formArrayName="afterTwoArr">
               <section class="chip-container" *ngFor="let food of afterTwoForms.controls; let i=index" 
               [formGroupName]="i">
                 <mat-form-field appearance="standard" floatLabel="always">
-                  <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                  <mat-select matInput class="f-input select" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}"
                   panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
                     <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
                   </mat-select>
@@ -222,7 +240,7 @@
                   </mat-form-field>
                   <span>{{prodObj.unit}}</span>
                   <mat-form-field appearance="standard" class="select">
-                    <mat-select matInput class="f-input select" placeholder="Preperation"
+                    <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }} "
                     panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
                       <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
                     </mat-select>
@@ -243,12 +261,12 @@
       <app-exercise-list-item class="activity__left" [exercise]="exerciseThree"></app-exercise-list-item>
       <div class="container" *ngIf="exerciseThree">
         <div class="target-block">
-          <mat-label>Before the training</mat-label>
+          <mat-label>{{ 'pages.mealplan.form.before_training' | translate }}</mat-label>
           <div class="add-form-field-container" formArrayName="beforeThreeArr">
             <section class="chip-container" *ngFor="let food of beforeThreeForms.controls; let i=index" 
             [formGroupName]="i">
               <mat-form-field appearance="standard">
-                <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                <mat-select matInput class="f-input select" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
                   <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
                 </mat-select>
@@ -260,7 +278,7 @@
                 </mat-form-field>
                 <span>{{prodObj.unit}}</span>
                 <mat-form-field appearance="standard" class="select">
-                  <mat-select matInput class="f-input select" placeholder="Preperation"
+                  <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }} "
                   panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
                     <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
                   </mat-select>
@@ -276,12 +294,12 @@
           </div>
         </div>
         <div class="target-block">
-          <mat-label>During the training</mat-label>
+          <mat-label>{{ 'pages.mealplan.form.during_training' | translate }}</mat-label>
           <div class="add-form-field-container" formArrayName="duringThreeArr">
             <section class="chip-container" *ngFor="let food of duringThreeForms.controls; let i=index" 
             [formGroupName]="i">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                <mat-select matInput class="f-input select" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
                   <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
                 </mat-select>
@@ -293,7 +311,7 @@
                 </mat-form-field>
                 <span>{{prodObj.unit}}</span>
                 <mat-form-field appearance="standard" class="select">
-                  <mat-select matInput class="f-input select" placeholder="Preperation"
+                  <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }} "
                   panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
                     <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
                   </mat-select>
@@ -309,12 +327,12 @@
           </div>
         </div>
         <div class="target-block">
-          <mat-label>After the training</mat-label>
+          <mat-label>{{ 'pages.mealplan.form.after_training' | translate }}</mat-label>
           <div class="add-form-field-container" formArrayName="afterThreeArr">
             <section class="chip-container" *ngFor="let food of afterThreeForms.controls; let i=index" 
             [formGroupName]="i">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-select matInput class="f-input select" placeholder="Pick a Product"
+                <mat-select matInput class="f-input select" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="product" required>
                   <mat-option *ngFor="let product of foods" [value]="product"> {{product.productName}}</mat-option>
                 </mat-select>
@@ -326,7 +344,7 @@
                 </mat-form-field>
                 <span>{{prodObj.unit}}</span>
                 <mat-form-field appearance="standard" class="select">
-                  <mat-select matInput class="f-input select" placeholder="Preperation"
+                  <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }} "
                   panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
                     <mat-option *ngFor="let prep of prodObj.preperations" [value]="prep"> {{prep.prepValue}}</mat-option>
                   </mat-select>

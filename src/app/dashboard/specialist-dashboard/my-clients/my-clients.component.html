@@ -1,22 +1,16 @@
-<!-- <button mat-icon-button class="back-btn" (click)="goBack()" type="button">
-    <i class="fa__icon fas fa-arrow-left"></i>
-</button> -->
 <div class="wrapper">
     <header>
         <section class="title">
-            <h1>My Clients</h1>
-            <!-- <button class="icon-button">
-                <i class="fa__icon fas fa-plus"></i>
-            </button> -->
+            <h1>
+                {{ 'pages.dashboard.specialist.my_clients.title' | translate }}
+            </h1>
         </section>
         
-        <p class="intro-text">In this section you have a quick overview of your clients. You can view quick 
-            contact info or click the more info button to check out their mealplans, guidelines, and more detailed information. 
-            <span class="emoji">😃</span>
+        <p class="intro-text">
+            {{ 'pages.dashboard.specialist.my_clients.intro' | translate }}
         </p>
     </header>
 
     <app-my-client-list></app-my-client-list>
-
 </div>
 

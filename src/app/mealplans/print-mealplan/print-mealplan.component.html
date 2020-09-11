@@ -15,7 +15,7 @@
   </section>
 
   <section class="title-area">
-    <h1>Print preview</h1>
+    <h1>{{ 'global.actions.print.preview_title' | translate }}</h1>
   </section>
 
   <section class="print-preview-container print-mealplan page__one" id="page-one" #pageOne>
@@ -31,12 +31,14 @@
       <hr>
     </div>
     <div class="header-subline">
-      <span class="quote">" Nutrition based Healthy life choices; avoiding disease rather than treating it "</span>
+      <span class="quote">
+        " {{ 'pages.mealplan.general.print_subtitle' | translate }} "
+      </span>
       <div class="mealplan-info">
         <p>
-          For: {{client.displayName}} - 
-          By: {{mealplan.specialistName}} - 
-          Created: {{mealplan.creationDate.toDate() | date:'short'}}
+          {{ 'global.words.for' | translate }}: {{client.displayName}} - 
+          {{ 'global.words.by' | translate }}: {{mealplan.specialistName}} - 
+          {{ 'global.words.created' | translate }}: {{mealplan.creationDate.toDate() | date:'short'}}
         </p>
       </div>
     </div>
@@ -45,7 +47,7 @@
       <div class="mealplan-wrapper__schedule">
         <div class="day-wrapper">
           <div class="day-wrapper__header">
-            <h1>Monday</h1>
+            <h1>{{ 'events.monday' | translate }}</h1>
           </div>
 
           <div class="day-wrapper__container">
@@ -62,7 +64,7 @@
 
         <div class="day-wrapper">
           <div class="day-wrapper__header">
-            <h1>Tuesday</h1>
+            <h1>{{ 'events.tuesday' | translate }}</h1>
           </div>
 
           <div class="day-wrapper__container">
@@ -79,7 +81,7 @@
 
         <div class="day-wrapper">
           <div class="day-wrapper__header">
-            <h1>Wednesday</h1>
+            <h1>{{ 'events.wednesday' | translate }}</h1>
           </div>
 
           <div class="day-wrapper__container">
@@ -96,7 +98,7 @@
 
         <div class="day-wrapper">
           <div class="day-wrapper__header">
-            <h1>Thursday</h1>
+            <h1>{{ 'events.thursday' | translate }}</h1>
           </div>
 
           <div class="day-wrapper__container">
@@ -113,7 +115,7 @@
 
         <div class="day-wrapper">
           <div class="day-wrapper__header">
-            <h1>Friday</h1>
+            <h1>{{ 'events.friday' | translate }}</h1>
           </div>
 
           <div class="day-wrapper__container">
@@ -124,7 +126,8 @@
               </div>
             </div>
 
-            <app-print-meal-friday class="meal-time__ingredients" [fridayMeals]="mealplan.fridayMeals"></app-print-meal-friday>
+            <app-print-meal-friday class="meal-time__ingredients"
+              [fridayMeals]="mealplan.fridayMeals"></app-print-meal-friday>
           </div>
         </div>
 
@@ -132,19 +135,21 @@
     </div>
   </section>
 
-  <section class="print-preview-container print-mealplan page__two" id="page-two" #pageTwo>
-    <app-print-supps class="mealplan__supps" [supplementation]="mealplan.supplementation" [notes]="mealplan.extraNotes"></app-print-supps>
+  <section class="print-preview-container print-mealplan page__two"
+    id="page-two" #pageTwo>
+    <app-print-supps class="mealplan__supps" [notes]="mealplan.extraNotes"
+      [supplementation]="mealplan.supplementation"></app-print-supps>
   </section>
 
   <div class="page-number">
-    <p *ngIf="pageOneActive">Page 1</p>
-    <p *ngIf="pageTwoActive">Page 2</p>
+    <p *ngIf="pageOneActive">{{ 'global.words.page' }} 1</p>
+    <p *ngIf="pageTwoActive">{{ 'global.words.page' }} 2</p>
   </div>
 
   <section class="btn-area-one">
     <button class="dialog-button" (click)="saveAsPDF()">
       <i class="fa__icon far fa-file-pdf"></i>
-      Save as PDF
+      {{ 'global.actions.save.as_pdf' | translate }}
     </button>
   </section>
 </main>

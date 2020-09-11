@@ -1,53 +1,68 @@
 <div class="main-wrapper">
+  <app-language-picker></app-language-picker>
+
   <div class="column">
   <section class="login-container">
     <img class="logo" src="./../../../../assets/img/logo-extended.svg" title="Logo" alt="Logo">
-    <h2>Welcome Back</h2>
-    <p class="intro-text">Login to your account to access your personal plans and goals.</p>
-
+    <h2>{{ 'pages.login.title' | translate }}</h2>
+    <p class="intro-text">
+      {{ 'pages.login.intro' | translate }}
+    </p>
 
     <form [formGroup]="signInForm" (ngSubmit)="signIn()" class="auth-form">
       <mat-form-field [formGroup]="signInForm" appearance="standard">
-        <input type="text" matInput placeholder="E-mail address" formControlName="email" 
+        <input type="text" matInput placeholder="{{ 'global.form.email_placeholder' | translate }}" formControlName="email" 
                 [class.active]="!email.valid && email.touched" autocomplete="off" required
         >
-        <mat-error class="input-error" *ngIf="!email.touched">This is <strong>required</strong></mat-error>
-        <mat-error class="input-error" *ngIf="!email.valid && email.touched">That's <strong>not</strong> a valid e-mail address!</mat-error>
+        <mat-error class="input-error" *ngIf="!email.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
+        <mat-error class="input-error" *ngIf="!email.valid && email.touched">{{ 'global.form.errors.invalid_email' | translate }}</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="password">
-        <input class="form-input" type="password" matInput placeholder="Password" [type]="hide ? 'password' : 'text'" 
+        <input class="form-input" type="password" matInput
+          placeholder="{{ 'global.form.password_placeholder' | translate }}"
+          [type]="hide ? 'password' : 'text'" 
         formControlName="password" [class.active]="!password.valid && password.touched" 
         autocomplete="new-password" required
         >
-        <!-- <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off'}}</mat-icon> -->
         <mat-hint class="forgot-password" align="end">
-          <a class="small-text"  tabindex="0" routerLink="/forgot-password">Forgot password?</a>
+          <a class="small-text"  tabindex="0" routerLink="/forgot-password">
+            {{ 'pages.login.buttons.forgot_password' | translate }}
+          </a>
         </mat-hint>
-        <mat-error class="input-error" *ngIf="capsOn | async"><strong>&#x26A0; Warning</strong> Caps lock is turned on</mat-error>
-        <mat-error class="input-error" *ngIf="!password.touched">This is <strong>required</strong></mat-error>
-        <mat-error class="input-error" *ngIf="password.errors?.minlength"><strong>Not enough</strong> characters, try harder!</mat-error>
-        <mat-error class="input-error" *ngIf="password.errors?.maxlength">Too <strong>much</strong> characters, slow down there.</mat-error>
-        <mat-error class="input-error" *ngIf="password.errors?.pattern">Password contains <strong>a special character</strong>, or lacks a <strong>number/letter</strong>.</mat-error>
+        <mat-error class="input-error" *ngIf="capsOn | async">
+          {{ 'global.form.errors.capslock' | translate }}
+        </mat-error>
+        <mat-error class="input-error" *ngIf="!password.touched">
+          {{ 'global.form.errors.required' | translate }}
+        </mat-error>
+        <mat-error class="input-error" *ngIf="password.errors?.minlength">
+          {{ 'global.form.errors.not_enough_chars' | translate }}
+        </mat-error>
+        <mat-error class="input-error" *ngIf="password.errors?.pattern">
+          {{ 'global.form.errors.password_special_char' | translate }}
+        </mat-error>
       </mat-form-field>
 
       <div class="btn-area">
-        <button class="btn-primary" type="submit" [disabled]="!signInForm.valid" tabindex="0">Login</button>
+        <button class="btn-primary" type="submit" [disabled]="!signInForm.valid" tabindex="0">
+          {{ 'pages.login.buttons.login' | translate }}
+        </button>
         <br>
         <ng-container *ngIf="(auth.user | async) || {} as user">
           <button type="button" class="text-link" routerLink="../signup" *ngIf="!user.uid" tabindex="0">
-            Sign up for an account
+            {{ 'pages.login.buttons.sign_up_for_account' | translate }}
           </button>
           <button type="button" class="text-link" routerLink="../dashboard" *ngIf="user.uid" tabindex="0">
-            Sign up for an account
+            {{ 'pages.login.buttons.sign_up_for_account' | translate }}
           </button>
         </ng-container>
 
-        <p class="light-text">- or -</p>
+        <p class="light-text">- {{ 'global.words.or' | translate }} -</p>
 
         <button type="button" class="btn-icon-left" (click)="googleLogin()">
           <img src="./../../../../assets/img/icons/google.svg">
-          <span>Login with Google</span>
+          <span>{{ 'pages.login.buttons.login_with_google' | translate }}</span>
         </button>
       </div>
 

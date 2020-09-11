@@ -1,8 +1,8 @@
 <main class="specialist-list-wrapper">
-  <section class="specialist-filters">
-
-  </section>
+  <section class="specialist-filters"></section>
   <section class="review-list">
-    <app-review-list-item *ngFor="let review of myReviews | async" [review]="review" [specialist]="specialist"></app-review-list-item>
+    <app-review-list-item *ngFor="let review of myReviews | async"
+      [review]="review" [specialist]="specialist">
+    </app-review-list-item>
   </section>
 </main>

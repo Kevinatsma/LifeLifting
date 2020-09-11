@@ -16,24 +16,24 @@
     <mat-menu #menu="matMenu" backdropClass="context-menu-mealplan">
       <button mat-menu-item (click)="duplicateMealplan(mealplan)" *ngIf="$user.roles.admin || $user.roles.specialist">
         <i class="fa__icon far fa-copy"></i>
-        <span>Duplicate</span>
+        <span>{{ 'global.buttons.duplicate' | translate }}</span>
       </button>
       <button mat-menu-item (click)="linkToShoppingList(mealplan)">
         <i class="fa__icon fas fa-shopping-cart"></i>
-        <span>Shopping list</span>
+        <span>{{ 'pages.shopping_list.title' | translate }}</span>
       </button>
       <button mat-menu-item (click)="printMealplan(mealplan)">
         <i class="fa__icon fas fa-print"></i>
-        <span>Print</span>
+        <span>{{ 'global.actions.print.print' | translate }}</span>
       </button>
     </mat-menu>
   </ng-container>
 
   <p class="subtitle" *ngIf="!mealplan.lastEdited">
-    Edited: Not edited yet...
+    {{ 'global.words.edited' | translate }}: {{ 'global.errors.not_edited' | translate }}
   </p>
   <p class="subtitle" *ngIf="mealplan.lastEdited">
-    Edited: {{mealplan.lastEdited.toDate() | date: 'short'}}
+    {{ 'global.words.edited' | translate }}: {{mealplan.lastEdited.toDate() | date: 'short'}}
   </p>
   <section class="middle" (click)="linkToChild(mealplan)">
     <div class="title">
@@ -42,14 +42,12 @@
 
     <div class="quick-info">
       <p class="speciality-title">mID: {{mealplan.mID}}</p>
-      <p *ngIf="client" class="speciality-title">For: {{client.displayName}}</p>
-      <p class="speciality-title">Created: {{mealplan.creationDate.toDate() | date:'MM/dd/yy'}}</p>
-      <ul class="contact-menu">
-        <!-- <li>
-          <i class="fa__icon fas fa-balance-scale"></i>
-          {{mealplan.portion.amount}} {{mealplan.portion.unit}}
-        </li> -->
-      </ul>
+      <p *ngIf="client" class="speciality-title">
+        {{ 'global.words.for' | translate }}: {{client.displayName}}
+      </p>
+      <p class="speciality-title">
+        {{ 'global.words.created' | translate }}: {{mealplan.creationDate.toDate() | date:'MM/dd/yy'}}
+      </p>
     </div>
   </section>
   <section class="actions" *ngIf="user.roles.specialist || user.roles.admin">
@@ -60,5 +58,4 @@
       <i class="fa__icon fas fa-edit"></i>
     </button>
   </section>
-
 </mat-card>

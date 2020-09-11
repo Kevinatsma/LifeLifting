@@ -29,6 +29,13 @@ div.router-wrapper {
     @include respond-down($sm) {
         height: 100%!important;
     }
+
+    app-language-picker {
+        position: absolute;
+        right: 0;
+        top: 20px;
+        z-index: 150;
+    }
 }
 
 div.show-section {

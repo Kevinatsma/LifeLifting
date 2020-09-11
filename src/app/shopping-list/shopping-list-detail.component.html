@@ -1,16 +1,16 @@
 <div class="wrapper" *ngIf="mealplan">
   <header>
       <section class="title">
-          <h1>Shopping list</h1>
+          <h1>{{ 'pages.shopping_list.title' | translate }}</h1>
           <button class="icon-button" (click)="openPrintDialog(shoppingListItems)">
               <i class="fa__icon fas fa-print"></i>
           </button>
       </section>
       
       <p class="intro-text">
-        This shopping list is for mealplan <a class="text-link" (click)="linkToChild()">{{mealplan.mealplanName}}</a>.
-        You can print this shopping list by clicking on the button in the top right corner or you can open it on your phone and cross off
-        the items while you're in the supermarket.
+        {{ 'pages.shopping_list.intro_1' | translate }} 
+        <a class="text-link" (click)="linkToChild()">{{mealplan.mealplanName}}</a>.
+        {{ 'pages.shopping_list.intro_2' | translate }} 
       </p>
   </header>
 
@@ -19,8 +19,8 @@
     <ul>
       <li *ngFor="let food of shoppingListItems; let i=index">
         <mat-checkbox class="food-checkbox">
-          <h4 class="not-mobile">{{food.amount}} {{food.unit}} of {{food.productName}} = {{food.shoppingListAmount}} {{food.shoppingUnit}}</h4>
-          <h4 class="mobile">{{food.shoppingListAmount}} {{food.shoppingUnit}} of {{food.productName}} </h4>
+          <h4 class="not-mobile">{{food.amount}} {{food.unit}} {{ 'global.words.of' | translate }} {{food.productName}} = {{food.shoppingListAmount}} {{food.shoppingUnit}}</h4>
+          <h4 class="mobile">{{food.shoppingListAmount}} {{food.shoppingUnit}} {{ 'global.words.of' | translate }} {{food.productName}} </h4>
         </mat-checkbox>
       </li>
     </ul>

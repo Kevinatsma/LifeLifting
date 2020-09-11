@@ -15,11 +15,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { UtilService } from './services/util.service';
 import { RoundNumberPipe } from './pipes/round-number.pipe';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguagePickerComponent } from './language-picker/language-picker.component';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
+    TranslateModule,
     DataModule,
     ReviewsModule,
     FormsModule,
@@ -35,6 +38,7 @@ import { RoundNumberPipe } from './pipes/round-number.pipe';
     ExerciseListItemComponent,
     LoadingSpinnerComponent,
     RoundNumberPipe,
+    LanguagePickerComponent,
   ],
   exports: [
     MaterialModule,
@@ -48,6 +52,8 @@ import { RoundNumberPipe } from './pipes/round-number.pipe';
     FileUploadButtonComponent,
     ExerciseListItemComponent,
     LoadingSpinnerComponent,
+    TranslateModule,
+    LanguagePickerComponent,
   ],
   providers: [
     FileUploadService,

@@ -5,36 +5,38 @@
     </button>
 
     <button class="mobile text-link close-btn" (click)="closeDialog()" type="button">
-      <i class="mobile fas fa-arrow-left"></i> Back
+      <i class="mobile fas fa-arrow-left"></i> {{ 'global.buttons.back' | translate }}
     </button>
   </div>
 
   <div class="dialog-title-area">
-    <h1>Follow-up Consultation</h1>
+    <h1>{{ 'pages.follow_up.title' | translate }}</h1>
     <h6>
-      Created: {{followUp.creationDate.toDate() | date: 'short'}} - 
-      <ng-container *ngIf="followUp.edited">Edited: {{followUp.edited.toDate() | date: 'short'}}</ng-container>
+      {{ 'global.words.created' | translate }}: {{followUp.creationDate.toDate() | date: 'short'}} - 
+      <ng-container *ngIf="followUp.edited">
+        {{ 'global.words.edit' | translate }}: {{followUp.edited.toDate() | date: 'short'}}
+      </ng-container>
     </h6>
   </div>
 
   <mat-vertical-stepper #stepper>
     <mat-step>
-      <ng-template matStepLabel><h3>🧠 A quick recap</h3></ng-template>
+      <ng-template matStepLabel><h3>🧠 {{ 'pages.follow_up.form.recap_title' | translate }}</h3></ng-template>
 
       <div class="title-area">
         <p class="card-text">
-          A quick recap at the thoughts on the last mealplan.
+          {{ 'pages.follow_up.general.recap_desc' | translate }}
         </p>
       </div>
 
       <section class="field-wrapper">
         <div class="mealplans" *ngIf="mealplan">
-          <h5>The mealplan for this follow-up</h5>
+          <h5>{{ 'pages.follow_up.general.mealplan_fu' | translate }}</h5>
           <app-mealplan-list-item [mealplan]="mealplan"></app-mealplan-list-item>
         </div>
 
         <div class="follow-percentage">
-          <span class="label">Diet following percentage</span>
+          <span class="label">{{ 'pages.follow_up.form.diet_following' | translate }}</span>
           <div class="percentage-circle">
             {{followUp.dietFollowPercentage}}
             <ng-container *ngIf="!followUp.dietFollowPercentage">0</ng-container>
@@ -43,28 +45,28 @@
         </div>
 
         <div class="field-container">
-          <h5>What did you like most?</h5>
+          <h5>{{ 'pages.follow_up.form.like_the_most' | translate }}</h5>
           <p class="card-text" placeholder="Write a short summary">
             {{followUp.likeMost}}
           </p>
         </div>
 
         <div class="field-container">
-          <h5>What did you like least?</h5>
+          <h5>{{ 'pages.follow_up.form.like_the_least' | translate }}</h5>
           <p class="card-text" placeholder="Write a short summary">
             {{followUp.likeLeast}}
           </p>
         </div>
 
         <div class="field-container">
-          <h5>What do you want to change and never see again?</h5>
+          <h5>{{ 'pages.follow_up.form.change_never_again' | translate }}</h5>
           <p class="card-text" placeholder="Write a short summary">
             {{followUp.neverSeeAgain}}
           </p>
         </div>
 
         <div class="field-container">
-          <h5>What would you like to see on your meal plans?</h5>
+          <h5>{{ 'pages.follow_up.form.see_on_mealplans' | translate }}</h5>
           <p class="card-text">
             {{followUp.mealplanPreferences}}
           </p>
@@ -73,32 +75,33 @@
     </mat-step>
 
     <mat-step>
-      <ng-template matStepLabel><h3>🚴 Routine</h3></ng-template>
+      <ng-template matStepLabel><h3>
+        🚴 {{ 'pages.follow_up.form.routine' | translate }}
+      </h3></ng-template>
 
       <div class="title-area">
         <p class="card-text">
-          Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          {{ 'pages.follow_up.form.routine_detail' | translate }}
         </p>
       </div>
 
       <section class="field-wrapper">
         <div class="field-container">
-          <h5>How is your bowel Movement Frequency?</h5>
+          <h5>{{ 'pages.follow_up.form.bowel_freq' | translate }}</h5>
           <p class="card-text">
             {{followUp.bowelMovementFrequency}}
           </p>
         </div>
 
         <div class="field-container">
-          <h5>How are you sleeping?</h5>
+          <h5>{{ 'pages.follow_up.form.sleeping_habit' | translate }}</h5>
           <p class="card-text">
             {{followUp.sleepingHabits}}
           </p>
         </div>
 
         <div class="field-container">
-          <h5>How is your water intake going?</h5>
+          <h5>{{ 'pages.follow_up.form.water_intake' | translate }}</h5>
           <p class="card-text">
             {{followUp.waterIntake}}
           </p>
@@ -107,142 +110,135 @@
         <h3 class="section-title">The Activities</h3>
         <section class="activities">
           <div class="field-container">
-            <h5>What did you think about the frequency of the activity?</h5>
+            <h5>{{ 'pages.follow_up.form.activity_frequency' | translate }}</h5>
             <p class="card-text">
               {{followUp.activities.frequency}}
             </p>
           </div>
 
           <div class="field-container">
-            <h5>What did you think about the activity itself?</h5>
+            <h5>{{ 'pages.follow_up.form.activity_opinion' | translate }}</h5>
             <p class="card-text">
               {{followUp.activities.activityType}}
             </p>
           </div>
 
           <div class="field-container">
-            <h5>Would you like to change something?</h5>
+            <h5>{{ 'pages.follow_up.form.change_something' | translate }}</h5>
             <p class="card-text">
               {{followUp.activities.changes}}
             </p>
           </div>
 
           <div class="field-container">
-            <h5>What did you think about the supplementation proposed?</h5>
+            <h5>{{ 'pages.follow_up.form.supp_opinion' | translate }}</h5>
             <p class="card-text">
               {{followUp.activities.supplementation}}
             </p>
           </div>
-
         </section>
-
       </section>
     </mat-step>
 
     <mat-step>
-      <ng-template matStepLabel><h3>🍜 Meals and habits</h3></ng-template>
+      <ng-template matStepLabel><h3>🍜 {{ 'pages.follow_up.form.meals_habits' | translate }}</h3></ng-template>
 
       <div class="title-area">
         <p class="card-text">
-          Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          {{ 'pages.follow_up.form.meals_habits_detail' | translate }}
         </p>
       </div>
 
       <section class="field-wrapper">
         <div class="field-container">
-          <h5>Are the portion sizes ok?</h5>
+          <h5>{{ 'pages.follow_up.form.portion_sizes' | translate }}</h5>
           <p class="card-text">
             {{followUp.portionSizes}}
           </p>
         </div>
 
         <div class="field-container">
-          <h5>Were you feeling hungry? </h5>
+          <h5>{{ 'pages.follow_up.form.feeling_hungry' | translate }}</h5>
           <p class="card-text">
             {{followUp.hungry}}
           </p>
         </div>
 
         <div class="field-container">
-          <h5>Are you having trouble with any of the preparations? </h5>
+          <h5>{{ 'pages.follow_up.form.preperation_trouble' | translate }}</h5>
           <p class="card-text">
             {{followUp.preperationTrouble}}
           </p>
         </div>
 
-        <h3 class="section-title">During the weekend</h3>
+        <h3 class="section-title">
+          {{ 'pages.follow_up.form.preperation_trouble' | translate }}
+        </h3>
         <section class="weekend-diet">
           <div class="field-container">
-            <h5>What was your sleeping schedule?</h5>
+            <h5>{{ 'pages.follow_up.form.sleeping_schedule' | translate }}</h5>
             <p class="card-text">
               {{followUp.duringTheWeekend.sleepingSchedule}}
             </p>
           </div>
 
           <div class="field-container">
-            <h5>Did you eat outside?</h5>
+            <h5>{{ 'pages.follow_up.form.eat_outside' | translate }}</h5>
             <p class="card-text">
               {{followUp.duringTheWeekend.eatingOutside}}
             </p>
           </div>
 
           <div class="field-container">
-            <h5>What about cheat meals?</h5>
+            <h5>{{ 'pages.follow_up.form.cheat_meals' | translate }}</h5>
             <p class="card-text">
               {{followUp.duringTheWeekend.cheatMeals}}
             </p>
           </div>
 
           <div class="field-container">
-            <h5>The amount of meals you ate per day</h5>
+            <h5>{{ 'pages.follow_up.form.meals_per_day' | translate }}</h5>
             <p class="card-text">
               {{followUp.duringTheWeekend.mealsPerDay}}
             </p>
           </div>
         </section>
-
       </section>
-
     </mat-step>
 
     <mat-step>
-      <ng-template matStepLabel><h3>👀 Personal comments</h3></ng-template>
-
+      <ng-template matStepLabel><h3>👀 {{ 'pages.follow_up.form.personal_comments' | translate }}</h3></ng-template>
       <div class="title-area">
         <p class="card-text">
-          Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          {{ 'pages.follow_up.form.recap_intro' | translate }}
         </p>
       </div>
 
       <section class="field-wrapper">
         <div class="field-container">
-          <h5>Subjectively, how are you feeling?</h5>
+          <h5>{{ 'pages.follow_up.form.how_you_feeling' | translate }}</h5>
           <p class="card-text">
             {{followUp.howYouFeeling}}
           </p>
         </div>
 
         <div class="field-container">
-          <h5>Do you have any questions?</h5>
+          <h5>{{ 'global.questions.any_questions' | translate }}</h5>
           <p class="card-text">
             {{followUp.questions}}
           </p>
         </div>
 
-        <h3 class="section-title">Observations Specialist</h3>
+        <h3 class="section-title">{{ 'pages.follow_up.form.observation_specialist' | translate }}</h3>
         <section class="specialist-notes">
           <div class="field-container">
-            <h5>Extra notes taken by specialist</h5>
+            <h5>{{ 'pages.follow_up.form.observation_specialist' | translate }}</h5>
             <p class="card-text">
               {{followUp.specialistNotes}}
             </p>
           </div>
         </section>
-
       </section>
     </mat-step>
-
   </mat-vertical-stepper>
 </main>

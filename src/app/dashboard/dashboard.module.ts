@@ -11,7 +11,6 @@ import { UserModule } from '../user/user.module';
 import { UsersComponent } from '../user/users/users.component';
 import { ClientsModule } from './../clients/clients.module';
 import { ClientsComponent } from '../clients/clients.component';
-import { UserRequestComponent } from '../requests/user-request/user-request.component';
 import { RequestModule } from '../requests/request.module';
 import { PackagesComponent } from '../packages/packages.component';
 import { PackageDetailComponent } from '../packages/package-detail/package-detail.component';
@@ -92,7 +91,6 @@ const routes: Routes = [
       {path: 'my-mealplans', component: MyMealplanListComponent, data: {state: 'my-mealplans'}, canActivate: [AuthGuard]},
       {path: 'my-calendar-client', component: MyCalendarClientComponent, data: {state: 'my-calendar-client'}, canActivate: [AuthGuard]},
       // {path: 'my-mealplans/:id', component: MyMealplanDetailComponent, canActivate: [AuthGuard]},
-      {path: 'user-requests', component: UserRequestComponent, data: {state: 'user-request'}, canActivate: [AuthGuard]},
       {path: 'packages', component: PackagesComponent, data: {state: 'packages'}, canActivate: [AuthGuard]},
       {path: 'packages/:id', component: PackageDetailComponent, data: {state: 'package-detail'}, canActivate: [AuthGuard]},
       {path: 'foods', component: FoodsComponent, data: {state: 'foods'}, canActivate: [AuthGuard]},

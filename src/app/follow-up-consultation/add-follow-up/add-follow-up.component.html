@@ -5,45 +5,48 @@
     </button>
 
     <button class="mobile text-link close-btn" (click)="closeDialog()" type="button">
-      <i class="mobile fas fa-arrow-left"></i> Back
+      <i class="mobile fas fa-arrow-left"></i> {{ 'global.buttons.back' | translate }}
     </button>
   </div>
 
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="followUpForm">
-      <ng-template matStepLabel>Recap</ng-template>
+      <ng-template matStepLabel>{{ 'pages.follow_up.form.recap' | translate }}</ng-template>
       
       <div class="title-area">
-        <h3>🧠 A quick recap</h3>
+        <h3>🧠 {{ 'pages.follow_up.form.recap_title' | translate }}</h3>
         <p class="card-text">
-          Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          {{ 'pages.follow_up.form.recap_intro' | translate }}
         </p>
       </div>
 
       <form [formGroup]="followUpForm">
         <h6 *ngIf="!hasMealplans">
-          There is no mealplan for {{ client.displayName}} yet.
+          {{ 'pages.follow_up.errors.no_mealplan_for' | translate: {name: client.displayName} }}
         </h6>
 
-        <mat-form-field class="mealplans" appearance="standard" floatLabel="always" *ngIf="hasMealplans">
-          <mat-label>Import a mealplan you created for {{ client.displayName}}</mat-label>
-          <mat-select matInput class="f-input select" placeholder="Pick a Meal plan" required
-          panelClass="dropdown-regular" autocomplete="off" formControlName="mealplanID">
+        <mat-form-field class="mealplans" appearance="standard" floatLabel="always"
+          *ngIf="hasMealplans">
+          <mat-label>
+            {{ 'pages.follow_up.form.import_mealplan' | translate }} {{ client.displayName}}
+          </mat-label>
+          <mat-select matInput class="f-input select" required
+            placeholder="{{ 'pages.follow_up.form.pick_a_mealplan' | translate }}"
+            panelClass="dropdown-regular" autocomplete="off" formControlName="mealplanID">
             <mat-option *ngFor="let mealplan of mealplans" [value]="mealplan.mID">
               {{mealplan.mealplanName}} - 
               <ng-container *ngIf="mealplan.lastEdited">
-                Last edited: {{mealplan.lastEdited.toDate() | date: 'short'}}
+                {{ 'global.words.edited' | translate }}: {{mealplan.lastEdited.toDate() | date: 'short'}}
               </ng-container>
               <ng-container *ngIf="!mealplan.lastEdited">
-                Created: {{mealplan.creationDate.toDate() | date: 'short'}}
+                {{ 'global.words.created' | translate }}: {{mealplan.creationDate.toDate() | date: 'short'}}
               </ng-container>
             </mat-option>
           </mat-select>
         </mat-form-field>
 
         <div class="mat-form-field form-slider">
-          <span class="label">Diet following percentage</span>
+          <span class="label">{{ 'pages.follow_up.form.diet_following' | translate }}</span>
           <div class="slider">
             <mat-slider class="form-slider" [(value)]="dietFollowPercentage" thumbLabel min="0" max="100">
             </mat-slider>
@@ -56,252 +59,264 @@
         </div>
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>What did you like most?</mat-label>
-          <textarea type="text" matInput formControlName="likeMost" placeholder="Write a short summary" 
+          <mat-label>{{ 'pages.follow_up.form.like_the_most' | translate }}</mat-label>
+          <textarea type="text" matInput formControlName="likeMost"
+            placeholder="{{ 'global.form.short_summary' | translate }}" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].likeMost.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!followUpForm['controls'].likeMost.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>What did you like least?</mat-label>
-          <textarea type="text" matInput formControlName="likeLeast" placeholder="Write a short summary" 
+          <mat-label>{{ 'pages.follow_up.form.like_the_least' | translate }}</mat-label>
+          <textarea type="text" matInput formControlName="likeLeast"
+          placeholder="{{ 'global.form.short_summary' | translate }}" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].likeLeast.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!followUpForm['controls'].likeLeast.valid">{{ 'global.errors.required' | translate }}</mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>What do you want to change and never see again?</mat-label>
-          <textarea type="text" matInput formControlName="neverSeeAgain" placeholder="Write a short summary" 
+          <mat-label>{{ 'pages.follow_up.form.change_never_again' | translate }}</mat-label>
+          <textarea type="text" matInput formControlName="neverSeeAgain"
+          placeholder="{{ 'global.form.short_summary' | translate }}" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].neverSeeAgain.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!followUpForm['controls'].neverSeeAgain.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>What would you like to see on your meal plans?</mat-label>
-          <textarea type="text" matInput formControlName="mealplanPreferences" placeholder="Write a short summary" 
-          matTextareaAutosize autofocus="off" autocomplete="off" required>
+          <mat-label>{{ 'pages.follow_up.form.see_on_mealplans' | translate }}</mat-label>
+          <textarea type="text" matInput formControlName="mealplanPreferences"
+            placeholder="{{ 'global.form.short_summary' | translate }}" 
+            matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].mealplanPreferences.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!followUpForm['controls'].mealplanPreferences.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
       </form>
 
       <section class="btn-area-one">
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperNext>{{ 'global.buttons.next' | translate }}</button>
       </section>
     </mat-step>
 
     <mat-step [stepControl]="followUpForm">
-      <ng-template matStepLabel>Routine</ng-template>
+      <ng-template matStepLabel>{{ 'pages.follow_up.form.routine' | translate }}</ng-template>
 
       <div class="title-area">
-        <h3>🚴 Routine</h3>
+        <h3>🚴 {{ 'pages.follow_up.form.routine' | translate }}</h3>
         <p class="card-text">
-          Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          {{ 'pages.follow_up.form.routine_detail' | translate }}
         </p>
       </div>
 
       <form [formGroup]="followUpForm">
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>How is your bowel Movement Frequency?</mat-label>
-          <textarea type="text" matInput formControlName="bowelMovementFrequency" placeholder="Write a short summary" 
+          <mat-label>
+            {{ 'pages.follow_up.form.bowel_freq' | translate }}
+          </mat-label>
+          <textarea type="text" matInput formControlName="bowelMovementFrequency"
+            placeholder="{{ 'global.form.short_summary' | translate }}" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].bowelMovementFrequency.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!followUpForm['controls'].bowelMovementFrequency.valid">{{ 'global.errors.required' | translate }}</mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>How are you sleeping?</mat-label>
-          <textarea type="text" matInput formControlName="sleepingHabits" placeholder="Write a short summary" 
+          <mat-label>{{ 'pages.follow_up.form.sleeping_habit' | translate }}</mat-label>
+          <textarea type="text" matInput formControlName="sleepingHabits" placeholder="{{ 'global.form.short_summary' | translate }}" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].sleepingHabits.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!followUpForm['controls'].sleepingHabits.valid">{{ 'global.errors.required' | translate }}</mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>How is your water intake going?</mat-label>
-          <textarea type="text" matInput formControlName="waterIntake" placeholder="Write a short summary" 
+          <mat-label>
+            {{ 'pages.follow_up.form.water_intake' | translate }}
+          </mat-label>
+          <textarea type="text" matInput formControlName="waterIntake" placeholder="{{ 'global.form.short_summary' | translate }}" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].waterIntake.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!followUpForm['controls'].waterIntake.valid">{{ 'global.errors.required' | translate }}</mat-error>
         </mat-form-field>
 
         <section class="activities">
-          <h3>The Activities</h3>
+          <h3>{{ 'pages.guideline.general.activities' | translate }}</h3>
         
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>What did you think about the frequency of the activity?</mat-label>
-            <textarea type="text" matInput formControlName="frequency" placeholder="Write a short summary" 
+            <mat-label>{{ 'pages.follow_up.form.activity_frequency' | translate }}</mat-label>
+            <textarea type="text" matInput formControlName="frequency" placeholder="{{ 'global.form.short_summary' | translate }}" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].frequency.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!followUpForm['controls'].frequency.valid">{{ 'global.errors.required' | translate }}</mat-error>
           </mat-form-field>
           
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>What did you think about the activity itself?</mat-label>
-            <textarea type="text" matInput formControlName="activityType" placeholder="Write a short summary" 
+            <mat-label>{{ 'pages.follow_up.form.activity_opinion' | translate }}</mat-label>
+            <textarea type="text" matInput formControlName="activityType" placeholder="{{ 'global.form.short_summary' | translate }}" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].activityType.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!followUpForm['controls'].activityType.valid">{{ 'global.errors.required' | translate }}</mat-error>
           </mat-form-field>
         
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Would you like to change something?</mat-label>
-            <textarea type="text" matInput formControlName="changes" placeholder="Write a short summary" 
+            <mat-label>{{ 'pages.follow_up.form.change_something' | translate }}</mat-label>
+            <textarea type="text" matInput formControlName="changes" placeholder="{{ 'global.form.short_summary' | translate }}" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].changes.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!followUpForm['controls'].changes.valid">{{ 'global.errors.required' | translate }}</mat-error>
           </mat-form-field>
           
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>What did you think about the supplementation proposed?</mat-label>
-            <textarea type="text" matInput formControlName="supplementation" placeholder="Write a short summary" 
+            <mat-label>{{ 'pages.follow_up.form.supp_opinion' | translate }}</mat-label>
+            <textarea type="text" matInput formControlName="supplementation" placeholder="{{ 'global.form.short_summary' | translate }}" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].supplementation.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!followUpForm['controls'].supplementation.valid">{{ 'global.errors.required' | translate }}</mat-error>
           </mat-form-field>
-
         </section>
-
       </form>
 
       <section class="btn-area">
-        <button class="dialog-button" matStepperPrevious>Back</button>
-        <button class="dialog-button" matStepperNext>Next</button>
+        <button class="dialog-button" matStepperPrevious>{{ 'global.buttons.back' | translate }}</button>
+        <button class="dialog-button" matStepperNext>{{ 'global.buttons.next' | translate }}</button>
       </section>
     </mat-step>
 
     <mat-step [stepControl]="followUpForm">
-      <ng-template matStepLabel>Meals & habits</ng-template>
+      <ng-template matStepLabel>{{ 'pages.follow_up.form.meals_habits' | translate }}</ng-template>
       
       <div class="title-area">
-        <h3>🍜 Meals and habits</h3>
+        <h3>🍜 {{ 'pages.follow_up.form.meals_habits' | translate }}</h3>
         <p class="card-text">
-          Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          {{ 'pages.follow_up.form.meals_habits_detail' | translate }}
         </p>
       </div>  
 
       <form [formGroup]="followUpForm">
                 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Are the portion sizes ok?</mat-label>
-          <textarea type="text" matInput formControlName="portionSizes" placeholder="Write a short summary" 
+          <mat-label>{{ 'pages.follow_up.form.portion_sizes' | translate }}</mat-label>
+          <textarea type="text" matInput formControlName="portionSizes" placeholder="{{ 'global.form.short_summary' | translate }}" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].portionSizes.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!followUpForm['controls'].portionSizes.valid">{{ 'global.errors.required' | translate }}</mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Were you feeling hungry? </mat-label>
-          <textarea type="text" matInput formControlName="hungry" placeholder="Write a short summary" 
+          <mat-label>{{ 'pages.follow_up.form.feeling_hungry' | translate }}</mat-label>
+          <textarea type="text" matInput formControlName="hungry" placeholder="{{ 'global.form.short_summary' | translate }}" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].hungry.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!followUpForm['controls'].hungry.valid">{{ 'global.errors.required' | translate }}</mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Are you having trouble with any of the preparations? </mat-label>
-          <textarea type="text" matInput formControlName="preperationTrouble" placeholder="Write a short summary" 
+          <mat-label>{{ 'pages.follow_up.form.preperation_trouble' | translate }}</mat-label>
+          <textarea type="text" matInput formControlName="preperationTrouble" placeholder="{{ 'global.form.short_summary' | translate }}" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].preperationTrouble.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!followUpForm['controls'].preperationTrouble.valid">{{ 'global.errors.required' | translate }}</mat-error>
         </mat-form-field>
 
         <section class="weekend-diet">
-          <h3>During the weekend</h3>
+          <h3>{{ 'pages.follow_up.form.preperation_trouble' | translate }}</h3>
           
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>What was your sleeping schedule?</mat-label>
-            <textarea type="text" matInput formControlName="sleepingSchedule" placeholder="Write a short summary" 
+            <mat-label>{{ 'pages.follow_up.form.sleeping_schedule' | translate }}</mat-label>
+            <textarea type="text" matInput formControlName="sleepingSchedule" placeholder="{{ 'global.form.short_summary' | translate }}" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].sleepingSchedule.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!followUpForm['controls'].sleepingSchedule.valid">{{ 'global.errors.required' | translate }}</mat-error>
           </mat-form-field>
           
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Did you eat outside?</mat-label>
-            <textarea type="text" matInput formControlName="eatingOutside" placeholder="Write a short summary" 
+            <mat-label>{{ 'pages.follow_up.form.eat_outside' | translate }}</mat-label>
+            <textarea type="text" matInput formControlName="eatingOutside" placeholder="{{ 'global.form.short_summary' | translate }}" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].eatingOutside.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!followUpForm['controls'].eatingOutside.valid">{{ 'global.errors.required' | translate }}</mat-error>
           </mat-form-field>
           
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>What about cheat meals?</mat-label>
-            <textarea type="text" matInput formControlName="cheatMeals" placeholder="Write a short summary" 
+            <mat-label>{{ 'pages.follow_up.form.cheat_meals' | translate }}</mat-label>
+            <textarea type="text" matInput formControlName="cheatMeals" placeholder="{{ 'global.form.short_summary' | translate }}" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].cheatMeals.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!followUpForm['controls'].cheatMeals.valid">{{ 'global.errors.required' | translate }}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always" class="number">
-            <mat-label>The amount of meals you ate per day</mat-label>
+            <mat-label>{{ 'pages.follow_up.form.meals_per_day' | translate }}</mat-label>
             <input type="number" matInput name="mealsPerDay" formControlName="mealsPerDay" placeholder="5" autofocus="none" required>
-            <mat-error class="input-error" *ngIf="!followUpForm['controls'].mealsPerDay.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!followUpForm['controls'].mealsPerDay.valid">{{ 'global.errors.required' | translate }}</mat-error>
           </mat-form-field>
         </section>
 
       </form>
 
       <section class="btn-area">
-        <button class="dialog-button" matStepperPrevious>Back</button>
-        <button class="dialog-button" matStepperNext>Next</button>
+        <button class="dialog-button" matStepperPrevious>{{ 'global.buttons.back' | translate }}</button>
+        <button class="dialog-button" matStepperNext>{{ 'global.buttons.next' | translate }}</button>
       </section>
 
     </mat-step>
 
     <mat-step [stepControl]="followUpForm">
-      <ng-template matStepLabel>Comments</ng-template>
+      <ng-template matStepLabel>{{ 'global.words.comments' | translate }}</ng-template>
       
       <div class="title-area">
-        <h3>👀 Personal comments</h3>
+        <h3>👀 {{ 'pages.follow_up.form.personal_comments' | translate }}</h3>
         <p class="card-text">
-          Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          {{ 'pages.follow_up.form.routine_detail' | translate }}
         </p>
       </div>
 
       <form [formGroup]="followUpForm" class="personal-form">
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Subjectively, how are you feeling?</mat-label>
-          <textarea type="text" matInput formControlName="howYouFeeling" placeholder="Write a short summary" 
+          <mat-label>{{ 'pages.follow_up.form.how_you_feeling' | translate }}</mat-label>
+          <textarea type="text" matInput formControlName="howYouFeeling" placeholder="{{ 'global.form.short_summary' | translate }}" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].howYouFeeling.valid && followUpForm['controls'].howYouFeeling.touched">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!followUpForm['controls'].howYouFeeling.valid && followUpForm['controls'].howYouFeeling.touched">{{ 'global.errors.required' | translate }}</mat-error>
         </mat-form-field>
         
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Do you have any questions?</mat-label>
-          <textarea type="text" matInput formControlName="questions" placeholder="Write a short summary" 
+          <mat-label>{{ 'global.questions.any_questions' | translate }}</mat-label>
+          <textarea type="text" matInput formControlName="questions" placeholder="{{ 'global.form.short_summary' | translate }}" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!followUpForm['controls'].questions.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!followUpForm['controls'].questions.valid">{{ 'global.errors.required' | translate }}</mat-error>
         </mat-form-field>
 
         <section class="specialist-notes">
-          <h3>Observations Specialist</h3>
+          <h3>{{ 'pages.follow_up.form.observation_specialist' | translate }}</h3>
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Extra notes taken by specialist</mat-label>
-            <textarea type="text" matInput formControlName="specialistNotes" placeholder="Anything you noticed or is worth writing down.." 
-            matTextareaAutosize autofocus="off" autocomplete="off">
+            <mat-label>{{ 'pages.follow_up.form.notes_specialist' | translate }}</mat-label>
+            <textarea type="text" matInput formControlName="specialistNotes"
+              placeholder="{{ 'global.form.short_summary' | translate }}" 
+              matTextareaAutosize autofocus="off" autocomplete="off">
             </textarea>
           </mat-form-field>
         </section>
-
       </form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
         <button type="submit" class="dialog-button" (click)="addFollowUpConsultation()"
-          [class.disabled]="!followUpForm.valid" [disabled]="getFormButtonDisabled()" mat-dialog-close>
-          Done
+          [class.disabled]="!followUpForm.valid" [disabled]="getFormButtonDisabled()"
+          mat-dialog-close>
+          {{ 'global.buttons.done' | translate }}
         </button>
       </section>
     </mat-step>
-
   </mat-horizontal-stepper>
 </main>

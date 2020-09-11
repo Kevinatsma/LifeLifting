@@ -7,8 +7,12 @@
     <div class="circle-divider"></div>
     <p class="quick-fact">
       {{food.packageDuration}} 
-      <span *ngIf="food.packageDuration === 1">week</span>
-      <span *ngIf="food.packageDuration !== 1">weeks</span>
+      <span *ngIf="food.packageDuration === 1">
+        {{ 'events.week' | translate }}
+      </span>
+      <span *ngIf="food.packageDuration !== 1">
+        {{ 'events.weeks' | translate }}
+      </span>
     </p>
   </div>
   <p class="card-text">

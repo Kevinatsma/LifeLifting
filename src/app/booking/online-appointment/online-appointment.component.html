@@ -2,7 +2,7 @@
     <div class="animated-container">
       <!-- Call method -->
       <mat-form-field appearance="standard" floatLabel="always">
-        <mat-label>I prefer to call with</mat-label>
+        <mat-label>{{ 'pages.booking.online.call_method' | translate }}</mat-label>
         <mat-select matInput placeholder="Skype, Whatsapp, etc." [(value)]="selectedCallMethod" 
         (selectionChange)="pickForm(selectedCallMethod)" formControlName="callMethod" autocomplete="off" 
         panelClass="dropdown-regular" required>
@@ -14,7 +14,7 @@
       <!-- Phone Number -->
       <ng-container *ngIf="selectedCallMethod as method">
         <mat-form-field appearance="standard" floatLabel="always" *ngIf="selectedCallMethod === 'phonecall'" formGroupName="onlineAppointmentPhone">
-          <mat-label>Your Phone number</mat-label>
+          <mat-label>{{ 'pages.booking.online.your_phone' | translate }}</mat-label>
           <div class="multiple-input">
             <input type="number" matInput placeholder="+51" [value]="'+51'" autofocus="nope" autocomplete="off" formControlName="phoneAreaCode" required>
             <input type="number" matInput placeholder="1234567890" autocomplete="off" formControlName="phoneRest" required>
@@ -24,18 +24,18 @@
         
         <div class="multiple-input" *ngIf="selectedCallMethod === 'whatsapp'" formGroupName="whatsappNumber">
           <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Code</mat-label>
+              <mat-label>{{ 'pages.booking.online.code' | translate }}</mat-label>
               <input type="text" matInput formControlName="wappAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
               <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Whatsapp Number</mat-label>
+              <mat-label>{{ 'pages.booking.general.wapp_number' | translate }}</mat-label>
               <input type="number"formControlName="wappRest"  matInput placeholder="123456789" autocomplete="off" required>
           </mat-form-field>
         </div>
 
         <mat-form-field  appearance="standard" floatLabel="always" *ngIf="selectedCallMethod === 'skype'">
-          <mat-label>Fill out your Skype Username</mat-label>
+          <mat-label>{{ 'pages.booking.online.skype_name' | translate }}</mat-label>
           <input type="text" matInput placeholder="Skype username" formControlName="skypeName" autocomplete="off" required>
           <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
@@ -46,32 +46,29 @@
     <div class="btn-area" *ngIf="selectedCallMethod">
       <button type="button" class="btn-icon-left" routerLink="../step-two">
         <i class="fa__icon fas fa-chevron-left small"></i>
-        <span>Previous step</span>
+        <span>{{ 'global.buttons.previous_step' | translate }}</span>
       </button>
 
       <!-- Three submit buttons. One for every option -->
       <!-- Skype -->
       <button class="btn-icon-right" type="submit" *ngIf="selectedCallMethod === 'skype'"
       [class.btn-disabled]="!onlineAppointmentForm['controls'].skypeName.dirty"
-      [disabled]="!onlineAppointmentForm['controls'].skypeName.dirty"
-      >
-        <span>Pick a date</span>
+      [disabled]="!onlineAppointmentForm['controls'].skypeName.dirty">
+        <span>{{ 'global.form.pick_date' | translate }}</span>
         <i class="fa__icon fas fa-chevron-right small"></i>
       </button>
       <!-- Whatsapp -->
       <button class="btn-icon-right" type="submit" *ngIf="selectedCallMethod === 'whatsapp'"
       [class.btn-disabled]="!onlineAppointmentForm['controls'].whatsappNumber.valid"
-      [disabled]="!onlineAppointmentForm['controls'].whatsappNumber.valid"
-      >
-        <span>Pick a date</span>
+      [disabled]="!onlineAppointmentForm['controls'].whatsappNumber.valid">
+        <span>{{ 'global.form.pick_date' | translate }}</span>
         <i class="fa__icon fas fa-chevron-right small"></i>
       </button>
       <!--  PhoneNumber -->
       <button class="btn-icon-right" type="submit" *ngIf="selectedCallMethod === 'phonecall'"
       [class.btn-disabled]="!onlineAppointmentForm['controls'].onlineAppointmentPhone.dirty"
-      [disabled]="!onlineAppointmentForm['controls'].onlineAppointmentPhone.dirty"
-      >
-        <span>Pick a date</span>
+      [disabled]="!onlineAppointmentForm['controls'].onlineAppointmentPhone.dirty">
+        <span>{{ 'global.form.pick_date' | translate }}</span>
         <i class="fa__icon fas fa-chevron-right small"></i>
       </button>
     </div>

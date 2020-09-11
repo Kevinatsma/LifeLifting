@@ -17,14 +17,13 @@
   </ng-container>
   <ng-container *ngIf="!user.status.signUpCompleted">
     <div class="not-permitted">
-      <h1>Woops! You haven't completed the Signup process yet..</h1>
+      <h1>{{ 'pages.dashboard.errors.signup_incomplete' | translate }}</h1>
       <p class="card-text">
-        Complete the process or contact your specialist and tell him to hurry up! <span class="emoji">⌛</span>
+        {{ 'pages.dashboard.errors.signup_incomplete_detail' | translate }}
       </p>
       <button class="btn-primary" (click)="goBack()">
-        Go back
+        {{ 'global.buttons.go_back' | translate }}
       </button>
-      <!--  TODO: SPECIALIST CARD -->
     </div>
   </ng-container>
 </mat-sidenav-container>

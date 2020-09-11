@@ -1,8 +1,9 @@
 <main class="specialist-list-wrapper" *ngIf="guidelines | async as guidelines">
   <section class="card-list" *ngIf="guidelines">
-    <app-guideline-list-item *ngFor="let guideline of guidelines; let i=index" [i]="i" [guideline]="guideline"></app-guideline-list-item>
+    <app-guideline-list-item *ngFor="let guideline of guidelines; let i=index"
+      [i]="i" [guideline]="guideline"></app-guideline-list-item>
     <p class="card-text nothing-here" *ngIf="guidelines.length == 0">
-      No guidelines yet
+      {{ 'pages.guideline.errors.no_guidelines' | translate }}
     </p>
   </section>
 </main>

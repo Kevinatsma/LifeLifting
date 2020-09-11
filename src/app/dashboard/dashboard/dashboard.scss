@@ -36,13 +36,14 @@
         display: flex;
         flex-flow: column;
         overflow-y: auto;
+        overflow-x: hidden;
 
         @include respond-down($sm) {
             width: 100vw;
         }
 
         app-dashboard-top-nav {
-            width: 100%;
+            width: 75vw;
             height: 65px;
             background: #fff;
             box-shadow: $toolbar-shadow;
@@ -51,8 +52,7 @@
             z-index: 12;
 
             @include respond-down($sm) {
-                position: sticky;
-                top: 0;
+                width: 100%;
             }
         }
 
@@ -117,6 +117,14 @@
 
 mat-sidenav.sidenav {
     width: 75%;
+}
+
+.mat-drawer-container {
+    .mat-drawer-backdrop {
+        @include respond-up($sm) {
+            display: none !important;
+        }
+    }
 }
 
 .mat-sidenav-content {

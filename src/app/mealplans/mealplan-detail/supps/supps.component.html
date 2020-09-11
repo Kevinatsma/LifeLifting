@@ -1,15 +1,16 @@
 <main class="supplementation.supps-wrapper">
   <section class="guideline-activities" *ngIf="supps as supplementation">
-    <h2 class="section-title">Supplements</h2>
+    <h2 class="section-title">
+      {{ 'pages.mealplan.general.supps' | translate }}
+    </h2>
     <p class="card-text section-title__subtitle">
-      These are the supplements that should be taken before, during or after the exercise next to it. 
-      Your specialist has added these based on the info he/she got during the introduction meeting.
+      {{ 'pages.mealplan.general.supps_detail' | translate }}
     </p>
     <div class="activity" *ngIf="exerciseOne">
         <app-exercise-list-item class="activity__left" [exercise]="exerciseOne"></app-exercise-list-item>
         <div class="container">
           <div class="target-block">
-            <h6>Before the training</h6>
+            <h6>{{ 'pages.mealplan.form.before_training' | translate }}</h6>
             <div *ngFor="let meal of supplementation.supps.beforeOneArr">
               <h4>{{meal.product.productName}}</h4>
               <div class="subtitle">
@@ -20,7 +21,7 @@
             </div>
           </div>
           <div class="target-block">
-            <h6>During the training</h6>
+            <h6>{{ 'pages.mealplan.form.during_training' | translate }}</h6>
             <div *ngFor="let meal of supplementation.supps.beforeOneArr">
               <h4>{{meal.product.productName}}</h4>
               <div class="subtitle">
@@ -31,7 +32,7 @@
             </div>
           </div>
           <div class="target-block">
-            <h6>After the training</h6>
+            <h6>{{ 'pages.mealplan.form.after_training' | translate }}</h6>
             <div *ngFor="let meal of supplementation.supps.afterOneArr">
               <h4>{{meal.product.productName}}</h4>
               <div class="subtitle">
@@ -47,7 +48,7 @@
         <app-exercise-list-item class="activity__left" [exercise]="exerciseTwo"></app-exercise-list-item>
         <div class="container">
           <div class="target-block">
-            <h6>Before the training</h6>
+            <h6>{{ 'pages.mealplan.form.before_training' | translate }}</h6>
             <div *ngFor="let meal of supplementation.supps.beforeTwoArr">
               <h4>{{meal.product.productName}}</h4>
               <div class="subtitle">
@@ -58,7 +59,7 @@
             </div>
           </div>
           <div class="target-block">
-            <h6>During the training</h6>
+            <h6>{{ 'pages.mealplan.form.during_training' | translate }}</h6>
             <div *ngFor="let meal of supplementation.supps.duringTwoArr">
               <h4>{{meal.product.productName}}</h4>
               <div class="subtitle">
@@ -69,7 +70,7 @@
             </div>
           </div>
           <div class="target-block">
-            <h6>After the training</h6>
+            <h6>{{ 'pages.mealplan.form.after_training' | translate }}</h6>
             <div *ngFor="let meal of supplementation.supps.afterTwoArr">
               <h4>{{meal.product.productName}}</h4>
               <div class="subtitle">
@@ -85,7 +86,7 @@
       <app-exercise-list-item class="activity__left" [exercise]="exerciseThree"></app-exercise-list-item>
       <div class="container">
           <div class="target-block">
-            <h6>Before the training</h6>
+            <h6>{{ 'pages.mealplan.form.before_training' | translate }}</h6>
             <div *ngFor="let meal of supplementation.supps.beforeThreeArr">
               <h4>{{meal.product.productName}}</h4>
               <div class="subtitle">
@@ -96,7 +97,7 @@
             </div>
           </div>
           <div class="target-block">
-            <h6>During the training</h6>
+            <h6>{{ 'pages.mealplan.form.during_training' | translate }}</h6>
             <div *ngFor="let meal of supplementation.supps.duringThreeArr">
               <h4>{{meal.product.productName}}</h4>
               <div class="subtitle">
@@ -107,7 +108,7 @@
             </div>
           </div>
           <div class="target-block">
-            <h6>After the training</h6>
+            <h6>{{ 'pages.mealplan.form.after_training' | translate }}</h6>
             <div *ngFor="let meal of supplementation.supps.afterThreeArr">
               <h4>{{meal.product.productName}}</h4>
               <div class="subtitle">

@@ -1,30 +1,32 @@
 <main class="fic-detail-container general-data" *ngIf="generalData">
   <section class="fic-detail-container__general">
-    <h3>General</h3>
+    <h3>{{ 'pages.first_consultation.habits.general' | translate }}</h3>
 
     <div class="form-field" *ngIf="generalData?.general?.healthConditions?.length">
-      <span class="label small">Health conditions</span>
+      <span class="label small">
+        {{ 'pages.first_consultation.general_info_2.form.health_conditions' | translate }}
+      </span>
       <ul>
         <li *ngFor="let condition of generalData.general.healthConditions" class="list-item">{{condition.healthCondition}}</li>
       </ul>
     </div>
 
     <div class="form-field" *ngIf="generalData?.general?.pastTwoWeeks?.length">
-      <span class="label small">Conditions in the past 2 weeks</span>
+      <span class="label small">{{ 'pages.first_consultation.general.past_2_weeks' | translate }}</span>
       <ul>
         <li *ngFor="let item of generalData.general.pastTwoWeeks" class="list-item">{{item.pastTwoWeeksValue}}</li>       
       </ul>
     </div>
     
     <div class="form-field" *ngIf="generalData?.general?.dontEat?.length">
-      <span class="label small">Can't eat</span>
+      <span class="label small">{{ 'pages.first_consultation.general.cannot_eat' | translate }}t</span>
       <ul>
         <li *ngFor="let item of generalData.general.dontEat" class="list-item">{{item.dontEatItem}}</li>
       </ul>
     </div>
 
     <div class="form-field long-text">
-      <span class="label small">List of medication</span>
+      <span class="label small">{{ 'pages.first_consultation.general.med_list' | translate }}</span>
       <div class="text-field">
         <p class="value big">{{generalData?.general?.medication}}</p>
       </div>
@@ -35,7 +37,9 @@
         <i class="fa__icon fas fa-utensils"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Preferred diet type</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general_info_2.form.preferred_diet' | translate }}
+        </span>
         <p class="value big">{{generalData.general.dietType}}</p>
       </div>
     </div>
@@ -45,21 +49,21 @@
         <i class="fa__icon fas fa-stethoscope"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Has gastritis</span>
+        <span class="label small">{{ 'pages.first_consultation.general.has_gastrtitis' | translate }}</span>
         <p class="value big">{{generalData.general.gastritis}}</p>
       </div>
     </div>
   </section>
 
   <section class="fic-detail-container__dinner">
-    <h3>Dinner</h3>
+    <h3>{{ 'global.meals.dinner' | translate }}</h3>
 
     <div class="form-field info-card">
       <div class="info-card__icon">
         <i class="fa__icon fas fa-balance-scale"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Portion size</span>
+        <span class="label small">{{ 'pages.first_consultation.general.portion_size' | translate }}</span>
         <p class="value big">{{generalData.dinner.portion}}</p>
       </div>
     </div>
@@ -69,7 +73,9 @@
         <i class="fa__icon fas fa-user-tag"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Prepared by</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.portion_size' | translate }}
+        </span>
         <p class="value big">{{generalData.dinner.preparedBy}}</p>
       </div>
     </div>
@@ -79,7 +85,9 @@
         <i class="fa__icon fas fa-motorcycle"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Orders food online</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.orders_online' | translate }}
+        </span>
         <p class="value big">{{generalData.dinner.orderOnline}}</p>
       </div>
     </div>
@@ -89,7 +97,9 @@
         <i class="fa__icon fas fa-utensils"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Eats after dinner</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.orders_online' | translate }}
+        </span>
         <p class="value big">{{generalData.dinner.eatAfterDinner}}</p>
         <p class="value sub-title" *ngIf="generalData.dinner.eatAfterDinnerNote">{{generalData.dinner.eatAfterDinnerNote}}</p>
       </div>
@@ -100,13 +110,15 @@
         <i class="fa__icon fas fa-home"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Who does the shopping at home</span>
+        <span class="label small">{{ 'pages.first_consultation.general_info_2.form.who_shops' | translate }}</span>
         <p class="value big">{{generalData.dinner.whoBuys}}</p>
       </div>
     </div>
 
     <div class="form-field">
-      <span class="label small">Shopping locations</span>
+      <span class="label small">
+        {{ 'pages.first_consultation.general_info_2.form.shopping_locations' | translate }}}
+      </span>
       <ul>
         <li *ngFor="let location of generalData.dinner.shoppingLocations" class="list-item">{{location.shoppingLocation}}</li>
       </ul>
@@ -114,21 +126,23 @@
   </section>
 
   <section class="fic-detail-container__activities">
-    <h3>Physical activities</h3>
+    <h3>{{ 'pages.first_consultation.general_info_2.activities' | translate }}</h3>
 
     <div class="form-field info-card">
       <div class="info-card__icon">
         <i class="fa__icon fas fa-running"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Does physical activities</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general_info_2.form.phsysical_activities' | translate }}
+        </span>
         <p class="value big">{{generalData.physicalActivity.physicalActivitiesConfirmation}}</p>
         <p class="value sub-title" *ngIf="generalData.physicalActivity.physicalActivitiesWhy">{{generalData.physicalActivity.physicalActivitiesWhy}}</p>
       </div>
     </div>
 
     <ng-container *ngIf="generalData?.physicalActivity?.physicalActivities.length">
-      <h5>Activities</h5>
+      <h5>{{ 'pages.first_consultation.general_info_2.activities' | translate }}</h5>
       <div class="activity-container" *ngFor="let activity of generalData.physicalActivity.physicalActivities">
         <app-exercise-list-item *ngIf="activity.physicalActivity"
           [exercise]="activity.physicalActivity">
@@ -137,24 +151,34 @@
         <div class="activity-container__content">
 
           <div class="form-field">
-            <span class="label small">Usual workout schedule</span>
+            <span class="label small">
+              {{ 'pages.first_consultation.general.usual_workout' | translate }}
+            </span>
             <p class="value big schedule">
               {{activity.workoutScheduleFrom}} - {{activity.workoutScheduleTo}}
             </p>
           </div>
 
           <div class="form-field">
-            <span class="label small">Training location</span>
+            <span class="label small">
+              {{ 'pages.first_consultation.general.training_loc' | translate }}
+            </span>
             <p class="value big">{{activity.trainingLocation}}</p>
           </div>
 
           <div class="form-field">
-            <span class="label small">Time to travel to training</span>
-            <p class="value big">{{activity.travelTime}} minutes</p>
+            <span class="label small">
+              {{ 'pages.first_consultation.general.travel_to_training' | translate }}
+            </span>
+            <p class="value big">
+              {{activity.travelTime}} {{ 'events.minutes' | translate }}
+            </p>
           </div>
 
           <div class="form-field">
-            <span class="label small">Training intensity</span>
+            <span class="label small">
+              {{ 'pages.first_consultation.general.training_intensity' | translate }}
+            </span>
             <p class="value big">{{activity.trainingIntensity}}</p>
           </div>
         </div>
@@ -163,14 +187,18 @@
   </section>
 
   <section class="fic-detail-container__weekends">
-    <h3>Weekends</h3>
+    <h3>
+      {{ 'pages.first_consultation.general_info_2.weekends' | translate }}
+    </h3>
 
     <div class="form-field info-card">
       <div class="info-card__icon">
         <i class="fa__icon fas fa-sun"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Wake up time</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.wake_up_time' | translate }}
+        </span>
         <p class="value big">{{generalData.weekends.wakeUpTime}}</p>
       </div>
     </div>
@@ -180,24 +208,34 @@
         <i class="fa__icon fas fa-utensils"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Orders food or eats out</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.order_or_outside' | translate }}
+        </span>
         <p class="value big">{{generalData.weekends.orderFood}}</p>
-        <p class="value sub-title" *ngIf="generalData.weekends.orderFoodNote">{{generalData.weekends.orderFoodNote}}</p>
+        <p class="value sub-title" *ngIf="generalData.weekends.orderFoodNote">
+          {{generalData.weekends.orderFoodNote}}
+        </p>
       </div>
     </div>
   </section>
 
   <section class="fic-detail-container__supps">
-    <h3>Supplements</h3>
+    <h3>
+      {{ 'pages.first_consultation.general_info_2.form.supplements' | translate }}
+    </h3>
 
     <div class="form-field info-card">
       <div class="info-card__icon">
         <i class="fa__icon fas fa-tablets"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Takes supplements</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.takes_supps' | translate }}
+        </span>
         <p class="value big">{{generalData.supplements.supplements}}</p>
-        <p class="value sub-title" *ngIf="generalData.supplements.supplementNote">{{generalData.supplements.supplementNote}}</p>
+        <p class="value sub-title" *ngIf="generalData.supplements.supplementNote">
+          {{generalData.supplements.supplementNote}}
+        </p>
       </div>
     </div>
 
@@ -206,7 +244,9 @@
         <i class="fa__icon fas fa-question-circle"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Is willing to use a supplement</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.will_use_supps' | translate }}
+        </span>
         <p class="value big">{{generalData.supplements.willingToUseSupps}}</p>
       </div>
     </div>
@@ -216,7 +256,9 @@
         <i class="fa__icon fas fa-history"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Eating recordatory</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.eating_recordatory' | translate }}
+        </span>
         <p class="value big">{{generalData.supplements.eatingRecordatory}}</p>
       </div>
     </div>

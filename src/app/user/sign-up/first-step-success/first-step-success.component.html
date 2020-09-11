@@ -6,19 +6,23 @@
       </button>
     </div>
     <img class="logo" src="./../../../../assets/img/logo-extended.svg" title="Logo" alt="Logo">
-    <h2>Account created!</h2>
-    <p class="intro-text">Thanks, {{user.email}}</p>
-    <p class="intro-text">Please complete the following steps to use the LifeLifting Mirror.</p>
+    <h2>{{ 'pages.signup.step_success.title' | translate }}</h2>
+    <p class="intro-text">{{ 'global.words.thanks' | translate }}, {{user.email}}</p>
+    <p class="intro-text">
+      {{ 'pages.signup.step_success.intro' | translate }}
+    </p>
 
     <ul class="checklist" *ngIf="user.status">
       <li [class.activated]="user.basicData">
         <div class="placeholder" *ngIf="!user.basicData"></div>
         <i class="fa__icon fas fa-check-square" *ngIf="user.basicData"></i>
 
-        <ng-container *ngIf="!isMobile"><a routerLink="step-one">Step 1: Fill out basic data</a></ng-container>
+        <ng-container *ngIf="!isMobile"><a routerLink="step-one">
+          
+        </a></ng-container>
         <ng-container *ngIf="isMobile">
           <a (click)="closeSection('step-one')">
-            Step 1: Fill out basic data
+            {{ 'pages.signup.step_success.step_one' | translate }}
           </a>
         </ng-container>
       </li>
@@ -29,37 +33,47 @@
         <ng-container *ngIf="!isMobile"><a routerLink="step-two" *ngIf="user.basicData">Step 2: Choose a package</a></ng-container>
         <ng-container *ngIf="isMobile">
           <a (click)="closeSection('step-two')" *ngIf="user.basicData">
-            Step 2: Choose a package
+            {{ 'pages.signup.step_success.step_two' | translate }}
           </a>
         </ng-container>
         
-        <ng-container *ngIf="!user.basicData">Step 2: Choose a package</ng-container>
+        <ng-container *ngIf="!user.basicData">
+          {{ 'pages.signup.step_success.step_one' | translate }}
+        </ng-container>
       </li>
       <li [class.activated]="user.specialist">
         <div class="placeholder" *ngIf="!user.specialist"></div>
         <i class="fa__icon fas fa-check-square" *ngIf="user.specialist"></i>
 
-        <ng-container *ngIf="!isMobile"><a routerLink="step-three" *ngIf="user.packageChoice">Step 3: Choose a specialist</a></ng-container>
+        <ng-container *ngIf="!isMobile"><a routerLink="step-three" *ngIf="user.packageChoice">
+          {{ 'pages.signup.step_success.step_three' | translate }}
+        </a></ng-container>
         <ng-container *ngIf="isMobile">
           <a (click)="closeSection('step-three')" *ngIf="user.packageChoice">
-            Step 3: Choose a specialist
+            {{ 'pages.signup.step_success.step_three' | translate }}
           </a>
       </ng-container>
         
-        <ng-container *ngIf="!user.packageChoice">Step 3: Choose a specialist</ng-container>
+        <ng-container *ngIf="!user.packageChoice">
+          {{ 'pages.signup.step_success.step_three' | translate }}
+        </ng-container>
       </li>
       <li [class.activated]="user.status.appointment">
         <div class="placeholder" *ngIf="!user.status.appointment"></div>
         <i class="fa__icon fas fa-check-square" *ngIf="user.status.appointment"></i>
 
-        <ng-container *ngIf="!isMobile"><a routerLink="step-four" *ngIf="user.specialist">Step 4: Request appointment</a></ng-container>
+        <ng-container *ngIf="!isMobile"><a routerLink="step-four" *ngIf="user.specialist">
+          {{ 'pages.signup.step_success.step_four' | translate }}
+        </a></ng-container>
         <ng-container *ngIf="isMobile">
           <a (click)="closeSection('step-four')" *ngIf="user.specialist">
-            Step 4: Request appointment
+            {{ 'pages.signup.step_success.step_four' | translate }}
           </a>
         </ng-container>
         
-        <ng-container *ngIf="!user.specialist">Step 4: Request appointment</ng-container>
+        <ng-container *ngIf="!user.specialist">
+          {{ 'pages.signup.step_success.step_four' | translate }}
+        </ng-container>
       </li>
       <li [class.activated]="user.status.accepted">
         <div class="placeholder" *ngIf="!user.status.accepted"></div>
@@ -68,20 +82,26 @@
         <ng-container *ngIf="!isMobile"><a routerLink="limbo" *ngIf="user.status.appointment">Step 5: Finishing up</a></ng-container>
         <ng-container *ngIf="isMobile">
           <a (click)="closeSection('step-five')" *ngIf="user.status.appointment">
-            Step 5: Finishing up
+            {{ 'pages.signup.step_success.step_five' | translate }}
           </a>
       </ng-container>
         
-        <ng-container *ngIf="!user.status.appointment">Step 5: Finishing up</ng-container>
+        <ng-container *ngIf="!user.status.appointment">
+          {{ 'pages.signup.step_success.step_five' | translate }}
+        </ng-container>
       </li>
     </ul>
     <div class="btn-area" *ngIf="user.status">
       <button type="link" class="btn-primary" 
       [class.btn-disabled]="!user.status.accepted"
       [disabled]="!user.status.accepted"
-      routerLink="../dashboard">Go to Mirror</button>
+      routerLink="../dashboard">
+        {{ 'global.buttons.go_to_mirror' | translate }}
+      </button>
       <br>
-      <button type="link" class="text-link" (click)="logout()">Go back</button>
+      <button type="link" class="text-link" (click)="logout()">
+        {{ 'global.buttons.go_back' | translate }}
+      </button>
     </div>
   </section>
 </div>

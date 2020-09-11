@@ -62,7 +62,7 @@
     }
 
     section.middle {
-        width: 70%;
+        width: 50%;
         background: #fff;
         border-left: $light-border;
         border-bottom: $light-border;
@@ -75,16 +75,17 @@
     section.right {
         display: flex;
         flex-flow: row nowrap;
-        width: 400px;
+        justify-content: flex-end;
         background: #fff;
         border-bottom: $light-border;
+        width: 50%;
 
         @include respond-down($sm) {
             width: 26%;
         }
 
         div.chat-container {
-            width: 25%;
+            width: 80px;
             height: 65px;
             border-left: $light-border;
             border-right: $light-border;
@@ -120,15 +121,16 @@
         }
 
         div.user-menu {
-            width: 75%;
             display: flex;
             flex-flow: row nowrap;
             justify-content: flex-start;
             align-items: center;
             padding: 0 15px;
+            width: 180px;
 
             @include respond-down($sm) {
                 justify-content: flex-end;
+                width: fit-content;
             }
 
             &:hover {
@@ -178,9 +180,17 @@
                 color: lighten($grey, 2%);
                 width: 14px;
                 height: 14px;
-                font-size: 10px;
-                margin: -3px 0 0 0px;
+                font-size: 14px;
+                margin: -2px 0 0 0px;
             }
+        }
+
+        .language-changer {
+            border-left: $light-border;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            width: 80px;
         }
     }
 }

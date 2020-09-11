@@ -6,7 +6,7 @@
   </section>
 
   <section class="title-area">
-    <h1>Print preview</h1>
+    <h1>{{ 'global.actions.print.preview_title' | translate }}</h1>
   </section>
 
   <section class="print-preview-container" id="page-one" #shoppingList>
@@ -22,10 +22,10 @@
       <hr>
     </div>
     <div class="shopping-list-wrapper"  *ngIf="mealplan && shoppingListItems">
-      <h2>Shopping list for {{mealplan.mealplanName}}</h2>
+      <h2>{{ 'pages.shopping_list.print.title' | translate }} {{mealplan.mealplanName}}</h2>
       <ul>
         <li *ngFor="let food of shoppingListItems; let i=index">
-          <h4>{{food.shoppingListAmount}} {{food.shoppingUnit}} of {{food.productName}} </h4>
+          <h4>{{food.shoppingListAmount}} {{food.shoppingUnit}} {{ 'global.words.of' | translate }} {{food.productName}} </h4>
         </li>
       </ul>
     </div>
@@ -34,7 +34,7 @@
   <section class="btn-area-one">
     <button class="dialog-button" (click)="saveAsPDF()">
       <i class="fa__icon far fa-file-pdf"></i>
-      Save as PDF
+      {{ 'global.actions.save.as_pdf' | translate }}
     </button>
   </section>
 </main>

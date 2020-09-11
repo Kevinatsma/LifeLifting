@@ -7,29 +7,41 @@
     <section class="list-item__data">
       <div class="main-info">
         <h1>{{event.title}}</h1>
-        <h5>With: {{user.displayName}}</h5>
-        <a class="text-link" (click)="toUser(event.clientID)">Visit profile</a>
+        <h5>{{ 'global.words.with' | translate }}: {{user.displayName}}</h5>
+        <a class="text-link" (click)="toUser(event.clientID)">
+          {{ 'global.actions.visit_profile' | translate }}
+        </a>
 
         <div class="contact-method">
           <p>
-            <ng-container *ngIf="event.meetMethod == 'onlineAppointment'"><i class="fa__icon fas fa-globe-americas"></i> Online Appointment</ng-container>
-            <ng-container *ngIf="event.meetMethod == 'faceToFace'"><i class="fa__icon fas fa-coffee"></i> Face to face meeting</ng-container>
+            <ng-container *ngIf="event.meetMethod == 'onlineAppointment'"><i class="fa__icon fas fa-globe-americas"></i>
+               {{ 'requests.event_request.online' | translate }}
+            </ng-container>
+            <ng-container *ngIf="event.meetMethod == 'faceToFace'"><i class="fa__icon fas fa-coffee"></i>
+              {{ 'requests.event_request.face_to_face' | translate }}
+            </ng-container>
           </p>
           <p>
-            <ng-container *ngIf="event.contactMethod == 'skype'"><i class="fa__icon fab fa-skype"></i> Skype</ng-container>
-            <ng-container *ngIf="event.contactMethod == 'whatsApp'"><i class="fa__icon fab fa-whatsapp"></i> Whatsapp</ng-container>
-            <ng-container *ngIf="event.contactMethod == 'phone'"><i class="fa__icon fas fa-phone"></i> Phonecall</ng-container>
+            <ng-container *ngIf="event.contactMethod == 'skype'"><i class="fa__icon fab fa-skype"></i>
+               {{ 'global.social.skype' | translate }}
+            </ng-container>
+            <ng-container *ngIf="event.contactMethod == 'whatsApp'"><i class="fa__icon fab fa-whatsapp"></i>
+               {{ 'global.social.whatsapp' | translate }}
+            </ng-container>
+            <ng-container *ngIf="event.contactMethod == 'phone'"><i class="fa__icon fas fa-phone"></i>
+               {{ 'global.social.phone_call' | translate }}
+            </ng-container>
           </p>
         </div>
       </div>
     </section>
     <section  class="list-item__time">
       <div class="start">
-        <h5>Starts at</h5>
+        <h5>{{ 'events.starts_at' | translate }}</h5>
         <p>{{event.start}}</p>
       </div>
       <div class="end">
-        <h5>Ends at</h5>
+        <h5>{{ 'events.ends_at' | translate }}</h5>
         <p>{{event.end}}</p>
       </div>
     </section>
@@ -43,13 +55,13 @@
     </section>
   </main>
   <div class="confirmation" *ngIf="deleting">
-    <h4>Are you sure you want to reject this request?</h4>
+    <h4>{{ 'requests.reject_request' | translate }}</h4>
     <div>
       <button class="text-link" (click)="deleteRequest(event)">
-        Yes I'm sure
+        {{ 'global.actions.yes_sure' | translate }}
       </button>
       <button class="text-link" (click)="deleteCancel()">
-        No
+        {{ 'global.words.no' | translate }}
       </button>
     </div>
   </div>

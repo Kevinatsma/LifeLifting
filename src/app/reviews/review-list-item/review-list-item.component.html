@@ -10,11 +10,11 @@
         <div *ngIf="review.reviewerPhoto" class="profile-pic-bubble" [style.backgroundImage]="'url('+ review.reviewerPhoto +')'"></div>
         <div *ngIf="!review.reviewerPhoto" class="profile-pic-bubble no-pic" [style.backgroundImage]="none">
           <i class="fa__icon fas fa-sad-tear"></i>
-          <p class="card-text">No photo</p>
+          <p class="card-text">{{ 'global.errors.no_photo' | translate }}</p>
         </div>
         <h2>{{review.reviewerName}}</h2>
-        <p class="card-text">Country: {{review.reviewerCountry}}</p>
-        <p class="card-text">Created at {{review.createdAt.toDate() | date: 'MM/dd/yy'}}</p>
+        <p class="card-text">{{ 'global.words.country' | translate }} {{review.reviewerCountry}}</p>
+        <p class="card-text">{{ 'global.dates.created_at' | translate }} {{review.createdAt.toDate() | date: 'MM/dd/yy'}}</p>
     </section>
     <section class="review-text">
       <p class="card-text" [class.opened]="textOpened">

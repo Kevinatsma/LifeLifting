@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="middle">
-        <h1>Package: {{package.packageID}}</h1>
+        <h1>{{ 'pages.package.title' | translate }}: {{package.packageID}}</h1>
       </div>
       <div class="right">
         <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow">
@@ -18,12 +18,10 @@
     </section>
 
     <div class="package-container">
-
       <section class="package-controls last-package">
           <button class="slide-control-btn" (click)="linkToPrevious(package)" 
           [class.disabled]="package.packageID === 1"
-          [disabled]="package.packageID === 1"
-          >
+          [disabled]="package.packageID === 1">
               <i class="fa__icon fas fa-chevron-left"></i>
           </button>
       </section>
@@ -36,8 +34,12 @@
           <div class="circle-divider"></div>
           <p class="quick-fact">
             {{package.packageDuration}} 
-            <span *ngIf="package.packageDuration === 1">week</span>
-            <span *ngIf="package.packageDuration !== 1">weeks</span>
+            <span *ngIf="package.packageDuration === 1">
+              {{ 'events.week' | translate }}
+            </span>
+            <span *ngIf="package.packageDuration !== 1">
+              {{ 'events.weeks' | translate }}
+            </span>
           </p>
         </div>
         <p class="card-text">
@@ -55,8 +57,7 @@
       <section class="package-controls next-package">
         <button class="slide-control-btn" (click)="linkToNext(package)"
           [class.disabled]="package.packageID === 3"
-          [disabled]="package.packageID === 3"
-          >
+          [disabled]="package.packageID === 3">
             <i class="fa__icon fas fa-chevron-right"></i>
         </button>
       </section>
@@ -72,10 +73,10 @@
   
 <ng-container *ngIf="!package">
   <div class="not-available">
-    <h3>😔 Woops! This package is not (yet) avaliable.</h3>
-    <p>Please go back to the available packages on the packages tab.</p>
+    <h3>😔 {{ 'pages.package.errors.not_available' | translate }}</h3>
+    <p>{{ 'pages.package.errors.not_available_detail' | translate }}</p>
     <button class="btn-primary" [routerLink]="['../']">
-      Go back
+      {{ 'global.buttons.go_back' | translate }}
     </button>
   </div>
 </ng-container>

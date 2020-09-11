@@ -1,14 +1,14 @@
 <section class="admin-menu">
     <div class="title-container">
       <h5 class="sidebar-title" [class.active]="!linksOpened">
-        Clients
+        {{ 'pages.dashboard.menu.clients' | translate }}
       </h5>
       <section class="btn-area">
         <button type="button" (click)="toggle()" *ngIf="linksOpened">
-          <i class="fa__icon fas fa-minus"></i>Hide
+          <i class="fa__icon fas fa-minus"></i>{{ 'global.buttons.hide' | translate }}
         </button>
         <button type="button" (click)="toggle()" *ngIf="!linksOpened">
-          <i class="fa__icon fas fa-plus"></i>Show
+          <i class="fa__icon fas fa-plus"></i>{{ 'global.buttons.show' | translate }}
         </button>
       </section>
 
@@ -17,31 +17,31 @@
       <li>
         <a (click)="closeMenu()" class="menu-link" routerLink="my-mealplans" routerLinkActive="active">
           <i class="fa__icon fas fa-weight"></i>
-          Meal Plans
+          {{ 'pages.dashboard.menu.mealplans' | translate }}
         </a>
       </li>
       <li>
         <a (click)="closeMenu()" class="menu-link" routerLinkActive="active" (click)="openMealChooseDialog()">
           <i class="fa__icon fas fa-shopping-cart"></i>
-          Shopping lists
+          {{ 'pages.dashboard.menu.shopping_lists' | translate }}
         </a>
       </li>
       <li>
         <a (click)="closeMenu()" class="menu-link" routerLink="my-guidelines" routerLinkActive="active">
           <i class="fa__icon far fa-file-alt"></i>
-          Guidelines
+          {{ 'pages.dashboard.menu.guidelines' | translate }}
         </a>
       </li>
       <li>
         <a (click)="closeMenu()" class="menu-link" routerLink="my-calendar-client" routerLinkActive="active">
           <i class="fa__icon far fa-calendar-alt"></i>
-          Appointments
+          {{ 'pages.dashboard.menu.appointments' | translate }}
         </a>
       </li>
       <li>
         <a (click)="closeMenu()" class="menu-link" routerLink="my-specialist" routerLinkActive="active">
           <i class="fa__icon fas fa-user-ninja"></i>
-          My Specialist
+          {{ 'pages.dashboard.menu.my_specialist' | translate }}
         </a>
       </li>
     </ul>

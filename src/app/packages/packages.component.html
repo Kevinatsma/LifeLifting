@@ -1,22 +1,17 @@
-<!-- <button mat-icon-button class="back-btn" (click)="goBack()" type="button">
-    <i class="fa__icon fas fa-arrow-left"></i>
-</button> -->
 <div class="wrapper">
     <header>
         <section class="title">
-            <h1>Available Packages</h1>
+            <h1>{{ 'pages.package.general.available_packages' | translate }}</h1>
             <button class="icon-button" (click)="openDialog()">
                 <i class="fa__icon fas fa-plus"></i>
             </button>
         </section>
         
         <p class="intro-text">
-            In this section you have a quick overview of the packages. You can view and edit/delete them directly 
-            from the list. With the top right button you add a package. <span class="emoji">😃</span>
+            {{ 'pages.package.intro' | translate }}
         </p>
     </header>
 
     <app-package-list></app-package-list>
-
 </div>
 

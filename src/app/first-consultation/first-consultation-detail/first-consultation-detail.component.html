@@ -10,13 +10,13 @@
 
     <div class="middle">
       <h1 *ngIf="client; else gID">
-        For {{client.displayName}}
+        {{ 'global.words.for' | translate }} {{client.displayName}}
         <h5 class="not-mobile">
-          Current weight: {{client.currentWeight}}kg
+          {{ 'global.user.current_weight' | translate }}: {{client.currentWeight}}kg
         </h5>
       </h1>
       <ng-template #gID>
-        <h1>FirstConsultation ID: {{firstConsultation.mID}}</h1>
+        <h1>{{ 'pages.first_consultation.general.fic_id' | translate }}: {{firstConsultation.mID}}</h1>
       </ng-template>
     </div>
 
@@ -55,7 +55,6 @@
           </ng-container>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -65,49 +64,56 @@
           [style.background]="'url('+ client.photoURL +')'">
           <div class="no-photo" *ngIf="!client.photoURL">
             <i class="fa__icon fas fa-sad-tear"></i>
-            <p class="card-text">No photo</p>
+            <p class="card-text">{{ 'global.errors.no_photo' | translate }}</p>
           </div>
         </section>
         <section class="chip-area">
           <p class="secondary-chip">
-            Created: {{firstConsultation.creationDate.toDate() | date: 'MM/dd/yy'}}
+            {{ 'global.words.created' | translate }}: {{firstConsultation.creationDate.toDate() | date: 'MM/dd/yy'}}
           </p>
           <p *ngIf="firstConsultation.lastEdited" class="secondary-chip">
-            Last edited: {{firstConsultation.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
+            {{ 'global.words.edited' | translate }}: {{firstConsultation.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
           </p>
         </section>
 
         <section class="introduction">
-          <h2>First Consultation</h2>
+          <h2>{{ 'pages.first_consultation.title' | translate }}</h2>
           <h5>
-            Consultation ID: {{firstConsultation.ficID}}
+            {{ 'pages.first_consultation.general.fic_id' | translate }}: {{firstConsultation.ficID}}
           </h5>
           <a class="text-link" (click)="openNotesDialog()">
-            See extra notes
+            {{ 'global.buttons.see_extra_notes' | translate }}
           </a>
         </section>
 
         <section class="navigation">
           <nav class="first-consultation-nav" #firstConsultationNav>
             <a class="nav-item active" id="monday" (click)="updateTabStates($event);" 
-            (mouseenter)="highlightLinks($event)" #firstNavItem
-            >
-              <ng-container *ngIf="!isMobile">Basic info</ng-container>
+            (mouseenter)="highlightLinks($event)" #firstNavItem>
+              <ng-container *ngIf="!isMobile">
+                {{ 'pages.first_consultation.general.basic_info' | translate }}
+              </ng-container>
               <ng-container *ngIf="isMobile"><i class="fa__icon far fa-user"></i></ng-container>
             </a>
             <a class="nav-item" id="tuesday" (click)="updateTabStates($event);" 
             (mouseenter)="highlightLinks($event)">
-              <ng-container *ngIf="!isMobile">Habits</ng-container>
+              <ng-container *ngIf="!isMobile">
+                {{ 'pages.first_consultation.steps.habits' | translate }}
+              </ng-container>
               <ng-container *ngIf="isMobile"><i class="fa__icon fas fa-redo"></i></ng-container>
             </a>
             <a class="nav-item" id="wednesday" (click)="updateTabStates($event);" 
             (mouseenter)="highlightLinks($event)">
-              <ng-container *ngIf="!isMobile">Body functions</ng-container>
+              <ng-container *ngIf="!isMobile">
+                {{ 'pages.first_consultation.steps.body_functions' | translate }}
+              </ng-container>
               <ng-container *ngIf="isMobile"><i class="fa__icon fas fa-running"></i></ng-container>
             </a>
             <a class="nav-item" id="thursday" (click)="updateTabStates($event);" 
             (mouseenter)="highlightLinks($event)">
-              <ng-container *ngIf="!isMobile">General info</ng-container>
+              <ng-container *ngIf="!isMobile">
+                {{ 'pages.first_consultation.general.general_info' | translate }}
+              </ng-container>
               <ng-container *ngIf="isMobile"><i class="fa__icon far fa-file-alt"></i></ng-container>
             </a>
           </nav>
@@ -125,7 +131,6 @@
         <section class="day-section general-info" *ngIf="thursdayTab">
           <app-first-consult-general [firstConsultation]="firstConsultation"></app-first-consult-general>
         </section>
-
     </mat-card>
   </div>
 </main>

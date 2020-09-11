@@ -1,46 +1,49 @@
 <ng-container *ngIf="user">
   <main class="specialist-wrapper" *ngIf="!editShow">
-
     <section class="action-toolbar-top">
       <div class="left">
         <button class="icon-button" (click)="goBack()">
             <i class="fa__icon fas fa-arrow-left"></i>
         </button>
       </div>
+
       <div class="right">
         <button class="icon-button" (click)="chat()" *ngIf="!editShow">
           <i class="fa__icon fas fa-comment-alt"></i>
         </button>
-
         <button class="icon-button edit-button" (click)="toggleEdit()"
         [class.icon-button-disabled]="!user.status.signUpCompleted" [disabled]="!user.status.signUpCompleted">
           <ng-container *ngIf="user.status.signUpCompleted"> <i class="fa__icon fas fa-edit"></i> </ng-container>
           <ng-container *ngIf="!user.status.signUpCompleted"> <i class="fa__icon fas fa-ban"></i> </ng-container>
         </button>
-
       </div>
     </section>
 
     <ng-container *ngIf="!editShow">
       <section class="specialist-header">
         <div class="profile-picture" [style.backgroundImage]="'url('+ user.photoURL +')'">
-          <span *ngIf="!user.photoURL">No Photo Yet</span>
+          <span *ngIf="!user.photoURL">
+            {{ 'global.errors.no_photo' | translate }}
+          </span>
         </div>
         <div class="quick-info">
           <p class="timezone">
               <ng-container *ngIf="user.roles.admin">
-                Admin<ng-container *ngIf="user.roles.specialist || user.roles.client">, </ng-container>
+                {{ 'global.words.admin' | translate }}
+                <ng-container *ngIf="user.roles.specialist || user.roles.client">, </ng-container>
               </ng-container>
               <ng-container *ngIf="user.roles.specialist">
-                Specialist
+                {{ 'global.words.specialist' | translate }}
                 <ng-container *ngIf="user.roles.client">, </ng-container>
               </ng-container>
-              <ng-container *ngIf="user.roles.client">Client</ng-container>
+              <ng-container *ngIf="user.roles.client">
+                {{ 'global.words.client' | translate }}
+              </ng-container>
           </p>
           <div class="top">
           <h2>{{user.displayName}}</h2>
           <h5 *ngIf="user.basicData">{{user.basicData.country}}</h5>
-          <p>User ID: {{user.uid}}</p>
+          <p>{{ 'pages.client.general.user_id' | translate }}: {{user.uid}}</p>
           <div class="icon-fact-container">
             <div class="fact" *ngIf="user.basicData">
               <i class="fa__icon fas fa-transgender"></i>
@@ -55,41 +58,42 @@
           </div>
           <div class="bottom">
             <p class="tab">
-              <span>{{user.packageChoice}}</span>Package Choice
+              <span>{{user.packageChoice}} </span>
+              {{ 'pages.client.general.package_choice' | translate }}
             </p>
             <p class="tab">
               <span *ngIf="user.basicData">
                 <ng-container *ngIf="user.basicData.age">{{user.basicData.age}}</ng-container>
                 <ng-container *ngIf="!user.basicData.age">!</ng-container>
-              </span>Age
+              </span>{{ 'global.words.age' | translate }}
             </p>
           </div>
         </div>
       </section>
 
       <section class="about">  
-        <h5>{{user.displayName}}'s main goal</h5>
+        <h5>{{user.displayName}}'s {{ 'pages.client.general.main_goal' | translate }}</h5>
         <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="user.basicData">
           {{user.basicData.mainGoal}}
         </p>
         <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="!user.basicData">
-          No goal yet...
+          {{ 'pages.client.general.errors.no_goal' | translate }}
         </p>
         <ng-container *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
           <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
             <i class="fa__icon fas fa-plus"></i>
-            Read More
+            {{ 'global.buttons.read_more' | translate }}
           </button>
           <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
             <i class="fa__icon fas fa-minus"></i>
-            Read Less
+            {{ 'global.buttons.read_less' | translate }}
           </button>
         </ng-container>
       </section>
 
       <section class="middle">
         <div class="contact-info">
-          <h5 class="purple">Contact Info</h5>
+          <h5 class="purple">{{ 'pages.client.general.contact_info' | translate }}</h5>
           <ul class="contact-menu">
             <li>
                 <i class="fa__icon far fa-envelope"></i>
@@ -106,16 +110,18 @@
             <li>
               <i class="fa__icon far fa-comment-alt"></i>
               <a class="text-link" *ngIf="user.basicData" (click)="chat()">
-                Chat
+                {{ 'global.actions.chat' | translate }}
               </a>
             </li>
           </ul>
         </div>
         <div class="languages">
-          <h5 class="purple">Practical info</h5>
+          <h5 class="purple">{{ 'pages.client.general.practical_info' | translate }}</h5>
           <ul>
-            <li>Heard from us via: <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong></li>
-            <li>Sign Up Completed?
+            <li>{{ 'pages.client.general.heard_from_us' | translate }}: 
+              <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong>
+            </li>
+            <li>{{ 'pages.client.general.signup_completed' | translate }}?
               <ng-container *ngIf="user.status.signUpCompleted"><strong>Yes</strong></ng-container>
               <ng-container *ngIf="!user.status.signUpCompleted"><strong>No</strong></ng-container>
             </li>
@@ -129,21 +135,19 @@
       <app-measurement-list [client]="user" [measurements]="measurements" *ngIf="measurements"></app-measurement-list>
 
       <section class="guidelines" *ngIf="hasGuidelines">
-        <h1 class="section-title">Guidelines</h1>
+        <h1 class="section-title">{{ 'pages.guideline.title' | translate }}</h1>
         <div class="guidelines__container">
           <app-guideline-list-item *ngFor="let guideline of guidelines" [guideline]="guideline"></app-guideline-list-item>
           <div class="guidelines__container__filler">
-            Filler
           </div>
         </div>
       </section>
       
       <section class="guidelines" *ngIf="hasMealplans">
-        <h1 class="section-title">Mealplans</h1>
+        <h1 class="section-title">{{ 'pages.mealplans.title' | translate }}</h1>
         <div class="guidelines__container">
           <app-mealplan-list-item *ngFor="let mealplan of mealplans" [mealplan]="mealplan"></app-mealplan-list-item>
           <div class="guidelines__container__filler">
-            Filler
           </div>
         </div>
       </section>

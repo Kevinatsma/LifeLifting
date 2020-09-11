@@ -1,6 +1,5 @@
 <main class="specialist-list-wrapper">
   <section class="specialist-filters">
-
   </section>
   <section class="package-list" *ngIf="packages">
     <app-package-list-item *ngFor="let package of packages | async; let i=index" [i]="i" [package]="package"></app-package-list-item>

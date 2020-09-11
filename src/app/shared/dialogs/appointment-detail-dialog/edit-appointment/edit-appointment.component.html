@@ -1,6 +1,6 @@
 <main class="dialog-wrapper edit" *ngIf="event && client && specialist">
-  <form [formGroup]="editAppointmentForm" (ngSubmit)="editAppointment()" *ngIf="auth.user | async as user"
-  class="edit-appointment">
+  <form [formGroup]="editAppointmentForm" (ngSubmit)="editAppointment()"
+    *ngIf="auth.user | async as user" class="edit-appointment">
     <section class="intro">
       <button class="edit-btn delete" (click)="back()">
         <i class="fa__icon fas fa-times"></i>
@@ -17,9 +17,11 @@
       <p class="secondary-chip">
         <i class="fa__icon fas fa-user-tie"></i>
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-select matInput placeholder="{{client.displayName}}" formControlName="clientID" autocomplete="off" 
-          panelClass="dropdown-regular" required>
-            <mat-option *ngFor="let client of clients" [value]="client.uid">{{client.displayName}}</mat-option>
+          <mat-select matInput placeholder="{{client.displayName}}" required
+          formControlName="clientID" autocomplete="off" panelClass="dropdown-regular">
+            <mat-option *ngFor="let client of clients" [value]="client.uid">
+              {{client.displayName}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </p>
@@ -27,18 +29,22 @@
         <i class="fa__icon fas fa-user-ninja"></i>
         <mat-form-field appearance="standard" floatLabel="always">
             <mat-select matInput placeholder="{{specialist.firstName}} {{specialist.lastName}}"
-            formControlName="specialistID" autocomplete="off" panelClass="dropdown-regular" required>
-              <mat-option *ngFor="let specialist of specialists" [value]="specialist.specialistID">{{specialist.firstName}} {{specialist.lastName}}</mat-option>
+              formControlName="specialistID" autocomplete="off" required
+              panelClass="dropdown-regular">
+              <mat-option *ngFor="let specialist of specialists"
+                [value]="specialist.specialistID">
+                {{specialist.firstName}} {{specialist.lastName}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
       </p>
     </section>
 
     <section class="pick-colors"  *ngIf="user.roles.specialist || user.roles.admin">
-      <h4>Pick some new colors</h4>
+      <h4>{{ 'pages.booking.form.new_colors' | translate }}</h4>
       <div class="color-pickers">
         <mat-form-field appearance="standard" floatLabel="always" class="color-picker-field">
-          <mat-label>Pick a primary color (event background)</mat-label>
+          <mat-label>{{ 'pages.booking.form.pick_primary_color' | translate }}</mat-label>
           <input
             matInput
             type="color"
@@ -47,7 +53,7 @@
           />
         </mat-form-field>
         <mat-form-field appearance="standard" floatLabel="always" class="color-picker-field">
-          <mat-label>Pick a secondary event color (event border)</mat-label>
+          <mat-label>{{ 'pages.booking.form.pick_secondary_color' | translate }}</mat-label>
           <input
             matInput
             type="color"
@@ -59,12 +65,12 @@
     </section>
 
     <section class="pick-a-time">
-      <h4>Choose a timeframe</h4>
+      <h4>{{ 'pages.booking.form.timeframe' | translate }}</h4>
       <div class="timeline">
         <div class="start">
           <div class="add-date-time-container">
             <mat-form-field class="date-picker" ppearance="standard" floatLabel="always">
-              <mat-label>Pick a date or click the icon</mat-label>
+              <mat-label>{{ 'pages.booking.form.pick_date_icon' | translate }}</mat-label>
               <input matInput formControlName="startDate" [matDatepicker]="datePickerOne"
               placeholder="{{start.startDay}}/{{start.startMonth}}/{{start.startYear}}">
               <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
@@ -73,12 +79,14 @@
       
             <div class="time">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>Hour</mat-label>
-                <input type="number" matInput formControlName="startHour" placeholder="{{start.startHours}}" />
+                <mat-label>{{ 'events.hour' | translate }}</mat-label>
+                <input type="number" matInput formControlName="startHour"
+                  placeholder="{{start.startHours}}" />
               </mat-form-field>
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>Minutes</mat-label>
-                <input type="number" matInput formControlName="startMinutes" placeholder="{{start.startMinutes}}" />
+                <mat-label>{{ 'events.minutes' | translate }}</mat-label>
+                <input type="number" matInput formControlName="startMinutes"
+                  placeholder="{{start.startMinutes}}" />
               </mat-form-field>
             </div>
           </div>
@@ -87,7 +95,7 @@
         <div class="end">
           <div class="add-date-time-container">
             <mat-form-field class="date-picker" ppearance="standard" floatLabel="always">
-              <mat-label>Pick a date or click the icon</mat-label>
+              <mat-label>{{ 'pages.booking.form.pick_date_icon' | translate }}</mat-label>
               <input matInput formControlName="endDate" [matDatepicker]="datePickerTwo"
               placeholder="{{end.endDay}}/{{end.endMonth}}/{{end.endYear}}">
               <mat-datepicker-toggle [for]="datePickerTwo"></mat-datepicker-toggle>
@@ -96,12 +104,14 @@
       
             <div class="time">
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>Hour</mat-label>
-                <input type="number" matInput formControlName="endHour" placeholder="{{end.endHours}}" />
+                <mat-label>{{ 'events.hour' | translate }}</mat-label>
+                <input type="number" matInput formControlName="endHour"
+                  placeholder="{{end.endHours}}" />
               </mat-form-field>
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>Minutes</mat-label>
-                <input type="number" matInput formControlName="endMinutes" placeholder="{{end.endMinutes}}" />
+                <mat-label>{{ 'events.minutes' | translate }}</mat-label>
+                <input type="number" matInput formControlName="endMinutes"
+                  placeholder="{{end.endMinutes}}" />
               </mat-form-field>
             </div>
           </div>
@@ -110,13 +120,17 @@
     </section>
 
     <section class="meeting-place-picker" *ngIf="event">
-      <h4>Is the meeting online or in real?</h4>
+      <h4>{{ 'pages.booking.form.taking_place_how' | translate }}</h4>
       <mat-form-field appearance="standard" floatLabel="always">
         <mat-select matInput placeholder="{{event.meetMethod}}" [(value)]="selectedContext"
-        (selectionChange)="toggleContext()" formControlName="appointmentContext" autocomplete="off" 
-        panelClass="dropdown-regular" required>
-          <mat-option value="faceToFace">Face to face</mat-option>
-          <mat-option value="onlineAppointment">Online appointment</mat-option>
+        (selectionChange)="toggleContext()" formControlName="appointmentContext"
+        autocomplete="off" panelClass="dropdown-regular" required>
+          <mat-option value="faceToFace">
+            {{ 'pages.booking.f2f.title' | translate }}
+          </mat-option>
+          <mat-option value="onlineAppointment">
+            {{ 'pages.booking.online.title' | translate }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </section>
@@ -129,34 +143,46 @@
           <p>Santiago de Surco. Lima, Perú</p>
         </div>
         <a class="text-link" href="https://goo.gl/maps/uDT69eiTkWytHyfa8" target="_blank">
-          <span class="not-mobile">Open in Maps</span>
+          <span class="not-mobile">
+            {{ 'pages.booking.buttons.open_in_maps' | translate }}
+          </span>
           <i class="mobile fas fa-external-link-alt"></i>
         </a>
       </div>
 
       <div class="multiple-input fixed-value">
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Area Code</mat-label>
-          <input type="text" matInput formControlName="phoneAreaCode" [value]="'+51'" readonly
-            autofocus="off" autocomplete="off" maxlength="3">
+          <mat-label>
+            {{ 'global.form.area_code' | translate }}
+          </mat-label>
+          <input type="text" matInput formControlName="phoneAreaCode"
+            [value]="'+51'" readonly autofocus="off" autocomplete="off"
+            maxlength="3">
         </mat-form-field>
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Phone Number</mat-label>
-          <input type="number" formControlName="faceToFacePhone" matInput placeholder="123456789" autocomplete="off">
+          <mat-label>{{ 'global.form.phone_number' | translate }}</mat-label>
+          <input type="number" formControlName="faceToFacePhone" matInput
+            placeholder="123456789" autocomplete="off">
         </mat-form-field>
       </div>
     </ng-container>
     
     <section class="appointment-type online" *ngIf="onlineAppointment | async">
-      <h4>Online call</h4>
+      <h4>{{ 'pages.booking.online.title' | translate }}</h4>
       <div class="meeting-place-picker" *ngIf="event">
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-select matInput placeholder="{{event.contactMethod}}"
-          (selectionChange)="toggleContactMethod()" formControlName="contactMethod" autocomplete="off" 
-          panelClass="dropdown-regular" required>
-            <mat-option value="whatsApp"><i class="fa__icon fab fa-whatsapp"></i> WhatsApp</mat-option>
-            <mat-option value="skype"><i class="fa__icon fab fa-skype"></i> Skype</mat-option>
-            <mat-option value="phone"><i class="fa__icon fas fa-phone"></i> Phone (only Peru)</mat-option>
+          (selectionChange)="toggleContactMethod()" formControlName="contactMethod"
+          autocomplete="off" panelClass="dropdown-regular" required>
+            <mat-option value="whatsApp"><i class="fa__icon fab fa-whatsapp"></i> 
+              {{ 'global.social.whatsapp' | translate }}
+            </mat-option>
+            <mat-option value="skype"><i class="fa__icon fab fa-skype"></i> 
+              {{ 'global.social.skype' | translate }}
+            </mat-option>
+            <mat-option value="phone"><i class="fa__icon fas fa-phone"></i> 
+              {{ 'pages.booking.signup.only_peru_phone' | translate }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -164,12 +190,13 @@
       <ng-container *ngIf="whatsApp | async">
         <div class="multiple-input">
           <mat-form-field appearance="standard" floatLabel="always" *ngIf="areaCodes">
-            <mat-label>Area Code</mat-label>
+            <mat-label>{{ 'global.form.area_code' | translate }}</mat-label>
             <mat-select matInput placeholder="+1"
-            panelClass="dropdown-area-code" formControlName="wappAreaCode" autocomplete="off" required>
-              <mat-option *ngFor="let code of areaCodes" value="{{code.dial_code}}" class="dial-code">
-                <img 
-                src="./../../../../assets/img/icons/flags/{{code.name.toString().split(' ').join('-').replace(',', '').split('.').join('').split('(').join('').split(')').join('').toLowerCase() }}.svg">
+            panelClass="dropdown-area-code" formControlName="wappAreaCode"
+              autocomplete="off" required>
+              <mat-option *ngFor="let code of areaCodes" value="{{code.dial_code}}"
+                class="dial-code">
+                <img src="./../../../../assets/img/icons/flags/{{code.name.toString().split(' ').join('-').replace(',', '').split('.').join('').split('(').join('').split(')').join('').toLowerCase() }}.svg">
                 <div class="country-content">
                   <span class="country-content__title">{{code.name}}</span>
                   <span class="country-content__code">{{code.dial_code}}</span>
@@ -178,7 +205,7 @@
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Phone Number</mat-label>
+              <mat-label>{{ 'global.form.phone_number' | translate }}</mat-label>
               <input type="number"formControlName="wappRest" matInput placeholder="123456789" autocomplete="off">
           </mat-form-field>
         </div>
@@ -186,20 +213,23 @@
 
       <ng-container *ngIf="skype | async">
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Skype name</mat-label>
-          <input type="text" matInput formControlName="skypeName" placeholder="{{event.skypeName}}" />
+          <mat-label>{{ 'pages.booking.form.skype_name' | translate }}</mat-label>
+          <input type="text" matInput formControlName="skypeName"
+            placeholder="{{event.skypeName}}" />
         </mat-form-field>
       </ng-container>
 
       <ng-container *ngIf="onlinePhone | async">
         <div class="multiple-input">
           <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Area code</mat-label>
+              <mat-label>{{ 'global.form.area_code' | translate }}</mat-label>
               <input type="text" matInput autofocus="nope" autocomplete="off" formControlName="phoneAreaCode" readonly>
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Phone Number</mat-label>
-              <input type="number"formControlName="phoneRest"  matInput placeholder="{{event.onlineAppointmentPhone.phoneRest}}" autocomplete="off">
+              <mat-label>{{ 'global.form.phone_number' | translate }}</mat-label>
+              <input type="number"formControlName="phoneRest" matInput
+                placeholder="{{event.onlineAppointmentPhone.phoneRest}}"
+                autocomplete="off">
           </mat-form-field>
         </div>
       </ng-container>

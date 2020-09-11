@@ -1,13 +1,15 @@
 <main class="fic-detail-container body-functions" *ngIf="bodyFunctions">
   <section class="fic-detail-container__diuresis">
-    <h3>Diuresis</h3>
+    <h3>{{ 'pages.first_consultation.body_functions.diuresis' | translate }}</h3>
 
     <div class="form-field info-card">
       <div class="info-card__icon">
         <i class="fa__icon fas fa-water"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">How many times he/she is urinating per day</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.urinate_a_day' | translate }}
+        </span>
         <p class="value big">{{bodyFunctions.diuresis.urinateAmount}}x</p>
       </div>
     </div>
@@ -16,27 +18,33 @@
         <i class="fa__icon fas fa-cloud-moon-rain"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Wakes up to urinate</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.wakeup_urinate' | translate }}
+        </span>
         <p class="value big">{{bodyFunctions.diuresis.middleNightUrinate}}</p>
       </div>
     </div>
   </section>
 
   <section class="fic-detail-container__bowel-movements">
-    <h3>Bowel movements</h3>
+    <h3>{{ 'pages.first_consultation.body_functions.bowel_movement' | translate }}</h3>
 
     <div class="form-field info-card">
       <div class="info-card__icon">
         <i class="fa__icon fas fa-toilet-paper"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Bowel movements every day</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.bowel_every_day' | translate }}
+        </span>
         <p class="value big">{{bodyFunctions.bowelMovements.everyDay}}</p>
         <p class="value sub-title" *ngIf="!bodyFunctions.bowelMovements.timesPerDay && bodyFunctions.bowelMovements.timesPerWeek">
-          {{bodyFunctions.bowelMovements.timesPerWeek}}x per week
+          {{bodyFunctions.bowelMovements.timesPerWeek}}x 
+          {{ 'events.per_week' | translate }}
         </p>
         <p class="value sub-title" *ngIf="bodyFunctions.bowelMovements.timesPerDay">
-          {{bodyFunctions.bowelMovements.timesPerDay}}x per day
+          {{bodyFunctions.bowelMovements.timesPerDay}}x 
+          {{ 'events.per_week' | translate }}
         </p>
       </div>
     </div>
@@ -46,21 +54,21 @@
         <i class="fa__icon fas fa-calendar-check"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Always same schedule</span>
+        <span class="label small">{{ 'pages.first_consultation.general.always_same_schedule' | translate }}</span>
         <p class="value big">{{bodyFunctions.bowelMovements.sameSchedule}}</p>
       </div>
     </div>
   </section>
 
   <section class="fic-detail-container__appetite">
-    <h3>Appetite</h3>
+    <h3>{{ 'pages.first_consultation.body_functions.appetite' | translate }}</h3>
 
     <div class="form-field info-card">
       <div class="info-card__icon">
         <i class="fa__icon fas fa-cookie-bite"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Most hungry moment</span>
+        <span class="label small">{{ 'pages.first_consultation.general.most_hungry' | translate }}</span>
         <p class="value big">{{bodyFunctions.appetite.mostHungryMoment}}</p>
       </div>
     </div>
@@ -70,21 +78,23 @@
         <i class="fa__icon fas fa-utensils"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Appetite on a scale from 1-10</span>
+        <span class="label small">{{ 'pages.first_consultation.general.appetite_1_10' | translate }}</span>
         <p class="value big">{{bodyFunctions.appetite.hungryScale}}</p>
       </div>
     </div>
   </section>
 
   <section class="fic-detail-container__female">
-    <h3>Sleep</h3>
+    <h3>{{ 'pages.first_consultation.body_functions.sleep' | translate }}</h3>
 
     <div class="form-field info-card">
       <div class="info-card__icon">
         <i class="fa__icon fas fa-bed"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Current sleep status</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.sleep_status' | translate }}
+        </span>
         <p class="value big">{{bodyFunctions.sleep.sleepingStatus}}</p>
       </div>
     </div>
@@ -94,7 +104,9 @@
         <i class="fa__icon fas fa-stopwatch"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Average hours of sleep</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.body_functions.form.average_sleep' | translate }}
+        </span>
         <p class="value big">{{bodyFunctions.sleep.averageHours}}</p>
       </div>
     </div>
@@ -104,7 +116,9 @@
         <i class="fa__icon fas fa-ban"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Trouble falling asleep</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.trouble_sleep' | translate }}
+        </span>
         <p class="value big">{{bodyFunctions.sleep.troubleFallingAsleep}}</p>
         <p class="value sub-title" *ngIf="bodyFunctions.sleep.troubleFallingAsleepNote">
           {{bodyFunctions.sleep.troubleFallingAsleepNote}} min
@@ -117,7 +131,9 @@
         <i class="fa__icon fas fa-battery-full"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Wakes up energized</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.wake_up_energized' | translate }}
+        </span>
         <p class="value big">{{bodyFunctions.sleep.wakeUpEnergized}}</p>
       </div>
     </div>
@@ -125,14 +141,18 @@
   </section>
 
   <section class="fic-detail-container__female" *ngIf="isFemale">
-    <h3>Female</h3>
+    <h3>
+      {{ 'pages.first_consultation.body_functions.female.title' | translate }}
+    </h3>
 
     <div class="form-field info-card">
       <div class="info-card__icon">
         <i class="fa__icon fas fa-fist-raised"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">First menstrual period</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.first_period' | translate }}
+        </span>
         <p class="value big">{{bodyFunctions.female.firstMenstrualPeriod}} y/old</p>
       </div>
     </div>
@@ -142,7 +162,9 @@
         <i class="fa__icon fas fa-infinity"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Regular menstrual cycle</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.first_period' | translate }}
+        </span>
         <p class="value big">{{bodyFunctions.female.regularCycle}}</p>
       </div>
     </div>
@@ -152,7 +174,9 @@
         <i class="fa__icon fas fa-capsules"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Taking birth control pills</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.first_period' | translate }}
+        </span>
         <p class="value big">{{bodyFunctions.female.birthControlPills}}</p>
         <p class="value sub-title" *ngIf="bodyFunctions.female.birthControlPillsNote">{{bodyFunctions.female.birthControlPillsNote}}</p>
       </div>
@@ -163,7 +187,7 @@
         <i class="fa__icon far fa-calendar-check"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Every x days</span>
+        <span class="label small">{{ 'global.form.every_x_days' | translate }}</span>
         <p class="value big">{{bodyFunctions.female.periodXDays}}</p>
       </div>
     </div>
@@ -173,7 +197,9 @@
         <i class="fa__icon fas fa-band-aid"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Per x days of bleeding</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.per_x_day_bleeding' | translate }}
+        </span>
         <p class="value big">{{bodyFunctions.female.bleedingXDays}}</p>
       </div>
     </div>
@@ -183,10 +209,11 @@
         <i class="fa__icon fas fa-child"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">Number of pregnancies</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.pregnancy_nr' | translate }}
+        </span>
         <p class="value big">{{bodyFunctions.female.pregnancies}}</p>
       </div>
     </div>
   </section>
-  
 </main>

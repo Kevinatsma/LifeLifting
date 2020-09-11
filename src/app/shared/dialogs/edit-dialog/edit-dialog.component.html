@@ -1,10 +1,11 @@
 <div class="padding-layer">
   <main class="confirm-dialog-container">
     <ng-container *ngIf="data.review">
-      <h1>⛔ Edit review</h1>
+      <h1>
+        ⛔ {{ 'global.words.edit' | translate }} {{ 'pages.review.title' | translate }}
+      </h1>
       <p class="card-text intro">
-        Edit the review written by <strong>{{data.review.reviewerName}}</strong> here. 
-        Only do this for spelling mistakes or if the user wants to change something. Please don't change people's opinions. 
+        {{ 'dialogs.edit.edit_review' | translate: {name: data.review.reviewerName} }}
       </p>
       <app-review-edit [review]="data.review"></app-review-edit>
     </ng-container>

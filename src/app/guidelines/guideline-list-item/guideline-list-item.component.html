@@ -1,5 +1,5 @@
 
-<mat-card class="list-item-card" *ngIf="guideline && auth.user | async as user">
+<mat-card class="list-item-card guideline-card" *ngIf="guideline && auth.user | async as user">
   <div class="card-circle" (click)="linkToChild(guideline, client)">
     <i class="fa__icon far fa-file-alt"></i>
     <div class="nr-circle">
@@ -16,17 +16,19 @@
       <mat-menu #menu="matMenu" backdropClass="context-menu-guideline">
         <button mat-menu-item (click)="duplicateGuideline(guideline)">
           <i class="fa__icon far fa-copy"></i>
-          <span>Duplicate</span>
+          <span>
+            {{ 'global.buttons.duplicate' | translate }}
+          </span>
         </button>
       </mat-menu>
     </ng-container>
   </ng-container>
 
   <p class="subtitle" *ngIf="!guideline.lastEdited">
-    Edited: Not edited yet...
+    {{ 'global.words.edited' | translate }}: {{ 'global.errors.not_edited' | translate }}
   </p>
   <p class="subtitle" *ngIf="guideline.lastEdited">
-    Edited: {{guideline.lastEdited.toDate() | date: 'short'}}
+    {{ 'global.words.edited' | translate }}: {{guideline.lastEdited.toDate() | date: 'short'}}
   </p>
   <section class="middle" (click)="linkToChild(guideline)">
     <div class="title">
@@ -34,15 +36,10 @@
     </div>
 
     <div class="quick-info">
-      <p class="speciality-title">gID: {{guideline.gID}}</p>
-      <p *ngIf="client" class="speciality-title">For: {{client.displayName}}</p>
-      <p class="speciality-title">Created: {{guideline.creationDate.toDate() | date:'MM/dd/yy'}}</p>
-      <ul class="contact-menu">
-        <!-- <li>
-          <i class="fa__icon fas fa-balance-scale"></i>
-          {{guideline.portion.amount}} {{guideline.portion.unit}}
-        </li> -->
-      </ul>
+      <p *ngIf="client" class="speciality-title">
+        {{ 'global.words.for' | translate }}: {{client.displayName}}</p>
+      <p class="speciality-title">
+        {{ 'global.words.created' | translate }}: {{guideline.creationDate.toDate() | date:'MM/dd/yy'}}</p>
     </div>
   </section>
   <section class="actions" *ngIf="user.roles.admin || user.roles.specialist">
@@ -53,5 +50,4 @@
       <i class="fa__icon fas fa-edit"></i>
     </button>
   </section>
-
 </mat-card>

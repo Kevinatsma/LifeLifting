@@ -22,21 +22,28 @@
     <ng-container *ngIf="!editShow">
       <section class="specialist-header">
         <div class="profile-picture" [style.backgroundImage]="'url('+ user.photoURL +')'">
-          <span *ngIf="!user.photoURL">No Photo Yet</span>
+          <span *ngIf="!user.photoURL">{{ 'global.errors.no_photo' | translate }}</span>
         </div>
         <div class="quick-info">
           <p class="timezone">
               <ng-container *ngIf="user.roles.admin">
-                Admin<ng-container *ngIf="user.roles.specialist || user.roles.client">, </ng-container>
+                {{ 'global.words.admin' | translate }}
+                <ng-container *ngIf="user.roles.specialist || user.roles.client">, </ng-container>
               </ng-container>
-              <ng-container *ngIf="user.roles.specialist">Specialist<ng-container *ngIf="user.roles.client">, </ng-container>
+              <ng-container *ngIf="user.roles.specialist">
+                {{ 'global.words.specialist' | translate }}
+                <ng-container *ngIf="user.roles.client">, </ng-container>
               </ng-container>
-              <ng-container *ngIf="user.roles.client">Client</ng-container>
+              <ng-container *ngIf="user.roles.client">
+                {{ 'global.words.client' | translate }}
+              </ng-container>
           </p>
           <div class="top">
           <h2>{{user.displayName}}</h2>
           <h5 *ngIf="user.basicData">{{user.basicData.country}}</h5>
-          <h5 *ngIf="!user.basicData">No country yet</h5>
+          <h5 *ngIf="!user.basicData">
+            {{ 'pages.users.detail.errors.no_country' | translate }}
+          </h5>
           <p class="uid"><span class="not-mobile">User ID:</span>{{user.uid}}</p>
           <div class="icon-fact-container">
             <div class="fact" *ngIf="user.basicData">
@@ -45,7 +52,7 @@
             </div>
             <div class="fact" *ngIf="!user.basicData">
               <i class="fa__icon fas fa-transgender"></i>
-              <span>Not filled out</span>
+              <span>{{ 'global.errors.no_value' | translate }}</span>
             </div>
             <div class="fact" *ngIf="specialist">
               <i class="fa__icon fas fa-user-ninja"></i>
@@ -53,7 +60,7 @@
             </div>
             <div class="fact" *ngIf="!specialist">
               <i class="fa__icon fas fa-user-ninja"></i>
-              <span>None chosen</span>
+              <span>{{ 'global.errors.no_value' | translate }}</span>
             </div>
           </div>
           

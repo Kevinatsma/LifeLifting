@@ -8,7 +8,7 @@
   <section class="profile-photo no-photo" *ngIf="!user.photoURL">
     <p>
       <i class="fa__icon far fa-sad-cry"></i> <br>
-      No Photo Yet
+      {{ 'global.errors.no_photo' | translate }}
     </p>
   </section>
   <section class="middle">
@@ -17,14 +17,19 @@
         <div class="dividing-circle"></div>
         <p class="location" *ngIf="user.basicData">{{user.basicData.country}} - 
           <ng-container *ngIf="user.roles.admin">
-            Admin<ng-container *ngIf="user.roles.specialist || user.roles.client">, </ng-container>
+            {{ 'global.words.admin' | translate }}
+            <ng-container *ngIf="user.roles.specialist || user.roles.client">, </ng-container>
           </ng-container>
-          <ng-container *ngIf="user.roles.specialist">Specialist<ng-container *ngIf="user.roles.client">, </ng-container>
+          <ng-container *ngIf="user.roles.specialist">
+            {{ 'global.words.specialist' | translate }}
+            <ng-container *ngIf="user.roles.client">, </ng-container>
           </ng-container>
-          <ng-container *ngIf="user.roles.client">Client</ng-container>
+          <ng-container *ngIf="user.roles.client">
+            {{ 'global.words.client' | translate }}
+          </ng-container>
         </p>
         <p class="location warning" *ngIf="!user.basicData">
-          Incomplete profile
+          {{ 'global.errors.incomplete_profile' | translate }}
         </p>
     </div>
 
@@ -33,13 +38,15 @@
         {{user.uid}}
       </p>
       <p class="description" *ngIf="user.basicData">
-        <strong>Goal</strong><br>
+        <strong>{{ 'pages.users.list_item.goal' | translate }}</strong><br>
         <ng-container *ngIf="user.basicData.mainGoal">{{user.basicData.mainGoal}}</ng-container>
-        <ng-container *ngIf="!user.basicData.mainGoal">No goal yet...</ng-container>
+        <ng-container *ngIf="!user.basicData.mainGoal">
+          {{ 'pages.users.list_item.no_goal' | translate }}
+        </ng-container>
       </p>
       <div class="btn-container">
         <button class="btn-icon-right__animated" (click)="linkToChild(user)">
-          More info
+          {{ 'global.buttons.more_info' | translate }}
         </button>
         <i class="fa__icon fas fa-long-arrow-alt-right"></i>
       </div>
@@ -50,25 +57,25 @@
             Email
           </a>
           <p class="card-text" *ngIf="!user.basicData">
-            None
+            {{ 'global.words.none' | translate }}
           </p>
         </li>
         <li>
           <i class="fa__icon fas fa-mobile-alt"></i>
           <a class="text-link" *ngIf="user.basicData" href="tel:{{user.basicData.phoneNumber}}">
-            Call
+            {{ 'global.actions.call' | translate }}
           </a>
           <p class="card-text" *ngIf="!user.basicData">
-            None
+            {{ 'global.words.none' | translate }}
           </p>
         </li>
         <li>
           <i class="fa__icon far fa-comment-alt"></i>
           <a class="text-link" (click)="chat()" *ngIf="user.basicData">
-            Chat
+            {{ 'global.actions.chat' | translate }}
           </a>
           <p class="card-text" *ngIf="!user.basicData">
-            None
+            {{ 'global.words.none' | translate }}
           </p>
         </li>
       </ul>
@@ -79,7 +86,8 @@
       <i class="fa__icon fas fa-trash"></i>
     </button>
     <!-- Disabled button when user hasn't completed signup yet -->
-    <button mat-button *ngIf="!user.status.signUpCompleted " matTooltip="User hasn't completed the Signup process yet"
+    <button mat-button *ngIf="!user.status.signUpCompleted "
+      matTooltip="{{ 'pages.users.list_item.tooltip' | translate }}"
       matTooltipClass="tooltip-warning" [matTooltipPosition]="tooltipPosition" (click)="editUser(user)">
       <i class="fa__icon fas fa-edit"></i>
     </button>

@@ -1,9 +1,10 @@
 <div class="wrapper">
     <header>
         <section class="title">
-            <h1>Saved Exercises</h1>
+            <h1>{{ 'pages.exercises.general.saved_exercises' | translate }}</h1>
             <div class="overview-search-bar not-mobile" mat-button>
-                <input type="text" placeholder="Search by name" (input)="onChangeSearch($event)" class="overview-search-bar__input">
+                <input type="text" (input)="onChangeSearch($event)" class="overview-search-bar__input"
+                    placeholder="{{ 'global.actions.search.search_by_name' | translate }}">
                 <i class="fa__icon fas fa-search"></i>
             </div>
             <button class="icon-button" (click)="openDialog()">
@@ -12,21 +13,21 @@
         </section>
         
         <p class="intro-text">
-            In this section you have a quick overview of the exercises you entered. You can view and edit/delete them directly 
-            from the list. With the top right button you add a exercise. <span class="emoji">🤸‍</span>
+            {{ 'pages.exercises.intro' | translate }}
         </p>
     </header>
 
     <div class="overview-search-bar mobile" mat-button>
-        <input type="text" placeholder="Search by name" (input)="onChangeSearch($event)" class="overview-search-bar__input">
+        <input type="text" (input)="onChangeSearch($event)" class="overview-search-bar__input"
+            placeholder="{{ 'global.actions.search.search_by_name' | translate }}">
         <i class="fa__icon fas fa-search"></i>
     </div>
     <app-exercise-list [exercises]="exercises" *ngIf="!searchActive"></app-exercise-list>
     <app-exercise-list [exercises]="searchExercises" *ngIf="searchActive"></app-exercise-list>
     <p class="card-text no-search-result" *ngIf="searchActive && searchExercises && searchExercises.length == 0">
-        No search results found, please try a different name. 🔎
+        {{ 'global.actions.search.no_results_name' | translate }}
         <a class="text-link" (click)="searchActive = !searchActive">
-            Show all
+            {{ 'global.buttons.show_all' | translate }}
         </a>
     </p>
 </div>

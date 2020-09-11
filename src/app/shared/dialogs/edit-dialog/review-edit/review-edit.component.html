@@ -3,16 +3,23 @@
     <i class="fa__icon fas fa-check"></i>
   </button>
   <section class="introduction">
-      <div *ngIf="review.reviewerPhoto" class="profile-pic-bubble" [style.backgroundImage]="'url('+ review.reviewerPhoto +')'"></div>
-      <div *ngIf="!review.reviewerPhoto" class="profile-pic-bubble no-pic" [style.backgroundImage]="none">
+      <div *ngIf="review.reviewerPhoto" class="profile-pic-bubble"
+        [style.backgroundImage]="'url('+ review.reviewerPhoto +')'"></div>
+      <div *ngIf="!review.reviewerPhoto" class="profile-pic-bubble no-pic"
+        [style.backgroundImage]="none">
         <i class="fa__icon fas fa-sad-tear"></i>
-        <p class="card-text">No photo</p>
+        <p class="card-text">{{ 'global.errors.no_photo' | translate }}</p>
       </div>
       <h2>{{review.reviewerName}}</h2>
-      <p class="card-text">Country: {{review.reviewerCountry}}</p>
-      <p class="card-text">Created at {{review.createdAt.toDate() | date: 'MM/dd/yy'}}</p>
+      <p class="card-text">
+        {{ 'global.words.country' | translate }}: {{review.reviewerCountry}}
+      </p>
+      <p class="card-text">
+        {{ 'global.dates.created_at' | translate }} {{review.createdAt.toDate() | date: 'MM/dd/yy'}}
+      </p>
   </section>
   <form class="review-text" [formGroup]="editReviewForm">
-    <textarea matInput type="text" matTextareaAutosize formControlName="reviewText" placeholder="{{review.reviewText}}"></textarea>
+    <textarea matInput type="text" matTextareaAutosize formControlName="reviewText"
+      placeholder="{{review.reviewText}}"></textarea>
   </form>
 </mat-card>

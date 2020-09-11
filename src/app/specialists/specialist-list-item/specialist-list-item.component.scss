@@ -112,29 +112,28 @@ mat-card.list-item-card {
                                 position: absolute;
                                 left: 0;
                                 top: 0;
-                                background: $white-top-gradient;
+                                background: $white-bottom-gradient;
                             }
                         }
                     }
                 }
 
                 ul.contact-menu {
+                    display: flex;
+                    align-items: flex-start;
+                    flex-flow: row wrap;
+                    justify-content: flex-start;
 
                     @include respond-down($sm) {
-                        display: flex;
-                        align-items: center;
-                        flex-flow: row nowrap;
-                        justify-content: space-between;
                         margin: 1.5em 0;
                     }
 
                     li {
                         display: inline-block;
-                        margin: 1em 1.5em;
-
+                        margin: 20px 40px 0 0;
                         @include respond-down($sm) {
                             box-sizing: border-box;
-                            margin: 0;
+                            margin: 0 1.5em 10px 0;
                             width: 30%;
                             display: flex;
                             align-items: center;
@@ -144,12 +143,6 @@ mat-card.list-item-card {
 
                         &:first-child {
                             margin-left: 0;
-                        }
-
-                        &:nth-child(2) {
-                            @include respond-down($sm) {
-                                margin: 0 1em;
-                            }
                         }
 
                         .fa__icon, .svg-inline--fa, svg, svg path {
@@ -177,33 +170,7 @@ mat-card.list-item-card {
 
                 .btn-container {
                     width: fit-content;
-
-                    button.btn-icon-right__animated {
-                        padding-left: 0;
-                        font-size: 16px;
-                        font-weight: $semi-bold;
-                    }
-
-                    .fa__icon, .svg-inline--fa, svg, svg path {
-                        font-size: 12px;
-                        color: $middle-grey;
-                        transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-                        width: 20px;
-                        height: auto;
-                        position: relative;
-                        top: 5px;
-                        left: 10px;
-                        animation: right-left-right 1s 2;
-                    }
-
-                    &:hover, &:focus {
-                        .fa__icon, .svg-inline--fa, svg, svg path {
-                            left: 10px;
-                            top: 5px;
-                            transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-                            animation: right-left-right 1s infinite;
-                        }
-                    }
+                    @include arrow-right-animated();
                 }
             }
         }

@@ -5,10 +5,14 @@
       <h3 class="not-mobile">{{followUp.creationDate.toDate() | date: 'short'}}</h3>
       <h3 class="mobile mobile-date">{{followUp.creationDate.toDate() | date: 'shortDate'}}</h3>
       <h3 *ngIf="followUp.edited" class="not-mobile">{{followUp.edited.toDate() | date: 'short'}}</h3>
-      <h3 *ngIf="!followUp.edited" class="not-mobile">Not edited yet</h3>
+      <h3 *ngIf="!followUp.edited" class="not-mobile">
+        {{ 'global.errors.not_edited' | translate }}
+      </h3>
       <h3 *ngIf="specialist" class="specialist">{{specialist.firstName}} {{specialist.lastName}}</h3>
       <h3 class="mealplan-link" *ngIf="followUp.mealplanID">
-        <a routerLink="../../mealplans/{{followUp.mealplanID}}" class="text-link">See Meal plan</a>
+        <a routerLink="../../mealplans/{{followUp.mealplanID}}" class="text-link">
+          {{ 'pages.follow_up.buttons.see_mealplan' | translate }}
+        </a>
       </h3>
     </div>
 
@@ -31,12 +35,12 @@
           <button class="edit-btn"
           (click)="editFollowUp(followUp)">
             <i class="fa__icon far fa-edit"></i>
-            Edit
+            {{ 'global.buttons.edit' | translate }}
           </button>
           <button class="delete-btn"
           (click)="deleteFollowUp(followUp)">
             <i class="fa__icon far fa-trash-alt"></i>
-            Delete
+            {{ 'global.buttons.delete' | translate }}
           </button>
         </div>
       </mat-menu>

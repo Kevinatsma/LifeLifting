@@ -16,12 +16,13 @@
   <p class="card-text not-mobile">
     {{package.packageDescription}}
   </p>
-  <p class="card-text desc mobile" [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="user.basicData">
+  <p class="card-text desc mobile" [class.read-more]="aboutExtended"
+    [class.has-read-more]="hasReadMore" *ngIf="user.basicData">
     {{package.packageDescription}}
   </p>
 
   <div class="list-container mobile" *ngIf="aboutExtended">
-    <h5>Benefits</h5>
+    <h5>{{ 'pages.package.general.benefits' | translate }}</h5>
     <ul>
       <li *ngFor="let benefit of package.packageBenefits">
         <i class="fa__icon fas fa-check"></i>
@@ -31,18 +32,20 @@
   </div>
 
   <div class="read-more__buttons mobile" *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
-    <button class="text-link read-more" (click)="aboutExtendedToggle()" *ngIf="!aboutExtended">
+    <button class="text-link read-more" (click)="aboutExtendedToggle()"
+      *ngIf="!aboutExtended">
       <i class="fa__icon fas fa-plus"></i>
-      Read More
+      {{ 'global.buttons.read_more' | translate }}
     </button>
-    <button class="text-link read-more" (click)="aboutExtendedToggle()" *ngIf="aboutExtended">
+    <button class="text-link read-more" (click)="aboutExtendedToggle()"
+      *ngIf="aboutExtended">
       <i class="fa__icon fas fa-minus"></i>
-      Read Less
+      {{ 'global.buttons.read_less' | translate }}
     </button>
   </div>
 
   <div class="list-container not-mobile">
-    <h5>Benefits</h5>
+    <h5>{{ 'pages.package.general.benefits' | translate }}</h5>
     <ul>
       <li *ngFor="let benefit of package.packageBenefits">
         <i class="fa__icon fas fa-check"></i>

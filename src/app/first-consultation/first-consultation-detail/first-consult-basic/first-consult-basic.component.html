@@ -1,7 +1,9 @@
 <main class="fic-detail-container basic-data" *ngIf="basicData">
   <section class="fic-detail-container__basic-data">
     <div class="form-field">
-      <span class="label">Main goal for meal plan</span>
+      <span class="label">
+        {{ 'pages.first_consultation.general.main_goal_mealplan' | translate }}
+      </span>
       <div class="text-field">
         <p class="card-text">{{basicData.mealplanMainGoal}}</p>
       </div>
@@ -19,7 +21,7 @@
         </li>
         <li>
           <i class="fa__icon fas fa-ruler-vertical"></i>
-          <p class="card-text">{{basicData.height}} meters</p>
+          <p class="card-text">{{basicData.height}} {{ 'global.sizes.meters' | translate }}</p>
         </li>
         <li>
           <i class="fa__icon fas fa-phone"></i>

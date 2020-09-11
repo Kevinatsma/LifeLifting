@@ -1,14 +1,14 @@
 <section class="admin-menu">
     <div class="title-container">
       <h5 class="sidebar-title" [class.active]="!linksOpened">
-        Admin
+        {{ 'global.words.admin' | translate }}
       </h5>
       <section class="btn-area">
         <button type="button" (click)="toggle()" *ngIf="linksOpened">
-          <i class="fa__icon fas fa-minus"></i>Hide
+          <i class="fa__icon fas fa-minus"></i>{{ 'global.buttons.hide' | translate }}
         </button>
         <button type="button" (click)="toggle()" *ngIf="!linksOpened">
-          <i class="fa__icon fas fa-plus"></i>Show
+          <i class="fa__icon fas fa-plus"></i>{{ 'global.buttons.show' | translate }}
         </button>
       </section>
 
@@ -17,31 +17,31 @@
       <li>
         <a (click)="closeMenu()" class="menu-link" routerLink="users" routerLinkActive="active">
           <i class="fa__icon fas fa-users"></i>
-          All Users
+          {{ 'pages.dashboard.menu.all_users' | translate }}
         </a>
       </li>
       <li>
         <a (click)="closeMenu()" class="menu-link" routerLink="specialists" routerLinkActive="active">
           <i class="fa__icon fas fa-user-ninja"></i>
-          Specialists
+          {{ 'pages.dashboard.menu.specialists' | translate }}
         </a>
       </li>
       <li>
         <a (click)="closeMenu()" class="menu-link" routerLink="clients" routerLinkActive="active">
           <i class="fa__icon fas fa-user-tie"></i>
-          Clients
+          {{ 'pages.dashboard.menu.clients' | translate }}
         </a>
       </li>
       <li>
         <a (click)="closeMenu()" class="menu-link" routerLink="packages" routerLinkActive="active">
           <i class="fa__icon fas fa-box"></i>
-          Packages
+          {{ 'pages.dashboard.menu.packages' | translate }}
         </a>
       </li>
       <li>
         <a (click)="closeMenu()" class="menu-link" routerLink="booking" routerLinkActive="active">
           <i class="fa__icon fas fa-calendar-alt"></i>
-          Calendar
+          {{ 'pages.dashboard.menu.calendar' | translate }}
         </a>
       </li>
     </ul>

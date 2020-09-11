@@ -1,108 +1,114 @@
 <div class="padding-layer">
   <main class="confirm-dialog-container">
     <ng-container *ngIf="data.uid">
-      <h1>Delete User?</h1>
+      <h1>{{ 'global.buttons.delete' | translate }} {{ 'global.words.user' | translate }}?</h1>
       <p class="card-text">
-        Are you sure that you want to delete <strong>{{data.displayName}}</strong>? The user <br>
-        can <strong>NOT</strong> be restored and the data will be <strong>LOST</strong>!!
+        {{ 'dialogs.sure_delete' | translate }} <strong>{{data.displayName}}</strong>?<br>
+        {{ 'dialogs.confirm.delete_user_confirm' | translate }}!!
       </p>
     </ng-container>
     <ng-container *ngIf="data.clientID">
-      <h1>Delete Client?</h1>
+      <h1>{{ 'global.buttons.delete' | translate }} {{ 'global.words.client' | translate }}?</h1>
       <p class="card-text">
-        Are you sure that you want to delete <strong>{{data.clientName}}</strong>?
+        {{ 'dialogs.sure_delete' | translate }} <strong>{{data.clientName}}</strong>?
       </p>
     </ng-container>
     <ng-container *ngIf="data.specialistID">
-      <h1>Delete Specialist?</h1>
+      <h1>{{ 'global.buttons.delete' | translate }} {{ 'global.words.specialist' | translate }}?</h1>
       <p class="card-text">
-        Are you sure that you want to delete <strong>{{data.firstName}} {{data.lastName}}</strong>?
+        {{ 'dialogs.sure_delete' | translate }} <strong>{{data.firstName}} {{data.lastName}}</strong>?
       </p>
     </ng-container>
     <ng-container *ngIf="data.packageID">
-      <h1>Delete Package?</h1>
+      <h1>{{ 'global.buttons.delete' | translate }} {{ 'pages.package.title' | translate }}?</h1>
       <p class="card-text">
-        Are you sure that you want to delete <strong>{{data.packageTitle}}</strong>?
+        {{ 'dialogs.sure_delete' | translate }} <strong>{{data.packageTitle}}</strong>?
       </p>
     </ng-container>
     <ng-container *ngIf="data.productID">
-      <h1>Delete this Product?</h1>
+      <h1>{{ 'dialogs.confirm.delete_this' | translate }} {{ 'global.words.product' | translate }}?</h1>
       <p class="card-text">
-        Are you sure that you want to delete <strong>{{data.productName}}</strong>?
+        {{ 'dialogs.sure_delete' | translate }} <strong>{{data.productName}}</strong>?
       </p>
     </ng-container>
     <ng-container *ngIf="data.exerciseID">
-      <h1>Delete this Exercise?</h1>
+      <h1>{{ 'dialogs.confirm.delete_this' | translate }} {{ 'pages.exercises.title' | translate }}?</h1>
       <p class="card-text">
-        Are you sure that you want to delete <strong>{{data.exerciseName}}</strong>?
+        {{ 'dialogs.sure_delete' | translate }} <strong>{{data.exerciseName}}</strong>?
       </p>
     </ng-container>
     <ng-container *ngIf="data.gID">
-      <h1>Delete this Guideline?</h1>
+      <h1>{{ 'dialogs.confirm.delete_this' | translate }} {{ 'pages.guideline.title' | translate }}?</h1>
       <p class="card-text">
-        Are you sure that you want to delete <strong>{{data.guidelineName}}</strong>?
+        {{ 'dialogs.sure_delete' | translate }} <strong>{{data.guidelineName}}</strong>?
       </p>
     </ng-container>
     <ng-container *ngIf="data.mID">
-      <h1>Delete this Mealplan?</h1>
+      <h1>{{ 'dialogs.confirm.delete_this' | translate }} {{ 'pages.mealplan.title' | translate }}?</h1>
       <p class="card-text">
-        Are you sure that you want to delete <strong>{{data.mealplanName}}</strong>?
+        {{ 'dialogs.sure_delete' | translate }} <strong>{{data.mealplanName}}</strong>?
       </p>
     </ng-container>
     <ng-container *ngIf="data.reviewID">
-      <h1>Delete this Review?</h1>
+      <h1>{{ 'dialogs.confirm.delete_this' | translate }} {{ 'pages.review.title' | translate }}?</h1>
       <p class="card-text">
-        Are you sure that you want to delete this review?
+        {{ 'dialogs.sure_delete' | translate }} {{ 'pages.review.general.this_review' | translate }}?
       </p>
     </ng-container>
     <ng-container *ngIf="data.eventID">
-      <h1>Delete this Event?</h1>
+      <h1>{{ 'dialogs.confirm.delete_this' | translate }} {{ 'events.title' | translate }}?</h1>
       <p class="card-text">
-        Are you sure that you want to delete <strong>{{data.eventTitle}}</strong>?
+        {{ 'dialogs.sure_delete' | translate }} <strong>{{data.eventTitle}}</strong>?
       </p>
     </ng-container>
     <ng-container *ngIf="data.thread">
-      <h1>Delete this Chat?</h1>
+      <h1>{{ 'dialogs.confirm.delete_this' | translate }} {{ 'global.actions.chat' | translate }}?</h1>
       <p class="card-text">
-        Are you sure? The messages will be erased completely.
+        {{ 'dialogs.confirm.messages_confirm' | translate }}
       </p>
     </ng-container>
 
     <ng-container *ngIf="data.measurementID">
-      <h1>Delete this Measurement?</h1>
+      <h1>{{ 'dialogs.confirm.delete_this' | translate }} {{ 'pages.measurement.title_s' | translate }}?</h1>
       <p class="card-text">
-        Are you sure? The data will be erased completely.
+        {{ 'dialogs.confirm.erase_data' | translate }}
       </p>
     </ng-container>
 
     <ng-container *ngIf="data.ficID">
-      <h1>Delete this First Consultation?</h1>
+      <h1>{{ 'dialogs.confirm.delete_this' | translate }} {{ 'pages.first_consultation.title' | translate }}?</h1>
       <p class="card-text">
-        Are you sure? The data will be erased completely.
+        {{ 'dialogs.confirm.erase_data' | translate }}
       </p>
     </ng-container>
 
     <ng-container *ngIf="data.fucID">
-      <h1>Delete this Follow-up Consultation?</h1>
+      <h1>{{ 'dialogs.confirm.delete_this' | translate }} {{ 'pages.follow_up.title' | translate }}?</h1>
       <p class="card-text">
-        Are you sure? The data will be erased completely.
+        {{ 'dialogs.confirm.erase_data' | translate }}
       </p>
     </ng-container>
 
     <ng-container *ngIf="data.acceptedUser">
-      <h1>Accept this User?</h1>
+      <h1>{{ 'dialogs.confirm.accept_this' | translate }} {{ 'global.words.user' | translate }}?</h1>
       <p class="card-text">
-        Are you sure that you want to let <strong>{{data.acceptedUser}}</strong> into the app?
-        If so, <br>don't forget to set the subscription to valid in his/her profile afterwards!
+        {{ 'dialogs.confirm.accept_user' | translate: {user: data.acceptedUser} }}
       </p>
     </ng-container>
 
 
     <section class="dialog-actions">
-      <button type="button" class="text-link" [mat-dialog-close]="false">No</button>
-      <button class="text-link" [mat-dialog-close]="true">Yes, 
-        <ng-container *ngIf="!data.acceptedUser">delete</ng-container>
-        <ng-container *ngIf="data.acceptedUser">accept</ng-container>
+      <button type="button" class="text-link" [mat-dialog-close]="false">
+        {{ 'global.words.no' | translate }}
+      </button>
+      <button class="text-link" [mat-dialog-close]="true">
+        {{ 'global.words.yes' | translate }}, 
+        <ng-container *ngIf="!data.acceptedUser">
+          {{ 'global.buttons.delete' | translate }}
+        </ng-container>
+        <ng-container *ngIf="data.acceptedUser">
+          {{ 'global.buttons.accept' | translate }}
+        </ng-container>
       </button>
     </section>
   </main>

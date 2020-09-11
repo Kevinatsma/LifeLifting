@@ -8,10 +8,14 @@
           </button>
         </div>
         <div class="middle">
-          <h1 *ngIf="client; else gID">Guideline for: {{client.displayName}}</h1>
-          <h5 *ngIf="client">Current weight: {{guideline.formulaData.weight}}kg</h5>
+          <h1 *ngIf="client; else gID">
+            {{ 'pages.guideline.general.guideline_for' | translate }}: {{client.displayName}}
+          </h1>
+          <h5 *ngIf="client">
+            {{ 'global.user.current_weight' | translate }}: {{guideline.formulaData.weight}}kg
+          </h5>
           <ng-template #gID>
-            <h1>Guideline ID: {{guideline.gID}}</h1>
+            <h1>{{ 'pages.guideline.general.guideline_id' | translate }}: {{guideline.gID}}</h1>
           </ng-template>
         </div>
         <div class="right">
@@ -31,30 +35,34 @@
                 <input type="text" class="text-field" name="guidelineName" formControlName="guidelineName">
               </h2>
               <h5>
-                gID: {{guideline.gID}}
+                {{ 'pages.guideline.general.guideline_id' | translate }}: {{guideline.gID}}
               </h5>
 
               <div class="link-form">
                 <div class="link-form__field" *ngIf="measurements">
-                  <mat-label>Link a measurement to this guideline</mat-label>
+                  <mat-label>
+                    {{ 'pages.guideline.form.link_measurement' | translate }}
+                  </mat-label>
                   <mat-select matInput placeholder="Pick one from the list" formControlName="measurement" autocomplete="off" 
                   panelClass="dropdown-regular doc-picker" required>
                     <mat-option *ngFor="let measurement of measurements; let i=index" [value]="measurement">
-                      created: <strong>{{measurement.created.toDate() | date:'short'}}</strong>,
+                      {{ 'global.words.created' | translate }}: <strong>{{measurement.created.toDate() | date:'short'}}</strong>,
                       <ng-container *ngIf="measurement.edited">
-                        edited: <strong>{{ measurement.edited.toDate() | date:'short'}}</strong>,
+                        {{ 'global.words.edited' | translate }}: <strong>{{ measurement.edited.toDate() | date:'short'}}</strong>,
                       </ng-container>
-                        weight: <strong>{{measurement.weight}}kg</strong>
+                      {{ 'global.user.weight' | translate }}: <strong>{{measurement.weight}}kg</strong>
                     </mat-option>
                   </mat-select>
                 </div>
         
                 <div class="link-form__field" *ngIf="fics">
-                  <mat-label>Link a First consultation to this guideline</mat-label>
+                  <mat-label>
+                    {{ 'pages.guideline.form.link_consultation' | translate }}
+                  </mat-label>
                   <mat-select matInput placeholder="Pick one from the list" formControlName="firstConsultation" autocomplete="off" 
                   panelClass="dropdown-regular doc-picker" required>
                     <mat-option *ngFor="let fic of fics; let i=index" [value]="fic">
-                      created at <strong>{{fic.creationDate.toDate() | date:'short'}}</strong>
+                      {{ 'global.dates.created_at' | translate }} <strong>{{fic.creationDate.toDate() | date:'short'}}</strong>
                     </mat-option>
                   </mat-select>
                 </div>
@@ -62,17 +70,21 @@
             </section>
   
             <section class="guideline-targets" *ngIf="guideline">
-              <h2 class="section-title">Guideline targets</h2>
+              <h2 class="section-title">
+                {{ 'pages.guideline.general.targets' | translate }}
+              </h2>
               <div class="target-container">
                 <div class="target-container__left">
                   <div class="target-block">
-                    <h6 class="target-block__title">Ideal weight</h6>
+                    <h6 class="target-block__title">
+                      {{ 'pages.guideline.form.ideal_weight' | translate }}
+                    </h6>
                     <span class="target-block__value">
                       <input type="number" class="text-field" name="idealWeight" formControlName="idealWeight"> kg
                     </span>
                   </div>
                   <div class="target-block">
-                    <h6 class="target-block__title">Amount of 
+                    <h6 class="target-block__title">{{ 'pages.guideline.form.amount_of' | translate }} 
                       <ng-container *ngIf="selectedTarget">
                         {{gainWeight}}
                       </ng-container>
@@ -82,13 +94,13 @@
                     </span>
                   </div>
                   <div class="target-block" *ngIf="guideline.idealKiloOfMuscle">
-                    <h6 class="target-block__title">Ideal Kg of muscle</h6>
+                    <h6 class="target-block__title">{{ 'pages.guideline.form.ideal_muscle_weight' | translate }}</h6>
                     <span class="target-block__value">
                       <input type="number" class="text-field" name="idealKiloOfMuscle" formControlName="idealKiloOfMuscle"> kg
                     </span>
                   </div>
                   <div class="target-block" *ngIf="guideline.guidelineDuration">
-                    <h6 class="target-block__title">Total duration</h6>
+                    <h6 class="target-block__title">{{ 'pages.guideline.form.total_duration' | translate }}</h6>
                     <span class="target-block__value">
                       <input type="number" class="text-field" name="guidelineDuration" formControlName="guidelineDuration"> weeks
                     </span>
@@ -99,9 +111,13 @@
                   <div class="icon-circle">
                     <i class="fa__icon fas fa-question"></i>
                   </div>
-                  <mat-select matInput placeholder="{{guideline.target}} weight" [class.dropdown-edit]="guideline.target" [(value)]="selectedTarget" 
-                  autocomplete="off" panelClass="dropdown-edit" required (selectionChange)="toggleGainWeight(selectedTarget)">
-                    <mat-option *ngFor="let target of targets" [value]="target.value">{{target.viewValue}}</mat-option>
+                  <mat-select matInput placeholder="{{guideline.target}} weight"
+                    [class.dropdown-edit]="guideline.target" [(value)]="selectedTarget" 
+                    autocomplete="off" panelClass="dropdown-edit" required
+                    (selectionChange)="toggleGainWeight(selectedTarget)">
+                    <mat-option *ngFor="let target of targets" [value]="target.value">
+                      {{target.viewValue}}
+                    </mat-option>
                   </mat-select>
                 </div>
               </div>
@@ -112,7 +128,7 @@
                 <span class="metric__value">
                 <input type="text" class="text-field metric__value" name="increaseAmount" formControlName="increaseAmount"></span>
                 <h6 class="metric__title">
-                  Kcal Increase/decrease
+                  {{ 'pages.guideline.form.total_duration' | translate }}
                 </h6>
               </div>
               <div class="metric golden">
@@ -120,11 +136,14 @@
                   <i class="fa__icon fas fa-question"></i>
                 </div>
                 <h6 class="metric__title">
-                  <mat-select matInput placeholder="{{guideline.increaseCalories}} calories" [class.dropdown-cals]="guideline.increaseCalories" 
+                  <mat-select matInput [class.dropdown-cals]="guideline.increaseCalories"
+                  placeholder="{{guideline.increaseCalories}} {{ 'global.words.calories' | translate }}"
                   [(value)]="selectedBasalValue" autocomplete="off" panelClass="dropdown-edit" required>
-                    <mat-option *ngFor="let value of basalValues" [value]="value.value">{{value.viewValue}}</mat-option>
+                    <mat-option *ngFor="let value of basalValues" [value]="value.value">
+                      {{value.viewValue}}
+                    </mat-option>
                   </mat-select>
-                  from the basal metabolism
+                  {{ 'pages.guideline.form.basal_metabolism' | translate }}
                 </h6>
               </div>
               <div class="metric">
@@ -132,13 +151,14 @@
                   x
                   <input type="number" class="metric__value" name="factorCalorie" formControlName="factorCalorie">
                 </span>
-                <h6 class="metric__title">Factor Calorie</h6>
+                <h6 class="metric__title">
+                  {{ 'pages.guideline.general.factor_calorie' | translate }}
+                </h6>
               </div>
             </section>
             
             <section class="guideline-activities" *ngIf="exercise">
-              <h2 class="section-title">Activities and Macros</h2>
-              <!-- <h2>ID: {{exercise.exerciseID}}</h2> -->
+              <h2 class="section-title">Activities</h2>
               <div class="activity">
                 <app-exercise-list-item class="activity__left" [exercise]="exercise"></app-exercise-list-item>
                 <div class="activity__right">
@@ -167,7 +187,7 @@
                       
             <section class="macro-metrics macros" *ngIf="guideline">
               <h2 class="section-title">
-                Macro Distribution
+                {{ 'pages.guideline.general.macro_distribution' | translate }}
               </h2>
               <div class="container">
                 <div class="metric">
@@ -176,7 +196,7 @@
                     %
                   </div>
                   <h6 class="metric__title">
-                    Protein
+                    {{ 'pages.guideline.form.protein' | translate }}
                   </h6>
                 </div>
                 <div class="metric">
@@ -185,16 +205,16 @@
                     %
                   </div>
                   <h6 class="metric__title">
-                    Carbohydrates
+                    {{ 'pages.guideline.form.carbs' | translate }}
                   </h6>
                 </div>
                 <div class="metric">
                   <div class="icon-circle">
-                      <input type="number" name="fatValue" formControlName="fatValue">
-                      %
+                    <input type="number" name="fatValue" formControlName="fatValue">
+                    %
                   </div>
                   <h6 class="metric__title">
-                    Fat
+                    {{ 'pages.guideline.form.fat' | translate }}
                   </h6>
                 </div>
               </div>
@@ -202,44 +222,5 @@
         </mat-card>
       </div>
     </form>
-    </main>
+  </main>
 </ng-container>
-<!-- <ng-container *ngIf="guideline">
-  <main>
-      <form class="package-container" [formGroup]="editGuidelineForm" *ngIf="editShow">
-
-        <mat-card class="list-item-card" *ngIf="guideline">
-            <section *ngIf="client" class="card-circle" (click)="linkToChild(guideline, client)" [style.background]="'url('+ client.photoURL +')'">
-            </section>
-            <section class="chip-area">
-              <p class="secondary-chip">
-                Guideline number: {{guideline.productNR}}
-              </p>
-              <p class="secondary-chip">
-                Created: {{guideline.creationDate.toDate() | date: 'MM/dd/yy'}}
-              </p>
-              <p *ngIf="guideline.lastEdited" class="secondary-chip">
-                Last edited: {{guideline.lastEdited.toDate() | date: 'M/d/yy, h:mm a'}}
-              </p>
-            </section>
-            <section class="middle">
-              <div class="title">
-                  <h2><input type="text" class="text-field" name="productName" formControlName="productName"></h2>
-              </div>
-          
-              <div class="quick-info">
-                <p class="speciality-title">Guideline ID: {{guideline.productID}}</p>
-                <ul class="contact-menu">
-                   <li>
-                    <i class="fa__icon fas fa-balance-scale"></i>
-                    <input type="number" class="text-field half" name="amount" formControlName="amount">
-                    <input type="text" class="text-field half" name="unit" formControlName="unit">
-                  </li> 
-                </ul>
-              </div>
-            </section>        
-          </mat-card>
-    </form>
-
-  </main> 
-</ng-container> -->

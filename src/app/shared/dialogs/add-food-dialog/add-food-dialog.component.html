@@ -1,95 +1,121 @@
 <main class="dialog-wrapper">
   <div class="close-section  mobile">
     <button class="text-link close-btn" (click)="closeDialog()" type="button">
-      <i class="mobile fas fa-arrow-left"></i> Back
+      <i class="mobile fas fa-arrow-left"></i> {{ 'global.buttons.back' | translate }}
     </button>
   </div>
 
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="infoForm">
       <form [formGroup]="infoForm">
-        <ng-template matStepLabel>Info</ng-template>
-        <h3>🥐 Food Info</h3>
+        <ng-template matStepLabel>{{ 'global.words.info' | translate }}</ng-template>
+        <h3>🥐 {{ 'pages.food.form.food_info' | translate }}</h3>
         <p class="card-text">
-          Basic data that we need from the package. This data will be displayed at step 2 of the signup process.
-          This can be important in the decision making process of the future client.
+          {{ 'pages.food.form.food_info_detail' | translate }}
         </p>
     
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Product Number</mat-label>
-          <input type="number" matInput name="title" formControlName="productNumber" placeholder="Always a number" autocomplete="new-password">
-          <mat-hint *ngIf="!infoForm['controls'].productNumber.dirty">Check the food list for the numbers already taken.</mat-hint>
-          <mat-error class="input-error" *ngIf="!infoForm['controls'].productNumber.valid">This is <strong>required</strong></mat-error>
+          <mat-label>{{ 'pages.food.form.product_nr' | translate }}</mat-label>
+          <input type="number" matInput name="title" formControlName="productNumber"
+            placeholder="{{ 'global.form.always_number' | translate }}"
+            autocomplete="new-password">
+          <mat-hint *ngIf="!infoForm['controls'].productNumber.dirty">
+            {{ 'pages.food.form.already_taken' | translate }}
+          </mat-hint>
+          <mat-error class="input-error" *ngIf="!infoForm['controls'].productNumber.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
     
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Product name</mat-label>
-          <input type="text" matInput name="title" formControlName="productName" placeholder="Give the product a name" autofocus="none">
-          <mat-error class="input-error" *ngIf="!infoForm['controls'].productName.valid">This is <strong>required</strong></mat-error>
+          <mat-label>{{ 'pages.food.form.product_name' | translate }}</mat-label>
+          <input type="text" matInput name="title" formControlName="productName"
+            placeholder="{{ 'pages.food.form.name_placeholder'}}" autofocus="none">
+          <mat-error class="input-error" *ngIf="!infoForm['controls'].productName.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
     
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Shopping list name for the product</mat-label>
+          <mat-label>{{ 'pages.food.form.shopping_name' | translate }}</mat-label>
           <input type="text" matInput name="shopping-list-title" formControlName="shoppingListName" placeholder="Make it sound good" autofocus="none">
-          <mat-error class="input-error" *ngIf="!infoForm['controls'].shoppingListName.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!infoForm['controls'].shoppingListName.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
       </form>
 
       <section class="btn-area-one">
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperNext>
+          {{ 'global.buttons.next' | translate }}
+        </button>
       </section>
     </mat-step>
 
     <mat-step class="image-uploader-container">
-      <ng-template matStepLabel>Picture</ng-template>
+      <ng-template matStepLabel>{{ 'global.words.picture' | translate }}</ng-template>
       <section class="photo-title">
-          <h3>📷  Food Image</h3>
+          <h3>📷 {{ 'pages.food.form.food_image' | translate }}</h3>
           <p class="card-text image-subtitle">
-            Please choose a clear picture that represents the appearance of this food product item.
+            {{ 'pages.food.form.food_image_detail' | translate }}
           </p>
       </section>
 
       <div class="image-uploader">
-        <app-file-upload-product (imageEvent)="receiveDownloadURL($event)"></app-file-upload-product>
+        <app-file-upload-product (imageEvent)="receiveDownloadURL($event)">
+        </app-file-upload-product>
       </div>
       <section class="btn-area">
-        <button class="dialog-button" matStepperPrevious>Back</button>
-        <button class="dialog-button" matStepperNext>Next</button>
+        <button class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
+        <button class="dialog-button" matStepperNext>
+          {{ 'global.buttons.next' | translate }}
+        </button>
       </section>
     </mat-step>
 
     <mat-step [stepControl]="categoryForm">
       <form [formGroup]="categoryForm">
-        <ng-template matStepLabel>Category</ng-template>
-        <h3>🛒 Food Category</h3>
+        <ng-template matStepLabel>{{ 'global.words.category' | translate }}</ng-template>
+        <h3>🛒 {{ 'pages.food.form.food_category' | translate }}</h3>
         <p class="card-text">
-          Put the product in a food category for filtering and organizing purposes. 
+          {{ 'pages.food.form.food_category_detail' | translate }}
         </p>
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Nutrition group</mat-label>
-          <mat-select matInput placeholder="Under which category does this product belong?" formControlName="nutritionType" 
-          panelClass="dropdown-regular" autocomplete="off" required>
-            <mat-option *ngFor="let type of nutritionTypes" [value]="type.value"> {{type.value}}</mat-option>
+          <mat-label>{{ 'pages.food.form.nutrition_group' | translate }}</mat-label>
+          <mat-select matInput formControlName="nutritionType" autocomplete="off"
+          placeholder="{{ 'pages.food.form.nutrition_group_detail' | translate }}"
+          required panelClass="dropdown-regular">
+            <mat-option *ngFor="let type of nutritionTypes" [value]="type.value">
+              {{type.value}}
+            </mat-option>
           </mat-select>
-          <!-- <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
 
         <div class="add-form-field-container" formArrayName="mealTimeArr">
-          <section class="dynamic-form-field-container" *ngFor="let time of mealTimeForms.controls; let i=index" [formGroupName]="i">
+          <section class="dynamic-form-field-container" [formGroupName]="i"
+          *ngFor="let time of mealTimeForms.controls; let i=index">
             <div class="number-id">
               <h1>{{i+1}}</h1>
             </div>
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Mostly consumed during</mat-label>
-              <mat-select matInput placeholder="Pick a meal time" formControlName="mealTimeValue" 
-              panelClass="dropdown-regular" autocomplete="off" required>
-                <mat-option *ngFor="let time of mealTimes" [value]="time.value"> {{time.value}}</mat-option>
+              <mat-label>{{ 'pages.food.general.mostly_consumed' | translate }}</mat-label>
+              <mat-select matInput formControlName="mealTimeValue" required
+                placeholder="{{ 'pages.food.form.pick_mealtime' | translate }}"  
+                panelClass="dropdown-regular" autocomplete="off">
+                <mat-option *ngFor="let time of mealTimes" [value]="time.value">
+                  {{time.value}}
+                </mat-option>
               </mat-select>
-              <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">This is <strong>required</strong></mat-error>
+              <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">
+                {{ 'global.errors.required' | translate }}
+              </mat-error>
             </mat-form-field>
             <div class="btn-area">
-              <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteMealTime(i)">
+              <button type="button" mat-icon-button type="button" class="delete-btn"
+                (click)="deleteMealTime(i)">
                 <i class="fa__icon fa fa-trash"></i>
               </button>
             </div>
@@ -98,86 +124,105 @@
 
         <button type="button" class="add-form-field" (click)="addMealTime()">
           <i class="fa__icon fa fa-plus"></i>
-          Add a Mealtime period
+          {{ 'pages.food.buttons.add_period' | translate }}
         </button>
 
       </form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          {{ 'global.buttons.next' | translate }}
+        </button>
       </section>
     </mat-step>
 
     <mat-step [stepControl]="unitForm">
       <form [formGroup]="unitForm">
-        <ng-template matStepLabel>Portion</ng-template>
-        <h3>⚖️ Unit value</h3>
+        <ng-template matStepLabel>{{ 'pages.food.form.portion' | translate }}</ng-template>
+        <h3>⚖️ {{ 'pages.food.form.init_value' | translate }}</h3>
         <p class="card-text">
-          Indicate the measurement unit here. What is the best way to describe an amount of the product?
-          Eg. 1 <strong>gram</strong> of <i>eggs</i>? Or 1 <strong>unit</strong> of <i>eggs</i>? 
-          This will be visible later when you start adding meal plans, and is an important part 
-          for the calculations.
+          {{ 'pages.food.form.init_value_detail' | translate }}
         </p>
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>The Unit</mat-label>
-          <mat-select matInput formControlName="unit" placeholder="Pick a value (cup, liter, etc)" 
-          panelClass="dropdown-regular" autofocus="off" (selectionChange)="updateUnit()">
-            <mat-option *ngFor="let unit of units" [value]="unit.value">{{unit.value}}</mat-option>
+          <mat-label>{{ 'pages.food.form.the_unit' | translate }}</mat-label>
+          <mat-select matInput formControlName="unit"
+            placeholder="{{ 'pages.food.form.pick_value_placeholder' | translate }}" 
+            panelClass="dropdown-regular" autofocus="off" (selectionChange)="updateUnit()">
+            <mat-option *ngFor="let unit of units" [value]="unit.value">
+              {{unit.value}}
+            </mat-option>
           </mat-select>
-          <mat-error class="input-error" *ngIf="!unitForm['controls'].unit.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!unitForm['controls'].unit.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
         <div class="result" *ngIf="unitForm['controls'].unit.value && infoForm['controls'].productName.value">
           <p class="card-text">
             1 
             <strong>{{unitForm['controls'].unit.value}}</strong>
-            of 
+            {{ 'global.words.of' | translate }} 
             <strong>{{infoForm['controls'].productName.value}}</strong>
           </p>
         </div>
 
         <ng-container *ngIf="showShoppingUnit">
         <mat-form-field appearance="standard" floatLabel="always" class="shopping-unit">
-          <mat-label>The Unit for the shopping list</mat-label>
-          <mat-select matInput formControlName="shoppingUnit" placeholder="Pick a value (cup, liter, etc)" 
-          panelClass="dropdown-regular" autofocus="off">
-            <mat-option *ngFor="let unit of units" [value]="unit.value">{{unit.value}}</mat-option>
+          <mat-label>{{ 'pages.food.form.shopping_list_unit' | translate }}</mat-label>
+          <mat-select matInput formControlName="shoppingUnit" autofocus="off"
+            placeholder="{{ 'pages.food.form.pick_value_placeholder' | translate }}" 
+            panelClass="dropdown-regular">
+            <mat-option *ngFor="let unit of units" [value]="unit.value">
+              {{unit.value}}
+            </mat-option>
           </mat-select>
-          <mat-error class="input-error" *ngIf="!unitForm['controls'].shoppingUnit.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!unitForm['controls'].shoppingUnit.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
         </ng-container>
 
         <mat-form-field appearance="standard" floatLabel="always" *ngIf="unitForm['controls'].unit.dirty">
-          <mat-label>The calculation factor - see example down</mat-label>
-          <input type="number" matInput name="factor" formControlName="factor" placeholder="1" autofocus="none">
-          <mat-error class="input-error" *ngIf="!unitForm['controls'].factor.valid">This is <strong>required</strong></mat-error>
+          <mat-label>{{ 'pages.food.form.calculation_factor' | translate }}</mat-label>
+          <input type="number" matInput name="factor" formControlName="factor"
+            placeholder="1" autofocus="none">
+          <mat-error class="input-error" *ngIf="!unitForm['controls'].factor.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
         <div class="result" *ngIf="unitForm['controls'].unit.value && infoForm['controls'].productName.value">
           <p class="card-text">
             1 
             <strong>{{unitForm['controls'].unit.value}}</strong>
-            of 
+            {{ 'global.words.of' | translate }} 
             <strong>{{infoForm['controls'].productName.value}}</strong>
-            is
+            {{ 'global.words.is' | translate }} 
             {{unitForm['controls'].factor.value}}
             <strong [class.shopping-unit]="showShoppingUnit">{{unitForm['controls'].shoppingUnit.value || shoppingUnit}}</strong>
-            of 
+            {{ 'global.words.of' | translate }}  
             <strong>{{infoForm['controls'].productName.value}}</strong>
           </p>
         </div>
       </form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          {{ 'global.buttons.next' | translate }}
+        </button>
       </section>
     </mat-step>
 
     <mat-step [stepControl]="prepForm">
       <form [formGroup]="prepForm">
-        <ng-template matStepLabel>Preperation</ng-template>
-        <h3>🍳 Preperations</h3>
-        <p class="intro-text">Describe and add a few preperation methods for the product.  
+        <ng-template matStepLabel>{{ 'pages.food.general.preperation' | translate }}</ng-template>
+        <h3>🍳 {{ 'pages.food.general.preperations' | translate }}</h3>
+        <p class="intro-text">
+          {{ 'pages.food.form.preperations_detail' | translate }}
         </p>
         <div class="add-form-field-container" formArrayName="prepArr">
           <section class="dynamic-form-field-container" *ngFor="let prep of prepForms.controls; let i=index" [formGroupName]="i">
@@ -185,15 +230,21 @@
               <h1>{{i+1}}</h1>
             </div>
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Preperation method</mat-label>
+              <mat-label>{{ 'pages.food.form.prep_method' | translate }}</mat-label>
               <mat-select matInput placeholder="Way of Preparing" formControlName="prepValue" 
               panelClass="dropdown-regular" autocomplete="off" required>
-                <mat-option *ngFor="let preperation of preperations" [value]="preperation.prepValue"> {{preperation.prepValue}}</mat-option>
+                <mat-option *ngFor="let preperation of preperations"
+                  [value]="preperation.prepValue">
+                  {{preperation.prepValue}}
+                </mat-option>
               </mat-select>
-              <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">This is <strong>required</strong></mat-error>
+              <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">
+                {{ 'global.errors.required' | translate }}
+              </mat-error>
             </mat-form-field>
             <div class="btn-area">
-              <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deletePrep(i)">
+              <button type="button" mat-icon-button type="button" class="delete-btn"
+                (click)="deletePrep(i)">
                 <i class="fa__icon fa fa-trash"></i>
               </button>
             </div>
@@ -202,22 +253,21 @@
 
         <button type="button" class="add-form-field" (click)="addPrep()">
           <i class="fa__icon fa fa-plus"></i>
-          Add a Preperation method
+          {{ 'pages.food.buttons.add_prep' | translate }}
         </button>
       </form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
         <button type="submit" class="dialog-button" (click)="addFood()"
           [disabled]="!infoForm.valid || !categoryForm.valid || !prepForm.valid || !unitForm.valid"
           [class.disabled]="!infoForm.valid || !categoryForm.valid  || !prepForm.valid || !unitForm.valid"
-          mat-dialog-close
-        >
-          Done
+          mat-dialog-close>
+            {{ 'global.buttons.done' | translate }}
         </button>
       </section>
-
     </mat-step>
-
   </mat-horizontal-stepper>
 </main>

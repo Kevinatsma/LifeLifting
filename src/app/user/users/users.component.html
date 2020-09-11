@@ -4,27 +4,29 @@
 <div class="wrapper">
     <header>
         <section class="title">
-            <h1>The Users of LifeLifting</h1>
+            <h1>{{ 'pages.users.title' | translate }}</h1>
             <div class="overview-search-bar not-mobile" mat-button>
-                <input type="text" placeholder="Search by name" (input)="onChangeSearch($event)" class="overview-search-bar__input">
+                <input type="text"
+                placeholder="{{ 'global.actions.search.search_by_name' | translate }}"
+                (input)="onChangeSearch($event)" class="overview-search-bar__input">
                 <i class="fa__icon fas fa-search"></i>
             </div>
             <button class="filter not-mobile" mat-button [matMenuTriggerFor]="filterMenu">
-                Filter
+                {{ 'global.actions.filter' | translate }}
                 <i class="fa__icon fas fa-sort-down"></i>
             </button>
             <mat-menu #filterMenu="matMenu">
                 <button mat-menu-item (click)="toggleQuery(filterSelection = 'all')" [class.active]="allUsers">
                     <i class="fa__icon fas fa-users"></i>
-                    All users
+                    {{ 'pages.users.filters.all_users' | translate }}
                 </button>
                 <button mat-menu-item (click)="toggleQuery(filterSelection = 'accepted')" [class.active]="acceptedUsers">
                     <i class="fa__icon fas fa-user-check"></i>
-                    Accepted users
+                    {{ 'pages.users.filters.accepted_users' | translate }}
                 </button>
                 <button mat-menu-item (click)="toggleQuery(filterSelection = 'unaccepted')" [class.active]="unacceptedUsers">
                     <i class="fa__icon fas fa-user-times"></i>
-                    Unaccepted users
+                    {{ 'pages.users.filters.unaccepted_users' | translate }}
                 </button>
             </mat-menu>
             <button class="icon-button" (click)="openDialog()">
@@ -32,17 +34,19 @@
             </button>
         </section>
     
-        <p class="intro-text">In this section you have a quick overview of the users. You can view quick 
-            contact info and edit/delete them directly from the list. With the top right button you add one. <span class="emoji">😃</span>
+        <p class="intro-text">
+            {{ 'pages.users.intro' | translate }}
         </p>
 
         <section class="list-header">
             <div class="overview-search-bar mobile" mat-button>
-                <input type="text" placeholder="Search by name" (input)="onChangeSearch($event)" class="overview-search-bar__input">
+                <input type="text"
+                placeholder="{{ 'global.actions.search.search_by_name' | translate }}"
+                (input)="onChangeSearch($event)" class="overview-search-bar__input">
                 <i class="fa__icon fas fa-search"></i>
             </div>
             <button class="filter mobile" mat-button [matMenuTriggerFor]="filterMenu">
-                Filter
+                {{ 'global.actions.filter' | translate }}
                 <i class="fa__icon fas fa-sort-down"></i>
             </button>
         </section>
@@ -51,9 +55,9 @@
     <app-user-list [users]="users" *ngIf="!searchActive"></app-user-list>
     <app-user-list [users]="searchUsers" *ngIf="searchActive"></app-user-list>
     <p class="card-text no-search-result" *ngIf="searchActive && searchUsers && searchUsers.length == 0">
-        No search results found, please try a different name. 🔎
+        {{ 'global.actions.search.no_results_name' | translate }}
         <a class="text-link" (click)="searchActive = !searchActive">
-            Show all
+            {{ 'global.buttons.show_all' | translate }}
         </a>
     </p>
 

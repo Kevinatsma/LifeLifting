@@ -1,77 +1,74 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
   <section class="step-wrapper step-one" *ngIf="!user.basicData">
-    <h5>Welcome, {{user.displayName || user.email}}</h5>
-    <h1>Step 1: Basic personal data</h1>
+    <h5>{{ 'global.words.welcome' | translate }}, {{user.displayName || user.email}}</h5>
+    <h1>{{ 'pages.signup.step_one.title' | translate }}</h1>
 
     <form [formGroup]="basicUserDataForm" (ngSubmit)="updateUser(user)" class="auth-form" *ngIf="!user.basicData">
       <div class="animated-container">
         <!-- Name -->
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>First name</mat-label>
+          <mat-label>{{ 'global.form.first_name' | translate }}</mat-label>
           <input type="text" matInput placeholder="John" formControlName="firstName" 
-            autocomplete="off" required
-          >
-          <!-- <mat-error class="input-error" *ngIf="!displayName.dirty">This is <strong>required</strong></mat-error> -->
+            autocomplete="off" required>
         </mat-form-field>
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Last name</mat-label>
+          <mat-label>{{ 'global.form.last_name' | translate }}</mat-label>
           <input type="text" matInput placeholder="Doe" formControlName="lastName" 
-            autocomplete="off" required
-          >
-          <!-- <mat-error class="input-error" *ngIf="!displayName.dirty">This is <strong>required</strong></mat-error> -->
+            autocomplete="off" required>
         </mat-form-field>
 
         <!-- Age -->
         <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Your Age</mat-label>
-          <input type="number" matInput placeholder="I am .. years old" formControlName="age" 
-            autocomplete="off" min="18" max="90" required
-          >
-          <!-- <mat-error class="input-error" *ngIf="!age.dirty">This is <strong>required</strong></mat-error> -->
+          <mat-label>{{ 'pages.signup.step_one.form.age_label' | translate }}</mat-label>
+          <input type="number" matInput formControlName="age" 
+            placeholder="{{ 'pages.signup.step_one.form.age_placeholder' | translate }}"
+            autocomplete="off" min="18" max="90" required>
         </mat-form-field>
 
         <!-- Gender -->
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Your Gender</mat-label>
-          <mat-select matInput placeholder="Female, male, other" [(value)]="selectedGender" formControlName="gender" 
-          panelClass="dropdown-regular" autocomplete="off" required>
-            <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
+          <mat-label>{{ 'pages.signup.step_one.form.gender_label' | translate }}</mat-label>
+          <mat-select matInput placeholder="{{ 'pages.signup.step_one.form.gender_placeholder' | translate }}"
+            [(value)]="selectedGender" formControlName="gender" 
+            panelClass="dropdown-regular" autocomplete="off" required>
+            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+              {{gender.viewValue}}
+            </mat-option>
           </mat-select>
-          <!-- <mat-error class="input-error" *ngIf="!gender.valid && basicUserDataForm.touched">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
 
         <!-- Country of Residence -->
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>I live in</mat-label>
-          <mat-select matInput placeholder="Pick a country"
+          <mat-label>{{ 'pages.signup.step_one.form.country_label' | translate }}</mat-label>
+          <mat-select matInput placeholder="{{ 'pages.signup.step_one.form.country_placeholder' | translate }}"
           panelClass="dropdown-regular" formControlName="country" autocomplete="off" required>
-            <mat-option *ngFor="let country of countries" [value]="country.name">{{country.name}}</mat-option>
+            <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{country.name}}
+            </mat-option>
           </mat-select>
-          <!-- <mat-error class="input-error" *ngIf="!displayName.dirty">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
 
         <!-- Main Goal -->
         <mat-form-field class="textarea-field" appearance="standard" floatLabel="always">
-          <mat-label>What's your main goal?</mat-label>
-          <textarea matInput placeholder="I want to ..." formControlName="mainGoal" autocomplete="off" matTextareaAutosize 
-          required></textarea>
-          <!-- <mat-error class="input-error" *ngIf="!mainGoal.minlength && mainGoal.touched">A minimal of <strong>20 characters</strong> is required</mat-error> -->
+          <mat-label>{{ 'pages.signup.step_one.form.main_goal_label' | translate }}</mat-label>
+          <textarea matInput required
+            placeholder="{{ 'pages.signup.step_one.form.main_goal_placeholdler' | translate }}"
+            formControlName="mainGoal" autocomplete="off" matTextareaAutosize>
+          </textarea>
         </mat-form-field>
 
-        <!-- Country of Residence -->
+        <!-- Current weight -->
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Current weight in kg</mat-label>
-          <input type="number" matInput placeholder="My current weight is" formControlName="currentWeight" 
-            autocomplete="off" required
-          >
-          <!-- <mat-error class="input-error" *ngIf="!displayName.dirty">This is <strong>required</strong></mat-error> -->
+          <mat-label>{{ 'pages.signup.step_one.form.current_weight_label' | translate }}</mat-label>
+          <input type="number" matInput formControlName="currentWeight" 
+            placeholder="{{ 'pages.signup.step_one.form.current_weight_placeholder' | translate }}"
+            autocomplete="off" required>
         </mat-form-field>
 
         <!-- Phone Number -->
         <div class="multiple-input phone-field" formGroupName="phoneNumber">
           <mat-form-field class="area-code" appearance="standard" floatLabel="always">
-              <mat-label>Area code</mat-label>
-              <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
+              <mat-label>{{ 'pages.signup.step_one.area_code_label' | translate }}</mat-label>
               <mat-select matInput placeholder="+1"
               panelClass="dropdown-area-code" formControlName="phoneAreaCode" autocomplete="off" required>
                 <mat-option *ngFor="let code of areaCodes" value="{{code.dial_code}}" class="dial-code">
@@ -85,19 +82,19 @@
               </mat-select>
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Phone Number</mat-label>
+              <mat-label>{{ 'global.form.phone_number' | translate }}</mat-label>
               <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off">
           </mat-form-field>
         </div>
 
         <!-- How did you hear from us -->
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>How did you hear from us?</mat-label>
-          <mat-select matInput placeholder="Social Media, friends, etc."
-          panelClass="dropdown-regular" formControlName="heardFromUs" autocomplete="off" required>
+          <mat-label>{{ 'pages.signup.step_one.hear_from_us_label' | translate }}</mat-label>
+          <mat-select matInput autocomplete="off" required formControlName="heardFromUs"
+            placeholder="{{ 'pages.signup.step_one.hear_from_us_placeholder' | translate }}"
+            panelClass="dropdown-regular">
             <mat-option *ngFor="let medium of mediums" [value]="medium.viewValue">{{medium.viewValue}}</mat-option>
           </mat-select>
-          <!-- <mat-error class="input-error" *ngIf="!gender.valid && basicUserDataForm.touched">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
 
         <div class="btn-area mobile">
@@ -105,7 +102,7 @@
           [class.btn-disabled]="!basicUserDataForm.valid" 
           [disabled]="!basicUserDataForm.valid"
           type="submit">
-            <span>To the next step</span>
+            <span>{{ 'global.buttons.next_step' | translate }}</span>
             <i class="fa__icon fas fa-chevron-right small"></i>
           </button>
         </div>
@@ -117,26 +114,25 @@
         [class.btn-disabled]="!basicUserDataForm.valid" 
         [disabled]="!basicUserDataForm.valid"
         type="submit">
-          <span>To the next step</span>
+          <span>{{ 'global.buttons.next_step' | translate }}</span>
           <i class="fa__icon fas fa-chevron-right small"></i>
         </button>
       </div>
     </form>
 
-    <div class="step-done" *ngIf="user.basicData">
-
-    </div>
+    <div class="step-done" *ngIf="user.basicData"></div>
 
   </section>
 
   <section class="step-wrapper success" *ngIf="user.basicData">
-    <h5>Welcome, {{user.displayName || user.email}}</h5>
-    <h1>Step 1: Basic personal data</h1>
-    <p class="intro-text">Psst, you already filled out the basic data. If you made a mistake, don't worry. You can edit your whole profile after signing up. Click the button to go to the next step!</p>
+    <h5>{{ 'global.words.welcome' | translate }}, {{user.displayName || user.email}}</h5>
+    <h1>{{ 'pages.signup.step_one.title' | translate }}</h1>
+    <p class="intro-text">
+      {{ 'pages.signup.step_one.intro' | translate}}
+    </p>
     <div class="btn-area">
       <button class="btn-icon-right" routerLink="../step-two">
-        <span>Pick a package</span>
-        <span class="emoji">📦</span>
+        <span>{{ 'pages.signup.step_one.buttons.pick_package' | translate }} 📦</span>
       </button>
     </div>
   </section>

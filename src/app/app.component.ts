@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { fadeAnimation } from './core/animations/fade.animation';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,12 @@ import { fadeAnimation } from './core/animations/fade.animation';
 export class AppComponent {
   title = 'Life Lifting';
 
-  constructor( ) {
+  constructor(public translate: TranslateService) {
+    translate.addLangs(['en', 'es']);
+    translate.setDefaultLang('en');
   }
 
   // public getRouterOutletState(outlet) {
   //   return outlet.isActivated ? outlet.activatedRoute : '';
   // }
-
 }

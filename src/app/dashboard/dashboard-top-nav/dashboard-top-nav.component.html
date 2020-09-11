@@ -34,14 +34,17 @@
       <mat-menu #menu="matMenu" class="popup-menu">
         <button mat-menu-item class="menu-link" (click)="editUser(user)">
           <i class="fa__icon fas fa-user-edit"></i>
-          Edit profile
+          {{ 'global.user.actions.edit_profile' | translate }}
         </button>
         <button mat-menu-item class="menu-link" (click)="signOut()">
           <i class="fa__icon fas fa-sign-out-alt"></i>
-          Sign out
+          {{ 'global.buttons.sign_out' | translate}}
         </button>
       </mat-menu>
-      
+    </div>
+
+    <div class="language-changer">
+      <app-language-picker></app-language-picker>
     </div>
   </section>
 </div>

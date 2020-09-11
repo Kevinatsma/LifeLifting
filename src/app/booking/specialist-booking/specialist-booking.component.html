@@ -13,11 +13,10 @@
       </button>
     </div>
 
-    <h1>Your Calendar</h1>
-    <!-- <h1>{{user.specialist}} Calendar</h1> -->
-
+    <h1>{{ 'pages.booking.general.title_personal' | translate }}</h1>
     <div class="right" *ngIf="specialist">
-      <button class="icon-button not-mobile" [class.has-messages]="hasEventRequest" (click)="openUnacceptedUsers()">
+      <button class="icon-button not-mobile" [class.has-messages]="hasEventRequest"
+        (click)="openUnacceptedUsers()">
         <i class="fa__icon fas fa-bell"></i>
       </button>
       <button class="icon-button" (click)="addEvent()">
@@ -32,7 +31,7 @@
 
   <div class="calendar-container">
     <div class="profile-picture" [style.backgroundImage]="'url('+ user.photoURL +')'">
-      <span *ngIf="!user.photoURL">No Photo Yet</span>
+      <span *ngIf="!user.photoURL">{{ 'global.errors.no_photo' | translate }}</span>
     </div>
 
     <section class="calendar__title">
@@ -42,18 +41,10 @@
         (click)="replaceDates()"
         [view]="view"
         [(viewDate)]="viewDate"
-        (viewDateChange)="activeDayIsOpen = false"
-      >
+        (viewDateChange)="activeDayIsOpen = false">
         <i class="fa__icon fas fa-arrow-left"></i>
-        <span class="not-mobile">Previous</span>
+        <span class="not-mobile">{{ 'global.buttons.previous' | translate }}</span>
       </button>
-      <!-- <div
-        class="btn btn-outline-secondary"
-        mwlCalendarToday
-        [(viewDate)]="viewDate"
-      >
-        Today
-      </div> -->
       <h2>
         {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}
       </h2>
@@ -66,7 +57,7 @@
         (viewDateChange)="getEvents(user)"
         (viewChange)="getEvents(user)"
       >
-      <span class="not-mobile">Next</span>
+      <span class="not-mobile">{{ 'global.buttons.next' | translate }}</span>
         <i class="fa__icon fas fa-arrow-right"></i>
       </button>
     </section>
@@ -76,23 +67,20 @@
         <button
           class="button tab-group-btn"
           (click)="view = CalendarView.Month"
-          [class.active]="view === CalendarView.Month"
-        >
-          <span>Month</span>
+          [class.active]="view === CalendarView.Month">
+          <span>{{ 'events.month' | translate }}</span>
         </button>
         <button
           class="btn tab-group-btn"
           (click)="view = CalendarView.Week; replaceDates()"
-          [class.active]="view === CalendarView.Week"
-        >
-          <span>Week</span>
+          [class.active]="view === CalendarView.Week">
+          <span>{{ 'events.week' | translate }}</span>
         </button>
         <button
           class="btn tab-group-btn"
           (click)="view = CalendarView.Day"
-          [class.active]="view === CalendarView.Day"
-        >
-          <span>Day</span>
+          [class.active]="view === CalendarView.Day">
+          <span>{{ 'events.day' | translate }}</span>
         </button>
       </div>
     </section>
@@ -108,8 +96,7 @@
           (dayClicked)="dayClicked($event.day)"
           (eventClicked)="openEventDetailDialog($event)"
           (eventTimesChanged)="eventTimesChanged($event)"
-          [excludeDays]="excludeDays"
-        >
+          [excludeDays]="excludeDays">
         </mwl-calendar-month-view>
         <mwl-calendar-week-view
           *ngSwitchCase="CalendarView.Week"
@@ -120,8 +107,7 @@
           [dayStartHour]="16"
           [dayEndHour]="20"
           (eventTimesChanged)="eventTimesChanged($event)"
-          [excludeDays]="excludeDays"
-        >
+          [excludeDays]="excludeDays">
         </mwl-calendar-week-view>
         <mwl-calendar-day-view
           *ngSwitchCase="CalendarView.Day"
@@ -131,8 +117,7 @@
           (eventClicked)="openEventDetailDialog($event)"
           [dayStartHour]="16"
           [dayEndHour]="20"
-          (eventTimesChanged)="eventTimesChanged($event)"
-        >
+          (eventTimesChanged)="eventTimesChanged($event)">
         </mwl-calendar-day-view>
       </ng-container>
     </section>

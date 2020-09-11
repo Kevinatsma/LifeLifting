@@ -1,7 +1,7 @@
 <main id="measurement-detail-wrapper">
   <div class="close-section mobile">
     <button class="text-link close-btn" (click)="closeDialog()" type="button">
-      <i class="mobile fas fa-arrow-left"></i> Back
+      <i class="mobile fas fa-arrow-left"></i> {{ 'global.buttons.back' | translate }}
     </button>
   </div>
 
@@ -9,48 +9,48 @@
     <mat-step class="perimeter-step">
       <div class="weight">
         <div class="field-container weight">
-          <p class="card-text">Weight</p>
+          <p class="card-text">{{ 'global.user.weight' | translate }}</p>
           <h4>{{measurement.weight}} KG</h4>
         </div>
       </div>
 
       <section class="perimeters">
-        <ng-template matStepLabel>Perimeters</ng-template>
+        <ng-template matStepLabel>{{ 'pages.measurement.general.perimeters' | translate }}</ng-template>
 
         <!--  Left side -->
         <div class="wrapper left">
           <div class="field-container arms-relaxed">
-            <p class="card-text">Relaxed arm</p>
+            <p class="card-text">{{ 'pages.measurement.form.relaxed_arm' | translate }}</p>
             <h4>{{ measurement.perimeters.armRelaxed }} cm </h4>
           </div>
 
           <div class="field-container arms-flexed">
-            <p class="card-text">Flexed arm</p>
+            <p class="card-text">{{ 'pages.measurement.form.flexed_arm' | translate }}</p>
             <h4>{{ measurement.perimeters.armFlexed }} cm </h4>
           </div>
 
           <div class="field-container thorax">
-            <p class="card-text">Thorax</p>
+            <p class="card-text">{{ 'pages.measurement.form.thorax' | translate }}</p>
             <h4>{{ measurement.perimeters.thorax }} cm </h4>
           </div>
 
           <div class="field-container waist">
-            <p class="card-text">Waist</p>
+            <p class="card-text">{{ 'pages.measurement.form.waist' | translate }}</p>
             <h4>{{ measurement.perimeters.waist }} cm </h4>
           </div>
 
           <div class="field-container hip">
-            <p class="card-text">Hip</p>
+            <p class="card-text">{{ 'pages.measurement.form.hip' | translate }}</p>
             <h4>{{ measurement.perimeters.hip }} cm </h4>
           </div>
 
           <div class="field-container thigh-max">
-            <p class="card-text">Thigh max</p>
+            <p class="card-text">{{ 'pages.measurement.form.thigh_max' | translate }}</p>
             <h4>{{ measurement.perimeters.thighMax }} cm </h4>
           </div>
 
           <div class="field-container thigh-min">
-            <p class="card-text">Thigh min</p>
+            <p class="card-text">{{ 'pages.measurement.form.thigh_min' | translate }}</p>
             <h4>{{ measurement.perimeters.thighMin }} cm </h4>
           </div>
         </div>
@@ -61,32 +61,32 @@
         <!-- Right side -->
         <div class="wrapper right">
           <div class="field-container head">
-            <p class="card-text">Head</p>
+            <p class="card-text">{{ 'pages.measurement.form.head' | translate }}</p>
             <h4>{{ measurement.perimeters.head }} cm </h4>
           </div>  
     
           <div class="field-container neck">
-            <p class="card-text">Neck</p>
+            <p class="card-text">{{ 'pages.measurement.form.neck' | translate }}</p>
             <h4>{{ measurement.perimeters.neck }} cm </h4>
           </div>
 
           <div class="field-container forearm">
-            <p class="card-text">Forearm</p>
+            <p class="card-text">{{ 'pages.measurement.form.forearm' | translate }}</p>
             <h4>{{ measurement.perimeters.forearm }} cm </h4>
           </div>
 
           <div class="field-container wrist">
-            <p class="card-text">Wrist</p>
+            <p class="card-text">{{ 'pages.measurement.form.wrist' | translate }}</p>
             <h4>{{ measurement.perimeters.wrist }} cm </h4>
           </div>
     
           <div class="field-container calf">
-            <p class="card-text">Calf</p>
+            <p class="card-text">{{ 'pages.measurement.form.calf' | translate }}</p>
             <h4>{{ measurement.perimeters.calf }} cm </h4>
           </div>
 
           <div class="field-container ankle">
-            <p class="card-text">Ankle</p>
+            <p class="card-text">{{ 'pages.measurement.form.ankle' | translate }}</p>
             <h4>{{ measurement.perimeters.ankle }} cm </h4>
           </div>
         </div>
@@ -96,33 +96,33 @@
     <mat-step class="skinfold-step">
       <div class="weight">
         <div class="field-container weight">
-          <p class="card-text">Weight</p>
+          <p class="card-text">{{ 'global.user.weight' | translate }}</p>
           <h4>{{measurement.weight}} KG</h4>
         </div>
       </div>
 
       <section class='skinfolds'>
-        <ng-template matStepLabel>Skinfolds</ng-template>
+        <ng-template matStepLabel>{{ 'pages.measurement.general.skinfolds' | translate }}</ng-template>
 
         <!--  Left side -->
         <div class="wrapper left">
           <div class="field-container triceps">
-            <p class="card-text">Triceps</p>
+            <p class="card-text">{{ 'pages.measurement.form.triceps' | translate }}</p>
             <h4>{{ measurement.skinfolds.triceps }} mm </h4>
           </div>
           
           <div class="field-container subescapular">
-            <p class="card-text">Subescapular</p>
+            <p class="card-text">{{ 'pages.measurement.form.subescapular' | translate }}</p>
             <h4>{{ measurement.skinfolds.subescapular }} mm </h4>
           </div>
 
           <div class="field-container biceps">
-            <p class="card-text">Biceps</p>
+            <p class="card-text">{{ 'pages.measurement.form.biceps' | translate }}</p>
             <h4>{{ measurement.skinfolds.biceps }} mm </h4>
           </div>
 
           <div class="field-container cresta-iliaca">
-            <p class="card-text">Cresta Iliaca </p>
+            <p class="card-text">{{ 'pages.measurement.form.cresta_iliaca' | translate }}</p>
             <h4>{{ measurement.skinfolds.crestaIliaca }} mm </h4>
           </div>
         </div>
@@ -132,22 +132,22 @@
         <!--  right -->
         <div class="wrapper right">
           <div class="field-container supraespinal">
-            <p class="card-text">Supraespinal</p>
+            <p class="card-text">{{ 'pages.measurement.form.supraespinal' | translate }}</p>
             <h4>{{ measurement.skinfolds.supraespinal }} mm </h4>
           </div>
 
           <div class="field-container abdominal">
-            <p class="card-text">Abdominal</p>
+            <p class="card-text">{{ 'pages.measurement.form.abdominal' | translate }}</p>
             <h4>{{ measurement.skinfolds.abdominal }} mm </h4>
           </div>
 
           <div class="field-container frontal-thigh">
-            <p class="card-text">Frontal thigh</p>
+            <p class="card-text">{{ 'pages.measurement.form.frontal_thigh' | translate }}</p>
             <h4>{{ measurement.skinfolds.frontalThigh }} mm </h4>
           </div>
   
           <div class="field-container skinfold-calf">
-            <p class="card-text">Calf</p>
+            <p class="card-text">{{ 'pages.measurement.form.calf' | translate }}</p>
             <h4>{{ measurement.skinfolds.skinfoldCalf }} mm </h4>
           </div>
         </div>

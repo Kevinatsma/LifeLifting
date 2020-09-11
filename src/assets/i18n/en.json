@@ -2,7 +2,8 @@
     "global": {
         "general": {
             "name": "LifeLifting",
-            "slogan": "We are not afraid of mirrors!"
+            "slogan": "We are not afraid of mirrors!",
+            "loading": "Loading..."
         },
         "buttons": {
             "next": "Next",
@@ -10,6 +11,7 @@
             "back": "Back",
             "go_back": "Go back",
             "confirm": "Confirm",
+            "done": "Done",
             "go_to_mirror": "Go to Mirror",
             "more_info": "More info",
             "show_all": "Show all",
@@ -18,9 +20,16 @@
             "read_more": "Read More",
             "read_less": "Read Less",
             "see_more": "See more",
+            "learn_more": "Learn more",
             "hide": "Hide",
             "show": "Show",
-            "sign_out": "Sign out"
+            "sign_out": "Sign out",
+            "duplicate": "Duplicate",
+            "edit": "Edit",
+            "delete": "Delete",
+            "accept": "Accept",
+            "continue": "Continue",
+            "see_extra_notes": "See extra notes"
         },
         "form": {
             "email_placeholder": "E-mail address",
@@ -28,7 +37,11 @@
             "first_name": "First name",
             "last_name": "Last name",
             "phone_number": "Phone Number",
+            "gender": "Gender",
             "pick_date": "Pick a date",
+            "pick_one": "Pick one",
+            "pick_language": "Pick a Language",
+            "pick_from_list": "Pick one from the list",
             "errors": {
                 "required": "This is required",
                 "invalid_email": "That's not a valid e-mail address!",
@@ -36,11 +49,20 @@
                 "capslock": "&#x26A0; Warning Caps lock is turned on",
                 "not_enough_chars": "Not enough characters, try harder!",
                 "too_much_chars": "Too much characters, slow down there.."
-            }
+            },
+            "short_summary": "Write a short summary",
+            "area_code": "Area code",
+            "none_of_above": "None of the above",
+            "always_number": "Always a number",
+            "write_down_notes": "Write down any notes you have here",
+            "short_desc": "The Short Description",
+            "short_desc_ph": "Write a short but attractive description",
+            "every_x_days": "Every x days",
+            "x_per_week": "x per week"
         },
         "words": {
-            "yes": "yes",
-            "no": "no",
+            "yes": "Yes",
+            "no": "No",
             "or": "Or",
             "of": "of",
             "welcome": "Welcome",
@@ -50,12 +72,52 @@
             "admin": "Admin",
             "none": "None",
             "age": "Age",
+            "city": "City",
             "country": "Country",
             "with": "with",
-            "about": "About"
+            "about": "About",
+            "value": "value",
+            "notes": "Notes",
+            "masculine": "Masculine",
+            "feminine": "Feminine",
+            "other": "Other",
+            "elaborate": "Elaborate",
+            "simple": "Simple",
+            "good": "Good",
+            "regular": "Regular",
+            "bad": "Bad",
+            "like_what": "Like what?",
+            "created": "Created",
+            "edited": "Edited",
+            "calories": "calories",
+            "for": "For",
+            "by": "By",
+            "package": "package",
+            "dollar": "dollar",
+            "page": "Page",
+            "info": "Info",
+            "picture": "Picture",
+            "categories": "Categories",
+            "category": "Category",
+            "is": "is",
+            "metrics": "Metrics",
+            "percentage": "Percentage",
+            "end": "End",
+            "extra_notes": "Extra notes",
+            "duration": "Duration",
+            "price": "Price",
+            "user": "User",
+            "product": "Product",
+            "location": "Location",
+            "comments": "Comments"
+        },
+        "sizes": {
+            "meters": "meters"
         },
         "questions": {
-            "is_this_ok": "Is this okay?"
+            "is_this_ok": "Is this okay?",
+            "why_not": "Why not?",
+            "any_questions": "Do you have any questions?"
         },
         "actions": {
             "call": "Call",
@@ -68,6 +130,7 @@
                 "no_results_name": "No search results found, please try a different name. 🔎"
             },
             "print": {
+                "print": "Print",
                 "preview_title": "Print preview"
             },
             "save": {
@@ -78,6 +141,7 @@
         },
         "user": {
             "weight": "Weight",
+            "current_weight": "Current weight",
             "status": {
                 "signup_completed": "Signup Completed",
                 "signup_incomplete": "Signup not completed",
@@ -104,12 +168,23 @@
             "incomplete_profile": "Incomplete profile",
             "no_value": "No value",
             "wrong_go_back": "Woops something went wrong... Please go back.",
-            "no_goal":"No goal yet..."
+            "no_goal":"No goal yet...",
+            "required": "This is required",
+            "not_edited": "Not edited yet",
+            "email_invalid": "That's not a valid e-mail address!"
         },
         "social": {
             "skype": "Skype",
             "whatsapp": "WhatsApp",
             "phone_call": "Phone call"
+        },
+        "meals": {
+            "breakfast": "Breakfast",
+            "middle_morning": "Middle Morning",
+            "lunch": "Lunch",
+            "middle_afternoon": "Middle Afternoon",
+            "dinner": "Dinner",
+            "after_dinner": "After Dinner"
         }
     },
     "pages": {
@@ -180,13 +255,31 @@
                 }
             },
             "step_two": {
-
+                "subtitle": "Pick a package and get a free consultation",
+                "subtitle_success": "You've made a wise decision",
+                "title": "Step 2: Choose a package",
+                "already_chosen_1": "Psst, you already chose",
+                "already_chosen_2": "You can change your package choice later after signing up. Click the button to go to the next step!",
+                "buttons": {
+                    "choose_specialist": "Choose your specialist"
+                }
             },
             "step_three": {
-
+                "subtitle": "Pick wisely",
+                "subtitle_success": "You've picked wisely",
+                "title": "Step 3: Choose a Specialist",
+                "already_chosen": "Ooops! You already chose a specialist. Go to the next dashboard by clicking the button below. If you want to change your specialist later. That's allowed after one week of trial.",
+                "buttons": {
+                    "plan_consultation": "Plan the consultation"
+                }
             },
             "step_four": {
-
+                "subtitle": "Choose a date",
+                "title": "Step 4: Plan your first appointment",
+                "intro": "You already planned an appointment. Once the appointment is done, you'll go on to the payment. Go to the next step to follow the status of your requested appointment and to chat with your specialist.",
+                "buttons": {
+                    "check_status": "Check your status"
+                }
             },
             "limbo": {
                 "past_due_date": "Did the specialist forget to accept/cancel it and it's past due date?",
@@ -288,16 +381,71 @@
             "mealplans": {
                 "title": "My Mealplans",
                 "intro": "In this section you have a quick overview of the mealplans you created. You can view and edit/delete them directly from the list. With the top right button you add a mealplan. 📄"
+            },
+            "form": {
+                "first_name": "Give the client a name",
+                "last_name": "The last name",
+                "general_info": "General Info",
+                "account_settings": "Account Settings",
+                "account_settings_detail": "These are the account details of the client. Write them down so you can send them to 'em!",
+                "email_as_user": "The Email will be used as Username",
+                "client_email": "What's the client's email?",
+                "type_pass": "Type your password",
+                "personal": "Personal",
+                "important_info": "Important Info",
+                "personal_intro": "Tell us the first and last name so we can display it in his/her dashboard and greet the user in a more personal way."
             }
         },
         "specialist": {
+            "title": "The Specialists of LifeLifting",
+            "intro": "In this section you have a quick overview of the specialists. You can view quick contact info and edit/delete them directly from the list. With the top right button you add one. 😃",
             "general": {
+                "specialist_id": "Specialist ID",
                 "timezone": "Timezone",
                 "speciality": "Speciality",
                 "clients_patients": "Clients or Patients",
                 "years_experience": "Years of experience",
                 "contact_info": "Contact Info",
-                "languages": "Languages"
+                "languages": "Languages",
+                "practical_info": "Practical info",
+                "experience": "Experience",
+                "amount_of_patients": "Amount of patients",
+                "safe_warning": "Setting it for your client is safer",
+                "safe_warning_s": "Setting it for your specialist is safer",
+                "safe_warning_u": "Setting it for your user is safer"
+            },
+            "form": {
+                "general_info": "General Info",
+                "account_settings_detail": "These are the account details of the specialist. Write them down so you can send them to 'em",
+                "your_email": "What's your email?",
+                "personal_data": "Basic data that we need from the specialist. Some of this data will be displayed at step 4 of the signup process. This can be important in the decision making process of the future client.",
+                "specialist_name_ph": "Give the Specialist a name",
+                "profile_image": "Profile Image",
+                "profile_image_detail": "Please choose a clear picture that represents the present appearance of this person.",
+                "about_specialist": "About the Specialist",
+                "about_specialist_ph": "Please enter the most recent - working - phone number. Also, please write a small description that users can read :).",
+                "phone_nr_ph": "What's the phone number?",
+                "experience_detail": "How experienced is this specialist? Clients will obviously care about this, so decide this with the specialist herself.",
+                "position": "The position in LifeLifting",
+                "position_ph": "What's his/her position?",
+                "speciality_detail": "Best traits/skills",
+                "amount_nr": "Amount in number",
+                "total_patients": "Total amount of patients",
+                "total_patients_ph": "How many patients?",
+                "specialist_location": "Where is this specialist situated? Pick a GMT to know at what times to call or not to call.",
+                "pick_timezone": "Pick a Timezone",
+                "extras": "Extras",
+                "languages_detail": "Add languages to the specialist so we can hook them up with the right clients. This way we will also be able to know in which markets we are active.",
+                "which_lang": "Which Language?",
+                "proficiency": "Proficiency",
+                "what_level": "What level?",
+                "user_name_ph": "Give the user a name"
+            },
+            "buttons": {
+                "add_language": "Add Language"
+            },
+            "errors": {
+                "8_chars": "Must contain 8 characters, letters and numbers"
             }
         },
         "shopping_list": {
@@ -331,8 +479,24 @@
             "signup": {
                 "dates_times": "Dates & times",
                 "meet_method": "How is the meeting taking place?",
-                "only_peru_phone": "Phone (only Peru)",
-                "skype": "Skype"
+                "only_peru_phone": "Phone (only Peru)"
+            },
+            "form": {
+                "plan_appointment": "Plan an Appointment",
+                "suitable_time": "Please provide a suitable time. Requests for times that are already taken, are not secured spots.",
+                "describe_meeting": "Describe the meeting. Example: 'First consultation'",
+                "pick_user": "Pick a user",
+                "pick_specialist": "Pick a specialist",
+                "pick_primary_color": "Pick a primary color (event background)",
+                "pick_secondary_color": "Pick a secondary color (event border)",
+                "start_date_time": "Start date & time",
+                "end_date_time": "End date & time",
+                "taking_place_how": "How is this meeting taking place?",
+                "online_real": "Is the meeting Online or in real?",
+                "skype_name": "Skype name",
+                "new_colors": "Pick some new colors",
+                "timeframe": "Choose a timeframe",
+                "pick_date_icon": "Pick a date or click the icon"
             },
             "buttons": {
                 "open_in_maps": "Open in Maps",
@@ -342,23 +506,531 @@
             }
         },
         "first_consultation": {
-            "title": "First consultation"
+            "title": "First consultation",
+            "title_m": "First consultations",
+            "general": {
+                "fic_id": "First Consultation ID",
+                "basic_info": "Basic info",
+                "general_info": "General info",
+                "physical_activities": "Physical Activities",
+                "store_name": "Store name",
+                "main_goal_mealplan": "Main goal for meal plan",
+                "urinate_a_day": "How many times he/she is urinating per day",
+                "wakeup_urinate": "Wakes up to urinate",
+                "bowel_every_day": "Bowel movements every day",
+                "always_same_schedule": "Always same schedule",
+                "most_hungry": "Most hungry moment",
+                "appetite_1_10": "Appetite on a scale from 1-10",
+                "sleep_status": "Current sleep status",
+                "trouble_sleep": "Trouble falling asleep",
+                "wake_up_energized": "Wakes up energized",
+                "first_period": "First menstrual period",
+                "regular_cycle": "Regular menstrual cycle",
+                "birth_control": "Taking birth control pills",
+                "past_2_weeks": "Conditions in the past 2 weeks",
+                "cannot_eat": "Can't eat",
+                "med_list": "List of medication",
+                "has_gastritis": "Has gastritis",
+                "portion_size": "Portion size",
+                "prepared_by": "Prepared by",
+                "orders_online": "Orders food online",
+                "eat_after_dinner": "Eats after dinner",
+                "physical_activity": "Does physical activities",
+                "usual_workout": "Usual workout schedule",
+                "training_loc": "Training location",
+                "travel_to_training": "Time to travel to training",
+                "training_intensity": "Training intensity",
+                "wake_up_time": "Wake up time",
+                "order_or_outside": "Orders food or eats out",
+                "takes_supps": "Takes supplements",
+                "will_use_supps": "Is willing to use a supplement",
+                "eating_recordatory": "Eating recordatory",
+                "consumes_alcohol": "Consumes alcohol",
+                "smokes": "Smokes",
+                "consumes_coffee": "Consumes coffee",
+                "consumes_tea": "Consumes tea",
+                "cups_day": "cups/day",
+                "stays_up_late": "Stays up late",
+                "consumes_drugs": "Consumes drugs",
+                "social_life": "Goes out at night to have a social life",
+                "bed_time": "Go to bed time",
+                "breakfast_time": "Breakfast time",
+                "lunch_time": "Lunch time",
+                "dinner_time": "Dinner time",
+                "cook_at_home": "The one that cooks at home",
+                "breakfast_home": "Has breakfast at home",
+                "plenty_time": "Has plenty of time for breakfast",
+                "work_desc": "Work description",
+                "work_schedule": "Work schedule",
+                "work_weekends": "Works on weekends",
+                "travel_work": "Time to travel from work to home",
+                "travel_home": "Time to travel from home to work",
+                "eat_during_work": "Can eat during work time",
+                "simple_snack": "Can have simple snack during work time",
+                "snack_preference": "Snacks preference",
+                "kitchen_gadgets": "Has kitchen gadgets at work",
+                "per_x_day_bleeding": "Per x days of bleeding",
+                "pregnancy_nr": "Number of pregnancies"
+            },
+            "steps": {
+                "general_1": "General 1/2",
+                "habits": "Habits",
+                "body_functions": "Body Functions",
+                "general_2": "General 2/2"
+            },
+            "general_info_1": {
+                "step_title": "📝 General Info 1/2",
+                "step_intro": "Please get as much information from the client as you can, in order to provide the best service.",
+                "main_goal": "What is your main goal for a meal plan?",
+                "address": "What's the address?",
+                "address_placeholder": "Street + Number, City, Country",
+                "birth_date": "Birth date",
+                "born_future": "You will be born in the future 🔮",
+                "you_age_old": "You are {{age}} years old",
+                "height": "Height in numbers"
+            },
+            "habits": {
+                "step_title": "🚴 Habits",
+                "step_intro": "Please get as much information from the client as you can, in order to make a better and more personal meal plan the next time.",
+                "general": "General",
+                "sleeping": "Sleeping",
+                "eating": "Eating",
+                "work": "Work",
+                "form": {
+                    "drink_alcohol": "Do you drink alcohol?",
+                    "cups_a_day": "How many cups a day?",
+                    "smoke": "Do you smoke cigarettes?",
+                    "packs_a_week": "How many packs a week?",
+                    "take_drugs": "Do you take drugs?",
+                    "drink_coffee": "Do you drink coffee?",
+                    "drink_tea": "Do you drink tea?",
+                    "social_life": "Goes out at night to have a social life",
+                    "days_a_week": "How many days a week?",
+                    "stay_up_late": "Stays up until late",
+                    "sleeping_habits": "Sleeping habits",
+                    "wake_up_time": "At what time do you wake up?",
+                    "bed_time": "At what time do go to sleep?",
+                    "eating_habits": "Eating habits",
+                    "breakfast_time": "At what time do you have breakfast?",
+                    "lunch_time": "What's the time you lunch?",
+                    "dinner_time": "At what time do you have dinner?",
+                    "who_cooks": "Who cooks at home?",
+                    "patient": "Patient",
+                    "relative": "Relative",
+                    "maid": "Maid",
+                    "breakfast_home": "Do you have breakfast at home?",
+                    "plenty_breakfast_time": "Do you have plenty of time for breakfast",
+                    "your_work": "What do you work in?",
+                    "work_schedule": "What's your work schedule?",
+                    "work_weekends": "Do you work on the weekends?",
+                    "your_schedule": "What's your schedule?",
+                    "home_to_work": "How long does it take you from home to work? (in minutes)",
+                    "work_to_home": "And how long does it take from work to home? (in minutes)",
+                    "transportation": "Method of transportation",
+                    "car": "🚗 Car",
+                    "public": "🚉 Public Transportation",
+                    "bike": "🚴‍♂️ Bike",
+                    "walking": "🚶‍♀️ Walking",
+                    "eat_during_work": "Can you eat during work?",
+                    "snack_during_work": "Can you have a very simple and practical snack while you work?",
+                    "snack_level": "Do you prefer your snacks to be elaborate or simple?",
+                    "kitchen_gadgets": "Do you have kitchen gadgets at work?"
+                }
+            },
+            "body_functions": {
+                "step_title": "🧘 Body Functions",
+                "step_intro": "Please get as much information from the client as you can, in order to make a better and more personal meal plan the next time.",
+                "diuresis": "Diuresis",
+                "bowel_movement": "Bowel movements",
+                "appetite": "Appetite",
+                "sleep": "Sleep",
+                "form": {
+                    "urinate_each_day": "How many times do you urinate each day?",
+                    "urinate_at_night": "Do you wake up to urinate in the middle of the night?",
+                    "bowel_movements": "Bowel movements",
+                    "every_day": "Do you have them every day?",
+                    "times_per_week": "How many times a day do you have them per week?",
+                    "bowel_movements_a_day": "How many times a day do you have bowel movements?",
+                    "same_movements": "Do you always go at the same moments?",
+                    "appetite_category": "From 1 to 10, 10 being “I’m always hungry”, where would you categorize your appetite in general",
+                    "hungry_time": "Time of the day when you feel the most hungry",
+                    "sleep": "Sleep",
+                    "current_sleep": "How are you currently sleeping?",
+                    "average_sleep": "Average hours of sleep",
+                    "trouble_sleep": "Do you have trouble falling asleep?",
+                    "minutes_amount": "How many minutes, roughly?",
+                    "energized": "Do you wake up energized?"
+                },
+                "female": {
+                    "title": "Female",
+                    "first_period": "How old were you at your first menstrual period?",
+                    "regular_cycle": "Do you have a regular menstrual cycle right now?",
+                    "birth_control_pills": "Do you take any birth control pills?",
+                    "period_x_days": "I have my period every X days. Fill in X.",
+                    "bleed_x_days": "I bleed for X days. Fill in X.",
+                    "times_pregnant": "How many times were you pregnant?"
+                }
+            },
+            "general_info_2": {
+                "step_title": "📝 General Info 2/2",
+                "step_intro": "Please get as much information from the client as you can, in order to make a better and more personal meal plan the next time.",
+                "conditions_title": "Conditions",
+                "dinner": "Dinner",
+                "activities": "Activities",
+                "weekends": "Weekends",
+                "form": {
+                    "health_conditions": "Health conditions",
+                    "have_conditions": "Do you have any health conditions?",
+                    "add_condition": "Add a Health condition",
+                    "past_2_weeks": "The past 2 weeks",
+                    "2_week_conditions": "During the past two weeks I had",
+                    "using_meds": "Are you using medication",
+                    "have_gastritis": "Do you have gastritis?",
+                    "no_go_products": "Products you can't eat or drink",
+                    "cant_consume": "I can't consume",
+                    "preferred_diet": "Preferred diet type",
+                    "dinner_type": "Is it a plate of food like lunch, or is it more like a snack?",
+                    "plate": "Plate",
+                    "snack": "Snack",
+                    "prepared_dinner": "Who prepared dinner?",
+                    "eat_after_dinner": "Do you usually eat after dinner?",
+                    "where_shopping": "Where do you go shopping?",
+                    "shopping_location": "Shopping location",
+                    "shopping_locations": "Shopping location",
+                    "who_shops": "Who does the shopping at home?",
+                    "order_online": "Do you order food online?",
+                    "have_physical_activities": "Do you do any physical activities?",
+                    "define_activities": "Define your activities",
+                    "which_activites": "Which Activities?",
+                    "workout_schedule": "Usual schedule of workouts",
+                    "physical_activity": "Specify your physical activity",
+                    "traning_location": "Training Location",
+                    "arrive_time": "How long does it take you to get there?",
+                    "training_intensity": "Intensity of training",
+                    "weekends": "Weekends",
+                    "wakeup_time": "At what time do you have to wake up",
+                    "order_food": "Do you usually order food/eat outside?",
+                    "supplements": "Supplements",
+                    "take_supps": "Are you taking any supplements?",
+                    "what_are_you_taking": "What are you taking?",
+                    "use_supplement": "Would you be willing to use a supplement if necessary?",
+                    "eating_record": "Your eating recordatory",
+                    "write_important": "Write down important things here",
+                    "physicial_activities": "Does physical activities"
+                },
+                "conditions": {
+                    "diarrhea": "Diarrhea",
+                    "gastritits": "Gastritis",
+                    "constipation": "Constipation",
+                    "nausea": "Nausea",
+                    "dizziness": "Dizziness"
+                },
+                "buttons": {
+                    "add_product": " Add a Product",
+                    "add_location": "Add a location",
+                    "add_activity": "Add an Activity"
+                }
+            },
+            "extra": {
+                "title": "📝 Extra notes",
+                "intro": "Write down important things here.",
+                "notice_remember": "Did you notice/remember anything?"
+            },
+            "errors": {
+                "no_first_consult": "No First consultation yet..."
+            }
+        },
+        "follow_up": {
+            "title": "Follow-up Consultation",
+            "title_m": "Follow-up Consultations",
+            "general": {
+                "recap_desc": "A quick recap at the thoughts on the last mealplan.",
+                "mealplan_fu": "The mealplan for this follow-up"
+            },
+            "form": {
+                "recap": "Recap",
+                "recap_title": "A quick recap",
+                "recap_intro": "Please get as much information from the client as you can, in order to make a better and more personal meal plan the next time.",
+                "import_mealplan": "Import a mealplan you created for",
+                "diet_following": "Diet following percentage",
+                "like_the_most": "What did you like most?",
+                "like_the_least": "What did you like least?",
+                "change_never_again": "What do you want to change and never see again?",
+                "see_on_mealplans": "What would you like to see on your meal plans?",
+                "routine": "Routine",
+                "routine_detail": "Please get as much information from the client as you can, in order to make a better and more personal meal plan the next time.",
+                "bowel_freq": "How is your bowel Movement Frequency?",
+                "sleeping_habit": "How are you sleeping?",
+                "water_intake": "How is your water intake going?",
+                "activity_frequency": "What did you think about the frequency of the activity?",
+                "activity_opinion": "What did you think about the activity itself?",
+                "change_something": "Would you like to change something?",
+                "supp_opinion": "What did you think about the supplementation proposed?",
+                "meals_habits": "Meals & Habits",
+                "meals_habits_detail": "Please get as much information from the client as you can, in order to make a better and more personal meal plan the next time.",
+                "portion_sizes": "Are the portion sizes ok?",
+                "feeling_hungry": "Were you feeling hungry?",
+                "preperation_trouble": "Are you having trouble with any of the preparations?",
+                "during_weekend": "During the weekend",
+                "sleeping_schedule": "What is your sleeping schedule?",
+                "eat_outside": "Did you eat outside?",
+                "cheat_meals": "What about cheat meals?",
+                "meals_per_day": "The amount of meals you eat per day",
+                "personal_comments": "Personal comments",
+                "how_you_feeling": "Subjectively, how are you feeling?",
+                "observation_specialist": "Observations Specialist",
+                "notes_specialist": "Extra notes taken by Specialist",
+                "pick_a_mealplan": "Pick a Meal plan"
+            },
+            "errors": {
+                "no_follow_ups": "No Follow-up Consultations yet",
+                "no_mealplan_for": "There is no mealplan for {{name}} yet."
+            },
+            "buttons": {
+                "see_mealplan": "See Meal plan"
+            }
+        },
+        "package": {
+            "title": "Package",
+            "intro": "In this section you have a quick overview of the packages. You can view and edit/delete them directly from the list. With the top right button you add a package. 😃",
+            "general": {
+                "available_packages": "Available Packages",
+                "package_id": "Package ID",
+                "benefits": "Benefits"
+            },
+            "form": {
+                "package_info": "Package Info",
+                "package_info_detail": "Basic data that we need from the package. This data will be displayed at step 2 of the signup process. This can be important in the decision making process of the future client.",
+                "already_taken": "Check the package list for the numbers already taken.",
+                "package_title": "Package title",
+                "package_title_ph": "Give the package a title",
+                "about": "About the package",
+                "about_detail": "Please write a small description that users can read. This will be vital to the decision making of the future client.",
+                "short_desc": "The Short Description",
+                "short_desc_ph": "Write a short but attractive description",
+                "amount_of_time": "Amount of Time",
+                "amount_time_desc": "How long does the package go for? This is important for an eventually future implementation of an automatic renew subscription notification.",
+                "how_long_valid": "How long is this valid?",
+                "amount_weeks": "Amount in weeks",
+                "price_intro": "How much will it cost? We will calculate your profit under the hood if you'd like!",
+                "extras": "Extras",
+                "extras_detail": "Add languages to the specialist so we can hook them up with the right clients. This way we will also be able  to know in which markets we are active.",
+                "package_pros": "What's the plus of this package?",
+                "add_benefits": "Add benefits"
+            },
+            "buttons": {
+                "add_benefit": "Add a Benefit"
+            },
+            "errors": {
+                "no_description": "No description yet...",
+                "not_available": "Woops! This package is not (yet) avaliable.",
+                "not_available_detail": "Please go back to the available packages on the packages tab."
+            }
         },
         "guideline": {
             "title": "Guidelines",
+            "title_personal": "My Guidelines",
+            "intro": "In this section you have a quick overview of the guidelines you created. You can view and edit/delete them directly  from the list. With the top right button you add a guideline. 📄",
             "general": {
+                "guideline_id": "Guideline ID",
+                "guideline_number": "Guideline number",
+                "guideline_for": "Guideline for",
+                "guideline_name": "Guideline name",
                 "goal": "Goal",
-                "fat_percentage": "Fat percentage"
+                "fat_percentage": "Fat percentage",
+                "targets": "Guideline targets",
+                "factor_calorie": "Factor Calorie",
+                "macro_distribution": "Macro Distribution",
+                "linked_measurement": "Linked Measurement",
+                "linked_consultation": "Linked First Consultation",
+                "calculated_values": "Calculated Values",
+                "max_amount_kcal": "Max amount of kcal",
+                "bmi": "Body Mass Index",
+                "fat_athlete": "Fat percentage (athlete)",
+                "fat_regular": "Fat percentage (regular)",
+                "activities": "Activities"
+            },
+            "form": {
+                "link_measurement": "Link a Measurement to this guideline",
+                "link_consultation": "Link a First Consultation to this guideline",
+                "ideal_weight": "Ideal weight",
+                "ideal_weight_placeholder": "What's the clients ideal weight?",
+                "amount_of": "Amount of",
+                "ideal_muscle_weight": "Ideal Kg of muscle",
+                "muscle_weight_placeholder": "How many kg's?",
+                "total_duration": "Total duration",
+                "kcal_change": "Kcal Increase/decrease",
+                "basal_metobolism": "calories from the basal metabolism",
+                "protein": "Protein",
+                "carbs": "Carbohydrates",
+                "fat": "Fat",
+                "increase": "Increase",
+                "decrease": "Decrease",
+                "per_week": "Per week",
+                "how_long": "How long",
+                "level": "Level",
+                "guideline_info_for": "Guideline info for",
+                "guideline_info_detail": "The guideline for the client. This guideline has to be filled out on the first meeting with the client(!). This document is of huge importance, since we can calculate heaps of things based on the values you'll enter here. Be precise and ask thouroughly to be as personal as possible for you client.",
+                "number_taken": "Check the guideline list for the numbers already taken.",
+                "name_placeholder": "Give the Guideline a name",
+                "targets": "Targets",
+                "target_for": "Guideline targets for",
+                "target_reach": "Define the targets that your users want to reach here.",
+                "client_weight": "Current Client Weight",
+                "gain_or_lose": "Gain or lose weight",
+                "kg_change": "Kg's the client will lose/gain",
+                "kg_change_detail": "Amount in kg's",
+                "duration": "The Duration to reach it",
+                "duration_detail": "Approx. amount of weeks",
+                "calc_values": "Calculative values for",
+                "calc_values_detail": "We need to calculate some things under the hood. Help us by providing these values.",
+                "increase_decrease": "Increase or decrease calories from the basal metabolism",
+                "how_many_calories": "How many calories we are going to increase or decrease",
+                "amount_in_kcal": "Amount in kcal",
+                "factor_calorie": "Factor Calorie: This is by how many times the basal amount of calories calculated by the system will be multiplied.",
+                "would_mean": "would mean a",
+                "activities_for": "Activities for",
+                "activities_for_detail": "Describe more about the activity that the client mainly loves and does. Also put in the macro distribution values.",
+                "add_activities": "Add the client's activities",
+                "pick_activity": "Pick an activity",
+                "what_activity": "Which activity does the client do?",
+                "how_proficient": "How proficient is the client?",
+                "pick_level": "Pick a level",
+                "how_long_activity": "How long does the user do this activity?",
+                "amount_min": "Amount in minutes",
+                "activity_frequency": "The activity frequency",
+                "times_per_week": "How many times per week",
+                "macros": "Macros",
+                "macros_for": "Macros for",
+                "macros_detail": "Define the way the macros will be divided during the time the client follows this guideline. Please note: The total must add up to 100!"
+            },
+            "buttons": {
+                "add_activity": "Add an Activity"
+            },
+            "errors": {
+                "no_guidelines": "No Guidelines yet...",
+                "weight_not_measured": "Weight was not measured",
+                "measurement_incomplete": "Linked measurement is incomplete",
+                "not_available": "😔 Woops! This guideline is not (yet) avaliable.",
+                "not_available_detail": "Please go back to the available guidelines on the guidelines tab."
             }
         },
         "mealplan": {
-            "title": "Mealplans"
+            "title": "Mealplans",
+            "title_s": "Meal plan",
+            "intro": "In this section you have a quick overview of the mealplans you created. You can view and edit/delete them directly from the list. With the top right button you add a mealplan.",
+            "general": {
+                "mealplan_id": "Mealplan ID",
+                "mealplan_number": "Mealplan number",
+                "mealplan_info_for": "Mealplan Info for",
+                "mealplan_add_intro": "The mealplan for the client. This mealplan has to be filled out on the first meeting with the client(!). This document is of huge importance, since we can calculate heaps of things based on the values you'll enter here. Be precise and ask thouroughly to be as personal as possible for you client.",
+                "specialist_notes": "Specialist's notes/recommendations",
+                "print_subtitle": "Nutrition based Healthy life choices; avoiding disease rather than treating it",
+                "meal_name": "Meal name",
+                "supps": "Supplements",
+                "supps_short": "Supps",
+                "supps_detail": "These are the supplements that should be taken before, during or after the exercise next to it. Your specialist has added these based on the info he/she got during the introduction meeting.",
+                "mealplan_for": "Meal plan for"
+            },
+            "form": {
+                "mealplan_name": "Mealplan name",
+                "mealplan_name_ph": "Give the mealplan a name",
+                "before_training": "Before the training",
+                "during_training": "During the training",
+                "after_training": "After the training",
+                "step_intro": "Add ingredients and meals to the meal times you specified earlier. Add a maximum of 2 meals per meal time.",
+                "monday_meals_for": "Monday Meals for",
+                "tuesday_meals_for": "Tuesday Meals for",
+                "wednesday_meals_for": "Wednesday Meals for",
+                "thursday_meals_for": "Thursday Meals for",
+                "friday_meals_for": "Friday Meals for",
+                "meal_title": "The title of the meal",
+                "meal_title_placeholder": "Name the meal based on the products",
+                "pick_product": "Pick a Product",
+                "supps_for": "Supplements for",
+                "supps_for_detail": "Define the supplements the user should take before, during and/or after the training. All values are optional. But first, pick a guideline to hook this mealplan up to.",
+                "import_guideline": "Import a guideline you created for",
+                "pick_guideline": "Pick a Guideline",
+                "number_taken": "Check the mealplan list for the numbers already taken.",
+                "meal_times": "Meal times",
+                "meal_times_for": "Meal times for",
+                "meal_times_detail": "Define the meal times for this client. You will have to fill out meals for all the meal times you enter.",
+                "best_time": "Which meal times suit the client best?",
+                "mealtime_name": "Mealtime name",
+                "attach_name": "Attach a name to the time",
+                "finally_done": "Finally done... or not",
+                "finally_done_intro_1": "If you're done. Thanks for going through that process. Click the done button and see the mealplan appear live in the mealplan section of the client's profile!",
+                "finally_done_intro_2": "If not, the meal button won't be clickable. Check the rest of the steps to see if you missed something!",
+                "another_client": "If you choose another client, step 3 (supplements) will be overwritten",
+                "pick_mealtime": "Pick a Meal time"
+            },
+            "errors": {
+                "no_mealplans": "No Meal plans yet...",
+                "no_mealplans_found": "No mealplans were found.",
+                "no_mealtime": "This meal doesn't contain a meal time yet...",
+                "no_guideline": "This user doesn't have any guidelines yet",
+                "no_guideline_for": "There is no guideline for {{name}} yet.",
+                "fill_out_step_2": "Fill out the meal times in step 2 to see something here",
+                "fill_out_detail": "To be able to create meals and add ingredients for this client's mealplan, you have to first specify when the client is going to eat."
+            },
+            "buttons": {
+                "see_notes": "See extra notes",
+                "add_second_meal": "Add a second Meal",
+                "remove_second_meal": "Remove the second meal",
+                "add_mealtime": "Add a Meal time"
+            }
+        },
+        "measurement": {
+            "title": "Measurements",
+            "title_s": "Measurement",
+            "general": {
+                "perimeters": "Perimeters",
+                "skinfolds": "Skinfolds"
+            },
+            "form": {
+                "head": "Head",
+                "neck": "Neck",
+                "arm_relaxed": "Arm Relaxed",
+                "arm_flexed": "Arm Flexed",
+                "forearm": "Forearm",
+                "wrist": "Wrist",
+                "thorax": "Thorax",
+                "waist": "Waist",
+                "hip": "Hip",
+                "thigh_max": "Thigh Max",
+                "thigh_min": "Thigh Min",
+                "calf": "Calf",
+                "ankle": "Ankle",
+                "triceps": "Triceps",
+                "subescapular": "Subescapular",
+                "biceps": "Biceps",
+                "cresta_iliaca": "Cresta Iliaca",
+                "supraespinal": "Supraespinal",
+                "abdominal": "Abdominal",
+                "frontal_thigh": "Frontal Thigh"
+            },
+            "errors": {
+                "no_measurements": "No Measurements yet..."
+            }
         },
         "review": {
             "title": "Reviews",
+            "general": {
+                "this_review": "this review"
+            },
             "buttons": {
                 "show": "Show reviews",
                 "hide": "Hide reviews"
+            },
+            "form": {
+                "write_for": "Write a review for",
+                "write_for_detail": "A few minutes of your time would be great, so {{name}} will know what his/her strong and weak points are.",
+                "feedback_text": "Feedback text",
+                "feedback_text_ph": "Insert feedback here"
+            },
+            "errors": {
+                "no_reviews": "No Reviews yet...",
+                "min_char_200": "You have to have at least 200 characters, you have {{length}} characters at the moment."
             }
         },
         "dashboard": {
@@ -423,6 +1095,98 @@
                     "intro": "In this section you have a quick overview of your reviews. Try to keep your reviews positive, so new clients will be more likely to choose you. The reviews are sorted on date. 😃"
                 }
             }
+        },
+        "exercises": {
+            "title": "Exercise",
+            "exercise_id": "Exercise ID",
+            "intro": "In this section you have a quick overview of the exercises you entered. You can view and edit/delete them directly from the list. With the top right button you add a exercise. 🤸",
+            "general": {
+                "saved_exercises": "Saved Exercises",
+                "possible_locations": "Possible Locations",
+                "very_intense": "Very intense",
+                "intense": "Intense",
+                "regular": "Regular",
+                "mild": "Mild",
+                "very_mild": "Very mild"
+            },
+            "form": {
+                "exercise_info": "Exercise Info",
+                "exercise_info_detail": "Basic data that we need from the package. This data will be displayed at step 2 of the signup process. This can be important in the decision making process of the future client.",
+                "exercises_taken": "Check the exercise list for the numbers already taken.",
+                "exercise_name": "Product name",
+                "exercise_name_label": "Give the exercise a name",
+                "met_value": "What is the METs value?",
+                "exercise_image": "Exercise Image",
+                "exercise_image_detail": "Please choose a clear picture that represents the appearance of this exercise item.",
+                "category_detail": "Describe and add a few categories that describe the exercise/activity. Let's be detailed here, because we can maybe build a filter function later.",
+                "category_description": "Category description",
+                "describe_category": "What describes the category the best?",
+                "locations": "Locations",
+                "locations_detail": "Describe and add a few locations where you can execute the exercise/activity. Be detailed, because we can maybe build a filter function later.",
+                "type_of_place": "Type of place",
+                "place_description": "What describes the place the best?"
+            },
+            "buttons": {
+                "add_category": "Add a Category",
+                "add_location": "Add a Location"
+            },
+            "errors": {
+                "not_available": "😔 Woops! This exercise is not (yet) avaliable.",
+                "not_available_detail": "Please go back to the available exercises on the exercises tab."
+            }
+        },
+        "food": {
+            "product_id": "Product ID",
+            "general": {
+                "title": "Saved Foods",
+                "intro": " In this section you have a quick overview of the foods you entered. You can view and edit/delete them directly from the list. With the top right button you add a food.",
+                "nutrition_type": "Nutrition type",
+                "unit_m_value": "Unit measurement value",
+                "calc_factor": "Calculative factor",
+                "shopping_list": "Shopping list value",
+                "ways_of_preperation": "Ways of preperation",
+                "mostly_consumed": "Mostly consumed during",
+                "preperation": "Preperation",
+                "preperations": "Preperations"
+            },
+            "detail": {
+                "shopping_list_info": "Shopping list info",
+                "shopping_list_name": "Shopping list name",
+                "shopping_list_unit": "Shopping list unit"
+            },
+            "form": {
+                "food_info": "Food Info",
+                "food_info_detail": "Basic data that we need from the package. This data will be displayed at step 2 of the signup process. This can be important in the decision making process of the future client.",
+                "product_nr": "Product number",
+                "already_taken": "Check the food list for the numbers already taken.",
+                "product_name": "Product name",
+                "name_placeholder": "Give the product a name",
+                "shopping_name": "Shopping list name for the product",
+                "food_image": "Food image",
+                "food_image_detail": "Please choose a clear picture that represents the appearance of this food product item.",
+                "food_category": "Food Category",
+                "food_category_detail": "Put the product in a food category for filtering and organizing purposes.",
+                "nutrition_group": "Nutrition group",
+                "nutrition_group_detail": "Under which category does this product belong?",
+                "pick_mealtime": "Pick a Meal time",
+                "portion": "Portion",
+                "unit_value": "Unit value",
+                "unit_value_detail": "Indicate the measurement unit here. What is the best way to describe an amount of the product? Eg. 1 gram of eggs? Or 1 unit of eggs? This will be visible later when you start adding meal plans, and is an important part for the calculations.",
+                "the_unit": "The Unit",
+                "pick_value_placeholder": "Pick a value (cup, liter, etc)",
+                "shopping_list_unit": "The Unit for the shopping list",
+                "calculation_factor": "The calculation factor - see example down",
+                "preperations_detail": "Describe and add a few preperation methods for the product.",
+                "prep_method": "Preperation method"
+            },
+            "buttons": {
+                "add_period": "Add a Mealtime period",
+                "add_prep": "Add a Preperation method"
+            },
+            "errors": {
+                "not_available": "😔 Woops! This food is not (yet) avaliable.",
+                "not_available_detail": "Please go back to the available foods on the foods tab."
+            }
         }
     },
     "file_upload": {
@@ -451,13 +1215,26 @@
         "reject_request": "Are you sure you want to reject this request?"
     },
     "events": {
+        "title": "Event",
         "starts_at": "Starts at",
         "ends_at": "Ends at",
         "from": "From",
         "to": "To",
         "month": "Month",
         "day": "Day",
-        "week": "Week"
+        "week": "Week",
+        "weeks": "Weeks",
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday",
+        "hour": "Hour",
+        "minutes": "Minutes",
+        "per_week": "per week",
+        "per_day": "per day"
     },
     "chat": {
         "title": "LifeLifting Chat",
@@ -472,6 +1249,24 @@
             "delete_chat": "Delete this chat",
             "select_thread": "Select a thread",
             "back_to_dashboard": "Back to Dashboard"
+        }
+    },
+    "dialogs": {
+        "sure_delete": "Are you sure that you want to delete",
+        "confirm": {
+            "delete_this": "Delete this",
+            "accept_this": "Accept this",
+            "erase_data": "Are you sure? The data will be erased completely.",
+            "delete_user_confirm": "The user can NOT be restored and the data will be LOST",
+            "messages_confirm": "Are you sure? The messages will be erased completely.",
+            "accept_user": "Are you sure that you want to let {{user}} into the app? If so, don't forget to set the subscription to valid in his/her profile afterwards"
+        },
+        "choose_mealplan": {
+            "title": "Choose a mealplan",
+            "intro": "Choose a mealplan to get your shopping list"
+        },
+        "edit": {
+            "edit_review": " Edit the review written by {{name}} here. Only do this for spelling mistakes or if the user wants to change something. Please don't change people's opinions."
         }
     }
 }

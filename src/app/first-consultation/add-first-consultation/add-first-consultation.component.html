@@ -5,7 +5,7 @@
     </button>
 
     <button class="mobile text-link close-btn" (click)="closeDialog()" type="button">
-      <i class="mobile fas fa-arrow-left"></i> Back
+      <i class="mobile fas fa-arrow-left"></i> {{ 'global.buttons.back' | translate }}
     </button>
   </div>
 
@@ -13,35 +13,35 @@
     <div class="navigation__link-container">
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="generalone"
         [class.valid]="basicDataForm.valid">
-        General info 1/2
+        {{ 'pages.first_consultation.steps.general_1' | translate }}
         <i class="fa__icon far fa-check-circle"></i>
       </h4>
     </div>
     <div class="navigation__link-container">
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="habits"
         [class.valid]="habitForm.valid">
-        Habits
+        {{ 'pages.first_consultation.steps.habits' | translate }}
         <i class="fa__icon far fa-check-circle"></i>
       </h4>
       <ul>
         <li>
           <a (click)="handleNavClick($event)" data-scroll-target="habits-general">
-            General
+            {{ 'pages.first_consultation.habits.general' | translate }}
           </a>
         </li>
         <li>
           <a (click)="handleNavClick($event)" data-scroll-target="habits-sleeping">
-            Sleeping
+            {{ 'pages.first_consultation.habits.sleeping' | translate }}
           </a>
         </li>
         <li>
           <a (click)="handleNavClick($event)" data-scroll-target="habits-eating">
-            Eating
+            {{ 'pages.first_consultation.habits.eating' | translate }}
           </a>
         </li>
         <li>
           <a (click)="handleNavClick($event)" data-scroll-target="habits-work">
-            Work
+            {{ 'pages.first_consultation.habits.work' | translate }}
           </a>
         </li>
       </ul>
@@ -49,33 +49,33 @@
     <div class="navigation__link-container">
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="bodyfunctions"
         [class.valid]="bodyFunctionsForm.valid">
-        Body functions
+        {{ 'pages.first_consultation.steps.body_functions' | translate }}
         <i class="fa__icon far fa-check-circle"></i>
       </h4>
       <ul>
         <li>
           <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-diuresis">
-            Diuresis
+            {{ 'pages.first_consultation.body_functions.diuresis' | translate }}
           </a>
         </li>
         <li>
           <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-bowel">
-            Bowel movements
+            {{ 'pages.first_consultation.body_functions.bowel_movement' | translate }}
           </a>
         </li>
         <li>
           <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-appetite">
-            Appetite
+            {{ 'pages.first_consultation.body_functions.appetite' | translate }}
           </a>
         </li>
         <li *ngIf="basicDataForm['controls'].sex.value === 'Feminine'">
           <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-female"> 
-            Female
+            {{ 'pages.first_consultation.body_functions.female.title' | translate }}
           </a>
         </li>
         <li>
           <a (click)="handleNavClick($event)" data-scroll-target="bodyfunctions-sleep">
-            Sleep
+            {{ 'pages.first_consultation.body_functions.sleep' | translate }}
           </a>
         </li>
       </ul>
@@ -83,36 +83,35 @@
     <div class="navigation__link-container">
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="generaltwo"
         [class.valid]="generalDataForm.valid">
-        General info 2/2
+        {{ 'pages.first_consultation.steps.general_2' | translate }}
         <i class="fa__icon far fa-check-circle"></i>
       </h4>
       <ul>
         <li>
           <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-conditions">
-            Conditions
+            {{ 'pages.first_consultation.general_info_2.conditions_title' | translate }}
           </a>
         </li>
         <li>
           <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-dinner">
-            Dinner
+            {{ 'pages.first_consultation.general_info_2.dinner' | translate }}
           </a>
         </li>
         <li>
           <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-activities">
-            Activities
+            {{ 'pages.first_consultation.general_info_2.activities' | translate }}
           </a>
         </li>
         <li>
           <a (click)="handleNavClick($event)" data-scroll-target="generaltwo-weekends">
-            Weekends
+            {{ 'pages.first_consultation.general_info_2.weekends' | translate }}
           </a>
         </li>
       </ul>
     </div>
     <div class="navigation__link-container">
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="notes">
-        Notes
-
+        {{ 'global.words.notes' | translate }}
         <ng-container *ngIf="noteForm['controls'].specialistNotes.dirty">
           <i class="fa__icon far fa-check-circle"></i>
         </ng-container>
@@ -122,287 +121,353 @@
 
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="basicDataForm">
-      <ng-template matStepLabel>General 1/2</ng-template>
+      <ng-template matStepLabel>
+        {{ 'pages.first_consultation.steps.general_1' | translate }}
+      </ng-template>
       
       <div class="title-area" id="generalone">
-        <h3>📝 General Info 1/2</h3>
+        <h3>
+          {{ 'pages.first_consultation.general_info_1.step_title' | translate }}
+        </h3>
         <p class="card-text">
-          Please get as much information from the client as you can, in order to provide the best service.
+          {{ 'pages.first_consultation.general_info_1.step_intro' | translate }}
         </p>
       </div>
 
       <form [formGroup]="basicDataForm">
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>What is your main goal for a meal plan?</mat-label>
-          <textarea type="text" matInput formControlName="mealplanMainGoal" placeholder="Write a short summary" 
-          matTextareaAutosize autofocus="on" autocomplete="off" required>
+          <mat-label>
+            {{ 'pages.first_consultation.general_info_1.main_goal' | translate }}
+          </mat-label>
+          <textarea type="text" matInput formControlName="mealplanMainGoal"
+            placeholder="{{ 'global.form.short_summary' | translate }}" 
+            matTextareaAutosize autofocus="on" autocomplete="off" required>
           </textarea>
           <mat-error class="input-error" *ngIf="!basicDataForm['controls'].mealplanMainGoal.valid">
-            This is <strong>required</strong></mat-error>
+            {{ 'global.form.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>What's the address?</mat-label>
-          <textarea type="text" matInput formControlName="address" placeholder="Street + Number, City, Country" 
-          matTextareaAutosize autofocus="off" autocomplete="off" required>
+          <mat-label>{{ 'pages.first_consultation.general_info_1.address' | translate }}</mat-label>
+          <textarea type="text" matInput formControlName="address"
+            placeholder="{{ 'pages.first_consultation.general_info_1.address_placeholder' | translate }}" 
+            matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
-          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].address.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].address.valid">
+            {{ 'global.form.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="date-picker" appearance="standard" floatLabel="always">
-          <mat-label>Birth date</mat-label>
+          <mat-label>{{ 'pages.first_consultation.general_info_1.birth_date' | translate }}</mat-label>
           <input matInput formControlName="birthDate" [matDatepicker]="datePickerOne"
           placeholder="mm/dd/yyyy (eg. 26/03/1992)" onformchange="getBirthday()">
           <mat-datepicker-toggle [for]="datePickerOne"></mat-datepicker-toggle>
           <mat-datepicker #datePickerOne></mat-datepicker>
           <mat-hint *ngIf="basicDataForm['controls'].birthDate.dirty">
             <ng-container *ngIf="age < 0">
-              You will be born in the future 🔮
+              {{ 'pages.first_consultation.general_info_1.born_future' | translate }}
             </ng-container>
             <ng-container *ngIf="age >= 0">
-              You are <strong>{{age}}</strong> years old
+              {{ 'pages.first_consultation.general_info_1.you_age_old' | translate: {age: age} }}
             </ng-container>
           </mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="standard" floatLabel="always" class="number">
-          <mat-label>Height in numbers</mat-label>
+          <mat-label>{{ 'pages.first_consultation.general_info_1.height' | translate }}</mat-label>
           <input type="number"formControlName="height" matInput placeholder="1.85" autocomplete="off" required> <span class="specifier">meter</span>
-          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].height.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].height.valid">
+            {{ 'global.form.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
 
         <div class="phone-number">
           <mat-form-field appearance="standard" floatLabel="always" class="number">
-            <mat-label>Area code</mat-label>
+            <mat-label>{{ 'global.form.area_code' | translate }}</mat-label>
             <input type="number"formControlName="phoneAreaCode" matInput placeholder="+51" autocomplete="off" required>
           </mat-form-field>
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Phone number</mat-label>
+            <mat-label>{{ 'global.form.phone_number' | translate }}</mat-label>
             <input type="number"formControlName="phoneNumber" matInput placeholder="12341234" autocomplete="off" required>
           </mat-form-field>
         </div>
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Gender</mat-label>
+          <mat-label>{{ 'global.form.gender' | translate }}</mat-label>
           <mat-select matInput placeholder="Pick an appropriate option" formControlName="sex"
           autocomplete="off" panelClass="dropdown-regular" required>
-            <mat-option value="Masculine">Masculine</mat-option>
-            <mat-option value="Feminine">Feminine</mat-option>
-            <mat-option value="Other">Other</mat-option>
+            <mat-option value="Masculine">{{ 'global.words.masculine' | translate }}</mat-option>
+            <mat-option value="Feminine">{{ 'global.words.feminine' | translate }}</mat-option>
+            <mat-option value="Other">{{ 'global.words.other' | translate }}</mat-option>
           </mat-select>
-          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].sex.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!basicDataForm['controls'].sex.valid">
+            {{ 'global.form.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
       </form>
 
       <section class="btn-area-one">
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperNext>
+          {{ 'global.buttons.next' | translate }}
+        </button>
       </section>
     </mat-step>
 
     <mat-step [stepControl]="habitForm">
-      <ng-template matStepLabel>Habits</ng-template>
+      <ng-template matStepLabel>
+        {{ 'pages.first_consultation.steps.habits' | translate }}
+      </ng-template>
 
       <div class="title-area" id="habits">
-        <h3>🚴 Habits</h3>
+        <h3>{{ 'pages.first_consultation.habits.step_title' | translate }}</h3>
         <p class="card-text">
-          Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          {{ 'pages.first_consultation.habits.step_intro' | translate }}
         </p>
       </div>
 
       <form [formGroup]="habitForm">
         <section class="general" id="general">
-          <h3>General</h3>
+          <h3>{{ 'pages.first_consultation.habits.general' | translate }}</h3>
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you drink alcohol?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.habits.form.drink_alcohol' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="alcohol">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'alcohol', 'yes', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'alcohol', 'yes', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'alcohol', 'yes', $event)">
+                {{ 'global.words.yes' | translate }}
+              </mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'alcohol', 'yes', $event)">
+                {{ 'global.words.no' | translate }}}
+              </mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="habitForm['controls'].alcohol.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
-                <mat-label>How many cups a day?</mat-label>
-                <input type="number"formControlName="alcoholNote" matInput placeholder="5" autocomplete="off" required>
-                <mat-error class="input-error" *ngIf="!habitForm['controls'].alcoholNote.valid">This is <strong>required</strong></mat-error>
+                <mat-label>
+                  {{ 'pages.first_consultation.habits.form.cups_a_day' | translate }}
+                </mat-label>
+                <input type="number"formControlName="alcohol>{{ 'global.words.no' | translate }}<te" matInput placeholder="5" autocomplete="off" required>
+                <mat-error class="input-error" *ngIf="!habitForm['controls'].alcoholNote.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
               </mat-form-field>
             </ng-container>
           </div>
           
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you smoke cigarettes?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.habits.form.smoke' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="smoke">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'smoke', 'yes', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'smoke', 'yes', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'smoke', 'yes', $event)">
+                {{ 'global.words.yes' | translate }}
+              </mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'smoke', 'yes', $event)">
+                {{ 'global.words.no' | translate }}
+              </mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="habitForm['controls'].smoke.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
-                <mat-label>How many packs a week?</mat-label>
+                <mat-label>
+                  {{ 'pages.first_consultation.habits.form.packs_a_week' | translate }}
+                </mat-label>
                 <input type="number"formControlName="smokeNote" matInput placeholder="4" autocomplete="off" required>
-                <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">This is <strong>required</strong></mat-error>
+                <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
               </mat-form-field>
             </ng-container>
           </div>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you take drugs?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.habits.form.take_drugs' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="drugs">
-              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes">
+                {{ 'global.words.yes' | translate }}
+              </mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">
+                {{ 'global.words.no' | translate }}
+              </mat-radio-button>
             </mat-radio-group>
           </div>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you drink coffee?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.habits.form.drink_coffee' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="coffee">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'coffee', 'yes', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'coffee', 'yes', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'coffee', 'yes', $event)">
+                {{ 'global.words.yes' | translate }}
+              </mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'coffee', 'yes', $event)">
+                {{ 'global.words.no' | translate }}
+              </mat-radio-button>
             </mat-radio-group>
 
 
           <ng-container *ngIf="habitForm['controls'].coffee.value === 'yes'">
             <mat-form-field appearance="standard" floatLabel="always" class="number">
-              <mat-label>How many cups a day?</mat-label>
+              <mat-label>{{ 'pages.first_consultation.habits.form.cups_a_day' | translate }}</mat-label>
               <input type="number"formControlName="coffeeNote" matInput placeholder="4" autocomplete="off" required>
-              <mat-error class="input-error" *ngIf="!habitForm['controls'].coffeeNote.valid">This is <strong>required</strong></mat-error>
+              <mat-error class="input-error" *ngIf="!habitForm['controls'].coffeeNote.valid">
+                {{ 'global.form.errors.required' | translate }}
+              </mat-error>
             </mat-form-field>
           </ng-container>
           </div>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you drink tea?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.habits.form.drink_tea' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="tea">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'tea', 'yes', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'tea', 'yes', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'tea', 'yes', $event)">
+                {{ 'global.words.yes' | translate }}
+              </mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'tea', 'yes', $event)">
+                {{ 'global.words.no' | translate }}
+              </mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="habitForm['controls'].tea.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
-                <mat-label>How many cups a day?</mat-label>
+                <mat-label>{{ 'pages.first_consultation.habits.form.cups_a_day' | translate }}</mat-label>
                 <input type="number"formControlName="teaNote" matInput placeholder="4" autocomplete="off">
-                <mat-error class="input-error" *ngIf="!habitForm['controls'].teaNote.valid">This is <strong>required</strong></mat-error>
+                <mat-error class="input-error" *ngIf="!habitForm['controls'].teaNote.valid">
+                  {{ 'global.form.errors.required' | translate }}
+                </mat-error>
               </mat-form-field>
             </ng-container>
           </div>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Goes out at night to have a social life</label>
+            <label class="radio-form-label">{{ 'pages.first_consultation.habits.form.social_life' | translate }}</label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="socialLife">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'socialLife', 'yes', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'socialLife', 'yes', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'socialLife', 'yes', $event)">
+                {{ 'global.words.yes' | translate }}
+              </mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'socialLife', 'yes', $event)">
+                {{ 'global.words.no' | translate }}
+              </mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="habitForm['controls'].socialLife.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
-                <mat-label>How many days a week?</mat-label>
+                <mat-label>{{ 'pages.first_consultation.habits.form.days_a_week' | translate }}</mat-label>
                 <input type="number"formControlName="socialLifeNote" matInput placeholder="2" autocomplete="off" required>
-                <mat-error class="input-error" *ngIf="!habitForm['controls'].socialLifeNote.valid">This is <strong>required</strong></mat-error>
+                <mat-error class="input-error" *ngIf="!habitForm['controls'].socialLifeNote.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
               </mat-form-field>
             </ng-container>
           </div>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Stays up until late</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.habits.form.stay_up_late' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="stayUpLate">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'stayUpLate', 'yes', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'stayUpLate', 'yes', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'stayUpLate', 'yes', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'stayUpLate', 'yes', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="habitForm['controls'].stayUpLate.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
-                <mat-label>How many days a week?</mat-label>
+                <mat-label>{{ 'pages.first_consultation.habits.form.days_a_week' | translate }}</mat-label>
                 <input type="number"formControlName="stayUpLateNote" matInput placeholder="4" autocomplete="off" required>
-                <mat-error class="input-error" *ngIf="!habitForm['controls'].stayUpLateNote.valid">This is <strong>required</strong></mat-error>
+                <mat-error class="input-error" *ngIf="!habitForm['controls'].stayUpLateNote.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
               </mat-form-field>
             </ng-container>
           </div>
         </section>
 
         <section class="sleeping-habits" id="sleeping">
-          <h3>Sleeping habits</h3>
+          <h3>{{ 'pages.first_consultation.habits.form.sleeping_habits' | translate }}</h3>
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>At what time do you wake up?</mat-label>
+            <mat-label>{{ 'pages.first_consultation.habits.form.wake_up_time' | translate }}</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="wakeUpTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
               <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].wakeUpTime.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].wakeUpTime.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>At what time do go to sleep?</mat-label>
+            <mat-label>{{ 'pages.first_consultation.habits.form.bed_time' | translate }}</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="sleepTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
               <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].sleepTime.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].sleepTime.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
         </section>
 
         <section class="eating-habits" id="eating">
-          <h3>Eating habits</h3>
+          <h3>{{ 'pages.first_consultation.habits.form.eating_habits' | translate }}</h3>
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>At what time do you have breakfast?</mat-label>
+            <mat-label>{{ 'pages.first_consultation.habits.form.breakfast_time' | translate }}</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="breakfastTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
               <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].breakfastTime.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].breakfastTime.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>What's the time you lunch?</mat-label>
+            <mat-label>{{ 'pages.first_consultation.habits.form.lunch_time' | translate }}</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="lunchTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
               <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].lunchTime.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].lunchTime.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>At what time do you have dinner?</mat-label>
+            <mat-label>{{ 'pages.first_consultation.habits.form.dinner_time' | translate }}</mat-label>
             <mat-select matInput placeholder="Pick a time" formControlName="dinnerTime" 
             panelClass="dropdown-regular" autocomplete="off" required>
               <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].dinnerTime.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].dinnerTime.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Who cooks at home?</mat-label>
+            <mat-label>{{ 'pages.first_consultation.habits.form.who_cooks' | translate }}</mat-label>
             <mat-select matInput placeholder="Pick one" formControlName="whoCooks" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option value="patient">Patient</mat-option>
-              <mat-option value="relative">Relative</mat-option>
-              <mat-option value="maid">Maid</mat-option>
-              <mat-option value="other">Other</mat-option>
+              <mat-option value="patient">{{ 'pages.first_consultation.habits.form.patient' | translate }}</mat-option>
+              <mat-option value="relative">{{ 'pages.first_consultation.habits.form.relative' | translate }}tive</mat-option>
+              <mat-option value="maid">{{ 'pages.first_consultation.habits.form.maid' | translate }}</mat-option>
+              <mat-option value="other">{{ 'global.words.other' | translate }}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!habitForm['controls'].whoCooks.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!habitForm['controls'].whoCooks.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you have breakfast at home?</label>
+            <label class="radio-form-label">{{ 'pages.first_consultation.habits.form.breakfast_home' | translate }}</label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="breakfastAtHome">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'breakfastAtHome', 'no', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'breakfastAtHome', 'no', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'breakfastAtHome', 'no', $event)">
+                {{ 'global.words.yes' | translate }}
+              </mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'breakfastAtHome', 'no', $event)">
+                {{ 'global.words.no' | translate }}
+              </mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="habitForm['controls'].breakfastAtHome.value === 'no'">
@@ -415,12 +480,14 @@
           </div>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you have plenty of time for breakfast?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.habits.form.plenty_breakfast_time' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="timeForBreakfast">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'timeForBreakfast', 'no', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'timeForBreakfast', 'no', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('habits', 'timeForBreakfast', 'no', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('habits', 'timeForBreakfast', 'no', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="habitForm['controls'].timeForBreakfast.value === 'no'">
@@ -434,17 +501,18 @@
         </section>
 
         <section class="work" id="work">
-          <h3>Work</h3>
+          <h3>{{ 'pages.first_consultation.habits.work' | translate }}</h3>
 
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>What do you work in?</mat-label>
-            <textarea type="text" matInput formControlName="workDescription" placeholder="Write a short summary" 
+            <mat-label>{{ 'pages.first_consultation.habits.form.your_work' | translate }}</mat-label>
+            <textarea type="text" matInput formControlName="workDescription"
+              placeholder="{{ 'global.form.short_summary' | translate }}" 
             matTextareaAutosize autofocus="off" autocomplete="off">
             </textarea>
           </mat-form-field>
 
           <div class="time-range">
-            <label>What's your work schedule?</label>
+            <label>{{ 'pages.first_consultation.habits.form.work_schedule' | translate }}</label>
 
             <div class="time-form-container">
               <mat-form-field appearance="standard" floatLabel="always">
@@ -463,16 +531,20 @@
           </div>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you work on the weekends?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.habits.form.work_weekends' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="workOnWeekends">
-              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <div class="time-range" *ngIf="habitForm['controls'].workOnWeekends.value === 'yes'">
-              <label>What's your schedule?</label>
+              <label>
+                {{ 'pages.first_consultation.habits.form.your_schedule' | translate }}
+              </label>
               <div class="time-form-container">
                 <mat-form-field appearance="standard" floatLabel="always">
                   <mat-select matInput placeholder="From" formControlName="workOnWeekendsFrom" 
@@ -492,7 +564,9 @@
 
           <div class="slider-container">
             <div class="mat-form-field form-slider-field">
-              <span class="label">How long does it take you from home to work? (in minutes)</span>
+              <span class="label">
+                {{ 'pages.first_consultation.habits.form.home_to_work' | translate }}
+              </span>
               <div class="slider">
                 <mat-slider class="form-slider home-work" [(value)]="homeToWorkScale" thumbLabel min="0" max="180">
                 </mat-slider>
@@ -504,7 +578,9 @@
             </div>
 
             <div class="mat-form-field form-slider-field">
-              <span class="label">And how long does it take from work to home? (in minutes)</span>
+              <span class="label">
+                {{ 'pages.first_consultation.habits.form.work_to_home' | translate }}
+              </span>
               <div class="slider">
                 <mat-slider class="form-slider home-work" [(value)]="workToHomeScale" thumbLabel min="0" max="180">
                 </mat-slider>
@@ -517,141 +593,166 @@
           </div>
 
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Method of transportation</mat-label>
+            <mat-label>{{ 'pages.first_consultation.habits.form.transportation' | translate }}</mat-label>
             <mat-select matInput placeholder="Pick a method" formControlName="transportationMethod" 
             panelClass="dropdown-regular" autocomplete="off">
-              <mat-option value="car">🚗 Car</mat-option>
-              <mat-option value="public">🚉 Public Transportation</mat-option>
-              <mat-option value="bike">🚴‍♂️ Bike</mat-option>
-              <mat-option value="walk">🚶‍♀️ Walking</mat-option>
+              <mat-option value="car">{{ 'pages.first_consultation.habits.form.car' | translate }}</mat-option>
+              <mat-option value="public">{{ 'pages.first_consultation.habits.form.public' | translate }}</mat-option>
+              <mat-option value="bike">{{ 'pages.first_consultation.habits.form.bike' | translate }}</mat-option>
+              <mat-option value="walk">{{ 'pages.first_consultation.habits.form.walking' | translate }}</mat-option>
             </mat-select>
           </mat-form-field>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Can you eat during work?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.habits.form.eat_during_work' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="eatDuringJob">
-              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
           </div>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Can you have a very simple and practical snack while you work?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.habits.form.snack_during_work' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="practicalSnackDuringJob">
-              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
           </div>
 
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Do you prefer your snacks to be elaborate or simple?</mat-label>
+            <mat-label>
+              {{ 'pages.first_consultation.habits.form.snack_level' | translate }}
+            </mat-label>
             <mat-select matInput placeholder="Pick one" formControlName="snacksPreference" 
             panelClass="dropdown-regular" autocomplete="off">
-              <mat-option value="elaborate">Elaborate</mat-option>
-              <mat-option value="simple">Simple</mat-option>
+              <mat-option value="elaborate">{{ 'global.words.elaborate' | translate }}</mat-option>
+              <mat-option value="simple">{{ 'global.words.simple' | translate }}</mat-option>
             </mat-select>
           </mat-form-field>
         </section>
    
         <div class="radio-form-field">
-          <label class="radio-form-label">Do you have kitchen gadgets at work?</label>
+          <label class="radio-form-label">
+            {{ 'pages.first_consultation.habits.form.kitchen_gadgets' | translate }}
+          </label>
           <mat-radio-group
             class="radio-button-group"
             formControlName="kitchenGadgetsAtWork">
-            <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-            <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+            <mat-radio-button class="radio-button" value="yes">{{ 'global.words.yes' | translate }}</mat-radio-button>
+            <mat-radio-button class="radio-button" value="no">{{ 'global.words.no' | translate }}</mat-radio-button>
           </mat-radio-group>
         </div>     
        </form>
 
       <section class="btn-area">
-        <button class="dialog-button" matStepperPrevious>Back</button>
-        <button class="dialog-button" matStepperNext>Next</button>
+        <button class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
+        <button class="dialog-button" matStepperNext>
+          {{ 'global.buttons.next' | translate }}
+        </button>
       </section>
     </mat-step>
 
     <mat-step [stepControl]="bodyFunctionsForm">
-      <ng-template matStepLabel>Body functions</ng-template>
+      <ng-template matStepLabel>
+        {{ 'pages.first_consultation.steps.body_functions' | translate }}
+      </ng-template>
       
       <div class="title-area" id="bodyfunctions">
-        <h3>🧘 Body functions</h3>
+        <h3>{{ 'pages.first_consultation.body_functions.step_title' | translate }}</h3>
         <p class="card-text">
-          Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          {{ 'pages.first_consultation.body_functions.step_intro' | translate }}
         </p>
       </div>  
 
       <form [formGroup]="bodyFunctionsForm" >
         <section class="diuresis"  id="diuresis">
-          <h3>Diuresis</h3>
+          <h3>{{ 'pages.first_consultation.body_functions.diuresis' | translate }}</h3>
           
           <mat-form-field appearance="standard" floatLabel="always" class="number">
-            <mat-label>How many times do you urinate each day?</mat-label>
+            <mat-label>{{ 'pages.first_consultation.body_functions.form.urinate_each_day' | translate }}</mat-label>
             <input type="number"formControlName="urinateAmount" matInput placeholder="6" autocomplete="off" required>
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].urinateAmount.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].urinateAmount.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you wake up to urinate in the middle of the night?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.body_functions.form.urinate_at_night' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="middleNightUrinate">
-              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
           </div>
         </section>
 
         <section class="bowel-movements" id="bowel">
-          <h3>Bowel movements</h3>
+          <h3>{{ 'pages.first_consultation.body_functions.form.bowel_movements' | translate }}</h3>
         
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you have them every day</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.body_functions.form.every_day' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="everyDay">
-              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="bodyFunctionsForm['controls'].everyDay.value === 'no'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
-                <mat-label>How many times a day do you have them per week?</mat-label>
+                <mat-label>
+                  {{ 'pages.first_consultation.body_functions.form.times_per_week' | translate }}
+                </mat-label>
                 <input type="number"formControlName="timesPerWeek" matInput placeholder="4" autocomplete="off">
-                <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].timesPerWeek.valid">This is <strong>required</strong></mat-error>
+                <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].timesPerWeek.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
               </mat-form-field>
             </ng-container>
 
             <ng-container *ngIf="bodyFunctionsForm['controls'].everyDay.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
-                <mat-label>How many times a day do you have bowel movements?</mat-label>
+                <mat-label>
+                  {{ 'pages.first_consultation.body_functions.form.bowel_movements_a_day' | translate }}
+                </mat-label>
                 <input type="number"formControlName="timesPerDay" matInput placeholder="6" autocomplete="off">
-                <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].timesPerDay.valid">This is <strong>required</strong></mat-error>
+                <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].timesPerDay.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
               </mat-form-field>
             </ng-container>
           </div>
 
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you always go at the same moments?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.body_functions.form.same_movements' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="sameSchedule">
-              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
           </div>
 
         </section>
 
         <section class="appetite" id="appetite">
-          <h3>Appetite</h3>
+          <h3>{{ 'pages.first_consultation.body_functions.appetite' | translate }}</h3>
         
           <div class="mat-form-field form-slider-field single-slider">
-            <span class="label">From 1 to 10, 10 being “I’m always hungry”, where would you categorize your appetite in general</span>
+            <span class="label">
+              {{ 'pages.first_consultation.body_functions.form.appetite_category' | translate }}
+            </span>
             <div class="slider">
               <mat-slider class="form-slider hungry" [(value)]="hungryScale" thumbLabel min="0" max="10">
               </mat-slider>
@@ -663,47 +764,69 @@
           </div>
 
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Time of the day when you feel the most hungry</mat-label>
+            <mat-label>
+              {{ 'pages.first_consultation.body_functions.form.hungry_time' | translate }}
+            </mat-label>
             <mat-select matInput placeholder="Pick one" formControlName="mostHungryMoment" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option value="breakfast">Breakfast</mat-option>
-              <mat-option value="middle-morning">Middle Morning</mat-option>
-              <mat-option value="lunch">Lunch</mat-option>
-              <mat-option value="middle-afternoon">Middle Afternoon</mat-option>
-              <mat-option value="dinner">Dinner</mat-option>
-              <mat-option value="after-dinner">After Dinner</mat-option>
+              <mat-option value="breakfast">
+                {{ 'global.meals.breakfast' | translate }}
+              </mat-option>
+              <mat-option value="middle-morning">
+                {{ 'global.meals.middle_morning' | translate }}
+              </mat-option>
+              <mat-option value="lunch">
+                {{ 'global.meals.lunch' | translate }}
+              </mat-option>
+              <mat-option value="middle-afternoon">
+                {{ 'global.meals.middle_afternoon' | translate }}
+              </mat-option>
+              <mat-option value="dinner">
+                {{ 'global.meals.dinner' | translate }}
+              </mat-option>
+              <mat-option value="after-dinner">
+                {{ 'global.meals.after_dinner' | translate }}
+              </mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].mostHungryMoment.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].mostHungryMoment.touched">
+              {{ 'global.form.errors.required' | translate }}
+            </mat-error>
           </mat-form-field>
 
         </section>
 
         <section class="female" *ngIf="basicDataForm['controls'].sex.value === 'Feminine'" id="female">
-          <h3>Female</h3>
+          <h3>{{ 'pages.first_consultation.body_functions.female.title' | translate }}</h3>
           
           <mat-form-field appearance="standard" floatLabel="always" class="number">
-            <mat-label>How old were you at your first menstrual period?</mat-label>
+            <mat-label>
+              {{ 'pages.first_consultation.body_functions.female.first_period' | translate }}
+            </mat-label>
             <input type="number"formControlName="firstMenstrualPeriod" matInput placeholder="12" autocomplete="off">
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].firstMenstrualPeriod.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].firstMenstrualPeriod.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
         
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you have a regular menstrual cycle right now?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.body_functions.female.regular_cycle' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="regularCycle">
-              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
           </div>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you take any birth control pills?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.body_functions.female.birth_control_pills' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="birthControlPills">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('bodyFunctions', 'birthControlPills', 'yes', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('bodyFunctions','birthControlPills', 'yes', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('bodyFunctions', 'birthControlPills', 'yes', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('bodyFunctions','birthControlPills', 'yes', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="bodyFunctionsForm['controls'].birthControlPills.value === 'yes'">
@@ -714,110 +837,135 @@
           </div>
 
           <mat-form-field appearance="standard" floatLabel="always" class="number">
-            <mat-label>I have my period every X days. Fill in X.</mat-label>
+            <mat-label>{{ 'pages.first_consultation.body_functions.female.period_x_days' | translate }}</mat-label>
             <input type="number"formControlName="periodXDays" matInput autocomplete="off" 
               placeholder="x">
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].periodXDays.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].periodXDays.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always" class="number">
-            <mat-label>I bleed for X days. Fill in X</mat-label>
+            <mat-label>{{ 'pages.first_consultation.body_functions.female.bleed_x_days' | translate }}</mat-label>
             <input type="number"formControlName="bleedingXDays" matInput autocomplete="off" 
               placeholder="x">
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].bleedingXDays.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].bleedingXDays.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always" class="number">
-            <mat-label>How many times were you pregnant?</mat-label>
+            <mat-label>{{ 'pages.first_consultation.body_functions.female.times_pregnant' | translate }}</mat-label>
             <input type="number"formControlName="pregnancies" matInput autocomplete="off" 
               placeholder="1">
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].pregnancies.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].pregnancies.valid">
+              {{ 'global.form.errors.required' | translate }}
+            </mat-error>
           </mat-form-field>
         </section>
         
         <section class="sleep" id="sleep">
-          <h3>Sleep</h3>
+          <h3>{{ 'pages.first_consultation.body_functions.form.sleep' | translate }}</h3>
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>How are you currently sleeping?</mat-label>
+            <mat-label>{{ 'pages.first_consultation.body_functions.form.current_sleep' | translate }}</mat-label>
             <mat-select matInput placeholder="Pick one" formControlName="sleepingStatus" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option value="good">Good</mat-option>
-              <mat-option value="regular">Regular</mat-option>
-              <mat-option value="bad">Bad</mat-option>
+              <mat-option value="good">{{ 'global.words.good' | translate }}</mat-option>
+              <mat-option value="regular">{{ 'global.words.regular' | translate }}</mat-option>
+              <mat-option value="bad">{{ 'global.words.bad' | translate }}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].sleepingStatus.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].sleepingStatus.touched">
+              {{ 'global.form.errors.required' | translate }}
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="standard" floatLabel="always" class="number">
-            <mat-label>Average hours of sleep</mat-label>
+            <mat-label>
+              {{ 'pages.first_consultation.body_functions.form.average_sleep' | translate }}
+            </mat-label>
             <input type="number"formControlName="averageHours" matInput placeholder="18" max="24" autocomplete="off" required>
-            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].averageHours.valid">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].averageHours.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
 
           <div class="radio-form-field sleep-troubles">
-            <label class="radio-form-label">Do you have trouble falling asleep?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.body_functions.form.trouble_sleep' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="troubleFallingAsleep">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('bodyFunctions','troubleFallingAsleep', 'yes', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('bodyFunctions','troubleFallingAsleep', 'yes', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('bodyFunctions','troubleFallingAsleep', 'yes', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('bodyFunctions','troubleFallingAsleep', 'yes', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="bodyFunctionsForm['controls'].troubleFallingAsleep.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
-                <mat-label>How many minutes, roughly?</mat-label>
+                <mat-label>
+                  {{ 'pages.first_consultation.body_functions.form.minutes_amount' | translate }}
+                </mat-label>
                 <input type="number" formControlName="troubleFallingAsleepNote" matInput placeholder="135" autocomplete="off">
-                <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].troubleFallingAsleepNote.valid">This is <strong>required</strong></mat-error>
+                <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].troubleFallingAsleepNote.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
               </mat-form-field>
             </ng-container>
           </div>
 
           <div class="radio-form-field wake-up">
-            <label class="radio-form-label">Do you wake up energized?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.body_functions.form.energized' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="wakeUpEnergized">
-              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes">
+                {{ 'global.words.yes' | translate }}
+              </mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">
+                {{ 'global.words.no' | translate }}
+              </mat-radio-button>
             </mat-radio-group>
           </div>
         </section>
       </form>
 
       <section class="btn-area">
-        <button class="dialog-button" matStepperPrevious>Back</button>
-        <button class="dialog-button" matStepperNext>Next</button>
+        <button class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
+        <button class="dialog-button" matStepperNext>
+          {{ 'global.buttons.next' | translate }}
+        </button>
       </section>
-
     </mat-step>
 
     <mat-step [stepControl]="generalDataForm">
-      <ng-template matStepLabel>General 2/2</ng-template>
+      <ng-template matStepLabel>
+        {{ 'pages.first_consultation.steps.general_2' | translate }}
+      </ng-template>
       
       <div class="title-area" id="generaltwo">
-        <h3>📝 General Info 2/2</h3>
+        <h3>{{ 'pages.first_consultation.general_info_2.step_title' | translate }}</h3>
         <p class="card-text">
-          Please get as much information from the client as you can, in order to make a better and more
-          personal meal plan the next time.
+          {{ 'pages.first_consultation.general_info_2.step_intro' | translate }}
         </p>
       </div>
 
       <form [formGroup]="generalDataForm" class="personal-form">
-
         <div class="conditions" id="conditions">
         <section class="add-form-field-container" formArrayName="healthConditionsArr">
-          <h3>Health conditions</h3>
+          <h3>{{ 'pages.first_consultation.general_info_2.form.health_conditions' | translate }}</h3>
             <div class="dynamic-form-field-container" *ngFor="let condition of healthConditionsArray.controls; let i=index" [formGroupName]="i">
               <div class="number-id">
                 <h1>{{i+1}}</h1>
               </div>
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>Do you have any health conditions?</mat-label>
+                <mat-label>
+                  {{ 'pages.first_consultation.general_info_2.form.have_conditions' | translate }}
+                </mat-label>
                 <mat-select matInput placeholder="Pick a condition" formControlName="healthCondition" 
                 panelClass="dropdown-regular" autocomplete="off" required>
-                  <mat-option *ngFor="let condition of healthConditions" value="{{condition.viewValue}}">{{condition.viewValue}}</mat-option>
+                  <mat-option *ngFor="let condition of healthConditions" value="{{condition.viewValue}}">
+                    {{condition.viewValue}}
+                  </mat-option>
                 </mat-select>
-                <mat-error class="input-errors" *ngIf="!healthCondition.valid && healthCondition.touched">This is <strong>required</strong></mat-error>
+                <mat-error class="input-errors" *ngIf="!healthCondition.valid && healthCondition.touched">
+                  {{ 'global.form.errors.required' | translate }}
+                </mat-error>
               </mat-form-field>
               <div class="btn-area">
                 <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteHealthCondition(i)">
@@ -827,28 +975,42 @@
             </div>
           <button type="button" class="add-form-field" (click)="addHealthCondition()">
             <i class="fa__icon fa fa-plus"></i>
-            Add a Health condition
+            {{ 'pages.first_consultation.general_info_2.form.add_condition' | translate }}
           </button>
         </section>
 
         <section class="add-form-field-container" formArrayName="pastTwoWeeksArr">
-          <h3>The past 2 weeks</h3>
+          <h3>
+            {{ 'pages.first_consultation.general_info_2.form.past_2_weeks' | translate }}
+          </h3>
             <div class="dynamic-form-field-container" *ngFor="let condition of pastTwoWeeksArray.controls; let i=index" [formGroupName]="i">
               <div class="number-id">
                 <h1>{{i+1}}</h1>
               </div>
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>During the past two weeks I had:</mat-label>
+                <mat-label>
+                  {{ 'pages.first_consultation.general_info_2.form.2_week_conditions' | translate }}:
+                </mat-label>
                 <mat-select matInput placeholder="Pick an option" formControlName="pastTwoWeeksValue" 
                 panelClass="dropdown-regular" autocomplete="off" required>
-                  <mat-option value="diarrhea">Diarrhea</mat-option>
-                  <mat-option value="gastritis">Gastritis</mat-option>
-                  <mat-option value="constipation">Constipation</mat-option>
-                  <mat-option value="nausea">Nausea</mat-option>
-                  <mat-option value="dizziness">Dizziness</mat-option>
-                  <mat-option value="none">None of the above</mat-option>
+                  <mat-option value="diarrhea">
+                    {{ 'pages.first_consultation.general_info_2.conditions.diarrhea' | translate }}
+                  </mat-option>
+                  <mat-option value="gastritis">
+                    {{ 'pages.first_consultation.general_info_2.conditions.gastritis' | translate }}
+                  </mat-option>
+                  <mat-option value="constipation">
+                    {{ 'pages.first_consultation.general_info_2.conditions.constipation' | translate }}
+                  </mat-option>
+                  <mat-option value="nausea">
+                    {{ 'pages.first_consultation.general_info_2.conditions.nausea' | translate }}
+                  </mat-option>
+                  <mat-option value="dizziness">
+                    {{ 'pages.first_consultation.general_info_2.conditions.dizziness' | translate }}
+                  </mat-option>
+                  <mat-option value="none">{{ 'global.form.none_of_above' | translate }}</mat-option>
                 </mat-select>
-                <mat-error class="input-errors" *ngIf="!pastTwoWeeksValue.valid && pastTwoWeeksValue.touched">This is <strong>required</strong></mat-error>
+                <mat-error class="input-errors" *ngIf="!pastTwoWeeksValue.valid && pastTwoWeeksValue.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
               </mat-form-field>
               <div class="btn-area">
                 <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deletePastTwoWeeks(i)">
@@ -858,37 +1020,45 @@
             </div>
           <button type="button" class="add-form-field" (click)="addPastTwoWeeks()">
             <i class="fa__icon fa fa-plus"></i>
-            Add
+            {{ 'global.buttons.add' | translate }}
           </button>
         </section>
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Are you using medication</mat-label>
+          <mat-label>
+            {{ 'pages.first_consultation.general_info_2.form.using_meds' | translate }}
+          </mat-label>
           <textarea type="text" matInput formControlName="medication" placeholder="Seperate medications with a comma :)" 
           matTextareaAutosize autofocus="off" autocomplete="off" required>
           </textarea>
           <mat-error class="input-error" *ngIf="!generalDataForm['controls'].medication.valid">
-            This is <strong>required</strong></mat-error>
+            {{ 'global.form.errors.required' | translate }}</mat-error>
         </mat-form-field>
 
         <div class="radio-form-field gastritis">
-          <label class="radio-form-label">Do you have gastritis?</label>
+          <label class="radio-form-label">
+            {{ 'pages.first_consultation.general_info_2.form.have_gastritis' | translate }}
+          </label>
           <mat-radio-group
             class="radio-button-group"
             formControlName="gastritis">
-            <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-            <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+            <mat-radio-button class="radio-button" value="yes">{{ 'global.words.yes' | translate }}</mat-radio-button>
+            <mat-radio-button class="radio-button" value="no">{{ 'global.words.no' | translate }}</mat-radio-button>
           </mat-radio-group>
         </div>
 
         <section class="add-form-field-container" formArrayName="dontEatArr">
-          <h3>Products you can't eat or drink</h3>
+          <h3>
+            {{ 'pages.first_consultation.general_info_2.form.no_go_products' | translate }}
+          </h3>
             <div class="dynamic-form-field-container" *ngFor="let item of dontEatArray.controls; let i=index" [formGroupName]="i">
               <div class="number-id">
                 <h1>{{i+1}}</h1>
               </div>
               <mat-form-field appearance="standard" floatLabel="always">
-                <mat-label>I can't consume</mat-label>
+                <mat-label>
+                  {{ 'pages.first_consultation.general_info_2.form.cant_consume' | translate }}
+                </mat-label>
                 <input type="text" formControlName="dontEatItem" matInput placeholder="Describe the product" autocomplete="off">
               </mat-form-field>
               <div class="btn-area">
@@ -899,53 +1069,69 @@
             </div>
           <button type="button" class="add-form-field" (click)="addDontEatItem()">
             <i class="fa__icon fa fa-plus"></i>
-            Add a product
+            {{ 'pages.first_consultation.general_info_2.buttons.add_product' | translate }}
           </button>
         </section>
 
         <mat-form-field appearance="standard" floatLabel="always" class="diet-type">
-          <mat-label>Preferred diet type</mat-label>
+          <mat-label>{{ 'pages.first_consultation.general_info_2.form.preferred_diet' | translate }}</mat-label>
           <mat-select matInput placeholder="Pick an appropriate diet type" formControlName="dietType"
           autocomplete="off" panelClass="dropdown-regular" required>
             <mat-option *ngFor="let type of dietTypes" value="{{type.value}}">{{type.viewValue}}</mat-option>
           </mat-select>
-          <mat-error class="input-error" *ngIf="!generalDataForm['controls'].dietType.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error" *ngIf="!generalDataForm['controls'].dietType.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
         </mat-form-field>
 
         </div>
 
         <section class="big-category dinner" id="dinner">
-          <h1 class="big-category__title">Dinner</h1>
+          <h1 class="big-category__title">
+            {{ 'global.meals.dinner' | translate }}
+          </h1>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Is it a plate of food like lunch, or is it more like a snack?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.general_info_2.form.dinner_type' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="portion">
-              <mat-radio-button class="radio-button" value="plate">Plate</mat-radio-button>
-              <mat-radio-button class="radio-button" value="snack">Snack</mat-radio-button>
+              <mat-radio-button class="radio-button" value="plate">
+                {{ 'pages.first_consultation.general_info_2.form.plate' | translate }}
+              </mat-radio-button>
+              <mat-radio-button class="radio-button" value="snack">
+                {{ 'pages.first_consultation.general_info_2.form.snack' | translate }}
+              </mat-radio-button>
             </mat-radio-group>
           </div>
 
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Who prepared dinner?</mat-label>
+            <mat-label>{{ 'pages.first_consultation.general_info_2.form.prepared_dinner' | translate }}</mat-label>
             <mat-select matInput placeholder="Pick one" formControlName="preparedBy" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option value="patient">Patient</mat-option>
-              <mat-option value="relative">Relative</mat-option>
-              <mat-option value="maid">Maid</mat-option>
-              <mat-option value="other">Other</mat-option>
+              <mat-option value="patient">{{ 'pages.first_consultation.habits.form.patient' | translate }}</mat-option>
+              <mat-option value="relative">{{ 'pages.first_consultation.habits.form.relative' | translate }}</mat-option>
+              <mat-option value="maid">{{ 'pages.first_consultation.habits.form.maid' | translate }}</mat-option>
+              <mat-option value="other">{{ 'global.words.other' | translate }}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!generalDataForm['controls'].preparedBy.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!generalDataForm['controls'].preparedBy.touched">
+              {{ 'global.form.errors.required' | translate }}
+            </mat-error>
           </mat-form-field>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you usually eat after dinner?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.general_info_2.form.eat_after_dinner' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="eatAfterDinner">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('generalData', 'eatAfterDinner', 'yes', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('generalData', 'eatAfterDinner', 'yes', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('generalData', 'eatAfterDinner', 'yes', $event)">
+                {{ 'global.words.yes' | translate }}
+              </mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('generalData', 'eatAfterDinner', 'yes', $event)">
+                {{ 'global.words.no' | translate }}
+              </mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="generalDataForm['controls'].eatAfterDinner.value === 'yes'">
@@ -958,69 +1144,94 @@
           </div>
 
           <section class="add-form-field-container" formArrayName="shoppingLocationArr">
-            <h3>Where do you go shopping?</h3>
+            <h3>
+              {{ 'pages.first_consultation.general_info_2.form.where_shopping' | translate }}
+            </h3>
               <div class="dynamic-form-field-container" *ngFor="let item of shoppingLocationArray.controls; let i=index" [formGroupName]="i">
                 <div class="number-id">
                   <h1>{{i+1}}</h1>
                 </div>
                 <mat-form-field appearance="standard" floatLabel="always">
-                  <mat-label>Shopping location</mat-label>
-                  <input type="text" formControlName="shoppingLocation" matInput placeholder="Store name" 
+                  <mat-label>{{ 'pages.first_consultation.general_info_2.form.shopping_location' | translate }}</mat-label>
+                  <input type="text" formControlName="shoppingLocation" matInput
+                    placeholder="{{ 'pages.first_consultation.general.store_name' | translate }}" 
                     autocomplete="off" required>
                   <mat-error class="input-errors" *ngIf="!shoppingLocation.valid && shoppingLocation.touched">
-                    This is <strong>required</strong>
+                    {{ 'global.form.errors.required' | translate }}
                   </mat-error>
                 </mat-form-field>
                 <div class="btn-area">
-                  <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteShoppingLocation(i)">
+                  <button type="button" mat-icon-button type="button" class="delete-btn"
+                    (click)="deleteShoppingLocation(i)">
                     <i class="fa__icon fa fa-trash"></i>
                   </button>
                 </div>
               </div>
             <button type="button" class="add-form-field" (click)="addShoppingLocation()">
               <i class="fa__icon fa fa-plus"></i>
-              Add a location
+              {{ 'pages.first_consultation.general_info_2.buttons.add_location' | translate }}
             </button>
           </section>
 
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Who does the shopping at home?</mat-label>
+            <mat-label>
+              {{ 'pages.first_consultation.general_info_2.form.who_shops' | translate }}
+            </mat-label>
             <mat-select matInput placeholder="Pick one" formControlName="whoBuys" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option value="patient">Patient</mat-option>
-              <mat-option value="relative">Relative</mat-option>
-              <mat-option value="maid">Maid</mat-option>
-              <mat-option value="other">Other</mat-option>
+              <mat-option value="patient">
+                {{ 'pages.first_consultation.habits.form.patient' | translate }}
+              </mat-option>
+              <mat-option value="relative">
+                {{ 'pages.first_consultation.habits.form.relative' | translate }}
+              </mat-option>
+              <mat-option value="maid">
+                {{ 'pages.first_consultation.habits.form.maid' | translate }}
+              </mat-option>
+              <mat-option value="other">
+                {{ 'global.words.other' | translate }}
+              </mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!generalDataForm['controls'].whoBuys.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!generalDataForm['controls'].whoBuys.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you order food online?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.general_info_2.form.order_online' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="orderOnline">
-              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
           </div>
         </section>
 
         <section class="big-category physical-activities" id="activities">
-          <h1 class="big-category__title">Physical Activities</h1>
+          <h1 class="big-category__title">
+            {{ 'pages.first_consultation.general.physical_activities' | translate }}
+          </h1>
 
           <div class="radio-form-field activity-confirmations">
-            <label class="radio-form-label">Do you do any physical activities?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.general_info_2.form.have_physical_activities' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="physicalActivitiesConfirmation">
-              <mat-radio-button class="radio-button" value="yes" (change)="toggleActivity($event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="toggleActivity($event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="toggleActivity($event)">
+                {{ 'global.words.yes' | translate }}
+              </mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="toggleActivity($event)">
+                {{ 'global.words.no' | translate }}
+              </mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'no'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <textarea type="text" matInput formControlName="physicalActivitiesWhy" placeholder="Why not?" 
+                <textarea type="text" matInput formControlName="physicalActivitiesWhy"
+                placeholder="{{ 'global.questions.why_not' | translate }}" 
                 matTextareaAutosize autofocus="off" autocomplete="off" required>
                 </textarea>
               </mat-form-field>
@@ -1028,7 +1239,9 @@
 
             <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'yes'">
               <section class="add-form-field-container" formArrayName="activityArr">
-                <h3>Define your activities</h3>
+                <h3>
+                  {{ 'pages.first_consultation.general_info_2.form.define_activities' | translate }}
+                </h3>
                 <div class="dynamic-form-field-container multiple-fields" *ngFor="let item of activityArray.controls; let i=index" 
                   [formGroupName]="i">
                   <div class="number-id">
@@ -1037,17 +1250,19 @@
 
                   <div class="form-fields">
                     <mat-form-field appearance="standard" floatLabel="always">
-                      <mat-label>Which activities?</mat-label>
+                      <mat-label>
+                        {{ 'pages.first_consultation.general_info_2.form.which_activities' | translate }}
+                      </mat-label>
                       <mat-select matInput placeholder="Pick one" formControlName="physicalActivity" 
                       panelClass="dropdown-regular" autocomplete="off">
                         <mat-option *ngFor="let activity of activities" [value]="activity">{{activity.exerciseName}}</mat-option>
-                        <mat-option value="other">Other</mat-option>
+                        <mat-option value="other">{{ 'global.words.other' | translate }}</mat-option>
                       </mat-select>
-                      <mat-error class="input-error" *ngIf="!physicalActivity.touched">This is <strong>required</strong></mat-error>
+                      <mat-error class="input-error" *ngIf="!physicalActivity.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
                     </mat-form-field>
 
                     <div class="time-range">
-                      <label>Usual schedule of workouts</label>
+                      <label>{{ 'pages.first_consultation.general_info_2.form.workout_schedule' | translate }}</label>
                       <div class="time-form-container">
                         <mat-form-field appearance="standard" floatLabel="always">
                           <mat-select matInput placeholder="From" formControlName="workoutScheduleFrom" 
@@ -1066,32 +1281,51 @@
 
                     <ng-container *ngIf="getChosenActivity(i).controls['physicalActivity'].value === 'other'">
                       <mat-form-field appearance="standard" floatLabel="always">
-                        <mat-label>Specify your physical activity</mat-label>
+                        <mat-label>
+                          {{ 'pages.first_consultation.general_info_2.form.physical_activity' | translate }}
+                        </mat-label>
                         <input type="text" formControlName="activitySpecification" matInput placeholder="What's it called?" 
                           autocomplete="off">
                       </mat-form-field>
                     </ng-container>
             
                     <mat-form-field appearance="standard" floatLabel="always">
-                      <mat-label>Training location</mat-label>
+                      <mat-label>
+                        {{ 'pages.first_consultation.general_info_2.form.training_location' | translate }}
+                      </mat-label>
                       <input type="text" formControlName="trainingLocation" matInput placeholder="Location description" 
                         autocomplete="off" required>
                     </mat-form-field>
         
                     <mat-form-field appearance="standard" floatLabel="always" class="number">
-                      <mat-label>How long does it take you to get there?</mat-label>
-                      <input type="number"formControlName="travelTime" matInput placeholder="6" autocomplete="off" required>
+                      <mat-label>
+                        {{ 'pages.first_consultation.general_info_2.form.arrive_time' | translate }}
+                      </mat-label>
+                      <input type="number"formControlName="travelTime" matInput
+                        placeholder="6" autocomplete="off" required>
                     </mat-form-field>
             
                     <mat-form-field appearance="standard" floatLabel="always">
-                      <mat-label>Intensity of training</mat-label>
+                      <mat-label>
+                        {{ 'pages.first_consultation.general_info_2.form.training_intensity' | translate }}
+                      </mat-label>
                       <mat-select matInput placeholder="Pick a level" formControlName="trainingIntensity" 
                       panelClass="dropdown-regular" autocomplete="off" required>
-                        <mat-option value="very-intense">Very intense</mat-option>
-                        <mat-option value="intense">Intense</mat-option>
-                        <mat-option value="regular">Regular</mat-option>
-                        <mat-option value="mild">Mild</mat-option>
-                        <mat-option value="very-mild">Very mild</mat-option>
+                        <mat-option value="very-intense">
+                          {{ 'pages.exercises.general.very_intense' | translate }}
+                        </mat-option>
+                        <mat-option value="intense">
+                          {{ 'pages.exercises.general.intense' | translate }}
+                        </mat-option>
+                        <mat-option value="regular">
+                          {{ 'pages.exercises.general.regular' | translate }}
+                        </mat-option>
+                        <mat-option value="mild">
+                          {{ 'pages.exercises.general.mild' | translate }}
+                        </mat-option>
+                        <mat-option value="very-mild">
+                          {{ 'pages.exercises.general.very_mild' | translate }}
+                        </mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
@@ -1105,7 +1339,7 @@
 
                 <button type="button" class="add-form-field" (click)="addActivity()">
                   <i class="fa__icon fa fa-plus"></i>
-                  Add an activity
+                  {{ 'pages.first_consultation.general_info_2.buttons.add_activity' | translate }}
                 </button>
               </section>
             </ng-container>
@@ -1113,29 +1347,36 @@
         </section>
 
         <section class="big-category weekends" id="weekends">
-          <h1 class="big-category__title">Weekends</h1>
+          <h1 class="big-category__title">
+            {{ 'pages.first_consultation.general_info_2.form.weekends' | translate }}
+          </h1>
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>At what time do you wake up?</mat-label>
+            <mat-label>
+              {{ 'pages.first_consultation.general_info_2.form.wakeup_time' | translate }}
+            </mat-label>
             <mat-select matInput placeholder="06.00" formControlName="wakeUpTime" 
-            panelClass="dropdown-regular" autocomplete="off" required>
+              panelClass="dropdown-regular" autocomplete="off" required>
               <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
             </mat-select>
-            <mat-error class="input-error" *ngIf="!generalDataForm['controls'].wakeUpTime.touched">This is <strong>required</strong></mat-error>
+            <mat-error class="input-error" *ngIf="!generalDataForm['controls'].wakeUpTime.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
 
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Do you usually order food/eat outside?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.general_info_2.form.order_food' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="orderFood">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('generalData', 'orderFood', 'yes', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('generalData', 'orderFood', 'yes', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('generalData', 'orderFood', 'yes', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('generalData', 'orderFood', 'yes', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="generalDataForm['controls'].orderFood.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <textarea type="text" matInput formControlName="orderFoodNote" placeholder="Like what?" 
+                <textarea type="text" matInput formControlName="orderFoodNote"
+                placeholder="{{ 'global.words.lke_what' | translate }}" 
                 matTextareaAutosize autofocus="off" autocomplete="off">
                 </textarea>
               </mat-form-field>
@@ -1144,20 +1385,23 @@
         </section>
 
         <section class="big-category supplements" id="supplements">
-          <h1 class="big-category__title">Supplements</h1>
+          <h1 class="big-category__title">{{ 'pages.first_consultation.general_info_2.form.supplements' | translate }}</h1>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Are you taking any supplements?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.general_info_2.form.take_supps' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="supplements">
-              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('generalData', 'supplements', 'yes', $event)">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no" (change)="radioChange('generalData', 'supplements', 'yes', $event)">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes" (change)="radioChange('generalData', 'supplements', 'yes', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no" (change)="radioChange('generalData', 'supplements', 'yes', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="generalDataForm['controls'].supplements.value === 'yes'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <textarea type="text" matInput formControlName="supplementsNote" placeholder="What are you taking?" 
+                <textarea type="text" matInput formControlName="supplementsNote"
+                placeholder="What are you taking?" 
                 matTextareaAutosize autofocus="off" autocomplete="off">
                 </textarea>
               </mat-form-field>
@@ -1165,17 +1409,21 @@
           </div>
 
           <div class="radio-form-field">
-            <label class="radio-form-label">Would you be willing to use a supplement if necessary?</label>
+            <label class="radio-form-label">
+              {{ 'pages.first_consultation.general_info_2.form.use_supplement' | translate }}
+            </label>
             <mat-radio-group
               class="radio-button-group"
               formControlName="willingToUseSupps">
-              <mat-radio-button class="radio-button" value="yes">Yes</mat-radio-button>
-              <mat-radio-button class="radio-button" value="no">No</mat-radio-button>
+              <mat-radio-button class="radio-button" value="yes">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="no">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
           </div>
 
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Your eating recordatory</mat-label>
+            <mat-label>
+              {{ 'pages.first_consultation.general_info_2.form.eating_record' | translate }}
+            </mat-label>
             <textarea type="text" matInput formControlName="eatingRecordatory" placeholder="Write a short summary" 
             matTextareaAutosize autofocus="off" autocomplete="off" required>
             </textarea>
@@ -1185,41 +1433,48 @@
       </form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          {{ 'global.buttons.next' | translate }}
+        </button>
       </section>
     </mat-step>
 
     <mat-step [stepControl]="noteForm">
-      <ng-template matStepLabel>Notes</ng-template>
+      <ng-template matStepLabel>{{ 'global.words.notes' | translate }}</ng-template>
       
       <div class="title-area">
-        <h3>📝 Extra notes</h3>
+        <h3>{{ 'pages.first_consultation.extra.title' | translate }}</h3>
         <p class="card-text">
-          Write down important things here
+          {{ 'pages.first_consultation.extra.intro' | translate }}
         </p>
       </div>
 
       <section id="notes">
         <form [formGroup]="noteForm" class="personal-form">
           <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Did you notice/remember anything?</mat-label>
+            <mat-label>
+              {{ 'pages.first_consultation.extra.notice_remember' | translate }}
+            </mat-label>
             <textarea type="text" matInput formControlName="specialistNotes" placeholder="Write it down here" 
-            matTextareaAutosize autofocus="off" autocomplete="off">
+             matTextareaAutosize autofocus="off" autocomplete="off">
             </textarea>
           </mat-form-field>
         </form>
       </section>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
         <button type="submit" class="dialog-button" (click)="addFirstConsultation()" 
         [disabled]="!basicDataForm.valid || !bodyFunctionsForm.valid || !habitForm.valid || !generalDataForm.valid"
         [class.disabled]="!basicDataForm.valid || !bodyFunctionsForm.valid || !habitForm.valid || !generalDataForm.valid">
-          Done
+          {{ 'global.buttons.done' | translate }}
         </button>
       </section>
     </mat-step>
-
   </mat-horizontal-stepper>
 </main>

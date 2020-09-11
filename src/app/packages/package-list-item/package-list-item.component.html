@@ -6,32 +6,37 @@
   <section class="middle">
     <div class="title">
         <h2>{{package.packageTitle}}</h2>
-        <!-- <div class="dividing-circle"></div>
-        <p class="location">
-          {{package.packagePrice}}
-        </p> -->
     </div>
 
     <div class="quick-info">
-      <p class="speciality-title">Package ID: {{package.packageID}}</p>
+      <p class="speciality-title">
+        {{ 'pages.package.general.package_id' | translate }}: {{package.packageID}}</p>
       <p class="description">
         <ng-container *ngIf="package.packageDescription">{{package.packageDescription}}</ng-container>
-        <ng-container *ngIf="!package.packageDescription">No description yet...</ng-container>
+        <ng-container *ngIf="!package.packageDescription">
+          {{ 'pages.package.errors.no_description' | translate }}
+        </ng-container>
       </p>
       <div class="btn-container">
         <button class="btn-icon-right__animated" (click)="linkToChild(package)">
-          More info
+          {{ 'global.buttons.more_info' | translate }}
         </button>
         <i class="fa__icon fas fa-long-arrow-alt-right"></i>
       </div>
       <ul class="contact-menu">
         <li>
           <i class="fa__icon far fa-clock"></i>
-          {{package.packageDuration}} week(s)
+          {{package.packageDuration}}
+          <ng-container *ngIf="package?.packageDuration !== 1">
+            {{ 'events.weeks' | translate }}
+          </ng-container>
+          <ng-container *ngIf="package?.packageDuration === 1">
+            {{ 'events.week' | translate }}
+          </ng-container>
         </li>
         <li>
           <i class="fa__icon far fa-money-bill-alt"></i>
-          {{package.packagePrice}} dollar
+          {{package.packagePrice}} {{ 'global.words.dollar' | translate }}
         </li>
       </ul>
     </div>
@@ -44,5 +49,4 @@
       <i class="fa__icon fas fa-edit"></i>
     </button>
   </section>
-
 </mat-card>

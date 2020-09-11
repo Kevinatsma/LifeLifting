@@ -1,0 +1,22 @@
+@import './../../../assets/scss/master';
+@import './../../../assets/scss/mixins';
+
+.flag-btn {
+    height: 100%;
+
+    @extend %flex-center;
+
+    img {
+        margin-right: 10px;
+
+        @include respond-down($sm) {
+            height: 30px;
+            margin-right: 0;
+            width: 30px;
+        }
+    }
+
+    .fa-sort-down {
+        font-size: 14px;
+    }
+}

@@ -18,8 +18,7 @@ export class DashboardTopNavComponent implements OnInit {
   constructor( private auth: AuthService,
                public router: Router,
                private clientService: ClientService,
-               private dashboardService: DashboardService
-               ) { }
+               private dashboardService: DashboardService) { }
 
   ngOnInit() {
   }
@@ -37,5 +36,4 @@ export class DashboardTopNavComponent implements OnInit {
   signOut() {
     this.auth.signOut();
   }
-
 }

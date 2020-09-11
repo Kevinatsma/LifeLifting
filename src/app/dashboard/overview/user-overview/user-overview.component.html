@@ -3,9 +3,15 @@
     <div class="user-info__photo" [style.background-image]="'url('+ user.photoURL +')'">
     </div>
     <div class="user-info__details">
-      <h1>Welcome back, {{user.displayName}}</h1>
-      <h5 class="subtitle" *ngIf="lastConsultation">Last consultation: {{lastConsultation.start | date:'short'}}</h5>
-      <h5 class="subtitle" *ngIf="!lastConsultation">No consultation has taken place yet</h5>
+      <h1>
+        {{ 'pages.dashboard.general.welcome_back' | translate }}, {{user.displayName}}
+      </h1>
+      <h5 class="subtitle" *ngIf="lastConsultation">
+        {{ 'pages.dashboard.general.last_consultation' | translate }}: {{lastConsultation.start | date:'short'}}
+      </h5>
+      <h5 class="subtitle" *ngIf="!lastConsultation">
+        {{ 'pages.dashboard.general.no_past_consultations' | translate }}
+      </h5>
 
 
       <div class="info-cards" *ngIf="guideline">
@@ -14,10 +20,10 @@
             <i class="fa__icon fas fa-weight"></i>
           </div>
           <p class="card-text">
-            Weight
+            {{ 'global.user.weight' | translate }}
           </p>
           <h3>{{user.currentWeight}}kg</h3>
-          <h5>Goal: {{guideline.idealWeight}}kg</h5>
+          <h5>{{ 'pages.guideline.general.goal' | translate }}: {{guideline.idealWeight}}kg</h5>
         </div>
         <div class="info-card">
           <div class="icon">
@@ -27,15 +33,17 @@
             BMI
           </p>
           <h3>{{guideline.formulaData.bmi | number:'1.0-0'}}</h3>
-          <h5 *ngIf="idealBMI">Goal: {{idealBMI | number:'1.0-0'}}</h5>
-          <h5 *ngIf="!idealBMI">No goal yet</h5>
+          <h5 *ngIf="idealBMI">
+            {{ 'pages.guideline.general.goal' | translate }}: {{idealBMI | number:'1.0-0'}}
+          </h5>
+          <h5 *ngIf="!idealBMI">{{ 'global.errors.no_goal' | translate }}</h5>
         </div>
         <div class="info-card">
           <div class="icon">
             <i class="fa__icon fas fa-ruler-combined"></i>
           </div>
           <p class="card-text">
-            Fat percentage
+            {{ 'pages.guideline.general.fat_precentage' | translate }}
           </p>
           <h3>
             <ng-container *ngIf="guideline.formulaData.fatPercentageRegular !== null; else athlete">
@@ -46,7 +54,7 @@
             </ng-template>
           </h3>
           <h5 *ngIf="!guideline.formulaData.fatPercentageAthlete || !guideline.formulaData.fatPercentageRegular">
-            No goal yet
+            {{ 'global.errors.no_goal' | translate }}
           </h5>
         </div>
       </div>
@@ -54,41 +62,37 @@
   </section>
 
   <section class="quick-actions">
-    <h1>Quick actions</h1>
+    <h1>{{ 'pages.dashboard.general.quick_actions' | translate }}</h1>
 
     <div class="quick-actions__btn-container">
       <button (click)="linkToMealplan()" *ngIf="mealplan">
         <div class="icon">
           <i class="fa__icon fas fa-utensils"></i>
         </div>
-        See current mealplan
+        {{ 'pages.dashboard.general.buttons.see_mealplan' | translate }}
         <i class="fa__icon fas fa-arrow-right"></i>
       </button>
       <button (click)="linkToShoppingList()" *ngIf="mealplan">
         <div class="icon">
           <i class="fa__icon fas fa-shopping-cart"></i>
         </div>
-        See current shopping list
+        {{ 'pages.dashboard.general.buttons.see_shopping_list' | translate }}
         <i class="fa__icon fas fa-arrow-right"></i>
       </button>
       <button (click)="chatWithSpecialist()" *ngIf="specialist">
         <div class="icon">
           <i class="fa__icon fas fa-comment-alt"></i>
         </div>
-        Chat with specialist
+        {{ 'pages.dashboard.general.buttons.chat_with_specialist' | translate }}
         <i class="fa__icon fas fa-arrow-right"></i>
       </button>
       <button (click)="linkToCalendar()">
         <div class="icon">
           <i class="fa__icon fas fa-calendar-plus"></i>
         </div>
-        Request a consultation
+        {{ 'pages.dashboard.general.buttons.request_appointment' | translate }}
         <i class="fa__icon fas fa-arrow-right"></i>
       </button>
     </div>
-  </section>
-
-  <section class="process-chart">
-    <!-- <h1>Process Chart</h1> -->
   </section>
 </ng-container>

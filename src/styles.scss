@@ -308,7 +308,9 @@ a.menu-link, button.menu-link {
     }
 }
 
-::ng-deep .mat-drawer-backdrop, .mat-drawer-backdrop  {
+::ng-deep .mat-drawer-backdrop, .mat-drawer-backdrop, .mat-drawer-backdrop.mat-drawer-shown  {
+    visibility: hidden !important;
+
     @include respond-up($sm) {
         display: none !important;
     }
@@ -745,12 +747,12 @@ ul {
 
 ::ng-deep {
     .mat-drawer-transition .mat-drawer-backdrop {
-            display: none;
+        display: none;
     }
 
     .mat-drawer-backdrop.mat-drawer-shown {
-            visibility: hidden;
-            background-color: transparent;
+        visibility: hidden;
+        background-color: transparent;
     }
 
     .cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {

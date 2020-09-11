@@ -1,7 +1,8 @@
 <div class="chat-input-container">
   <mat-form-field class="chat-box" appearance="standard">
-    <input matInput type="text" placeholder="Start typing.." autocomplete="off"
-      [(ngModel)]="message" (keydown)="handleSubmit($event)" matTextareaAutosize>
+    <input matInput type="text" matTextareaAutosize
+      placeholder="{{ 'chat.start_typing' | translate }}" autocomplete="off"
+      [(ngModel)]="message" (keydown)="handleSubmit($event)">
   </mat-form-field>
 
   <button class="send-btn" (click)="send()">

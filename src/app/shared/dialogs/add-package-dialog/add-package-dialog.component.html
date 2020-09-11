@@ -1,109 +1,146 @@
 <main class="dialog-wrapper">
   <div class="close-section  mobile">
     <button class="text-link close-btn" (click)="closeDialog()" type="button">
-      <i class="mobile fas fa-arrow-left"></i> Back
+      <i class="mobile fas fa-arrow-left"></i> {{ 'global.buttons.back' | translate }}
     </button>
   </div>
   
   <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="personalForm">
       <form [formGroup]="personalForm">
-        <ng-template matStepLabel>Info</ng-template>
-        <h3>🗂️ Package Info</h3>
+        <ng-template matStepLabel>{{ 'global.words.info' | translate }}</ng-template>
+        <h3>🗂️ {{ 'pages.package.form.package_info' | translate }}</h3>
         <p class="card-text">
-          Basic data that we need from the package. This data will be displayed at step 2 of the signup process.
-          This can be important in the decision making process of the future client.
+          {{ 'pages.package.form.package_info_detail' | translate }}
         </p>
     
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Package ID</mat-label>
-          <input type="number" matInput name="title" formControlName="packageID" placeholder="Always a number" autocomplete="new-password">
-          <mat-hint *ngIf="!personalForm['controls'].packageID.dirty">Check the package list for the numbers already taken.</mat-hint>
-          <mat-error class="input-error" *ngIf="!personalForm['controls'].packageID.valid">This is <strong>required</strong></mat-error>
+          <mat-label>{{ 'pages.package.general.package_id' | translate }}</mat-label>
+          <input type="number" matInput name="title" formControlName="packageID"
+            placeholder="{{ 'global.form.always_number' | translate }}"
+            autocomplete="new-password">
+          <mat-hint *ngIf="!personalForm['controls'].packageID.dirty">
+            {{ 'pages.package.form.already_taken' | translate }}
+          </mat-hint>
+          <mat-error class="input-error" *ngIf="!personalForm['controls'].packageID.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
     
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Package title</mat-label>
-          <input type="text" matInput name="title" formControlName="packageTitle" placeholder="Give the package a title" autofocus="none">
-          <mat-error class="input-error" *ngIf="!personalForm['controls'].packageTitle.valid">This is <strong>required</strong></mat-error>
+          <mat-label>{{ 'pages.package.form.package_title' | translate }}</mat-label>
+          <input type="text" matInput name="title" formControlName="packageTitle"
+            placeholder="{{ 'pages.package.form.package_title_ph' | translate }}" autofocus="none">
+          <mat-error class="input-error" *ngIf="!personalForm['controls'].packageTitle.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
       </form>
 
       <section class="btn-area-one">
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperNext>
+          {{ 'global.buttons.next' | translate }}
+        </button>
       </section>
     </mat-step>
 
     <mat-step [stepControl]="aboutForm">
       <form [formGroup]="aboutForm">
-        <ng-template matStepLabel>About</ng-template>
-        <h3>🤷 About the package</h3>
+        <ng-template matStepLabel>{{ 'global.words.about' | translate }}</ng-template>
+        <h3>🤷 {{ 'pages.package.form.about' | translate }}</h3>
         <p class="card-text">
-          Please write a small description that users can read. This will be vital to the decision making of the future client.   
+          {{ 'pages.package.form.about_detail' | translate }}
         </p>
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>The Short Description</mat-label>
-          <textarea type="text" matInput formControlName="packageDescription" placeholder="Write a short but attractive description" 
-          matTextareaAutosize autofocus="off" autocomplete="off">
+          <mat-label>{{ 'pages.package.form.short_desc' | translate }}</mat-label>
+          <textarea type="text" matInput formControlName="packageDescription"
+            placeholder="{{ 'pages.package.form.short_desc_ph' | translate }}" 
+            matTextareaAutosize autofocus="off" autocomplete="off">
           </textarea>
-          <mat-error class="input-error" *ngIf="!aboutForm['controls'].packageDescription.valid">This is <strong>required</strong></mat-error>
+          <mat-error class="input-error"
+            *ngIf="!aboutForm['controls'].packageDescription.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
       </form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          {{ 'global.buttons.next' | translate }}
+        </button>
       </section>
     </mat-step>
 
     <mat-step [stepControl]="timeForm">
       <form [formGroup]="timeForm">
-        <ng-template matStepLabel>Duration</ng-template>
-        <h3>🕰️ Amount of Time</h3>
+        <ng-template matStepLabel>
+          {{ 'global.words.duration' | translate }}
+        </ng-template>
+        <h3>🕰️ {{ 'pages.package.form.amount_of_time' | translate }}</h3>
         <p class="card-text">
-          How long does the package go for? This is important for an eventually future implementation of an automatic renew subscription notification.
+          {{ 'pages.package.form.amount_time_desc' | translate }}
         </p>
 
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>How long is this valid?</mat-label>
-          <input type="number" matInput formControlName="packageDuration" placeholder="Amount in weeks" autofocus="off" maxlength="3" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!timeForm['controls'].packageDuration.valid">This is <strong>required</strong></mat-error>
+          <mat-label>{{ 'pages.package.form.how_long_valid' | translate }}</mat-label>
+          <input type="number" matInput formControlName="packageDuration"
+            placeholder="{{ 'pages.package.form.amount_weeks' | translate }}"
+            autofocus="off" maxlength="3" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!timeForm['controls'].packageDuration.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
       </form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          {{ 'global.buttons.next' | translate }}
+        </button>
       </section>
     </mat-step>
 
     <mat-step [stepControl]="priceForm">
       <form [formGroup]="priceForm">
-        <ng-template matStepLabel>Price</ng-template>
-        <h3>🔖 Price</h3>
+        <ng-template matStepLabel>{{ 'global.words.price' | translate }}</ng-template>
+        <h3>🔖 {{ 'global.words.price' | translate }}</h3>
         <p class="card-text">
-          How much will it cost? We will calculate your profit under the hood if you'd like!
+          {{ 'pages.package.form.price_intro' | translate }}
         </p>
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>The $$$$$</mat-label>
-          <input type="number" matInput formControlName="packagePrice" placeholder="Price in USD" autofocus="off" autocomplete="off">
-          <mat-error class="input-error" *ngIf="!priceForm['controls'].packagePrice.valid">This is <strong>required</strong></mat-error>
+          <mat-label>$$$$$</mat-label>
+          <input type="number" matInput formControlName="packagePrice"
+            placeholder="{{ 'global.words.price' | translate }} USD" autofocus="off"
+            autocomplete="off">
+          <mat-error class="input-error"
+            *ngIf="!priceForm['controls'].packagePrice.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
         </mat-form-field>
       </form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
-        <button type="button" class="dialog-button" matStepperNext>Next</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
+        <button type="button" class="dialog-button" matStepperNext>
+          {{ 'global.buttons.next' | translate }}
+        </button>
       </section>
     </mat-step>
 
     <mat-step [stepControl]="extrasForm">
       <form [formGroup]="extrasForm">
-        <ng-template matStepLabel>Extras</ng-template>
-        <h3>🥂 Benefits</h3>
-        <p class="intro-text">Add languages to the specialist so we can hook them up with the right clients. This way we will also be able 
-          to know in which markets we are active.
+        <ng-template matStepLabel>{{ 'pages.package.form.extras' | translate }}</ng-template>
+        <h3>🥂 {{ 'pages.package.general.benefits' | translate }}</h3>
+        <p class="intro-text">
+          {{ 'pages.package.form.extras_detail' | translate }}
         </p>
         <div class="add-form-field-container" formArrayName="benefitArr">
           <section class="dynamic-form-field-container" *ngFor="let benefit of benefitForms.controls; let i=index" [formGroupName]="i">
@@ -111,12 +148,19 @@
               <h1>{{i+1}}</h1>
             </div>
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Add benefits</mat-label>
-              <input matInput placeholder="What's the plus of this package?" formControlName="benefitValue" autocomplete="off" required>
-              <mat-error class="input-error" *ngIf="!benefitValue.valid && extrasForm.touched">This is <strong>required</strong></mat-error>
+              <mat-label>
+                {{ 'pages.package.form.add_benefits' | translate }}
+              </mat-label>
+              <input matInput formControlName="benefitValue" autocomplete="off"
+                placeholder="{{ 'pages.package.form.package_pros' | translate }}"
+                required>
+              <mat-error class="input-error" *ngIf="!benefitValue.valid && extrasForm.touched">
+                {{ 'global.errors.required' | translate }}
+              </mat-error>
             </mat-form-field>
             <div class="btn-area">
-              <button type="button" mat-icon-button type="button" class="delete-btn" (click)="deleteBenefit(i)">
+              <button type="button" mat-icon-button type="button" class="delete-btn"
+                (click)="deleteBenefit(i)">
                 <i class="fa__icon fa fa-trash"></i>
               </button>
             </div>
@@ -125,22 +169,21 @@
 
         <button type="button" class="add-form-field" (click)="addBenefit()">
           <i class="fa__icon fa fa-plus"></i>
-          Add a Benefit
+          {{ 'pages.package.buttons.add_benefit' | translate }}
         </button>
       </form>
 
       <section class="btn-area">
-        <button type="button" class="dialog-button" matStepperPrevious>Back</button>
+        <button type="button" class="dialog-button" matStepperPrevious>
+          {{ 'global.buttons.back' | translate }}
+        </button>
         <button type="submit" class="dialog-button" (click)="addPackage()"
           [disabled]="!personalForm.valid || !aboutForm.valid || !timeForm.valid || !priceForm.valid || !extrasForm.valid"
           [class.disabled]="!personalForm.valid || !aboutForm.valid || !timeForm.valid || !priceForm.valid || !extrasForm.valid"
-          mat-dialog-close
-        >
-          Done
+          mat-dialog-close>
+          {{ 'global.buttons.done' | translate }}
         </button>
       </section>
-
     </mat-step>
-
   </mat-horizontal-stepper>
 </main>

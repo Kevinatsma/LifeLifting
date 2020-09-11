@@ -27,14 +27,17 @@
     <ng-container *ngIf="!editShow">
       <section class="specialist-header">
         <div class="profile-picture" [style.backgroundImage]="'url('+ specialist.photoURL +')'">
-
         </div>
         <div class="quick-info">
-          <p class="timezone">Timezone: {{specialist.timeZone}}</p>
+          <p class="timezone">
+            {{ 'pages.specialist.general.timezone' | translate }}: {{specialist.timeZone}}
+          </p>
           <div class="top">
           <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
           <h5>{{specialist.position}}</h5>
-          <p>Speciality: {{specialist.speciality}}</p>
+          <p>
+            {{ 'pages.specialist.general.speciality' | translate }}: {{specialist.speciality}}
+          </p>
           <div class="icon-fact-container">
             <div class="fact">
               <i class="fa__icon fas fa-globe-americas"></i> 
@@ -48,31 +51,35 @@
           </div>
           <div class="bottom">
             <p class="tab">
-              <span>{{specialist.patientsTotal}}</span>Clients or Patients
+              <span>{{specialist.patientsTotal}}</span>
+              {{ 'pages.specialist.general.clients_patients' | translate }}
             </p>
             <p class="tab">
-              <span>{{specialist.yearsOfExperience}}</span>Years of experience
+              <span>{{specialist.yearsOfExperience}}</span>
+              {{ 'pages.specialist.general.years_experience' | translate }}
             </p>
           </div>
         </div>
       </section>
 
       <section class="about">  
-        <h5>About {{specialist.firstName}}</h5>
+        <h5>{{ 'global.words.about' | translate }} {{specialist.firstName}}</h5>
         <p [class.read-more]="aboutExtended">{{specialist.description}}</p>
         <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
           <i class="fa__icon fas fa-plus"></i>
-          Read More
+          {{ 'global.buttons.read_more' | translate }}
         </button>
         <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
           <i class="fa__icon fas fa-minus"></i>
-          Read Less
+          {{ 'global.buttons.read_less' | translate }}
         </button>
       </section>
 
       <section class="middle">
         <div class="contact-info">
-          <h5 class="purple">Contact Info</h5>
+          <h5 class="purple">
+            {{ 'pages.specialist.general.contact_info' | translate }}
+          </h5>
           <ul class="contact-menu">
             <li>
               <i class="fa__icon far fa-envelope"></i>
@@ -89,13 +96,13 @@
             <li>
               <i class="fa__icon far fa-comment-alt"></i>
               <a class="text-link" (click)="chat()">
-                Chat
+                {{ 'global.actions.chat' | translate }}
               </a>
             </li>
           </ul>
         </div>
         <div class="languages">
-          <h5 class="purple">Languages</h5>
+          <h5 class="purple">{{ 'pages.specialist.general.languages' | translate }}</h5>
           <ul>
             <li *ngFor="let language of specialist.languages"><strong>{{language.languageValue}}</strong> - {{language.languageLevel}}</li>
           </ul>
@@ -105,23 +112,24 @@
 
     <ng-container *ngIf="!editShow && reviews | async as reviews">
         <section class="reviews-opened">
-          <h5 class="purple">Reviews</h5>
+          <h5 class="purple">{{ 'pages.review.title' | translate }}</h5>
           <div class="review-container" *ngIf="reviewsVisible">
-            <app-review-list-item *ngFor="let review of reviews" [review]="review" [specialist]="specialist">
+            <app-review-list-item *ngFor="let review of reviews" [review]="review"
+              [specialist]="specialist">
             </app-review-list-item>
             <div class="placeholder">
-              Oh hello there.
+              filler
             </div>
           </div>
         </section>
       
         <section class="btn-area" *ngIf="reviews.length > 0">
           <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
-            Show reviews
+            {{ 'pages.review.buttons.show' | translate }}
             <i class="fa__icon fas fa-chevron-down"></i>
           </button>
           <button class="text-link" *ngIf="reviewsVisible" (click)="closeReviews()">
-            Hide reviews
+            {{ 'pages.review.buttons.hide' | translate }}
             <i class="fa__icon fas fa-chevron-up"></i>
           </button>
         </section>

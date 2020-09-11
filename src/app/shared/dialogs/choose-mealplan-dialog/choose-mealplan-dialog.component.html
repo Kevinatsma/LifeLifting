@@ -1,33 +1,39 @@
 <div class="padding-layer">
   <main class="confirm-dialog-container">
     <div class="animated-container">
-      <h1>Choose a mealplan</h1>
-      <!-- Call method -->
-      <form [formGroup]="chooseMealplanForm" class="auth-form" *ngIf="mealplans && mealplans.length > 0; else noMealplans">
+      <h1>{{ 'dialogs.choose_mealplan.title' | translate }}</h1>
+      <form [formGroup]="chooseMealplanForm" class="auth-form"
+        *ngIf="mealplans && mealplans.length > 0; else noMealplans">
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>Choose a mealplan to get your shopping list</mat-label>
-          <mat-select matInput placeholder="Pick one from the list" [(value)]="selectedMealplan" formControlName="mealplan" autocomplete="off" 
-          panelClass="dropdown-regular" required>
+          <mat-label>{{ 'dialogs.choose_mealplan.intro' | translate }}</mat-label>
+          <mat-select matInput panelClass="dropdown-regular" autocomplete="off"
+            placeholder="{{ 'global.form.pick_from_list' | translate }}" required
+            [(value)]="selectedMealplan" formControlName="mealplan">
             <mat-option *ngFor="let mealplan of mealplans; let i=index" [value]="mealplan.mID">
               {{mealplan.mealplanName}}
             </mat-option>
           </mat-select>
-          <!-- <mat-error class="input-error" *ngIf="!callMethod.valid && onlineAppointmentForm.touched">This is <strong>required</strong></mat-error> -->
         </mat-form-field>
       </form>
       <ng-template #noMealplans>
-        <h6 class="no-mealplans">No mealplans are found.</h6>
+        <h6 class="no-mealplans">
+          {{ 'pages.mealplan.errors.no_mealplans_found' | translate }}
+        </h6>
       </ng-template>
     </div>
     
     <p class="" *ngIf="!mealplans">
-      Woops! You don't have any meal plans yet <span class="emoji">😔</span>
+      {{ 'pages.mealplan.errors.no_mealplans' | translate }} <span class="emoji">😔</span>
     </p>
 
     <section class="dialog-actions">
-      <button type="button" class="text-link" [mat-dialog-close]="true">Back</button>
+      <button type="button" class="text-link" [mat-dialog-close]="true">
+        {{ 'global.buttons.back' | translate }}
+      </button>
       <button [disabled]="mealplans.length < 1" [class.disabled]="mealplans.length < 1" 
-      class="text-link" (click)="linkToChild()" *ngIf="mealplans">Continue</button>
+      class="text-link" (click)="linkToChild()" *ngIf="mealplans">
+        {{ 'global.buttons.continue' | translate }}
+      </button>
     </section>
   </main>
 </div>

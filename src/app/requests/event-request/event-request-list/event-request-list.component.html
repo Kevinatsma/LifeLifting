@@ -5,11 +5,9 @@
     </button>
   </div>
   <div class="list-item-container" *ngIf="events | async as events; else loading">
-    <h1>Unaccepted requests</h1>
+    <h1>{{ 'requests.event_request_list.title' | translate }}</h1>
     <p class="card-text">
-      In here you can keep track of new users who want you to be their specialist. They will
-      send a request for a date for their first consultation. If you accept by clicking the checkbox, it will show up
-      in your calendar. Please let the users know as fast as possible, so you don't lose your clients.
+      {{ 'requests.event_request_list.description' | translate }}
     </p>
     <app-event-request-list-item *ngFor="let event of events" [specialist]="specialist" [event]="event"></app-event-request-list-item>
   </div>
@@ -19,5 +17,5 @@
 </main>
 
 <ng-template #noEvents>
-  <h2 class="all-good">You're all good!</h2>
+  <h2 class="all-good">{{ 'requests.event_request_list.all_good' | translate }}</h2>
 </ng-template>

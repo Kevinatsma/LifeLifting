@@ -2,5 +2,7 @@
   <section class="client-list" *ngIf="clients">
     <app-client-list-item *ngFor="let client of clients | async" [client]="client"></app-client-list-item>
   </section>
-  <p class="card-text mobile swipe">Swipe <i class="fa__icon fas fa-long-arrow-alt-right"></i></p>
+  <p class="card-text mobile swipe">
+    {{ 'global.actions.swipe' | translate }} <i class="fa__icon fas fa-long-arrow-alt-right"></i>
+  </p>
 </main>

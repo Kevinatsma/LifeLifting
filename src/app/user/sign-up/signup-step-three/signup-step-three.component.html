@@ -1,7 +1,9 @@
 <ng-container *ngIf="(auth.user | async) || {} as user">
   <section class="step-wrapper not-success step-three" *ngIf="!user.specialist">
-    <h5>Pick wisely, {{user.displayName || user.email}}</h5>
-    <h1>Step 3: Choose a Specialist</h1>
+    <h5>
+      {{ 'pages.signup.step_three.subtitle' | translate }}, {{user.displayName || user.email}}
+    </h5>
+    <h1>{{ 'pages.signup.step_three.title' | translate }}</h1>
 
     <section class="package-container specialist-container">
       <mat-radio-group class="package-slider" [(ngModel)]="chosenSpecialist">
@@ -11,35 +13,38 @@
           autofocus="none">
             <app-specialist-item [specialist]="specialist"></app-specialist-item>
           </mat-radio-button>
-          <div class="hidden">placeholder</div>
+          <div class="hidden">filler</div>
       </mat-radio-group>
     </section>
 
     <div class="btn-area">
       <button class="btn-icon-left" routerLink="../step-two">
         <i class="fa__icon fas fa-chevron-left small"></i>
-        <span class="not-mobile">Previous step</span>
-        <span class="mobile">Previous</span>
+        <span class="not-mobile">{{ 'global.buttons.previous_step' | translate }}</span>
+        <span class="mobile">{{ 'global.buttons.previous' | translate }}</span>
       </button>
       <button class="btn-icon-right" (click)="updateUser(user)" [class.btn-disabled]="chosenSpecialist === null" [disabled]="chosenSpecialist === null">
-        <span class="not-mobile">Next step</span>
-        <span class="mobile">Next</span>
+        <span class="not-mobile">{{ 'global.buttons.next_step' | translate }}</span>
+        <span class="mobile">{{ 'global.buttons.next' | translate }}</span>
         <i class="fa__icon fas fa-chevron-right small"></i>
       </button>
     </div>
   </section>
 
   <section class="step-wrapper success" *ngIf="user.specialist">
-    <h5>You've picked wisely, {{user.displayName || user.email}}</h5>
-    <h1>Step 3: Choose a Specialist</h1>
+    <h5>
+      {{ 'pages.signup.step_three.subtitle_success' | translate }}, {{user.displayName || user.email}}
+    </h5>
+    <h1>{{ 'pages.signup.step_three.title' | translate }}</h1>
     <div class="step-done">
       <p class="intro-text">
-        Ooops! You already chose a specialist. Go to the next dashboard by clicking the button below. If you want to change your 
-        specialist later. That's allowed after one week of trial.
+        {{ 'pages.signup.step_three.already_chosen' | translate }}
       </p>
       <div class="btn-area">
         <button class="btn-icon-right" routerLink="../step-four">
-          <span>Plan the consultation</span>
+          <span>
+            {{ 'pages.signup.step_three.buttons.plan_consultation' | translate }}
+          </span>
           <span class="emoji">📅</span>
         </button>
       </div>

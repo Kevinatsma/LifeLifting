@@ -6,13 +6,13 @@
   *ngIf="!downloadURL"
 >
   <i class="fa__icon far fa-image"></i>
-  <h3 class="photo-header"> Upload your image! (in .webp format)</h3>
+  <h3 class="photo-header"> {{ 'file_upload.title' | translate }}</h3>
   <a href="https://docs.google.com/document/d/11XCR8AI9tCQUwV2IJBlbUkrPkKPebZxYKE07X6jF8XA/edit"
   target="_blank" class="text-link">
-    Check the guide how!
+    {{ 'file_upload.check_guide' | translate }}
     <i class="fa__icon fas fa-external-link-alt"></i>
   </a>
-  <h5> Drag and drop one </h5>
+  <h5>{{ 'file_upload.subtitle' | translate }}</h5>
 
   <div class="file">
     <label class="file-label">
@@ -23,10 +23,10 @@
           <i class="fa__icon fas fa-upload"></i>
         </span>
         <span class="file-label text-link" *ngIf="!downloadURL">
-          or choose one...
+          {{ 'file_upload.or_choose_one' | translate }}
         </span>
         <span class="file-label text-link" *ngIf="downloadURL">
-          choose another
+          {{ 'file_upload.choose_another' | translate }}
         </span>
       </div>
     </label>
@@ -37,34 +37,18 @@
       <mat-progress-bar [value]="pct" max="100" mode="determinate"></mat-progress-bar>
     </div>
   </ng-container>
-  <!-- <button type="button" *ngIf="downloadURL" class="btn-secondary" autofocus (click)="sendDownloadURL()">How does it look?</button> -->
-
-  <!-- <div *ngIf="(snapshot | async) as snap">
-    {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}
-    <div *ngIf="downloadURL | async as url">
-      <h3> Result </h3>
-      <img [src]="url">
-      <a [href]="url">Download me</a>
-    </div>
-  </div> -->
-
-  <!-- <button (click)="task.pause()" [disabled]="!isActive(snap)">Pause</button>
-  <button (click)="task.cancel()" [disabled]="!isActive(snap)">Cancel</button> -->
-  <!-- <button (click)="task.resume()" [disabled]="!(snap.state === 'paused')">Resume</button> -->
-
 </mat-card>
 
 <div class="profile-pic" *ngIf="downloadURL">
   <section class="preview" *ngIf="imageURL" [style.background]="'url(' + imageURL + ')'">
-
   </section>
   <p class="card-text" *ngIf="!imageURL">
-    Woops.. We couldn't load your image. Please upload another one.
+    {{ 'file_upload.errors.cant_load_image' | translate }}
   </p>
   <section class="confirmation">
-    <h2>Is this okay?</h2>
+    <h2>{{ 'global.questions.is_this_ok' | translate }}</h2>
     <p class="card-text">
-      If this is a good representation, perfect! If not, please upload another one.
+      {{ 'file_upload.result_desc' | translate }}
     </p>
     <div class="file">
       <label class="file-label">
@@ -72,7 +56,7 @@
   
         <span class="bottom-btn">
           <span class="file-label text-link" *ngIf="downloadURL">
-            Change Photo
+            {{ 'file_upload.change_photo' | translate }}
           </span>
           <span class="file-icon">
             <i class="fa__icon fas fa-exchange-alt"></i>

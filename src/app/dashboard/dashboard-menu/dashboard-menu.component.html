@@ -8,13 +8,13 @@
     <li class="mobile">
       <a (click)="closeMenu()" class="menu-link" routerLink="../chat" routerLinkActive="active">
         <i class="fa__icon fas fa-comment-alt"></i>
-        Chat
+        {{ 'global.actions.chat' | translate }}
       </a>
     </li>
     <li>
       <a (click)="closeMenu()" class="menu-link" routerLink="overview" routerLinkActive="active">
         <i class="fa__icon fas fa-th-large"></i>
-        Overview
+        {{ 'pages.dashboard.menu.overview' | translate }}
       </a>
     </li>
   </ul>

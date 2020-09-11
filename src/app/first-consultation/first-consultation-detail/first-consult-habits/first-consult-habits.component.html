@@ -1,15 +1,17 @@
 <main class="fic-detail-container habits" *ngIf="habits">
     <section class="fic-detail-container__general">
-      <h3>General</h3>
+      <h3>{{ 'pages.first_consultation.habits.general' | translate }}</h3>
   
       <div class="form-field info-card">
         <div class="info-card__icon">
           <i class="fa__icon fas fa-cocktail"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Consumes alcohol</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.consumes_alcohol' | translate }}
+          </span>
           <p class="value big">{{habits.alcohol}}</p>
-          <p class="value sub-value" *ngIf="habits.alcoholNote">{{habits.alcoholNote}} cups/day</p>
+          <p class="value sub-value" *ngIf="habits.alcoholNote">{{habits.alcoholNote}} {{ 'pages.first_consultation.general.cups_day' | translate }}</p>
         </div>
       </div>
 
@@ -18,7 +20,9 @@
           <i class="fa__icon fas fa-smoking"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Smokes</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.smokes' | translate }}
+          </span>
           <p class="value big">{{habits.smoke}}</p>
           <p class="value sub-value" *ngIf="habits.smokeNote">{{habits.smokeNote}} packs/week</p>
         </div>
@@ -29,9 +33,11 @@
           <i class="fa__icon fas fa-coffee"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Consumes coffee</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.consumes_coffee' | translate }}
+          </span>
           <p class="value big">{{habits.coffee}}</p>
-          <p class="value sub-value" *ngIf="habits.coffeeNote">{{habits.coffeeNote}} cups/day</p>
+          <p class="value sub-value" *ngIf="habits.coffeeNote">{{habits.coffeeNote}} {{ 'pages.first_consultation.general.cups_day' | translate }}</p>
         </div>
       </div>
 
@@ -40,9 +46,11 @@
           <i class="fa__icon fas fa-leaf"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Consumes tea</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.consumes_tea' | translate }}
+          </span>
           <p class="value big">{{habits.tea}}</p>
-          <p class="value sub-value" *ngIf="habits.teaNote">{{habits.teaNote}} cups/day</p>
+          <p class="value sub-value" *ngIf="habits.teaNote">{{habits.teaNote}} {{ 'pages.first_consultation.general.cups_day' | translate }}</p>
         </div>
       </div>
 
@@ -51,9 +59,13 @@
           <i class="fa__icon far fa-clock"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Stays up late</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.stays_up_late' | translate }}
+          </span>
           <p class="value big">{{habits.stayUpLate}}</p>
-          <p class="value sub-value" *ngIf="habits.stayUpLateNote">{{habits.stayUpLateNote}}x per week</p>
+          <p class="value sub-value" *ngIf="habits.stayUpLateNote">
+            {{habits.stayUpLateNote}}{{ 'global.form.x_per_week' | translate }}
+          </p>
         </div>
       </div>
 
@@ -62,7 +74,9 @@
           <i class="fa__icon fas fa-capsules"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Consumes drugs</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.consumes_drugs' | translate }}
+          </span>
           <p class="value big">{{habits.drugs}}</p>
         </div>
       </div>
@@ -72,22 +86,28 @@
           <i class="fa__icon fas fa-compact-disc"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Goes out at night to have a social life</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.social_life' | translate }}
+          </span>
           <p class="value big">{{habits.socialLife}}</p>
-          <p class="value sub-value" *ngIf="habits.socialLifeNote">{{habits.socialLifeNote}}x per week</p>
+          <p class="value sub-value" *ngIf="habits.socialLifeNote">
+            {{habits.socialLifeNote}}{{ 'global.form.x_per_week' | translate }}
+          </p>
         </div>
       </div>
     </section>
   
     <section class="fic-detail-container__sleeping-habits">
-      <h3>Sleeping habits</h3>
+      <h3>{{ 'pages.first_consultation.habits.form.sleeping_habits' | translate }}</h3>
   
       <div class="form-field info-card">
         <div class="info-card__icon">
           <i class="fa__icon fas fa-sun"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Wake up time</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.wake_up_time' | translate }}
+          </span>
           <p class="value big">{{habits.sleepingHabits.wakeUpTime}}</p>
         </div>
       </div>
@@ -97,21 +117,25 @@
           <i class="fa__icon fas fa-moon"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Go to bed time</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.bed_time' | translate }}
+          </span>
           <p class="value big">{{habits.sleepingHabits.sleepTime}}</p>
         </div>
       </div>
     </section>
   
     <section class="fic-detail-container__appetite">
-      <h3>Eating habits</h3>
+      <h3>{{ 'pages.first_consultation.habits.form.eating_habits' | translate }}</h3>
   
       <div class="form-field info-card">
         <div class="info-card__icon">
           <i class="fa__icon fas fa-apple-alt"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Breakfast time</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.breakfast_time' | translate }}
+          </span>
           <p class="value big">{{habits.eatingHabits.breakfastTime}}</p>
         </div>
       </div>
@@ -121,7 +145,9 @@
           <i class="fa__icon fas fa-drumstick-bite"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Lunch time</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.lunch_time' | translate }}
+          </span>
           <p class="value big">{{habits.eatingHabits.lunchTime}}</p>
         </div>
       </div>
@@ -131,7 +157,9 @@
           <i class="fa__icon fas fa-utensils"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Dinner time</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.dinner_time' | translate }}
+          </span>
           <p class="value big">{{habits.eatingHabits.dinnerTime}}</p>
         </div>
       </div>
@@ -141,7 +169,9 @@
           <i class="fa__icon fas fa-user-tag"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">The one that cooks at home</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.cook_at_home' | translate }}
+          </span>
           <p class="value big">{{habits.eatingHabits.whoCooks}}</p>
         </div>
       </div>
@@ -151,7 +181,9 @@
           <i class="fa__icon fas fa-home"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Has breakfast at home</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.breakfast_home' | translate }}
+          </span>
           <p class="value big">{{habits.eatingHabits.breakfastAtHome}}</p>
           <p class="value sub-value" *ngIf="habits.eatingHabits.breakfastAtHomeNote">Location: {{habits.eatingHabits.breakfastAtHomeNote}}</p>
         </div>
@@ -162,7 +194,9 @@
           <i class="fa__icon fas fa-stopwatch"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Has plenty of time for breakfast</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.plenty_time' | translate }}
+          </span>
           <p class="value big">{{habits.eatingHabits.timeForBreakfast}}</p>
           <p class="value sub-value" *ngIf="habits.eatingHabits.timeForBreakfastNote">
             {{habits.eatingHabits.timeForBreakfastNote}}
@@ -172,10 +206,12 @@
     </section>
   
     <section class="fic-detail-container__work">
-      <h3>Work</h3>
+      <h3>{{ 'pages.first_consultation.habits.work' | translate }}</h3>
   
       <div class="form-field long-text">
-        <span class="label small">Work description</span>
+        <span class="label small">
+          {{ 'pages.first_consultation.general.work_description' | translate }}
+        </span>
         <div class="text-field">
           <p class="card-text">{{habits.work.description}}</p>
         </div>
@@ -186,10 +222,12 @@
           <i class="fa__icon far fa-calendar-alt"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Work schedule</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.work_schedule' | translate }}
+          </span>
           <p class="value big schedule">
-            <span>From: {{habits.work.schedules.from}}</span><br>
-            <span>To: {{habits.work.schedules.to}}</span>
+            <span>{{ 'events.from' | translate }}: {{habits.work.schedules.from}}</span><br>
+            <span>{{ 'events.to' | translate }}: {{habits.work.schedules.to}}</span>
           </p>
         </div>
       </div>
@@ -199,11 +237,13 @@
           <i class="fa__icon fas fa-briefcase"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Works on weekends</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.work_weekends' | translate }}
+          </span>
           <p class="value big">{{habits.work.workOnWeekends}}</p>
           <p class="value sub-value" *ngIf="habits.work.workOnWeekendsNote !== null">
-            <span>From: {{habits.work.workOnWeekendsNote.from}}</span><br> 
-            <span>To: {{habits.work.workOnWeekendsNote.to}}</span>
+            <span>{{ 'events.from' | translate }}: {{habits.work.workOnWeekendsNote.from}}</span><br> 
+            <span>{{ 'events.to' | translate }}: {{habits.work.workOnWeekendsNote.to}}</span>
           </p>
         </div>
       </div>
@@ -213,7 +253,9 @@
           <i class="fa__icon fas fa-stopwatch"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Time to travel from home to work</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.travel_work' | translate }}
+          </span>
           <p class="value big">{{habits.work.homeToWork}} min</p>
         </div>
       </div>
@@ -223,7 +265,9 @@
           <i class="fa__icon fas fa-clock"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Time to travel from work to home</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.travel_home' | translate }}
+          </span>
           <p class="value big">{{habits.work.workToHome}} min</p>
         </div>
       </div>
@@ -233,7 +277,9 @@
           <i class="fa__icon fas fa-car"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Method of transportation</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.habits.form.transportation' | translate }}
+          </span>
           <p class="value big">{{habits.work.transportationMethod}}</p>
         </div>
       </div>
@@ -243,7 +289,9 @@
           <i class="fa__icon fas fa-utensils"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Can eat during work time</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.eat_during_work' | translate }}
+          </span>
           <p class="value big">{{habits.work.eatDuringJob}}</p>
         </div>
       </div>
@@ -253,7 +301,9 @@
           <i class="fa__icon fas fa-cookie"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Can have simple snack during work time</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.simple_snack' | translate }}
+          </span>
           <p class="value big">{{habits.work.practicalSnackDuringJob}}</p>
         </div>
       </div>
@@ -263,7 +313,9 @@
           <i class="fa__icon fas fa-heart"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Snacks preference</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.snack_preference' | translate }}
+          </span>
           <p class="value big">{{habits.work.snacksPreference}}</p>
         </div>
       </div>
@@ -273,12 +325,12 @@
           <i class="fa__icon fas fa-blender"></i>
         </div>
         <div class="info-card__content">
-          <span class="label small">Has kitchen gadgets at work</span>
+          <span class="label small">
+            {{ 'pages.first_consultation.general.kitchen_gadgets' | translate }}
+          </span>
           <p class="value big">{{habits.work.kitchenGadgetsAtWork}}</p>
         </div>
       </div>
-  
     </section>
-    
   </main>
   

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth/auth.service';
 import { BookingModule } from './../booking/booking.module';
-// import { ChatModule } from './chat/chat.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -13,14 +13,14 @@ import { BookingModule } from './../booking/booking.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    BookingModule
-    // ChatModule
+    BookingModule,
+    TranslateModule
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
-    BookingModule
-    // ChatModule
+    BookingModule,
+    TranslateModule
   ],
   declarations: [
   ],

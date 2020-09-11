@@ -7,7 +7,7 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.mealTimeName">
-          1. This meal doesn't contain a meal time yet..
+          1. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
           1. {{time.mealTimeName}}
@@ -26,7 +26,7 @@
     <section class="meals-container" *ngIf="monday.mOneMealOneArr as meals">
       <div class="meals" *ngIf="meals?.length >= 1">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mOneMealOne">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -48,7 +48,7 @@
     <section class="meals-container" *ngIf="monday.mOneMealTwoArr as meals">
       <div class="meals" *ngIf="meals?.length == 2">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mOneMealTwo">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -76,7 +76,7 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.mealTimeName">
-          2. This meal doesn't contain a meal time yet..
+          2. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
           2. {{time.mealTimeName}}
@@ -95,7 +95,7 @@
     <section class="meals-container" *ngIf="monday.mTwoMealOneArr as meals">
       <div class="meals" *ngIf="meals?.length >= 1">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealOne">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -117,7 +117,7 @@
     <section class="meals-container" *ngIf="monday.mTwoMealTwoArr as meals">
       <div class="meals" *ngIf="meals?.length == 2">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -145,7 +145,7 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.mealTimeName">
-          3. This meal doesn't contain a meal time yet..
+          3. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
           3. {{time.mealTimeName}}
@@ -164,7 +164,7 @@
     <section class="meals-container" *ngIf="monday.mThreeMealOneArr as meals">
       <div class="meals" *ngIf="meals?.length >= 1">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mThreeMealOne">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -186,7 +186,7 @@
     <section class="meals-container" *ngIf="monday.mThreeMealTwoArr as meals">
       <div class="meals" *ngIf="meals?.length == 2">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -214,7 +214,7 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.mealTimeName">
-          4. This meal doesn't contain a meal time yet..
+          4. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
           4. {{time.mealTimeName}}
@@ -233,7 +233,7 @@
     <section class="meals-container" *ngIf="monday.mFourMealOneArr as meals">
       <div class="meals" *ngIf="meals?.length >= 1">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mFourMealOne">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -255,7 +255,7 @@
     <section class="meals-container" *ngIf="monday.mFourMealTwoArr as meals">
       <div class="meals" *ngIf="meals?.length == 2">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -283,7 +283,7 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.mealTimeName">
-          5. This meal doesn't contain a meal time yet..
+          5. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
           5. {{time.mealTimeName}}
@@ -302,7 +302,7 @@
     <section class="meals-container" *ngIf="monday.mFiveMealOneArr as meals">
       <div class="meals" *ngIf="meals?.length >= 1">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mFiveMealOne">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -324,7 +324,7 @@
     <section class="meals-container" *ngIf="monday.mFiveMealTwoArr as meals">
       <div class="meals" *ngIf="meals?.length == 2">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -352,7 +352,7 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.mealTimeName">
-          6. This meal doesn't contain a meal time yet..
+          6. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
           6. {{time.mealTimeName}}
@@ -371,7 +371,7 @@
     <section class="meals-container" *ngIf="monday.mSixMealOneArr as meals">
       <div class="meals" *ngIf="meals?.length >= 1">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mSixMealOne">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -393,7 +393,7 @@
     <section class="meals-container" *ngIf="monday.mSixMealTwoArr as meals">
       <div class="meals" *ngIf="meals?.length == 2">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -421,7 +421,7 @@
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.mealTimeName">
-          7. This meal doesn't contain a meal time yet..
+          7. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
           7. {{time.mealTimeName}}
@@ -440,7 +440,7 @@
     <section class="meals-container" *ngIf="monday.mSevenMealOneArr as meals">
       <div class="meals" *ngIf="meals?.length >= 1">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mSevenMealOne">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>
@@ -462,7 +462,7 @@
     <section class="meals-container" *ngIf="monday.mSevenMealTwoArr as meals">
       <div class="meals" *ngIf="meals?.length == 2">
         <div class="title">
-          <span class="up-title">Meal name</span>
+          <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
             <span class="indicator">
               <i class="fa__icon fas fa-sort-down"></i>

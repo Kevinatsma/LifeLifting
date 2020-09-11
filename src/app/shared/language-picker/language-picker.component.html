@@ -1,0 +1,13 @@
+<button [matMenuTriggerFor]="menu" class="flag-btn">
+    <img src="{{flagSrc}}" height="25" width="25" />
+    <i class="fa__icon fas fa-sort-down not-mobile"></i>
+</button>
+<mat-menu #menu="matMenu" class="language-menu">
+    <button mat-menu-item (click)="changeLanguage('en')">
+        English
+    </button>
+    <button mat-menu-item (click)="changeLanguage('es')">
+        Spanish
+    </button>
+</mat-menu>
+

@@ -2,59 +2,61 @@
   <section class="specialist-header">
     <div class="profile-picture" *ngIf="specialist.photoURL" [style.backgroundImage]="'url('+ specialist.photoURL +')'"></div>
     <div class="profile-picture" *ngIf="!specialist.photoURL">
-      <span>No Photo Yet</span>
+      <span>{{ 'global.errors.no_photo' | translate }}</span>
     </div>
 
     <div class="quick-info">
       <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
       <h5>{{specialist.position}}</h5>
-      <p>Speciality: {{specialist.speciality}}</p>
+      <p>{{ 'pages.specialist.general.speciality' | translate }}: {{specialist.speciality}}</p>
 
       <a class="text-link mobile" (click)="toggleSpecialist(specialist)">
-        Learn more
+        {{ 'global.buttons.learn_more' | translate }}
       </a>
     </div>
   </section>
 
   <section class="about not-mobile">  
-    <h5>👩 About {{specialist.firstName}}</h5>
+    <h5>👩 {{ 'global.words.about' | translate }} {{specialist.firstName}}</h5>
     <p [class.read-more]="aboutExtended">{{specialist.description}}</p>
     <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
       <i class="fa__icon fas fa-plus"></i>
-      Read More
+      {{ 'global.buttons.read_more' | translate }}
     </button>
     <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
       <i class="fa__icon fas fa-minus"></i>
-      Read Less
+      {{ 'global.buttons.read_less' | translate }}
     </button>
   </section>
 
   <section class="middle not-mobile">
     <div class="practical-info">
-      <h5 class="purple">📖 Practical Info</h5>
-      <p>Experience: {{specialist.yearsOfExperience}} years</p>
-      <p>Timezone: {{specialist.timeZone}}</p>
-      <p>Amount of patients: {{specialist.patientsTotal}}</p>
+      <h5 class="purple">📖 {{ 'pages.specialist.general.practical_info' | translate }}</h5>
+      <p>{{ 'pages.specialist.general.experience' | translate }}: {{specialist.yearsOfExperience}} years</p>
+      <p>{{ 'pages.specialist.general.timezone' | translate }}: {{specialist.timeZone}}</p>
+      <p>{{ 'pages.specialist.general.amount_of_patients' | translate }}: {{specialist.patientsTotal}}</p>
     </div>
     <div class="languages">
-      <h5 class="purple">🈹 Languages</h5>
+      <h5 class="purple">🈹 {{ 'pages.specialist.general.languages' | translate }}</h5>
       <ul>
-        <li *ngFor="let language of specialist.languages">{{language.languageValue}} - {{language.languageLevel}}</li>
+        <li *ngFor="let language of specialist.languages">
+          {{language.languageValue}} - {{language.languageLevel}}
+        </li>
       </ul>
     </div>
   </section>
 
   <section class="reviews-opened not-mobile">
-    <h5 class="purple">⭐ Reviews</h5>
+    <h5 class="purple">⭐ {{ 'pages.review.title' | translate }}</h5>
     <p class="card-text" *ngIf="reviews && reviews.length < 1">
-      No reviews yet...
+      {{ 'pages.review.errors.no_reviews' | translate }}
     </p>
 
     <div class="review-container" *ngIf="reviewsVisible">
       <ng-container *ngIf="reviews && reviews.length > 0">
         <app-review-list-item *ngFor="let review of reviews" [review]="review"></app-review-list-item>
         <div class="hidden">
-          margin-block
+          filler
         </div>
       </ng-container>
     </div>
@@ -62,11 +64,11 @@
 
   <section class="btn-area not-mobile" *ngIf="reviews && reviews.length > 0">
     <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
-      Show reviews
+      {{ 'pages.review.buttons.show' | translate }}
       <i class="fa__icon fas fa-chevron-down"></i>
     </button>
     <button class="text-link" *ngIf="reviewsVisible" (click)="closeReviews()">
-      Hide reviews
+      {{ 'pages.review.buttons.hide' | translate }}
       <i class="fa__icon fas fa-chevron-up"></i>
     </button>
   </section>

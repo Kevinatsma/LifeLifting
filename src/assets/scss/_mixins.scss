@@ -17,6 +17,37 @@ $main-font:'Assistant', sans-serif;
     }
 }
 
+// Icons
+
+@mixin arrow-right-animated() {
+  button.btn-icon-right__animated {
+    padding-left: 0;
+    font-size: 16px;
+    font-weight: $semi-bold;
+  }
+
+  .fa__icon, .svg-inline--fa, svg, svg path {
+      font-size: 22px;
+      color: darken($middle-grey, 4%);
+      transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+      width: 20px;
+      height: auto;
+      position: relative;
+      top: 4px;
+      left: 10px;
+      animation: right-left-right 1s 2;
+  }
+
+  &:hover, &:focus {
+      .fa__icon, .svg-inline--fa, svg, svg path {
+          left: 10px;
+          top: 4px;
+          transition: all 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+          animation: right-left-right 1s infinite;
+      }
+  }
+}
+
 //  Rem
 $baseFontSize: 10;
 

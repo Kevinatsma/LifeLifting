@@ -1,8 +1,6 @@
 
 <mat-card class="list-item-card" *ngIf="exercise">
   <section class="exercise-photo" (click)="linkToChild(exercise)" [style.background]="'url('+ exercise.exercisePhoto +')'">
-      <!-- <i class="fa__icon fas fa-carrot"></i>
-    <h1>{{i+1}}</h1> -->
   </section>
   <p class="subtitle">
     <span *ngFor="let category of exercise.categories">
@@ -17,11 +15,11 @@
     <div class="quick-info">
       <ul class="contact-menu">
         <li>
-          <span class="met-value">Exercise ID:</span>
+          <span class="met-value">{{ 'pages.exercises.exercise_id' | translate }}:</span>
           {{exercise.exerciseID}}
         </li>
         <li>
-          <span class="met-value">MET Value:</span>
+          <span class="met-value">MET {{ 'global.words.value' | translate}}:</span>
           {{exercise.metsValue}}
         </li>
       </ul>
@@ -37,5 +35,4 @@
       </button>
     </section>
   </ng-container>
-
 </mat-card>

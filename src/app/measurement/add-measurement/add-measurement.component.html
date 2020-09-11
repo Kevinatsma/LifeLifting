@@ -3,14 +3,14 @@
     <mat-step [stepControl]="perimeterForm">
       <div class="close-section mobile">
         <button class="text-link close-btn" (click)="closeDialog()" type="button">
-          <i class="mobile fas fa-arrow-left"></i> Back
+          <i class="mobile fas fa-arrow-left"></i> {{ 'global.buttons.back' | translate }}
         </button>
       </div>
       <form [formGroup]="weightForm" class="weight-form">
         <div class="form-wrapper">
           <div class="form-field-container weight">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Weight</mat-label>
+              <mat-label>{{ 'global.user.weight' | translate }}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="weight" autofocus autocomplete="off" >
               <span class="input-unit">kg</span>
             </mat-form-field>
@@ -25,7 +25,7 @@
         <div class="form-wrapper left">      
           <div class="form-field-container arms-relaxed">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Head</mat-label>
+              <mat-label>{{ 'pages.measurement.form.head' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="head" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
@@ -33,7 +33,7 @@
 
           <div class="form-field-container arms-flexed">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Neck</mat-label>
+              <mat-label>{{ 'pages.measurement.form.neck' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="neck" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
@@ -41,7 +41,7 @@
 
           <div class="form-field-container thorax">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Arm Relaxed</mat-label>
+              <mat-label>{{ 'pages.measurement.form.arm_relaxed' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="armRelaxed" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
@@ -49,7 +49,7 @@
 
           <div class="form-field-container waist">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Arm Flexed</mat-label>
+              <mat-label>{{ 'pages.measurement.form.arm_flexed' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="armFlexed" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
@@ -57,7 +57,7 @@
 
           <div class="form-field-container hip">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Forearm</mat-label>
+              <mat-label>{{ 'pages.measurement.form.forearm' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="forearm" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
@@ -65,7 +65,7 @@
 
           <div class="form-field-container thigh-max">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Wrist</mat-label>
+              <mat-label>{{ 'pages.measurement.form.wrist' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="wrist" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
@@ -73,7 +73,7 @@
           
           <div class="form-field-container thigh-min">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Thorax</mat-label>
+              <mat-label>{{ 'pages.measurement.form.thorax' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="thorax" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
@@ -86,7 +86,7 @@
         <div class="form-wrapper right">
           <div class="form-field-container head">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Waist</mat-label>
+              <mat-label>{{ 'pages.measurement.form.waist' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="waist" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
@@ -94,7 +94,7 @@
     
           <div class="form-field-container neck">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Hip</mat-label>
+              <mat-label>{{ 'pages.measurement.form.hip' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="hip" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
@@ -102,7 +102,7 @@
 
           <div class="form-field-container forearm">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Thigh Max</mat-label>
+              <mat-label>{{ 'pages.measurement.form.thigh_max' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="thighMax" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
@@ -110,7 +110,7 @@
 
           <div class="form-field-container wrist">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Thigh Min</mat-label>
+              <mat-label>{{ 'pages.measurement.form.thigh_min' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="thighMin" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
@@ -118,7 +118,7 @@
     
           <div class="form-field-container calf">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Calf</mat-label>
+              <mat-label>{{ 'pages.measurement.form.calf' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="calf" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
@@ -126,20 +126,18 @@
 
           <div class="form-field-container ankle">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Ankle</mat-label>
+              <mat-label>{{ 'pages.measurement.form.ankle' | translate}}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="ankle" autofocus autocomplete="off" >
               <span class="input-unit">cm</span>
             </mat-form-field>
           </div>
-  
         </div>
-
       </form>
 
       <section class="btn-area-one">
         <button class="dialog-button" (click)="addMeasurements()" [disabled]="!perimeterForm.valid || !skinfoldForm.valid || !weightForm.valid"
         [class.disabled]="!perimeterForm.valid || !skinfoldForm.valid || !weightForm.valid" mat-dialog-close>
-          Done
+          {{ 'global.buttons.done' | translate }}
         </button>
       </section>
     </mat-step>
@@ -147,18 +145,20 @@
     <mat-step [stepControl]="skinfoldForm">
       <div class="close-section mobile">
         <button class="text-link close-btn" (click)="closeDialog()" type="button">
-          <i class="mobile fas fa-arrow-left"></i> Back
+          <i class="mobile fas fa-arrow-left"></i> {{ 'global.buttons.back' | translate }}
         </button>
       </div>
 
       <form [formGroup]="skinfoldForm" class='skinfold-form'>
-        <ng-template matStepLabel>Skinfolds</ng-template>
+        <ng-template matStepLabel>
+          {{ 'pages.measurement.general.skinfolds' | translate }}
+        </ng-template>
 
         <!--  Left side -->
         <div class="form-wrapper left">
           <div class="form-field-container triceps">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Triceps</mat-label>
+              <mat-label>{{ 'pages.measurement.form.triceps' | translate }}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="triceps" autofocus autocomplete="off" >
               <span class="input-unit">mm</span>
             </mat-form-field>
@@ -166,7 +166,7 @@
           
           <div class="form-field-container subescapular">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Subescapular</mat-label>
+              <mat-label>{{ 'pages.measurement.form.subescapular' | translate }}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="subescapular" autofocus autocomplete="off" >
               <span class="input-unit">mm</span>
             </mat-form-field>
@@ -174,7 +174,7 @@
 
           <div class="form-field-container biceps">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Biceps</mat-label>
+              <mat-label>{{ 'pages.measurement.form.biceps' | translate }}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="biceps" autofocus autocomplete="off" >
               <span class="input-unit">mm</span>
             </mat-form-field>
@@ -182,7 +182,7 @@
 
           <div class="form-field-container cresta-iliaca">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Cresta Iliaca </mat-label>
+              <mat-label>{{ 'pages.measurement.form.cresta_iliaca' | translate }}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="crestaIliaca" autofocus autocomplete="off" >
               <span class="input-unit">mm</span>
             </mat-form-field>
@@ -195,7 +195,7 @@
         <div class="form-wrapper right">
           <div class="form-field-container supraespinal">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Supraespinal</mat-label>
+              <mat-label>{{ 'pages.measurement.form.supraespinal' | translate }}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="supraespinal" autofocus autocomplete="off" >
               <span class="input-unit">mm</span>
             </mat-form-field>
@@ -203,7 +203,7 @@
 
           <div class="form-field-container abdominal">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Abdominal</mat-label>
+              <mat-label>{{ 'pages.measurement.form.abdominal' | translate }}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="abdominal" autofocus autocomplete="off" >
               <span class="input-unit">mm</span>
             </mat-form-field>
@@ -211,7 +211,7 @@
 
           <div class="form-field-container frontal-thigh">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Frontal thigh</mat-label>
+              <mat-label>{{ 'pages.measurement.form.frontal_thigh' | translate }}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="frontalThigh" autofocus autocomplete="off" >
               <span class="input-unit">mm</span>
             </mat-form-field>
@@ -219,7 +219,7 @@
 
           <div class="form-field-container skinfold-calf">
             <mat-form-field appearance="standard" floatLabel="always">
-              <mat-label>Calf</mat-label>
+              <mat-label>{{ 'pages.measurement.form.calf' | translate }}</mat-label>
               <input type="number" min="0" matInput placeholder="1" formControlName="skinfoldCalf" autofocus autocomplete="off" >
               <span class="input-unit">mm</span>
             </mat-form-field>
@@ -231,7 +231,7 @@
       <section class="btn-area-one">
         <button class="dialog-button" (click)="addMeasurements()" [disabled]="!perimeterForm.valid || !skinfoldForm.valid || !weightForm.valid"
         [class.disabled]="!perimeterForm.valid || !skinfoldForm.valid || !weightForm.valid" mat-dialog-close>
-          Done
+          {{ 'global.buttons.done' | translate }}
         </button>
       </section>
     </mat-step>

@@ -1,12 +1,14 @@
 <section class="list-display measurement-list" *ngIf="measurements && client">
-  <h1 class="section-title">Measurements</h1>
+  <h1 class="section-title">
+    {{ 'pages.measurement.title' | translate }}
+  </h1>
   <div class="list-display__container">
     <div class="list-display__container-header">
       <h3>#</h3>
-      <h3 class="created">Created</h3>
-      <h3 class="not-mobile">Edited</h3>
-      <h3 class="not-mobile">Specialist</h3>
-      <h3>Weight</h3>
+      <h3 class="created">{{ 'global.words.created' | translate }}</h3>
+      <h3 class="not-mobile">{{ 'global.words.edited' | translate }}</h3>
+      <h3 class="not-mobile">{{ 'global.words.specialist' | translate }}</h3>
+      <h3>{{ 'global.user.weight' | translate }}</h3>
     </div>
     <div *ngFor="let measurement of measurements; let i=index">
     <app-measurement-list-item
@@ -14,7 +16,7 @@
     </app-measurement-list-item>
     </div>
     <p class="card-text nothing-here" *ngIf="!measurements.length">
-      No measurements yet
+      {{ 'pages.measurement.errors.no_measurements' | translate }}
     </p>
   </div>
 </section>

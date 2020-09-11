@@ -1,18 +1,18 @@
 <section class="list-display follow-up" *ngIf="followUps && client">
-  <h1 class="section-title">Follow-up Consultations</h1>
+  <h1 class="section-title">{{ 'pages.follow_up.title_m' | translate }}</h1>
   <div class="list-display__container">
     <div class="list-display__container-header">
       <h3 class="number">#</h3>
-      <h3 class="created">Created</h3>
-      <h3 class="not-mobile">Edited</h3>
-      <h3 class="specialist">Specialist</h3>
-      <h3>Meal plan</h3>
+      <h3 class="created">{{ 'global.words.created' | translate }}</h3>
+      <h3 class="not-mobile">{{ 'global.words.edited' | translate }}</h3>
+      <h3 class="specialist">{{ 'global.words.specialist' | translate }}</h3>
+      <h3>{{ 'pages.mealplan.title_s' | translate }}</h3>
     </div>
     <app-follow-up-list-item *ngFor="let followUp of followUps; let i=index"
     [client]="client" [followUp]="followUp" [i]="i">
     </app-follow-up-list-item>
     <p class="card-text nothing-here" *ngIf="!followUps.length">
-      No Follow-up Consultations yet
+      {{ 'pages.follow_up.errors.no_follow_ups' | translate }}
     </p>
   </div>
 </section>

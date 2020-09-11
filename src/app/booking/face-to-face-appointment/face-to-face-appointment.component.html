@@ -4,18 +4,17 @@
 <form (ngSubmit)="addFaceToFace()" [formGroup]="faceToFaceForm">
   <div class="multiple-input" formGroupName="faceToFacePhone">
     <mat-form-field appearance="standard" floatLabel="always">
-        <mat-label>Area code</mat-label>
+        <mat-label>{{ 'pages.booking.f2f.area_code' | translate }}</mat-label>
         <input type="text" matInput formControlName="phoneAreaCode"  placeholder="+51" autofocus="off" autocomplete="off" maxlength="3" required>
-        <!-- <mat-error class="input-error" *ngIf="!contactInfo.valid">This is <strong>required</strong></mat-error> -->
     </mat-form-field>
     <mat-form-field appearance="standard" floatLabel="always">
-        <mat-label>Whatsapp Number</mat-label>
+        <mat-label>{{ 'pages.booking.general.wapp_number' | translate }}</mat-label>
         <input type="number"formControlName="phoneRest"  matInput placeholder="123456789" autocomplete="off" required>
     </mat-form-field>
   </div>
 
   <mat-form-field appearance="standard" floatLabel="always">
-      <mat-label>Location</mat-label>
+      <mat-label>{{ 'pages.booking.f2f.location' | translate }}</mat-label>
       <input type="text" formControlName="location" matInput 
       placeholder="Starbucks, East road 102 South, Dallas, Texas" autocomplete="off" required>
   </mat-form-field>
@@ -23,11 +22,10 @@
 <div class="btn-area">
   <button type="button" class="btn-icon-left" routerLink="../step-two">
     <i class="fa__icon fas fa-chevron-left small"></i>
-    <span>Previous step</span>
+    <span>{{ 'global.buttons.previous_step' | translate }}</span>
   </button>
-  <button class="btn-icon-right" type="submit"
-  >
-    <span>Pick a date</span>
+  <button class="btn-icon-right" type="submit">
+    <span>{{ 'global.form.pick_date' | translate }}</span>
     <i class="fa__icon fas fa-chevron-right small"></i>
   </button>
 </div>

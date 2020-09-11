@@ -2,19 +2,16 @@
   <div class="wrapper">
       <header>
           <section class="title">
-              <h1>My Mealplans</h1>
-              <!-- <button class="icon-button" (click)="openDialog()">
-                  <i class="fa__icon fas fa-plus"></i>
-              </button> -->
+            <h1>{{ 'pages.client.mealplans.title' | translate }}</h1>
           </section>
           
           <p class="intro-text">
-              In this section you have a quick overview of the mealplans you created. You can view and edit/delete them directly 
-              from the list. With the top right button you add a mealplan. <span class="emoji">📄</span>
+            {{ 'pages.client.mealplans.intro' | translate }}
           </p>
       </header>  
   </div>
   <section class="card-list" *ngIf="mealplans">
-    <app-mealplan-list-item *ngFor="let mealplan of mealplans | async; let i=index" [i]="i" [mealplan]="mealplan"></app-mealplan-list-item>
+    <app-mealplan-list-item *ngFor="let mealplan of mealplans | async; let i=index"
+        [i]="i" [mealplan]="mealplan"></app-mealplan-list-item>
   </section>
 </main>

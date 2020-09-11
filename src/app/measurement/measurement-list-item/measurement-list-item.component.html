@@ -4,7 +4,9 @@
     <div class="info-container" (click)="openMeasurementDetail(measurement)">
       <h3 class="creation-date">{{measurement.created.toDate() | date: 'short'}}</h3>
       <h3 *ngIf="measurement.edited" class="not-mobile">{{measurement.edited.toDate() | date: 'short'}}</h3>
-      <h3 *ngIf="!measurement.edited" class="not-mobile">Not edited yet</h3>
+      <h3 *ngIf="!measurement.edited" class="not-mobile">
+        {{ 'global.errors.not_edited' | translate }}
+      </h3>
       <h3 class="not-mobile">{{specialist.displayName}}</h3>
       <h3 *ngIf="measurement.weight" class="weight">{{measurement.weight}}kg</h3>
       <h3 *ngIf="!measurement.weight" class="weight">-</h3>
@@ -31,12 +33,12 @@
           <button class="edit-btn mat-menu-btn"
           (click)="editMeasurement(measurement)">
             <i class="fa__icon far fa-edit"></i>
-            Edit
+            {{ 'global.buttons.edit' | translate }}
           </button>
           <button class="delete-btn mat-menu-btn"
           (click)="deleteMeasurement(measurement)">
             <i class="fa__icon far fa-trash-alt"></i>
-            Delete
+            {{ 'global.buttons.delete' | translate }}
           </button>
         </div>
       </mat-menu>

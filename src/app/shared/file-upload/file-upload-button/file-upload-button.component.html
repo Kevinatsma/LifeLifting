@@ -13,10 +13,10 @@
           <i class="fa__icon fas fa-edit"></i>
         </span>
         <span class="file-label text-link" *ngIf="!downloadURL">
-          Edit photo
+          {{ 'file_upload.edit_photo' | translate }}
         </span>
         <span class="file-label text-link" *ngIf="downloadURL">
-          choose another
+          {{ 'file_upload.choose_another' | translate }}
         </span>
       </div>
     </label>

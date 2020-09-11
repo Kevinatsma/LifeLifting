@@ -1,73 +1,92 @@
 <main class="dialog-wrapper" id="add-user-dialog">
-    <div class="close-section  mobile">
-      <button class="text-link close-btn" (click)="closeDialog()" type="button">
-        <i class="mobile fas fa-arrow-left"></i> Back
-      </button>
-    </div>
+  <div class="close-section  mobile">
+    <button class="text-link close-btn" (click)="closeDialog()" type="button">
+      <i class="mobile fas fa-arrow-left"></i> {{ 'global.buttons.back' | translate }}
+    </button>
+  </div>
 
-    <mat-horizontal-stepper #stepper>
-        <mat-step [stepControl]="signUpForm">
-          <form [formGroup]="signUpForm">
-          <ng-template matStepLabel>General Info</ng-template>
-          <h3>👩‍ Account Settings</h3>
-          <p class="card-text">
-            These are the account details of the specialist. Write them down so you can send them to 'em!
-          </p>
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>The Email will be used as Username</mat-label>
-            <input type="text" matInput placeholder="Type a valid email address" formControlName="email" 
-                    [class.active]="!email.valid && email.touched" autofocus autocomplete="off" required
-            >
-            <mat-error class="input-error" *ngIf="!email.dirty">This is <strong>required</strong></mat-error>
-            <mat-error class="input-error" *ngIf="!email.valid && email.dirty">That's <strong>not</strong> a valid e-mail address!</mat-error>
-          </mat-form-field>
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Pick a Password </mat-label>
-            <input class="form-input" type="password" matInput placeholder="Setting it for your user is safer" [type]="hide ? 'password' : 'text'" 
-            formControlName="password" [class.active]="!password.valid && password.touched" 
-            autocomplete="new-password" required
-            >
-            <mat-error class="input-error" *ngIf="!password.dirty">This is <strong>required</strong></mat-error>
-            <mat-error class="input-error" *ngIf="password.errors?.minlength"><strong>Not enough</strong> characters, try harder!</mat-error>
-            <mat-error class="input-error" *ngIf="password.errors?.maxlength">Too <strong>much</strong> characters, slow down there.</mat-error>
-            <!-- <mat-error class="input-error" *ngIf="password.errors?.pattern">Password needs at least a <strong>number, uppercase and lowercase letter.</strong></mat-error> -->
-          </mat-form-field>
+  <mat-horizontal-stepper #stepper>
+      <mat-step [stepControl]="signUpForm">
+        <form [formGroup]="signUpForm">
+        <ng-template matStepLabel>{{ 'pages.client.form.general_info' | translate }}</ng-template>
+        <h3>👩‍ {{ 'pages.client.form.account_settings' | translate }}</h3>
+        <p class="card-text">
+          {{ 'pages.specialist.form.account_settings_detail' | translate }}
+        </p>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>{{ 'pages.client.form.email_as_user' | translate }}</mat-label>
+          <input type="text" matInput autocomplete="off" required autofocus
+            formControlName="email" [class.active]="!email.valid && email.touched">
+          <mat-error class="input-error" *ngIf="!email.dirty">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
+          <mat-error class="input-error" *ngIf="!email.valid && email.dirty">
+            {{ 'global.form.errors.invalid_email' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>{{ 'pages.client.form.type_pass' | translate }}</mat-label>
+          <input class="form-input" type="password" matInput
+            placeholder="{{ 'pages.specialist.general.safe_warning_u' | translate }}"
+            [type]="hide ? 'password' : 'text'" autocomplete="new-password" required
+            formControlName="password" [class.active]="!password.valid && password.touched">
+          <mat-error class="input-error" *ngIf="!password.dirty">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
+          <mat-error class="input-error" *ngIf="password.errors?.minlength">
+            {{ 'global.form.errors.not_enough_chars' | translate }}
+          </mat-error>
+          <mat-error class="input-error" *ngIf="password.errors?.maxlength">
+            {{ 'global.form.errors.too_much_chars' | translate }}
+          </mat-error>
+        </mat-form-field>
 
-          </form>
-          <section class="btn-area-one">
-            <button class="dialog-button" matStepperNext>Next</button>
-          </section>
-        </mat-step>
-        <mat-step [stepControl]="personalForm">
-          <form [formGroup]="personalForm">
-          <ng-template matStepLabel>Personal</ng-template>
-          <h3>📖 Important Info</h3>
-          <p class="card-text">
-            Tell us the first and last name so we can display it in his/her dashboard and greet the user in a more personal way.
-          </p>
-      
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>First name</mat-label>
-            <input type="text" matInput formControlName="firstName" placeholder="Give the user a name" autofocus="none">
-            <mat-error class="input-error" *ngIf="!personalForm['controls'].firstName.valid">This is <strong>required</strong></mat-error>
-          </mat-form-field>
-      
-          <mat-form-field appearance="standard" floatLabel="always">
-            <mat-label>Last name</mat-label>
-            <input type="text" matInput formControlName="lastName" placeholder="The last name" autocomplete="off">
-            <mat-error class="input-error" *ngIf="!personalForm['controls'].lastName.valid">This is <strong>required</strong></mat-error>
-          </mat-form-field>
+        </form>
+        <section class="btn-area-one">
+          <button class="dialog-button" matStepperNext>
+            {{ 'global.buttons.next' | translate }}
+          </button>
+        </section>
+      </mat-step>
+      <mat-step [stepControl]="personalForm">
+        <form [formGroup]="personalForm">
+        <ng-template matStepLabel>{{ 'pages.client.form.personal' | translate }}</ng-template>
+        <h3>📖 {{ 'pages.client.form.important_info' | translate }}</h3>
+        <p class="card-text">
+          {{ 'pages.client.form.personal_intro' | translate }}
+        </p>
+    
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>{{ 'global.form.last_name' | translate }}</mat-label>
+          <input type="text" matInput formControlName="firstName"
+            placeholder="{{ 'pages.specialist.form.user_name_ph' | translate }}"
+            autofocus="none">
+          <mat-error class="input-error" *ngIf="!personalForm['controls'].firstName.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>{{ 'global.form.last_name' | translate }}</mat-label>
+          <input type="text" matInput formControlName="lastName"
+          placeholder="{{ 'pages.client.form.last_name' | translate }}" autocomplete="off">
+          <mat-error class="input-error" *ngIf="!personalForm['controls'].lastName.valid">
+            {{ 'global.errors.required' | translate }}
+          </mat-error>
+        </mat-form-field>
 
-          </form>
-          <section class="btn-area">
-            <button class="dialog-button" matStepperPrevious>Back</button>
-            <button class="dialog-button" (click)="userSignup()"
-                    [disabled]="!signUpForm.valid || !personalForm.valid"
-                    [class.disabled]="!signUpForm.valid || !personalForm.valid"
-                    mat-dialog-close>
-              Done
-           </button>
-          </section>
-        </mat-step>
-    </mat-horizontal-stepper>
+        </form>
+        <section class="btn-area">
+          <button class="dialog-button" matStepperPrevious>
+            {{ 'global.buttons.back' | translate }}
+          </button>
+          <button class="dialog-button" (click)="userSignup()"
+                  [disabled]="!signUpForm.valid || !personalForm.valid"
+                  [class.disabled]="!signUpForm.valid || !personalForm.valid"
+                  mat-dialog-close>
+            {{ 'global.buttons.done' | translate }}
+          </button>
+        </section>
+      </mat-step>
+  </mat-horizontal-stepper>
 </main>

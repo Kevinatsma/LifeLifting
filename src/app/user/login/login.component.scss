@@ -5,7 +5,15 @@
     overflow: hidden;
     margin: 0px;
     display: flex;
+    position: relative;
     box-sizing: border-box;
+
+    app-language-picker {
+        position: absolute;
+        right: 0;
+        top: 20px;
+        z-index: 150;
+    }
 
     section {
         flex-direction: column;

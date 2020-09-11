@@ -3,8 +3,10 @@
     <div class="warning-banner">
       <i class="fa__icon fas fa-exclamation-triangle"></i>
       <p>
-        Did the specialist forget to accept/cancel it and it's past due date? 
-        Please, <a class="warning-link" (click)="requestNewEvent(user)">request a new consultation</a>.
+        {{ 'pages.signup.limbo.past_due_date' | translate }}
+        <a class="warning-link" (click)="requestNewEvent(user)">
+          {{ 'pages.signup.limbo.request_new' | translate }}
+        </a>.
       </p>
     </div>
   </ng-container>
@@ -15,12 +17,14 @@
     !user.status.appointmentCompleted &&
     !user.status.appointmentRejected">
     <div class="step-done" [class.hidden]="showSpecialist">
-      <h1>Cheers to planning that in! 🍻</h1>
+      <h1>{{ 'pages.signup.limbo.step_done.title' | translate }}</h1>
       <p class="intro-text">
-        Congrats on looking for a better version of yourself. Thank you for your trust in <b>LifeLifting Nutrition</b>.
+        {{ 'pages.signup.limbo.step_done.intro' | translate }}
         <br class="not-mobile">
-        <a class="text-link" (click)="toggleSpecialist()">Your specialist</a>
-        will confirm your consultation as soon as possible. 
+        <a class="text-link" (click)="toggleSpecialist()">
+          {{ 'pages.signup.limbo.step_done.your_specialist' | translate }}
+        </a>
+        {{ 'pages.signup.limbo.step_done.will_confirm' | translate }}
       </p>
     </div>
   </ng-container>
@@ -28,31 +32,30 @@
   <!-- display something if it isn't accepted as well -->
   <ng-container *ngIf="user.status.appointmentRejected">
     <div class="step-done not-accepted" [class.hidden]="showSpecialist">
-      <h1> Oh.. Appointment not accepted! </h1>
+      <h1>{{ 'pages.signup.limbo.not_accepted.title' | translate }}</h1>
       <p class="subtitle" *ngIf="specialist">
-        The specialist couldn't fit your request in his schedule. Please contact
+        {{ 'pages.signup.limbo.not_accepted.subtitle_1' | translate }}
         <a class="text-link" (click)="toggleSpecialist()">
           {{specialist.firstName}} {{specialist.lastName}},
         </a>
-        or request another appointment.
+        {{ 'pages.signup.limbo.not_accepted.subtitle_2' | translate }}
       </p>
 
       <button class="btn-primary" (click)="requestNewEvent(user)">
-        Request new appointment
+        {{ 'pages.signup.limbo.not_accepted.request_new' | translate }}
       </button>
     </div>
   </ng-container>
 
   <ng-container *ngIf="user.status.appointment && user.status.appointmentAccepted && !user.status.appointmentCompleted">
     <div class="appointment-status" [class.hidden]="showSpecialist">
-      <h1> Appointment status </h1>
+      <h1>{{ 'pages.signup.limbo.appointment_status.title' | translate }}</h1>
       <p class="subtitle" *ngIf="specialist">
-        If you see your appointment down here. Congrats! Then it has been accepted. If not, please wait untill the specialist
-        accepts your request. Is it taking a long time? Please contact 
+        {{ 'pages.signup.limbo.appointment_status.subtitle_1' | translate }}
         <a class="text-link" (click)="toggleSpecialist()">
           {{specialist.firstName}} {{specialist.lastName}} 
         </a>
-        if you have any trouble, or for any further questions.
+        {{ 'pages.signup.limbo.appointment_status.subtitle_2' | translate }}
       </p>
 
       <section class="appointment-status__appointments" *ngFor="let event of events">
@@ -63,30 +66,29 @@
 
   <ng-container *ngIf="user.status.appointmentAccepted && user.status.appointmentCompleted && !user.status.accepted">
     <div class="step-done">
-      <h1>Nice, you completed your first appointment!</h1>
+      <h1>{{ 'pages.signup.limbo.completed_appointment.title' | translate }}</h1>
       <p class="subtitle" *ngIf="specialist">
-        But your payment hasn't been processed yet. Make sure you've paid. Don't hesitate contacting
+        {{ 'pages.signup.limbo.completed_appointment.subtitle_1' | translate }}
         <a class="text-link" (click)="toggleSpecialist()">
           {{specialist.firstName}} {{specialist.lastName}} 
         </a>
-        if you have any trouble
-        with your payment, or for any further questions.
+        {{ 'pages.signup.limbo.completed_appointment.subtitle_2' | translate }}
       </p>
     </div>
   </ng-container>
 
-  <ng-container *ngIf="!user.status.subscriptionValid  && user.status.appointmentCompleted">
+  <ng-container *ngIf="!user.status.subscriptionValid && user.status.appointmentCompleted">
     <div class="step-done">
-      <h1>Aww.. Your subscription has ended</h1>
+      <h1>{{ 'pages.signup.limbo.subscription_ended.title' | translate }}</h1>
       <p class="subtitle" *ngIf="specialist">
-        We hope you had an awesome growth in your time with LifeLifting. And you're always welcome to train with
+        {{ 'pages.signup.limbo.subscription_ended.subtitle_1' | translate }}
         <a class="text-link" (click)="toggleSpecialist()">
           {{specialist.firstName}} {{specialist.lastName}} 
         </a>
-        or you can choose 
+        {{ 'pages.signup.limbo.subscription_ended.subtitle_2' | translate }}
         <a class="text-link" (click)="resetSpecialist(user)">
-          another specialist.
-        </a>
+          {{ 'pages.signup.limbo.subscription_ended.another_specialist' | translate }}
+        </a>.
       </p>
     </div>
   </ng-container>
@@ -98,17 +100,16 @@
                         user.status.appointment">
 
     <div class="step-done" [class.hidden]="showSpecialist">
-      <h1>Looks like everything is ok!</h1>
+      <h1>{{ 'pages.signup.limbo.all_completed.title' | translate }}</h1>
       <p class="subtitle" *ngIf="specialist">
-        You've completed all the steps. Click the button below to continue to the dashboard.
+        {{ 'pages.signup.limbo.all_completed.subtitle' | translate }}
       </p>
       <div class="btn-area">
         <button class="btn-icon-right"
           [class.btn-disabled]="user.status && !user.status.appointment"
           [disabled]="user.status && !user.status.appointment"
           routerLink="../../dashboard">
-          <span>Go to the dashboard!</span>
-          <span class="emoji">🚀</span>
+          <span>{{ 'pages.signup.limbo.all_completed.to_dashboard' | translate }}</span>
         </button>
       </div>
     </div>

@@ -1,6 +1,5 @@
 <ng-container *ngIf="user">
   <main class="specialist-wrapper">
-
     <section class="action-toolbar-top">
       <div class="left">
         <button class="icon-button" (click)="goBack()">
@@ -22,51 +21,59 @@
         </ng-template>
 
         <div class="specialist-actions">
-          <button class="icon-button action-btn" (click)="openFirstConsultationDialog()" matTooltip="Create the first consultation"
-          matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition">
+          <button class="icon-button action-btn" (click)="openFirstConsultationDialog()"
+            matTooltip="{{ 'pages.dashboard.specialist.tooltips.create_fc' | translate }}"
+            matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition">
             <i class="fa__icon far fa-clipboard"></i>
           </button>
-          <button class="icon-button action-btn" (click)="openMeasurementDialog()" matTooltip="Create a measurement"
-          matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition">
+          <button class="icon-button action-btn" (click)="openMeasurementDialog()"
+            matTooltip="{{ 'pages.dashboard.specialist.tooltips.create_measurement' | translate }}"
+            matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition">
             <i class="fa__icon fas fa-ruler-combined"></i>
           </button>
-          <button class="icon-button action-btn" (click)="openGuideDialog()" matTooltip="Create a guideline"
-          matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition" *ngIf="measurements && measurements.length > 0">
+          <button class="icon-button action-btn" (click)="openGuideDialog()"
+            matTooltip="{{ 'pages.dashboard.specialist.tooltips.create_guideline' | translate }}"
+            matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition" *ngIf="measurements && measurements.length > 0">
             <i class="fa__icon far fa-file-alt"></i>
           </button>
-          <button class="icon-button action-btn" (click)="openMealDialog()" matTooltip="Create a mealplan"
-          matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition"
-          *ngIf="measurements && measurements.length > 0 && guidelines && guidelines.length > 0">
+          <button class="icon-button action-btn" (click)="openMealDialog()"
+            matTooltip="{{ 'pages.dashboard.specialist.tooltips.create_mealplan' | translate }}"
+            matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition"
+            *ngIf="measurements && measurements.length > 0 && guidelines && guidelines.length > 0">
             <i class="fa__icon fas fa-weight"></i>
           </button>
-          <button class="icon-button action-btn" (click)="openFollowUpDialog()" matTooltip="Create a follow-up consultation"
-          matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition" *ngIf="firstConsultations && firstConsultations?.length > 0 && mealplans?.length">
+          <button class="icon-button action-btn" (click)="openFollowUpDialog()"
+            matTooltip="{{ 'pages.dashboard.specialist.tooltips.create_followup' | translate }}"
+            matTooltipClass="tooltip-info" [matTooltipPosition]="tooltipPosition"
+            *ngIf="firstConsultations && firstConsultations?.length > 0 && mealplans?.length">
             <i class="fa__icon fas fa-file-import"></i>
           </button>
         </div>
-
       </div>
     </section>
 
-    <ng-container>
-      <section class="specialist-header">
-        <div class="profile-picture" [style.backgroundImage]="'url('+ user.photoURL +')'">
+    <section class="specialist-header">
+      <div class="profile-picture" [style.backgroundImage]="'url('+ user.photoURL +')'">
+      </div>
+      <div class="quick-info">
+        <p class="timezone">
+            <ng-container *ngIf="user.roles.admin">
+              {{ 'global.words.admin' | translate }}
+              <ng-container *ngIf="user.roles.specialist || user.roles.client">, </ng-container>
+            </ng-container>
+            <ng-container *ngIf="user.roles.specialist">
+              {{ 'global.words.specialist' | translate }}
+            </ng-container>
+            <ng-container *ngIf="user.roles.client">
+              {{ 'global.words.client' | translate }}
+            </ng-container>
+        </p>
 
-        </div>
-        <div class="quick-info">
-          <p class="timezone">
-              <ng-container *ngIf="user.roles.admin">
-                Admin<ng-container *ngIf="user.roles.specialist || user.roles.client">, </ng-container>
-              </ng-container>
-              <ng-container *ngIf="user.roles.specialist">Specialist<ng-container *ngIf="user.roles.client">, </ng-container>
-              </ng-container>
-              <ng-container *ngIf="user.roles.client">Client</ng-container>
-          </p>
-          <div class="top">
+        <div class="top">
           <h2>{{user.displayName}}</h2>
           <h5 *ngIf="user.basicData">{{user.basicData.country}}</h5>
           <p>
-            <strong>User ID</strong><br>
+            <strong>{{ 'pages.client.general.user_id' | translate }}</strong><br>
             {{user.uid}}
           </p>
           <div class="icon-fact-container">
@@ -79,113 +86,127 @@
               <span>{{specialist.firstName}} {{specialist.lastName}}</span>
             </div>
           </div>
-          
-
-          </div>
-          <div class="bottom">
-            <p class="tab">
-              <span>{{user.packageChoice}}</span>Package Choice
-            </p>
-            <p class="tab">
-              <span *ngIf="user.basicData">
-                <ng-container *ngIf="user.basicData.age">{{user.basicData.age}}</ng-container>
-                <ng-container *ngIf="!user.basicData.age">!</ng-container>
-              </span>Age
-            </p>
-          </div>
         </div>
-      </section>
 
-      <section class="about">  
-        <div class="icon">
-          <i class="fa__icon fab fa-algolia"></i>
-        </div>
-        <div class="goal-container">
-          <h3>{{user.displayName}}'s main goal</h3>
-          <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="user.basicData">
-            {{user.basicData.mainGoal}}
+        <div class="bottom">
+          <p class="tab">
+            <span>{{user.packageChoice}}</span>
+            {{ 'pages.client.general.package_choice' | translate }}
           </p>
-          <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="!user.basicData">
-            No goal yet...
+          <p class="tab">
+            <span *ngIf="user.basicData">
+              <ng-container *ngIf="user.basicData.age">{{user.basicData.age}}</ng-container>
+              <ng-container *ngIf="!user.basicData.age">!</ng-container>
+            </span>{{ 'global.words.age' | translate }}
           </p>
+        </div>
+      </div>
+    </section>
 
-          <ng-container *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
-            <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
-              <i class="fa__icon fas fa-plus"></i>
-              Read More
+    <section class="about">  
+      <div class="icon">
+        <i class="fa__icon fab fa-algolia"></i>
+      </div>
+      <div class="goal-container">
+        <h3>
+          {{user.displayName}}'s {{ 'pages.client.general.main_goal' | translate }}
+        </h3>
+        <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore"
+          *ngIf="user.basicData">
+          {{user.basicData.mainGoal}}
+        </p>
+        <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore"
+          *ngIf="!user.basicData">
+          {{ 'global.errors.no_goal' | translate }}
+        </p>
+
+        <ng-container *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
+          <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
+            <i class="fa__icon fas fa-plus"></i>
+            {{ 'global.buttons.read_more' | translate }}
+          </button>
+          <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
+            <i class="fa__icon fas fa-minus"></i>
+            {{ 'global.buttons.read_less' | translate }}
+          </button>
+        </ng-container>
+      </div>
+    </section>
+
+    <section class="middle">
+      <div class="contact-info">
+        <h5 class="purple">{{ 'pages.client.general.contact_info' | translate}}</h5>
+        <ul class="contact-menu">
+          <li>
+              <i class="fa__icon far fa-envelope"></i>
+            <a class="text-link" href="mailto:{{user.email}}">
+              {{user.email}}
+            </a>
+          </li>
+          <li>
+            <i class="fa__icon fas fa-mobile-alt"></i>
+            <a class="text-link"  *ngIf="user.basicData" href="tel:{{user.basicData.phoneNumber}}">
+              {{user.basicData.phoneNumber}}
+            </a>
+          </li>
+          <li>
+            <i class="fa__icon far fa-comment-alt"></i>
+            <button class="text-link" *ngIf="user.basicData" (click)="chat()">
+              {{ 'global.actions.chat' | translate }}
             </button>
-            <button class="text-link" (click)="aboutExtendedClose()" *ngIf="aboutExtended">
-              <i class="fa__icon fas fa-minus"></i>
-              Read Less
-            </button>
-          </ng-container>
-        </div>
-      </section>
+          </li>
+        </ul>
+      </div>
+      <div class="languages">
+        <h5 class="purple">{{ 'pages.client.general.practical_info' | translate }}</h5>
+        <ul>
+          <li>
+            {{ 'pages.client.general.heard_from_us' | translate }}: 
+            <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong>
+          </li>
+          <li>{{ 'pages.client.general.signup_completed' | translate }}?
+            <ng-container *ngIf="user.status.signupCompleted">
+              <strong>{{ 'global.words.yes' | translate}}</strong>
+            </ng-container>
+            <ng-container *ngIf="!user.status.signupCompleted">
+              <strong>{{ 'global.words.no' | translate}}</strong>
+            </ng-container>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-      <section class="middle">
-        <div class="contact-info">
-          <h5 class="purple">Contact Info</h5>
-          <ul class="contact-menu">
-            <li>
-                <i class="fa__icon far fa-envelope"></i>
-              <a class="text-link" href="mailto:{{user.email}}">
-                {{user.email}}
-              </a>
-            </li>
-            <li>
-              <i class="fa__icon fas fa-mobile-alt"></i>
-              <a class="text-link"  *ngIf="user.basicData" href="tel:{{user.basicData.phoneNumber}}">
-                {{user.basicData.phoneNumber}}
-              </a>
-            </li>
-            <li>
-              <i class="fa__icon far fa-comment-alt"></i>
-              <button class="text-link" *ngIf="user.basicData" (click)="chat()">
-                Chat
-              </button>
-            </li>
-          </ul>
-        </div>
-        <div class="languages">
-          <h5 class="purple">Practical info</h5>
-          <ul>
-            <li>Heard from us via: <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong></li>
-            <li>Sign Up Completed?
-              <ng-container *ngIf="user.status.signupCompleted"><strong>Yes</strong></ng-container>
-              <ng-container *ngIf="!user.status.signupCompleted"><strong>No</strong></ng-container>
-            </li>
-          </ul>
-        </div>
-      </section>
+    <app-first-consultation-list [client]="user" [firstConsultations]="firstConsultations"
+      *ngIf="firstConsultations">
+    </app-first-consultation-list>
+    
+    <app-measurement-list [client]="user" [measurements]="measurements"
+      *ngIf="measurements">
+    </app-measurement-list>
 
-      <app-first-consultation-list [client]="user" [firstConsultations]="firstConsultations" *ngIf="firstConsultations">
-      </app-first-consultation-list>
+    <h1 class="section-title left">{{ 'pages.guideline.title' | translate }}</h1>
+    <section class="guidelines" *ngIf="guidelines">
+      <div class="guidelines__container">
+        <app-guideline-list-item *ngFor="let guideline of guidelines" [guideline]="guideline"></app-guideline-list-item>
+        <div class="guidelines__container__filler">
+          Filler
+        </div>
+      </div>
+    </section>
       
-      <app-measurement-list [client]="user" [measurements]="measurements" *ngIf="measurements"></app-measurement-list>
-
-      <h1 class="section-title left">Guidelines</h1>
-      <section class="guidelines" *ngIf="guidelines">
-        <div class="guidelines__container">
-          <app-guideline-list-item *ngFor="let guideline of guidelines" [guideline]="guideline"></app-guideline-list-item>
-          <div class="guidelines__container__filler">
-            Filler
-          </div>
+    <h1 class="section-title left">{{ 'pages.mealplan.title' | translate }}</h1>
+    <section class="guidelines" *ngIf="mealplans">
+      <div class="guidelines__container">
+        <app-mealplan-list-item *ngFor="let mealplan of mealplans"
+          [mealplan]="mealplan"></app-mealplan-list-item>
+        <div class="guidelines__container__filler">
+          Filler
         </div>
-      </section>
-      
-      <h1 class="section-title left">Mealplans</h1>
-      <section class="guidelines" *ngIf="mealplans">
-        <div class="guidelines__container">
-          <app-mealplan-list-item *ngFor="let mealplan of mealplans" [mealplan]="mealplan"></app-mealplan-list-item>
-          <div class="guidelines__container__filler">
-            Filler
-          </div>
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <app-follow-up-list [client]="user" [followUps]="followUps" *ngIf="followUps"></app-follow-up-list>
-    </ng-container>
-
+    <app-follow-up-list [client]="user" [followUps]="followUps"
+      *ngIf="followUps"></app-follow-up-list>
   </main>
 </ng-container>
   

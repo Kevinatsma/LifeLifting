@@ -21,7 +21,6 @@
 }
 
 // Component content
-
 mat-card.list-item-card {
     display: flex;
     flex-flow: column wrap;
@@ -91,8 +90,13 @@ mat-card.list-item-card {
         }
     }
 
-    section {
+    &.guideline-card {
+        .subtitle {
+            height: 20px;
+        }
+    }
 
+    section {
         &.middle {
             box-sizing: border-box;
             width: 100%;

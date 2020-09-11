@@ -4,6 +4,7 @@ import { ShoppingListDetailComponent } from './shopping-list-detail.component';
 import { ShoppingListService } from './shopping-list.service';
 import { SharedModule } from '../shared/shared.module';
 import { PrintShoppingListComponent } from './print-shopping-list/print-shopping-list.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { PrintShoppingListComponent } from './print-shopping-list/print-shopping
   ],
   imports: [
     CommonModule,
+    CoreModule,
     SharedModule
   ],
   exports: [

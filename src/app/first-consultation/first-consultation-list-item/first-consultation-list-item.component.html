@@ -5,7 +5,9 @@
       <h3 class="not-mobile">{{firstConsultation.creationDate.toDate() | date: 'short'}}</h3>
       <h3 class="mobile mobile-date">{{firstConsultation.creationDate.toDate() | date: 'shortDate'}}</h3>
       <h3 *ngIf="firstConsultation.edited" class="not-mobile">{{firstConsultation.edited.toDate() | date: 'short'}}</h3>
-      <h3 *ngIf="!firstConsultation.edited" class="not-mobile">Not edited yet</h3>
+      <h3 *ngIf="!firstConsultation.edited" class="not-mobile">
+        {{ 'global.errors.not_edited' | translate }}
+      </h3>
       <h3 *ngIf="specialist" class="specialist">{{specialist.firstName}} {{specialist.lastName}}</h3>
     </div>
 
@@ -28,12 +30,12 @@
           <button class="edit-btn"
           (click)="editFirstConsultation(firstConsultation)">
             <i class="fa__icon far fa-edit"></i>
-            Edit
+            {{ 'global.buttons.edit' | translate }}
           </button>
           <button class="delete-btn"
           (click)="deleteFirstConsultation(firstConsultation)">
             <i class="fa__icon far fa-trash-alt"></i>
-            Delete
+            {{ 'global.buttons.delete' | translate }}
           </button>
         </div>
       </mat-menu>

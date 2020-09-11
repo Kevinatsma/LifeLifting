@@ -1,17 +1,18 @@
 <section class="list-display first-consultation" *ngIf="firstConsultations && client">
-  <h1 class="section-title">First Consultations</h1>
+  <h1 class="section-title">{{ 'pages.first_consultation.title_m' | translate }}</h1>
   <div class="list-display__container">
     <div class="list-display__container-header">
       <h3 class="number">#</h3>
-      <h3 class="created">Created</h3>
-      <h3 class="not-mobile">Edited</h3>
-      <h3 class="specialist">Specialist</h3>
+      <h3 class="created">{{ 'global.words.created' | translate }}</h3>
+      <h3 class="not-mobile">{{ 'global.words.edited' | translate }}</h3>
+      <h3 class="specialist">{{ 'global.words.specialist' | translate }}</h3>
     </div>
-    <app-first-consultation-list-item *ngFor="let firstConsultation of firstConsultations; let i=index"
-    [client]="client" [firstConsultation]="firstConsultation" [i]="i">
+    <app-first-consultation-list-item [firstConsultation]="firstConsultation" [i]="i"
+      *ngFor="let firstConsultation of firstConsultations; let i=index"
+      [client]="client">
     </app-first-consultation-list-item>
     <p class="card-text nothing-here" *ngIf="!firstConsultations.length">
-      No first consultation yet
+      {{ 'pages.first_consultation.errors.no_first_consult' | translate }}
     </p>
   </div>
 </section>

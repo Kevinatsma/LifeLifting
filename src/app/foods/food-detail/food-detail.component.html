@@ -1,6 +1,5 @@
 <ng-container *ngIf="food">
   <main class="specialist-wrapper" *ngIf="!editShow">
-
     <section class="action-toolbar-top">
       <div class="left">
         <button class="icon-button" (click)="goBack()">
@@ -8,7 +7,7 @@
         </button>
       </div>
       <div class="middle">
-        <h1>Product ID: {{food.productID}}</h1>
+        <h1>{{ 'pages.food.product_id' | translate }}: {{food.productID}}</h1>
       </div>
       <div class="right">
         <button class="icon-button edit-button" (click)="toggleEdit()" *ngIf="!editShow && auth.adminRoles(user)">
@@ -25,16 +24,13 @@
       <section class="package-controls last-package not-mobile">
           <button class="slide-control-btn" (click)="linkToPrevious(food)" 
           [class.disabled]="food.productID === 1"
-          [disabled]="food.productID === 1"
-          >
+          [disabled]="food.productID === 1">
               <i class="fa__icon fas fa-chevron-left"></i>
           </button>
       </section>
 
       <mat-card class="list-item-card" *ngIf="food">
           <section class="product-photo" [style.background]="'url('+ food.productPhoto +')'">
-              <!-- <i class="fa__icon fas fa-carrot"></i>
-            <h1>{{i+1}}</h1> -->
           </section>
           <p class="subtitle">
             {{food.categories.nutritionType}}
@@ -45,7 +41,8 @@
             </div>
         
             <div class="quick-info">
-              <p class="speciality-title">Product ID: {{food.productID}}</p>
+              <p class="speciality-title">
+                {{ 'pages.food.product_id' | translate }}: {{food.productID}}</p>
               <ul class="contact-menu">
                 <li>
                   <i class="fa__icon fas fa-balance-scale"></i>
@@ -62,14 +59,17 @@
               </ul>
             </div>
             <div class="shopping-list-container">
-              <h3><i class="fa__icon fas fa-shopping-cart"></i> Shopping list info</h3>
-              <p class="card-text">Shopping list name: <strong>{{food.shoppingListName}}</strong></p>
-              <p class="card-text">Shopping list unit: <strong>{{food.shoppingUnit}}</strong></p>
-              <p class="card-text">Calculative factor: <strong>{{food.factor}}</strong></p>
+              <h3><i class="fa__icon fas fa-shopping-cart"></i>
+                {{ 'pages.food.detail.shopping_list_info' | translate }}
+              </h3>
+              <p class="card-text">S{{ 'pages.food.detail.shopping_list_name' | translate }}: <strong>{{food.shoppingListName}}</strong></p>
+              <p class="card-text">{{ 'pages.food.detail.shopping_list_unit' | translate }}: <strong>{{food.shoppingUnit}}</strong></p>
+              <p class="card-text">
+                {{ 'pages.food.general.calc_factor' | translate }}: <strong>{{food.factor}}</strong></p>
             </div>   
             <div class="list-container">
               <div class="preperations-container">
-                <h4>Ways of preperation</h4>
+                <h4>{{ 'pages.food.general.ways_of_preperation' | translate }}</h4>
                 <ul class="contact-menu">
                   <li *ngFor="let preperation of food.preperations">
                     <span *ngIf="preperation.prepValue === 'None'" class="emoji">
@@ -114,7 +114,9 @@
                 </ul>
               </div>
               <div class="preperations-container">
-                <h4>Mostly consumed during</h4>
+                <h4>
+                  {{ 'pages.food.general.mostly_consumed' | translate }}
+                </h4>
                 <ul class="contact-menu">
                   <li *ngFor="let name of food.categories.productMealTimes">
                       <span *ngIf="name.mealTimeValue === 'Breakfast'" class="emoji">
@@ -139,12 +141,10 @@
       <section class="package-controls next-package not-mobile">
         <button class="slide-control-btn" (click)="linkToNext(food)"
           [class.disabled]="food.packageID === 3"
-          [disabled]="food.packageID === 3"
-          >
+          [disabled]="food.packageID === 3">
             <i class="fa__icon fas fa-chevron-right"></i>
         </button>
       </section>
-
     </div>
   </main>
 
@@ -156,10 +156,10 @@
   
 <ng-container *ngIf="!food">
   <div class="not-available">
-    <h3>😔 Woops! This food is not (yet) avaliable.</h3>
-    <p>Please go back to the available foods on the foods tab.</p>
+    <h3>{{ 'pages.food.errors.not_available' | translate }}</h3>
+    <p>{{ 'pages.food.errors.not_available_detail' | translate }}</p>
     <button class="btn-primary" [routerLink]="['../']">
-      Go back
+      {{ 'global.buttons.go_back' | translate }}
     </button>
   </div>
 </ng-container>
