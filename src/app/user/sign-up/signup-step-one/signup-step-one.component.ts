@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router';
 import countries from './../../../shared/data/JSON/countries.json';
 import countryCodes from './../../../shared/data/JSON/countryCodes.json';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-signup-step-one',
@@ -15,18 +16,15 @@ export class SignupStepOneComponent implements OnInit {
   basicUserDataForm: FormGroup;
 
   // Gender options
-  genders = [
-    {value: 'female', viewValue: 'Female'},
-    {value: 'male', viewValue: 'Male'},
-    {value: 'other', viewValue: 'Other'}
-  ]; selectedGender: string;
+  genders;
+  selectedGender: string;
 
   // Heard from us through ... Options
   mediums = [
     {value: 'instagram', viewValue: 'Instagram'},
     {value: 'facebook', viewValue: 'Facebook'},
-    {value: 'friends', viewValue: 'Friends told me'},
-    {value: 'google', viewValue: 'I found you in Google'}
+    {value: 'friends', viewValue: 'pages.signup.step_one.form.friends'},
+    {value: 'google', viewValue: 'pages.signup.step_one.form.google'}
   ];
 
   countries = countries.countries;
@@ -36,9 +34,15 @@ export class SignupStepOneComponent implements OnInit {
     public fb: FormBuilder,
     public auth: AuthService,
     public router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private translate: TranslateService
   ) {
-
+    console.log(this.translate.instant('global.words.masculine'));
+    this.genders = [
+      {value: 'female', viewValue: 'global.words.feminine'},
+      {value: 'male', viewValue: 'global.words.masculine'},
+      {value: 'other', viewValue: 'global.words.other'}
+    ];
   }
 
   ngOnInit() {

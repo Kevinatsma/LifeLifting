@@ -142,11 +142,16 @@ export class UtilService {
     const S = data.subescapular;
     const SP = data.crestaIliaca;
 
-    const sum = B + T + S + SP;
-    const logX =  Math.log10(sum);
-
-    const D = c - (m * logX);
-    const fatPercentage = ((4.95 / D) - 4.50) * 100;
+    let fatPercentage;
+    if (B && T && S && SP) {
+      const sum = B + T + S + SP;
+      const logX =  Math.log10(sum);
+  
+      const D = c - (m * logX);
+      fatPercentage = ((4.95 / D) - 4.50) * 100;
+    } else {
+      fatPercentage = undefined;
+    }
 
     return fatPercentage;
   }
@@ -161,8 +166,14 @@ export class UtilService {
     const FT = data.frontalThigh;
     const C = data.calf;
 
-    const sum =  T + S + CI + A + FT + C;
-    const fatPercentage = c * sum + m;
+    let fatPercentage;
+
+    if (T && S && CI && A && FT && C) {
+      const sum =  T + S + CI + A + FT + C;
+      fatPercentage = c * sum + m;
+    } else {
+      fatPercentage = undefined;
+    }
 
     return fatPercentage;
   }

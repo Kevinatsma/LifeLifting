@@ -2,7 +2,7 @@
     "global": {
         "general": {
             "name": "LifeLifting",
-            "slogan": "We are not afraid of mirrors!",
+            "slogan": "Here, we are not afraid of mirrors",
             "loading": "Loading..."
         },
         "buttons": {
@@ -248,7 +248,9 @@
                     "current_weight_placeholder": "My current weight is",
                     "area_code_label": "Area code",
                     "hear_from_us_label": "How did you hear from us?",
-                    "hear_from_us_placeholder": "Social Media, friends, etc."
+                    "hear_from_us_placeholder": "Social Media, friends, etc.",
+                    "friends": "Friends told me",
+                    "google": "I found you in Google"
                 },
                 "buttons": {
                     "pick_package": "Pick a package"
@@ -492,7 +494,7 @@
                 "start_date_time": "Start date & time",
                 "end_date_time": "End date & time",
                 "taking_place_how": "How is this meeting taking place?",
-                "online_real": "Is the meeting Online or in real?",
+                "online_real": "Online or in real?",
                 "skype_name": "Skype name",
                 "new_colors": "Pick some new colors",
                 "timeframe": "Choose a timeframe",
@@ -701,7 +703,7 @@
                     "order_online": "Do you order food online?",
                     "have_physical_activities": "Do you do any physical activities?",
                     "define_activities": "Define your activities",
-                    "which_activites": "Which Activities?",
+                    "which_activities": "Which Activities?",
                     "workout_schedule": "Usual schedule of workouts",
                     "physical_activity": "Specify your physical activity",
                     "traning_location": "Training Location",
@@ -716,7 +718,8 @@
                     "use_supplement": "Would you be willing to use a supplement if necessary?",
                     "eating_record": "Your eating recordatory",
                     "write_important": "Write down important things here",
-                    "physicial_activities": "Does physical activities"
+                    "physical_activities": "Does physical activities",
+                    "training_location": "Where do you train"
                 },
                 "conditions": {
                     "diarrhea": "Diarrhea",
@@ -1128,7 +1131,8 @@
             },
             "buttons": {
                 "add_category": "Add a Category",
-                "add_location": "Add a Location"
+                "add_location": "Add a Location",
+                "add_exercise": "Add an Exercise"
             },
             "errors": {
                 "not_available": "😔 Woops! This exercise is not (yet) avaliable.",

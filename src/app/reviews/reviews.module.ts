@@ -4,22 +4,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReviewListItemComponent } from './review-list-item/review-list-item.component';
 import { ReviewsService } from './reviews.service';
 import { MaterialModule } from '../shared/material.module';
-// import { ReviewEditComponent } from './review-edit/review-edit.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    ReviewListItemComponent,
-    // ReviewEditComponent
+    ReviewListItemComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule
   ],
   exports: [
-    ReviewListItemComponent,
-    // ReviewEditComponent
+    ReviewListItemComponent
   ],
   providers: [
     ReviewsService,

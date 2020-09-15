@@ -298,23 +298,23 @@ export class AddGuideDialogComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       const data = this.formulaValues;
-
-      console.log(data);
       const age = _.get(this.user, 'basicData.age');
       if (data.weight && data.height && age && data.gender) {
         this.maxCaloriesResult = this.utils.calculateMaxCalories(data.weight, data.height, age, data.gender);
       }
-
-      if (!data.isAthlete) {
-        this.fatPercentageRegResult = this.utils.calculateFatPercentageRegular(data);
-      } else {
-        this.fatPercentageAthResult = this.utils.calculateFatPercentageAthlete(data);
-      }
-
+      this.calculateFatPercentages(data);
       if (data.weight && data.height) {
         this.bmiResult = this.utils.calculateBMI(data.weight, data.height);
       }
     }, 1000);
+  }
+
+  calculateFatPercentages(data) {
+    if (!data.isAthlete) {
+      this.fatPercentageRegResult = this.utils.calculateFatPercentageRegular(data);
+    } else {
+      this.fatPercentageAthResult = this.utils.calculateFatPercentageAthlete(data);
+    }
   }
 
   getFormulaValues() {

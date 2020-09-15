@@ -14,6 +14,7 @@ import { Exercise } from './../../exercises/exercise.model';
 import { ExerciseService } from './../../exercises/exercise.service';
 import { UtilService } from './../../shared/services/util.service';
 import { Subscription } from 'rxjs';
+import { AddExerciseDialogComponent } from './../../shared/dialogs/add-exercise-dialog/add-exercise-dialog.component';
 
 @Component({
   selector: 'app-add-first-consultation',
@@ -535,4 +536,7 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
     }
   }
 
+  addExercise() {
+    this.dialog.open(AddExerciseDialogComponent);
+  }
 }

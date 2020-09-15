@@ -34,7 +34,7 @@
     <div class="meeting-place-picker">
       <h5>{{ 'pages.booking.signup.meet_method' | translate }}</h5>
       <mat-form-field appearance="standard" floatLabel="always">
-        <mat-select matInput placeholder="Online or in real?"
+        <mat-select matInput placeholder="{{ 'pages.booking.form.online_real' | translate }}"
         (selectionChange)="toggleContext()" formControlName="meetMethod" autocomplete="off" 
         panelClass="dropdown-regular" required>
           <mat-option value="faceToFace">{{ 'pages.booking.f2f.title' | translate }}</mat-option>
@@ -176,7 +176,7 @@
     </section>
 
     <section class="calendar__view" [ngSwitch]="view">
-      <div *ngIf="events$ | async as events; else loading">
+      <div *ngIf="events; else loading">
       <!-- <ng-container *ngIf="appointments"> -->
         <mwl-calendar-month-view
           *ngSwitchCase="CalendarView.Month"

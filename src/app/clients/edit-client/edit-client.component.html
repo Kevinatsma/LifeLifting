@@ -46,7 +46,7 @@
                 <mat-select matInput placeholder="{{user.basicData.gender}}" [(value)]="selectedGender" formControlName="gender" 
                 panelClass="dropdown-regular" autocomplete="off" required>
                   <mat-option *ngFor="let gender of genders" [value]="gender.value">
-                    {{gender.viewValue}}
+                    {{ gender.viewValue | translate }}
                   </mat-option>
                 </mat-select>
               </div>

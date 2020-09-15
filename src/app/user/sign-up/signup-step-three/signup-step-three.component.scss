@@ -73,12 +73,6 @@ section.slider-nav-container {
     }
 }
 
-app-specialist-item {
-    width: 80%;
-    height: auto;
-    margin: 2em auto;
-}
-
 .specialist-container {
     overflow-y: hidden!important;
     height: auto;
@@ -122,14 +116,11 @@ app-specialist-item {
         }
 
         ::ng-deep label.mat-radio-label {
+            box-sizing: border-box;
             width: 100%;
 
             .mat-radio-label-content {
                 width: 100%;
-            }
-
-            @include respond-down($sm) {
-                padding: 1em;
             }
     
             .mat-radio-container {

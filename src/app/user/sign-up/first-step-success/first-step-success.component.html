@@ -17,9 +17,11 @@
         <div class="placeholder" *ngIf="!user.basicData"></div>
         <i class="fa__icon fas fa-check-square" *ngIf="user.basicData"></i>
 
-        <ng-container *ngIf="!isMobile"><a routerLink="step-one">
-          
-        </a></ng-container>
+        <ng-container *ngIf="!isMobile">
+          <a routerLink="step-one">
+            {{ 'pages.signup.step_success.step_one' | translate }}
+          </a>
+        </ng-container>
         <ng-container *ngIf="isMobile">
           <a (click)="closeSection('step-one')">
             {{ 'pages.signup.step_success.step_one' | translate }}
@@ -38,7 +40,7 @@
         </ng-container>
         
         <ng-container *ngIf="!user.basicData">
-          {{ 'pages.signup.step_success.step_one' | translate }}
+          {{ 'pages.signup.step_success.step_two' | translate }}
         </ng-container>
       </li>
       <li [class.activated]="user.specialist">

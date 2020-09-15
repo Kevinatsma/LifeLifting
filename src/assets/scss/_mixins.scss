@@ -1,7 +1,7 @@
 $main-font:'Assistant', sans-serif;
 
 @mixin round-btn {
-    width: auto;
+    width: fit-content;
     height: 50px;
     margin: 0;
     padding: 5px 3em;

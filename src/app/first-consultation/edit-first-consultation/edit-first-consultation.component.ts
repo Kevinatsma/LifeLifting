@@ -16,6 +16,7 @@ import { FirstConsultation } from '../first-consultation.model';
 import { UtilService } from '../../shared/services/util.service';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
+import { AddExerciseDialogComponent } from './../../shared/dialogs/add-exercise-dialog/add-exercise-dialog.component';
 
 @Component({
   selector: 'app-edit-first-consultation',
@@ -601,4 +602,7 @@ export class EditFirstConsultationComponent implements OnInit, OnDestroy {
     }
   }
 
+  addExercise() {
+    this.dialog.open(AddExerciseDialogComponent);
+  }
 }

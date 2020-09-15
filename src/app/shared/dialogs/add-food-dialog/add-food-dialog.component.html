@@ -30,7 +30,8 @@
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>{{ 'pages.food.form.product_name' | translate }}</mat-label>
           <input type="text" matInput name="title" formControlName="productName"
-            placeholder="{{ 'pages.food.form.name_placeholder'}}" autofocus="none">
+            placeholder="{{ 'pages.food.form.name_placeholder' | translate }}"
+            autofocus="none">
           <mat-error class="input-error" *ngIf="!infoForm['controls'].productName.valid">
             {{ 'global.errors.required' | translate }}
           </mat-error>
@@ -142,9 +143,9 @@
     <mat-step [stepControl]="unitForm">
       <form [formGroup]="unitForm">
         <ng-template matStepLabel>{{ 'pages.food.form.portion' | translate }}</ng-template>
-        <h3>⚖️ {{ 'pages.food.form.init_value' | translate }}</h3>
+        <h3>⚖️ {{ 'pages.food.form.unit_value' | translate }}</h3>
         <p class="card-text">
-          {{ 'pages.food.form.init_value_detail' | translate }}
+          {{ 'pages.food.form.unit_value_detail' | translate }}
         </p>
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>{{ 'pages.food.form.the_unit' | translate }}</mat-label>

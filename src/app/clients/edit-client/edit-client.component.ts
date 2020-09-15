@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { SpecialistService } from './../../specialists/specialist.service';
 import { Specialist } from './../../specialists/specialist.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-client',
@@ -27,15 +28,16 @@ export class EditClientComponent implements OnInit, OnDestroy {
 
   // Gender options
   genders = [
-    {value: 'female', viewValue: 'Female'},
-    {value: 'male', viewValue: 'Male'},
-    {value: 'other', viewValue: 'Other'}
+    {value: 'female', viewValue: 'global.words.feminine'},
+    {value: 'male', viewValue: 'global.words.masculine'},
+    {value: 'other', viewValue: 'global.words.other'}
   ]; selectedGender = '';
 
   constructor( private fb: FormBuilder,
                private clientService: ClientService,
                public specialistService: SpecialistService,
-               public location: Location) {
+               public location: Location,
+               private translate: TranslateService) {
                }
 
   ngOnInit() {

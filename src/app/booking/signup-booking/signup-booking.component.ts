@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import {isSameMonth, isSameDay } from 'date-fns';
 import { Observable, Subscription, Subject } from 'rxjs';
+import { takeUntil, map } from 'rxjs/operators';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView, CalendarEventTitleFormatter } from 'angular-calendar';
 import { BookingService } from '../booking.service';
 import { User } from '../../user/user.model';
@@ -20,6 +21,7 @@ import { Router } from '@angular/router';
 import { UtilService } from './../../shared/services/util.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import countryCodes from './../../shared/data/JSON/countryCodes.json';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-signup-booking',
@@ -213,58 +215,28 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
     return `T00:00:00${direction}${hoursOffset}:${minutesOffset}`;
   }
 
-  // mapEvents = (events: Appointment[]): Appointment[] => {
-  //   const addTwoDays = this.utils.dateAdd(new Date(), 'hour', 48);
-  //   console.log('first income events', events);
-  //   const time = moment.duration("00:09:15");
-  //   let date = moment("2020-08-18 17:22:06");
-  //   date.subtract(time);
-  //   const blockedEvent: Appointment = {
-  //     accepted: true,
-  //     clientID: 'XeeS86g4KpgtXri8OIB9eO1KwfE3',
-  //     color: {primary: '#e74c3c', secondary: '#f58f84'},
-  //     contactMethod: null,
-  //     created: firebase.firestore.Timestamp.fromDate(new Date()),
-  //     draggable: false,
-  //     end: addTwoDays,
-  //     eventID: 'testId',
-  //     faceToFacePhone: 12341234,
-  //     location: null,
-  //     meetMethod: 'faceToFace',
-  //     onlineAppointmentPhone: {
-  //       phoneAreaCode: '51',
-  //       phoneRest: 50005
-  //     },
-  //     rejected: false,
-  //     resizable: {beforeStart: true, afterEnd: true},
-  //     skypeName: null,
-  //     specialistID: 'specialist2',
-  //     start: date.toString(),
-  //     title: 'test Appointment',
-  //     whatsappNumber: null
-  //   };
-  //   events.push(blockedEvent)
-  //   console.log('events pushed', events);
-  //   console.log('moment time', date.toString());
-  //   return events;
-  // };
-
   getEvents(user) {
     const specialist = user.specialist;
-    // Pull appointments from service
     const colRef: AngularFirestoreCollection =
     this.afs.collection('appointments', ref =>
       ref.where('specialistID', '==', `${specialist}`)
       .where('accepted', '==', true)
       .orderBy('start'));
-    this.events$ = this.bookingService.getSpecificAppointments(colRef);
-    // this.events$.pipe(
-    //   takeUntil(this.destroy$),
-    // ).subscribe((events: any) => {
-    //   console.log('events', events);
-    //   this.events = this.mapEvents(events);
-    //   // this.events = events;
-    // });
+    this.bookingService.getSpecificAppointments(colRef).pipe(
+      takeUntil(this.destroy$),
+      map((events) => this.fillForbiddenTimes(events))
+    ).subscribe((events: any) => {
+      this.events = events;
+      this.cdr.detectChanges();
+    });
+  }
+
+  fillForbiddenTimes(events) {
+    let copyEvent = _.first(events);
+    _.set(copyEvent, 'start', new Date());
+    _.set(copyEvent, 'end', this.utils.dateAdd(copyEvent.start, 'hour', 48));
+    _.set(copyEvent, 'eventID', "placeholder");
+    return [...events, copyEvent];
   }
 
   injectEventOverviewTitle(timeOut) {

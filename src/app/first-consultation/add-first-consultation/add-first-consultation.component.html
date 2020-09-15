@@ -1256,10 +1256,16 @@
                       <mat-select matInput placeholder="Pick one" formControlName="physicalActivity" 
                       panelClass="dropdown-regular" autocomplete="off">
                         <mat-option *ngFor="let activity of activities" [value]="activity">{{activity.exerciseName}}</mat-option>
-                        <mat-option value="other">{{ 'global.words.other' | translate }}</mat-option>
                       </mat-select>
                       <mat-error class="input-error" *ngIf="!physicalActivity.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
                     </mat-form-field>
+
+                    <div class="form-fields__add-exercise">
+                      <span>{{ 'global.words.or' | translate }} </span>
+                      <button class="text-link" (click)="addExercise()">
+                        {{ 'pages.exercises.buttons.add_exercise' | translate }}
+                      </button>
+                    </div>
 
                     <div class="time-range">
                       <label>{{ 'pages.first_consultation.general_info_2.form.workout_schedule' | translate }}</label>

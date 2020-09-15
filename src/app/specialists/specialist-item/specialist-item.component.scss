@@ -1,5 +1,24 @@
 @import './../../../assets/scss/_master.scss';
 
+:host {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0 0 2em;
+    position: relative;
+
+    @include respond-down($sm) {
+        padding: 20px 0;
+    }
+
+    > * {
+        box-sizing: border-box;
+    }
+}
+
 // General
 p {
     white-space: normal;
@@ -18,31 +37,51 @@ section.specialist-header {
     align-items: flex-start;
     background: $light-grey;
     box-shadow: $card-shadow;
+
     @include respond-down($sm) {
         background: white;
         box-shadow: none;
         flex-flow: column wrap;
+        align-items: center;
+    }
+
+    @include respond-up($sm) {
+        padding: 15px 10px;
     }
 
     div.profile-picture {
-        width: 50%;
-        height: 200px;
+        width: 150px;
+        min-width: 150px;
+        min-height: 150px;
+        height: 150px;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        border-radius: 50%;
+        box-shadow: $card-shadow;
+
         @include respond-down($sm) {
-            width: 100%;
+            margin-top: 10px;
         }
     }
 
     div.quick-info {
-        width: 50%;
-        padding: 1em 2em;
-        margin-top: 1em;
+        width: calc(100% - 150px);
+        padding: 1em 20px;
+        margin: 0 0 0 40px;
 
         @include respond-down($sm) {
-            width: 100%;
-            padding: 1em 0.5em;
+            width: 90%;
+            padding: 0;
+            margin: 20px auto;
+
+            h2, h5, p {
+                text-align: center;
+            }
+
+            .text-link {
+                margin: 0 auto;
+            }
         }
 
         p {
@@ -51,7 +90,7 @@ section.specialist-header {
 
         .text-link {
             @include respond-down($sm) {
-                width: 30%;
+                width: fit-content;
             }
         }
     }
@@ -203,4 +242,10 @@ section.btn-area {
             transform: translateY(-15px);
         }
     }
+}
+
+.show-more {
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
 }

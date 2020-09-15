@@ -6,6 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { SpecialistService } from './../../../specialists/specialist.service';
 import { Specialist } from './../../../specialists/specialist.model';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface Status {
   appointment?: boolean;
@@ -39,16 +40,17 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
   // Gender options
   genders = [
-    {value: 'female', viewValue: 'Female'},
-    {value: 'male', viewValue: 'Male'},
-    {value: 'other', viewValue: 'Other'}
+    {value: 'female', viewValue: 'global.words.feminine'},
+    {value: 'male', viewValue: 'global.words.masculine'},
+    {value: 'other', viewValue: 'global.words.other'}
   ]; selectedGender = '';
 
   constructor( private fb: FormBuilder,
                private userService: UserService,
                public specialistService: SpecialistService,
                private cdr: ChangeDetectorRef,
-               public location: Location) {
+               public location: Location,
+               private translate: TranslateService) {
                }
 
   ngOnInit() {

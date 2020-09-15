@@ -2,7 +2,7 @@
   "global": {
     "general": {
       "name": "LifeLifting",
-      "slogan": "¡No le tememos a los espejos!",
+      "slogan": "Aquí no le tememos a los espejos",
       "loading": "Cargando..."
     },
     "buttons": {
@@ -12,19 +12,19 @@
       "go_back": "Regresa.",
       "confirm": "Confirme",
       "done": "Hecho",
-      "go_to_mirror": "Ir al espejo",
+      "go_to_mirror": "Ir al Mirror",
       "more_info": "Más información",
       "show_all": "Mostrar todo",
-      "previous_step": "Paso previo\n",
-      "next_step": "El siguiente paso...",
+      "previous_step": "Paso previo",
+      "next_step": "Al siguiente paso",
       "read_more": "Leer más",
       "read_less": "Lea menos.",
       "see_more": "Ver más",
       "learn_more": "Aprende más.",
-      "hide": "Ocultar",
+      "hide": "Esconder",
       "show": "Mostrar",
-      "sign_out": "Firme la salida.",
-      "duplicate": "Duplicar\n",
+      "sign_out": "Salir",
+      "duplicate": "Duplicar",
       "edit": "Edita",
       "delete": "Eliminar",
       "accept": "Acepta",
@@ -35,11 +35,13 @@
       "email_placeholder": "Dirección de correo electrónico",
       "password_placeholder": "Contraseña",
       "first_name": "Nombre de pila",
-      "last_name": "Apellido\n",
+      "last_name": "Apellido",
       "phone_number": "Número de teléfono",
       "gender": "Género",
       "pick_date": "Elija una fecha",
       "pick_one": "Escoge uno.",
+      "pick_language": "Elija un idioma",
+      "pick_from_list": "Escoge uno de la lista",
       "errors": {
         "required": "Esto es necesario",
         "invalid_email": "¡Esa no es una dirección de correo electrónico válida!",
@@ -53,17 +55,15 @@
       "none_of_above": "Ninguno de los anteriores",
       "always_number": "Siempre un número",
       "write_down_notes": "Escriba cualquier nota que tenga aquí",
-      "short_desc": "La breve descripción",
+      "short_desc": "La descripción corta",
       "short_desc_ph": "Escriba una descripción corta pero atractiva",
       "every_x_days": "Cada x días",
-      "per_x_day_bleeding": "Por x días de sangrado",
-      "pregnancy_nr": "Número de embarazos\n",
       "x_per_week": "x por semana"
     },
     "words": {
       "yes": "Sí",
       "no": "No",
-      "or": "O\n",
+      "or": "O",
       "of": "de",
       "welcome": "Bienvenido",
       "thanks": "Gracias",
@@ -73,21 +73,21 @@
       "none": "Ninguno",
       "age": "Edad",
       "city": "Ciudad",
-      "country": "País\n",
-      "with": "con\n",
+      "country": "País",
+      "with": "con",
       "about": "Acerca de",
       "value": "valor",
       "notes": "Notas",
       "masculine": "Masculino",
       "feminine": "Femenino",
       "other": "Otros",
-      "elaborate": "Elabore\n",
+      "elaborate": "Elabore",
       "simple": "Simple",
       "good": "Bien",
       "regular": "Regular",
       "bad": "Malo",
       "like_what": "¿Cómo qué?",
-      "created": "Creó\n",
+      "created": "Creado",
       "edited": "Editado",
       "calories": "calorías",
       "for": "Para",
@@ -96,7 +96,7 @@
       "dollar": "dólar",
       "page": "Página",
       "info": "Información",
-      "picture": "Foto\n",
+      "picture": "Foto",
       "categories": "Categorías",
       "category": "Categoría",
       "is": "es",
@@ -117,10 +117,10 @@
     "questions": {
       "is_this_ok": "¿Esto está bien?",
       "why_not": "¿Por qué no?",
-      "any_questions": "¿Tiene alguna pregunta?\n"
+      "any_questions": "¿Tiene alguna pregunta?"
     },
     "actions": {
-      "call": "Llame a",
+      "call": "Llamar",
       "chat": "Chat",
       "email": "Correo electrónico",
       "filter": "Filtro",
@@ -140,17 +140,17 @@
       "yes_sure": "Sí, estoy seguro."
     },
     "user": {
-      "weight": "Peso\n",
-      "current_weight": "Peso actual\n",
+      "weight": "Peso",
+      "current_weight": "Peso actual",
       "status": {
         "signup_completed": "Inscripción completada",
         "signup_incomplete": "La inscripción no se ha completado",
-        "appointment_requested": "Se solicita una cita\n",
-        "appointment_not_requested": "No se solicita una cita\n",
+        "appointment_requested": "Se solicita una cita",
+        "appointment_not_requested": "No se solicita una cita",
         "appointment_accepted": "Nombramiento aceptado",
         "appointment_not_accepted": "No se acepta el nombramiento",
-        "appointment_completed": "Nombramiento completado",
-        "appointment_not_completed": "Cita no completada\n",
+        "appointment_completed": "Cita completada",
+        "appointment_not_completed": "Cita no completada",
         "accepted": "Aceptado",
         "denied": "Denegado",
         "subscription_invalid": "La suscripción no es válida",
@@ -161,16 +161,16 @@
       }
     },
     "dates": {
-      "created_at": "Creado en\n"
+      "created_at": "Creado en"
     },
     "errors": {
       "no_photo": "No hay foto todavía",
-      "incomplete_profile": "Perfil incompleto\n",
+      "incomplete_profile": "Perfil incompleto",
       "no_value": "No tiene valor",
       "wrong_go_back": "Woops, algo salió mal... Por favor, vuelve.",
       "no_goal": "No hay objetivo todavía...",
-      "required": "Esto es necesario.",
-      "not_edited": "No se ha editado todavía...",
+      "required": "Esto es necesario",
+      "not_edited": "No se ha editado todavía",
       "email_invalid": "¡Esa no es una dirección de correo electrónico válida!"
     },
     "social": {
@@ -179,11 +179,11 @@
       "phone_call": "Llamada telefónica"
     },
     "meals": {
-      "breakfast": "Desayuno\n",
-      "middle_morning": "Media mañana\n",
+      "breakfast": "Desayuno",
+      "middle_morning": "Media mañana",
       "lunch": "Almuerzo",
-      "middle_afternoon": "Media tarde\n",
-      "dinner": "Cena\n",
+      "middle_afternoon": "Media tarde",
+      "dinner": "Cena",
       "after_dinner": "Después de la cena"
     }
   },
@@ -211,7 +211,7 @@
     "password_reset": {
       "title": "Restablece tu contraseña",
       "intro": "¡Bienvenido de nuevo! Por favor, introduzca una nueva contraseña y no lo olvide de nuevo. 🙏🏼",
-      "intro_forbidden": "¡Eh! 👀 O no lo has pedido o has esperado demasiado.\n",
+      "intro_forbidden": "¡Eh! 👀 O no lo has pedido o has esperado demasiado tiempo.",
       "confirm_pass_placeholder": "Confirma tu contraseña",
       "buttons": {
         "back_to_login": "Volver al inicio de sesión"
@@ -221,34 +221,36 @@
       }
     },
     "signup": {
-      "title": "¡Hola! 👋🏼\n",
+      "title": "¡Hola! 👋🏼",
       "intro": "Crea una cuenta para ver tus horarios y objetivos, chatear con tu nutricionista y obtener datos en tiempo real.",
       "step_success": {
-        "title": "Cuenta creada!\n",
-        "intro": "Por favor, complete los siguientes pasos para usar el espejo lifestyl.",
+        "title": "Cuenta creada!",
+        "intro": "Por favor, complete los siguientes pasos para usar el Mirror",
         "step_one": "Paso 1: Rellenar los datos básicos",
         "step_two": "Paso 2: Elegir un paquete",
         "step_three": "Paso 3: Elegir un especialista",
-        "step_four": "Paso 4: Solicitar una cita\n",
-        "step_five": "Paso 5: Terminar\n"
+        "step_four": "Paso 4: Solicitar una cita",
+        "step_five": "Paso 5: Terminar"
       },
       "step_one": {
         "title": "Paso 1: Datos personales básicos",
         "intro": "Psst, ya has rellenado los datos básicos. Si cometiste un error, no te preocupes. Puedes editar todo tu perfil después de registrarte. Haz clic en el botón para ir al siguiente paso!",
         "form": {
-          "age_label": "Su edad\n",
-          "age_placeholder": "Tengo... años.\n",
+          "age_label": "Su edad",
+          "age_placeholder": "Tengo... años.",
           "gender_label": "Tu género...",
-          "gender_placeholder": "Me identifico como...\n",
-          "country_label": "Vivo en\n",
+          "gender_placeholder": "Me identifico como...",
+          "country_label": "Vivo en",
           "country_placeholder": "Elija un país",
           "main_goal_label": "¿Cuál es tu principal objetivo?",
-          "main_goal_placeholder": "Quiero...\n",
-          "current_weight_label": "Peso actual en kg.\n",
-          "current_weight_placeholder": "Mi peso actual es\n",
+          "main_goal_placeholder": "Quiero...",
+          "current_weight_label": "Peso actual en kg.",
+          "current_weight_placeholder": "Mi peso actual es",
           "area_code_label": "Código de área",
           "hear_from_us_label": "¿Cómo supo de nosotros?",
-          "hear_from_us_placeholder": "Por los medios sociales, amigos, etc."
+          "hear_from_us_placeholder": "Por los medios sociales, amigos, etc.",
+          "friends": "Mis amigos me dijeron",
+          "google": "Te encontré en Google"
         },
         "buttons": {
           "pick_package": "Elija un paquete"
@@ -256,17 +258,17 @@
       },
       "step_two": {
         "subtitle": "Elija un paquete y obtenga una consulta gratuita",
-        "subtitle_success": "Has tomado una sabia decisión\n",
+        "subtitle_success": "Has tomado una sabia decisión",
         "title": "Paso 2: Elegir un paquete",
-        "already_chosen_1": "Psst, ya has elegido\n",
+        "already_chosen_1": "Psst, ya has elegido",
         "already_chosen_2": "Puedes cambiar tu elección de paquete más tarde después de inscribirte. Haga clic en el botón para ir al siguiente paso!",
         "buttons": {
-          "choose_specialist": "Elija su especialista\n"
+          "choose_specialist": "Elija su especialista"
         }
       },
       "step_three": {
         "subtitle": "Elija con cuidado",
-        "subtitle_success": "Has elegido sabiamente\n",
+        "subtitle_success": "Has elegido sabiamente",
         "title": "Paso 3: Elegir un especialista",
         "already_chosen": "¡Uy! Ya has elegido un especialista. Vaya al siguiente cuadro de mandos pulsando el botón de abajo. Si quieres cambiar de especialista más tarde. Eso está permitido después de una semana de prueba.",
         "buttons": {
@@ -275,42 +277,42 @@
       },
       "step_four": {
         "subtitle": "Elija una fecha",
-        "title": "Paso 4: Planifique su primera cita\n",
-        "intro": "Ya has planeado una cita. Una vez que la cita esté hecha, pasarás al pago. Pasa al siguiente paso para seguir el estado de tu cita solicitada y para charlar con tu especialista.\n",
+        "title": "Paso 4: Planifique su primera cita",
+        "intro": "Ya has planeado una cita. Una vez que la cita esté hecha, pasarás al pago. Pasa al siguiente paso para seguir el estado de tu cita solicitada y para charlar con tu especialista.",
         "buttons": {
           "check_status": "Comprueba tu estado"
         }
       },
       "limbo": {
-        "past_due_date": "¿El especialista olvidó aceptarla/cancelarla y está vencida?\n",
+        "past_due_date": "¿El especialista olvidó aceptarla/cancelarla y está vencida?",
         "request_new": "Por favor, solicite una nueva consulta",
         "step_done": {
-          "title": "¡Salud a la planificación de eso! 🍻",
-          "intro": "Felicidades por buscar una mejor versión de ti mismo. Gracias por su confianza en LifeLifting Nutrition.",
+          "title": "Felicitaciones por planificar tu consulta! 🍻",
+          "intro": "Felicidades por buscar una mejor versión de usted mism@. Gracias por su confianza en LifeLifting Nutrition.",
           "your_specialist": "Su especialista",
-          "will_confirm": "confirmará su consulta lo antes posible.\n"
+          "will_confirm": "confirmará su consulta lo antes posible."
         },
         "not_accepted": {
-          "title": "Oh... ¡No se acepta la cita!\n",
+          "title": "Oh... ¡No se acepta la cita!",
           "subtitle_1": "El especialista no pudo encajar su petición en su agenda. Por favor, póngase en contacto con",
-          "subtitle_2": "o solicitar otra cita.\n",
+          "subtitle_2": "o solicitar otra cita.",
           "request_new": "Solicitar una nueva cita"
         },
         "appointment_status": {
-          "title": "Estado del nombramiento",
+          "title": "Estado de la consulta",
           "subtitle_1": "Si ves tu cita aquí abajo. ¡Felicidades! Entonces ha sido aceptado. Si no, por favor espere hasta que el especialista acepte su petición. ¿Está tardando mucho? Por favor, póngase en contacto con",
           "subtitle_2": "si tiene algún problema, o para cualquier otra pregunta."
         },
         "completed_appointment": {
-          "title": "¡Bien, has completado tu primera cita!\n",
-          "subtitle_1": "Pero su pago no ha sido procesado todavía. Asegúrate de que has pagado. No dude en contactar\n",
-          "subtitle_2": "si tiene algún problema con su pago, o para cualquier otra pregunta.\n"
+          "title": "¡Bien, has completado tu primera cita!",
+          "subtitle_1": "Pero su pago no ha sido procesado todavía. Asegúrate de que has pagado. No dude en contactar",
+          "subtitle_2": "si tiene algún problema con su pago, o para cualquier otra pregunta."
         },
         "subscription_ended": {
           "title": "Aww... Su suscripción ha terminado",
-          "subtitle_1": "Esperamos que hayas tenido un crecimiento impresionante en tu tiempo con LifeLifting. Y siempre eres bienvenido a entrenar con\n",
-          "subtitle_2": "o puedes elegir\n",
-          "another_specialist": "otro especialista\n"
+          "subtitle_1": "Esperamos que hayas tenido un crecimiento impresionante en tu tiempo con LifeLifting. Y siempre eres bienvenido a entrenar con",
+          "subtitle_2": "o puedes elegir",
+          "another_specialist": "otro especialista"
         },
         "all_completed": {
           "title": "¡Parece que todo está bien!",
@@ -319,7 +321,7 @@
         }
       },
       "buttons": {
-        "already_have_account": "Ya tengo una cuenta\n",
+        "already_have_account": "Ya tengo una cuenta",
         "create_account": "Crear una cuenta",
         "signup_google": "Regístrate en Google"
       }
@@ -375,19 +377,19 @@
         }
       },
       "guidelines": {
-        "title": "Mis directrices",
-        "intro": "En esta sección tienes una rápida visión general de las directrices que has creado. Puedes verlas y editarlas/eliminarlas directamente de la lista. Con el botón de arriba a la derecha añades una pauta. 📄"
+        "title": "Mis Lineamientos",
+        "intro": "En esta sección tienes una rápida visión general de las Lineamientos que has creado. Puedes verlas y editarlas/eliminarlas directamente de la lista. Con el botón de arriba a la derecha añades una pauta. 📄"
       },
       "mealplans": {
-        "title": "Mis planes de comidas",
-        "intro": "En esta sección tienes una rápida visión general de los planes de comidas que has creado. Puede verlos y editarlos/eliminarlos directamente de la lista. Con el botón superior derecho puedes añadir un plan de comidas. 📄"
+        "title": "Mis Planes Alimenticios",
+        "intro": "En esta sección tienes una rápida visión general de los Planes Alimenticios que has creado. Puede verlos y editarlos/eliminarlos directamente de la lista. Con el botón superior derecho puedes añadir un plan de comidas. 📄"
       },
       "form": {
         "first_name": "Dale un nombre al cliente",
         "last_name": "El apellido",
         "general_info": "Información general",
         "account_settings": "Configuración de la cuenta",
-        "account_settings_detail": "Estos son los detalles de la cuenta del cliente. ¡Escríbelos para poder enviárselos!\n",
+        "account_settings_detail": "Estos son los detalles de la cuenta del cliente. ¡Escríbelos para poder enviárselos!",
         "email_as_user": "El email será usado como nombre de usuario",
         "client_email": "¿Cuál es el correo electrónico del cliente?",
         "type_pass": "Escriba su contraseña",
@@ -406,7 +408,7 @@
         "clients_patients": "Clientes o pacientes",
         "years_experience": "Años de experiencia",
         "contact_info": "Información de contacto",
-        "languages": "Idiomas\n",
+        "languages": "Idiomas",
         "practical_info": "Información práctica",
         "experience": "Experiencia",
         "amount_of_patients": "Cantidad de pacientes",
@@ -416,16 +418,16 @@
       },
       "form": {
         "general_info": "Información general",
-        "account_settings_detail": "Estos son los detalles de la cuenta del especialista. Escríbelos para poder enviárselos\n",
+        "account_settings_detail": "Estos son los detalles de la cuenta del especialista. Escríbelos para poder enviárselos",
         "your_email": "¿Cuál es tu correo electrónico?",
-        "personal_data": "Datos básicos que necesitamos del especialista. Algunos de estos datos se mostrarán en el paso 4 del proceso de registro. Esto puede ser importante en el proceso de decisión del futuro cliente.\n",
+        "personal_data": "Datos básicos que necesitamos del especialista. Algunos de estos datos se mostrarán en el paso 4 del proceso de registro. Esto puede ser importante en el proceso de decisión del futuro cliente.",
         "specialist_name_ph": "Darle un nombre al especialista",
         "profile_image": "Imagen de perfil",
         "profile_image_detail": "Por favor, elija una imagen clara que represente la apariencia actual de esta persona.",
         "about_specialist": "Sobre el especialista",
         "about_specialist_ph": "Por favor, introduzca el más reciente número de teléfono de trabajo. También, por favor escriba una pequeña descripción que los usuarios puedan leer :).",
         "phone_nr_ph": "¿Cuál es el número de teléfono?",
-        "experience_detail": "¿Qué experiencia tiene este especialista? Los clientes obviamente se preocuparán por esto, así que decidan esto con el especialista mismo.",
+        "experience_detail": "¿Qué experiencia tiene este especialista? Los clientes obviamente se preocuparán por esto, así que decida esto con la especialista misma.",
         "position": "La posición en LifeLifting",
         "position_ph": "¿Cuál es su posición?",
         "speciality_detail": "Mejores rasgos/habilidades",
@@ -437,6 +439,7 @@
         "extras": "Extras",
         "languages_detail": "Añade idiomas al especialista para que podamos conectarlos con los clientes adecuados. De esta manera también podremos saber en qué mercados estamos activos.",
         "which_lang": "¿Qué idioma?",
+        "proficiency": "Dominio",
         "what_level": "¿Qué nivel?",
         "user_name_ph": "Darle un nombre al usuario"
       },
@@ -444,7 +447,7 @@
         "add_language": "Añadir el idioma"
       },
       "errors": {
-        "8_chars": "Debe contener 8 caracteres, letras y números\n"
+        "8_chars": "Debe contener 8 caracteres, letras y números"
       }
     },
     "shopping_list": {
@@ -463,13 +466,13 @@
         "wapp_number": "Número de Whatsapp"
       },
       "f2f": {
-        "title": "Cara a cara\n",
+        "title": "Cara a cara",
         "area_code": "Código de área",
         "location": "Ubicación"
       },
       "online": {
         "title": "Llamada en línea",
-        "call_method": "Prefiero llamar con\n",
+        "call_method": "Prefiero llamar con",
         "contact_method_placeholder": "¿Cómo le gustaría que nos pusiéramos en contacto con usted?",
         "your_phone": "Su número de teléfono.",
         "code": "Código",
@@ -483,7 +486,7 @@
       "form": {
         "plan_appointment": "Planificar una cita",
         "suitable_time": "Por favor, proporcione un tiempo adecuado. Las solicitudes de horarios que ya están tomadas, no son lugares seguros.",
-        "describe_meeting": "Describa la reunión. Ejemplo: \"Primera consulta\n",
+        "describe_meeting": "Describa la reunión. Ejemplo: \"Primera consulta",
         "pick_user": "Elija un usuario",
         "pick_specialist": "Elija un especialista",
         "pick_primary_color": "Elija un color primario (fondo del evento)",
@@ -491,7 +494,7 @@
         "start_date_time": "Fecha y hora de inicio",
         "end_date_time": "Fecha y hora de finalización",
         "taking_place_how": "¿Cómo se está llevando a cabo esta reunión?",
-        "online_real": "¿La reunión es en línea o en real?",
+        "online_real": "¿La reunión es online o real?",
         "skype_name": "Nombre de Skype",
         "new_colors": "Elige algunos colores nuevos...",
         "timeframe": "Elija un marco de tiempo",
@@ -501,27 +504,27 @@
         "open_in_maps": "Abrir en Mapas",
         "add_to_phone": "Añadir al teléfono",
         "call": "Llama a",
-        "confirm": "Confirmar la cita\n"
+        "confirm": "Confirmar la cita"
       }
     },
     "first_consultation": {
-      "title": "Primera consulta\n",
-      "title_m": "Primeras consultas\n",
+      "title": "Primera consulta",
+      "title_m": "Primeras consultas",
       "general": {
-        "fic_id": "Primera consulta ID\n",
+        "fic_id": "Primera consulta ID",
         "basic_info": "Información básica",
         "general_info": "Información general",
         "physical_activities": "Actividades físicas",
         "store_name": "Nombre de la tienda",
         "main_goal_mealplan": "Objetivo principal del plan de alimentación",
-        "urinate_a_day": "¿Cuántas veces está orinando por día\n",
+        "urinate_a_day": "¿Cuántas veces está orinando por día",
         "wakeup_urinate": "Se despierta para orinar",
         "bowel_every_day": "Movimientos intestinales todos los días",
         "always_same_schedule": "Siempre el mismo horario",
         "most_hungry": "El momento más hambriento",
         "appetite_1_10": "Apetito en una escala del 1 al 10",
         "sleep_status": "Estado actual de sueño",
-        "trouble_sleep": "Problemas para dormir\n",
+        "trouble_sleep": "Problemas para dormir",
         "wake_up_energized": "Se despierta con energía",
         "first_period": "El primer período menstrual",
         "regular_cycle": "Ciclo menstrual regular",
@@ -541,13 +544,13 @@
         "training_intensity": "Intensidad de entrenamiento",
         "wake_up_time": "Hora de levantarse",
         "order_or_outside": "Pide comida o come fuera",
-        "takes_supps": "Toma suplementos\n",
+        "takes_supps": "Toma suplementos",
         "will_use_supps": "Está dispuesto a utilizar un suplemento",
         "eating_recordatory": "Comer es un recordatorio...",
-        "consumes_alcohol": "Consume alcohol\n",
-        "smokes": "Fumar\n",
-        "consumes_coffee": "Consume café\n",
-        "consumes_tea": "Consume té\n",
+        "consumes_alcohol": "Consume alcohol",
+        "smokes": "Fumar",
+        "consumes_coffee": "Consume café",
+        "consumes_tea": "Consume té",
         "cups_day": "tazas/día",
         "stays_up_late": "Se queda despierto hasta tarde",
         "consumes_drugs": "Consume drogas",
@@ -556,8 +559,8 @@
         "breakfast_time": "Hora del desayuno",
         "lunch_time": "Hora de la comida",
         "dinner_time": "Hora de la cena",
-        "cook_at_home": "El que cocina en casa\n",
-        "breakfast_home": "Desayuna en casa\n",
+        "cook_at_home": "El que cocina en casa",
+        "breakfast_home": "Desayuna en casa",
         "plenty_time": "Tiene mucho tiempo para el desayuno",
         "work_desc": "Descripción del trabajo",
         "work_schedule": "El horario de trabajo",
@@ -567,7 +570,9 @@
         "eat_during_work": "Puede comer durante el tiempo de trabajo",
         "simple_snack": "Puede tomar un simple refrigerio durante el tiempo de trabajo",
         "snack_preference": "Preferencia de bocadillos",
-        "kitchen_gadgets": "Tiene aparatos de cocina en el trabajo"
+        "kitchen_gadgets": "Tiene aparatos de cocina en el trabajo",
+        "per_x_day_bleeding": "Por x días de sangrado",
+        "pregnancy_nr": "Número de embarazos"
       },
       "steps": {
         "general_1": "General 1/2",
@@ -582,52 +587,52 @@
         "address": "¿Cuál es la dirección?",
         "address_placeholder": "Calle + Número, Ciudad, País",
         "birth_date": "Fecha de nacimiento",
-        "born_future": "Nacerás en el futuro 🔮\n",
-        "you_age_old": "Tienes {{age}} años.\n",
+        "born_future": "Nacerás en el futuro 🔮",
+        "you_age_old": "Tienes {{age}} años.",
         "height": "La altura en números"
       },
       "habits": {
-        "step_title": "🚴 Hábitos\n",
+        "step_title": "🚴 Hábitos",
         "step_intro": "Por favor, obtenga toda la información que pueda del cliente, para hacer un mejor y más personal plan de comidas la próxima vez.",
         "general": "General",
-        "sleeping": "Dormir\n",
+        "sleeping": "Dormir",
         "eating": "Comida",
         "work": "Trabajo",
         "form": {
-          "drink_alcohol": "¿Bebes alcohol?\n",
+          "drink_alcohol": "¿Bebes alcohol?",
           "cups_a_day": "¿Cuántas copas al día?",
-          "smoke": "¿Fumas cigarrillos?\n",
+          "smoke": "¿Fumas cigarrillos?",
           "packs_a_week": "¿Cuántas cajetillas a la semana?",
-          "take_drugs": "¿Tomas drogas?\n",
-          "drink_coffee": "¿Bebe café?\n",
-          "drink_tea": "¿Bebes té?\n",
-          "social_life": "Sale por la noche para tener una vida social",
+          "take_drugs": "¿Tomas drogas?",
+          "drink_coffee": "¿Bebe café?",
+          "drink_tea": "¿Bebes té?",
+          "social_life": "Sale por la noche para tener una vida social.",
           "days_a_week": "¿Cuántos días a la semana?",
           "stay_up_late": "Se queda hasta tarde",
           "sleeping_habits": "Hábitos de sueño",
           "wake_up_time": "¿A qué hora te despiertas?",
-          "bed_time": "¿A qué hora te duermes?\n",
+          "bed_time": "¿A qué hora te duermes?",
           "eating_habits": "Hábitos alimenticios",
-          "breakfast_time": "¿A qué hora desayunas?\n",
-          "lunch_time": "¿A qué hora almuerzas?\n",
-          "dinner_time": "¿A qué hora cenas?\n",
+          "breakfast_time": "¿A qué hora desayunas?",
+          "lunch_time": "¿A qué hora almuerzas?",
+          "dinner_time": "¿A qué hora cenas?",
           "who_cooks": "¿Quién cocina en casa?",
           "patient": "Paciente",
           "relative": "Pariente",
           "maid": "La criada",
-          "breakfast_home": "¿Desayunas en casa?\n",
-          "plenty_breakfast_time": "¿Tienes mucho tiempo para desayunar?\n",
-          "your_work": "¿En qué trabajas?\n",
+          "breakfast_home": "¿Desayunas en casa?",
+          "plenty_breakfast_time": "¿Tienes mucho tiempo para desayunar?",
+          "your_work": "¿En qué trabajas?",
           "work_schedule": "¿Cuál es tu horario de trabajo?",
           "work_weekends": "¿Trabajas los fines de semana?",
-          "your_schedule": "¿Cuál es tu horario?\n",
+          "your_schedule": "¿Cuál es tu horario?",
           "home_to_work": "¿Cuánto tiempo te lleva de casa al trabajo? (en minutos)",
           "work_to_home": "¿Y cuánto tiempo lleva del trabajo a la casa? (en minutos)",
-          "transportation": "Método de transporte\n",
-          "car": "🚗 Coche\n",
-          "public": "🚉 Transporte público\n",
-          "bike": "🚴♂️ Bicicleta\n",
-          "walking": "🚶♀️ Caminando\n",
+          "transportation": "Método de transporte",
+          "car": "🚗 Coche",
+          "public": "🚉 Transporte público",
+          "bike": "🚴♂️ Bicicleta",
+          "walking": "🚶♀️ Caminando",
           "eat_during_work": "¿Puedes comer durante el trabajo?",
           "snack_during_work": "¿Puedes tomar un simple y práctico refrigerio mientras trabajas?",
           "snack_level": "¿Prefiere que sus bocadillos sean elaborados o simples?",
@@ -639,27 +644,27 @@
         "step_intro": "Por favor, obtenga toda la información que pueda del cliente, para hacer un mejor y más personal plan de comidas la próxima vez.",
         "diuresis": "Diuresis",
         "bowel_movement": "Movimientos intestinales",
-        "appetite": "Apetito\n",
+        "appetite": "Apetito",
         "sleep": "Dormir",
         "form": {
-          "urinate_each_day": "¿Cuántas veces orinas cada día?\n",
-          "urinate_at_night": "¿Te despiertas para orinar en medio de la noche?\n",
+          "urinate_each_day": "¿Cuántas veces orinas cada día?",
+          "urinate_at_night": "¿Te despiertas para orinar en medio de la noche?",
           "bowel_movements": "Movimientos intestinales",
           "every_day": "¿Los tienes todos los días?",
           "times_per_week": "¿Cuántas veces al día las tienes por semana?",
-          "bowel_movements_a_day": "¿Cuántas veces al día haces deposiciones?\n",
-          "same_movements": "¿Siempre vas a los mismos momentos?\n",
-          "appetite_category": "Del 1 al 10, siendo 10 \"Siempre tengo hambre\", ¿dónde clasificarías tu apetito en general?\n",
+          "bowel_movements_a_day": "¿Cuántas veces al día haces deposiciones?",
+          "same_movements": "¿Siempre vas a los mismos momentos?",
+          "appetite_category": "Del 1 al 10, siendo 10 \"Siempre tengo hambre\", ¿dónde clasificarías tu apetito en general?",
           "hungry_time": "La hora del día en la que sientes más hambre",
           "sleep": "Dormir",
           "current_sleep": "¿Cómo estás durmiendo actualmente?",
           "average_sleep": "Promedio de horas de sueño",
-          "trouble_sleep": "¿Tienes problemas para dormirte?\n",
+          "trouble_sleep": "¿Tienes problemas para dormirte?",
           "minutes_amount": "¿Cuántos minutos, aproximadamente?",
           "energized": "¿Se despierta con energía?"
         },
         "female": {
-          "title": "Mujer\n",
+          "title": "Mujer",
           "first_period": "¿Qué edad tenías en tu primera menstruación?",
           "regular_cycle": "¿Tienes un ciclo menstrual regular ahora mismo?",
           "birth_control_pills": "¿Toma alguna píldora anticonceptiva?",
@@ -672,7 +677,7 @@
         "step_title": "📝 Información general 2/2",
         "step_intro": "Por favor, obtenga toda la información que pueda del cliente, para hacer un mejor y más personal plan de comidas la próxima vez.",
         "conditions_title": "Condiciones",
-        "dinner": "Cena\n",
+        "dinner": "Cena",
         "activities": "Actividades",
         "weekends": "Fines de semana",
         "form": {
@@ -682,23 +687,23 @@
           "past_2_weeks": "Las últimas 2 semanas",
           "2_week_conditions": "Durante las últimas dos semanas he tenido",
           "using_meds": "¿Está usando medicamentos",
-          "have_gastritis": "¿Tiene gastritis?\n",
+          "have_gastritis": "¿Tiene gastritis?",
           "no_go_products": "Productos que no puede comer o beber",
-          "cant_consume": "No puedo consumir\n",
+          "cant_consume": "No puedo consumir",
           "preferred_diet": "Tipo de dieta preferida",
           "dinner_type": "¿Es un plato de comida como el almuerzo, o es más bien un bocadillo?",
           "plate": "Plato",
           "snack": "Snack",
           "prepared_dinner": "¿Quién preparó la cena?",
           "eat_after_dinner": "¿Sueles comer después de la cena?",
-          "where_shopping": "¿Dónde vas de compras?\n",
-          "shopping_location": "Lugar de compras\n",
-          "shopping_locations": "Lugar de compras\n",
+          "where_shopping": "¿Dónde vas de compras?",
+          "shopping_location": "Lugar de compras",
+          "shopping_locations": "Lugar de compras",
           "who_shops": "¿Quién hace las compras en casa?",
           "order_online": "¿Pides comida por Internet?",
-          "have_physical_activities": "¿Haces alguna actividad física?\n",
+          "have_physical_activities": "¿Haces alguna actividad física?",
           "define_activities": "Define tus actividades",
-          "which_activites": "¿Qué actividades?",
+          "which_activities": "¿Qué actividades?",
           "workout_schedule": "El horario habitual de los entrenamientos",
           "physical_activity": "Especifique su actividad física",
           "traning_location": "Lugar de entrenamiento",
@@ -706,21 +711,22 @@
           "training_intensity": "Intensidad del entrenamiento",
           "weekends": "Fines de semana",
           "wakeup_time": "¿A qué hora tienes que despertarte",
-          "order_food": "¿Sueles pedir comida/comer fuera?\n",
+          "order_food": "¿Sueles pedir comida/comer fuera?",
           "supplements": "Suplementos",
           "take_supps": "¿Está tomando algún suplemento?",
           "what_are_you_taking": "¿Qué está tomando?",
           "use_supplement": "¿Estaría dispuesto a utilizar un suplemento si fuera necesario?",
           "eating_record": "Su historial de alimentación",
           "write_important": "Escriba las cosas importantes aquí",
-          "physicial_activities": "Hace actividades físicas"
+          "physical_activities": "Hace actividades físicas",
+          "training_location": "Dónde se entrena?"
         },
         "conditions": {
-          "diarrhea": "Diarrea\n",
+          "diarrhea": "Diarrea",
           "gastritits": "Gastritis",
           "constipation": "Estreñimiento",
           "nausea": "Náuseas",
-          "dizziness": "Mareos\n"
+          "dizziness": "Mareos"
         },
         "buttons": {
           "add_product": " Añadir un producto",
@@ -731,7 +737,7 @@
       "extra": {
         "title": "📝 Notas adicionales",
         "intro": "Escriba las cosas importantes aquí.",
-        "notice_remember": "¿Notaste/recordaste algo?\n"
+        "notice_remember": "¿Notaste/recordaste algo?"
       },
       "errors": {
         "no_first_consult": "No. La primera consulta todavía..."
@@ -748,29 +754,29 @@
         "recap": "Recapitulación",
         "recap_title": "Una rápida recapitulación",
         "recap_intro": "Por favor, obtenga toda la información que pueda del cliente, para hacer un mejor y más personal plan de comidas la próxima vez.",
-        "import_mealplan": "Importe un plan de comidas que haya creado para",
+        "import_mealplan": "Importa un plan de comidas que hayas creado para",
         "diet_following": "Porcentaje de seguimiento de la dieta",
         "like_the_most": "¿Qué fue lo que más le gustó?",
         "like_the_least": "¿Qué fue lo que menos te gustó?",
         "change_never_again": "¿Qué quieres cambiar y no volver a ver nunca más?",
         "see_on_mealplans": "¿Qué te gustaría ver en tus planes de comida?",
-        "routine": "Rutina\n",
+        "routine": "Rutina",
         "routine_detail": "Por favor, obtenga toda la información que pueda del cliente, para hacer un mejor y más personal plan de comidas la próxima vez.",
         "bowel_freq": "¿Cómo es la frecuencia de sus movimientos intestinales?",
         "sleeping_habit": "¿Cómo está durmiendo?",
-        "water_intake": "¿Cómo va tu ingesta de agua?\n",
-        "activity_frequency": "¿Qué piensas sobre la frecuencia de la actividad?\n",
-        "activity_opinion": "¿Qué pensaste sobre la actividad en sí?\n",
-        "change_something": "¿Te gustaría cambiar algo?\n",
-        "supp_opinion": "¿Qué le pareció la suplementación propuesta?\n",
+        "water_intake": "¿Cómo va tu ingesta de agua?",
+        "activity_frequency": "¿Qué piensas sobre la frecuencia de la actividad?",
+        "activity_opinion": "¿Qué pensaste sobre la actividad en sí?",
+        "change_something": "¿Te gustaría cambiar algo?",
+        "supp_opinion": "¿Qué le pareció la suplementación propuesta?",
         "meals_habits": "Comidas y hábitos",
         "meals_habits_detail": "Por favor, obtenga toda la información que pueda del cliente, para hacer un mejor y más personal plan de comidas la próxima vez.",
         "portion_sizes": "¿Están bien los tamaños de las porciones?",
-        "feeling_hungry": "¿Tenías hambre?\n",
-        "preperation_trouble": "¿Tiene problemas con alguno de los preparativos?\n",
+        "feeling_hungry": "¿Tenías hambre?",
+        "preperation_trouble": "¿Tiene problemas con alguno de los preparativos?",
         "during_weekend": "Durante el fin de semana",
         "sleeping_schedule": "¿Cuál es su horario de sueño?",
-        "eat_outside": "¿Comiste afuera?\n",
+        "eat_outside": "¿Comiste afuera?",
         "cheat_meals": "¿Qué hay de las comidas tramposas?",
         "meals_per_day": "La cantidad de comidas que comes por día...",
         "personal_comments": "Comentarios personales",
@@ -801,7 +807,7 @@
         "already_taken": "Revisa la lista del paquete para ver los números ya tomados.",
         "package_title": "Título del paquete",
         "package_title_ph": "Dale un título al paquete",
-        "about": "Sobre el paquete\n",
+        "about": "Sobre el paquete",
         "about_detail": "Por favor, escriba una pequeña descripción que los usuarios puedan leer. Esto será vital para la toma de decisiones del futuro cliente.",
         "short_desc": "La breve descripción",
         "short_desc_ph": "Escriba una descripción corta pero atractiva",
@@ -809,7 +815,7 @@
         "amount_time_desc": "¿Cuánto tiempo dura el paquete? Esto es importante para una eventual aplicación futura de una notificación de renovación automática de la suscripción.",
         "how_long_valid": "¿Cuánto tiempo es válido?",
         "amount_weeks": "Cantidad en semanas",
-        "price_intro": "¿Cuánto costará? ¡Calcularemos su beneficio bajo el capó si lo desea!\n",
+        "price_intro": "¿Cuánto costará? ¡Calcularemos su beneficio bajo el capó si lo desea!",
         "extras": "Extras",
         "extras_detail": "Añade idiomas al especialista para que podamos conectarlos con los clientes adecuados. De esta manera también podremos saber en qué mercados estamos activos.",
         "package_pros": "¿Cuál es la ventaja de este paquete?",
@@ -825,9 +831,9 @@
       }
     },
     "guideline": {
-      "title": "Directrices",
-      "title_personal": "Mis directrices",
-      "intro": "En esta sección tienes una rápida visión general de las directrices que has creado. Puedes verlas y editarlas/eliminarlas directamente de la lista. Con el botón de arriba a la derecha añades una pauta. 📄",
+      "title": "Lineamientos",
+      "title_personal": "Mis Lineamientos",
+      "intro": "En esta sección tienes una rápida visión general de las Lineamientos que has creado. Puedes verlas y editarlas/eliminarlas directamente de la lista. Con el botón de arriba a la derecha añades una pauta. 📄",
       "general": {
         "guideline_id": "Identificación de la pauta",
         "guideline_number": "Número de guía",
@@ -835,11 +841,11 @@
         "guideline_name": "Nombre de la guía",
         "goal": "Meta",
         "fat_percentage": "Porcentaje de grasa",
-        "targets": "Objetivos de las directrices",
+        "targets": "Objetivos de las Lineamientos",
         "factor_calorie": "Factor Caloría",
         "macro_distribution": "Distribución de Macro",
         "linked_measurement": "Medición vinculada",
-        "linked_consultation": "Vinculado a la primera consulta",
+        "linked_consultation": "Primera Consulta Vinculada",
         "calculated_values": "Valores calculados",
         "max_amount_kcal": "Cantidad máxima de kcal",
         "bmi": "Índice de Masa Corporal",
@@ -850,11 +856,11 @@
       "form": {
         "link_measurement": "Vincular una medición a esta directriz",
         "link_consultation": "Vincular una primera consulta a esta directriz",
-        "ideal_weight": "Peso ideal\n",
+        "ideal_weight": "Peso ideal",
         "ideal_weight_placeholder": "¿Cuál es el peso ideal de los clientes?",
         "amount_of": "Cantidad de",
         "ideal_muscle_weight": "Kg. de músculo ideal",
-        "muscle_weight_placeholder": "¿Cuántos kilos?\n",
+        "muscle_weight_placeholder": "¿Cuántos kilos?",
         "total_duration": "Duración total",
         "kcal_change": "Kcal Aumentar/disminuir",
         "basal_metobolism": "las calorías del metabolismo basal",
@@ -867,7 +873,7 @@
         "how_long": "¿Cuánto tiempo",
         "level": "Nivel",
         "guideline_info_for": "Información orientativa para",
-        "guideline_info_detail": "La pauta para el cliente. Esta pauta tiene que ser rellenada en la primera reunión con el cliente. Este documento es de gran importancia, ya que podemos calcular montones de cosas en base a los valores que introduzca aquí. Sea preciso y pida que sea lo más personal posible para su cliente.\n",
+        "guideline_info_detail": "La pauta para el cliente. Esta pauta tiene que ser rellenada en la primera reunión con el cliente. Este documento es de gran importancia, ya que podemos calcular montones de cosas en base a los valores que introduzca aquí. Sea preciso y pida que sea lo más personal posible para su cliente.",
         "number_taken": "Revise la lista de pautas para los números ya tomados.",
         "name_placeholder": "Dale un nombre a la guía",
         "targets": "Objetivos",
@@ -875,14 +881,14 @@
         "target_reach": "Defina los objetivos que sus usuarios quieren alcanzar aquí.",
         "client_weight": "Peso actual del cliente",
         "gain_or_lose": "Ganar o perder peso",
-        "kg_change": "Kg. el cliente perderá/ganará\n",
-        "kg_change_detail": "Cantidad en kg's\n",
+        "kg_change": "Kg. el cliente perderá/ganará",
+        "kg_change_detail": "Cantidad en kg's",
         "duration": "La duración para alcanzarla",
         "duration_detail": "Cantidad aproximada de semanas",
         "calc_values": "Los valores calculados para",
         "calc_values_detail": "Necesitamos calcular algunas cosas bajo el capó. Ayúdenos proporcionando estos valores.",
         "increase_decrease": "Aumentar o disminuir las calorías del metabolismo basal",
-        "how_many_calories": "¿Cuántas calorías vamos a aumentar o disminuir\n",
+        "how_many_calories": "¿Cuántas calorías vamos a aumentar o disminuir",
         "amount_in_kcal": "Cantidad en kcal",
         "factor_calorie": "Factor Caloría: Esto es por cuántas veces la cantidad basal de calorías calculadas por el sistema será multiplicada.",
         "would_mean": "significaría un",
@@ -905,23 +911,23 @@
         "add_activity": "Sume una actividad"
       },
       "errors": {
-        "no_guidelines": "Aún no hay directrices...",
-        "weight_not_measured": "El peso no fue medido\n",
+        "no_guidelines": "Aún no hay Lineamientos...",
+        "weight_not_measured": "El peso no fue medido",
         "measurement_incomplete": "La medición de los enlaces está incompleta",
         "not_available": "😔 ¡Woops! Esta pauta no está (todavía) disponible.",
-        "not_available_detail": "Por favor, vuelva a las directrices disponibles en la pestaña de directrices."
+        "not_available_detail": "Por favor, vuelva a las Lineamientos disponibles en la pestaña de Lineamientos."
       }
     },
     "mealplan": {
       "title": "Planes de comidas",
       "title_s": "Plan de comidas",
-      "intro": "En esta sección tienes una rápida visión general de los planes de comidas que has creado. Puede verlos y editarlos/eliminarlos directamente de la lista. Con el botón superior derecho puedes añadir un plan de comidas.",
+      "intro": "En esta sección tienes una rápida visión general de los Planes Alimenticios que has creado. Puede verlos y editarlos/eliminarlos directamente de la lista. Con el botón superior derecho puedes añadir un plan de comidas.",
       "general": {
         "mealplan_id": "Identificación del plan de comidas",
         "mealplan_number": "Número de plan de comidas",
         "mealplan_info_for": "Información sobre el plan de comidas para",
-        "mealplan_add_intro": "El plan de comidas para el cliente. Este plan de comidas tiene que ser llenado en la primera reunión con el cliente. Este documento es de gran importancia, ya que podemos calcular montones de cosas en base a los valores que introduzca aquí. Sea preciso y pida que sea lo más personal posible para su cliente.\n",
-        "specialist_notes": "Notas/recomendaciones del especialista\n",
+        "mealplan_add_intro": "El plan de comidas para el cliente. Este plan de comidas tiene que ser llenado en la primera reunión con el cliente. Este documento es de gran importancia, ya que podemos calcular montones de cosas en base a los valores que introduzca aquí. Sea preciso y pida que sea lo más personal posible para su cliente.",
+        "specialist_notes": "Notas/recomendaciones del especialista",
         "print_subtitle": "Basado en la nutrición Opciones de vida saludables; evitar la enfermedad en lugar de tratarla",
         "meal_name": "Nombre de la comida",
         "supps": "Suplementos",
@@ -947,7 +953,7 @@
         "supps_for": "Suplementos para",
         "supps_for_detail": "Definir los suplementos que el usuario debe tomar antes, durante y/o después del entrenamiento. Todos los valores son opcionales. Pero primero, elija una pauta para enganchar este plan de comidas.",
         "import_guideline": "Importa una pauta que hayas creado para",
-        "pick_guideline": "Elija una pauta\n",
+        "pick_guideline": "Elija una pauta",
         "number_taken": "Revisa la lista del plan de comidas para ver los números que ya se han tomado.",
         "meal_times": "Horario de comidas",
         "meal_times_for": "La hora de la comida para",
@@ -958,17 +964,17 @@
         "finally_done": "Finalmente hecho... o no",
         "finally_done_intro_1": "Si has terminado. Gracias por pasar por ese proceso. Haga clic en el botón de hecho y vea el plan de comidas en vivo en la sección de plan de comidas del perfil del cliente!",
         "finally_done_intro_2": "Si no, no se podrá hacer clic en el botón de comida. Revisa el resto de los pasos para ver si te has perdido algo!",
-        "another_client": "Si eliges otro cliente, el paso 3 (suplementos) será sobrescrito.\n",
+        "another_client": "Si eliges otro cliente, el paso 3 (suplementos) será sobrescrito.",
         "pick_mealtime": "Escoge una hora de comida"
       },
       "errors": {
         "no_mealplans": "No hay planes de comida todavía...",
         "no_mealplans_found": "No se encontraron planes de comida.",
         "no_mealtime": "Esta comida no contiene un horario de comidas todavía...",
-        "no_guideline": "Este usuario no tiene ninguna guía todavía.\n",
+        "no_guideline": "Este usuario no tiene ninguna guía todavía.",
         "no_guideline_for": "No hay ninguna pauta para {{name}} todavía.",
         "fill_out_step_2": "Llene los horarios de comida en el paso 2 para ver algo aquí",
-        "fill_out_detail": "Para poder crear comidas y añadir ingredientes para el plan de comidas de este cliente, primero hay que especificar cuando va a comer.\n"
+        "fill_out_detail": "Para poder crear comidas y añadir ingredientes para el plan de comidas de este cliente, primero hay que especificar cuando va a comer."
       },
       "buttons": {
         "see_notes": "Ver notas adicionales",
@@ -978,14 +984,14 @@
       }
     },
     "measurement": {
-      "title": "Medidas\n",
-      "title_s": "Medición\n",
+      "title": "Medidas",
+      "title_s": "Medición",
       "general": {
         "perimeters": "Perímetros",
         "skinfolds": "Skinfolds"
       },
       "form": {
-        "head": "Jefe",
+        "head": "Cabeza",
         "neck": "Cuello",
         "arm_relaxed": "Brazo relajado",
         "arm_flexed": "Brazo doblado",
@@ -994,9 +1000,9 @@
         "thorax": "Tórax",
         "waist": "Cintura",
         "hip": "Hip",
-        "thigh_max": "Thigh Max",
-        "thigh_min": "Thigh Min",
-        "calf": "Becerro",
+        "thigh_max": "Muslo Max",
+        "thigh_min": "Muslo Min",
+        "calf": "Pantorrilla",
         "ankle": "Tobillo",
         "triceps": "Tríceps",
         "subescapular": "Subescapular",
@@ -1021,22 +1027,22 @@
       },
       "form": {
         "write_for": "Escriba una reseña para",
-        "write_for_detail": "Unos minutos de su tiempo sería genial, así {{name}} sabrá cuáles son sus puntos fuertes y débiles.\n",
+        "write_for_detail": "Unos minutos de su tiempo sería genial, así {{name}} sabrá cuáles son sus puntos fuertes y débiles.",
         "feedback_text": "Texto de retroalimentación",
         "feedback_text_ph": "Inserte la retroalimentación aquí"
       },
       "errors": {
         "no_reviews": "No hay críticas todavía...",
-        "min_char_200": "Tienes que tener al menos 200 caracteres, tienes {{length}} caracteres en este momento.\n"
+        "min_char_200": "Tienes que tener al menos 200 caracteres, tienes {{length}} caracteres en este momento."
       }
     },
     "dashboard": {
       "general": {
         "welcome_back": "Bienvenido de nuevo",
-        "upcoming_consultations": "Próximas consultas\n",
+        "upcoming_consultations": "Próximas consultas",
         "no_consultations": "No se prevén futuras consultas.",
-        "past_consultations": "Consultas pasadas\n",
-        "last_consultation": "Última consulta\n",
+        "past_consultations": "Consultas pasadas",
+        "last_consultation": "Última consulta",
         "no_past_consultations": "Todavía no se ha realizado ninguna consulta",
         "quick_actions": "Acciones rápidas",
         "no_clients": "No hay clientes todavía.",
@@ -1047,7 +1053,7 @@
           "see_mealplan": "Ver el plan de comidas actual",
           "see_shopping_list": "Ver lista de compras actual",
           "chat_with_specialist": "Charla con el especialista",
-          "request_appointment": "Solicite una consulta\n"
+          "request_appointment": "Solicite una consulta"
         }
       },
       "menu": {
@@ -1058,34 +1064,34 @@
         "packages": "Paquetes",
         "calendar": "Calendario",
         "my_clients": "Mis clientes",
-        "my_guidelines": "Mis directrices",
+        "my_guidelines": "Mis Lineamientos",
         "my_mealplans": "Mis planes de comida",
         "my_reviews": "Mis críticas",
-        "my_appointments": "Mis citas\n",
+        "my_appointments": "Mis citas",
         "mealplans": "Planes de comidas",
         "shopping_lists": "Listas de compras",
-        "guidelines": "Directrices",
-        "appointments": "Citas\n",
+        "guidelines": "Lineamientos",
+        "appointments": "Citas",
         "my_specialist": "Mi especialista",
         "food": "Alimentos",
         "exercises": "Ejercicios",
         "misc": "Misc"
       },
       "errors": {
-        "signup_incomplete": "¡Woops! Aún no has completado el proceso de registro...\n",
-        "signup_incomplete_detail": "Completa el proceso o contacta a tu especialista y dile que se apure! ⌛\n"
+        "signup_incomplete": "¡Woops! Aún no has completado el proceso de registro...",
+        "signup_incomplete_detail": "Completa el proceso o contacta a tu especialista y dile que se apure! ⌛"
       },
       "specialist": {
         "tooltips": {
-          "create_fc": "Crear la primera consulta\n",
-          "create_measurement": "Crear una medida\n",
-          "create_guideline": "Crear una guía\n",
+          "create_fc": "Crear la primera consulta",
+          "create_measurement": "Crear una medida",
+          "create_guideline": "Crear una guía",
           "create_mealplan": "Crear un plan de comidas",
           "create_followup": "Crear una consulta de seguimiento"
         },
         "my_clients": {
           "title": "Mis clientes",
-          "intro": "En esta sección tienes una rápida visión general de tus clientes. Puede ver la información de contacto rápida o hacer clic en el botón de más información para ver sus planes de comidas, directrices e información más detallada. 😃"
+          "intro": "En esta sección tienes una rápida visión general de tus clientes. Puede ver la información de contacto rápida o hacer clic en el botón de más información para ver sus Planes Alimenticios, Lineamientos e información más detallada. 😃"
         },
         "my_reviews": {
           "title": "Mis reseñas",
@@ -1100,21 +1106,21 @@
       "general": {
         "saved_exercises": "Ejercicios guardados",
         "possible_locations": "Posibles ubicaciones",
-        "very_intense": "Muy intenso\n",
+        "very_intense": "Muy intenso",
         "intense": "Intenso",
         "regular": "Regular",
         "mild": "Suave",
         "very_mild": "Muy suave."
       },
       "form": {
-        "exercise_info": "Exercise Info",
+        "exercise_info": "Información sobre el ejercicio",
         "exercise_info_detail": "Los datos básicos que necesitamos del paquete. Estos datos se mostrarán en el paso 2 del proceso de registro. Esto puede ser importante en el proceso de toma de decisiones del futuro cliente.",
         "exercises_taken": "Revisa la lista de ejercicios para ver los números ya tomados.",
         "exercise_name": "Nombre del producto",
         "exercise_name_label": "Dale un nombre al ejercicio",
         "met_value": "¿Cuál es el valor del MET?",
         "exercise_image": "Imagen de ejercicio",
-        "exercise_image_detail": "Por favor, elija una imagen clara que represente la apariencia de este ejercicio.\n",
+        "exercise_image_detail": "Por favor, elija una imagen clara que represente la apariencia de este ejercicio.",
         "category_detail": "Describa y añada algunas categorías que describan el ejercicio/actividad. Vamos a ser detallados aquí, porque tal vez podamos construir una función de filtro más tarde.",
         "category_description": "Descripción de la categoría",
         "describe_category": "¿Qué es lo que mejor describe la categoría?",
@@ -1125,7 +1131,8 @@
       },
       "buttons": {
         "add_category": "Añadir una categoría",
-        "add_location": "Agregar una ubicación"
+        "add_location": "Agregar una ubicación",
+        "add_exercise": "Añadir un ejercicio"
       },
       "errors": {
         "not_available": "😔 ¡Woops! Este ejercicio no está disponible (todavía).",
@@ -1133,10 +1140,10 @@
       }
     },
     "food": {
-      "product_id": "ID del producto",
+      "product_id": "Identificación del producto",
       "general": {
         "title": "Alimentos guardados",
-        "intro": " En esta sección tienes una rápida visión general de los alimentos que has introducido. Puedes verlos y editarlos/eliminarlos directamente de la lista. Con el botón superior derecho puedes añadir un alimento. 🍲,",
+        "intro": " En esta sección tienes una rápida visión general de los alimentos que has introducido. Puedes verlos y editarlos/eliminarlos directamente de la lista. Con el botón superior derecho añades un alimento.",
         "nutrition_type": "Tipo de alimento",
         "unit_m_value": "Valor unitario de medición",
         "calc_factor": "Factor de cálculo",
@@ -1148,7 +1155,7 @@
       },
       "detail": {
         "shopping_list_info": "Información de la lista de compras",
-        "shopping_list_name": "Nombre de la lista de la compra",
+        "shopping_list_name": "Nombre de la lista de compras",
         "shopping_list_unit": "Unidad de la lista de la compra"
       },
       "form": {
@@ -1164,11 +1171,11 @@
         "food_category": "Categoría del alimento",
         "food_category_detail": "Poner el producto en una categoría de alimentos con fines de filtrado y organización.",
         "nutrition_group": "Grupo de nutrición",
-        "nutrition_group_detail": "¿A qué categoría pertenece este producto?\n",
+        "nutrition_group_detail": "¿A qué categoría pertenece este producto?",
         "pick_mealtime": "Elija una hora de comida",
         "portion": "Porción",
         "unit_value": "Valor unitario",
-        "unit_value_detail": "Indique la unidad de medida aquí. ¿Cuál es la mejor manera de describir una cantidad del producto? Por ejemplo, ¿un gramo de huevos? ¿O 1 unidad de huevos? Esto será visible más tarde cuando empiece a añadir los planes de comidas, y es una parte importante para los cálculos.",
+        "unit_value_detail": "Indique la unidad de medida aquí. ¿Cuál es la mejor manera de describir una cantidad del producto? Por ejemplo, ¿un gramo de huevos? ¿O 1 unidad de huevos? Esto será visible más tarde cuando empiece a añadir los Planes Alimenticios, y es una parte importante para los cálculos.",
         "the_unit": "La unidad",
         "pick_value_placeholder": "Escoge un valor (taza, litro, etc.)",
         "shopping_list_unit": "La unidad para la lista de la compra",
@@ -1187,49 +1194,49 @@
     }
   },
   "file_upload": {
-    "title": "Sube tu imagen\n",
+    "title": "Sube tu imagen",
     "subtitle": "Arrastrar y soltar uno",
-    "or_choose_one": "o elegir uno...\n",
-    "choose_another": "...elegir otro...",
+    "or_choose_one": "o elegir uno...",
+    "choose_another": "elegir otro...",
     "check_guide": "¡Comprueba la guía cómo!",
-    "result_desc": "Si es una buena representación, ¡perfecto! Si no, por favor suba otra.\n",
+    "result_desc": "Si es una buena representación, ¡perfecto! Si no, por favor suba otra.",
     "errors": {
-      "cant_load_image": "Woops... No pudimos cargar tu imagen. Por favor, sube otra.\n"
+      "cant_load_image": "Woops... No pudimos cargar tu imagen. Por favor, sube otra."
     },
     "change_photo": "Cambiar la foto",
     "edit_photo": "Edita la foto"
   },
   "requests": {
     "event_request": {
-      "online": "Cita en línea\n",
+      "online": "Cita en línea",
       "face_to_face": "Encuentro cara a cara"
     },
     "event_request_list": {
       "title": "Solicitudes no aceptadas",
       "description": "Aquí puedes hacer un seguimiento de los nuevos usuarios que quieren que seas su especialista. Enviarán una solicitud de fecha para su primera consulta. Si aceptas haciendo clic en la casilla de verificación, aparecerá en tu calendario. Por favor, hágaselo saber a los usuarios lo más rápido posible, para no perder a sus clientes.",
-      "all_good": "¡Están todos bien!\n"
+      "all_good": "¡Están todos bien!"
     },
-    "reject_request": "¿Está seguro de que quiere rechazar esta solicitud?"
+    "reject_request": "¿Estás seguro de que quieres rechazar esta solicitud?"
   },
   "events": {
     "title": "Evento",
     "starts_at": "Comienza en",
     "ends_at": "Termina en",
-    "from": "De\n",
-    "to": "A\n",
-    "month": "Mes\n",
+    "from": "De",
+    "to": "A",
+    "month": "Mes",
     "day": "Día",
     "week": "Semana",
     "weeks": "Semanas",
-    "monday": "Lunes\n",
-    "tuesday": "Martes\n",
+    "monday": "Lunes",
+    "tuesday": "Martes",
     "wednesday": "Miércoles",
-    "thursday": "Jueves\n",
+    "thursday": "Jueves",
     "friday": "Viernes",
-    "saturday": "Sábado\n",
+    "saturday": "Sábado",
     "sunday": "Domingo",
     "hour": "Hora",
-    "minutes": "Actas\n",
+    "minutes": "Actas",
     "per_week": "por semana",
     "per_day": "por día"
   },
@@ -1237,7 +1244,7 @@
     "title": "Charla de LifeLifting",
     "welcome": "¡Bienvenido al Chat!",
     "start_typing": "Empieza a escribir...",
-    "no_chats": "Woops... No hay chats todavía.",
+    "no_chats": "Woops... No hay charlas todavía.",
     "users": "usuarios",
     "your_clients": "sus clientes",
     "your_specialist": "Su especialista",
@@ -1249,7 +1256,7 @@
     }
   },
   "dialogs": {
-    "sure_delete": "¿Estás seguro de que quieres borrar",
+    "sure_delete": "¿Estás seguro de que quieres eliminar",
     "confirm": {
       "delete_this": "Borra esto.",
       "accept_this": "Acepta esto",

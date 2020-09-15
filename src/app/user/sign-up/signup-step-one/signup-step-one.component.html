@@ -32,7 +32,7 @@
             [(value)]="selectedGender" formControlName="gender" 
             panelClass="dropdown-regular" autocomplete="off" required>
             <mat-option *ngFor="let gender of genders" [value]="gender.value">
-              {{gender.viewValue}}
+              {{gender.viewValue | translate }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -52,7 +52,7 @@
         <mat-form-field class="textarea-field" appearance="standard" floatLabel="always">
           <mat-label>{{ 'pages.signup.step_one.form.main_goal_label' | translate }}</mat-label>
           <textarea matInput required
-            placeholder="{{ 'pages.signup.step_one.form.main_goal_placeholdler' | translate }}"
+            placeholder="{{ 'pages.signup.step_one.form.main_goal_placeholder' | translate }}"
             formControlName="mainGoal" autocomplete="off" matTextareaAutosize>
           </textarea>
         </mat-form-field>
@@ -89,11 +89,13 @@
 
         <!-- How did you hear from us -->
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>{{ 'pages.signup.step_one.hear_from_us_label' | translate }}</mat-label>
+          <mat-label>{{ 'pages.signup.step_one.form.hear_from_us_label' | translate }}</mat-label>
           <mat-select matInput autocomplete="off" required formControlName="heardFromUs"
-            placeholder="{{ 'pages.signup.step_one.hear_from_us_placeholder' | translate }}"
+            placeholder="{{ 'pages.signup.step_one.form.hear_from_us_placeholder' | translate }}"
             panelClass="dropdown-regular">
-            <mat-option *ngFor="let medium of mediums" [value]="medium.viewValue">{{medium.viewValue}}</mat-option>
+            <mat-option *ngFor="let medium of mediums" [value]="medium.viewValue">
+              {{ medium.viewValue | translate }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
 

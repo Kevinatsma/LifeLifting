@@ -45,11 +45,11 @@
                   <i class="fa__icon fas fa-transgender"></i>
                   <mat-select matInput placeholder="{{user.basicData.gender}}" [(value)]="selectedGender" formControlName="gender" 
                   panelClass="dropdown-regular" autocomplete="off" required *ngIf="user.basicData">
-                    <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
+                    <mat-option *ngFor="let gender of genders" [value]="gender.value">{{ gender.viewValue | translate }}</mat-option>
                   </mat-select>
                   <mat-select matInput placeholder="Gender" [(value)]="selectedGender" formControlName="gender" 
                   panelClass="dropdown-regular" autocomplete="off" required *ngIf="!user.basicData">
-                    <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
+                    <mat-option *ngFor="let gender of genders" [value]="gender.value">{{ gender.viewValue | translate }}</mat-option>
                   </mat-select>
                 </div>
                 <div class="fact">

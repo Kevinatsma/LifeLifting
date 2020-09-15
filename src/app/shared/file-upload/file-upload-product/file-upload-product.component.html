@@ -3,10 +3,9 @@
   (hovered)="toggleHover($event)"
   (dropped)="startUpload($event)"
   [class.hovering]="isHovering"
-  *ngIf="!downloadURL"
->
+  *ngIf="!downloadURL">
   <i class="fa__icon far fa-image"></i>
-  <h3 class="photo-header"> {{ 'file_upload.title' | translate }}</h3>
+  <h3 class="photo-header">{{ 'file_upload.title' | translate }}</h3>
   <a href="https://docs.google.com/document/d/11XCR8AI9tCQUwV2IJBlbUkrPkKPebZxYKE07X6jF8XA/edit"
   target="_blank" class="text-link">
     {{ 'file_upload.check_guide' | translate }}

@@ -29,50 +29,60 @@
     </button>
   </section>
 
-  <section class="middle not-mobile">
-    <div class="practical-info">
-      <h5 class="purple">📖 {{ 'pages.specialist.general.practical_info' | translate }}</h5>
-      <p>{{ 'pages.specialist.general.experience' | translate }}: {{specialist.yearsOfExperience}} years</p>
-      <p>{{ 'pages.specialist.general.timezone' | translate }}: {{specialist.timeZone}}</p>
-      <p>{{ 'pages.specialist.general.amount_of_patients' | translate }}: {{specialist.patientsTotal}}</p>
-    </div>
-    <div class="languages">
-      <h5 class="purple">🈹 {{ 'pages.specialist.general.languages' | translate }}</h5>
-      <ul>
-        <li *ngFor="let language of specialist.languages">
-          {{language.languageValue}} - {{language.languageLevel}}
-        </li>
-      </ul>
-    </div>
-  </section>
+  <ng-container *ngIf="showMore">
+    <section class="middle not-mobile">
+      <div class="practical-info">
+        <h5 class="purple">📖 {{ 'pages.specialist.general.practical_info' | translate }}</h5>
+        <p>{{ 'pages.specialist.general.experience' | translate }}: {{specialist.yearsOfExperience}} years</p>
+        <p>{{ 'pages.specialist.general.timezone' | translate }}: {{specialist.timeZone}}</p>
+        <p>{{ 'pages.specialist.general.amount_of_patients' | translate }}: {{specialist.patientsTotal}}</p>
+      </div>
+      <div class="languages">
+        <h5 class="purple">🈹 {{ 'pages.specialist.general.languages' | translate }}</h5>
+        <ul>
+          <li *ngFor="let language of specialist.languages">
+            {{language.languageValue}} - {{language.languageLevel}}
+          </li>
+        </ul>
+      </div>
+    </section>
 
-  <section class="reviews-opened not-mobile">
-    <h5 class="purple">⭐ {{ 'pages.review.title' | translate }}</h5>
-    <p class="card-text" *ngIf="reviews && reviews.length < 1">
-      {{ 'pages.review.errors.no_reviews' | translate }}
-    </p>
+    <section class="reviews-opened not-mobile">
+      <h5 class="purple">⭐ {{ 'pages.review.title' | translate }}</h5>
+      <p class="card-text" *ngIf="reviews && reviews.length < 1">
+        {{ 'pages.review.errors.no_reviews' | translate }}
+      </p>
 
-    <div class="review-container" *ngIf="reviewsVisible">
-      <ng-container *ngIf="reviews && reviews.length > 0">
-        <app-review-list-item *ngFor="let review of reviews" [review]="review"></app-review-list-item>
-        <div class="hidden">
-          filler
-        </div>
-      </ng-container>
-    </div>
-  </section>
+      <div class="review-container" *ngIf="reviewsVisible">
+        <ng-container *ngIf="reviews && reviews.length > 0">
+          <app-review-list-item *ngFor="let review of reviews" [review]="review"></app-review-list-item>
+          <div class="hidden">
+            filler
+          </div>
+        </ng-container>
+      </div>
+    </section>
 
-  <section class="btn-area not-mobile" *ngIf="reviews && reviews.length > 0">
-    <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
-      {{ 'pages.review.buttons.show' | translate }}
-      <i class="fa__icon fas fa-chevron-down"></i>
-    </button>
-    <button class="text-link" *ngIf="reviewsVisible" (click)="closeReviews()">
-      {{ 'pages.review.buttons.hide' | translate }}
-      <i class="fa__icon fas fa-chevron-up"></i>
-    </button>
-  </section>
+    <section class="btn-area not-mobile" *ngIf="reviews && reviews.length > 0">
+      <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
+        {{ 'pages.review.buttons.show' | translate }}
+        <i class="fa__icon fas fa-chevron-down"></i>
+      </button>
+      <button class="text-link" *ngIf="reviewsVisible" (click)="closeReviews()">
+        {{ 'pages.review.buttons.hide' | translate }}
+        <i class="fa__icon fas fa-chevron-up"></i>
+      </button>
+    </section>
+  </ng-container>
 
+  <button class="btn-secondary-outline show-more not-mobile" (click)="showMore = !showMore">
+    <ng-container *ngIf="!showMore; else hide">
+      {{ 'global.buttons.more_info' | translate }}
+    </ng-container>
+    <ng-template #hide>
+      {{ 'global.buttons.hide' | translate }}
+    </ng-template>
+  </button>
 </ng-container>
 
 

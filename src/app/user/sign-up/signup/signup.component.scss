@@ -35,6 +35,11 @@ div.router-wrapper {
         right: 0;
         top: 20px;
         z-index: 150;
+
+        @include respond-down($sm) {
+            right: 10px;
+            top: 20px;
+        }
     }
 }
 

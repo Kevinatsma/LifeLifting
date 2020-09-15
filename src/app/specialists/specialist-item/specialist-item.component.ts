@@ -13,6 +13,7 @@ export class SpecialistItemComponent implements OnInit {
   @Input() specialist: Specialist;
   @Output() specialistToShow = new EventEmitter();
   aboutExtended = false;
+  showMore = false;
   reviewsVisible = false;
   reviews: Array<Review>;
 

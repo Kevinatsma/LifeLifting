@@ -49,7 +49,7 @@
         <i class="fa__icon fas fa-stethoscope"></i>
       </div>
       <div class="info-card__content">
-        <span class="label small">{{ 'pages.first_consultation.general.has_gastrtitis' | translate }}</span>
+        <span class="label small">{{ 'pages.first_consultation.general.has_gastritis' | translate }}</span>
         <p class="value big">{{generalData.general.gastritis}}</p>
       </div>
     </div>
@@ -117,7 +117,7 @@
 
     <div class="form-field">
       <span class="label small">
-        {{ 'pages.first_consultation.general_info_2.form.shopping_locations' | translate }}}
+        {{ 'pages.first_consultation.general_info_2.form.shopping_locations' | translate }}
       </span>
       <ul>
         <li *ngFor="let location of generalData.dinner.shoppingLocations" class="list-item">{{location.shoppingLocation}}</li>
@@ -134,7 +134,7 @@
       </div>
       <div class="info-card__content">
         <span class="label small">
-          {{ 'pages.first_consultation.general_info_2.form.phsysical_activities' | translate }}
+          {{ 'pages.first_consultation.general_info_2.form.physical_activities' | translate }}
         </span>
         <p class="value big">{{generalData.physicalActivity.physicalActivitiesConfirmation}}</p>
         <p class="value sub-title" *ngIf="generalData.physicalActivity.physicalActivitiesWhy">{{generalData.physicalActivity.physicalActivitiesWhy}}</p>

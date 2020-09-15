@@ -537,6 +537,25 @@
                                         height: 100%;
                                     }
 
+                                    &__add-exercise {
+                                        display: flex;
+                                        flex-flow: row nowrap;
+                                        align-items: center;
+                                        justify-content: flex-start;
+                                        width: fit-content;
+                                        height: auto;
+                                        margin: 50px auto auto 30px;
+
+                                        @include respond-down($sm) {
+                                            margin: 30px auto;
+                                        }
+
+                                        .text-link {
+                                            padding: 0 0 1px;
+                                            margin: 0 0 0 15px;
+                                        }
+                                    }
+
                                     .time-form-container {
                                         @include respond-down($sm) {
                                             mat-form-field {
