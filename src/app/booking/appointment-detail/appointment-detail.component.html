@@ -9,7 +9,7 @@
       *ngIf="user.roles.admin || user.roles.specialist">
         <i class="fa__icon far fa-trash-alt"></i>
       </button>
-      <h1>{{event.title}}</h1>
+      <h1>{{event.title | translate}}</h1>
       <button class="edit-btn" *ngIf="!editShow && event.specialistID === 'specialist'+user.sID" 
       (click)="toggleEdit()">
         <i class="fa__icon far fa-edit"></i>

@@ -88,7 +88,6 @@ export class AddExerciseDialogComponent implements OnInit {
 
   ngOnInit() {
     this.infoForm = this.fb.group({
-      exerciseID: ['', [Validators.required]],
       exerciseName: ['', [Validators.required]],
       metsValue: ['', [Validators.required]],
     });
@@ -154,12 +153,10 @@ export class AddExerciseDialogComponent implements OnInit {
 
   addExercise() {
     const data = {
-      exerciseID: this.infoForm.get('exerciseID').value,
       exerciseName: this.infoForm.get('exerciseName').value,
       metsValue: this.infoForm.get('metsValue').value,
       exercisePhoto: this.downloadURL,
       categories: this.categoryForms.value,
-      // portion: this.portionForm.value,
       locations: this.locationForms.value,
     };
     this.exerciseService.addExercise(data);

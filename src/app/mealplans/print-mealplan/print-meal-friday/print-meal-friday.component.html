@@ -1,6 +1,6 @@
 <main *ngIf="fridayMeals">
   <section class="meals-row">
-    <div class="column" *ngIf="fridayMeals.mOneMealOneArr[0] && fridayMeals.mOneMealOneArr[0].amount > 0">
+    <div class="column" *ngIf="fridayMeals.mOneMealOneArr && fridayMeals.mOneMealOneArr[0] && fridayMeals.mOneMealOneArr[0].amount > 0">
       <div class="column__meal">
         <span class="column__meal-title">{{fridayMeals.mOneMealOneTitle}}</span>
         <ul>

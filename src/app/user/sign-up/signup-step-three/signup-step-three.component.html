@@ -5,7 +5,7 @@
     </h5>
     <h1>{{ 'pages.signup.step_three.title' | translate }}</h1>
 
-    <section class="package-container specialist-container">
+    <section class="package-container" id="specialist-container">
       <mat-radio-group class="package-slider" [(ngModel)]="chosenSpecialist">
           <mat-radio-button id="specialist{{i+1}}" class="package-item specialist-item"
           *ngFor="let specialist of specialists | async; let i=index" 

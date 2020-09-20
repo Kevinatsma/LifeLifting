@@ -66,7 +66,9 @@
             <div class="form-fields">
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>{{ 'pages.mealplan.form.best_time' | translate }}</mat-label>
-                <mat-select matInput placeholder="Pick a Meal Time" formControlName="mealTime" 
+                <mat-select matInput
+                  placeholder="{{ 'pages.mealplan.form.pick_mealtime' | translate }}"
+                  formControlName="mealTime" 
                   panelClass="dropdown-regular" autocomplete="off" required
                   (selectionChange)="updateMealTimes()">
                   <mat-option *ngFor="let time of times" [value]="time.value">
@@ -80,7 +82,7 @@
                   formControlName="mealTimeName" autocomplete="off" required
                   panelClass="dropdown-regular" (selectionChange)="updateMealTimes()">
                   <mat-option *ngFor="let name of mealTimeNames" [value]="name.value">
-                    {{name.value}}
+                    {{ name?.value | translate }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>

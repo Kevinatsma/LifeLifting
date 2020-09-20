@@ -14,19 +14,6 @@
         </p>
     
         <mat-form-field appearance="standard" floatLabel="always">
-          <mat-label>{{ 'pages.exercises.exercise_id' | translate }}</mat-label>
-          <input type="number" matInput name="title" formControlName="exerciseID"
-            placeholder="{{ 'global.form.always_number' | translate }}"
-            autocomplete="new-password">
-          <mat-hint *ngIf="!infoForm['controls'].exerciseID.dirty">
-            {{ 'pages.exercises.form.exercises_taken' | translate }}
-          </mat-hint>
-          <mat-error class="input-error" *ngIf="!infoForm['controls'].exerciseID.valid">
-            {{ 'global.errors.required' | translate }}
-          </mat-error>
-        </mat-form-field>
-    
-        <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>{{ 'pages.exercises.form.exercise_name' | translate }}</mat-label>
           <input type="text" matInput name="title" formControlName="exerciseName"
             placeholder="{{ 'pages.exercises.form.exercise_name_label' | translate }}"

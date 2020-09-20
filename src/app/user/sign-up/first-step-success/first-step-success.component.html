@@ -32,7 +32,11 @@
         <div class="placeholder" *ngIf="!user.packageChoice"></div>
         <i class="fa__icon fas fa-check-square" *ngIf="user.packageChoice"></i>
 
-        <ng-container *ngIf="!isMobile"><a routerLink="step-two" *ngIf="user.basicData">Step 2: Choose a package</a></ng-container>
+        <ng-container *ngIf="!isMobile">
+          <a routerLink="step-two" *ngIf="user.basicData">
+            {{ 'pages.signup.step_success.step_two' | translate }}
+          </a>
+        </ng-container>
         <ng-container *ngIf="isMobile">
           <a (click)="closeSection('step-two')" *ngIf="user.basicData">
             {{ 'pages.signup.step_success.step_two' | translate }}
@@ -81,7 +85,11 @@
         <div class="placeholder" *ngIf="!user.status.accepted"></div>
         <i class="fa__icon fas fa-check-square" *ngIf="user.status.accepted"></i>
 
-        <ng-container *ngIf="!isMobile"><a routerLink="limbo" *ngIf="user.status.appointment">Step 5: Finishing up</a></ng-container>
+        <ng-container *ngIf="!isMobile">
+          <a routerLink="limbo" *ngIf="user.status.appointment">
+            {{ 'pages.signup.step_success.step_five' | translate }}
+          </a>
+        </ng-container>
         <ng-container *ngIf="isMobile">
           <a (click)="closeSection('step-five')" *ngIf="user.status.appointment">
             {{ 'pages.signup.step_success.step_five' | translate }}

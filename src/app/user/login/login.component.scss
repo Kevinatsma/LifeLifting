@@ -125,6 +125,8 @@ section.login-container{
 
     .btn-area {
         flex-flow: column nowrap;
+        align-items: center;
+        justify-content: flex-start;
         margin: 40px auto 0;
         width: 100%;
 

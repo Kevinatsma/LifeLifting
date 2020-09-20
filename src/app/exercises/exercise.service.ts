@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Exercise } from './exercise.model';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -50,17 +51,19 @@ export class ExerciseService {
   }
 
   getMultipleExercises(guideline) {
-    if (guideline.activities[0]) {
-      this.exerciseDocOne = this.afs.doc<Exercise>(`exercises/${guideline.activities[0].activityID}`);
-      this.exerciseOne = this.exerciseDocOne.valueChanges();
-    }
-    if (guideline.activities[1]) {
-      this.exerciseDocTwo = this.afs.doc<Exercise>(`exercises/${guideline.activities[1].activityID}`);
-      this.exerciseTwo = this.exerciseDocTwo.valueChanges();
-    }
-    if (guideline.activities[2]) {
-      this.exerciseDocThree = this.afs.doc<Exercise>(`exercises/${guideline.activities[2].activityID}`);
-      this.exerciseThree = this.exerciseDocThree.valueChanges();
+    if(guideline.activities && guideline.activities.length) {
+      if (guideline.activities[0]) {
+        this.exerciseDocOne = this.afs.doc<Exercise>(`exercises/${guideline.activities[0].activityID}`);
+        this.exerciseOne = this.exerciseDocOne.valueChanges();
+      }
+      if (guideline.activities[1]) {
+        this.exerciseDocTwo = this.afs.doc<Exercise>(`exercises/${guideline.activities[1].activityID}`);
+        this.exerciseTwo = this.exerciseDocTwo.valueChanges();
+      }
+      if (guideline.activities[2]) {
+        this.exerciseDocThree = this.afs.doc<Exercise>(`exercises/${guideline.activities[2].activityID}`);
+        this.exerciseThree = this.exerciseDocThree.valueChanges();
+      }
     }
     this.guideExercises = {
       eOne: this.exerciseOne,
@@ -81,7 +84,12 @@ export class ExerciseService {
   }
 
   addExercise(data) {
-    this.afs.collection<Exercise>(`exercises`).doc(`${data.exerciseID}`).set(data, {merge: true})
+    this.afs.collection<Exercise>(`exercises`).add(data)
+    .then(credential => {
+      const exerciseID = _.get(credential, 'id');
+      const idData = {exerciseID};
+      this.updateExercise(exerciseID, idData);
+    })
     .then(() => {
       // Show Snackbar
       const message = `The ${data.exerciseName} was added succesfully`;

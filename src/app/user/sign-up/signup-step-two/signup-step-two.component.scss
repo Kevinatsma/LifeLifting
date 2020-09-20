@@ -35,8 +35,13 @@ section.step-wrapper {
     }
 }
 
-.package-container {
+#packages {
+    display: flex;
+    padding: 20px 0;
+    height: 70vh;
+
     @include respond-down($sm) {
+        height: auto;
         margin: 2em 0 0 !important;
     }
 
@@ -44,24 +49,14 @@ section.step-wrapper {
         height: 100%;
         width: 100%;
         display: flex;
-        flex-wrap: nowrap;
+        flex-flow: column nowrap;
         overflow-x: auto;
-        padding: 1em 0 1em;
+        padding: 1em 20px 1em;
 
         @include respond-down($sm) {
             flex-flow: column nowrap;
             height: auto;
             overflow: hidden;
-        }
-
-        .right-scroll-margin {
-            width: 50px;
-            // height: 550px;
-            box-sizing: border-box;
-            background: transparent;
-            .hide {
-                visibility: hidden;
-            }
         }
     }
 }
@@ -82,20 +77,14 @@ section.step-wrapper {
 
 ::ng-deep .step-two mat-radio-button,
 .package-item {
-    flex: 0 0 auto;
-    width: 40%;
+    width: 100%;
     height: 100%;
-    margin: 0 2em;
+    margin: 0 0 20px;
     background: #fff;
     box-shadow: $card-shadow;
     border: 10px solid transparent;
     outline: 5px solid transparent;
-
-    @include respond-down($sm) {
-        width: 80vw;
-        margin: 0 auto 1.5em !important;
-        height: auto;
-    }
+    box-sizing: border-box;
 
     * {
         box-sizing: border-box;

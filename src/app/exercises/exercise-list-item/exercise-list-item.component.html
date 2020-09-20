@@ -1,6 +1,7 @@
 
 <mat-card class="list-item-card" *ngIf="exercise">
-  <section class="exercise-photo" (click)="linkToChild(exercise)" [style.background]="'url('+ exercise.exercisePhoto +')'">
+  <section class="exercise-photo" (click)="linkToChild(exercise)"
+    [style.background-image]="'url('+ exercise.exercisePhoto +')'">
   </section>
   <p class="subtitle">
     <span *ngFor="let category of exercise.categories">

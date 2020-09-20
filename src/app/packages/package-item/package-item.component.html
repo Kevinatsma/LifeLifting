@@ -13,25 +13,24 @@
       <span *ngIf="package.packageDuration !== 1">weeks</span>
     </p>
   </div>
-  <p class="card-text not-mobile">
-    {{package.packageDescription}}
-  </p>
-  <p class="card-text desc mobile" [class.read-more]="aboutExtended"
-    [class.has-read-more]="hasReadMore" *ngIf="user.basicData">
-    {{package.packageDescription}}
-  </p>
 
-  <div class="list-container mobile" *ngIf="aboutExtended">
-    <h5>{{ 'pages.package.general.benefits' | translate }}</h5>
-    <ul>
-      <li *ngFor="let benefit of package.packageBenefits">
-        <i class="fa__icon fas fa-check"></i>
-        <span>{{benefit.benefitValue}}</span>
-      </li>
-    </ul>
-  </div>
+  <ng-container *ngIf="aboutExtended">
+    <p class="card-text desc has-read-more read-more" *ngIf="user.basicData">
+      {{package.packageDescription}}
+    </p>
 
-  <div class="read-more__buttons mobile" *ngIf="user.basicData && user.basicData.mainGoal && hasReadMore">
+    <div class="list-container">
+      <h5>{{ 'pages.package.general.benefits' | translate }}</h5>
+      <ul>
+        <li *ngFor="let benefit of package.packageBenefits">
+          <i class="fa__icon fas fa-check"></i>
+          <span>{{benefit.benefitValue}}</span>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+
+  <div class="read-more__buttons" *ngIf="user.basicData && user.basicData.mainGoal">
     <button class="text-link read-more" (click)="aboutExtendedToggle()"
       *ngIf="!aboutExtended">
       <i class="fa__icon fas fa-plus"></i>
@@ -42,15 +41,5 @@
       <i class="fa__icon fas fa-minus"></i>
       {{ 'global.buttons.read_less' | translate }}
     </button>
-  </div>
-
-  <div class="list-container not-mobile">
-    <h5>{{ 'pages.package.general.benefits' | translate }}</h5>
-    <ul>
-      <li *ngFor="let benefit of package.packageBenefits">
-        <i class="fa__icon fas fa-check"></i>
-        <span>{{benefit.benefitValue}}</span>
-      </li>
-    </ul>
   </div>
 </ng-container>

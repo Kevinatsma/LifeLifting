@@ -33,7 +33,10 @@
     <section class="middle not-mobile">
       <div class="practical-info">
         <h5 class="purple">📖 {{ 'pages.specialist.general.practical_info' | translate }}</h5>
-        <p>{{ 'pages.specialist.general.experience' | translate }}: {{specialist.yearsOfExperience}} years</p>
+        <p>
+          {{ 'pages.specialist.general.experience' | translate }}: 
+          {{specialist.yearsOfExperience}} {{ 'events.years' | translate }}
+        </p>
         <p>{{ 'pages.specialist.general.timezone' | translate }}: {{specialist.timeZone}}</p>
         <p>{{ 'pages.specialist.general.amount_of_patients' | translate }}: {{specialist.patientsTotal}}</p>
       </div>

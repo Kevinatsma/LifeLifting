@@ -25,6 +25,7 @@
             "show": "Show",
             "sign_out": "Sign out",
             "duplicate": "Duplicate",
+            "add": "Add",
             "edit": "Edit",
             "delete": "Delete",
             "accept": "Accept",
@@ -38,10 +39,12 @@
             "last_name": "Last name",
             "phone_number": "Phone Number",
             "gender": "Gender",
+            "pick_time": "Pick a time",
             "pick_date": "Pick a date",
             "pick_one": "Pick one",
             "pick_language": "Pick a Language",
             "pick_from_list": "Pick one from the list",
+            "pick_appropriate": "Pick an appropriate option",
             "errors": {
                 "required": "This is required",
                 "invalid_email": "That's not a valid e-mail address!",
@@ -109,7 +112,8 @@
             "user": "User",
             "product": "Product",
             "location": "Location",
-            "comments": "Comments"
+            "comments": "Comments",
+            "where": "Where"
         },
         "sizes": {
             "meters": "meters"
@@ -184,7 +188,8 @@
             "lunch": "Lunch",
             "middle_afternoon": "Middle Afternoon",
             "dinner": "Dinner",
-            "after_dinner": "After Dinner"
+            "after_dinner": "After Dinner",
+            "collation": "Collation"
         }
     },
     "pages": {
@@ -257,7 +262,7 @@
                 }
             },
             "step_two": {
-                "subtitle": "Pick a package and get a free consultation",
+                "subtitle": "Pick a package and get a consultation",
                 "subtitle_success": "You've made a wise decision",
                 "title": "Step 2: Choose a package",
                 "already_chosen_1": "Psst, you already chose",
@@ -460,7 +465,7 @@
         },
         "booking": {
             "general": {
-                "calendar": "Calendar",
+                "calendar": "{{name}}'s Calendar",
                 "title": "Master Calendar",
                 "title_personal": "Your Calendar",
                 "wapp_number": "Whatsapp Number"
@@ -687,6 +692,7 @@
                     "past_2_weeks": "The past 2 weeks",
                     "2_week_conditions": "During the past two weeks I had",
                     "using_meds": "Are you using medication",
+                    "seperate_medications": "Seperate medications with a comma",
                     "have_gastritis": "Do you have gastritis?",
                     "no_go_products": "Products you can't eat or drink",
                     "cant_consume": "I can't consume",
@@ -723,7 +729,7 @@
                 },
                 "conditions": {
                     "diarrhea": "Diarrhea",
-                    "gastritits": "Gastritis",
+                    "gastritis": "Gastritis",
                     "constipation": "Constipation",
                     "nausea": "Nausea",
                     "dizziness": "Dizziness"
@@ -851,7 +857,9 @@
                 "bmi": "Body Mass Index",
                 "fat_athlete": "Fat percentage (athlete)",
                 "fat_regular": "Fat percentage (regular)",
-                "activities": "Activities"
+                "activities": "Activities",
+                "gain": "Gain",
+                "lose": "Lose"
             },
             "form": {
                 "link_measurement": "Link a Measurement to this guideline",
@@ -1238,7 +1246,8 @@
         "hour": "Hour",
         "minutes": "Minutes",
         "per_week": "per week",
-        "per_day": "per day"
+        "per_day": "per day",
+        "years": "años"
     },
     "chat": {
         "title": "LifeLifting Chat",

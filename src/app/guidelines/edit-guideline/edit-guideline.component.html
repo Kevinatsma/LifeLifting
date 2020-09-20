@@ -43,7 +43,7 @@
                   <mat-label>
                     {{ 'pages.guideline.form.link_measurement' | translate }}
                   </mat-label>
-                  <mat-select matInput placeholder="Pick one from the list" formControlName="measurement" autocomplete="off" 
+                  <mat-select matInput placeholder="{{ 'global.form.pick_one' | translate }} from the list" formControlName="measurement" autocomplete="off" 
                   panelClass="dropdown-regular doc-picker" required>
                     <mat-option *ngFor="let measurement of measurements; let i=index" [value]="measurement">
                       {{ 'global.words.created' | translate }}: <strong>{{measurement.created.toDate() | date:'short'}}</strong>,
@@ -59,7 +59,7 @@
                   <mat-label>
                     {{ 'pages.guideline.form.link_consultation' | translate }}
                   </mat-label>
-                  <mat-select matInput placeholder="Pick one from the list" formControlName="firstConsultation" autocomplete="off" 
+                  <mat-select matInput placeholder="{{ 'global.form.pick_one' | translate }} from the list" formControlName="firstConsultation" autocomplete="off" 
                   panelClass="dropdown-regular doc-picker" required>
                     <mat-option *ngFor="let fic of fics; let i=index" [value]="fic">
                       {{ 'global.dates.created_at' | translate }} <strong>{{fic.creationDate.toDate() | date:'short'}}</strong>

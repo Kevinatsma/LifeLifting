@@ -134,7 +134,9 @@
       </button>
     </div>
 
-    <h1 *ngIf="specialist">{{specialist.firstName}}'s {{ 'pages.booking.general.calendar' | translate }}</h1>
+    <h1 *ngIf="specialist">
+      {{ 'pages.booking.general.calendar' | translate: {name: specialist?.firstName} }}
+    </h1>
 
     <div class="right" *ngIf="specialist">
       <button class="icon-button" (click)="chat(specialist.uid)">

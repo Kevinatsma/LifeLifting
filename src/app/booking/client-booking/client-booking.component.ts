@@ -9,7 +9,7 @@ import {
   isSameMonth,
   isSameDay,
 } from 'date-fns';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -34,6 +34,8 @@ import { AppointmentDetailDialogComponent } from '../../shared/dialogs/appointme
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UtilService } from './../../shared/services/util.service';
+import { TranslateService } from '@ngx-translate/core';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-client-booking',
@@ -58,6 +60,7 @@ export class ClientBookingComponent implements OnInit, OnDestroy {
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
+  destroy$: Subject<boolean> = new Subject();
 
   // Spinner
   spinner = {
@@ -81,8 +84,8 @@ export class ClientBookingComponent implements OnInit, OnDestroy {
                private dialog: MatDialog,
                private bookingService: BookingService,
                private specialistService: SpecialistService,
-               private utilService: UtilService,
-               private threadService: ChatThreadService,
+               private utils: UtilService,
+               private translate: TranslateService,
                public location: Location,
                public router: Router,
                private route: ActivatedRoute,
@@ -92,15 +95,13 @@ export class ClientBookingComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.replaceDates();
-  }
-
-  ngOnDestroy() {
-    this.user$.unsubscribe();
-    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
+    this.translate.onDefaultLangChange.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(() => this.utils.replaceCalendarHeaderDates())
   }
 
   replaceDates() {
-    this.utilService.replaceCalendarHeaderDates();
+    this.utils.replaceCalendarHeaderDates();
   }
 
   // Getters
@@ -249,5 +250,12 @@ export class ClientBookingComponent implements OnInit, OnDestroy {
 
   goBack() {
     this.location.back();
+  }
+
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

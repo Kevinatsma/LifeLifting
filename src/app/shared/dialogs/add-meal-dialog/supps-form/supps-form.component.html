@@ -12,15 +12,15 @@
       {{ 'pages.mealplan.form.import_guideline' | translate }} {{userData.displayName}}
     </mat-label>
     <mat-select matInput class="f-input select" formControlName="guideline" required
-      placeholder="Pick a Guideline" (selectionChange)="guidelineHandler()"
+      placeholder="{{ 'pages.mealplan.form.pick_guideline' | translate }}" (selectionChange)="guidelineHandler()"
       panelClass="dropdown-regular" autocomplete="off">
       <mat-option *ngFor="let guideline of guidelines" [value]="guideline.gID">
         {{guideline.guidelineName}} - 
         <ng-container *ngIf="guideline.lastEdited">
-          {{ 'global.words.edited' | translated }}: {{guideline.lastEdited.toDate() | date: 'short'}}
+          {{ 'global.words.edited' | translate }}: {{guideline.lastEdited.toDate() | date: 'short'}}
         </ng-container>
         <ng-container *ngIf="!guideline.lastEdited">
-          {{ 'global.words.created' | translated }}: {{guideline.creationDate.toDate() | date: 'short'}}
+          {{ 'global.words.created' | translate }}: {{guideline.creationDate.toDate() | date: 'short'}}
         </ng-container>
       </mat-option>
     </mat-select>

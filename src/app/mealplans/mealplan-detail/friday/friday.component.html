@@ -3,14 +3,14 @@
   <!------------------------------------->
   <!--------- Mealtime One -------------->
   <!------------------------------------->
-  <div class="mealtime-wrapper" *ngIf="mealTimes[0] as time">
+  <div class="mealtime-wrapper" *ngIf="mealTimes && mealTimes[0] as time">
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.mealTimeName">
           1. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
-          1. {{time.mealTimeName}}
+          1. {{time.mealTimeName | translate}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.mealTime">
@@ -82,7 +82,7 @@
           2. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
-          2. {{time.mealTimeName}}
+          2. {{time.mealTimeName | translate}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.mealTime">
@@ -155,7 +155,7 @@
           3. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
-          3. {{time.mealTimeName}}
+          3. {{time.mealTimeName | translate}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.mealTime">
@@ -228,7 +228,7 @@
           4. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
-          4. {{time.mealTimeName}}
+          4. {{time.mealTimeName | translate}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.mealTime">
@@ -301,7 +301,7 @@
           5. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
-          5. {{time.mealTimeName}}
+          5. {{time.mealTimeName | translate}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.mealTime">
@@ -370,7 +370,7 @@
           6. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
-          6. {{time.mealTimeName}}
+          6. {{time.mealTimeName | translate}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.mealTime">
@@ -439,7 +439,7 @@
           7. {{ 'pages.mealplan.errors.no_mealtime' | translate }}
         </h4>
         <h4 class="not-filled" *ngIf="time.mealTimeName">
-          7. {{time.mealTimeName}}
+          7. {{time.mealTimeName | translate}}
         </h4>
       </div>
       <h5 class="time" *ngIf="time.mealTime">

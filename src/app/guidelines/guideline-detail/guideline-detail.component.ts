@@ -140,6 +140,14 @@ export class GuidelineDetailComponent implements OnInit, OnDestroy {
     return this.gainWeight = this.guidelineService.gainWeight;
   }
 
+  getTargetLabel(target): string {
+    if (target === 'gain') {
+      return 'pages.guideline.general.gain';
+    } else if (target === 'lose') {
+      return 'pages.guideline.general.lose';
+    }
+  }
+
   setIncreaseCals(guideline) {
     if ( guideline.increaseCalories === 'increase') {
       return this.increaseCals = true;
