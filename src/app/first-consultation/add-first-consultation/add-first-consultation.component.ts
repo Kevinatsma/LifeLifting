@@ -324,7 +324,7 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
   toggleActivity(event) {
     const value = event.value;
 
-    if (value === 'yes') {
+    if (value === 'global.words.yes') {
       this.generalDataForm.addControl('activityArr', this.fb.array([ this.createActivity() ]));
     } else {
       this.generalDataForm.removeControl('activityArr');
@@ -511,7 +511,7 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
   radioChange(form: String, formControlName: String, requirement: String, event) {
     const value = event.value;
 
-    if (value === 'yes' && requirement === 'yes' || value === 'no' && requirement === 'no') {
+    if (value === 'global.words.yes' && requirement === 'global.words.yes' || value === 'no' && requirement === 'no') {
       if (form === 'habits') {
         this.habitForm.addControl(`${formControlName}Note`, new FormControl('', Validators.required));
       } else if (form === 'bodyFunctions') {

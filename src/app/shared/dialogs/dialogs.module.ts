@@ -32,6 +32,7 @@ import { AppointmentDetailDialogComponent } from './appointment-detail-dialog/ap
 import { EditAppointmentComponent } from './appointment-detail-dialog/edit-appointment/edit-appointment.component';
 import { EditMealDialogModule } from './edit-meal-dialog/edit-meal-dialog.module';
 import { DisplayTextDialogComponent } from './display-text-dialog/display-text-dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { DisplayTextDialogComponent } from './display-text-dialog/display-text-d
     MaterialModule,
     MatDialogModule,
     MatNativeDateModule,
+    TranslateModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,
@@ -83,7 +85,8 @@ import { DisplayTextDialogComponent } from './display-text-dialog/display-text-d
     AddExerciseDialogComponent,
     AddMealDialogComponent,
     AddGuideDialogComponent,
-    ChooseMealplanDialogComponent
+    ChooseMealplanDialogComponent,
+    TranslateModule
   ],
   providers: [
     DataService

@@ -9,7 +9,7 @@
       "next": "Siguiente",
       "previous": "Anterior",
       "back": "Volver",
-      "go_back": "Regresa.",
+      "go_back": "Regresa",
       "confirm": "Confirme",
       "done": "Hecho",
       "go_to_mirror": "Ir al Mirror",
@@ -25,6 +25,7 @@
       "show": "Mostrar",
       "sign_out": "Salir",
       "duplicate": "Duplicar",
+      "add": "Añadir",
       "edit": "Edita",
       "delete": "Eliminar",
       "accept": "Acepta",
@@ -38,10 +39,12 @@
       "last_name": "Apellido",
       "phone_number": "Número de teléfono",
       "gender": "Género",
+      "pick_time": "Elija una hora",
       "pick_date": "Elija una fecha",
-      "pick_one": "Escoge uno.",
+      "pick_one": "Escoge uno",
       "pick_language": "Elija un idioma",
       "pick_from_list": "Escoge uno de la lista",
+      "pick_appropriate": "Elija una opción apropiada",
       "errors": {
         "required": "Esto es necesario",
         "invalid_email": "¡Esa no es una dirección de correo electrónico válida!",
@@ -184,7 +187,8 @@
       "lunch": "Almuerzo",
       "middle_afternoon": "Media tarde",
       "dinner": "Cena",
-      "after_dinner": "Después de la cena"
+      "after_dinner": "Después de la cena",
+      "collation": "Recopilación"
     }
   },
   "pages": {
@@ -192,7 +196,7 @@
       "title": "Bienvenido de nuevo",
       "intro": "Ingresa a tu cuenta para acceder a tus planes y objetivos personales.",
       "buttons": {
-        "login": "Ingresa en",
+        "login": "Ingresar",
         "forgot_password": "Olvidé la contraseña",
         "sign_up_for_account": "Regístrese para obtener una cuenta",
         "login_with_google": "Iniciar sesión con Google"
@@ -257,7 +261,7 @@
         }
       },
       "step_two": {
-        "subtitle": "Elija un paquete y obtenga una consulta gratuita",
+        "subtitle": "Elija un paquete y obtenga una consulta",
         "subtitle_success": "Has tomado una sabia decisión",
         "title": "Paso 2: Elegir un paquete",
         "already_chosen_1": "Psst, ya has elegido",
@@ -378,7 +382,7 @@
       },
       "guidelines": {
         "title": "Mis Lineamientos",
-        "intro": "En esta sección tienes una rápida visión general de las Lineamientos que has creado. Puedes verlas y editarlas/eliminarlas directamente de la lista. Con el botón de arriba a la derecha añades una pauta. 📄"
+        "intro": "En esta sección tienes una rápida visión general de las Lineamientos que has creado. Puedes verlas y editarlas/eliminarlas directamente de la lista. Con el botón de arriba a la derecha añades una guía. 📄"
       },
       "mealplans": {
         "title": "Mis Planes Alimenticios",
@@ -460,13 +464,13 @@
     },
     "booking": {
       "general": {
-        "calendar": "Calendario",
+        "calendar": "Calendario de {{name}}",
         "title": "Calendario del Maestro",
         "title_personal": "Su calendario",
         "wapp_number": "Número de Whatsapp"
       },
       "f2f": {
-        "title": "Cara a cara",
+        "title": "Presencial",
         "area_code": "Código de área",
         "location": "Ubicación"
       },
@@ -494,7 +498,7 @@
         "start_date_time": "Fecha y hora de inicio",
         "end_date_time": "Fecha y hora de finalización",
         "taking_place_how": "¿Cómo se está llevando a cabo esta reunión?",
-        "online_real": "¿La reunión es online o real?",
+        "online_real": "¿La reunión es online o presencial?",
         "skype_name": "Nombre de Skype",
         "new_colors": "Elige algunos colores nuevos...",
         "timeframe": "Elija un marco de tiempo",
@@ -687,6 +691,7 @@
           "past_2_weeks": "Las últimas 2 semanas",
           "2_week_conditions": "Durante las últimas dos semanas he tenido",
           "using_meds": "¿Está usando medicamentos",
+          "seperate_medications": "Separa los medicamentos con una coma",
           "have_gastritis": "¿Tiene gastritis?",
           "no_go_products": "Productos que no puede comer o beber",
           "cant_consume": "No puedo consumir",
@@ -833,7 +838,7 @@
     "guideline": {
       "title": "Lineamientos",
       "title_personal": "Mis Lineamientos",
-      "intro": "En esta sección tienes una rápida visión general de las Lineamientos que has creado. Puedes verlas y editarlas/eliminarlas directamente de la lista. Con el botón de arriba a la derecha añades una pauta. 📄",
+      "intro": "En esta sección tienes una rápida visión general de las Lineamientos que has creado. Puedes verlas y editarlas/eliminarlas directamente de la lista. Con el botón de arriba a la derecha añades una guía. 📄",
       "general": {
         "guideline_id": "Identificación de la pauta",
         "guideline_number": "Número de guía",
@@ -951,9 +956,9 @@
         "meal_title_placeholder": "Nombra la comida en base a los productos",
         "pick_product": "Elija un producto",
         "supps_for": "Suplementos para",
-        "supps_for_detail": "Definir los suplementos que el usuario debe tomar antes, durante y/o después del entrenamiento. Todos los valores son opcionales. Pero primero, elija una pauta para enganchar este plan de comidas.",
-        "import_guideline": "Importa una pauta que hayas creado para",
-        "pick_guideline": "Elija una pauta",
+        "supps_for_detail": "Definir los suplementos que el usuario debe tomar antes, durante y/o después del entrenamiento. Todos los valores son opcionales. Pero primero, elija una guía para enganchar este plan de comidas.",
+        "import_guideline": "Importa una guía que hayas creado para",
+        "pick_guideline": "Elija una guía",
         "number_taken": "Revisa la lista del plan de comidas para ver los números que ya se han tomado.",
         "meal_times": "Horario de comidas",
         "meal_times_for": "La hora de la comida para",
@@ -972,7 +977,7 @@
         "no_mealplans_found": "No se encontraron planes de comida.",
         "no_mealtime": "Esta comida no contiene un horario de comidas todavía...",
         "no_guideline": "Este usuario no tiene ninguna guía todavía.",
-        "no_guideline_for": "No hay ninguna pauta para {{name}} todavía.",
+        "no_guideline_for": "No hay ninguna guía para {{name}} todavía.",
         "fill_out_step_2": "Llene los horarios de comida en el paso 2 para ver algo aquí",
         "fill_out_detail": "Para poder crear comidas y añadir ingredientes para el plan de comidas de este cliente, primero hay que especificar cuando va a comer."
       },
@@ -1209,7 +1214,7 @@
   "requests": {
     "event_request": {
       "online": "Cita en línea",
-      "face_to_face": "Encuentro cara a cara"
+      "face_to_face": "Encuentro Presencial"
     },
     "event_request_list": {
       "title": "Solicitudes no aceptadas",
@@ -1238,7 +1243,8 @@
     "hour": "Hora",
     "minutes": "Actas",
     "per_week": "por semana",
-    "per_day": "por día"
+    "per_day": "por día",
+    "years": "years"
   },
   "chat": {
     "title": "Charla de LifeLifting",

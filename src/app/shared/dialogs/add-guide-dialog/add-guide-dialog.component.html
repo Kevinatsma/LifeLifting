@@ -39,7 +39,7 @@
 
         <mat-form-field appearance="standard" floatLabel="always" *ngIf="measurements">
           <mat-label>{{ 'pages.guideline.form.link_measurement' | translate }}</mat-label>
-          <mat-select matInput placeholder="Pick one from the list" required
+          <mat-select matInput placeholder="{{ 'global.form.pick_one' | translate }} from the list" required
             formControlName="measurement" autocomplete="off" panelClass="dropdown-regular">
             <mat-option *ngFor="let measurement of measurements; let i=index"
               [value]="measurement">
@@ -57,7 +57,7 @@
 
         <mat-form-field appearance="standard" floatLabel="always" *ngIf="fics">
           <mat-label>{{ 'pages.guideline.form.link_consultation' | translate }}</mat-label>
-          <mat-select matInput placeholder="Pick one from the list" required
+          <mat-select matInput placeholder="{{ 'global.form.pick_one' | translate }} from the list" required
             formControlName="firstConsultation" autocomplete="off" 
             panelClass="dropdown-regular">
             <mat-option *ngFor="let fic of fics; let i=index" [value]="fic">

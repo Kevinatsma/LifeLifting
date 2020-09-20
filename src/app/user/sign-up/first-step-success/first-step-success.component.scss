@@ -112,6 +112,8 @@ div.success-wrapper {
 
         .btn-area {
             flex-flow: column wrap;
+            align-items: center;
+            justify-content: flex-start;
             margin: 10px auto 0;
             width: 60%;
 
@@ -123,8 +125,9 @@ div.success-wrapper {
             }
 
             .btn-disabled {
-                cursor: not-allowed;
                 background: $middle-grey;
+                cursor: not-allowed;
+                margin: 0 auto;
             }
 
             .text-link {

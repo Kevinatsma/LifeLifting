@@ -1,10 +1,10 @@
 {
     "mealTimes": [
-    {"value":"Breakfast"},
-    {"value":"Middle Morning Snack"},
-    {"value":"Lunch"},
-    {"value":"Middle Afternoon Snack"},
-    {"value":"Dinner"},
-    {"value":"Collation"}
-  ]
+      {"value":"global.meals.breakfast"},
+      {"value":"global.meals.middle_morning"},
+      {"value":"global.meals.middle_afternoon"},
+      {"value":"global.meals.dinner"},
+      {"value":"global.meals.after_dinner"},
+      {"value":"global.meals.collation"}
+    ]
 }
