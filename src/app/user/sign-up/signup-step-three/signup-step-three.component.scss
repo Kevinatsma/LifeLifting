@@ -73,36 +73,32 @@ section.slider-nav-container {
     }
 }
 
-.specialist-container {
+#specialist-container {
     overflow-y: hidden!important;
     height: auto;
     width: auto;
 
     .package-slider {
-        overflow-x: auto;
+        box-sizing: border-box;
         overflow-y: hidden;
-        width: 100%;
+        height: 100%;
         display: flex;
         padding: 1em 1.5em;
-        flex-flow: row nowrap;
+        flex-flow: column nowrap;
         width: 100%;
 
         @include respond-down($sm) {
-            padding: 0;
+            padding: 20px 0;
             width: 100vw;
         }
     }
 
     .specialist-item {
         width: 100%;
-        margin: 0 2.5em 0 2.5em;
-        height: 100%;
+        margin: 0 auto 30px;
+        height: fit-content;
         max-width: 60vw;
         overflow: hidden;
-
-        &:nth-last-child(2) {
-            margin: 0 -2em 0 2.5em;
-        }
 
         @include respond-down($sm) {
             padding: 0;
