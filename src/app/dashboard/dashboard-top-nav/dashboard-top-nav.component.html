@@ -13,7 +13,7 @@
   <section class="right">
     <div class="chat-container">
       <button type="link" class="chat" routerLink="../chat">
-        <div class="notification-circle">
+        <div class="notification-circle" *ngIf="hasUnreads">
         </div>
         <img src="./../../../assets/img/icons/chat.svg">
       </button>
