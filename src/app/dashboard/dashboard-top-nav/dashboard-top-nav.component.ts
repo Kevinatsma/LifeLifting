@@ -4,7 +4,7 @@ import { AuthService } from './../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { ClientService } from './../../clients/client.service';
 import { DashboardService } from '../dashboard.service';
-import { ChatThreadService } from 'src/app/chat/chat-thread.service';
+import { ChatThreadService } from './../../chat/chat-thread.service';
 import * as _ from 'lodash';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
