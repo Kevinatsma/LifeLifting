@@ -112,7 +112,8 @@
             "user": "User",
             "product": "Product",
             "location": "Location",
-            "comments": "Comments"
+            "comments": "Comments",
+            "where": "Where"
         },
         "sizes": {
             "meters": "meters"

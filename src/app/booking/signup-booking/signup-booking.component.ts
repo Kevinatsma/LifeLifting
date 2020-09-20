@@ -22,6 +22,7 @@ import { UtilService } from './../../shared/services/util.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import countryCodes from './../../shared/data/JSON/countryCodes.json';
 import * as _ from 'lodash';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-signup-booking',
@@ -46,7 +47,6 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
   events: Appointment[];
-
   destroy$: Subject<boolean> = new Subject();
   appointmentForm: FormGroup;
   phoneAreaCode = new FormControl({value: '+51', disabled: true});
@@ -110,7 +110,8 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
                public router: Router,
                private fb: FormBuilder,
                private afs: AngularFirestore,
-               private cdr: ChangeDetectorRef) {
+               private cdr: ChangeDetectorRef,
+               private translate: TranslateService) {
                 this.getUser();
                 this.isMobile = this.utils.checkIfMobile();
                }
@@ -120,6 +121,12 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
     this.appointmentForm = this.fb.group({
       meetMethod: ['', Validators.required],
     });
+    this.translate.onDefaultLangChange.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((event) => {
+      console.log('change vent', event);
+      this.utils.replaceCalendarHeaderDates()
+    })
   }
 
     // Toggles

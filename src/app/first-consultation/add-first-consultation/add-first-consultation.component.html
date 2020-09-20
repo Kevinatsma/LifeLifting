@@ -243,7 +243,7 @@
               <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('habits', 'alcohol', 'global.words.yes', $event)">
                 {{ 'global.words.yes' | translate }}
               </mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'alcohol', 'global.words.yes', $event)">
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'alcohol', 'global.words.no', $event)">
                 {{ 'global.words.no' | translate }}
               </mat-radio-button>
             </mat-radio-group>
@@ -269,7 +269,7 @@
               <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('habits', 'smoke', 'global.words.yes', $event)">
                 {{ 'global.words.yes' | translate }}
               </mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'smoke', 'global.words.yes', $event)">
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'smoke', 'global.words.no', $event)">
                 {{ 'global.words.no' | translate }}
               </mat-radio-button>
             </mat-radio-group>
@@ -311,7 +311,7 @@
               <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('habits', 'coffee', 'global.words.yes', $event)">
                 {{ 'global.words.yes' | translate }}
               </mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'coffee', 'global.words.yes', $event)">
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'coffee', 'global.words.no', $event)">
                 {{ 'global.words.no' | translate }}
               </mat-radio-button>
             </mat-radio-group>
@@ -338,7 +338,7 @@
               <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('habits', 'tea', 'global.words.yes', $event)">
                 {{ 'global.words.yes' | translate }}
               </mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'tea', 'global.words.yes', $event)">
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'tea', 'global.words.no', $event)">
                 {{ 'global.words.no' | translate }}
               </mat-radio-button>
             </mat-radio-group>
@@ -362,7 +362,7 @@
               <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('habits', 'socialLife', 'global.words.yes', $event)">
                 {{ 'global.words.yes' | translate }}
               </mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'socialLife', 'global.words.yes', $event)">
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'socialLife', 'global.words.no', $event)">
                 {{ 'global.words.no' | translate }}
               </mat-radio-button>
             </mat-radio-group>
@@ -384,7 +384,7 @@
               class="radio-button-group"
               formControlName="stayUpLate">
               <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('habits', 'stayUpLate', 'global.words.yes', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'stayUpLate', 'global.words.yes', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'stayUpLate', 'global.words.no', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="habitForm['controls'].stayUpLate.value === 'global.words.yes'">
@@ -464,17 +464,17 @@
             <mat-radio-group
               class="radio-button-group"
               formControlName="breakfastAtHome">
-              <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('habits', 'breakfastAtHome', 'no', $event)">
+              <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('habits', 'breakfastAtHome', 'global.words.yes', $event)">
                 {{ 'global.words.yes' | translate }}
               </mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'breakfastAtHome', 'no', $event)">
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'breakfastAtHome', 'global.words.no', $event)">
                 {{ 'global.words.no' | translate }}
               </mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="habitForm['controls'].breakfastAtHome.value === 'no'">
+            <ng-container *ngIf="habitForm['controls'].breakfastAtHome.value === 'global.words.no'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <textarea type="text" matInput formControlName="breakfastAtHomeNote" placeholder="Where?" 
+                <textarea type="text" matInput formControlName="breakfastAtHomeNote" placeholder="{{ 'global.words.where' | translate }}?" 
                 matTextareaAutosize autofocus="off" autocomplete="off">
                 </textarea>
               </mat-form-field>
@@ -488,11 +488,11 @@
             <mat-radio-group
               class="radio-button-group"
               formControlName="timeForBreakfast">
-              <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('habits', 'timeForBreakfast', 'no', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'timeForBreakfast', 'no', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('habits', 'timeForBreakfast', 'global.words.yes', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('habits', 'timeForBreakfast', 'global.words.no', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="habitForm['controls'].timeForBreakfast.value === 'no'">
+            <ng-container *ngIf="habitForm['controls'].timeForBreakfast.value === 'global.words.no'">
               <mat-form-field appearance="standard" floatLabel="always">
                 <textarea type="text" matInput formControlName="timeForBreakfastNote" placeholder="Why not?" 
                 matTextareaAutosize autofocus="off" autocomplete="off">
@@ -712,7 +712,7 @@
               <mat-radio-button class="radio-button" value="global.words.no">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="bodyFunctionsForm['controls'].everyDay.value === 'no'">
+            <ng-container *ngIf="bodyFunctionsForm['controls'].everyDay.value === 'global.words.no'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
                 <mat-label>
                   {{ 'pages.first_consultation.body_functions.form.times_per_week' | translate }}
@@ -828,7 +828,7 @@
               class="radio-button-group"
               formControlName="birthControlPills">
               <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('bodyFunctions', 'birthControlPills', 'global.words.yes', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('bodyFunctions','birthControlPills', 'global.words.yes', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('bodyFunctions','birthControlPills', 'global.words.no', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="bodyFunctionsForm['controls'].birthControlPills.value === 'global.words.yes'">
@@ -893,7 +893,7 @@
               class="radio-button-group"
               formControlName="troubleFallingAsleep">
               <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('bodyFunctions','troubleFallingAsleep', 'global.words.yes', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('bodyFunctions','troubleFallingAsleep', 'global.words.yes', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('bodyFunctions','troubleFallingAsleep', 'global.words.no', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="bodyFunctionsForm['controls'].troubleFallingAsleep.value === 'global.words.yes'">
@@ -1131,7 +1131,7 @@
               <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('generalData', 'eatAfterDinner', 'global.words.yes', $event)">
                 {{ 'global.words.yes' | translate }}
               </mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('generalData', 'eatAfterDinner', 'global.words.yes', $event)">
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('generalData', 'eatAfterDinner', 'global.words.no', $event)">
                 {{ 'global.words.no' | translate }}
               </mat-radio-button>
             </mat-radio-group>
@@ -1230,7 +1230,7 @@
               </mat-radio-button>
             </mat-radio-group>
 
-            <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'no'">
+            <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'global.words.no'">
               <mat-form-field appearance="standard" floatLabel="always">
                 <textarea type="text" matInput formControlName="physicalActivitiesWhy"
                 placeholder="{{ 'global.questions.why_not' | translate }}" 
@@ -1378,7 +1378,7 @@
               class="radio-button-group"
               formControlName="orderFood">
               <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('generalData', 'orderFood', 'global.words.yes', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('generalData', 'orderFood', 'global.words.yes', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('generalData', 'orderFood', 'global.words.no', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="generalDataForm['controls'].orderFood.value === 'global.words.yes'">
@@ -1403,7 +1403,7 @@
               class="radio-button-group"
               formControlName="supplements">
               <mat-radio-button class="radio-button" value="global.words.yes" (change)="radioChange('generalData', 'supplements', 'global.words.yes', $event)">{{ 'global.words.yes' | translate }}</mat-radio-button>
-              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('generalData', 'supplements', 'global.words.yes', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
+              <mat-radio-button class="radio-button" value="global.words.no" (change)="radioChange('generalData', 'supplements', 'global.words.no', $event)">{{ 'global.words.no' | translate }}</mat-radio-button>
             </mat-radio-group>
 
             <ng-container *ngIf="generalDataForm['controls'].supplements.value === 'global.words.yes'">

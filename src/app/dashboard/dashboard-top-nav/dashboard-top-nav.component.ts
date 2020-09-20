@@ -40,7 +40,6 @@ export class DashboardTopNavComponent implements OnInit, OnDestroy {
   setUnreadFlag = (threads) => {
     let hasUnreads = false;
     _.forEach(threads, thread => {
-      console.log('thread', thread);
       if (!hasUnreads) {
         if (thread.lastSenderId === `${this.auth.currentUserId}`) {
           hasUnreads = false;
@@ -52,7 +51,6 @@ export class DashboardTopNavComponent implements OnInit, OnDestroy {
       }
     });
     this.hasUnreads = hasUnreads;
-    console.log('has unreads', this.hasUnreads);
   }
 
   editUser(user) {

@@ -4,7 +4,7 @@
   <!------------------------------------->
   <!--------- Mealtime One -------------->
   <!------------------------------------->
-  <div class="mealtime-wrapper" *ngIf="mealTimes[0] as time">
+  <div class="mealtime-wrapper" *ngIf="mealTimes && mealTimes[0] as time">
     <section class="header">
       <div class="title">
         <h4 class="not-filled" *ngIf="!time.mealTimeName">

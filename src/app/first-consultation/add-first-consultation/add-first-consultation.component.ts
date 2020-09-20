@@ -511,7 +511,7 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
   radioChange(form: String, formControlName: String, requirement: String, event) {
     const value = event.value;
 
-    if (value === 'global.words.yes' && requirement === 'global.words.yes' || value === 'no' && requirement === 'no') {
+    if (value === 'global.words.yes' && requirement === 'global.words.yes' || value === 'global.words.no' && requirement === 'global.words.no') {
       if (form === 'habits') {
         this.habitForm.addControl(`${formControlName}Note`, new FormControl('', Validators.required));
       } else if (form === 'bodyFunctions') {

@@ -119,9 +119,9 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.trouble_sleep' | translate }}
         </span>
-        <p class="value big">{{ bodyFunctions.sleep.troubleFallingAsleep || translate }}</p>
+        <p class="value big">{{ bodyFunctions.sleep.troubleFallingAsleep | translate }}</p>
         <p class="value sub-title" *ngIf="bodyFunctions.sleep.troubleFallingAsleepNote">
-          {{bodyFunctions.sleep.troubleFallingAsleepNote}} min
+          {{bodyFunctions?.sleep?.troubleFallingAsleepNote}} min
         </p>
       </div>
     </div>

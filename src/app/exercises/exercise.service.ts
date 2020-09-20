@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Exercise } from './exercise.model';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -83,10 +84,9 @@ export class ExerciseService {
   addExercise(data) {
     this.afs.collection<Exercise>(`exercises`).add(data)
     .then(credential => {
-      const idData = {
-        exerciseID: credential.id
-      };
-      this.updateExercise(credential.id, idData);
+      const exerciseID = _.get(credential, 'id');
+      const idData = {exerciseID};
+      this.updateExercise(exerciseID, idData);
     })
     .then(() => {
       // Show Snackbar

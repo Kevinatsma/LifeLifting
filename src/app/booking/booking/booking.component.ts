@@ -8,7 +8,7 @@ import {
   isSameMonth,
   isSameDay,
 } from 'date-fns';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -32,6 +32,8 @@ import { AddAppointmentDialogComponent } from './../../shared/dialogs/add-appoin
 import { AppointmentDetailDialogComponent } from './../../shared/dialogs/appointment-detail-dialog/appointment-detail-dialog.component';
 import { CustomEventTitleFormatter } from '../custom-event-title-formatter.provider';
 import { UtilService } from './../../shared/services/util.service';
+import { TranslateService } from '@ngx-translate/core';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-booking-component',
@@ -55,6 +57,7 @@ export class BookingComponent implements OnInit, OnDestroy {
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   events$: Observable<Array<CalendarEvent<{ event: Appointment }>>>;
+  destroy$: Subject<boolean> = new Subject();
 
   // Spinner
   spinner = {
@@ -78,7 +81,9 @@ export class BookingComponent implements OnInit, OnDestroy {
                private utilService: UtilService,
                private threadService: ChatThreadService,
                public location: Location,
-               private afs: AngularFirestore) {
+               private afs: AngularFirestore,
+               private translate: TranslateService,
+               private utils: UtilService) {
                }
 
 
@@ -87,11 +92,9 @@ export class BookingComponent implements OnInit, OnDestroy {
     this.getUser();
     this.getEvents();
     this.replaceDates();
-  }
-
-  ngOnDestroy() {
-    this.user$.unsubscribe();
-    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
+    this.translate.onDefaultLangChange.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(() => this.utils.replaceCalendarHeaderDates())
   }
 
   replaceDates() {
@@ -225,5 +228,12 @@ export class BookingComponent implements OnInit, OnDestroy {
   // Misc
   goBack() {
     this.location.back();
+  }
+
+  ngOnDestroy() {
+    this.user$.unsubscribe();
+    if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

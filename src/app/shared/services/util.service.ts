@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilService {
 
-  constructor() { }
+  constructor(private translate: TranslateService) {
+  }
 
   checkIfMobile() {
     let check = false;
@@ -22,6 +24,7 @@ export class UtilService {
 
   replaceCalendarHeaderDates() {
     const isMobile = this.checkIfMobile();
+    this.translateDayValues();
     if (isMobile) {
       setTimeout(() => {
         const dateContainers = document.querySelectorAll('.cal-header');
@@ -41,6 +44,21 @@ export class UtilService {
         });
       }, 1000);
     }
+  }
+
+  translateDayValues() {
+    setTimeout(() => {
+      const dateContainers = document.querySelectorAll('.cal-header');
+      dateContainers.forEach(date => {
+        const dateString = date.firstChild.textContent;
+        date.firstChild.textContent = this.translateDay(dateString);
+      });
+    }, 500);
+  }
+
+  translateDay(day: string): string {
+    const translateString = `events.${day.toLowerCase()}`;
+    return this.translate.instant(translateString);
   }
 
   getAge(date) {
