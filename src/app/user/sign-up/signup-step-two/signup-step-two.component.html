@@ -3,7 +3,7 @@
       <h5>{{ 'pages.signup.step_two.subtitle' | translate }}</h5>
       <h1>{{ 'pages.signup.step_two.title' | translate }}</h1>
   
-      <section class="package-container" *ngIf="!user.packageChoice">
+      <section class="package-container" *ngIf="!user.packageChoice" id="packages">
         <mat-radio-group class="package-slider" [(ngModel)]="chosenPackage">
           <mat-radio-button class="package-item" *ngFor="let package of packages | async" [value]="package.packageID" autofocus="off" labelPostition="before">
             <app-package-item [package]="package" [user]="user"></app-package-item>
