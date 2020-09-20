@@ -9,7 +9,7 @@ import {
   isSameMonth,
   isSameDay,
 } from 'date-fns';
-import { Observable, BehaviorSubject, Subscription, Subject } from 'rxjs';
+import { Observable, Subscription, Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventAction,

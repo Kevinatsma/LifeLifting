@@ -857,7 +857,9 @@
                 "bmi": "Body Mass Index",
                 "fat_athlete": "Fat percentage (athlete)",
                 "fat_regular": "Fat percentage (regular)",
-                "activities": "Activities"
+                "activities": "Activities",
+                "gain": "Gain",
+                "lose": "Lose"
             },
             "form": {
                 "link_measurement": "Link a Measurement to this guideline",

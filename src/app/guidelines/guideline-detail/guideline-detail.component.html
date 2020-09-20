@@ -113,7 +113,7 @@
                 </div>
                 <div class="target-block">
                   <h6 class="target-block__title">
-                    {{ 'pages.guideline.form.amount_of' | translate }} {{guideline.target}}
+                    {{ getTargetLabel(guideline.target) | translate }} {{ 'global.user.weight' | translate }}
                   </h6>
                   <span class="target-block__value">{{guideline.totalTarget}} kg</span>
                 </div>
@@ -142,7 +142,7 @@
                     <i class="fa__icon fas fa-angle-double-up"></i>
                   </ng-container>
                 </div>
-                <h6>{{guideline.target}} {{ 'global.user.weight' | translate }}</h6>
+                <h6>{{ getTargetLabel(guideline.target) | translate }} {{ 'global.user.weight' | translate }}</h6>
               </div>
             </div>
           </section>

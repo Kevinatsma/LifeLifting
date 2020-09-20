@@ -857,7 +857,9 @@
         "bmi": "Índice de Masa Corporal",
         "fat_athlete": "Porcentaje de grasa (atleta)",
         "fat_regular": "Porcentaje de grasa (regular)",
-        "activities": "Actividades"
+        "activities": "Actividades",
+        "gain": "Ganar",
+        "lose": "Pérdida"
       },
       "form": {
         "link_measurement": "Vincular una medición a esta directriz",

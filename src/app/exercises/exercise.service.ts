@@ -51,17 +51,19 @@ export class ExerciseService {
   }
 
   getMultipleExercises(guideline) {
-    if (guideline.activities[0]) {
-      this.exerciseDocOne = this.afs.doc<Exercise>(`exercises/${guideline.activities[0].activityID}`);
-      this.exerciseOne = this.exerciseDocOne.valueChanges();
-    }
-    if (guideline.activities[1]) {
-      this.exerciseDocTwo = this.afs.doc<Exercise>(`exercises/${guideline.activities[1].activityID}`);
-      this.exerciseTwo = this.exerciseDocTwo.valueChanges();
-    }
-    if (guideline.activities[2]) {
-      this.exerciseDocThree = this.afs.doc<Exercise>(`exercises/${guideline.activities[2].activityID}`);
-      this.exerciseThree = this.exerciseDocThree.valueChanges();
+    if(guideline.activities && guideline.activities.length) {
+      if (guideline.activities[0]) {
+        this.exerciseDocOne = this.afs.doc<Exercise>(`exercises/${guideline.activities[0].activityID}`);
+        this.exerciseOne = this.exerciseDocOne.valueChanges();
+      }
+      if (guideline.activities[1]) {
+        this.exerciseDocTwo = this.afs.doc<Exercise>(`exercises/${guideline.activities[1].activityID}`);
+        this.exerciseTwo = this.exerciseDocTwo.valueChanges();
+      }
+      if (guideline.activities[2]) {
+        this.exerciseDocThree = this.afs.doc<Exercise>(`exercises/${guideline.activities[2].activityID}`);
+        this.exerciseThree = this.exerciseDocThree.valueChanges();
+      }
     }
     this.guideExercises = {
       eOne: this.exerciseOne,
