@@ -81,7 +81,13 @@ export class ExerciseService {
   }
 
   addExercise(data) {
-    this.afs.collection<Exercise>(`exercises`).doc(`${data.exerciseID}`).set(data, {merge: true})
+    this.afs.collection<Exercise>(`exercises`).add(data)
+    .then(credential => {
+      const idData = {
+        exerciseID: credential.id
+      };
+      this.updateExercise(credential.id, idData);
+    })
     .then(() => {
       // Show Snackbar
       const message = `The ${data.exerciseName} was added succesfully`;

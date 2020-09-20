@@ -240,9 +240,9 @@
                 </ng-container>
 
               </div>
-              <div class="activity__right">
-                <div class="container" *ngFor="let activity of guideline.activities; let i of index;">
-                  <div class="target-block" *ngIf="activity.activityPerWeek">
+              <div class="activity__right" *ngIf="guideline?.activities?.length">
+                <div class="container" *ngFor="let activity of guideline?.activities;">
+                  <div class="target-block" *ngIf="activity?.activityPerWeek">
                     <h6 class="target-block__title">
                       {{ 'pages.guideline.form.per_week' | translate }}
                     </h6>
