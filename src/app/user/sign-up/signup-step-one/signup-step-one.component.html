@@ -68,7 +68,7 @@
         <!-- Phone Number -->
         <div class="multiple-input phone-field" formGroupName="phoneNumber">
           <mat-form-field class="area-code" appearance="standard" floatLabel="always">
-              <mat-label>{{ 'pages.signup.step_one.area_code_label' | translate }}</mat-label>
+              <mat-label>{{ 'pages.signup.step_one.form.area_code_label' | translate }}</mat-label>
               <mat-select matInput placeholder="+1"
               panelClass="dropdown-area-code" formControlName="phoneAreaCode" autocomplete="off" required>
                 <mat-option *ngFor="let code of areaCodes" value="{{code.dial_code}}" class="dial-code">

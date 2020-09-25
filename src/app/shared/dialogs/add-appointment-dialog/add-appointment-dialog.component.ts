@@ -109,7 +109,7 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
   // Toggles
   toggleContext() {
     const formValue = this.appointmentForm.get('appointmentContext').value;
-
+    this._resetContactForm();
     if (formValue === 'faceToFace') {
       this.onlineAppointment.next(false);
       this.faceToFace.next(true);
@@ -134,7 +134,6 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       this._resetContactForm();
       this.appointmentForm.addControl('wappAreaCode', new FormControl('', Validators.required));
       this.appointmentForm.addControl('wappRest', new FormControl('', Validators.required));
-
     } else if (formValue  === 'skype') {
       this.whatsApp.next(false);
       this.skype.next(true);
@@ -191,10 +190,8 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
     this.specialistID = sID;
     this.specialist$ = this.specialistService.getSpecialistData(sID).pipe(take(1)).subscribe(specialist => {
       this.specialist = specialist;
-    });
-    setTimeout(() => {
       this.addEvent(this.specialist);
-    }, 1000);
+    });
   }
 
   getSpecialists() {
@@ -202,6 +199,10 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
   }
 
   // Add Appointment
+  addButtonDisabled(): boolean {
+    return !this.appointmentForm.valid;
+  }
+
   addEvent(specialist) {
     const startNoTime = new Date(this.appointmentForm.get('startTime').value).toString();
     const endNoTime = new Date(this.appointmentForm.get('startTime').value).toString();

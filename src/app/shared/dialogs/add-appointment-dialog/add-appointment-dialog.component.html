@@ -6,7 +6,7 @@
   </div>
   
   <form [formGroup]="appointmentForm">
-    <h3>{{ 'pages.booking.form.plan_appointment'}}
+    <h3>{{ 'pages.booking.form.plan_appointment' | translate }}
       <ng-container *ngIf="!user.roles.admin || !user.roles.specialist">
         {{ 'global.words.with' | translate }} {{data.specialist.firstName}}
       </ng-container>
@@ -264,8 +264,8 @@
 
   <section class="btn-area-one">
     <button type="submit" class="dialog-button" (click)="getSpecialist()"
-    [disabled]="!appointmentForm.valid"
-    [class.disabled]="!appointmentForm.valid"
+    [disabled]="addButtonDisabled()"
+    [class.disabled]="addButtonDisabled()"
     [mat-dialog-close]="appointmentForm.valid ? true : false">
       {{ 'global.buttons.done' | translate }}
     </button>

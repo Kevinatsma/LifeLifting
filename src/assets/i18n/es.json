@@ -927,8 +927,8 @@
       }
     },
     "mealplan": {
-      "title": "Planes de comidas",
-      "title_s": "Plan de comidas",
+      "title": "Planes de comida",
+      "title_s": "Plan de comida",
       "intro": "En esta sección tienes una rápida visión general de los Planes Alimenticios que has creado. Puede verlos y editarlos/eliminarlos directamente de la lista. Con el botón superior derecho puedes añadir un plan de comidas.",
       "general": {
         "mealplan_id": "Identificación del plan de comidas",
@@ -1076,7 +1076,7 @@
         "my_mealplans": "Mis planes de comida",
         "my_reviews": "Mis críticas",
         "my_appointments": "Mis citas",
-        "mealplans": "Planes de comidas",
+        "mealplans": "Planes de comida",
         "shopping_lists": "Listas de compras",
         "guidelines": "Lineamientos",
         "appointments": "Citas",

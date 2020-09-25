@@ -132,7 +132,7 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
     // Toggles
     toggleContext() {
       const formValue = this.appointmentForm.get('meetMethod').value;
-
+      this._resetContactForm();
       if (formValue === 'faceToFace') {
         this.onlineAppointment.next(false);
         this.faceToFace.next(true);
@@ -368,7 +368,7 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
       accepted: false,
       rejected: false,
       created: new Date(),
-      title: 'pages.first_consultation.title',
+      title: this.translate.instant('pages.first_consultation.title'),
       start: this.startDate.toString(),
       end: this.endDate.toString(),
       color: {

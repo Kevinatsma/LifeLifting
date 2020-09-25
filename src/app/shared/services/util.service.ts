@@ -51,9 +51,10 @@ export class UtilService {
       const dateContainers = document.querySelectorAll('.cal-header');
       dateContainers.forEach(date => {
         const dateString = date.firstChild.textContent;
-        date.firstChild.textContent = this.translateDay(dateString);
+        if (!date.id) date.id = dateString;
+        date.firstChild.textContent = this.translateDay(date.id);
       });
-    }, 500);
+    }, 200);
   }
 
   translateDay(day: string): string {
