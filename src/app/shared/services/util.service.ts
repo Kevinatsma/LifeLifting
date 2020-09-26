@@ -169,7 +169,7 @@ export class UtilService {
       const D = c - (m * logX);
       fatPercentage = ((4.95 / D) - 4.50) * 100;
     } else {
-      fatPercentage = undefined;
+      fatPercentage = 0;
     }
 
     return fatPercentage;
@@ -191,7 +191,7 @@ export class UtilService {
       const sum =  T + S + CI + A + FT + C;
       fatPercentage = c * sum + m;
     } else {
-      fatPercentage = undefined;
+      fatPercentage = 0;
     }
 
     return fatPercentage;

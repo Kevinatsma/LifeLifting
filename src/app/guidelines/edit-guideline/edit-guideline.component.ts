@@ -146,10 +146,10 @@ export class EditGuidelineComponent implements OnInit, OnDestroy {
       let formulaData;
       formulaData = {
         maxCalories: this.maxCaloriesResult || this.guideline.formulaData.maxCalories,
-        fatPercentageRegular: this.guideline.formulaData.fatPercentageRegular || null,
-        fatPercentageAthlete: this.guideline.formulaData.fatPercentageAthlete || null,
+        fatPercentageRegular: this.guideline.formulaData.fatPercentageRegular || 0,
+        fatPercentageAthlete: this.guideline.formulaData.fatPercentageAthlete || 0,
         bmi: this.bmiResult || this.guideline.formulaData.bmi,
-        weight: this.formulaValues.weight || null
+        weight: this.formulaValues.weight || 0
       };
 
       if (this.fatPercentageAthResult > 0) {
