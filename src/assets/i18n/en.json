@@ -61,7 +61,8 @@
             "short_desc": "The Short Description",
             "short_desc_ph": "Write a short but attractive description",
             "every_x_days": "Every x days",
-            "x_per_week": "x per week"
+            "x_per_week": "x per week",
+            "whats_it_called": "What's it called?"
         },
         "words": {
             "yes": "Yes",
@@ -725,7 +726,8 @@
                     "eating_record": "Your eating recordatory",
                     "write_important": "Write down important things here",
                     "physical_activities": "Does physical activities",
-                    "training_location": "Where do you train"
+                    "training_location": "Where do you train",
+                    "location_desc": "Location description"
                 },
                 "conditions": {
                     "diarrhea": "Diarrhea",

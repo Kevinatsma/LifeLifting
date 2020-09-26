@@ -1139,7 +1139,7 @@
               </mat-form-field>
             </ng-container>
 
-            <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'global.words.yes'">
+            <ng-container *ngIf="generalDataForm['controls'].physicalActivitiesConfirmation.value === 'yes'">
               <section class="add-form-field-container" formArrayName="activityArr">
                 <h3>
                   {{ 'pages.first_consultation.general_info_2.form.define_activities' | translate }}
@@ -1153,7 +1153,7 @@
                   <div class="form-fields">
                     <mat-form-field appearance="standard" floatLabel="always">
                       <mat-label>{{ 'pages.first_consultation.general_info_2.form.which_activities' | translate }}</mat-label>
-                      <mat-select matInput placeholder="{{getChosenActivity(i).controls['physicalActivity'].value.exerciseName}}" 
+                      <mat-select matInput placeholder="{{getChosenActivity(i).controls['physicalActivity'].value.exerciseName || 'global.form.pick_one' | translate }}" 
                         formControlName="physicalActivity" panelClass="dropdown-regular" autocomplete="off" required>
                         <mat-option *ngFor="let activity of activities" [value]="activity">{{activity.exerciseName}}</mat-option>
                       </mat-select>
@@ -1173,13 +1173,13 @@
                       </label>
                       <div class="time-form-container">
                         <mat-form-field appearance="standard" floatLabel="always">
-                          <mat-select matInput placeholder="{{ getChosenActivity(i).controls['workoutScheduleFrom'].value}}" formControlName="workoutScheduleFrom" 
+                          <mat-select matInput placeholder="{{ getChosenActivity(i).controls['workoutScheduleFrom'].value || 'events.from' | translate }}" formControlName="workoutScheduleFrom" 
                           panelClass="dropdown-regular" autocomplete="off" required>
                             <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
                           </mat-select>
                         </mat-form-field>
                         <mat-form-field appearance="standard" floatLabel="always">
-                          <mat-select matInput placeholder="{{ getChosenActivity(i).controls['workoutScheduleTo'].value}}" formControlName="workoutScheduleTo" 
+                          <mat-select matInput placeholder="{{ getChosenActivity(i).controls['workoutScheduleTo'].value || 'events.to' | translate }}" formControlName="workoutScheduleTo" 
                           panelClass="dropdown-regular" autocomplete="off" required>
                             <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
                           </mat-select>
@@ -1191,7 +1191,7 @@
                       <mat-form-field appearance="standard" floatLabel="always">
                         <mat-label>{{ 'pages.first_consultation.general_info_2.form.physical_activity' | translate }}</mat-label>
                         <input type="text" formControlName="activitySpecification" matInput autocomplete="off" required
-                          placeholder="{{ getChosenActivity(i).controls['activitySpecification'].value}}">
+                          placeholder="{{ getChosenActivity(i).controls['activitySpecification'].value || 'global.form.whats_it_called' | translate }}">
                       </mat-form-field>
                     </ng-container>
             
@@ -1200,7 +1200,7 @@
                         {{ 'pages.first_consultation.general_info_2.form.training_location' | translate }}
                       </mat-label>
                       <input type="text" formControlName="trainingLocation" matInput autocomplete="off" required
-                        placeholder="{{ getChosenActivity(i).controls['trainingLocation'].value}}">
+                        placeholder="{{ getChosenActivity(i).controls['trainingLocation'].value || 'pages.first_consultation.general_info_2.form.location_desc' | translate }}">
                     </mat-form-field>
         
                     <mat-form-field appearance="standard" floatLabel="always" class="number">
@@ -1208,14 +1208,14 @@
                         {{ 'pages.first_consultation.general_info_2.form.arrive_time' | translate }}
                       </mat-label>
                       <input type="number" formControlName="travelTime" matInput autocomplete="off" required
-                        placeholder="{{ getChosenActivity(i).controls['travelTime'].value }}">
+                        placeholder="{{ getChosenActivity(i).controls['travelTime'].value || '6 min' }}">
                     </mat-form-field>
             
                     <mat-form-field appearance="standard" floatLabel="always">
                       <mat-label>
                         {{ 'pages.first_consultation.general_info_2.form.training_intensity' | translate }}
                       </mat-label>
-                      <mat-select matInput placeholder="{{ getChosenActivity(i).controls['trainingIntensity'].value }}" 
+                      <mat-select matInput placeholder="{{ getChosenActivity(i).controls['trainingIntensity'].value || 'pages.guideline.form.pick_level' | translate }}" 
                         formControlName="trainingIntensity" panelClass="dropdown-regular" autocomplete="off" required>
                         <mat-option value="very-intense">
                           {{ 'pages.exercises.general.very_intense' | translate }}

@@ -61,7 +61,8 @@
       "short_desc": "La descripción corta",
       "short_desc_ph": "Escriba una descripción corta pero atractiva",
       "every_x_days": "Cada x días",
-      "x_per_week": "x por semana"
+      "x_per_week": "x por semana",
+      "whats_it_called": "¿Cómo se llama?"
     },
     "words": {
       "yes": "Sí",
@@ -725,7 +726,8 @@
           "eating_record": "Su historial de alimentación",
           "write_important": "Escriba las cosas importantes aquí",
           "physical_activities": "Hace actividades físicas",
-          "training_location": "Dónde se entrena?"
+          "training_location": "Dónde se entrena?",
+          "location_desc": "Descripción de la ubicación"
         },
         "conditions": {
           "diarrhea": "Diarrea",

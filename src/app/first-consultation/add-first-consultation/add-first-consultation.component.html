@@ -1279,8 +1279,9 @@
                           </mat-select>
                         </mat-form-field>
                         <mat-form-field appearance="standard" floatLabel="always">
-                          <mat-select matInput placeholder="{{ 'events.to' | translate }}" formControlName="workoutScheduleTo" 
-                          panelClass="dropdown-regular" autocomplete="off">
+                          <mat-select matInput placeholder="{{ 'events.to' | translate }}"
+                            formControlName="workoutScheduleTo" 
+                            panelClass="dropdown-regular" autocomplete="off">
                             <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
                           </mat-select>
                         </mat-form-field>
@@ -1292,7 +1293,8 @@
                         <mat-label>
                           {{ 'pages.first_consultation.general_info_2.form.physical_activity' | translate }}
                         </mat-label>
-                        <input type="text" formControlName="activitySpecification" matInput placeholder="What's it called?" 
+                        <input type="text" formControlName="activitySpecification" matInput
+                          placeholder="{{'global.form.whats_it_called' | translate}}" 
                           autocomplete="off">
                       </mat-form-field>
                     </ng-container>
@@ -1301,7 +1303,8 @@
                       <mat-label>
                         {{ 'pages.first_consultation.general_info_2.form.training_location' | translate }}
                       </mat-label>
-                      <input type="text" formControlName="trainingLocation" matInput placeholder="Location description" 
+                      <input type="text" formControlName="trainingLocation" matInput
+                        placeholder="{{ 'pages.first_consultation.general_info_2.form.location_desc' | translate }}" 
                         autocomplete="off" required>
                     </mat-form-field>
         
@@ -1310,15 +1313,16 @@
                         {{ 'pages.first_consultation.general_info_2.form.arrive_time' | translate }}
                       </mat-label>
                       <input type="number"formControlName="travelTime" matInput
-                        placeholder="6" autocomplete="off" required>
+                        placeholder="6 min" autocomplete="off" required>
                     </mat-form-field>
             
                     <mat-form-field appearance="standard" floatLabel="always">
                       <mat-label>
                         {{ 'pages.first_consultation.general_info_2.form.training_intensity' | translate }}
                       </mat-label>
-                      <mat-select matInput placeholder="Pick a level" formControlName="trainingIntensity" 
-                      panelClass="dropdown-regular" autocomplete="off" required>
+                      <mat-select matInput placeholder="{{ 'pages.guideline.form.pick_level' | translate }}"
+                        formControlName="trainingIntensity" autocomplete="off"
+                        panelClass="dropdown-regular" required>
                         <mat-option value="very-intense">
                           {{ 'pages.exercises.general.very_intense' | translate }}
                         </mat-option>
