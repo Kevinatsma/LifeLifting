@@ -8,6 +8,7 @@ import { SpecialistService } from './../../specialists/specialist.service';
 import { UserService } from './../../user/user.service';
 import { AuthService } from './../../core/auth/auth.service';
 import { Observable, Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-appointment-detail',
@@ -60,7 +61,8 @@ export class AppointmentDetailComponent implements OnDestroy {
                private bookingService: BookingService,
                private userService: UserService,
                public matDialog: MatDialog,
-               private specialistService: SpecialistService
+               private specialistService: SpecialistService,
+               private translate: TranslateService
     ) {
       setTimeout(() => {
         this.doEventCheck(this.event);
@@ -150,6 +152,11 @@ export class AppointmentDetailComponent implements OnDestroy {
     this.client$ = this.userService.getUserDataByID(uid).subscribe(obj => {
       this.client = obj;
     });
+  }
+
+  translateMonth(month: string): string {
+    const monthString = month.toLowerCase();
+    return this.translate.instant(`events.months.${monthString}`);
   }
 
   // Edit event

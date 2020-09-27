@@ -87,7 +87,7 @@
 
         <h3 class="date" *ngIf="hasStartDate">
           <ng-container *ngIf="start">
-            {{ start.startDay }} {{ start.startMonth }} {{ start.startYear }}
+            {{ start.startDay }} {{ translateMonth(start.startMonth) }} {{ start.startYear }}
           </ng-container>
         </h3>
 
@@ -125,7 +125,7 @@
         </mat-form-field>
 
         <h3 class="date" *ngIf="hasEndDate">
-          <ng-container *ngIf="end">{{ end.endDay }} {{ end.endMonth }} {{ end.endYear }}</ng-container>
+          <ng-container *ngIf="end">{{ end.endDay }} {{ translateMonth(end.endMonth) }} {{ end.endYear }}</ng-container>
         </h3>
 
         <div class="time" *ngIf="!hasEndDate">

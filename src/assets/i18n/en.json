@@ -62,7 +62,8 @@
             "short_desc_ph": "Write a short but attractive description",
             "every_x_days": "Every x days",
             "x_per_week": "x per week",
-            "whats_it_called": "What's it called?"
+            "whats_it_called": "What's it called?",
+            "write_down": "Write it down here"
         },
         "words": {
             "yes": "Yes",
@@ -148,6 +149,9 @@
             "weight": "Weight",
             "current_weight": "Current weight",
             "status": {
+                "title": "User Status",
+                "appointment": "Appointment",
+                "general": "General",
                 "signup_completed": "Signup Completed",
                 "signup_incomplete": "Signup not completed",
                 "appointment_requested": "Appointment requested",
@@ -190,7 +194,16 @@
             "middle_afternoon": "Middle Afternoon",
             "dinner": "Dinner",
             "after_dinner": "After Dinner",
-            "collation": "Collation"
+            "collation": "Collation",
+            "diets": {
+                "omnivore": "Omnivore",
+                "vegetarian": "Vegetarian",
+                "vegan": "Vegan",
+                "pescatarian": "Pescatarian",
+                "paleo": "Paleo",
+                "keto": "Keto",
+                "plant_based": "Plant based"
+            }
         }
     },
     "pages": {
@@ -379,7 +392,11 @@
                 "signup_completed": "Sign Up Completed",
                 "heard_from_us": "Heard from us via",
                 "errors": {
-                    "no_goal": "No goal yet..."
+                    "no_goal": "No goal yet",
+                    "no_email": "No email yet",
+                    "no_phone": "No phone yet",
+                    "no_basic_data": "User didn't fill out the basic data yet",
+                    "not_filled": "Not filled out"
                 }
             },
             "guidelines": {
@@ -511,6 +528,9 @@
                 "add_to_phone": "Add to phone",
                 "call": "Call",
                 "confirm": "Confirm appointment"
+            },
+            "messages": {
+                "request_succesful": "{{title}} was requested succesfully"
             }
         },
         "first_consultation": {
@@ -637,8 +657,8 @@
                     "transportation": "Method of transportation",
                     "car": "🚗 Car",
                     "public": "🚉 Public Transportation",
-                    "bike": "🚴‍♂️ Bike",
-                    "walking": "🚶‍♀️ Walking",
+                    "bike": "🚴‍ Bike",
+                    "walking": "🚶‍ Walking",
                     "eat_during_work": "Can you eat during work?",
                     "snack_during_work": "Can you have a very simple and practical snack while you work?",
                     "snack_level": "Do you prefer your snacks to be elaborate or simple?",
@@ -698,6 +718,7 @@
                     "no_go_products": "Products you can't eat or drink",
                     "cant_consume": "I can't consume",
                     "preferred_diet": "Preferred diet type",
+                    "pick_diet": "Pick an appropriate diet type",
                     "dinner_type": "Is it a plate of food like lunch, or is it more like a snack?",
                     "plate": "Plate",
                     "snack": "Snack",
@@ -1250,7 +1271,21 @@
         "minutes": "Minutes",
         "per_week": "per week",
         "per_day": "per day",
-        "years": "years"
+        "years": "years",
+        "months": {
+            "january": "January",
+            "february": "February",
+            "march": "March",
+            "april": "April",
+            "may": "May",
+            "june": "June",
+            "july": "July",
+            "august": "August",
+            "september": "September",
+            "october": "October",
+            "november": "November",
+            "december": "December"
+        }
     },
     "chat": {
         "title": "LifeLifting Chat",

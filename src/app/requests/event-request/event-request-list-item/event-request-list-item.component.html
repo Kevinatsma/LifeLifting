@@ -6,7 +6,7 @@
     </section>
     <section class="list-item__data">
       <div class="main-info">
-        <h1>{{event.title}}</h1>
+        <h1>{{ (event.title) | translate }}</h1>
         <h5>{{ 'global.words.with' | translate }}: {{user.displayName}}</h5>
         <a class="text-link" (click)="toUser(event.clientID)">
           {{ 'global.actions.visit_profile' | translate }}

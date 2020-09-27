@@ -13,14 +13,14 @@ h5 {
 
 main.specialist-wrapper {
     box-sizing: border-box;
-    width: 75vw;
+    width: 100%;
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 1.5em 2em;
+
     @include respond-down($sm) {
         padding: 1.5em 0 0;
-        width: 100%;
     }
 
     .action-toolbar-top {

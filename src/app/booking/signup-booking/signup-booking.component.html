@@ -6,7 +6,7 @@
   <form class="create-appointment-mobile" [formGroup]="appointmentForm" *ngIf="showStepTwoMobile">
     <div class="close-section">
       <button class="text-link close-btn" (click)="closeMobileAppointment()" type="button">
-        <i class="fa__icon fas fa-arrow-left"></i> Back
+        <i class="fa__icon fas fa-arrow-left"></i> {{ 'global.buttons.back' | translate }}
       </button>
     </div>
     <section class="intro">
@@ -16,14 +16,14 @@
     <h4>{{ 'pages.booking.signup.dates_times' | translate }}</h4>
     <section class="timeline">
       <div class="start">
-        <h5>{{ 'events.from' | translate }}: {{start.startDay}} {{start.startMonth}} {{start.startYear}}</h5>
+        <h5>{{ 'events.from' | translate }}: {{start.startDay}} {{translateMonth(start.startMonth)}} {{start.startYear}}</h5>
         <p class="time">
           <i class="fa__icon far fa-clock"></i>
           {{start.startHours}}{{start.startMinutes}}
         </p>
       </div>
       <div class="end">
-          <h5>{{ 'events.to' | translate }}: {{end.endDay}} {{end.endMonth}} {{end.endYear}}</h5>
+          <h5>{{ 'events.to' | translate }}: {{end.endDay}} {{translateMonth(end.endMonth)}} {{end.endYear}}</h5>
           <p class="time">
             <i class="fa__icon far fa-clock"></i>
             {{end.endHours}}{{end.endMinutes}}

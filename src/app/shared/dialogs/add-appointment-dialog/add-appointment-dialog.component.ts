@@ -12,6 +12,7 @@ import { Subject, Subscription } from 'rxjs';
 import { UtilService } from '../../services/util.service';
 import { take } from 'rxjs/operators';
 import countryCodes from './../../../shared/data/JSON/countryCodes.json';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-appointment-dialog',
@@ -71,7 +72,8 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
                private utils: UtilService,
                private specialistService: SpecialistService,
                private cdr: ChangeDetectorRef,
-               private dialog: MatDialog
+               private dialog: MatDialog,
+               private translate: TranslateService
     ) {
       this.user = data.user;
       this.specialist =  data.specialist;
@@ -358,6 +360,11 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
   convertMinutes(date) {
     const minutes = ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
     return minutes;
+  }
+
+  translateMonth(month: string): string {
+    const monthString = month.toLowerCase();
+    return this.translate.instant(`events.months.${monthString}`);
   }
 
   closeDialog() {

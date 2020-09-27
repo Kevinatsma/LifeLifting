@@ -40,7 +40,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general_info_2.form.preferred_diet' | translate }}
         </span>
-        <p class="value big">{{generalData.general.dietType}}</p>
+        <p class="value big">{{ (generalData.general.dietType) | translate }}</p>
       </div>
     </div>
 
@@ -50,7 +50,7 @@
       </div>
       <div class="info-card__content">
         <span class="label small">{{ 'pages.first_consultation.general.has_gastritis' | translate }}</span>
-        <p class="value big">{{generalData.general.gastritis}}</p>
+        <p class="value big">{{ (generalData.general.gastritis) | translate }}</p>
       </div>
     </div>
   </section>
@@ -64,7 +64,7 @@
       </div>
       <div class="info-card__content">
         <span class="label small">{{ 'pages.first_consultation.general.portion_size' | translate }}</span>
-        <p class="value big">{{generalData.dinner.portion}}</p>
+        <p class="value big">{{ (generalData.dinner.portion) | translate }}</p>
       </div>
     </div>
 
@@ -76,7 +76,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.portion_size' | translate }}
         </span>
-        <p class="value big">{{generalData.dinner.preparedBy}}</p>
+        <p class="value big">{{ (generalData.dinner.preparedBy) | translate }}</p>
       </div>
     </div>
 
@@ -88,7 +88,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.orders_online' | translate }}
         </span>
-        <p class="value big">{{generalData.dinner.orderOnline}}</p>
+        <p class="value big">{{ (generalData.dinner.orderOnline) | translate }}</p>
       </div>
     </div>
 
@@ -98,9 +98,9 @@
       </div>
       <div class="info-card__content">
         <span class="label small">
-          {{ 'pages.first_consultation.general.orders_online' | translate }}
+          {{ 'pages.first_consultation.general.eat_after_dinner' | translate }}
         </span>
-        <p class="value big">{{generalData.dinner.eatAfterDinner}}</p>
+        <p class="value big">{{ (generalData.dinner.eatAfterDinner) | translate }}</p>
         <p class="value sub-title" *ngIf="generalData.dinner.eatAfterDinnerNote">{{generalData.dinner.eatAfterDinnerNote}}</p>
       </div>
     </div>
@@ -111,7 +111,7 @@
       </div>
       <div class="info-card__content">
         <span class="label small">{{ 'pages.first_consultation.general_info_2.form.who_shops' | translate }}</span>
-        <p class="value big">{{generalData.dinner.whoBuys}}</p>
+        <p class="value big">{{ (generalData.dinner.whoBuys) | translate }}</p>
       </div>
     </div>
 
@@ -136,7 +136,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general_info_2.form.physical_activities' | translate }}
         </span>
-        <p class="value big">{{generalData.physicalActivity.physicalActivitiesConfirmation}}</p>
+        <p class="value big">{{ (generalData.physicalActivity.physicalActivitiesConfirmation) | translate }}</p>
         <p class="value sub-title" *ngIf="generalData.physicalActivity.physicalActivitiesWhy">{{generalData.physicalActivity.physicalActivitiesWhy}}</p>
       </div>
     </div>
@@ -179,7 +179,7 @@
             <span class="label small">
               {{ 'pages.first_consultation.general.training_intensity' | translate }}
             </span>
-            <p class="value big">{{activity.trainingIntensity}}</p>
+            <p class="value big">{{ (activity.trainingIntensity) | translate }}</p>
           </div>
         </div>
       </div>
@@ -211,7 +211,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.order_or_outside' | translate }}
         </span>
-        <p class="value big">{{generalData.weekends.orderFood}}</p>
+        <p class="value big">{{ (generalData.weekends.orderFood) | translate }}</p>
         <p class="value sub-title" *ngIf="generalData.weekends.orderFoodNote">
           {{generalData.weekends.orderFoodNote}}
         </p>
@@ -232,7 +232,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.takes_supps' | translate }}
         </span>
-        <p class="value big">{{generalData.supplements.supplements}}</p>
+        <p class="value big">{{ (generalData.supplements.supplements) | translate }}</p>
         <p class="value sub-title" *ngIf="generalData.supplements.supplementNote">
           {{generalData.supplements.supplementNote}}
         </p>
@@ -247,7 +247,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.will_use_supps' | translate }}
         </span>
-        <p class="value big">{{generalData.supplements.willingToUseSupps}}</p>
+        <p class="value big">{{ (generalData.supplements.willingToUseSupps) | translate }}</p>
       </div>
     </div>
 

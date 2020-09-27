@@ -368,7 +368,7 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
       accepted: false,
       rejected: false,
       created: new Date(),
-      title: this.translate.instant('pages.first_consultation.title'),
+      title: 'pages.first_consultation.title',
       start: this.startDate.toString(),
       end: this.endDate.toString(),
       color: {
@@ -432,6 +432,11 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
       }
     };
     this.specialistService.updateSpecialist(specialist.specialistID, specialistData);
+  }
+
+  translateMonth(month: string): string {
+    const monthString = month.toLowerCase();
+    return this.translate.instant(`events.months.${monthString}`);
   }
 
   // Chat

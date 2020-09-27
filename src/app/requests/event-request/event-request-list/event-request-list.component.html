@@ -1,7 +1,7 @@
 <main *ngIf="eventArr; else noEvents">
   <div class="close-section mobile">
     <button class="text-link close-btn" (click)="closeDialog()" type="button">
-      <i class="mobile fas fa-arrow-left"></i> Back
+      <i class="mobile fas fa-arrow-left"></i> {{ 'global.buttons.back' | translate }}
     </button>
   </div>
   <div class="list-item-container" *ngIf="events | async as events; else loading">

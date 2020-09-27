@@ -13,7 +13,7 @@
         *ngIf="user.roles.admin || user.roles.specialist" mat-dialog-close>
         <i class="fa__icon far fa-trash-alt"></i>
       </button>
-      <h1>{{event.title}}</h1>
+      <h1>{{ (event.title) | translate }}</h1>
       <button class="edit-btn" *ngIf="!editShow && user.roles.admin || user.roles.specialist" 
         (click)="toggleEdit()">
         <i class="fa__icon far fa-edit"></i>
@@ -34,7 +34,7 @@
     <section class="timeline">
       <div class="start">
         <h5>
-          {{ 'events.from' | translate }}: {{start.startDay}} {{start.startMonth}} {{start.startYear}}
+          {{ 'events.from' | translate }}: {{start.startDay}} {{translateMonth(start.startMonth)}} {{start.startYear}}
         </h5>
         <p class="time">
           <i class="fa__icon far fa-clock"></i>
@@ -43,7 +43,7 @@
       </div>
       <div class="end">
           <h5>
-            {{ 'events.to' | translate }}: {{end.endDay}} {{end.endMonth}} {{end.endYear}}
+            {{ 'events.to' | translate }}: {{end.endDay}} {{translateMonth(end.endMonth)}} {{end.endYear}}
           </h5>
           <p class="time">
             <i class="fa__icon far fa-clock"></i>

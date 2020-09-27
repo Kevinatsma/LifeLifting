@@ -62,7 +62,8 @@
       "short_desc_ph": "Escriba una descripción corta pero atractiva",
       "every_x_days": "Cada x días",
       "x_per_week": "x por semana",
-      "whats_it_called": "¿Cómo se llama?"
+      "whats_it_called": "¿Cómo se llama?",
+      "write_down": "Escríbelo aquí"
     },
     "words": {
       "yes": "Sí",
@@ -148,6 +149,9 @@
       "weight": "Peso",
       "current_weight": "Peso actual",
       "status": {
+        "title": "Estado del usuario",
+        "appointment": "Cita",
+        "general": "General",
         "signup_completed": "Inscripción completada",
         "signup_incomplete": "La inscripción no se ha completado",
         "appointment_requested": "Se solicita una cita",
@@ -190,7 +194,16 @@
       "middle_afternoon": "Media tarde",
       "dinner": "Cena",
       "after_dinner": "Después de la cena",
-      "collation": "Recopilación"
+      "collation": "Recopilación",
+      "diets": {
+        "omnivore": "Omnívoro",
+        "vegetarian": "Vegetariano",
+        "vegan": "Vegano",
+        "pescatarian": "Pescatariana",
+        "paleo": "Paleo",
+        "keto": "Keto",
+        "plant_based": "A base de plantas"
+      }
     }
   },
   "pages": {
@@ -352,7 +365,7 @@
       },
       "edit_user": {
         "package_choice": "Elección del paquete",
-        "main_goal": "objetivo principal...",
+        "main_goal": "objetivo principal",
         "contact_info": "Información de contacto",
         "user_status": {
           "title": "Estado del usuario",
@@ -372,14 +385,18 @@
         "user_id": "Id",
         "client_id": "Id",
         "package_choice": "Elección del paquete",
-        "main_goal": "objetivo principal...",
+        "main_goal": "objetivo principal",
         "goal": "Meta",
         "contact_info": "Información de contacto",
         "practical_info": "Información práctica",
         "signup_completed": "Inscripción completada",
         "heard_from_us": "Nos conoció a través de",
         "errors": {
-          "no_goal": "Aún no hay un objetivo..."
+          "no_goal": "Aún no hay un objetivo",
+          "no_email": "Aún no hay correo electrónico",
+          "no_phone": "Aún no hay teléfono",
+          "no_basic_data": "El usuario aún no tiene los datos básicos",
+          "not_filled": "No está rellenado"
         }
       },
       "guidelines": {
@@ -511,6 +528,9 @@
         "add_to_phone": "Añadir al teléfono",
         "call": "Llama a",
         "confirm": "Confirmar la cita"
+      },
+      "messages": {
+        "request_succesful": "{{title}} fue solicitado con éxito"
       }
     },
     "first_consultation": {
@@ -637,8 +657,8 @@
           "transportation": "Método de transporte",
           "car": "🚗 Coche",
           "public": "🚉 Transporte público",
-          "bike": "🚴♂️ Bicicleta",
-          "walking": "🚶♀️ Caminando",
+          "bike": "🚴 Bicicleta",
+          "walking": "🚶 Caminando",
           "eat_during_work": "¿Puedes comer durante el trabajo?",
           "snack_during_work": "¿Puedes tomar un simple y práctico refrigerio mientras trabajas?",
           "snack_level": "¿Prefiere que sus bocadillos sean elaborados o simples?",
@@ -698,6 +718,7 @@
           "no_go_products": "Productos que no puede comer o beber",
           "cant_consume": "No puedo consumir",
           "preferred_diet": "Tipo de dieta preferida",
+          "pick_diet": "Elija un tipo de dieta apropiada",
           "dinner_type": "¿Es un plato de comida como el almuerzo, o es más bien un bocadillo?",
           "plate": "Plato",
           "snack": "Snack",
@@ -748,7 +769,7 @@
         "notice_remember": "¿Notaste/recordaste algo?"
       },
       "errors": {
-        "no_first_consult": "No. La primera consulta todavía..."
+        "no_first_consult": "No hay una primera consulta todavía..."
       }
     },
     "follow_up": {
@@ -1120,7 +1141,7 @@
         "intense": "Intenso",
         "regular": "Regular",
         "mild": "Suave",
-        "very_mild": "Muy suave."
+        "very_mild": "Muy suave"
       },
       "form": {
         "exercise_info": "Información sobre el ejercicio",
@@ -1247,10 +1268,24 @@
     "saturday": "Sábado",
     "sunday": "Domingo",
     "hour": "Hora",
-    "minutes": "Actas",
+    "minutes": "Minutos",
     "per_week": "por semana",
     "per_day": "por día",
-    "years": "años"
+    "years": "años",
+    "months": {
+      "january": "Enero",
+      "february": "Febrero",
+      "march": "Marzo",
+      "april": "Abril",
+      "may": "Mayo",
+      "june": "Junio",
+      "july": "Julio",
+      "august": "Agosto",
+      "september": "Septiembre",
+      "october": "Octubre",
+      "november": "Noviembre",
+      "december": "Diciembre"
+    }
   },
   "chat": {
     "title": "Charla de LifeLifting",
