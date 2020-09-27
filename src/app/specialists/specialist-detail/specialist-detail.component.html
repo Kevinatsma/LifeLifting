@@ -34,9 +34,9 @@
           </p>
           <div class="top">
           <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
-          <h5>{{specialist.position}}</h5>
+          <h5>{{ (specialist.position) | translate }}</h5>
           <p>
-            {{ 'pages.specialist.general.speciality' | translate }}: {{specialist.speciality}}
+            {{ 'pages.specialist.general.speciality' | translate }}: {{ (specialist.speciality) | translate }}
           </p>
           <div class="icon-fact-container">
             <div class="fact">
@@ -64,7 +64,7 @@
 
       <section class="about">  
         <h5>{{ 'global.words.about' | translate }} {{specialist.firstName}}</h5>
-        <p [class.read-more]="aboutExtended">{{specialist.description}}</p>
+        <p [class.read-more]="aboutExtended">{{ (specialist.description) | translate }}</p>
         <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
           <i class="fa__icon fas fa-plus"></i>
           {{ 'global.buttons.read_more' | translate }}
@@ -104,7 +104,9 @@
         <div class="languages">
           <h5 class="purple">{{ 'pages.specialist.general.languages' | translate }}</h5>
           <ul>
-            <li *ngFor="let language of specialist.languages"><strong>{{language.languageValue}}</strong> - {{language.languageLevel}}</li>
+            <li *ngFor="let language of specialist.languages">
+              <strong>{{ (language.languageValue) | translate }}</strong>
+               - {{ (language.languageLevel) | translate }}</li>
           </ul>
         </div>
       </section>

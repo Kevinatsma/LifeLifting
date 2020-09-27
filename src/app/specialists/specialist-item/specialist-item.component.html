@@ -7,8 +7,8 @@
 
     <div class="quick-info">
       <h2>{{specialist.firstName}} {{specialist.lastName}}</h2>
-      <h5>{{specialist.position}}</h5>
-      <p>{{ 'pages.specialist.general.speciality' | translate }}: {{specialist.speciality}}</p>
+      <h5>{{ (specialist.position) | translate }}</h5>
+      <p>{{ 'pages.specialist.general.speciality' | translate }}: {{ (specialist.speciality) | translate }}</p>
 
       <a class="text-link mobile" (click)="toggleSpecialist(specialist)">
         {{ 'global.buttons.learn_more' | translate }}
@@ -18,7 +18,7 @@
 
   <section class="about not-mobile">  
     <h5>👩 {{ 'global.words.about' | translate }} {{specialist.firstName}}</h5>
-    <p [class.read-more]="aboutExtended">{{specialist.description}}</p>
+    <p [class.read-more]="aboutExtended">{{ (specialist.description) | translate }}</p>
     <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
       <i class="fa__icon fas fa-plus"></i>
       {{ 'global.buttons.read_more' | translate }}
@@ -44,7 +44,7 @@
         <h5 class="purple">🈹 {{ 'pages.specialist.general.languages' | translate }}</h5>
         <ul>
           <li *ngFor="let language of specialist.languages">
-            {{language.languageValue}} - {{language.languageLevel}}
+            {{ (language.languageValue) | translate }} - {{ (language.languageLevel) | translate }}
           </li>
         </ul>
       </div>

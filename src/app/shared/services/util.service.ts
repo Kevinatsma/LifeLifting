@@ -51,9 +51,10 @@ export class UtilService {
       const dateContainers = document.querySelectorAll('.cal-header');
       dateContainers.forEach(date => {
         const dateString = date.firstChild.textContent;
-        date.firstChild.textContent = this.translateDay(dateString);
+        if (!date.id) date.id = dateString;
+        date.firstChild.textContent = this.translateDay(date.id);
       });
-    }, 500);
+    }, 200);
   }
 
   translateDay(day: string): string {
@@ -168,7 +169,7 @@ export class UtilService {
       const D = c - (m * logX);
       fatPercentage = ((4.95 / D) - 4.50) * 100;
     } else {
-      fatPercentage = undefined;
+      fatPercentage = 0;
     }
 
     return fatPercentage;
@@ -190,7 +191,7 @@ export class UtilService {
       const sum =  T + S + CI + A + FT + C;
       fatPercentage = c * sum + m;
     } else {
-      fatPercentage = undefined;
+      fatPercentage = 0;
     }
 
     return fatPercentage;

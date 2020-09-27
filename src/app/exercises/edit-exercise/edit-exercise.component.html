@@ -20,7 +20,7 @@
 
     <form class="package-container" [formGroup]="editExerciseForm" *ngIf="editShow">
       <mat-card class="list-item-card" *ngIf="exercise">
-        <section class="exercise-photo" [style.background]="'url('+ exercise.exercisePhoto +')'">
+        <section class="exercise-photo" [ngStyle]="{'background': downloadURL ? 'url('+ downloadURL +')' : 'url('+ exercise.exercisePhoto +')'}">
           <app-file-upload-button [url]="url" (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
         </section>
         <section class="middle">

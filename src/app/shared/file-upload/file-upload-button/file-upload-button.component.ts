@@ -24,6 +24,7 @@ export class FileUploadButtonComponent implements OnInit, OnDestroy {
   downloadURL: Observable<string>;
   downloadURL$: Subscription;
   imageURL: string;
+  isLoading = false;
 
   // Dropzone Hover State
   isHovering: boolean;
@@ -38,6 +39,7 @@ export class FileUploadButtonComponent implements OnInit, OnDestroy {
   }
 
   startUpload(event: FileList) {
+    this.isLoading = true;
     const file = event.item(0);
     const id = file.name;
     const filePath = `${this.url}/${id}`;
@@ -55,6 +57,7 @@ export class FileUploadButtonComponent implements OnInit, OnDestroy {
           this.downloadURL$ = this.downloadURL.subscribe(url => {
             this.imageURL = url;
             this.imageEvent.emit(this.imageURL);
+            this.isLoading = false;
           });
         })
      )

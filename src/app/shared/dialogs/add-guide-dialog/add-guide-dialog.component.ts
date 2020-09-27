@@ -273,10 +273,10 @@ export class AddGuideDialogComponent implements OnInit, OnDestroy {
           fatValue: this.macroForm.get('fatValue').value
         },
         formulaData: {
-          maxCalories: this.maxCaloriesResult || null,
-          fatPercentageRegular: this.fatPercentageRegResult || null,
-          fatPercentageAthlete: this.fatPercentageAthResult || null,
-          bmi: this.bmiResult || null,
+          maxCalories: this.maxCaloriesResult || 0,
+          fatPercentageRegular: this.fatPercentageRegResult || 0,
+          fatPercentageAthlete: this.fatPercentageAthResult || 0,
+          bmi: this.bmiResult || 0,
           weight: this.formulaValues.weight
         }
       };

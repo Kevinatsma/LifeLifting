@@ -10,7 +10,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.consumes_alcohol' | translate }}
           </span>
-          <p class="value big">{{habits.alcohol}}</p>
+          <p class="value big">{{ (habits.alcohol) | translate }}</p>
           <p class="value sub-value" *ngIf="habits.alcoholNote">{{habits.alcoholNote}} {{ 'pages.first_consultation.general.cups_day' | translate }}</p>
         </div>
       </div>
@@ -23,7 +23,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.smokes' | translate }}
           </span>
-          <p class="value big">{{habits.smoke}}</p>
+          <p class="value big">{{ (habits.smoke) | translate }}</p>
           <p class="value sub-value" *ngIf="habits.smokeNote">{{habits.smokeNote}} packs/week</p>
         </div>
       </div>
@@ -36,7 +36,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.consumes_coffee' | translate }}
           </span>
-          <p class="value big">{{habits.coffee}}</p>
+          <p class="value big">{{ (habits.coffee) | translate }}</p>
           <p class="value sub-value" *ngIf="habits.coffeeNote">{{habits.coffeeNote}} {{ 'pages.first_consultation.general.cups_day' | translate }}</p>
         </div>
       </div>
@@ -49,7 +49,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.consumes_tea' | translate }}
           </span>
-          <p class="value big">{{habits.tea}}</p>
+          <p class="value big">{{ (habits.tea) | translate }}</p>
           <p class="value sub-value" *ngIf="habits.teaNote">{{habits.teaNote}} {{ 'pages.first_consultation.general.cups_day' | translate }}</p>
         </div>
       </div>
@@ -62,7 +62,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.stays_up_late' | translate }}
           </span>
-          <p class="value big">{{habits.stayUpLate}}</p>
+          <p class="value big">{{ (habits.stayUpLate) | translate }}</p>
           <p class="value sub-value" *ngIf="habits.stayUpLateNote">
             {{habits.stayUpLateNote}}{{ 'global.form.x_per_week' | translate }}
           </p>
@@ -77,7 +77,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.consumes_drugs' | translate }}
           </span>
-          <p class="value big">{{habits.drugs}}</p>
+          <p class="value big">{{ (habits.drugs) | translate }}</p>
         </div>
       </div>
 
@@ -89,9 +89,9 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.social_life' | translate }}
           </span>
-          <p class="value big">{{habits.socialLife}}</p>
+          <p class="value big">{{ (habits.socialLife) | translate }}</p>
           <p class="value sub-value" *ngIf="habits.socialLifeNote">
-            {{habits.socialLifeNote}}{{ 'global.form.x_per_week' | translate }}
+            {{habits.socialLifeNote}} {{ 'global.form.x_per_week' | translate }}
           </p>
         </div>
       </div>
@@ -172,7 +172,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.cook_at_home' | translate }}
           </span>
-          <p class="value big">{{habits.eatingHabits.whoCooks}}</p>
+          <p class="value big">{{ (habits.eatingHabits.whoCooks) | translate }}</p>
         </div>
       </div>
   
@@ -184,8 +184,10 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.breakfast_home' | translate }}
           </span>
-          <p class="value big">{{habits.eatingHabits.breakfastAtHome}}</p>
-          <p class="value sub-value" *ngIf="habits.eatingHabits.breakfastAtHomeNote">Location: {{habits.eatingHabits.breakfastAtHomeNote}}</p>
+          <p class="value big">{{ (habits.eatingHabits.breakfastAtHome) | translate }}</p>
+          <p class="value sub-value" *ngIf="habits.eatingHabits.breakfastAtHomeNote">
+            {{ 'global.words.location' | translate }}: {{habits.eatingHabits.breakfastAtHomeNote}}
+          </p>
         </div>
       </div>
   
@@ -197,7 +199,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.plenty_time' | translate }}
           </span>
-          <p class="value big">{{habits.eatingHabits.timeForBreakfast}}</p>
+          <p class="value big">{{ (habits.eatingHabits.timeForBreakfast) | translate }}</p>
           <p class="value sub-value" *ngIf="habits.eatingHabits.timeForBreakfastNote">
             {{habits.eatingHabits.timeForBreakfastNote}}
           </p>
@@ -226,8 +228,7 @@
             {{ 'pages.first_consultation.general.work_schedule' | translate }}
           </span>
           <p class="value big schedule">
-            <span>{{ 'events.from' | translate }}: {{habits.work.schedules.from}}</span><br>
-            <span>{{ 'events.to' | translate }}: {{habits.work.schedules.to}}</span>
+            {{habits.work.schedules.from}} - {{habits.work.schedules.to}}
           </p>
         </div>
       </div>
@@ -240,7 +241,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.work_weekends' | translate }}
           </span>
-          <p class="value big">{{habits.work.workOnWeekends}}</p>
+          <p class="value big">{{ (habits.work.workOnWeekends) | translate }}</p>
           <p class="value sub-value" *ngIf="habits.work.workOnWeekendsNote !== null">
             <span>{{ 'events.from' | translate }}: {{habits.work.workOnWeekendsNote.from}}</span><br> 
             <span>{{ 'events.to' | translate }}: {{habits.work.workOnWeekendsNote.to}}</span>
@@ -280,7 +281,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.habits.form.transportation' | translate }}
           </span>
-          <p class="value big">{{habits.work.transportationMethod}}</p>
+          <p class="value big">{{ (habits.work.transportationMethod) | translate }}</p>
         </div>
       </div>
 
@@ -292,7 +293,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.eat_during_work' | translate }}
           </span>
-          <p class="value big">{{habits.work.eatDuringJob}}</p>
+          <p class="value big">{{ (habits.work.eatDuringJob) | translate }}</p>
         </div>
       </div>
 
@@ -304,7 +305,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.simple_snack' | translate }}
           </span>
-          <p class="value big">{{habits.work.practicalSnackDuringJob}}</p>
+          <p class="value big">{{ (habits.work.practicalSnackDuringJob) | translate }}</p>
         </div>
       </div>
 
@@ -328,7 +329,7 @@
           <span class="label small">
             {{ 'pages.first_consultation.general.kitchen_gadgets' | translate }}
           </span>
-          <p class="value big">{{habits.work.kitchenGadgetsAtWork}}</p>
+          <p class="value big">{{ (habits.work.kitchenGadgetsAtWork) | translate }}</p>
         </div>
       </div>
     </section>

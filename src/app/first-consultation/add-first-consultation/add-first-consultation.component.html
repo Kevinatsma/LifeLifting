@@ -451,10 +451,18 @@
             <mat-label>{{ 'pages.first_consultation.habits.form.who_cooks' | translate }}</mat-label>
             <mat-select matInput placeholder="{{ 'global.form.pick_one' | translate }}" formControlName="whoCooks" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option value="patient">{{ 'pages.first_consultation.habits.form.patient' | translate }}</mat-option>
-              <mat-option value="relative">{{ 'pages.first_consultation.habits.form.relative' | translate }}tive</mat-option>
-              <mat-option value="maid">{{ 'pages.first_consultation.habits.form.maid' | translate }}</mat-option>
-              <mat-option value="other">{{ 'global.words.other' | translate }}</mat-option>
+              <mat-option value="pages.first_consultation.habits.form.patient">
+                {{ 'pages.first_consultation.habits.form.patient' | translate }}
+              </mat-option>
+              <mat-option value="pages.first_consultation.habits.form.relative">
+                {{ 'pages.first_consultation.habits.form.relative' | translate }}
+              </mat-option>
+              <mat-option value="pages.first_consultation.habits.form.maid">
+                {{ 'pages.first_consultation.habits.form.maid' | translate }}
+              </mat-option>
+              <mat-option value="pages.first_consultation.habits.form.other">
+                {{ 'global.words.other' | translate }}
+              </mat-option>
             </mat-select>
             <mat-error class="input-error" *ngIf="!habitForm['controls'].whoCooks.touched">{{ 'global.form.errors.required' | translate }}</mat-error>
           </mat-form-field>
@@ -494,7 +502,7 @@
 
             <ng-container *ngIf="habitForm['controls'].timeForBreakfast.value === 'global.words.no'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <textarea type="text" matInput formControlName="timeForBreakfastNote" placeholder="Why not?" 
+                <textarea type="text" matInput formControlName="timeForBreakfastNote" placeholder="{{ 'global.questions.why_not' | translate }}?" 
                 matTextareaAutosize autofocus="off" autocomplete="off">
                 </textarea>
               </mat-form-field>
@@ -596,12 +604,20 @@
 
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'pages.first_consultation.habits.form.transportation' | translate }}</mat-label>
-            <mat-select matInput placeholder="Pick a method" formControlName="transportationMethod" 
+            <mat-select matInput placeholder="{{ 'global.form.pick_one' | translate }}" formControlName="transportationMethod" 
             panelClass="dropdown-regular" autocomplete="off">
-              <mat-option value="car">{{ 'pages.first_consultation.habits.form.car' | translate }}</mat-option>
-              <mat-option value="public">{{ 'pages.first_consultation.habits.form.public' | translate }}</mat-option>
-              <mat-option value="bike">{{ 'pages.first_consultation.habits.form.bike' | translate }}</mat-option>
-              <mat-option value="walk">{{ 'pages.first_consultation.habits.form.walking' | translate }}</mat-option>
+              <mat-option value="pages.first_consultation.habits.form.car">
+                {{ 'pages.first_consultation.habits.form.car' | translate }}
+              </mat-option>
+              <mat-option value="pages.first_consultation.habits.form.car">
+                {{ 'pages.first_consultation.habits.form.public' | translate }}
+              </mat-option>
+              <mat-option value="pages.first_consultation.habits.form.car">
+                {{ 'pages.first_consultation.habits.form.bike' | translate }}
+              </mat-option>
+              <mat-option value="pages.first_consultation.habits.form.car">
+                {{ 'pages.first_consultation.habits.form.walking' | translate }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -771,22 +787,22 @@
             </mat-label>
             <mat-select matInput placeholder="{{ 'global.form.pick_one' | translate }}" formControlName="mostHungryMoment" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option value="breakfast">
+              <mat-option value="global.meals.breakfast">
                 {{ 'global.meals.breakfast' | translate }}
               </mat-option>
-              <mat-option value="middle-morning">
+              <mat-option value="global.meals.middle_morning">
                 {{ 'global.meals.middle_morning' | translate }}
               </mat-option>
-              <mat-option value="lunch">
+              <mat-option value="global.meals.lunch">
                 {{ 'global.meals.lunch' | translate }}
               </mat-option>
-              <mat-option value="middle-afternoon">
+              <mat-option value="global.meals.middle_afternoon">
                 {{ 'global.meals.middle_afternoon' | translate }}
               </mat-option>
-              <mat-option value="dinner">
+              <mat-option value="global.meals.dinner">
                 {{ 'global.meals.dinner' | translate }}
               </mat-option>
-              <mat-option value="after-dinner">
+              <mat-option value="global.meals.after_dinner">
                 {{ 'global.meals.after_dinner' | translate }}
               </mat-option>
             </mat-select>
@@ -868,9 +884,9 @@
             <mat-label>{{ 'pages.first_consultation.body_functions.form.current_sleep' | translate }}</mat-label>
             <mat-select matInput placeholder="{{ 'global.form.pick_one' | translate }}" formControlName="sleepingStatus" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option value="good">{{ 'global.words.good' | translate }}</mat-option>
-              <mat-option value="regular">{{ 'global.words.regular' | translate }}</mat-option>
-              <mat-option value="bad">{{ 'global.words.bad' | translate }}</mat-option>
+              <mat-option value="global.words.good">{{ 'global.words.good' | translate }}</mat-option>
+              <mat-option value="global.words.regular">{{ 'global.words.regular' | translate }}</mat-option>
+              <mat-option value="global.words.bad">{{ 'global.words.bad' | translate }}</mat-option>
             </mat-select>
             <mat-error class="input-error" *ngIf="!bodyFunctionsForm['controls'].sleepingStatus.touched">
               {{ 'global.form.errors.required' | translate }}
@@ -993,7 +1009,7 @@
                 <mat-label>
                   {{ 'pages.first_consultation.general_info_2.form.2_week_conditions' | translate }}:
                 </mat-label>
-                <mat-select matInput placeholder="Pick an option" formControlName="pastTwoWeeksValue" 
+                <mat-select matInput placeholder="{{ 'global.form.pick_appropriate' | translate }}" formControlName="pastTwoWeeksValue" 
                 panelClass="dropdown-regular" autocomplete="off" required>
                   <mat-option value="diarrhea">
                     {{ 'pages.first_consultation.general_info_2.conditions.diarrhea' | translate }}
@@ -1077,9 +1093,11 @@
 
         <mat-form-field appearance="standard" floatLabel="always" class="diet-type">
           <mat-label>{{ 'pages.first_consultation.general_info_2.form.preferred_diet' | translate }}</mat-label>
-          <mat-select matInput placeholder="Pick an appropriate diet type" formControlName="dietType"
+          <mat-select matInput placeholder="{{ 'pages.first_consultation.general_info_2.form.pick_diet' | translate }}" formControlName="dietType"
           autocomplete="off" panelClass="dropdown-regular" required>
-            <mat-option *ngFor="let type of dietTypes" value="{{type.value}}">{{type.viewValue}}</mat-option>
+            <mat-option *ngFor="let type of dietTypes" value="{{type.value}}">
+              {{ (type.value) | translate }}
+            </mat-option>
           </mat-select>
           <mat-error class="input-error" *ngIf="!generalDataForm['controls'].dietType.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
         </mat-form-field>
@@ -1098,10 +1116,10 @@
             <mat-radio-group
               class="radio-button-group"
               formControlName="portion">
-              <mat-radio-button class="radio-button" value="plate">
+              <mat-radio-button class="radio-button" value="pages.first_consultation.general_info_2.form.plate">
                 {{ 'pages.first_consultation.general_info_2.form.plate' | translate }}
               </mat-radio-button>
-              <mat-radio-button class="radio-button" value="snack">
+              <mat-radio-button class="radio-button" value="pages.first_consultation.general_info_2.form.snack">
                 {{ 'pages.first_consultation.general_info_2.form.snack' | translate }}
               </mat-radio-button>
             </mat-radio-group>
@@ -1111,10 +1129,18 @@
             <mat-label>{{ 'pages.first_consultation.general_info_2.form.prepared_dinner' | translate }}</mat-label>
             <mat-select matInput placeholder="{{ 'global.form.pick_one' | translate }}" formControlName="preparedBy" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option value="patient">{{ 'pages.first_consultation.habits.form.patient' | translate }}</mat-option>
-              <mat-option value="relative">{{ 'pages.first_consultation.habits.form.relative' | translate }}</mat-option>
-              <mat-option value="maid">{{ 'pages.first_consultation.habits.form.maid' | translate }}</mat-option>
-              <mat-option value="other">{{ 'global.words.other' | translate }}</mat-option>
+              <mat-option value="pages.first_consultation.habits.form.patient">
+                {{ 'pages.first_consultation.habits.form.patient' | translate }}
+              </mat-option>
+              <mat-option value="pages.first_consultation.habits.form.relative">
+                {{ 'pages.first_consultation.habits.form.relative' | translate }}
+              </mat-option>
+              <mat-option value="pages.first_consultation.habits.form.maid">
+                {{ 'pages.first_consultation.habits.form.maid' | translate }}
+              </mat-option>
+              <mat-option value="pages.first_consultation.habits.form.other">
+                {{ 'global.words.other' | translate }}
+              </mat-option>
             </mat-select>
             <mat-error class="input-error" *ngIf="!generalDataForm['controls'].preparedBy.touched">
               {{ 'global.form.errors.required' | translate }}
@@ -1138,7 +1164,7 @@
 
             <ng-container *ngIf="generalDataForm['controls'].eatAfterDinner.value === 'global.words.yes'">
               <mat-form-field appearance="standard" floatLabel="always">
-                <textarea type="text" matInput formControlName="eatAfterDinnerNote" placeholder="Like what?" 
+                <textarea type="text" matInput formControlName="eatAfterDinnerNote" placeholder="{{ 'global.words.like_what' | translate }}" 
                 matTextareaAutosize autofocus="off" autocomplete="off">
                 </textarea>
               </mat-form-field>
@@ -1181,16 +1207,16 @@
             </mat-label>
             <mat-select matInput placeholder="{{ 'global.form.pick_one' | translate }}" formControlName="whoBuys" 
             panelClass="dropdown-regular" autocomplete="off" required>
-              <mat-option value="patient">
+              <mat-option value="pages.first_consultation.habits.form.patient">
                 {{ 'pages.first_consultation.habits.form.patient' | translate }}
               </mat-option>
-              <mat-option value="relative">
+              <mat-option value="pages.first_consultation.habits.form.relative">
                 {{ 'pages.first_consultation.habits.form.relative' | translate }}
               </mat-option>
-              <mat-option value="maid">
+              <mat-option value="pages.first_consultation.habits.form.maid">
                 {{ 'pages.first_consultation.habits.form.maid' | translate }}
               </mat-option>
-              <mat-option value="other">
+              <mat-option value="global.words.other">
                 {{ 'global.words.other' | translate }}
               </mat-option>
             </mat-select>
@@ -1279,8 +1305,9 @@
                           </mat-select>
                         </mat-form-field>
                         <mat-form-field appearance="standard" floatLabel="always">
-                          <mat-select matInput placeholder="{{ 'events.to' | translate }}" formControlName="workoutScheduleTo" 
-                          panelClass="dropdown-regular" autocomplete="off">
+                          <mat-select matInput placeholder="{{ 'events.to' | translate }}"
+                            formControlName="workoutScheduleTo" 
+                            panelClass="dropdown-regular" autocomplete="off">
                             <mat-option *ngFor="let time of times" [value]="time.value">⏰ {{time.value}}</mat-option>
                           </mat-select>
                         </mat-form-field>
@@ -1292,7 +1319,8 @@
                         <mat-label>
                           {{ 'pages.first_consultation.general_info_2.form.physical_activity' | translate }}
                         </mat-label>
-                        <input type="text" formControlName="activitySpecification" matInput placeholder="What's it called?" 
+                        <input type="text" formControlName="activitySpecification" matInput
+                          placeholder="{{'global.form.whats_it_called' | translate}}" 
                           autocomplete="off">
                       </mat-form-field>
                     </ng-container>
@@ -1301,7 +1329,8 @@
                       <mat-label>
                         {{ 'pages.first_consultation.general_info_2.form.training_location' | translate }}
                       </mat-label>
-                      <input type="text" formControlName="trainingLocation" matInput placeholder="Location description" 
+                      <input type="text" formControlName="trainingLocation" matInput
+                        placeholder="{{ 'pages.first_consultation.general_info_2.form.location_desc' | translate }}" 
                         autocomplete="off" required>
                     </mat-form-field>
         
@@ -1310,28 +1339,29 @@
                         {{ 'pages.first_consultation.general_info_2.form.arrive_time' | translate }}
                       </mat-label>
                       <input type="number"formControlName="travelTime" matInput
-                        placeholder="6" autocomplete="off" required>
+                        placeholder="6 min" autocomplete="off" required>
                     </mat-form-field>
             
                     <mat-form-field appearance="standard" floatLabel="always">
                       <mat-label>
                         {{ 'pages.first_consultation.general_info_2.form.training_intensity' | translate }}
                       </mat-label>
-                      <mat-select matInput placeholder="Pick a level" formControlName="trainingIntensity" 
-                      panelClass="dropdown-regular" autocomplete="off" required>
-                        <mat-option value="very-intense">
+                      <mat-select matInput placeholder="{{ 'pages.guideline.form.pick_level' | translate }}"
+                        formControlName="trainingIntensity" autocomplete="off"
+                        panelClass="dropdown-regular" required>
+                        <mat-option value="'pages.exercises.general.very_intense'">
                           {{ 'pages.exercises.general.very_intense' | translate }}
                         </mat-option>
-                        <mat-option value="intense">
+                        <mat-option value="'pages.exercises.general.intense'">
                           {{ 'pages.exercises.general.intense' | translate }}
                         </mat-option>
-                        <mat-option value="regular">
+                        <mat-option value="'pages.exercises.general.regular'">
                           {{ 'pages.exercises.general.regular' | translate }}
                         </mat-option>
-                        <mat-option value="mild">
+                        <mat-option value="'pages.exercises.general.mild'">
                           {{ 'pages.exercises.general.mild' | translate }}
                         </mat-option>
-                        <mat-option value="very-mild">
+                        <mat-option value="'pages.exercises.general.very_mild'">
                           {{ 'pages.exercises.general.very_mild' | translate }}
                         </mat-option>
                       </mat-select>
@@ -1409,7 +1439,7 @@
             <ng-container *ngIf="generalDataForm['controls'].supplements.value === 'global.words.yes'">
               <mat-form-field appearance="standard" floatLabel="always">
                 <textarea type="text" matInput formControlName="supplementsNote"
-                placeholder="What are you taking?" 
+                placeholder="{{ 'pages.first_consultation.general_info_2.form.what_are_you_taking' | translate }}" 
                 matTextareaAutosize autofocus="off" autocomplete="off">
                 </textarea>
               </mat-form-field>
@@ -1466,7 +1496,7 @@
             <mat-label>
               {{ 'pages.first_consultation.extra.notice_remember' | translate }}
             </mat-label>
-            <textarea type="text" matInput formControlName="specialistNotes" placeholder="Write it down here" 
+            <textarea type="text" matInput formControlName="specialistNotes" placeholder="{{ 'global.form.write_down' | translate }}" 
              matTextareaAutosize autofocus="off" autocomplete="off">
             </textarea>
           </mat-form-field>

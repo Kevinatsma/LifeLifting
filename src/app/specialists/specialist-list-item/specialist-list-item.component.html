@@ -9,8 +9,8 @@
     </div>
 
     <div class="quick-info">
-      <p class="speciality-title">{{specialist.position}} - {{specialist.speciality}}</p>
-      <p class="description">{{specialist.description}}</p>
+      <p class="speciality-title">{{ (specialist.position) | translate }} - {{ (specialist.speciality) | translate }}</p>
+      <p class="description">{{ (specialist.description) | translate }}</p>
       <div class="btn-container">
         <button class="btn-icon-right__animated" (click)="linkToChild(specialist)">
           {{ 'global.buttons.learn_more' | translate }}

@@ -12,6 +12,7 @@ import { Subject, Subscription } from 'rxjs';
 import { UtilService } from '../../services/util.service';
 import { take } from 'rxjs/operators';
 import countryCodes from './../../../shared/data/JSON/countryCodes.json';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-appointment-dialog',
@@ -71,7 +72,8 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
                private utils: UtilService,
                private specialistService: SpecialistService,
                private cdr: ChangeDetectorRef,
-               private dialog: MatDialog
+               private dialog: MatDialog,
+               private translate: TranslateService
     ) {
       this.user = data.user;
       this.specialist =  data.specialist;
@@ -109,7 +111,7 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
   // Toggles
   toggleContext() {
     const formValue = this.appointmentForm.get('appointmentContext').value;
-
+    this._resetContactForm();
     if (formValue === 'faceToFace') {
       this.onlineAppointment.next(false);
       this.faceToFace.next(true);
@@ -134,7 +136,6 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
       this._resetContactForm();
       this.appointmentForm.addControl('wappAreaCode', new FormControl('', Validators.required));
       this.appointmentForm.addControl('wappRest', new FormControl('', Validators.required));
-
     } else if (formValue  === 'skype') {
       this.whatsApp.next(false);
       this.skype.next(true);
@@ -191,10 +192,8 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
     this.specialistID = sID;
     this.specialist$ = this.specialistService.getSpecialistData(sID).pipe(take(1)).subscribe(specialist => {
       this.specialist = specialist;
-    });
-    setTimeout(() => {
       this.addEvent(this.specialist);
-    }, 1000);
+    });
   }
 
   getSpecialists() {
@@ -202,6 +201,10 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
   }
 
   // Add Appointment
+  addButtonDisabled(): boolean {
+    return !this.appointmentForm.valid;
+  }
+
   addEvent(specialist) {
     const startNoTime = new Date(this.appointmentForm.get('startTime').value).toString();
     const endNoTime = new Date(this.appointmentForm.get('startTime').value).toString();
@@ -357,6 +360,11 @@ export class AddAppointmentDialogComponent implements OnInit, OnDestroy {
   convertMinutes(date) {
     const minutes = ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
     return minutes;
+  }
+
+  translateMonth(month: string): string {
+    const monthString = month.toLowerCase();
+    return this.translate.instant(`events.months.${monthString}`);
   }
 
   closeDialog() {

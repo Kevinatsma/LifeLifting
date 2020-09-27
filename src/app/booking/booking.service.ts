@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { CalendarEvent } from 'angular-calendar';
 import { UserService } from '../user/user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class BookingService implements OnDestroy {
 
   constructor( private afs: AngularFirestore,
                private userService: UserService,
-               public snackbar: MatSnackBar) {
+               public snackbar: MatSnackBar,
+               private translate: TranslateService) {
                 this.stateChange$ = this.editStateChange.subscribe((value) => {
                   this.editShow = value;
                 });
@@ -68,11 +70,12 @@ export class BookingService implements OnDestroy {
     })
     .then(() => {
       // Show Snackbar
-      const message = `${data.title} was requested succesfully`;
+      const title = this.translate.instant(data.title);
+      const message = this.translate.instant('pages.booking.messages.request_succesful', {title});
       const action = 'Close';
 
       this.snackbar.open(message, action, {
-        duration: 3000,
+        duration: 4000,
         panelClass: ['success-snackbar']
       });
     })

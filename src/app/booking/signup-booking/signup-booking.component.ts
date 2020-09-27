@@ -132,7 +132,7 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
     // Toggles
     toggleContext() {
       const formValue = this.appointmentForm.get('meetMethod').value;
-
+      this._resetContactForm();
       if (formValue === 'faceToFace') {
         this.onlineAppointment.next(false);
         this.faceToFace.next(true);
@@ -432,6 +432,11 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
       }
     };
     this.specialistService.updateSpecialist(specialist.specialistID, specialistData);
+  }
+
+  translateMonth(month: string): string {
+    const monthString = month.toLowerCase();
+    return this.translate.instant(`events.months.${monthString}`);
   }
 
   // Chat

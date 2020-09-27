@@ -1,11 +1,11 @@
 {
   "dietTypes": [
-    {"value":"omnivore", "viewValue": "Omnivore"},
-    {"value":"vegetarian", "viewValue": "Vegetarian"},
-    {"value":"vegan", "viewValue": "Vegan"},
-    {"value":"pescatarian", "viewValue": "Pescatarian"},
-    {"value":"paleo", "viewValue": "Paleo"},
-    {"value":"keto", "viewValue": "Keto"},
-    {"value":"plant-based", "viewValue": "Plant Based"}
+    {"value":"global.meals.diets.omnivore"},
+    {"value":"global.meals.diets.vegetarian"},
+    {"value":"global.meals.diets.vegan"},
+    {"value":"global.meals.diets.pescatarian"},
+    {"value":"global.meals.diets.paleo"},
+    {"value":"global.meals.diets.keto"},
+    {"value":"global.meals.diets.plant_based"}
   ]
 }

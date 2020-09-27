@@ -18,9 +18,9 @@
       "previous_step": "Paso previo",
       "next_step": "Al siguiente paso",
       "read_more": "Leer más",
-      "read_less": "Lea menos.",
+      "read_less": "Lea menos",
       "see_more": "Ver más",
-      "learn_more": "Aprende más.",
+      "learn_more": "Aprende más",
       "hide": "Esconder",
       "show": "Mostrar",
       "sign_out": "Salir",
@@ -61,7 +61,9 @@
       "short_desc": "La descripción corta",
       "short_desc_ph": "Escriba una descripción corta pero atractiva",
       "every_x_days": "Cada x días",
-      "x_per_week": "x por semana"
+      "x_per_week": "x por semana",
+      "whats_it_called": "¿Cómo se llama?",
+      "write_down": "Escríbelo aquí"
     },
     "words": {
       "yes": "Sí",
@@ -147,6 +149,9 @@
       "weight": "Peso",
       "current_weight": "Peso actual",
       "status": {
+        "title": "Estado del usuario",
+        "appointment": "Cita",
+        "general": "General",
         "signup_completed": "Inscripción completada",
         "signup_incomplete": "La inscripción no se ha completado",
         "appointment_requested": "Se solicita una cita",
@@ -189,7 +194,16 @@
       "middle_afternoon": "Media tarde",
       "dinner": "Cena",
       "after_dinner": "Después de la cena",
-      "collation": "Recopilación"
+      "collation": "Recopilación",
+      "diets": {
+        "omnivore": "Omnívoro",
+        "vegetarian": "Vegetariano",
+        "vegan": "Vegano",
+        "pescatarian": "Pescatariana",
+        "paleo": "Paleo",
+        "keto": "Keto",
+        "plant_based": "A base de plantas"
+      }
     }
   },
   "pages": {
@@ -351,7 +365,7 @@
       },
       "edit_user": {
         "package_choice": "Elección del paquete",
-        "main_goal": "objetivo principal...",
+        "main_goal": "objetivo principal",
         "contact_info": "Información de contacto",
         "user_status": {
           "title": "Estado del usuario",
@@ -368,17 +382,21 @@
       "title": "Los clientes de LifeLifting",
       "intro": "En esta sección tienes una rápida visión general de los clientes. Puedes ver la información de contacto rápida y editar/eliminarlos directamente de la lista. Con el botón de arriba a la derecha puedes añadir uno. 😃",
       "general": {
-        "user_id": "Identificación de usuario",
-        "client_id": "Identificación del cliente",
+        "user_id": "Id",
+        "client_id": "Id",
         "package_choice": "Elección del paquete",
-        "main_goal": "objetivo principal...",
+        "main_goal": "objetivo principal",
         "goal": "Meta",
         "contact_info": "Información de contacto",
         "practical_info": "Información práctica",
         "signup_completed": "Inscripción completada",
         "heard_from_us": "Nos conoció a través de",
         "errors": {
-          "no_goal": "Aún no hay un objetivo..."
+          "no_goal": "Aún no hay un objetivo",
+          "no_email": "Aún no hay correo electrónico",
+          "no_phone": "Aún no hay teléfono",
+          "no_basic_data": "El usuario aún no tiene los datos básicos",
+          "not_filled": "No está rellenado"
         }
       },
       "guidelines": {
@@ -407,7 +425,7 @@
       "title": "Los especialistas de LifeLifting",
       "intro": "En esta sección tienes una rápida visión general de los especialistas. Puede ver la información de contacto rápida y editar/eliminarlos directamente de la lista. Con el botón superior derecho se añade uno. 😃",
       "general": {
-        "specialist_id": "Identificación del especialista",
+        "specialist_id": "Id",
         "timezone": "Zona horaria",
         "speciality": "Especialidad",
         "clients_patients": "Clientes o pacientes",
@@ -510,6 +528,9 @@
         "add_to_phone": "Añadir al teléfono",
         "call": "Llama a",
         "confirm": "Confirmar la cita"
+      },
+      "messages": {
+        "request_succesful": "{{title}} fue solicitado con éxito"
       }
     },
     "first_consultation": {
@@ -636,8 +657,8 @@
           "transportation": "Método de transporte",
           "car": "🚗 Coche",
           "public": "🚉 Transporte público",
-          "bike": "🚴♂️ Bicicleta",
-          "walking": "🚶♀️ Caminando",
+          "bike": "🚴 Bicicleta",
+          "walking": "🚶 Caminando",
           "eat_during_work": "¿Puedes comer durante el trabajo?",
           "snack_during_work": "¿Puedes tomar un simple y práctico refrigerio mientras trabajas?",
           "snack_level": "¿Prefiere que sus bocadillos sean elaborados o simples?",
@@ -697,6 +718,7 @@
           "no_go_products": "Productos que no puede comer o beber",
           "cant_consume": "No puedo consumir",
           "preferred_diet": "Tipo de dieta preferida",
+          "pick_diet": "Elija un tipo de dieta apropiada",
           "dinner_type": "¿Es un plato de comida como el almuerzo, o es más bien un bocadillo?",
           "plate": "Plato",
           "snack": "Snack",
@@ -725,11 +747,12 @@
           "eating_record": "Su historial de alimentación",
           "write_important": "Escriba las cosas importantes aquí",
           "physical_activities": "Hace actividades físicas",
-          "training_location": "Dónde se entrena?"
+          "training_location": "Dónde se entrena?",
+          "location_desc": "Descripción de la ubicación"
         },
         "conditions": {
           "diarrhea": "Diarrea",
-          "gastritits": "Gastritis",
+          "gastritis": "Gastritis",
           "constipation": "Estreñimiento",
           "nausea": "Náuseas",
           "dizziness": "Mareos"
@@ -746,7 +769,7 @@
         "notice_remember": "¿Notaste/recordaste algo?"
       },
       "errors": {
-        "no_first_consult": "No. La primera consulta todavía..."
+        "no_first_consult": "No hay una primera consulta todavía..."
       }
     },
     "follow_up": {
@@ -804,7 +827,7 @@
       "intro": "En esta sección tienes una rápida visión general de los paquetes. Puedes verlos y editarlos/eliminarlos directamente de la lista. Con el botón superior derecho se añade un paquete. 😃",
       "general": {
         "available_packages": "Paquetes disponibles",
-        "package_id": "Identificación del paquete",
+        "package_id": "Id",
         "benefits": "Beneficios"
       },
       "form": {
@@ -841,7 +864,7 @@
       "title_personal": "Mis Lineamientos",
       "intro": "En esta sección tienes una rápida visión general de las Lineamientos que has creado. Puedes verlas y editarlas/eliminarlas directamente de la lista. Con el botón de arriba a la derecha añades una guía. 📄",
       "general": {
-        "guideline_id": "Identificación de la pauta",
+        "guideline_id": "Id",
         "guideline_number": "Número de guía",
         "guideline_for": "La directriz para",
         "guideline_name": "Nombre de la guía",
@@ -871,7 +894,7 @@
         "muscle_weight_placeholder": "¿Cuántos kilos?",
         "total_duration": "Duración total",
         "kcal_change": "Kcal Aumentar/disminuir",
-        "basal_metobolism": "las calorías del metabolismo basal",
+        "basal_metabolism": "las calorías del metabolismo basal",
         "protein": "Proteína",
         "carbs": "Hidratos de carbono",
         "fat": "Grasa",
@@ -927,11 +950,11 @@
       }
     },
     "mealplan": {
-      "title": "Planes de comidas",
-      "title_s": "Plan de comidas",
+      "title": "Planes de comida",
+      "title_s": "Plan de comida",
       "intro": "En esta sección tienes una rápida visión general de los Planes Alimenticios que has creado. Puede verlos y editarlos/eliminarlos directamente de la lista. Con el botón superior derecho puedes añadir un plan de comidas.",
       "general": {
-        "mealplan_id": "Identificación del plan de comidas",
+        "mealplan_id": "Id",
         "mealplan_number": "Número de plan de comidas",
         "mealplan_info_for": "Información sobre el plan de comidas para",
         "mealplan_add_intro": "El plan de comidas para el cliente. Este plan de comidas tiene que ser llenado en la primera reunión con el cliente. Este documento es de gran importancia, ya que podemos calcular montones de cosas en base a los valores que introduzca aquí. Sea preciso y pida que sea lo más personal posible para su cliente.",
@@ -1030,7 +1053,7 @@
         "this_review": "esta revisión"
       },
       "buttons": {
-        "show": "Críticas de espectáculos",
+        "show": "Mostrar las críticas",
         "hide": "Ocultar las críticas"
       },
       "form": {
@@ -1076,7 +1099,7 @@
         "my_mealplans": "Mis planes de comida",
         "my_reviews": "Mis críticas",
         "my_appointments": "Mis citas",
-        "mealplans": "Planes de comidas",
+        "mealplans": "Planes de comida",
         "shopping_lists": "Listas de compras",
         "guidelines": "Lineamientos",
         "appointments": "Citas",
@@ -1109,7 +1132,7 @@
     },
     "exercises": {
       "title": "Ejercicio",
-      "exercise_id": "Identificación del ejercicio",
+      "exercise_id": "Id",
       "intro": "En esta sección tienes una rápida visión general de los ejercicios que has introducido. Puedes verlos y editarlos/eliminarlos directamente de la lista. Con el botón de arriba a la derecha añades un ejercicio. 🤸",
       "general": {
         "saved_exercises": "Ejercicios guardados",
@@ -1118,7 +1141,7 @@
         "intense": "Intenso",
         "regular": "Regular",
         "mild": "Suave",
-        "very_mild": "Muy suave."
+        "very_mild": "Muy suave"
       },
       "form": {
         "exercise_info": "Información sobre el ejercicio",
@@ -1148,7 +1171,7 @@
       }
     },
     "food": {
-      "product_id": "Identificación del producto",
+      "product_id": "Id",
       "general": {
         "title": "Alimentos guardados",
         "intro": " En esta sección tienes una rápida visión general de los alimentos que has introducido. Puedes verlos y editarlos/eliminarlos directamente de la lista. Con el botón superior derecho añades un alimento.",
@@ -1212,7 +1235,8 @@
       "cant_load_image": "Woops... No pudimos cargar tu imagen. Por favor, sube otra."
     },
     "change_photo": "Cambiar la foto",
-    "edit_photo": "Edita la foto"
+    "edit_photo": "Edita la foto",
+    "uploading": "Cargando..."
   },
   "requests": {
     "event_request": {
@@ -1244,10 +1268,24 @@
     "saturday": "Sábado",
     "sunday": "Domingo",
     "hour": "Hora",
-    "minutes": "Actas",
+    "minutes": "Minutos",
     "per_week": "por semana",
     "per_day": "por día",
-    "years": "years"
+    "years": "años",
+    "months": {
+      "january": "Enero",
+      "february": "Febrero",
+      "march": "Marzo",
+      "april": "Abril",
+      "may": "Mayo",
+      "june": "Junio",
+      "july": "Julio",
+      "august": "Agosto",
+      "september": "Septiembre",
+      "october": "Octubre",
+      "november": "Noviembre",
+      "december": "Diciembre"
+    }
   },
   "chat": {
     "title": "Charla de LifeLifting",
@@ -1279,7 +1317,48 @@
       "intro": "Elija un plan de comidas para obtener su lista de compras"
     },
     "edit": {
-      "edit_review": " Edita la reseña escrita por {{name}} aquí. Sólo hazlo por errores de ortografía o si el usuario quiere cambiar algo. Por favor, no cambies las opiniones de la gente."
+      "edit_review": "Edita la reseña escrita por {{name}} aquí. Sólo hazlo por errores de ortografía o si el usuario quiere cambiar algo. Por favor, no cambies las opiniones de la gente."
+    }
+  },
+  "custom": {
+    "packages": {
+      "package_one": {
+        "title": "Consulta personalizada",
+        "package_desc": "Reciba una consulta personalizada por teléfono o presencial (Lima - Perú) donde nuestros nutricionistas elaborarán un plan de dieta ideal para usted, basado en sus hábitos, horarios, gustos y disgustos, etc. junto con un plan de suplementos, lista de compras y acceso a nuestro software online, el LifeLifting Mirror.",
+        "benefit_one": "01 Consulta telefónica/presencial",
+        "benefit_two": "01 Plan de nutrición personalizado",
+        "benefit_three": "02 Semanas de supervisión"
+      },
+      "package_two": {
+        "title": "Paquete de un mes",
+        "package_desc": "Reciba dos consultas personalizadas por teléfono o presencial (Lima - Perú) donde nuestros nutricionistas elaborarán un plan de dieta ideal para usted, basado en sus hábitos, horarios, gustos y disgustos, etc. junto con un plan de suplementos, una lista de compras y acceso a nuestro software online, el Mirror Online. Además de eso, reciba apoyo constante de nosotros durante 05 semanas.",
+        "benefit_one": "02 Consulta telefónica/presencial",
+        "benefit_two": "02 Planes de nutrición personalizados",
+        "benefit_three": "01 Mes de supervisión"
+      },
+      "package_three": {
+        "title": "Bienvenido a un cambio de estilo de vida",
+        "package_desc": "Reciba cinco consultas personalizadas por teléfono o en persona (Lima - Perú) donde nuestros nutricionistas elaborarán un plan de dieta ideal para usted, basado en sus hábitos, horarios, gustos y disgustos, etc., junto con un plan de suplementos, una lista de compras y acceso a nuestro software online, el Mirror Online. Además de eso, reciba apoyo constante de nosotros durante 10 semanas.",
+        "benefit_one": "05 Consulta telefónica/presencial",
+        "benefit_two": "05 Planes de nutrición personalizados",
+        "benefit_three": "Lista detallada de compras",
+        "benefit_four": "2,5 Meses de supervisión",
+        "benefit_five": "Acceso al LifeLifting Mirror"
+      }
+    },
+    "specialists": {
+      "gio_ognio": {
+        "function": "Fundador y nutricionista",
+        "desc": "Me gradué en Nutrición y Dietética con una especialización en Nutrición Deportiva y comencé mi propia compañía, LifeLifting Perú, donde trabajé con más de 450 pacientes personalmente, creando planes de nutrición personales y conscientes para cada uno de ellos basados en sus necesidades personales. En mi trabajo sigo los patrones de la dieta integral basada en plantas (Dean Ornish, Michael Greger, T. Colin Campbell son buenos ejemplos conocidos en todo el mundo). También trabajo en la Federación Peruana de Deportes como nutricionista de atletas de alto rendimiento durante los últimos 03 años. Soy competente en interacciones de macro y micronutrientes y bioquímica, siendo capaz de explicar todo este conocimiento de una manera divertida y fácil de entender. Como nutricionista, me encanta poder dar consejos expertos a los pacientes teniendo un punto de vista integral, trabajando para que sean capaces de ser la mejor versión de sí mismos.",
+        "speciality": "Nutrición Deportiva, Nutrición Vegetal, Pérdida de Peso y Bienestar"
+      }
+    }
+  },
+  "languages": {
+    "es_sa": "Español; América del Sur",
+    "en": "Inglés",
+    "levels": {
+      "proficient": "Competente"
     }
   }
 }

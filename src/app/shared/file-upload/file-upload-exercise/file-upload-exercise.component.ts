@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/cor
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { Observable, Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { FileSizePipe } from '../../pipes/file-size.pipe';
 
 @Component({
   selector: 'app-file-upload-exercise',

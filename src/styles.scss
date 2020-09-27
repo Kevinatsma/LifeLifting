@@ -732,6 +732,7 @@ ul {
 
 .no-search-result {
     text-align: center;
+    margin: 20px auto 0 !important;
     width: 80%;
 
     a.text-link {
@@ -1138,7 +1139,7 @@ mat-select.ng-dirty{
 
 .specialist-wrapper {
     min-height: calc(100vh - 66px);
-    min-width: 100%;
+    min-width: 75vw;
     max-width: 75vw;
     height: 100%;
 

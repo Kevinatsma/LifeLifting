@@ -6,7 +6,7 @@
   </div>
   
   <form [formGroup]="appointmentForm">
-    <h3>{{ 'pages.booking.form.plan_appointment'}}
+    <h3>{{ 'pages.booking.form.plan_appointment' | translate }}
       <ng-container *ngIf="!user.roles.admin || !user.roles.specialist">
         {{ 'global.words.with' | translate }} {{data.specialist.firstName}}
       </ng-container>
@@ -87,7 +87,7 @@
 
         <h3 class="date" *ngIf="hasStartDate">
           <ng-container *ngIf="start">
-            {{ start.startDay }} {{ start.startMonth }} {{ start.startYear }}
+            {{ start.startDay }} {{ translateMonth(start.startMonth) }} {{ start.startYear }}
           </ng-container>
         </h3>
 
@@ -125,7 +125,7 @@
         </mat-form-field>
 
         <h3 class="date" *ngIf="hasEndDate">
-          <ng-container *ngIf="end">{{ end.endDay }} {{ end.endMonth }} {{ end.endYear }}</ng-container>
+          <ng-container *ngIf="end">{{ end.endDay }} {{ translateMonth(end.endMonth) }} {{ end.endYear }}</ng-container>
         </h3>
 
         <div class="time" *ngIf="!hasEndDate">
@@ -264,8 +264,8 @@
 
   <section class="btn-area-one">
     <button type="submit" class="dialog-button" (click)="getSpecialist()"
-    [disabled]="!appointmentForm.valid"
-    [class.disabled]="!appointmentForm.valid"
+    [disabled]="addButtonDisabled()"
+    [class.disabled]="addButtonDisabled()"
     [mat-dialog-close]="appointmentForm.valid ? true : false">
       {{ 'global.buttons.done' | translate }}
     </button>

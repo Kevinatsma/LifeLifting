@@ -170,7 +170,7 @@
                 <ng-container *ngIf="!increaseCals">
                   {{ 'pages.guideline.form.decrease' | translate }}
                 </ng-container>
-                {{ 'pages.guideline.form.basal_metobolism' | translate }}
+                {{ 'pages.guideline.form.basal_metabolism' | translate }}
               </h6>
             </div>
             <div class="metric">
@@ -199,13 +199,13 @@
                 {{ 'pages.guideline.general.bmi' | translate }}
               </h6>
             </div>
-            <div class="metric" *ngIf="guideline.formulaData.fatPercentageAthlete">
+            <div class="metric" *ngIf="guideline.formulaData.fatPercentageAthlete > 0">
               <span class="metric__value">{{guideline.formulaData.fatPercentageAthlete | number: '1.1-1'}}%</span>
               <h6 class="metric__title">
                 {{ 'pages.guideline.general.fat_athlete' | translate }}
               </h6>
             </div>
-            <div class="metric" *ngIf="guideline.formulaData.fatPercentageRegular">
+            <div class="metric" *ngIf="guideline.formulaData.fatPercentageRegular > 0">
               <span class="metric__value">{{guideline.formulaData.fatPercentageRegular | number: '1.1-1'}}%</span>
               <h6 class="metric__title">
                 {{ 'pages.guideline.general.fat_regular' | translate }}

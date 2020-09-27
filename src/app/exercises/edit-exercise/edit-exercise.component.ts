@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ExerciseService } from '../exercise.service';
 import { Location } from '@angular/common';
@@ -27,7 +27,8 @@ export class EditExerciseComponent implements OnInit, OnDestroy {
   constructor( private fb: FormBuilder,
                private exerciseService: ExerciseService,
                public specialistService: SpecialistService,
-               public location: Location) {
+               public location: Location,
+               private cdr: ChangeDetectorRef) {
                }
 
   ngOnInit() {
@@ -64,7 +65,8 @@ export class EditExerciseComponent implements OnInit, OnDestroy {
   }
 
   receiveDownloadURL($event) {
-    return this.downloadURL = $event;
+    this.cdr.detectChanges();
+    this.downloadURL = $event;
   }
 
     // Back Button

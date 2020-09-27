@@ -21,7 +21,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.wakeup_urinate' | translate }}
         </span>
-        <p class="value big">{{bodyFunctions.diuresis.middleNightUrinate}}</p>
+        <p class="value big">{{ (bodyFunctions.diuresis.middleNightUrinate) | translate }}</p>
       </div>
     </div>
   </section>
@@ -37,7 +37,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.bowel_every_day' | translate }}
         </span>
-        <p class="value big">{{bodyFunctions.bowelMovements.everyDay}}</p>
+        <p class="value big">{{ (bodyFunctions.bowelMovements.everyDay) | translate }}</p>
         <p class="value sub-title" *ngIf="!bodyFunctions.bowelMovements.timesPerDay && bodyFunctions.bowelMovements.timesPerWeek">
           {{bodyFunctions.bowelMovements.timesPerWeek}}x 
           {{ 'events.per_week' | translate }}
@@ -55,7 +55,7 @@
       </div>
       <div class="info-card__content">
         <span class="label small">{{ 'pages.first_consultation.general.always_same_schedule' | translate }}</span>
-        <p class="value big">{{bodyFunctions.bowelMovements.sameSchedule}}</p>
+        <p class="value big">{{ (bodyFunctions.bowelMovements.sameSchedule) | translate }}</p>
       </div>
     </div>
   </section>
@@ -69,7 +69,7 @@
       </div>
       <div class="info-card__content">
         <span class="label small">{{ 'pages.first_consultation.general.most_hungry' | translate }}</span>
-        <p class="value big">{{bodyFunctions.appetite.mostHungryMoment}}</p>
+        <p class="value big">{{ (bodyFunctions.appetite.mostHungryMoment) | translate }}</p>
       </div>
     </div>
 
@@ -95,7 +95,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.sleep_status' | translate }}
         </span>
-        <p class="value big">{{bodyFunctions.sleep.sleepingStatus}}</p>
+        <p class="value big">{{ (bodyFunctions.sleep.sleepingStatus) | translate }}</p>
       </div>
     </div>
 
@@ -119,7 +119,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.trouble_sleep' | translate }}
         </span>
-        <p class="value big">{{ bodyFunctions.sleep.troubleFallingAsleep | translate }}</p>
+        <p class="value big">{{ (bodyFunctions.sleep.troubleFallingAsleep) | translate }}</p>
         <p class="value sub-title" *ngIf="bodyFunctions.sleep.troubleFallingAsleepNote">
           {{bodyFunctions?.sleep?.troubleFallingAsleepNote}} min
         </p>
@@ -134,7 +134,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.wake_up_energized' | translate }}
         </span>
-        <p class="value big">{{bodyFunctions.sleep.wakeUpEnergized}}</p>
+        <p class="value big">{{ (bodyFunctions.sleep.wakeUpEnergized) | translate }}</p>
       </div>
     </div>
 
@@ -165,7 +165,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.first_period' | translate }}
         </span>
-        <p class="value big">{{bodyFunctions.female.regularCycle}}</p>
+        <p class="value big">{{ (bodyFunctions.female.regularCycle) | translate }}</p>
       </div>
     </div>
 
@@ -177,7 +177,7 @@
         <span class="label small">
           {{ 'pages.first_consultation.general.first_period' | translate }}
         </span>
-        <p class="value big">{{bodyFunctions.female.birthControlPills}}</p>
+        <p class="value big">{{ (bodyFunctions.female.birthControlPills) | translate }}</p>
         <p class="value sub-title" *ngIf="bodyFunctions.female.birthControlPillsNote">{{bodyFunctions.female.birthControlPillsNote}}</p>
       </div>
     </div>
