@@ -1,5 +1,5 @@
 <ng-container class="info-wrapper" *ngIf="package">
-  <h2>{{package.packageTitle}}</h2>
+  <h2>{{ (package.packageTitle) | translate }}</h2>
   <div class="quick-facts">
     <p class="quick-fact">
       <i class="fa__icon far fa-money-bill-alt"></i>
@@ -9,14 +9,18 @@
     <p class="quick-fact">
       <i class="fa__icon far fa-clock"></i>
       {{package.packageDuration}} 
-      <span *ngIf="package.packageDuration === 1">week</span>
-      <span *ngIf="package.packageDuration !== 1">weeks</span>
+      <span *ngIf="package.packageDuration === 1">
+        {{ 'events.week' | translate }}
+      </span>
+      <span *ngIf="package.packageDuration !== 1">
+        {{ 'events.weeks' | translate }}
+      </span>
     </p>
   </div>
 
   <ng-container *ngIf="aboutExtended">
     <p class="card-text desc has-read-more read-more" *ngIf="user.basicData">
-      {{package.packageDescription}}
+      {{ (package.packageDescription) | translate }}
     </p>
 
     <div class="list-container">
@@ -24,7 +28,7 @@
       <ul>
         <li *ngFor="let benefit of package.packageBenefits">
           <i class="fa__icon fas fa-check"></i>
-          <span>{{benefit.benefitValue}}</span>
+          <span>{{ (benefit.benefitValue) | translate }}</span>
         </li>
       </ul>
     </div>

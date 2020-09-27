@@ -5,14 +5,16 @@
   </section>
   <section class="middle">
     <div class="title">
-        <h2>{{package.packageTitle}}</h2>
+        <h2>{{ (package.packageTitle) | translate }}</h2>
     </div>
 
     <div class="quick-info">
       <p class="speciality-title">
         {{ 'pages.package.general.package_id' | translate }}: {{package.packageID}}</p>
       <p class="description">
-        <ng-container *ngIf="package.packageDescription">{{package.packageDescription}}</ng-container>
+        <ng-container *ngIf="package.packageDescription">
+          {{ (package.packageDescription) | translate }}
+        </ng-container>
         <ng-container *ngIf="!package.packageDescription">
           {{ 'pages.package.errors.no_description' | translate }}
         </ng-container>

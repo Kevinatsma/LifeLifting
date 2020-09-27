@@ -12,11 +12,16 @@
         <span class="file-icon">
           <i class="fa__icon fas fa-edit"></i>
         </span>
-        <span class="file-label text-link" *ngIf="!downloadURL">
-          {{ 'file_upload.edit_photo' | translate }}
-        </span>
-        <span class="file-label text-link" *ngIf="downloadURL">
-          {{ 'file_upload.choose_another' | translate }}
+        <span class="file-label text-link">
+          <ng-container *ngIf="!downloadURL && !isLoading">
+            {{ 'file_upload.edit_photo' | translate }}
+          </ng-container>
+          <ng-container *ngIf="downloadURL && !isLoading">
+            {{ 'file_upload.choose_another' | translate }}
+          </ng-container>
+          <ng-container *ngIf="isLoading">
+            {{ 'file_upload.uploading' | translate }}
+          </ng-container>
         </span>
       </div>
     </label>

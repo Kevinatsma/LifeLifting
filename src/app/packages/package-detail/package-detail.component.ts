@@ -38,9 +38,9 @@ export class PackageDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.package$.unsubscribe();
-    this.prevPackage$.unsubscribe();
-    this.nextPackage$.unsubscribe();
+    if (this.package$ !== undefined) this.package$.unsubscribe();
+    if (this.prevPackage$ !== undefined) this.prevPackage$.unsubscribe();
+    if (this.nextPackage$ !== undefined) this.nextPackage$.unsubscribe();
     if (this.specialist$ !== undefined) { this.specialist$.unsubscribe(); }
   }
 

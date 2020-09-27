@@ -904,7 +904,7 @@
                 <mat-label>
                   {{ 'pages.first_consultation.general_info_2.form.2_week_conditions' | translate }}:</mat-label>
                 <mat-select matInput placeholder="Pick an option" formControlName="pastTwoWeeksValue"
-                placeholder="{{item.value.pastTwoWeeksValue.pastTwoWeeksValue ? item.value.pastTwoWeeksValue.pastTwoWeeksValue : 'Pick an option'}}"
+                placeholder="{{item.value.pastTwoWeeksValue.pastTwoWeeksValue || 'global.form.pick_appropriate' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" required>
                   <mat-option value="diarrhea">
                     {{ 'pages.first_consultation.general_info_2.conditions.diarrhea' | translate }}

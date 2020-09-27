@@ -1214,7 +1214,8 @@
             "cant_load_image": "Woops.. We couldn't load your image. Please upload another one."
         },
         "change_photo": "Change Photo",
-        "edit_photo": "Edit Photo"
+        "edit_photo": "Edit Photo",
+        "uploading": "Uploading..."
     },
     "requests": {
         "event_request": {
@@ -1249,7 +1250,7 @@
         "minutes": "Minutes",
         "per_week": "per week",
         "per_day": "per day",
-        "years": "años"
+        "years": "years"
     },
     "chat": {
         "title": "LifeLifting Chat",
@@ -1281,7 +1282,48 @@
             "intro": "Choose a mealplan to get your shopping list"
         },
         "edit": {
-            "edit_review": " Edit the review written by {{name}} here. Only do this for spelling mistakes or if the user wants to change something. Please don't change people's opinions."
+            "edit_review": "Edit the review written by {{name}} here. Only do this for spelling mistakes or if the user wants to change something. Please don't change people's opinions."
+        }
+    },
+    "custom": {
+        "packages": {
+            "package_one": {
+                "title": "Personalized Consultation",
+                "package_desc": "Receive one phone/face-to-face consultation (Lima - Perú) personalized consultation where our nutritionists will elaborate an ideal diet plan for you, based on your habits, schedules, likes and dislikes, etc.  together with a supplementation scheme, shopping list and access to our online software, the LifeLifting Mirror.",
+                "benefit_one": "01 Phone/Face to Face Consultation",
+                "benefit_two": "01 Personalized Nutrition Plan",
+                "benefit_three": "02 Weeks Monitoring"
+            },
+            "package_two": {
+                "title": "One Month Pack",
+                "package_desc": "Receive two phone/face-to-face consultation (Lima - Perú) personalized consultations where our nutritionists will elaborate an ideal diet plan for you, based on your habits, schedules, likes and dislikes, etc. together with a supplementation scheme, a shopping list and access to our online software, the Mirror Online. On top of that, receive constant support from us for 05 weeks.",
+                "benefit_one": "02 Phone/Face to face Consultation",
+                "benefit_two": "02 Personalized Nutrition Plans",
+                "benefit_three": "01 Month Monitoring"
+            },
+            "package_three": {
+                "title": "Welcome to a Lifestyle Change",
+                "package_desc": "Receive five phone/face-to-face consultation (Lima - Perú) personalized consultations where our nutritionists will elaborate an ideal diet plan for you, based on your habits, schedules, likes and dislikes, etc. together with a supplementation scheme, a shopping list and access to our online software, the Mirror Online. On top of that, receive constant support from us for 10 weeks.",
+                "benefit_one": "05 Phone/Face to face Consultation",
+                "benefit_two": "05 Personalized Nutrition Plans",
+                "benefit_three": "Detailed Shopping List",
+                "benefit_four": "2.5 Month Monitoring",
+                "benefit_five": "Access to LifeLifting Mirror"
+            }
+        },
+        "specialists": {
+            "gio_ognio": {
+                "function": "Founder & Nutritionist",
+                "desc": "Graduated from Nutrition & Dietetics with a specialization in Sports Nutrition and started my own company, LifeLifting Perú, where I worked with 450+ patients personally, creating personal conscious nutrition plans for each of them based on their personal needs. I follow whole-food, plant-based diet (Dean Ornish, Michael Greger, T. Colin Campbell are good worldwide known examples) patterns in my work. Also, I work in the Peruvian Federation of Sports as a nutritionist for high-performance athletes for the past 03 years. I am proficient in Macro & Micronutrient interactions and biochemistry, being able to explain all this knowledge in a fun & easy way to understand. As a nutritionist, I love being able to give expert advice to patients having an integral point of view, working to make them able to be the best version of themselves.",
+                "speciality": "Sports Nutrition, Plant-Based Nutrition, Weigh-Loss & Wellness"
+            }
+        }
+    },
+    "languages": {
+        "es_sa": "Spanish; South America",
+        "en": "English",
+        "levels": {
+          "proficient": "Proficient"
         }
     }
 }

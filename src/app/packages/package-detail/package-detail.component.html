@@ -1,6 +1,5 @@
 <ng-container *ngIf="package">
   <main class="specialist-wrapper" *ngIf="!editShow">
-
     <section class="action-toolbar-top">
       <div class="left">
         <button class="icon-button" [routerLink]="['../']">
@@ -26,7 +25,7 @@
           </button>
       </section>
       <section class="package-item" *ngIf="!editShow">
-        <h2>{{package.packageTitle}}</h2>
+        <h2>{{ (package.packageTitle) | translate }}</h2>
         <div class="quick-facts">
           <p class="quick-fact">
             ${{package.packagePrice}} USD
@@ -43,13 +42,13 @@
           </p>
         </div>
         <p class="card-text">
-          {{package.packageDescription}}
+          {{ (package.packageDescription) | translate }}
         </p>
         <div class="list-container">
           <ul>
             <li *ngFor="let benefit of package.packageBenefits">
               <i class="fa__icon fas fa-check"></i>
-              {{benefit.benefitValue}}
+              {{ (benefit.benefitValue) | translate }}
             </li>
           </ul>
         </div>
