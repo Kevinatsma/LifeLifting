@@ -19,7 +19,7 @@
     </div>
     <div class="navigation__link-container">
       <h4 class="anchor-link" (click)="handleNavClick($event)" data-scroll-target="habits"
-        [class.valid]="habitForm.valid">
+        [class.valid]="habitFormValid()">
         {{ 'pages.first_consultation.steps.habits' | translate }}
         <i class="fa__icon far fa-check-circle"></i>
       </h4>
@@ -178,7 +178,7 @@
 
         <mat-form-field appearance="standard" floatLabel="always" class="number">
           <mat-label>{{ 'pages.first_consultation.general_info_1.height' | translate }}</mat-label>
-          <input type="number"formControlName="height" matInput placeholder="1.85" autocomplete="off" required> <span class="specifier">
+          <input type="number" formControlName="height" matInput placeholder="1.85" autocomplete="off" required> <span class="specifier">
             {{ 'global.sizes.meters' | translate }}
           </span>
           <mat-error class="input-error" *ngIf="!basicDataForm['controls'].height.valid">
@@ -253,7 +253,7 @@
                 <mat-label>
                   {{ 'pages.first_consultation.habits.form.cups_a_day' | translate }}
                 </mat-label>
-                <input type="number"formControlName="alcoholNote" matInput placeholder="5" autocomplete="off" required>
+                <input type="number" formControlName="alcoholNote" matInput placeholder="5" autocomplete="off">
                 <mat-error class="input-error" *ngIf="!habitForm['controls'].alcoholNote.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
               </mat-form-field>
             </ng-container>
@@ -279,7 +279,7 @@
                 <mat-label>
                   {{ 'pages.first_consultation.habits.form.packs_a_week' | translate }}
                 </mat-label>
-                <input type="number"formControlName="smokeNote" matInput placeholder="4" autocomplete="off" required>
+                <input type="number"formControlName="smokeNote" matInput placeholder="4" autocomplete="off">
                 <mat-error class="input-error" *ngIf="!habitForm['controls'].smokeNote.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
               </mat-form-field>
             </ng-container>
@@ -320,7 +320,7 @@
           <ng-container *ngIf="habitForm['controls'].coffee.value === 'global.words.yes'">
             <mat-form-field appearance="standard" floatLabel="always" class="number">
               <mat-label>{{ 'pages.first_consultation.habits.form.cups_a_day' | translate }}</mat-label>
-              <input type="number"formControlName="coffeeNote" matInput placeholder="4" autocomplete="off" required>
+              <input type="number"formControlName="coffeeNote" matInput placeholder="4" autocomplete="off">
               <mat-error class="input-error" *ngIf="!habitForm['controls'].coffeeNote.valid">
                 {{ 'global.form.errors.required' | translate }}
               </mat-error>
@@ -370,7 +370,7 @@
             <ng-container *ngIf="habitForm['controls'].socialLife.value === 'global.words.yes'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
                 <mat-label>{{ 'pages.first_consultation.habits.form.days_a_week' | translate }}</mat-label>
-                <input type="number"formControlName="socialLifeNote" matInput placeholder="2" autocomplete="off" required>
+                <input type="number"formControlName="socialLifeNote" matInput placeholder="2" autocomplete="off">
                 <mat-error class="input-error" *ngIf="!habitForm['controls'].socialLifeNote.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
               </mat-form-field>
             </ng-container>
@@ -390,7 +390,7 @@
             <ng-container *ngIf="habitForm['controls'].stayUpLate.value === 'global.words.yes'">
               <mat-form-field appearance="standard" floatLabel="always" class="number">
                 <mat-label>{{ 'pages.first_consultation.habits.form.days_a_week' | translate }}</mat-label>
-                <input type="number"formControlName="stayUpLateNote" matInput placeholder="4" autocomplete="off" required>
+                <input type="number"formControlName="stayUpLateNote" matInput placeholder="4" autocomplete="off">
                 <mat-error class="input-error" *ngIf="!habitForm['controls'].stayUpLateNote.valid">{{ 'global.form.errors.required' | translate }}</mat-error>
               </mat-form-field>
             </ng-container>
@@ -1260,7 +1260,7 @@
               <mat-form-field appearance="standard" floatLabel="always">
                 <textarea type="text" matInput formControlName="physicalActivitiesWhy"
                 placeholder="{{ 'global.questions.why_not' | translate }}" 
-                matTextareaAutosize autofocus="off" autocomplete="off" required>
+                matTextareaAutosize autofocus="off" autocomplete="off">
                 </textarea>
               </mat-form-field>
             </ng-container>
@@ -1414,8 +1414,8 @@
             <ng-container *ngIf="generalDataForm['controls'].orderFood.value === 'global.words.yes'">
               <mat-form-field appearance="standard" floatLabel="always">
                 <textarea type="text" matInput formControlName="orderFoodNote"
-                placeholder="{{ 'global.words.lke_what' | translate }}" 
-                matTextareaAutosize autofocus="off" autocomplete="off">
+                  placeholder="{{ 'global.words.like_what' | translate }}" 
+                  matTextareaAutosize autofocus="off" autocomplete="off">
                 </textarea>
               </mat-form-field>
             </ng-container>

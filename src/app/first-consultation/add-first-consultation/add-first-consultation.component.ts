@@ -173,6 +173,10 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
     this.birthDay$.unsubscribe();
   }
 
+  habitFormValid(): boolean {
+    return this.habitForm.valid;
+  }
+
   // Getters
 
   get healthConditionsArray() {
@@ -510,14 +514,13 @@ export class AddFirstConsultationComponent implements OnInit, OnDestroy {
 
   radioChange(form: String, formControlName: String, requirement: String, event) {
     const value = event.value;
-
     if (value === 'global.words.yes' && requirement === 'global.words.yes' || value === 'global.words.no' && requirement === 'global.words.no') {
       if (form === 'habits') {
-        this.habitForm.addControl(`${formControlName}Note`, new FormControl('', Validators.required));
+        this.habitForm.addControl(`${formControlName}Note`, new FormControl(''));
       } else if (form === 'bodyFunctions') {
-        this.bodyFunctionsForm.addControl(`${formControlName}Note`, new FormControl('', Validators.required));
+        this.bodyFunctionsForm.addControl(`${formControlName}Note`, new FormControl(''));
       } else if (form === 'generalData') {
-        this.generalDataForm.addControl(`${formControlName}Note`, new FormControl('', Validators.required));
+        this.generalDataForm.addControl(`${formControlName}Note`, new FormControl(''));
       }
     } else {
       if (form === 'habits') {
