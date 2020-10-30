@@ -204,6 +204,21 @@
                 "keto": "Keto",
                 "plant_based": "Plant based"
             }
+        },
+        "units": {
+            "cup": "Cup",
+            "can": "Can",
+            "fillet": "Fillet",
+            "glass": "Glass",
+            "gram": "Gram",
+            "kg": "Kilogram",
+            "liter": "Liter",
+            "milligram": "Milligram",
+            "milliliter": "Milliliter",
+            "slice": "Slice",
+            "spoon": "Spoon",
+            "teaspoon": "Teaspoon",
+            "unit": "Unit"
         }
     },
     "pages": {
@@ -1212,7 +1227,39 @@
                 "shopping_list_unit": "The Unit for the shopping list",
                 "calculation_factor": "The calculation factor - see example down",
                 "preperations_detail": "Describe and add a few preperation methods for the product.",
-                "prep_method": "Preperation method"
+                "prep_method": "Preperation method",
+                "prep_way": "Way of preparing",
+                "pick_another_unit": "Pick another unit"
+            },
+            "nutrition_types": {
+                "protein": "Protein",
+                "carbs": "Carbohydrates",
+                "fat": "Fat",
+                "vegetables": "Vegetables",
+                "supps": "Supplements"
+            },
+            "preperations": {
+                "none": "None",
+                "baked": "Baked",
+                "chopped": "Chopped",
+                "cooked": "Cooked",
+                "cooked_spinach": "Cooked w/Spinach",
+                "diced": "Diced",
+                "grated": "Grated",
+                "hard_boiled": "Hard boiled",
+                "in_oven": "In the oven",
+                "on_grill": "On the grill",
+                "grilled": "Grilled",
+                "sauteed": "Sautéed",
+                "omelette": "Omelette",
+                "raw": "Raw",
+                "roasted": "Roasted",
+                "sauteed_veggies": "Sauteed w/Veggies",
+                "scrambled": "Scrambled",
+                "sliced": "Sliced",
+                "snacked": "Snacked",
+                "steamed": "Steamed",
+                "whole": "Whole"
             },
             "buttons": {
                 "add_period": "Add a Mealtime period",

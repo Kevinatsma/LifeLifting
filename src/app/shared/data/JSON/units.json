@@ -1,17 +1,17 @@
 {
-    "units": [
-    {"value":"Cup"},
-    {"value":"Can"},
-    {"value":"Fillet"},
-    {"value":"Glass"},
-    {"value":"Gram"},
-    {"value":"Kilogram"},
-    {"value":"Liter"},
-    {"value":"Milligram"},
-    {"value":"Milliliter"},
-    {"value":"Slice"},
-    {"value":"Spoon"},
-    {"value":"Teaspoon"},
-    {"value":"Unit"}
+  "units": [
+    {"value":"global.units.cup"},
+    {"value":"global.units.can"},
+    {"value":"global.units.fillet"},
+    {"value":"global.units.glass"},
+    {"value":"global.units.gram"},
+    {"value":"global.units.kg"},
+    {"value":"global.units.liter"},
+    {"value":"global.units.milligram"},
+    {"value":"global.units.milliliter"},
+    {"value":"global.units.slice"},
+    {"value":"global.units.spoon"},
+    {"value":"global.units.teaspoon"},
+    {"value":"global.units.unit"}
   ]
 }

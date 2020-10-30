@@ -6,6 +6,7 @@ import preperations from './../../data/JSON/preperations.json';
 import mealTimes from './../../data/JSON/mealTimes.json';
 import units from './../../data/JSON/units.json';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { nutritionTypes } from 'src/app/foods/food.model';
 
 @Component({
   selector: 'app-add-food-dialog',
@@ -29,13 +30,7 @@ export class AddFoodDialogComponent implements OnInit {
   mealTimeValue = new FormControl('', [Validators.required]);
   mealTimes = mealTimes.mealTimes;
   units = units.units;
-  nutritionTypes =  [
-    {value: 'Protein'},
-    {value: 'Carbohydrates'},
-    {value: 'Fat'},
-    {value: 'Vegetables'},
-    {value: 'Supplements'}
-  ];
+  nutritionTypes = nutritionTypes;
   preperations = preperations.preperations;
 
   // Calculative vars

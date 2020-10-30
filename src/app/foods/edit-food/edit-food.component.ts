@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { FoodService } from './../food.service';
 import { Location } from '@angular/common';
 import { SpecialistService } from './../../specialists/specialist.service';
-import { Food } from '../food.model';
+import { Food, nutritionTypes } from '../food.model';
 import units from './../../shared/data/JSON/units.json';
 
 @Component({
@@ -25,13 +25,7 @@ export class EditFoodComponent implements OnInit, OnDestroy {
   downloadURL: string | any;
   url: any;
   units = units.units;
-  nutritionTypes =  [
-    {value: 'Protein'},
-    {value: 'Carbohydrates'},
-    {value: 'Fat'},
-    {value: 'Vegetables'},
-    {value: 'Supplements'}
-  ];
+  nutritionTypes = nutritionTypes;
 
   constructor( private fb: FormBuilder,
                private foodService: FoodService,

@@ -90,7 +90,7 @@
           placeholder="{{ 'pages.food.form.nutrition_group_detail' | translate }}"
           required panelClass="dropdown-regular">
             <mat-option *ngFor="let type of nutritionTypes" [value]="type.value">
-              {{type.value}}
+              {{ (type?.value) | translate }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -107,7 +107,7 @@
                 placeholder="{{ 'pages.food.form.pick_mealtime' | translate }}"  
                 panelClass="dropdown-regular" autocomplete="off">
                 <mat-option *ngFor="let time of mealTimes" [value]="time.value">
-                  {{time.value}}
+                  {{ (time?.value) | translate }}
                 </mat-option>
               </mat-select>
               <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">
@@ -153,7 +153,7 @@
             placeholder="{{ 'pages.food.form.pick_value_placeholder' | translate }}" 
             panelClass="dropdown-regular" autofocus="off" (selectionChange)="updateUnit()">
             <mat-option *ngFor="let unit of units" [value]="unit.value">
-              {{unit.value}}
+              {{(unit.value) | translate}}
             </mat-option>
           </mat-select>
           <mat-error class="input-error" *ngIf="!unitForm['controls'].unit.valid">
@@ -163,7 +163,7 @@
         <div class="result" *ngIf="unitForm['controls'].unit.value && infoForm['controls'].productName.value">
           <p class="card-text">
             1 
-            <strong>{{unitForm['controls'].unit.value}}</strong>
+            <strong>{{(unitForm['controls'].unit.value) | translate}}</strong>
             {{ 'global.words.of' | translate }} 
             <strong>{{infoForm['controls'].productName.value}}</strong>
           </p>
@@ -176,7 +176,7 @@
             placeholder="{{ 'pages.food.form.pick_value_placeholder' | translate }}" 
             panelClass="dropdown-regular">
             <mat-option *ngFor="let unit of units" [value]="unit.value">
-              {{unit.value}}
+              {{(unit.value) | translate}}
             </mat-option>
           </mat-select>
           <mat-error class="input-error" *ngIf="!unitForm['controls'].shoppingUnit.valid">
@@ -196,12 +196,14 @@
         <div class="result" *ngIf="unitForm['controls'].unit.value && infoForm['controls'].productName.value">
           <p class="card-text">
             1 
-            <strong>{{unitForm['controls'].unit.value}}</strong>
+            <strong>{{ (unitForm['controls'].unit.value) | translate }}</strong>
             {{ 'global.words.of' | translate }} 
             <strong>{{infoForm['controls'].productName.value}}</strong>
             {{ 'global.words.is' | translate }} 
             {{unitForm['controls'].factor.value}}
-            <strong [class.shopping-unit]="showShoppingUnit">{{unitForm['controls'].shoppingUnit.value || shoppingUnit}}</strong>
+            <strong [class.shopping-unit]="showShoppingUnit">
+              {{(unitForm['controls'].shoppingUnit.value || shoppingUnit) | translate}}
+            </strong>
             {{ 'global.words.of' | translate }}  
             <strong>{{infoForm['controls'].productName.value}}</strong>
           </p>
@@ -232,11 +234,12 @@
             </div>
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>{{ 'pages.food.form.prep_method' | translate }}</mat-label>
-              <mat-select matInput placeholder="Way of Preparing" formControlName="prepValue" 
-              panelClass="dropdown-regular" autocomplete="off" required>
+              <mat-select matInput placeholder="{{ 'pages.food.form.prep_way' | translate }}"
+                formControlName="prepValue" panelClass="dropdown-regular" autocomplete="off"
+                required>
                 <mat-option *ngFor="let preperation of preperations"
                   [value]="preperation.prepValue">
-                  {{preperation.prepValue}}
+                  {{preperation.prepValue | translate}}
                 </mat-option>
               </mat-select>
               <mat-error class="input-error" *ngIf="!prepValue.valid && prepForm.touched">
@@ -263,8 +266,8 @@
           {{ 'global.buttons.back' | translate }}
         </button>
         <button type="submit" class="dialog-button" (click)="addFood()"
-          [disabled]="!infoForm.valid || !categoryForm.valid || !prepForm.valid || !unitForm.valid"
-          [class.disabled]="!infoForm.valid || !categoryForm.valid  || !prepForm.valid || !unitForm.valid"
+          [disabled]="!infoForm.valid || !categoryForm.valid || !prepForm.valid || !unitForm.valid || !downloadURL"
+          [class.disabled]="!infoForm.valid || !categoryForm.valid  || !prepForm.valid || !unitForm.valid || !downloadURL"
           mat-dialog-close>
             {{ 'global.buttons.done' | translate }}
         </button>

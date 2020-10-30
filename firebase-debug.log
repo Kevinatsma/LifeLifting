@@ -1,0 +1,65 @@
+[debug] [2020-10-28T04:16:51.980Z] ----------------------------------------------------------------------
+[debug] [2020-10-28T04:16:51.981Z] Command:       /Users/katsma/.nvm/versions/node/v12.13.1/bin/node /Users/katsma/.nvm/versions/node/v12.13.1/bin/firebase deploy
+[debug] [2020-10-28T04:16:51.981Z] CLI Version:   8.12.1
+[debug] [2020-10-28T04:16:51.981Z] Platform:      darwin
+[debug] [2020-10-28T04:16:51.981Z] Node Version:  v12.13.1
+[debug] [2020-10-28T04:16:51.984Z] Time:          Tue Oct 27 2020 23:16:51 GMT-0500 (Colombia Standard Time)
+[debug] [2020-10-28T04:16:51.984Z] ----------------------------------------------------------------------
+[debug] [2020-10-28T04:16:51.984Z] 
+[debug] [2020-10-28T04:16:51.995Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-10-28T04:16:51.995Z] > authorizing via signed-in user
+[debug] [2020-10-28T04:16:51.995Z] [iam] checking project lifelifting-app for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-10-28T04:16:51.997Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-10-28T04:16:51.997Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-10-28T04:18:07.904Z] [iam] error while checking permissions, command may fail: FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2020-10-28T04:18:07.906Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-10-28T04:18:07.906Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-10-28T04:19:23.969Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2020-10-28T04:20:39.490Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+    at Object.<anonymous> (/Users/katsma/.nvm/versions/node/v12.13.1/lib/node_modules/firebase-tools/lib/auth.js:23:32)
+    at Module._compile (internal/modules/cjs/loader.js:959:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at Object.<anonymous> (/Users/katsma/.nvm/versions/node/v12.13.1/lib/node_modules/firebase-tools/lib/init/features/hosting/github.js:20:16)
+    at Module._compile (internal/modules/cjs/loader.js:959:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at Object.<anonymous> (/Users/katsma/.nvm/versions/node/v12.13.1/lib/node_modules/firebase-tools/lib/init/features/hosting/index.js:7:22)
+    at Module._compile (internal/modules/cjs/loader.js:959:30)
+[error] 
+[error] Error: Failed to get Firebase project lifelifting-app. Please make sure the project exists and your account has permission to access it.
+[debug] [2020-10-28T04:25:02.657Z] ----------------------------------------------------------------------
+[debug] [2020-10-28T04:25:02.658Z] Command:       /Users/katsma/.nvm/versions/node/v12.13.1/bin/node /Users/katsma/.nvm/versions/node/v12.13.1/bin/firebase deploy
+[debug] [2020-10-28T04:25:02.658Z] CLI Version:   8.12.1
+[debug] [2020-10-28T04:25:02.658Z] Platform:      darwin
+[debug] [2020-10-28T04:25:02.658Z] Node Version:  v12.13.1
+[debug] [2020-10-28T04:25:02.659Z] Time:          Tue Oct 27 2020 23:25:02 GMT-0500 (Colombia Standard Time)
+[debug] [2020-10-28T04:25:02.659Z] ----------------------------------------------------------------------
+[debug] [2020-10-28T04:25:02.659Z] 
+[debug] [2020-10-28T04:25:02.668Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-10-28T04:25:02.668Z] > authorizing via signed-in user
+[debug] [2020-10-28T04:25:02.668Z] [iam] checking project lifelifting-app for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-10-28T04:25:02.669Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-10-28T04:25:02.669Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-10-28T04:25:02.921Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Wed, 28 Oct 2020 04:25:02 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-28T04:25:02.935Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lifelifting-app:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-10-28T04:25:03.495Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 28 Oct 2020 04:25:03 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=357","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-28T04:25:03.497Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lifelifting-app  
+ 
+[debug] [2020-10-28T04:25:11.492Z] Server Error. connect ETIMEDOUT 172.217.30.202:443

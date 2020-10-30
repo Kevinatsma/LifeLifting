@@ -58,7 +58,7 @@ export class EditExerciseComponent implements OnInit, OnDestroy {
     const data = {
       exerciseName: this.editExerciseForm.get('exerciseName').value || this.exercise.exerciseName,
       metsValue: this.editExerciseForm.get('metsValue').value || this.exercise.metsValue,
-      exercisePhoto: this.downloadURL || this.exercise.exercisePhoto
+      exercisePhoto: this.downloadURL || this.exercise.exercisePhoto || ''
     };
     this.exerciseService.updateExercise(this.exercise.exerciseID, data);
     this.toggleEdit();
