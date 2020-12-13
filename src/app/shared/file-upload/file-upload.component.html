@@ -1,4 +1,4 @@
-<mat-card class="dropzone upload-image-card form-card" 
+<mat-card class="dropzone upload-image-card form-card"
   appDropZone
   (hovered)="toggleHover($event)"
   (dropped)="startUpload($event)"
@@ -13,15 +13,10 @@
       <input type="file" (change)="startUpload($event.target.files)">
 
       <div class="file-cta">
-        <span class="file-icon">
+        <button class="file-label text-link" *ngIf="downloadURL" (click)="resetImg()">
           <i class="fa__icon fas fa-upload"></i>
-        </span>
-        <span class="file-label text-link" *ngIf="!downloadURL">
-          {{ 'file_upload.or_choose_one' | translate }}
-        </span>
-        <span class="file-label text-link" *ngIf="downloadURL">
           {{ 'file_upload.choose_another' | translate }}
-        </span>
+        </button>
       </div>
     </label>
   </div>
@@ -47,9 +42,9 @@
     <div class="file">
       <label class="file-label">
         <input type="file" (change)="startUpload($event.target.files)">
-  
+
         <span class="bottom-btn">
-          <span class="file-label text-link" *ngIf="downloadURL">
+          <span class="file-label text-link" *ngIf="downloadURL" (click)="resetImg()">
             {{ 'file_upload.change_photo' | translate }}
           </span>
           <span class="file-icon">

@@ -34,10 +34,8 @@ export class SignupStepOneComponent implements OnInit {
     public fb: FormBuilder,
     public auth: AuthService,
     public router: Router,
-    private route: ActivatedRoute,
-    private translate: TranslateService
+    private route: ActivatedRoute
   ) {
-    console.log(this.translate.instant('global.words.masculine'));
     this.genders = [
       {value: 'female', viewValue: 'global.words.feminine'},
       {value: 'male', viewValue: 'global.words.masculine'},

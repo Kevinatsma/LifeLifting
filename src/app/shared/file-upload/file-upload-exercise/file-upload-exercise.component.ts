@@ -79,4 +79,7 @@ export class FileUploadExerciseComponent implements OnInit, OnDestroy {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }
 
+  resetImg() {
+    this.downloadURL = null;
+  }
 }

@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Specialist } from './specialist.model';
 import { AngularFirestoreDocument, AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap, filter } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from './../user/user.model';
 import { UserService } from '../user/user.service';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -41,14 +42,23 @@ export class SpecialistService {
     return this.specialist;
   }
 
+  mapSpecialists = (specialists: Specialist[]): Specialist[] => {
+    return _.filter(specialists, (specialist: Specialist) => {
+      if (!specialist.testSpecialist) return specialist;
+    });
+  }
+
   getSpecialists() {
-    this.specialists = this.specialistCol.snapshotChanges().pipe(map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data() as Specialist;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      });
-    }));
+    this.specialists = this.specialistCol.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as Specialist;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      }),
+      map(this.mapSpecialists)
+    );
     return this.specialists;
   }
 
@@ -95,6 +105,7 @@ export class SpecialistService {
       },
       signUpDate: new Date(),
       packageChoice: 'NaN',
+      testUser: false
     };
     this.addSpecialist(formData, user);
     return userRef.set(data, { merge: true });
@@ -119,6 +130,7 @@ export class SpecialistService {
       country: formData.country,
       languages: formData.languages,
       reviews: formData.reviews,
+      testUser: false,
     };
     this.afs.doc<Specialist>(`specialists/${formData.specialistID}`).set(data,  {merge: true})
     .then(() => {

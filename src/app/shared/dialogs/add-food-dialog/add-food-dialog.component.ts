@@ -6,7 +6,7 @@ import preperations from './../../data/JSON/preperations.json';
 import mealTimes from './../../data/JSON/mealTimes.json';
 import units from './../../data/JSON/units.json';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { nutritionTypes } from 'src/app/foods/food.model';
+import { nutritionTypes } from './../../../foods/food.model';
 
 @Component({
   selector: 'app-add-food-dialog',

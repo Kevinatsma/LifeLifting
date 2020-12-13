@@ -45,4 +45,5 @@ export class User {
     signUpDate?: Date;
     formulas?: Formulas;
     currentWeight?: number;
+    testUser?: boolean;
 }

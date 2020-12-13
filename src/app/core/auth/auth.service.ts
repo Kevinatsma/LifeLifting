@@ -85,7 +85,8 @@ export class AuthService {
       status: {
         signUpCompleted: false,
         accepted: false,
-      }
+      },
+      testUser: false
     };
     return userRef.set(data, { merge: true });
   }

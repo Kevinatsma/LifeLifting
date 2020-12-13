@@ -33,4 +33,5 @@ export class Specialist {
         }
     ];
     stats?: Stats;
+    testSpecialist?: boolean;
 }
