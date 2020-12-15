@@ -1,4 +1,6 @@
 export class Timezone {
-    gmtValue: string;
-    cityValue: string;
+    gmtValue?: string;
+    cityValue?: string;
+    city?: string;
+    country?: string;
 }

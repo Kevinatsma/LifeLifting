@@ -24,7 +24,7 @@ export class MyClientListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.specialist$ = this.userService.getUserDataByID(this.auth.currentUserId).subscribe((user) => {
       this.specialist = user;
-      const specialistID = 'specialist'  + this.specialist.sID;
+      const specialistID = this.specialist.sID;
       this.myClientsCol = this.afs.collection('users', ref => ref.where('specialist', '==', `${specialistID}`));
       this.myClients = this.myClientsCol.valueChanges();
     });

@@ -29,7 +29,7 @@
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'pages.client.form.type_pass' | translate }}</mat-label>
             <input class="form-input" type="password" matInput required
-              placeholder="{{ 'pages.specialist.safe_warning_s' | translate }}"
+              placeholder="{{ 'pages.specialist.general.safe_warning_s' | translate }}"
               [type]="hide ? 'password' : 'text'" formControlName="password"
               [class.active]="!password.valid && password.touched"
               autocomplete="new-password">
@@ -61,10 +61,11 @@
           <p class="card-text">
             {{ 'pages.specialist.form.personal_data' | translate }}
           </p>
-      
+
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'pages.specialist.general.specialist_id' | translate }}</mat-label>
-            <input type="text" matInput formControlName="specialistID" placeholder="Serves as a quick lookup helper" autocomplete="new-password">
+            <input type="text" matInput formControlName="specialistID"
+            placeholder="Serves as a quick lookup helper" autocomplete="new-password">
             <mat-hint *ngIf="!personalForm['controls'].specialistID.dirty">
               {{ 'pages.specialist.errors.8_chars' | translate }}
             </mat-hint>
@@ -72,7 +73,7 @@
               {{ 'global.errors.required' | translate }}
             </mat-error>
           </mat-form-field>
-      
+
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'global.form.first_name' | translate }}</mat-label>
             <input type="text" matInput formControlName="firstName"
@@ -82,7 +83,7 @@
               {{ 'global.errors.required' | translate }}
             </mat-error>
           </mat-form-field>
-      
+
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'global.form.last_name' | translate }}</mat-label>
             <input type="text" matInput formControlName="lastName"
@@ -138,14 +139,14 @@
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'global.form.short_desc' | translate }}</mat-label>
             <textarea type="text" matInput formControlName="description"
-              placeholder="{{ 'global.form.short_desc_ph' | translate }}" 
+              placeholder="{{ 'global.form.short_desc_ph' | translate }}"
             matTextareaAutosize autofocus="off" autocomplete="off">
             </textarea>
             <mat-error class="input-error" *ngIf="!aboutForm['controls'].description.valid">
               {{ 'global.errors.required' | translate }}
             </mat-error>
           </mat-form-field>
-      
+
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'global.form.phone_number' | translate }}</mat-label>
             <input type="number" matInput formControlName="phoneNumber"
@@ -185,7 +186,7 @@
               {{ 'global.errors.required' | translate }}
             </mat-error>
           </mat-form-field>
-      
+
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'pages.specialist.general.speciality' | translate }}</mat-label>
             <input type="text" matInput formControlName="speciality"
@@ -226,7 +227,7 @@
         <mat-step [stepControl]="locationForm">
             <form [formGroup]="locationForm">
           <ng-template matStepLabel>{{ 'global.words.location' | translate }}</ng-template>
-          <h3>🗺️ {{ 'global.word.location' | translate }}</h3>
+          <h3>🗺️ {{ 'global.words.location' | translate }}</h3>
           <p class="card-text">
             {{ 'pages.specialist.form.specialist_location' | translate }}
           </p>
@@ -237,25 +238,27 @@
               formControlName="timeZone" autocomplete="off" required>
               <mat-option *ngFor="let timezone of timezones | async"
                 [value]="timezone.gmtValue">
-                {{timezone.city}}, {{timezone.country}} / {{timezone.gmtValue}}
+                {{timezone?.city}}, {{timezone?.country}} / {{timezone.gmtValue}}
               </mat-option>
             </mat-select>
             <mat-error class="input-error" *ngIf="!locationForm['controls'].timeZone.valid">
               {{ 'global.errors.required' | translate }}
             </mat-error>
           </mat-form-field>
-      
+
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'global.words.city' | translate }}</mat-label>
-            <input type="text" matInput formControlName="city" autofocus="off" autocomplete="off">
+            <input type="text" matInput formControlName="city" autofocus="off" autocomplete="off"
+              placeholder="{{ 'global.words.city' | translate }}">
             <mat-error class="input-error" *ngIf="!locationForm['controls'].city.valid">
               {{ 'global.errors.required' | translate }}
             </mat-error>
           </mat-form-field>
-      
+
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'global.words.country' | translate }}</mat-label>
-            <input type="text" matInput formControlName="country" autofocus="off" autocomplete="off">
+            <input type="text" matInput formControlName="country" autofocus="off" autocomplete="off"
+              placeholder="{{ 'global.words.country' | translate }}">
             <mat-error class="input-error" *ngIf="!locationForm['controls'].country.valid">
               {{ 'global.errors.required' | translate }}
             </mat-error>
@@ -289,7 +292,7 @@
                 <mat-form-field appearance="standard" floatLabel="always">
                   <mat-label>{{ 'pages.specialist.form.which_lang' | translate }}</mat-label>
                   <mat-select matInput required panelClass="dropdown-regular"
-                    placeholder="{{ 'global.form.pick_language' | translate }}" 
+                    placeholder="{{ 'global.form.pick_language' | translate }}"
                     formControlName="languageValue" autocomplete="off">
                     <mat-option *ngFor="let language of languages" [value]="language.name">
                       {{language.name}}
@@ -302,7 +305,7 @@
 
                 <mat-form-field appearance="standard" floatLabel="always">
                   <mat-label>{{ 'pages.specialist.form.what_level' | translate }}</mat-label>
-                  <mat-select matInput autocomplete="off" panelClass="dropdown-regular" 
+                  <mat-select matInput autocomplete="off" panelClass="dropdown-regular"
                     placeholder="{{ 'pages.specialist.form.proficiency' | translate }}"
                     required formControlName="languageLevel" >
                     <mat-option *ngFor="let level of languageLevels" [value]="level.value">
@@ -315,7 +318,7 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-              
+
               <div class="btn-area">
                 <button mat-icon-button type="button" class="delete-btn"
                   (click)="deleteLanguage(i)">

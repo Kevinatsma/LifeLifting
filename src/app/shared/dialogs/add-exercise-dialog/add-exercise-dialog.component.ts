@@ -155,7 +155,7 @@ export class AddExerciseDialogComponent implements OnInit {
     const data = {
       exerciseName: this.infoForm.get('exerciseName').value,
       metsValue: this.infoForm.get('metsValue').value,
-      exercisePhoto: this.downloadURL,
+      exercisePhoto: this.downloadURL || '',
       categories: this.categoryForms.value,
       locations: this.locationForms.value,
     };

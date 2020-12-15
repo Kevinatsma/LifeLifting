@@ -6,7 +6,7 @@
             <i class="fa__icon fas fa-arrow-left"></i>
         </button>
       </div>
-      <div class="right">  
+      <div class="right">
         <button class="icon-button" (click)="editSpecialist()">
           <i class="fa__icon fas fa-check"></i>
         </button>
@@ -27,9 +27,9 @@
           </div>
         </div>
         <div class="quick-info">
-          
+
           <p class="timezone">
-              <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimezone" 
+              <mat-select matInput placeholder="Which timezone is he/she in?" [(value)]="selectedTimeZone"
               panelClass="dropdown-regular" formControlName="timeZone" autocomplete="off" required name="timeZone">
                 <mat-option *ngFor="let timezone of timezones | async" [value]="timezone.gmtValue"> {{timezone.city}}, {{timezone.country}} / {{timezone.gmtValue}}</mat-option>
               </mat-select>
@@ -60,25 +60,25 @@
           </div>
           <div class="bottom">
             <p class="tab">
-              <input class="stat" type="number" name="patientsTotal" maxlength="5" formControlName="patientsTotal">  
-                {{ 'pages.specialist.clients_patients' | translate }}
+              <input class="stat" type="number" name="patientsTotal" maxlength="5" formControlName="patientsTotal">
+                {{ 'pages.specialist.general.clients_patients' | translate }}
             </p>
             <p class="tab">
                 <input class="stat" type="number" name="yearsOfExperience" maxlength="2" formControlName="yearsOfExperience">
-                {{ 'pages.specialist.years_experience' | translate }}
+                {{ 'pages.specialist.general.years_experience' | translate }}
             </p>
           </div>
         </div>
       </section>
 
-      <section class="about">  
+      <section class="about">
         <h5>{{ 'global.words.about' | translate }} {{specialist.firstName}}</h5>
         <textarea matInput matTextareaAutosize formControlName="description"></textarea>
       </section>
 
       <section class="contact-language">
         <div class="contact-info">
-          <h5 class="purple">{{ 'global.specialist.contact_info' | translate }}</h5>
+          <h5 class="purple">{{ 'pages.specialist.general.contact_info' | translate }}</h5>
           <ul class="contact-menu">
             <li>
               <i class="fa__icon far fa-envelope"></i>
@@ -90,18 +90,18 @@
             </li>
           </ul>
         </div>
-        <div class="languages" *ngIf="arraysEnabled">
+        <!-- Change Language Dropdown-->
+        <!-- <div class="languages" *ngIf="arraysEnabled">
           <h5 class="purple">{{ 'global.specialist.languages' | translate }}</h5>
           <ul>
             <li *ngFor="let language of specialist.languages"><strong>{{language.languageValue}}</strong> - {{language.languageLevel}}</li>
           </ul>
-        </div>
+        </div> -->
       </section>
     </form>
   </main>
-  
-    
+
+
   <ng-container *ngIf="!specialist">
     <app-loading-spinner></app-loading-spinner>
   </ng-container>
-  

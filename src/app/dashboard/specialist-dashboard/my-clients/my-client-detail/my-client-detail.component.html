@@ -103,7 +103,7 @@
       </div>
     </section>
 
-    <section class="about">  
+    <section class="about">
       <div class="icon">
         <i class="fa__icon fab fa-algolia"></i>
       </div>
@@ -161,14 +161,14 @@
         <h5 class="purple">{{ 'pages.client.general.practical_info' | translate }}</h5>
         <ul>
           <li>
-            {{ 'pages.client.general.heard_from_us' | translate }}: 
+            {{ 'pages.client.general.heard_from_us' | translate }}:
             <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong>
           </li>
           <li>{{ 'pages.client.general.signup_completed' | translate }}?
-            <ng-container *ngIf="user.status.signupCompleted">
+            <ng-container *ngIf="user?.status?.signUpCompleted">
               <strong>{{ 'global.words.yes' | translate}}</strong>
             </ng-container>
-            <ng-container *ngIf="!user.status.signupCompleted">
+            <ng-container *ngIf="!user?.status?.signUpCompleted">
               <strong>{{ 'global.words.no' | translate}}</strong>
             </ng-container>
           </li>
@@ -179,7 +179,7 @@
     <app-first-consultation-list [client]="user" [firstConsultations]="firstConsultations"
       *ngIf="firstConsultations">
     </app-first-consultation-list>
-    
+
     <app-measurement-list [client]="user" [measurements]="measurements"
       *ngIf="measurements">
     </app-measurement-list>
@@ -193,7 +193,7 @@
         </div>
       </div>
     </section>
-      
+
     <h1 class="section-title left">{{ 'pages.mealplan.title' | translate }}</h1>
     <section class="guidelines" *ngIf="mealplans">
       <div class="guidelines__container">
@@ -209,7 +209,7 @@
       *ngIf="followUps"></app-follow-up-list>
   </main>
 </ng-container>
-  
+
 <ng-container *ngIf="!user">
   <app-loading-spinner></app-loading-spinner>
 </ng-container>

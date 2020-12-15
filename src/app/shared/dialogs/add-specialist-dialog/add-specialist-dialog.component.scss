@@ -23,7 +23,7 @@ mat-form-field {
             min-height: 230px;
             height: auto;
             line-height: 1.4;
-        }    
+        }
     }
 }
 
@@ -162,8 +162,11 @@ form {
             border-radius: 0;
             border: $light-border;
             transition: all 300ms ease-in-out;
+            margin: 0;
+            max-height: -webkit-fill-available;
+
             @include respond-down($sm) {
-                margin: 0 0;
+                margin: 0;
                 min-height: 99%;
             }
 
@@ -174,8 +177,8 @@ form {
 
             &:hover, &:focus {
                 background: darken($light-grey, 5%);
-                cursor: pointer; 
-                
+                cursor: pointer;
+
                 .fa__icon, .svg-inline--fa, svg, svg path {
                     transition: transform 300ms ease-in-out;
                     transform: scale(1.1);

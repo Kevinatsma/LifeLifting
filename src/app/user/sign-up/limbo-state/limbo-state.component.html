@@ -1,5 +1,5 @@
 <main class="limbo-container" *ngIf="auth.user | async as user">
-  <ng-container *ngIf="user.status.appointment && user.status.appointmentAccepted && !user.status.appointmentCompleted && !showSpecialist">
+  <ng-container *ngIf="user?.status?.appointment && user?.status?.appointmentAccepted && !user?.status?.appointmentCompleted && !showSpecialist">
     <div class="warning-banner">
       <i class="fa__icon fas fa-exclamation-triangle"></i>
       <p>
@@ -12,10 +12,10 @@
   </ng-container>
 
   <ng-container *ngIf="
-    user.status.appointment &&
-    !user.status.appointmentAccepted &&
-    !user.status.appointmentCompleted &&
-    !user.status.appointmentRejected">
+    user?.status?.appointment &&
+    !user?.status?.appointmentAccepted &&
+    !user?.status?.appointmentCompleted &&
+    !user?.status?.appointmentRejected">
     <div class="step-done" [class.hidden]="showSpecialist">
       <h1>{{ 'pages.signup.limbo.step_done.title' | translate }}</h1>
       <p class="intro-text">
@@ -30,7 +30,7 @@
   </ng-container>
 
   <!-- display something if it isn't accepted as well -->
-  <ng-container *ngIf="user.status.appointmentRejected">
+  <ng-container *ngIf="user?.status?.appointmentRejected">
     <div class="step-done not-accepted" [class.hidden]="showSpecialist">
       <h1>{{ 'pages.signup.limbo.not_accepted.title' | translate }}</h1>
       <p class="subtitle" *ngIf="specialist">
@@ -47,13 +47,13 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="user.status.appointment && user.status.appointmentAccepted && !user.status.appointmentCompleted">
+  <ng-container *ngIf="user?.status?.appointment && user?.status?.appointmentAccepted && !user?.status?.appointmentCompleted">
     <div class="appointment-status" [class.hidden]="showSpecialist">
       <h1>{{ 'pages.signup.limbo.appointment_status.title' | translate }}</h1>
       <p class="subtitle" *ngIf="specialist">
         {{ 'pages.signup.limbo.appointment_status.subtitle_1' | translate }}
         <a class="text-link" (click)="toggleSpecialist()">
-          {{specialist.firstName}} {{specialist.lastName}} 
+          {{specialist.firstName}} {{specialist.lastName}}
         </a>
         {{ 'pages.signup.limbo.appointment_status.subtitle_2' | translate }}
       </p>
@@ -64,26 +64,26 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="user.status.appointmentAccepted && user.status.appointmentCompleted && !user.status.accepted">
+  <ng-container *ngIf="user?.status?.appointmentAccepted && user?.status?.appointmentCompleted && !user?.status?.accepted">
     <div class="step-done">
       <h1>{{ 'pages.signup.limbo.completed_appointment.title' | translate }}</h1>
       <p class="subtitle" *ngIf="specialist">
         {{ 'pages.signup.limbo.completed_appointment.subtitle_1' | translate }}
         <a class="text-link" (click)="toggleSpecialist()">
-          {{specialist.firstName}} {{specialist.lastName}} 
+          {{specialist.firstName}} {{specialist.lastName}}
         </a>
         {{ 'pages.signup.limbo.completed_appointment.subtitle_2' | translate }}
       </p>
     </div>
   </ng-container>
 
-  <ng-container *ngIf="!user.status.subscriptionValid && user.status.appointmentCompleted">
+  <ng-container *ngIf="!user?.status?.subscriptionValid && user?.status?.appointmentCompleted">
     <div class="step-done">
       <h1>{{ 'pages.signup.limbo.subscription_ended.title' | translate }}</h1>
       <p class="subtitle" *ngIf="specialist">
         {{ 'pages.signup.limbo.subscription_ended.subtitle_1' | translate }}
         <a class="text-link" (click)="toggleSpecialist()">
-          {{specialist.firstName}} {{specialist.lastName}} 
+          {{specialist.firstName}} {{specialist.lastName}}
         </a>
         {{ 'pages.signup.limbo.subscription_ended.subtitle_2' | translate }}
         <a class="text-link" (click)="resetSpecialist(user)">
@@ -93,11 +93,11 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="user.status.subscriptionValid &&
-                        user.status.accepted &&
-                        user.status.appointmentAccepted &&
-                        user.status.appointmentCompleted &&
-                        user.status.appointment">
+  <ng-container *ngIf="user?.status?.subscriptionValid &&
+                        user?.status?.accepted &&
+                        user?.status?.appointmentAccepted &&
+                        user?.status?.appointmentCompleted &&
+                        user?.status?.appointment">
 
     <div class="step-done" [class.hidden]="showSpecialist">
       <h1>{{ 'pages.signup.limbo.all_completed.title' | translate }}</h1>
@@ -106,8 +106,8 @@
       </p>
       <div class="btn-area">
         <button class="btn-icon-right"
-          [class.btn-disabled]="user.status && !user.status.appointment"
-          [disabled]="user.status && !user.status.appointment"
+          [class.btn-disabled]="user.status && !user?.status?.appointment"
+          [disabled]="user.status && !user?.status?.appointment"
           routerLink="../../dashboard">
           <span>{{ 'pages.signup.limbo.all_completed.to_dashboard' | translate }}</span>
         </button>

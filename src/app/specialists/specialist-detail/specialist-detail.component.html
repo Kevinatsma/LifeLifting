@@ -2,10 +2,10 @@
   <main class="specialist-wrapper" *ngIf="!editShow">
     <section class="action-toolbar-top">
       <div class="left">
-        <button class="icon-button" (click)="goBack()" *ngIf="user.status.accepted">
+        <button class="icon-button" (click)="goBack()" *ngIf="user?.status?.accepted">
             <i class="fa__icon fas fa-arrow-left"></i>
         </button>
-        <a class="icon-button" href="tel:{{specialist.phoneNumber}}" *ngIf="!user.status.accepted">
+        <a class="icon-button" href="tel:{{specialist.phoneNumber}}" *ngIf="!user?.status?.accepted">
             <i class="fa__icon fas fa-phone"></i>
         </a>
       </div>
@@ -18,7 +18,7 @@
           <i class="fa__icon fas fa-edit"></i>
         </button>
 
-        <button class="icon-button edit-button" (click)="openReviewDialog(specialist)" *ngIf="!editShow &&  user.status.canReview">
+        <button class="icon-button edit-button" (click)="openReviewDialog(specialist)" *ngIf="!editShow && user?.status?.canReview">
           <i class="fa__icon fas fa-star"></i>
         </button>
       </div>
@@ -40,7 +40,7 @@
           </p>
           <div class="icon-fact-container">
             <div class="fact">
-              <i class="fa__icon fas fa-globe-americas"></i> 
+              <i class="fa__icon fas fa-globe-americas"></i>
               <span>{{specialist.country}}</span>
             </div>
             <div class="fact">
@@ -62,7 +62,7 @@
         </div>
       </section>
 
-      <section class="about">  
+      <section class="about">
         <h5>{{ 'global.words.about' | translate }} {{specialist.firstName}}</h5>
         <p [class.read-more]="aboutExtended">{{ (specialist.description) | translate }}</p>
         <button class="text-link" (click)="aboutExtendedOpen()" *ngIf="!aboutExtended">
@@ -124,7 +124,7 @@
             </div>
           </div>
         </section>
-      
+
         <section class="btn-area" *ngIf="reviews.length > 0">
           <button class="text-link" *ngIf="!reviewsVisible" (click)="openReviews()">
             {{ 'pages.review.buttons.show' | translate }}
@@ -139,7 +139,7 @@
   </main>
   <app-edit-specialist *ngIf="editShow" [specialist]="specialist"></app-edit-specialist>
 </ng-container>
-  
+
 <ng-container *ngIf="!specialist">
   <app-loading-spinner></app-loading-spinner>
 </ng-container>

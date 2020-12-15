@@ -71,6 +71,9 @@ export class FileUploadComponent implements OnDestroy {
     this.imageEvent.emit(this.imageURL);
   }
 
+  resetImg() {
+    this.downloadURL = null;
+  }
 
   // Determines if task is active
   isActive(snapshot) {

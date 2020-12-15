@@ -22,12 +22,15 @@
               <app-file-upload-button [url]="url" (imageEvent)="receiveDownloadURL($event)"></app-file-upload-button>
             </section>
             <p class="subtitle">
-              <span>{{editProductForm.controls.nutritionType.value}}</span>
+              <span>{{(editProductForm.controls.nutritionType.value) | translate}}</span>
               <mat-form-field appearance="standard" floatLabel="always">
                 <mat-label>{{ 'pages.food.general.nutrition_type' | translate }}</mat-label>
-                <mat-select matInput placeholder="food.categories.nutritionType" formControlName="nutritionType" 
-                panelClass="dropdown-regular" autocomplete="off" required>
-                  <mat-option *ngFor="let type of nutritionTypes" [value]="type.value">{{type.value}}</mat-option>
+                <mat-select matInput placeholder="{{'pages.food.form.nutrition_group' | translate}}"
+                  formControlName="nutritionType" panelClass="dropdown-regular" autocomplete="off"
+                  required>
+                  <mat-option *ngFor="let type of nutritionTypes" [value]="type.value">
+                    {{ (type?.value) | translate }}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
             </p>
@@ -46,9 +49,12 @@
                       <mat-label>
                         {{ 'pages.food.general.unit_m_value' | translate }}
                       </mat-label>
-                      <mat-select matInput placeholder="Pick another unit" formControlName="unit" 
-                      panelClass="dropdown-regular" autocomplete="off" required>
-                        <mat-option *ngFor="let unit of units" [value]="unit.value">{{unit.value}}</mat-option>
+                      <mat-select matInput placeholder="{{'pages.food.form.pick_another_unit' | translate}}"
+                        formControlName="unit" panelClass="dropdown-regular" autocomplete="off"
+                        required>
+                        <mat-option *ngFor="let unit of units" [value]="unit.value">
+                          {{(unit.value) | translate}}
+                        </mat-option>
                       </mat-select>
                     </mat-form-field>
                   </li>
@@ -63,9 +69,12 @@
                       <mat-label>
                         {{ 'pages.food.general.shopping_list' | translate }}
                       </mat-label>
-                      <mat-select matInput placeholder="Pick another unit" formControlName="shoppingUnit" 
-                      panelClass="dropdown-regular" autocomplete="off" required>
-                        <mat-option *ngFor="let unit of units" [value]="unit.value">{{unit.value}}</mat-option>
+                      <mat-select matInput placeholder="{{'pages.food.form.pick_another_unit' | translate}}"
+                        formControlName="shoppingUnit" panelClass="dropdown-regular"
+                        autocomplete="off" required>
+                        <mat-option *ngFor="let unit of units" [value]="unit.value">
+                          {{(unit?.value) | translate}}
+                        </mat-option>
                       </mat-select>
                     </mat-form-field>
                   </li>

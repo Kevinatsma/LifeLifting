@@ -7,6 +7,7 @@ export interface Roles {
 export interface Status {
     appointment?: boolean;
     appointmentAccepted?: boolean;
+    appointmentRejected?: boolean;
     appointmentCompleted?: boolean;
     accepted?: boolean;
     signUpCompleted?: boolean;
@@ -45,4 +46,5 @@ export class User {
     signUpDate?: Date;
     formulas?: Formulas;
     currentWeight?: number;
+    testUser?: boolean;
 }

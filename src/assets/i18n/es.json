@@ -204,6 +204,21 @@
         "keto": "Keto",
         "plant_based": "A base de plantas"
       }
+    },
+    "units": {
+      "cup": "Taza",
+      "can": "Lata",
+      "fillet": "Filete",
+      "glass": "Vaso",
+      "gram": "Gramo",
+      "kg": "Kilogramo",
+      "liter": "Litro",
+      "milligram": "Miligramo",
+      "milliliter": "Mililitro",
+      "slice": "Tajada",
+      "spoon": "Cucharada",
+      "teaspoon": "Cucharadita",
+      "unit": "Unidad"
     }
   },
   "pages": {
@@ -896,7 +911,7 @@
         "kcal_change": "Kcal Aumentar/disminuir",
         "basal_metabolism": "las calorías del metabolismo basal",
         "protein": "Proteína",
-        "carbs": "Hidratos de carbono",
+        "carbs": "Carbohidratos",
         "fat": "Grasa",
         "increase": "Aumentar",
         "decrease": "Disminuir",
@@ -1212,7 +1227,39 @@
         "shopping_list_unit": "La unidad para la lista de la compra",
         "calculation_factor": "El factor de cálculo - ver ejemplo abajo",
         "preperations_detail": "Describa y añada algunos métodos de preparación del producto.",
-        "prep_method": "Método de preparación"
+        "prep_method": "Método de preparación",
+        "prep_way": "Forma de preparar la comida",
+        "pick_another_unit": "Escoge otra unidad"
+      },
+      "nutrition_types": {
+        "protein": "Proteína",
+        "carbs":"Carbohidratos",
+        "fat": "Grasa",
+        "vegetables": "Vegetales",
+        "supps": "Suplementos"
+      },
+      "preperations": {
+        "none": "Ninguno",
+        "baked": "Horneado",
+        "chopped": "Cortado",
+        "cooked": "Cocinado",
+        "cooked_spinach": "Cocinado con espinaca",
+        "diced": "Cortados en cubitos",
+        "grated": "Rallado",
+        "hard_boiled": "Cocido duro",
+        "in_oven": "Del horno",
+        "on_grill": "En la parrilla",
+        "grilled": "A la parrilla",
+        "sauteed": "Salteado",
+        "omelette": "Tortilla de huevo",
+        "raw": "Crudo",
+        "roasted": "Asado",
+        "sauteed_veggies": "Salteado con verduras",
+        "scrambled": "Revuelto",
+        "sliced": "Rebanada",
+        "snacked": "Picado",
+        "steamed": "Al vapor",
+        "whole": "Entera"
       },
       "buttons": {
         "add_period": "Añade un período de comida",

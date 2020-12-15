@@ -205,7 +205,8 @@ export class MyClientDetailComponent implements OnInit, OnDestroy {
       data: {
         uid: this.user.uid,
         displayName: this.user.displayName,
-        currentWeight: this.user.basicData.currentWeight
+        currentWeight: this.user.basicData.currentWeight,
+        guidelines: this.guidelines
       },
       panelClass: 'add-guide-dialog',
       disableClose: true,

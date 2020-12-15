@@ -39,7 +39,7 @@ main.specialist-edit-wrapper {
         button.icon-button {
             position: inherit;
         }
-    
+
     }
 }
 
@@ -67,6 +67,7 @@ section.specialist-header {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        margin: 0;
 
         span  {
             font-size: 18px;
@@ -369,6 +370,6 @@ section.btn-area {
         .fa__icon, .svg-inline--fa, svg, svg path {
             font-size: 12px;
             margin-left: 5px;
-        }     
+        }
     }
 }

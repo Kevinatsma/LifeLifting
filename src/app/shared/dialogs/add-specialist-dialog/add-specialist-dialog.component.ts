@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { SpecialistService } from './../../../specialists/specialist.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { DataService } from './../../../shared/data/data.service';
 import { Timezone } from './../../../shared/data/models/timezone.model';
 import languages from './../../data/JSON/languages.json';
 import { Language } from '../../data/models/language.model';
 import { MatDialog } from '@angular/material/dialog';
+import { takeUntil } from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-add-specialist-dialog',
@@ -15,6 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
   encapsulation: ViewEncapsulation.None
 })
 export class AddSpecialistDialogComponent implements OnInit {
+  destroy$: Subject<boolean> = new Subject();
   // FormGroups
   signUpForm: FormGroup;
   personalForm: FormGroup;
@@ -79,8 +82,6 @@ export class AddSpecialistDialogComponent implements OnInit {
       specialistID: ['',
         [
           Validators.required,
-          Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-          Validators.minLength(8),
         ]
       ],
       firstName: ['', [Validators.required]],
@@ -108,12 +109,23 @@ export class AddSpecialistDialogComponent implements OnInit {
     this.extrasForm = this.fb.group({
       languageArr: this.fb.array([ this.createLanguage() ]),
     });
+
+    this.setId();
+  }
+
+  setId() {
+    const specialists$ = this.specialistService.getSpecialists();
+    specialists$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(specialists => {
+      const newId = _.chain(specialists).get('length').add(1).value();
+      this.personalForm.get('specialistID').patchValue(newId)
+    })
   }
 
   receiveDownloadURL($event) {
     return this.downloadURL = $event;
   }
-
 
   // Getters
   get email() {
@@ -148,10 +160,10 @@ export class AddSpecialistDialogComponent implements OnInit {
       const email = this.email.value;
       const password = this.password.value;
       const data = {
-        specialistID: this.personalForm.get('specialistID').value,
+        specialistID: `specialist${this.personalForm.get('specialistID').value}`,
         firstName: this.personalForm.get('firstName').value,
         lastName: this.personalForm.get('lastName').value,
-        photoURL: this.downloadURL,
+        photoURL: this.downloadURL || '',
         email: email,
         description: this.aboutForm.get('description').value,
         phoneNumber: this.aboutForm.get('phoneNumber').value,
@@ -164,23 +176,26 @@ export class AddSpecialistDialogComponent implements OnInit {
         country: this.locationForm.get('country').value,
         languages: this.languageForms.value,
         signUpDate: new Date(),
-        signUpCompleted: false
+        signUpCompleted: false,
+        reviews: []
       };
 
-      // Add user in FireAuth
       return this.specialistService.emailSignUp(email, password, data)
-      .then(() => {
-        // Reset form
-        this.signUpForm.reset();
-        this.personalForm.reset();
-        this.aboutForm.reset();
-        this.experienceForm.reset();
-        this.locationForm.reset();
-        // this.addSpecialistForm.reset();
-      });
+        .then(() => {
+          this.signUpForm.reset();
+          this.personalForm.reset();
+          this.aboutForm.reset();
+          this.experienceForm.reset();
+          this.locationForm.reset();
+          // this.addSpecialistForm.reset();
+        })
+        .catch(error => alert(error));
     }
 
     closeDialog() {
+      this.destroy$.next(false);
+      this.destroy$.complete();
+
       if (confirm('Are you sure you want to stop adding this specialist?')) {
         this.dialog.closeAll();
       }

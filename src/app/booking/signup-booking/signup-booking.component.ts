@@ -123,8 +123,7 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
     });
     this.translate.onDefaultLangChange.pipe(
       takeUntil(this.destroy$)
-    ).subscribe((event) => {
-      console.log('change vent', event);
+    ).subscribe(() => {
       this.utils.replaceCalendarHeaderDates()
     })
   }
@@ -239,11 +238,14 @@ export class SignUpBookingComponent implements OnInit, OnDestroy {
   }
 
   fillForbiddenTimes(events) {
-    let copyEvent = _.first(events);
-    _.set(copyEvent, 'start', new Date());
-    _.set(copyEvent, 'end', this.utils.dateAdd(copyEvent.start, 'hour', 48));
-    _.set(copyEvent, 'eventID', "placeholder");
-    return [...events, copyEvent];
+    let copyEvent = _.chain(events).get('length').gt(0) ? _.first(events) : [];
+    if (!_.isNil(copyEvent)) {
+      _.set(copyEvent, 'start', new Date());
+      _.set(copyEvent, 'end', this.utils.dateAdd(copyEvent.start, 'hour', 48));
+      _.set(copyEvent, 'eventID', "placeholder");
+    }
+    const returnEvents = _.isEmpty(copyEvent) ? [] : [...events, copyEvent];
+    return returnEvents;
   }
 
   injectEventOverviewTitle(timeOut) {
