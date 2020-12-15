@@ -42,7 +42,7 @@
             {{ 'pages.signup.step_success.step_two' | translate }}
           </a>
         </ng-container>
-        
+
         <ng-container *ngIf="!user.basicData">
           {{ 'pages.signup.step_success.step_two' | translate }}
         </ng-container>
@@ -59,14 +59,14 @@
             {{ 'pages.signup.step_success.step_three' | translate }}
           </a>
       </ng-container>
-        
+
         <ng-container *ngIf="!user.packageChoice">
           {{ 'pages.signup.step_success.step_three' | translate }}
         </ng-container>
       </li>
-      <li [class.activated]="user.status.appointment">
-        <div class="placeholder" *ngIf="!user.status.appointment"></div>
-        <i class="fa__icon fas fa-check-square" *ngIf="user.status.appointment"></i>
+      <li [class.activated]="user?.status?.appointment">
+        <div class="placeholder" *ngIf="!user?.status?.appointment"></div>
+        <i class="fa__icon fas fa-check-square" *ngIf="user?.status?.appointment"></i>
 
         <ng-container *ngIf="!isMobile"><a routerLink="step-four" *ngIf="user.specialist">
           {{ 'pages.signup.step_success.step_four' | translate }}
@@ -76,35 +76,35 @@
             {{ 'pages.signup.step_success.step_four' | translate }}
           </a>
         </ng-container>
-        
+
         <ng-container *ngIf="!user.specialist">
           {{ 'pages.signup.step_success.step_four' | translate }}
         </ng-container>
       </li>
-      <li [class.activated]="user.status.accepted">
-        <div class="placeholder" *ngIf="!user.status.accepted"></div>
-        <i class="fa__icon fas fa-check-square" *ngIf="user.status.accepted"></i>
+      <li [class.activated]="user?.status?.accepted">
+        <div class="placeholder" *ngIf="!user?.status?.accepted"></div>
+        <i class="fa__icon fas fa-check-square" *ngIf="user?.status?.accepted"></i>
 
         <ng-container *ngIf="!isMobile">
-          <a routerLink="limbo" *ngIf="user.status.appointment">
+          <a routerLink="limbo" *ngIf="user?.status?.appointment">
             {{ 'pages.signup.step_success.step_five' | translate }}
           </a>
         </ng-container>
         <ng-container *ngIf="isMobile">
-          <a (click)="closeSection('step-five')" *ngIf="user.status.appointment">
+          <a (click)="closeSection('step-five')" *ngIf="user?.status?.appointment">
             {{ 'pages.signup.step_success.step_five' | translate }}
           </a>
       </ng-container>
-        
-        <ng-container *ngIf="!user.status.appointment">
+
+        <ng-container *ngIf="!user?.status?.appointment">
           {{ 'pages.signup.step_success.step_five' | translate }}
         </ng-container>
       </li>
     </ul>
     <div class="btn-area" *ngIf="user.status">
-      <button type="link" class="btn-primary" 
-      [class.btn-disabled]="!user.status.accepted"
-      [disabled]="!user.status.accepted"
+      <button type="link" class="btn-primary"
+      [class.btn-disabled]="!user?.status?.accepted"
+      [disabled]="!user?.status?.accepted"
       routerLink="../dashboard">
         {{ 'global.buttons.go_to_mirror' | translate }}
       </button>

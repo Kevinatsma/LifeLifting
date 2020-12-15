@@ -21,7 +21,7 @@ export class EditSpecialistComponent implements OnInit, OnDestroy {
   // Form
   editSpecialistForm: FormGroup;
   timezones: Observable<Timezone[]>;
-  selectedTimeZone = 'Hello there';
+  public selectedTimeZone = 'Hello there';
   languages: FormArray;
   downloadURL: string | null;
   url: any;

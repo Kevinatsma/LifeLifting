@@ -123,6 +123,7 @@ export class AddGuideDialogComponent implements OnInit, OnDestroy {
                 this.exercises$ = this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
                 this.user = userData.user;
                 this.getExtraDocs(userData.uid);
+                setTimeout(() => this.patchGuideNumber(this.userData.guidelines), 500);
                }
 
   ngOnInit() {
@@ -172,6 +173,11 @@ export class AddGuideDialogComponent implements OnInit, OnDestroy {
     this.user$ = this.userService.getUserDataByID(this.userData.uid).subscribe(user => {
       this.user = user;
     });
+  }
+
+  patchGuideNumber(guidelines) {
+    const gNumber =  _.chain(guidelines).get('length').add(1);
+    this.infoForm.get('gID').patchValue(`${gNumber}`);
   }
 
   ngOnDestroy() {

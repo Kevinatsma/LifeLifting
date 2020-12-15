@@ -1,6 +1,6 @@
 <ng-container *ngIf="user">
   <main class="specialist-wrapper">
-      
+
     <section class="action-toolbar-top" *ngIf="editShow">
         <div class="left">
           <button class="icon-button" (click)="goBack()">
@@ -43,29 +43,29 @@
               <div class="icon-fact-container">
                 <div class="fact">
                   <i class="fa__icon fas fa-transgender"></i>
-                  <mat-select matInput placeholder="{{user.basicData.gender}}" [(value)]="selectedGender" formControlName="gender" 
+                  <mat-select matInput placeholder="{{user.basicData.gender}}" [(value)]="selectedGender" formControlName="gender"
                   panelClass="dropdown-regular" autocomplete="off" required *ngIf="user.basicData">
                     <mat-option *ngFor="let gender of genders" [value]="gender.value">{{ gender.viewValue | translate }}</mat-option>
                   </mat-select>
-                  <mat-select matInput placeholder="Gender" [(value)]="selectedGender" formControlName="gender" 
+                  <mat-select matInput placeholder="Gender" [(value)]="selectedGender" formControlName="gender"
                   panelClass="dropdown-regular" autocomplete="off" required *ngIf="!user.basicData">
                     <mat-option *ngFor="let gender of genders" [value]="gender.value">{{ gender.viewValue | translate }}</mat-option>
                   </mat-select>
                 </div>
                 <div class="fact">
                   <i class="fa__icon fas fa-user-ninja"></i>
-                  <mat-select matInput placeholder="{{ specialist.firstName }} {{ specialist.lastName }}" 
-                  [(value)]="selectedSpecialist" panelClass="dropdown-regular" formControlName="specialist" autocomplete="off" 
+                  <mat-select matInput placeholder="{{ specialist.firstName }} {{ specialist.lastName }}"
+                  [(value)]="selectedSpecialist" panelClass="dropdown-regular" formControlName="specialist" autocomplete="off"
                   required name="specialist" *ngIf="specialist">
                     <mat-option disabled selected>{{specialist.firstName}}</mat-option>
-                    <mat-option *ngFor="let specialist of specialists | async" 
+                    <mat-option *ngFor="let specialist of specialists | async"
                     [value]="specialist.specialistID"
                     > {{specialist.firstName}} {{specialist.lastName}}</mat-option>
                   </mat-select>
-                  <mat-select matInput placeholder="Specialist" 
-                  [(value)]="selectedSpecialist" panelClass="dropdown-regular" formControlName="specialist" autocomplete="off" 
+                  <mat-select matInput placeholder="Specialist"
+                  [(value)]="selectedSpecialist" panelClass="dropdown-regular" formControlName="specialist" autocomplete="off"
                   required name="specialist" *ngIf="!specialist">
-                    <mat-option *ngFor="let specialist of specialists | async" 
+                    <mat-option *ngFor="let specialist of specialists | async"
                     [value]="specialist.specialistID"
                     > {{specialist.firstName}} {{specialist.lastName}}</mat-option>
                   </mat-select>
@@ -88,12 +88,12 @@
             </div>
           </div>
         </section>
-  
-        <section class="about">  
+
+        <section class="about">
           <h5>{{user.displayName}}'s {{ 'pages.users.edit_user.main_goal' | translate }}</h5>
           <textarea matInput matTextareaAutosize formControlName="mainGoal"></textarea>
         </section>
-  
+
         <section class="contact-language">
           <div class="contact-info">
             <h5 class="purple">
@@ -122,10 +122,10 @@
               <div class="switch">
                 <p class="card-text">
                   <mat-slide-toggle formControlName="signUpCompleted" (change)="onChange($event)">
-                    <ng-container *ngIf="user.status.signUpCompleted">
+                    <ng-container *ngIf="user?.status?.signUpCompleted">
                       {{ 'global.user.status.signup_completed' | translate }}
                     </ng-container>
-                    <ng-container *ngIf="!user.status.signUpCompleted">
+                    <ng-container *ngIf="!user?.status?.signUpCompleted">
                       {{ 'global.user.status.signup_incomplete' | translate }}
                     </ng-container>
                   </mat-slide-toggle>
@@ -133,10 +133,10 @@
 
                 <p class="card-text">
                   <mat-slide-toggle formControlName="accepted" (change)="onChange($event)">
-                    <ng-container *ngIf="user.status.accepted">
+                    <ng-container *ngIf="user?.status?.accepted">
                       {{ 'global.user.status.accepted' | translate }}
                     </ng-container>
-                    <ng-container *ngIf="!user.status.accepted">
+                    <ng-container *ngIf="!user?.status?.accepted">
                       {{ 'global.user.status.denied' | translate }}
                     </ng-container>
                   </mat-slide-toggle>
@@ -144,10 +144,10 @@
 
                 <p class="card-text">
                   <mat-slide-toggle formControlName="subscriptionValid" (change)="onChange($event)">
-                    <ng-container *ngIf="!user.status.subscriptionValid">
+                    <ng-container *ngIf="!user?.status?.subscriptionValid">
                       {{ 'global.user.status.subscription_invalid' | translate }}
                     </ng-container>
-                    <ng-container *ngIf="user.status.subscriptionValid">
+                    <ng-container *ngIf="user?.status?.subscriptionValid">
                       {{ 'global.user.status.subscription_valid' | translate }}
                     </ng-container>
                   </mat-slide-toggle>
@@ -161,10 +161,10 @@
               <div class="switch">
                 <p class="card-text">
                   <mat-slide-toggle formControlName="appointment" (change)="onChange($event)">
-                    <ng-container *ngIf="user.status.appointment">
+                    <ng-container *ngIf="user?.status?.appointment">
                       {{ 'global.user.status.appointment_requested' | translate }}
                     </ng-container>
-                    <ng-container *ngIf="!user.status.appointment">
+                    <ng-container *ngIf="!user?.status?.appointment">
                       {{ 'global.user.status.appointment_not_requested' | translate }}
                     </ng-container>
                   </mat-slide-toggle>
@@ -172,10 +172,10 @@
 
                 <p class="card-text">
                   <mat-slide-toggle formControlName="appointmentAccepted" (change)="onChange($event)">
-                    <ng-container *ngIf="user.status.appointmentAccepted">
+                    <ng-container *ngIf="user?.status?.appointmentAccepted">
                       {{ 'global.user.status.appointment_accepted' | translate }}
                     </ng-container>
-                    <ng-container *ngIf="!user.status.appointmentAccepted">
+                    <ng-container *ngIf="!user?.status?.appointmentAccepted">
                       {{ 'global.user.status.appointment_not_accepted' | translate }}
                     </ng-container>
                   </mat-slide-toggle>
@@ -183,10 +183,10 @@
 
                 <p class="card-text">
                   <mat-slide-toggle formControlName="appointmentCompleted" (change)="onChange($event)">
-                    <ng-container *ngIf="user.status.appointmentCompleted">
+                    <ng-container *ngIf="user?.status?.appointmentCompleted">
                       {{ 'global.user.status.appointment_completed' | translate }}
                     </ng-container>
-                    <ng-container *ngIf="!user.status.appointmentCompleted">
+                    <ng-container *ngIf="!user?.status?.appointmentCompleted">
                       {{ 'global.user.status.appointment_not_completed' | translate }}
                     </ng-container>
                   </mat-slide-toggle>
@@ -197,10 +197,9 @@
         </section>
       </form>
       </main>
-  
+
   </ng-container>
-    
+
   <ng-container *ngIf="!user">
     <app-loading-spinner></app-loading-spinner>
   </ng-container>
-  

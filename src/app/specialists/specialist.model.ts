@@ -19,7 +19,7 @@ export class Specialist {
     languages: [
         {
             languageValue: string;
-            profficiency?: string;
+            languageLevel?: string;
         }
     ];
     timeZone: string;

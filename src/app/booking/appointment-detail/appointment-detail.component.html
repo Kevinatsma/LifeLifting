@@ -5,12 +5,12 @@
 
   <ng-container *ngIf="!editShow">
     <section class="intro">
-      <button class="edit-btn delete" (click)="deleteEvent(event)" 
+      <button class="edit-btn delete" (click)="deleteEvent(event)"
       *ngIf="user.roles.admin || user.roles.specialist">
         <i class="fa__icon far fa-trash-alt"></i>
       </button>
       <h1>{{ (event.title) | translate}}</h1>
-      <button class="edit-btn" *ngIf="!editShow && event.specialistID === 'specialist'+user.sID" 
+      <button class="edit-btn" *ngIf="!editShow && event.specialistID === 'specialist'+user.sID"
       (click)="toggleEdit()">
         <i class="fa__icon far fa-edit"></i>
       </button>
@@ -59,12 +59,12 @@
       </a>
     </div>
 
-    <section class="appointment-type" *ngIf="event">       
+    <section class="appointment-type" *ngIf="event">
       <div class="contact-container" *ngIf="onlineAppointment">
         <h4>{{ 'pages.booking.online.title' | translate }}</h4>
         <div class="contact-container__item skype" *ngIf="skype && event.skypeName  && user.roles.specialist || user.roles.admin">
           <p>
-            <i class="fa__icon fab fa-skype"></i> 
+            <i class="fa__icon fab fa-skype"></i>
             {{event.skypeName}}
           </p>
         </div>
@@ -79,7 +79,7 @@
         </div>
 
         <div class="contact-container__item phone"
-          *ngIf="user.roles.specialist && event.onlineAppointmentPhone.phoneRest !== '' && event.onlineAppointmentPhone.phoneRest !== null">
+          *ngIf="user.roles.specialist && event.onlineAppointmentPhone.phoneRest !== null && event.onlineAppointmentPhone.phoneRest !== null">
           <p *ngIf="client">
             <i class="fa__icon fas fa-phone"></i>
             <a class="text-link" href="tel:{{event.onlineAppointmentPhone.phoneAreaCode}}{{event.onlineAppointmentPhone.phoneRest}}">
@@ -98,7 +98,7 @@
           </p>
         </div>
       </div>
-      <div class="contact-container__item face-to-face" 
+      <div class="contact-container__item face-to-face"
       *ngIf="faceToFace && event.faceToFacePhone && event.faceToFacePhone !== null">
         <h4>{{ 'pages.booking.f2f.title' | translate }}</h4>
         <p *ngIf="client" class="phone-number">

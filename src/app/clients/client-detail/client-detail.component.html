@@ -12,9 +12,9 @@
           <i class="fa__icon fas fa-comment-alt"></i>
         </button>
         <button class="icon-button edit-button" (click)="toggleEdit()"
-        [class.icon-button-disabled]="!user.status.signUpCompleted" [disabled]="!user.status.signUpCompleted">
-          <ng-container *ngIf="user.status.signUpCompleted"> <i class="fa__icon fas fa-edit"></i> </ng-container>
-          <ng-container *ngIf="!user.status.signUpCompleted"> <i class="fa__icon fas fa-ban"></i> </ng-container>
+        [class.icon-button-disabled]="!user?.status?.signUpCompleted" [disabled]="!user?.status?.signUpCompleted">
+          <ng-container *ngIf="user?.status?.signUpCompleted"> <i class="fa__icon fas fa-edit"></i> </ng-container>
+          <ng-container *ngIf="!user?.status?.signUpCompleted"> <i class="fa__icon fas fa-ban"></i> </ng-container>
         </button>
       </div>
     </section>
@@ -54,7 +54,7 @@
               <span>{{specialist.firstName}} {{specialist.lastName}}</span>
             </div>
           </div>
-          
+
           </div>
           <div class="bottom">
             <p class="tab">
@@ -71,7 +71,7 @@
         </div>
       </section>
 
-      <section class="about">  
+      <section class="about">
         <h5>{{user.displayName}}'s {{ 'pages.client.general.main_goal' | translate }}</h5>
         <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="user.basicData">
           {{user.basicData.mainGoal}}
@@ -118,12 +118,12 @@
         <div class="languages">
           <h5 class="purple">{{ 'pages.client.general.practical_info' | translate }}</h5>
           <ul>
-            <li>{{ 'pages.client.general.heard_from_us' | translate }}: 
+            <li>{{ 'pages.client.general.heard_from_us' | translate }}:
               <strong *ngIf="user.basicData">{{user.basicData.heardFromUs}}</strong>
             </li>
             <li>{{ 'pages.client.general.signup_completed' | translate }}?
-              <ng-container *ngIf="user.status.signUpCompleted"><strong>Yes</strong></ng-container>
-              <ng-container *ngIf="!user.status.signUpCompleted"><strong>No</strong></ng-container>
+              <ng-container *ngIf="user?.status?.signUpCompleted"><strong>Yes</strong></ng-container>
+              <ng-container *ngIf="!user?.status?.signUpCompleted"><strong>No</strong></ng-container>
             </li>
           </ul>
         </div>
@@ -131,7 +131,7 @@
 
       <app-first-consultation-list [client]="user" [firstConsultations]="firstConsultations" *ngIf="firstConsultations">
       </app-first-consultation-list>
-      
+
       <app-measurement-list [client]="user" [measurements]="measurements" *ngIf="measurements"></app-measurement-list>
 
       <section class="guidelines" *ngIf="hasGuidelines">
@@ -142,7 +142,7 @@
           </div>
         </div>
       </section>
-      
+
       <section class="guidelines" *ngIf="hasMealplans">
         <h1 class="section-title">{{ 'pages.mealplans.title' | translate }}</h1>
         <div class="guidelines__container">
@@ -162,7 +162,7 @@
   </ng-container>
 
 </ng-container>
-  
+
 <ng-container *ngIf="!user">
   <app-loading-spinner></app-loading-spinner>
 </ng-container>

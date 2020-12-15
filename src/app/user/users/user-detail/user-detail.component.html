@@ -64,7 +64,7 @@
               <span>{{ 'global.errors.no_value' | translate }}</span>
             </div>
           </div>
-          
+
 
           </div>
           <div class="bottom">
@@ -87,7 +87,7 @@
         </div>
       </section>
 
-      <section class="about">  
+      <section class="about">
         <h5>{{user.displayName}}'s {{ 'pages.client.general.main_goal' | translate }}</h5>
         <p [class.read-more]="aboutExtended" [class.has-read-more]="hasReadMore" *ngIf="user.basicData">
           {{user.basicData.mainGoal}}
@@ -154,17 +154,17 @@
               </ng-container>
             </li>
             <li>{{ 'pages.client.general.signup_completed' | translate }}?
-              <ng-container *ngIf="user.status.signUpCompleted">
+              <ng-container *ngIf="user?.status?.signUpCompleted">
                 <strong>{{ 'global.words.yes' | translate }}</strong>
               </ng-container>
-              <ng-container *ngIf="!user.status.signUpCompleted">
+              <ng-container *ngIf="!user?.status?.signUpCompleted">
                 <strong>{{ 'global.words.no' | translate }}</strong>
               </ng-container>
             </li>
           </ul>
         </div>
       </section>
-      
+
       <app-first-consultation-list [client]="user" [firstConsultations]="firstConsultations" *ngIf="firstConsultations">
       </app-first-consultation-list>
 
@@ -172,7 +172,7 @@
 
       <h1 class="section-title guideline-title">
         {{ 'pages.guideline.title' | translate }}
-      </h1>      
+      </h1>
       <section class="guidelines" *ngIf="hasGuidelines">
         <div class="guidelines__container">
           <app-guideline-list-item *ngFor="let guideline of guidelines" [guideline]="guideline"></app-guideline-list-item>
@@ -181,7 +181,7 @@
           </div>
         </div>
       </section>
-      
+
       <h1 class="section-title guideline-title">
         {{ 'pages.mealplan.title' | translate }}
       </h1>
@@ -205,29 +205,29 @@
           <div>
             <h3>{{ 'global.user.status.general' | translate }}</h3>
             <div class="switch">
-              <p class="card-text" *ngIf="user.status.signUpCompleted">
+              <p class="card-text" *ngIf="user?.status?.signUpCompleted">
                 <i class="fa__icon fas fa-check-circle"></i>
                 {{ 'global.user.status.signup_completed' | translate }}
               </p>
-              <p class="card-text" *ngIf="!user.status.signUpCompleted">
+              <p class="card-text" *ngIf="!user?.status?.signUpCompleted">
                 <i class="fa__icon fas fa-ban"></i>
                 {{ 'global.user.status.signup_incomplete' | translate }}
               </p>
 
-              <p class="card-text" *ngIf="user.status.accepted">
+              <p class="card-text" *ngIf="user?.status?.accepted">
                 <i class="fa__icon fas fa-check-circle"></i>
                 {{ 'global.user.status.accepted' | translate }}
               </p>
-              <p class="card-text" *ngIf="!user.status.accepted">
+              <p class="card-text" *ngIf="!user?.status?.accepted">
                 <i class="fa__icon fas fa-ban"></i>
                 {{ 'global.user.status.denied' | translate }}
               </p>
 
-              <p class="card-text" *ngIf="!user.status.subscriptionValid">
+              <p class="card-text" *ngIf="!user?.status?.subscriptionValid">
                 <i class="fa__icon fas fa-ban"></i>
                 {{ 'global.user.status.subscription_invalid' | translate }}
               </p>
-              <p class="card-text" *ngIf="user.status.subscriptionValid">
+              <p class="card-text" *ngIf="user?.status?.subscriptionValid">
                 <i class="fa__icon fas fa-check-circle"></i>
                 {{ 'global.user.status.subscription_valid' | translate }}
               </p>
@@ -238,29 +238,29 @@
               {{ 'global.user.status.appointment' | translate }}
             </h3>
             <div class="switch">
-              <p class="card-text" *ngIf="user.status.appointment">
+              <p class="card-text" *ngIf="user?.status?.appointment">
                 <i class="fa__icon fas fa-check-circle"></i>
                 {{ 'global.user.status.appointment_requested' | translate }}
               </p>
-              <p class="card-text" *ngIf="!user.status.appointment">
+              <p class="card-text" *ngIf="!user?.status?.appointment">
                 <i class="fa__icon fas fa-ban"></i>
                 {{ 'global.user.status.appointment_not_requested' | translate }}
               </p>
 
-              <p class="card-text" *ngIf="user.status.appointmentAccepted">
+              <p class="card-text" *ngIf="user?.status?.appointmentAccepted">
                 <i class="fa__icon fas fa-check-circle"></i>
                 {{ 'global.user.status.appointment_accepted' | translate }}
               </p>
-              <p class="card-text" *ngIf="!user.status.appointmentAccepted">
+              <p class="card-text" *ngIf="!user?.status?.appointmentAccepted">
                 <i class="fa__icon fas fa-ban"></i>
                 {{ 'global.user.status.appointment_not_accepted' | translate }}
               </p>
 
-              <p class="card-text" *ngIf="user.status.appointmentCompleted">
+              <p class="card-text" *ngIf="user?.status?.appointmentCompleted">
                 <i class="fa__icon fas fa-check-circle"></i>
                 {{ 'global.user.status.appointment_completed' | translate }}
               </p>
-              <p class="card-text" *ngIf="!user.status.appointmentCompleted">
+              <p class="card-text" *ngIf="!user?.status?.appointmentCompleted">
                 <i class="fa__icon fas fa-ban"></i>
                 {{ 'global.user.status.appointment_not_completed' | translate }}
               </p>
@@ -279,7 +279,7 @@
   </ng-container>
 
 </ng-container>
-  
+
 <ng-container *ngIf="!user">
   <app-loading-spinner></app-loading-spinner>
 </ng-container>

@@ -1,13 +1,13 @@
 <ng-container *ngIf="user">
   <main class="specialist-wrapper">
-      
+
     <section class="action-toolbar-top" *ngIf="editShow">
         <div class="left">
           <button class="icon-button" (click)="goBack()">
               <i class="fa__icon fas fa-arrow-left"></i>
           </button>
         </div>
-        <div class="right">  
+        <div class="right">
           <button class="icon-button" (click)="editUser()">
             <i class="fa__icon fas fa-check"></i>
           </button>
@@ -43,7 +43,7 @@
             <div class="icon-fact-container">
               <div class="fact" *ngIf="user.basicData">
                 <i class="fa__icon fas fa-transgender"></i>
-                <mat-select matInput placeholder="{{user.basicData.gender}}" [(value)]="selectedGender" formControlName="gender" 
+                <mat-select matInput placeholder="{{user.basicData.gender}}" [(value)]="selectedGender" formControlName="gender"
                 panelClass="dropdown-regular" autocomplete="off" required>
                   <mat-option *ngFor="let gender of genders" [value]="gender.value">
                     {{ gender.viewValue | translate }}
@@ -52,10 +52,10 @@
               </div>
               <div class="fact" *ngIf="specialist">
                 <i class="fa__icon fas fa-user-ninja"></i>
-                <mat-select matInput placeholder="{{specialist.firstName}}" [(value)]="selectedSpecialist" 
+                <mat-select matInput placeholder="{{specialist.firstName}}" [(value)]="selectedSpecialist"
                 formControlName="specialist" autocomplete="off" required name="specialist"
                 panelClass="dropdown-regular">
-                  <mat-option *ngFor="let specialist of specialists | async" 
+                  <mat-option *ngFor="let specialist of specialists | async"
                   [value]="specialist.specialistID">
                     {{specialist.firstName}} {{specialist.lastName}}
                   </mat-option>
@@ -68,7 +68,7 @@
               <p class="tab">
                 <input class="stat" type="number" name="packageChoice" maxlength="2"
                   placeholder="#" formControlName="packageChoice">
-                {{ 'client.general.package_choice' | translate }}
+                {{ 'pages.client.general.package_choice' | translate }}
               </p>
               <p class="tab">
                 <input class="stat" type="number" name="age" formControlName="age"
@@ -78,12 +78,12 @@
             </div>
           </div>
         </section>
-  
-        <section class="about">  
+
+        <section class="about">
           <h5>{{user.displayName}}'s {{ 'pages.client.general.main_goal' | translate }}</h5>
           <textarea matInput matTextareaAutosize formControlName="mainGoal"></textarea>
         </section>
-  
+
         <section class="contact-language">
           <div class="contact-info">
             <h5 class="purple">{{ 'pages.client.general.contact_info' | translate }}</h5>
@@ -101,10 +101,9 @@
         </section>
       </form>
       </main>
-  
+
   </ng-container>
-    
+
   <ng-container *ngIf="!user">
     <app-loading-spinner></app-loading-spinner>
   </ng-container>
-  
