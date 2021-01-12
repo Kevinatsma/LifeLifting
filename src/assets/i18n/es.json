@@ -1236,6 +1236,7 @@
         "carbs":"Carbohidratos",
         "fat": "Grasa",
         "vegetables": "Vegetales",
+        "fruit": "Fruta",
         "supps": "Suplementos"
       },
       "preperations": {
@@ -1259,7 +1260,10 @@
         "sliced": "Rebanada",
         "snacked": "Picado",
         "steamed": "Al vapor",
-        "whole": "Entera"
+        "whole": "Entera",
+        "toasted": "Tostado",
+        "airfryer": "Al Airfryer",
+        "microwaved": "Al Microondas"
       },
       "buttons": {
         "add_period": "Añade un período de comida",

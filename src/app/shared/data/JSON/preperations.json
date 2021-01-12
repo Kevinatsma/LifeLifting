@@ -20,6 +20,8 @@
     {"prepValue":"pages.food.preperations.sliced"},
     {"prepValue":"pages.food.preperations.snacked"},
     {"prepValue":"pages.food.preperations.steamed"},
-    {"prepValue":"pages.food.preperations.whole"}
+    {"prepValue":"pages.food.preperations.toasted"},
+    {"prepValue":"pages.food.preperations.airfryer"},
+    {"prepValue":"pages.food.preperations.microwaved"}
   ]
 }

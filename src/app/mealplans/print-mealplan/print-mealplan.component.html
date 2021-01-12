@@ -36,13 +36,13 @@
       </span>
       <div class="mealplan-info">
         <p>
-          {{ 'global.words.for' | translate }}: {{client.displayName}} - 
-          {{ 'global.words.by' | translate }}: {{mealplan.specialistName}} - 
-          {{ 'global.words.created' | translate }}: {{mealplan.creationDate.toDate() | date:'short'}}
+          {{ 'global.words.for' | translate }}: {{client.displayName}} -
+          {{ 'global.words.by' | translate }}: {{mealplan.specialistName}} -
+          {{ 'global.words.created' | translate }}: {{(mealplan.creationDate).toDate() | date:'short'}}
         </p>
       </div>
     </div>
-    
+
     <div class="mealplan-wrapper">
       <div class="mealplan-wrapper__schedule">
         <div class="day-wrapper">
@@ -54,7 +54,7 @@
             <div class="meal-time">
               <div class="meal-time__header" *ngFor="let mealtime of mealTimes">
                 <span>{{mealtime.mealTime}}</span>
-                <span>{{mealtime.mealTimeName | translate}}</span>
+                <span>{{(mealtime.mealTimeName) | translate}}</span>
               </div>
             </div>
 
@@ -71,7 +71,7 @@
             <div class="meal-time">
               <div class="meal-time__header" *ngFor="let mealtime of mealTimes">
                 <span>{{mealtime.mealTime}}</span>
-                <span>{{mealtime.mealTimeName | translate}}</span>
+                <span>{{(mealtime.mealTimeName) | translate}}</span>
               </div>
             </div>
 
@@ -88,7 +88,7 @@
             <div class="meal-time">
               <div class="meal-time__header" *ngFor="let mealtime of mealTimes">
                 <span>{{mealtime.mealTime}}</span>
-                <span>{{mealtime.mealTimeName | translate}}</span>
+                <span>{{(mealtime.mealTimeName) | translate}}</span>
               </div>
             </div>
 
@@ -105,7 +105,7 @@
             <div class="meal-time">
               <div class="meal-time__header" *ngFor="let mealtime of mealTimes">
                 <span>{{mealtime.mealTime}}</span>
-                <span>{{mealtime.mealTimeName | translate}}</span>
+                <span>{{(mealtime.mealTimeName) | translate}}</span>
               </div>
             </div>
 
@@ -122,7 +122,7 @@
             <div class="meal-time">
               <div class="meal-time__header" *ngFor="let mealtime of mealTimes">
                 <span>{{mealtime.mealTime}}</span>
-                <span>{{mealtime.mealTimeName | translate}}</span>
+                <span>{{(mealtime.mealTimeName) | translate}}</span>
               </div>
             </div>
 

@@ -3,14 +3,14 @@
     <p class="intro-text">
       {{ 'pages.mealplan.form.step_intro' | translate }}
     </p>
-  
-  
+
+
     <!------------------------------>
     <!------------------------------>
     <!--         Meal one         -->
     <!------------------------------>
     <!------------------------------>
-  
+
     <ng-container *ngIf="mealTimes">
     <div class="time-container" *ngIf="mealTimes.controls[0] as time">
       <section class="header">
@@ -31,20 +31,20 @@
           hh.mm
         </h5>
       </section>
-  
+
       <div class="add-form-field-container meals">
         <div class="meals__title">
           <h1>01</h1>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-            <input class="f-input" type="text" matInput formControlName="mOneMealOneTitle" name="mealTitle" placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" 
+            <input class="f-input" type="text" matInput formControlName="mOneMealOneTitle" name="mealTitle" placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}"
             autofocus="none">
             <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
         </div>
-  
+
         <div class="add-form-field-container" formArrayName="mOneMealOneArr">
-          <section class="chip-container" *ngFor="let food of mOneMealOneForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mOneMealOneForms.controls; let i=index"
           [formGroupName]="i">
           <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(11, i)"
@@ -58,10 +58,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mOneMealOneForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -79,20 +79,20 @@
           </button>
         </div>
       </div>
-  
+
       <div class="add-form-field-container meals" *ngIf="mOneMealTwoShow">
           <div class="meals__title">
             <h1>02</h1>
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-              <input class="f-input" type="text" matInput formControlName="mOneMealTwoTitle" name="mealTitle" placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" 
+              <input class="f-input" type="text" matInput formControlName="mOneMealTwoTitle" name="mealTitle" placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}"
               autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
           </div>
-  
+
         <div class="add-form-field-container" formArrayName="mOneMealTwoArr">
-          <section class="chip-container" *ngFor="let food of mOneMealTwoForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mOneMealTwoForms.controls; let i=index"
           [formGroupName]="i">
           <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(12, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -105,10 +105,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mOneMealTwoForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -133,7 +133,7 @@
           </div>
           Add a second Meal
         </button>
-  
+
         <button type="button" *ngIf="mOneMealTwoShow" class="add-form-field" (click)="mOneMealTwoShow = false">
           <div class="icon">
             <i class="fa__icon fa fa-ban"></i>
@@ -142,14 +142,14 @@
         </button>
       </div>
     </div> <!-- End Timecontainer 1 -->
-  
-  
+
+
     <!------------------------------>
     <!------------------------------>
     <!--         Meal two         -->
     <!------------------------------>
     <!------------------------------>
-  
+
     <div class="time-container" *ngIf="mealTimes.controls[1] as time">
       <section class="header">
         <div class="title">
@@ -169,20 +169,20 @@
           hh.mm
         </h5>
       </section>
-  
+
       <div class="add-form-field-container meals">
         <div class="meals__title">
           <h1>01</h1>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-            <input class="f-input" type="text" matInput formControlName="mTwoMealOneTitle" name="mealTitle" 
+            <input class="f-input" type="text" matInput formControlName="mTwoMealOneTitle" name="mealTitle"
             placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" autofocus="none">
             <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
         </div>
-  
+
         <div class="add-form-field-container" formArrayName="mTwoMealOneArr">
-          <section class="chip-container" *ngFor="let food of mTwoMealOneForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mTwoMealOneForms.controls; let i=index"
           [formGroupName]="i">
             <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(21, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -195,10 +195,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mTwoMealOneForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -216,20 +216,20 @@
           </button>
         </div>
       </div>
-  
+
       <div class="add-form-field-container meals" *ngIf="mTwoMealTwoShow">
           <div class="meals__title">
             <h1>02</h1>
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-              <input class="f-input" type="text" matInput formControlName="mTwoMealTwoTitle" name="mealTitle" 
+              <input class="f-input" type="text" matInput formControlName="mTwoMealTwoTitle" name="mealTitle"
               placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
           </div>
-  
+
         <div class="add-form-field-container" formArrayName="mTwoMealTwoArr">
-          <section class="chip-container" *ngFor="let food of mTwoMealTwoForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mTwoMealTwoForms.controls; let i=index"
           [formGroupName]="i">
             <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(22, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -242,10 +242,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mTwoMealTwoForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -270,7 +270,7 @@
           </div>
           Add a second Meal
         </button>
-  
+
         <button type="button" *ngIf="mTwoMealTwoShow" class="add-form-field" (click)="mTwoMealTwoShow = false">
           <div class="icon">
             <i class="fa__icon fa fa-ban"></i>
@@ -279,16 +279,16 @@
         </button>
       </div>
     </div> <!-- End Timecontainer 2 -->
-  
-  
-  
+
+
+
     <!------------------------------>
     <!------------------------------>
     <!--       Meal three         -->
     <!------------------------------>
     <!------------------------------>
-  
-  
+
+
     <div class="time-container" *ngIf="mealTimes.controls[2] as time">
       <section class="header">
         <div class="title">
@@ -308,20 +308,20 @@
           hh.mm
         </h5>
       </section>
-  
+
       <div class="add-form-field-container meals">
         <div class="meals__title">
           <h1>01</h1>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-            <input class="f-input" type="text" matInput formControlName="mThreeMealOneTitle" name="mealTitle" placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" 
+            <input class="f-input" type="text" matInput formControlName="mThreeMealOneTitle" name="mealTitle" placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}"
             autofocus="none">
             <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
         </div>
-  
+
         <div class="add-form-field-container" formArrayName="mThreeMealOneArr">
-          <section class="chip-container" *ngFor="let food of mThreeMealOneForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mThreeMealOneForms.controls; let i=index"
           [formGroupName]="i">
             <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(31, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -334,10 +334,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mThreeMealOneForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -355,20 +355,20 @@
           </button>
         </div>
       </div>
-  
+
       <div class="add-form-field-container meals" *ngIf="mThreeMealTwoShow">
           <div class="meals__title">
             <h1>02</h1>
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-              <input class="f-input" type="text" matInput formControlName="mThreeMealTwoTitle" name="mealTitle" 
+              <input class="f-input" type="text" matInput formControlName="mThreeMealTwoTitle" name="mealTitle"
               placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
           </div>
-  
+
         <div class="add-form-field-container" formArrayName="mThreeMealTwoArr">
-          <section class="chip-container" *ngFor="let food of mThreeMealTwoForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mThreeMealTwoForms.controls; let i=index"
           [formGroupName]="i">
             <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(32, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -381,10 +381,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mThreeMealTwoForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -409,7 +409,7 @@
           </div>
           Add a second Meal
         </button>
-  
+
         <button type="button" *ngIf="mThreeMealTwoShow" class="add-form-field" (click)="mThreeMealTwoShow = false">
           <div class="icon">
             <i class="fa__icon fa fa-ban"></i>
@@ -418,16 +418,16 @@
         </button>
       </div>
     </div> <!-- End Timecontainer 3 -->
-  
-  
-  
+
+
+
     <!------------------------------>
     <!------------------------------>
     <!--         Meal four        -->
     <!------------------------------>
     <!------------------------------>
-  
-  
+
+
     <div class="time-container" *ngIf="mealTimes.controls[3] as time">
       <section class="header">
         <div class="title">
@@ -447,20 +447,20 @@
           hh.mm
         </h5>
       </section>
-  
+
       <div class="add-form-field-container meals">
         <div class="meals__title">
           <h1>01</h1>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-            <input class="f-input" type="text" matInput formControlName="mFourMealOneTitle" name="mealTitle" 
+            <input class="f-input" type="text" matInput formControlName="mFourMealOneTitle" name="mealTitle"
             placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" autofocus="none">
             <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
         </div>
-  
+
         <div class="add-form-field-container" formArrayName="mFourMealOneArr">
-          <section class="chip-container" *ngFor="let food of mFourMealOneForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mFourMealOneForms.controls; let i=index"
           [formGroupName]="i">
             <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(41, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -473,10 +473,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mFourMealOneForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -494,20 +494,20 @@
           </button>
         </div>
       </div>
-  
+
       <div class="add-form-field-container meals" *ngIf="mFourMealTwoShow">
           <div class="meals__title">
             <h1>02</h1>
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-              <input class="f-input" type="text" matInput formControlName="mFourMealTwoTitle" name="mealTitle" 
+              <input class="f-input" type="text" matInput formControlName="mFourMealTwoTitle" name="mealTitle"
               placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
           </div>
-  
+
         <div class="add-form-field-container" formArrayName="mFourMealTwoArr">
-          <section class="chip-container" *ngFor="let food of mFourMealTwoForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mFourMealTwoForms.controls; let i=index"
           [formGroupName]="i">
             <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(42, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -520,10 +520,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mFourMealTwoForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -548,7 +548,7 @@
           </div>
           Add a second Meal
         </button>
-  
+
         <button type="button" *ngIf="mFourMealTwoShow" class="add-form-field" (click)="mFourMealTwoShow = false">
           <div class="icon">
             <i class="fa__icon fa fa-ban"></i>
@@ -557,16 +557,16 @@
         </button>
       </div>
     </div> <!-- End Timecontainer 4 -->
-  
-  
-  
+
+
+
     <!------------------------------>
     <!------------------------------>
     <!--        Meal Five         -->
     <!------------------------------>
     <!------------------------------>
-  
-  
+
+
     <div class="time-container" *ngIf="mealTimes.controls[4] as time">
       <section class="header">
         <div class="title">
@@ -586,20 +586,20 @@
           hh.mm
         </h5>
       </section>
-  
+
       <div class="add-form-field-container meals">
         <div class="meals__title">
           <h1>01</h1>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-            <input class="f-input" type="text" matInput formControlName="mFiveMealOneTitle" name="mealTitle" placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" 
+            <input class="f-input" type="text" matInput formControlName="mFiveMealOneTitle" name="mealTitle" placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}"
             autofocus="none">
             <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
         </div>
-  
+
         <div class="add-form-field-container" formArrayName="mFiveMealOneArr">
-          <section class="chip-container" *ngFor="let food of mFiveMealOneForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mFiveMealOneForms.controls; let i=index"
           [formGroupName]="i">
             <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(51, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -612,10 +612,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mFiveMealOneForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -633,20 +633,20 @@
           </button>
         </div>
       </div>
-  
+
       <div class="add-form-field-container meals" *ngIf="mFiveMealTwoShow">
         <div class="meals__title">
           <h1>02</h1>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-            <input class="f-input" type="text" matInput formControlName="mFiveMealTwoTitle" name="mealTitle" 
+            <input class="f-input" type="text" matInput formControlName="mFiveMealTwoTitle" name="mealTitle"
             placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" autofocus="none">
             <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
         </div>
-  
+
         <div class="add-form-field-container" formArrayName="mFiveMealTwoArr">
-          <section class="chip-container" *ngFor="let food of mFiveMealTwoForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mFiveMealTwoForms.controls; let i=index"
           [formGroupName]="i">
             <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(52, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -659,10 +659,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mFourMealTwoForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -687,7 +687,7 @@
           </div>
           Add a second Meal
         </button>
-  
+
         <button type="button" *ngIf="mFiveMealTwoShow" class="add-form-field" (click)="mFiveMealTwoShow = false">
           <div class="icon">
             <i class="fa__icon fa fa-ban"></i>
@@ -696,16 +696,16 @@
         </button>
       </div>
     </div> <!-- End Timecontainer 5 -->
-  
-  
-  
+
+
+
     <!------------------------------>
     <!------------------------------>
     <!--         Meal Six         -->
     <!------------------------------>
     <!------------------------------>
-  
-  
+
+
     <div class="time-container" *ngIf="mealTimes.controls[5] as time">
       <section class="header">
         <div class="title">
@@ -725,20 +725,20 @@
           hh.mm
         </h5>
       </section>
-  
+
       <div class="add-form-field-container meals">
         <div class="meals__title">
           <h1>01</h1>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-            <input class="f-input" type="text" matInput formControlName="mSixMealOneTitle" name="mealTitle" 
+            <input class="f-input" type="text" matInput formControlName="mSixMealOneTitle" name="mealTitle"
             placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" autofocus="none">
             <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
         </div>
-  
+
         <div class="add-form-field-container" formArrayName="mSixMealOneArr">
-          <section class="chip-container" *ngFor="let food of mSixMealOneForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mSixMealOneForms.controls; let i=index"
           [formGroupName]="i">
             <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(61, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -751,10 +751,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mSixMealOneForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -772,20 +772,20 @@
           </button>
         </div>
       </div>
-  
+
       <div class="add-form-field-container meals" *ngIf="mSixMealTwoShow">
           <div class="meals__title">
             <h1>02</h1>
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-              <input class="f-input" type="text" matInput formControlName="mSixMealTwoTitle" name="mealTitle" 
+              <input class="f-input" type="text" matInput formControlName="mSixMealTwoTitle" name="mealTitle"
               placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
           </div>
-  
+
         <div class="add-form-field-container" formArrayName="mSixMealTwoArr">
-          <section class="chip-container" *ngFor="let food of mSixMealTwoForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mSixMealTwoForms.controls; let i=index"
           [formGroupName]="i">
             <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(62, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -798,10 +798,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mSixMealTwoForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -826,7 +826,7 @@
           </div>
           Add a second Meal
         </button>
-  
+
         <button type="button" *ngIf="mSixMealTwoShow" class="add-form-field" (click)="mSixMealTwoShow = false">
           <div class="icon">
             <i class="fa__icon fa fa-ban"></i>
@@ -835,16 +835,16 @@
         </button>
       </div>
     </div> <!-- End Timecontainer 6 -->
-  
-  
-  
+
+
+
     <!------------------------------>
     <!------------------------------>
     <!--        Meal Seven        -->
     <!------------------------------>
     <!------------------------------>
-  
-  
+
+
     <div class="time-container" *ngIf="mealTimes.controls[6] as time">
       <section class="header">
         <div class="title">
@@ -864,20 +864,20 @@
           hh.mm
         </h5>
       </section>
-  
+
       <div class="add-form-field-container meals">
         <div class="meals__title">
           <h1>01</h1>
           <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-            <input class="f-input" type="text" matInput formControlName="mSevenMealOneTitle" name="mealTitle" 
+            <input class="f-input" type="text" matInput formControlName="mSevenMealOneTitle" name="mealTitle"
             placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" autofocus="none">
             <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
           </mat-form-field>
         </div>
-  
+
         <div class="add-form-field-container" formArrayName="mSevenMealOneArr">
-          <section class="chip-container" *ngFor="let food of mSevenMealOneForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mSevenMealOneForms.controls; let i=index"
           [formGroupName]="i">
             <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(71, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -888,10 +888,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mSevenMealOneForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                   <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                   panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -909,20 +909,20 @@
           </button>
         </div>
       </div>
-  
+
       <div class="add-form-field-container meals" *ngIf="mSevenMealTwoShow">
           <div class="meals__title">
             <h1>02</h1>
             <mat-form-field appearance="standard" floatLabel="always">
               <mat-label>{{ 'pages.mealplan.form.meal_title' | translate }}</mat-label>
-              <input class="f-input" type="text" matInput formControlName="mSevenMealTwoTitle" name="mealTitle" 
+              <input class="f-input" type="text" matInput formControlName="mSevenMealTwoTitle" name="mealTitle"
               placeholder="{{ 'pages.mealplan.form.meal_title_placeholder' | translate }}" autofocus="none">
               <!-- <mat-error class="input-error" *ngIf="!mondayForm['controls'].mealTitle.valid">This is <strong>required</strong></mat-error> -->
             </mat-form-field>
           </div>
-  
+
         <div class="add-form-field-container" formArrayName="mSevenMealTwoArr">
-          <section class="chip-container" *ngFor="let food of mSevenMealTwoForms.controls; let i=index" 
+          <section class="chip-container" *ngFor="let food of mSevenMealTwoForms.controls; let i=index"
           [formGroupName]="i">
             <mat-form-field appearance="standard">
               <mat-select matInput (selectionChange)="clearFields(72, i)" placeholder="{{ 'pages.mealplan.form.pick_product' | translate }}" class="f-input select"
@@ -933,10 +933,10 @@
             </mat-form-field>
             <div class="unit" *ngIf="mSevenMealTwoForms.controls[i].value.product as prodObj">
               <mat-form-field appearance="standard" floatLabel="always">
-                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0" 
+                <input class="f-input" type="number" matInput formControlName="amount" name="amount" placeholder="0"
                 autofocus="none">
               </mat-form-field>
-              <span>{{prodObj.unit}}</span>
+              <span>{{(prodObj.unit) | translate}}</span>
               <mat-form-field appearance="standard" class="select">
                 <mat-select matInput class="f-input select" placeholder="{{ 'pages.food.general.preperation' | translate }}"
                 panelClass="dropdown-regular" autocomplete="off" formControlName="prep" required>
@@ -961,7 +961,7 @@
           </div>
           Add a second Meal
         </button>
-  
+
         <button type="button" *ngIf="mSevenMealTwoShow" class="add-form-field" (click)="mSevenMealTwoShow = false">
           <div class="icon">
             <i class="fa__icon fa fa-ban"></i>

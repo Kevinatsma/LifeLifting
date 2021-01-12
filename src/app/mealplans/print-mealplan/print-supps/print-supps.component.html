@@ -31,7 +31,7 @@
           <h1>{{ 'pages.mealplan.form.before_training' | translate }}</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.beforeOneArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
+              {{item.product.productName}} - {{item.amount}} {{(item.product.unit) | translate}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
             </li>
           </ul>
         </div>
@@ -39,7 +39,7 @@
           <h1>{{ 'pages.mealplan.form.during_training' | translate }}</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.duringOneArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
+              {{item.product.productName}} - {{item.amount}} {{(item.product.unit) | translate}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
             </li>
           </ul>
         </div>
@@ -47,7 +47,7 @@
           <h1>{{ 'pages.mealplan.form.after_training' | translate }}</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.afterOneArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
+              {{item.product.productName}} - {{item.amount}} {{(item.product.unit) | translate}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
             </li>
           </ul>
         </div>
@@ -65,7 +65,7 @@
           <h1>{{ 'pages.mealplan.form.before_training' | translate }}</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.beforeTwoArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
+              {{item.product.productName}} - {{item.amount}} {{(item.product.unit) | translate}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
             </li>
           </ul>
         </div>
@@ -73,7 +73,7 @@
           <h1>{{ 'pages.mealplan.form.during_training' | translate }}</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.duringTwoArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
+              {{item.product.productName}} - {{item.amount}} {{(item.product.unit) | translate}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
             </li>
           </ul>
         </div>
@@ -81,7 +81,7 @@
           <h1>{{ 'pages.mealplan.form.after_training' | translate }}</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.afterTwoArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
+              {{item.product.productName}} - {{item.amount}} {{(item.product.unit) | translate}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
             </li>
           </ul>
         </div>
@@ -99,7 +99,7 @@
           <h1>{{ 'pages.mealplan.form.before_training' | translate }}</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.beforeThreeArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
+              {{item.product.productName}} - {{item.amount}} {{(item.product.unit) | translate}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
             </li>
           </ul>
         </div>
@@ -107,7 +107,7 @@
           <h1>{{ 'pages.mealplan.form.during_training' | translate }}</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.duringThreeArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
+              {{item.product.productName}} - {{item.amount}} {{(item.product.unit) | translate}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
             </li>
           </ul>
         </div>
@@ -115,7 +115,7 @@
           <h1>{{ 'pages.mealplan.form.after_training' | translate }}</h1>
           <ul>
             <li *ngFor="let item of supplementation.supps.afterThreeArr">
-              {{item.product.productName}} - {{item.amount}} {{item.product.unit}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
+              {{item.product.productName}} - {{item.amount}} {{(item.product.unit) | translate}} <br><span>Prep: {{item.prep.prepValue | translate}}</span>
             </li>
           </ul>
         </div>

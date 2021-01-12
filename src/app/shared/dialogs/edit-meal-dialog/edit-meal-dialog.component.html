@@ -20,7 +20,7 @@
           <strong>{{ 'pages.mealplan.general.mealplan_id' | translate }}</strong><br>
           {{mealplan.mID}}
         </p>
-    
+
         <mat-form-field appearance="standard" floatLabel="always">
           <mat-label>{{ 'pages.mealplan.form.mealplan_name' | translate }}</mat-label>
           <input type="text" matInput name="mealplanName" formControlName="mealplanName"
@@ -29,12 +29,12 @@
             {{ 'global.errors.required' | translate }}
           </mat-error>
         </mat-form-field>
-
+<!--
         <mat-form-field appearance="standard" floatLabel="always">
             <mat-label>
               {{ 'pages.mealplan.general.mealplan_for' | translate }} {{client.displayName}}
             </mat-label>
-            <mat-select matInput placeholder="Pick another client" formControlName="clientID" 
+            <mat-select matInput placeholder="Pick another client" formControlName="clientID"
             panelClass="dropdown-regular" autocomplete="off" (selectionChange)="updateClient($event)" required>
               <mat-option *ngFor="let client of clients | async" [value]="client">
                 {{client.displayName}}
@@ -43,7 +43,7 @@
             <mat-hint>
               {{ 'pages.mealplan.form.another_client' | translate }}!
             </mat-hint>
-          </mat-form-field>
+          </mat-form-field> -->
       </form>
 
       <section class="btn-area-one">
@@ -88,7 +88,7 @@
                 formControlName="mealTimeName" (selectionChange)="updateMealTimes()"
                 required>
                   <mat-option *ngFor="let name of mealTimeNames" [value]="name.value">
-                    {{name.value}}
+                    {{(name?.value) | translate}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -134,7 +134,7 @@
           {{ 'global.buttons.next' | translate }}
         </button>
       </section>
-  
+
     </mat-step>
 
     <mat-step [stepControl]="">
@@ -166,7 +166,7 @@
           {{ 'global.buttons.next' | translate }}
         </button>
       </section>
-  
+
     </mat-step>
 
     <mat-step [stepControl]="">
@@ -197,7 +197,7 @@
           {{ 'global.buttons.next' | translate }}
         </button>
       </section>
-  
+
     </mat-step>
 
     <mat-step [stepControl]="">

@@ -1236,6 +1236,7 @@
                 "carbs": "Carbohydrates",
                 "fat": "Fat",
                 "vegetables": "Vegetables",
+                "fruit": "Fruit",
                 "supps": "Supplements"
             },
             "preperations": {
@@ -1259,7 +1260,10 @@
                 "sliced": "Sliced",
                 "snacked": "Snacked",
                 "steamed": "Steamed",
-                "whole": "Whole"
+                "whole": "Whole",
+                "toasted": "Toasted",
+                "airfryer": "In the Airfryer",
+                "microwaved": "Microwaved"
             },
             "buttons": {
                 "add_period": "Add a Mealtime period",

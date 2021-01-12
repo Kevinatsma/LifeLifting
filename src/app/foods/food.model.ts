@@ -21,6 +21,7 @@ export const nutritionTypes = [
     {value: 'pages.food.nutrition_types.protein'},
     {value: 'pages.food.nutrition_types.carbs'},
     {value: 'pages.food.nutrition_types.fat'},
+    {value: 'pages.food.nutrition_types.fruit'},
     {value: 'pages.food.nutrition_types.vegetables'},
     {value: 'pages.food.nutrition_types.supps'}
 ];

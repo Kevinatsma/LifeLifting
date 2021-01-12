@@ -99,7 +99,7 @@ export class EditSuppsFormComponent implements OnInit, OnDestroy {
   // Update data when mat stepper changes steps
   updateData() {
     const data = {
-      guideline: this.guideline.gID || this.supplementation.guideline,
+      guideline: this.guideline?.gID || this.supplementation?.guideline,
       supps: this.suppsForm.value,
       exercises: {
         exerciseOne: this.exerciseOne || null,
@@ -145,9 +145,11 @@ export class EditSuppsFormComponent implements OnInit, OnDestroy {
 
   getExercises(guideline) {
     this.exerciseService.getMultipleExercises(guideline);
-    this.exerciseOne$ = this.exerciseService.guideExercises.eOne.subscribe(exercise => {
-      this.exerciseOne = exercise;
-    });
+    if (this.exerciseService.guideExercises.eOne) {
+      this.exerciseOne$ = this.exerciseService.guideExercises.eOne.subscribe(exercise => {
+        this.exerciseOne = exercise;
+      });
+    }
     if (this.exerciseService.guideExercises.eTwo) {
       this.exerciseTwo$ = this.exerciseService.guideExercises.eTwo.subscribe(exercise => {
         this.exerciseTwo = exercise;
