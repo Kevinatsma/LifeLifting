@@ -24,7 +24,7 @@
         &.next {
             right: 20px;
         }
-        
+
         .fa__icon, .svg-inline--fa, svg, svg path {
             color: #fff;
             font-size: 50px;
@@ -33,9 +33,11 @@
 }
 
 .print-container {
-    position: relative;
-    height: 75vh;
-    width: auto;
+  height: $dialog-max-height;
+  max-height: $dialog-max-height;
+  overflow: hidden;
+  position: relative;
+  width: auto;
 }
 
 .page {
@@ -168,7 +170,7 @@
                                 color: $text-black;
                                 font-size: 5px;
                                 font-weight: $extra-bold;
-    
+
                                 &:last-child {
                                     color: daken($grey, 10%);
                                     font-size: 4px;

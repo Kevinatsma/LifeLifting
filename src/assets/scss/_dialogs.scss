@@ -58,7 +58,7 @@ main.dialog-wrapper {
             }
         }
     }
-    
+
     section.btn-area-one {
         display: flex;
         flex-flow: row nowrap;
@@ -116,7 +116,7 @@ main.dialog-wrapper {
 ::ng-deep {
     .add-user-dialog, .add-package-dialog, .review-dialog, .add-food-dialog, .add-exercise-dialog, .add-guide-dialog, .follow-up-dialog {
         overflow-y: auto;
-        
+
         @include respond-down($sm) {
             min-width: 100vw!important;
             max-width: 100vw!important;
@@ -240,7 +240,7 @@ main.dialog-wrapper {
 
 .add-food-dialog, .add-exercise-dialog {
     overflow-y: auto;
-    
+
     @include respond-down($sm) {
         min-width: 100vw;
         width: 100vw;
@@ -258,7 +258,7 @@ main.dialog-wrapper {
 
 .print-dialog {
     min-width: 445px;
-    max-height: 65vh;
+    max-height: $dialog-max-height;
 
     @include respond-down($sm) {
         min-width: 35vw;
@@ -270,7 +270,7 @@ main.dialog-wrapper {
 
         .print-preview-container {
             padding: 1em 1em;
-            height: 65vh;
+            height: $dialog-max-height;
             box-sizing: border-box;
             font-variant: normal !important;
             font-feature-settings: "liga" 0;
@@ -314,7 +314,7 @@ main.dialog-wrapper {
                 font-size: 42px;
             }
         }
-    
+
         &.close-section {
             animation: bounce-appear 0.3s;
             position: fixed;

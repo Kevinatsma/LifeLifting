@@ -262,7 +262,7 @@ export class MealplanDetailComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(PrintMealplanComponent, {
       data: {
         mealplan: this.mealplan,
-        client: this.client,
+        client: this.client
       },
       panelClass: 'print-dialog',
     });

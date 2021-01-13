@@ -37,8 +37,11 @@
       <div class="mealplan-info">
         <p>
           {{ 'global.words.for' | translate }}: {{client.displayName}} -
-          {{ 'global.words.by' | translate }}: {{mealplan.specialistName}} -
-          {{ 'global.words.created' | translate }}: {{(mealplan.creationDate).toDate() | date:'short'}}
+          <ng-container *ngIf="specialist">
+            {{ 'global.words.by' | translate }}: {{specialist?.displayName}} -
+          </ng-container>
+          {{ 'global.words.created' | translate }}:
+           {{(mealplan.creationDate).toDate() | date:'short'}}
         </p>
       </div>
     </div>

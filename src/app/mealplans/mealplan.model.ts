@@ -110,7 +110,6 @@ export interface Supplementation {
 export class Mealplan {
     clientID: string;
     specialistID: string;
-    specialistName: string;
     creationDate: Date;
     lastEdited?: Date;
     mID: string;

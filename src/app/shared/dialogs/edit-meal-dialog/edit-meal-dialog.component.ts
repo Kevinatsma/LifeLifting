@@ -237,7 +237,6 @@ export class EditMealDialogComponent implements OnInit, OnDestroy {
     const data = {
       clientID: this.client.uid || this.infoForm.get('clientID').value || this.data.mealplan.clientID,
       specialistID: this.specialistID,
-      specialistName: this.specialist.firstName + ' ' + this.specialist.lastName,
       lastEdited: new Date(),
       mID: this.data.mealplan.mID,
       mealplanNR: this.data.mealplan.mealplanNR,

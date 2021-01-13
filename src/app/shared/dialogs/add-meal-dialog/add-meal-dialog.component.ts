@@ -193,7 +193,6 @@ export class AddMealDialogComponent implements OnInit, OnDestroy {
     const data = {
       clientID: this.userData.uid,
       specialistID: this.specialistID,
-      specialistName: this.specialist.firstName + ' ' + this.specialist.lastName,
       creationDate: new Date(),
       mealplanNR: this.infoForm.get('mID').value,
       mealplanName: this.infoForm.get('mealplanName').value,

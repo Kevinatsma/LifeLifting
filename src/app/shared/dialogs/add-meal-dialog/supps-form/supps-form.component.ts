@@ -77,7 +77,7 @@ export class SuppsFormComponent implements OnInit, OnDestroy {
                    // Update the form object in the service
                   input.addEventListener('click', ((e) => {
                     const suppsForm = {
-                      guideline: this.guideline.gID,
+                      guideline: this.guideline?.gID,
                       supps: this.suppsForm.value,
                       exercises: {
                         exerciseOne: this.exerciseOne || null,
