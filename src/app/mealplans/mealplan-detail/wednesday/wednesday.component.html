@@ -46,7 +46,7 @@
     </section>
 
     <section class="meals-container" *ngIf="wednesday.mOneMealTwoArr as meals">
-      <div class="meals" *ngIf="meals?.length == 2">
+      <div class="meals" *ngIf="meals && meals?.length > 0">
         <div class="title">
           <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mOneMealTwo">
@@ -115,7 +115,7 @@
     </section>
 
     <section class="meals-container" *ngIf="wednesday.mTwoMealTwoArr as meals">
-      <div class="meals" *ngIf="meals?.length == 2">
+      <div class="meals" *ngIf="meals && meals?.length > 0">
         <div class="title">
           <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
@@ -184,7 +184,7 @@
     </section>
 
     <section class="meals-container" *ngIf="wednesday.mThreeMealTwoArr as meals">
-      <div class="meals" *ngIf="meals?.length == 2">
+      <div class="meals" *ngIf="meals && meals?.length > 0">
         <div class="title">
           <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
@@ -253,7 +253,7 @@
     </section>
 
     <section class="meals-container" *ngIf="wednesday.mFourMealTwoArr as meals">
-      <div class="meals" *ngIf="meals?.length == 2">
+      <div class="meals" *ngIf="meals && meals?.length > 0">
         <div class="title">
           <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
@@ -322,7 +322,7 @@
     </section>
 
     <section class="meals-container" *ngIf="wednesday.mFiveMealTwoArr as meals">
-      <div class="meals" *ngIf="meals?.length == 2">
+      <div class="meals" *ngIf="meals && meals?.length > 0">
         <div class="title">
           <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
@@ -391,7 +391,7 @@
     </section>
 
     <section class="meals-container" *ngIf="wednesday.mSixMealTwoArr as meals">
-      <div class="meals" *ngIf="meals?.length == 2">
+      <div class="meals" *ngIf="meals && meals?.length > 0">
         <div class="title">
           <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
@@ -460,7 +460,7 @@
     </section>
 
     <section class="meals-container" *ngIf="wednesday.mSevenMealTwoArr as meals">
-      <div class="meals" *ngIf="meals?.length == 2">
+      <div class="meals" *ngIf="meals && meals?.length > 0">
         <div class="title">
           <span class="up-title">{{ 'pages.mealplan.general.meal_name' | translate }}</span>
           <a type="button" (click)="toggleSection($event)" id="mTwoMealTwo">
